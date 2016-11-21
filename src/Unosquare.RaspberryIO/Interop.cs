@@ -15,6 +15,7 @@ namespace Unosquare.RaspberryIO
         private const string WiringPiLibrary = "libwiringPi.so";
         private const string WiringPiSpiLibrary = "libwiringPiSPI.so";
         private const string WiringPiI2CLibrary = "libwiringPiI2C.so";
+        private const string LibCLibrary = "libc";
 
         #endregion
 
@@ -138,6 +139,13 @@ namespace Unosquare.RaspberryIO
 
         [DllImport(WiringPiI2CLibrary, EntryPoint = nameof(wiringPiI2CReadReg16))]
         public static extern int wiringPiI2CReadReg16(int fd, int reg);
+
+        #endregion
+
+        #region LibC Calls
+
+        [DllImport(LibCLibrary)]
+        public static extern uint getuid();
 
         #endregion
     }

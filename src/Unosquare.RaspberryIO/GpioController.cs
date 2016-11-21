@@ -42,6 +42,9 @@ namespace Unosquare.RaspberryIO
 
         public bool Initialize(ControllerMode mode)
         {
+            if (Utilities.IsLinuxOS == false)
+                throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion.ToString()}");
+
             lock (SyncLock)
             {
                 if (IsInitialized)
@@ -53,16 +56,25 @@ namespace Unosquare.RaspberryIO
                 {
                     case ControllerMode.DirectWithMappedPins:
                         {
+                            if (Utilities.IsRunningAsRoot == false)
+                                throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
+
                             result = Interop.wiringPiSetup();
                             break;
                         }
                     case ControllerMode.DirectWithHardwarePins:
                         {
+                            if (Utilities.IsRunningAsRoot == false)
+                                throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
+
                             result = Interop.wiringPiSetupGpio();
                             break;
                         }
                     case ControllerMode.DirectWithNamedPins:
                         {
+                            if (Utilities.IsRunningAsRoot == false)
+                                throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
+
                             result = Interop.wiringPiSetupPhys();
                             break;
                         }
