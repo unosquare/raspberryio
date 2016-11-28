@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Unosquare.RaspberryIO
 {
-    public static class Utilities
+    internal static class Utilities
     {
 
         private static readonly object SyncLock = new object();
@@ -16,7 +16,7 @@ namespace Unosquare.RaspberryIO
 
         private static bool? m_IsLinuxOS = new Nullable<bool>();
         private static bool? m_IsRunningAsRoot = new Nullable<bool>();
-        private static BoardInfo m_BoardInformation = null;
+        private static SystemInfo m_BoardInformation = null;
 
 
         public static bool IsLinuxOS
@@ -70,7 +70,7 @@ namespace Unosquare.RaspberryIO
             }
         }
 
-        static public BoardInfo BoardInformation
+        static public SystemInfo BoardInformation
         {
             get
             {
@@ -78,9 +78,9 @@ namespace Unosquare.RaspberryIO
                 {
                     if (m_BoardInformation == null)
                     {
-                        var result = new BoardInfo();
+                        var result = new SystemInfo();
                         var cpuInfoLines = File.ReadAllLines(CpuInfoFilePath);
-                        var properties = typeof(BoardInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                        var properties = typeof(SystemInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public)
                             .Where(p => p.CanWrite && p.CanRead && (p.PropertyType == typeof(string) || p.PropertyType == typeof(string[])))
                             .ToArray();
                         var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer.InvariantCultureIgnoreCase);

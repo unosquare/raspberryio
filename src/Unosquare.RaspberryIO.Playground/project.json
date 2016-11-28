@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+  "frameworks": {
+    "net452": {
+    }
+  },
+  "dependencies": {
+    "Unosquare.RaspberryIO": "1.0.0-*"
+  }
+}

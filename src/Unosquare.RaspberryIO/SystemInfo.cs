@@ -5,8 +5,14 @@ namespace Unosquare.RaspberryIO
     /// <summary>
     /// http://raspberry-pi-guide.readthedocs.io/en/latest/system.html
     /// </summary>
-    public class BoardInfo
+    public class SystemInfo
     {
+
+        public SystemInfo()
+        {
+            
+        }
+
         public string Processor { get; set; }
         public string BogoMips { get; set; }
         public string[] Features { get; set; }
