@@ -132,7 +132,7 @@ namespace Unosquare.RaspberryIO
                             }
                         }
 
-                        result.WirinPiBoardRevision = Interop.piBoardRev;
+                        result.WiringPiBoardRevision = Interop.piBoardRev();
 
 
                         m_BoardInformation = result;

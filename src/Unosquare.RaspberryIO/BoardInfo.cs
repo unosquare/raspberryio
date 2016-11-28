@@ -19,6 +19,7 @@ namespace Unosquare.RaspberryIO
         public string Revision { get; set; }
         public string SerialNumber { get; set; }
         public RaspberryPiVersion RaspberryPiVersion { get; set; }
+        public int WiringPiBoardRevision { get; set; }
         public int InstalledRam { get; set; }
         public bool IsLittleEndian { get { return BitConverter.IsLittleEndian; } }
     }

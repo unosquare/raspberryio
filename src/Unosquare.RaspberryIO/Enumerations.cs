@@ -40,15 +40,22 @@ namespace Unosquare.RaspberryIO
     {
         None,
         P1,
-        P2,
+        P5,
     }
 
     public enum PinCapability
     {
-        DigitalRead,
-        DigitalWrite,
-        AnalogRead,
-        AnalogWrite,
+        GeneralPurpose,
+        I2CSDA,
+        I2CSCL,
+        SPIMOSI,
+        SPIMISO,
+        SPICLK,
+        SPICS,
+        UARTRTS,
+        UARTTXD,
+        UARTRXD,
+        PWM
     }
 
     /// <summary>
