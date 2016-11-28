@@ -8,7 +8,7 @@ namespace Unosquare.RaspberryIO
     public class SystemInfo
     {
 
-        public SystemInfo()
+        internal SystemInfo()
         {
             
         }

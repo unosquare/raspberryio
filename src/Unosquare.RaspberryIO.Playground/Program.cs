@@ -14,7 +14,7 @@ namespace Unosquare.RaspberryIO.Playground
                 var pinCount = GpioController.Instance.Count;
                 Console.WriteLine($"GPIO Controller initialized successfully with {pinCount} pins on the {GpioController.System.RaspberryPiVersion}");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.GetType()} {ex.Message}");
             }
