@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sshdeploy", "sshdeploy", "{
 		sshdeploy\CommandLine.dll = sshdeploy\CommandLine.dll
 		sshdeploy\Renci.SshNet.dll = sshdeploy\Renci.SshNet.dll
 		sshdeploy\SshDeploy.exe = sshdeploy\SshDeploy.exe
-		sshdeploy\sshdeploy.ready = sshdeploy\sshdeploy.ready
+		sshdeploy\SshDeploy.pdb = sshdeploy\SshDeploy.pdb
 	EndProjectSection
 EndProject
 Global
