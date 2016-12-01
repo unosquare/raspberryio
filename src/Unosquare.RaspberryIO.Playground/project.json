@@ -9,5 +9,8 @@
   },
   "dependencies": {
     "Unosquare.RaspberryIO": "1.0.0-*"
+  },
+  "scripts": {
+    "postcompile": "%project:Directory%\\..\\..\\create-sshdeploy.cmd %compile:RuntimeOutputDir% %project:Directory%\\..\\..\\sshdeploy.cmd"
   }
 }

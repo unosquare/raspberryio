@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AD40570E-508
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{144147AA-41C9-4639-AF1E-F08534CA8D49}"
 	ProjectSection(SolutionItems) = preProject
+		create-sshdeploy.cmd = create-sshdeploy.cmd
 		global.json = global.json
 	EndProjectSection
 EndProject
@@ -32,6 +33,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C8A487A8-8
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Unosquare.RaspberryIO.Playground", "src\Unosquare.RaspberryIO.Playground\Unosquare.RaspberryIO.Playground.xproj", "{87BDC267-91D2-4CD1-B088-0F0791948C0E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sshdeploy", "sshdeploy", "{6197D26E-C895-4E92-8EC3-A59821F3A7CE}"
+	ProjectSection(SolutionItems) = preProject
+		sshdeploy\CommandLine.dll = sshdeploy\CommandLine.dll
+		sshdeploy\CommandLine.xml = sshdeploy\CommandLine.xml
+		sshdeploy\Renci.SshNet.dll = sshdeploy\Renci.SshNet.dll
+		sshdeploy\Renci.SshNet.xml = sshdeploy\Renci.SshNet.xml
+		sshdeploy\SshDeploy.exe = sshdeploy\SshDeploy.exe
+		sshdeploy\SshDeploy.exe.config = sshdeploy\SshDeploy.exe.config
+		sshdeploy\SshDeploy.pdb = sshdeploy\SshDeploy.pdb
+		sshdeploy\sshdeploy.ready = sshdeploy\sshdeploy.ready
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +67,6 @@ Global
 		{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB} = {AD40570E-5084-4507-AFB7-647230B007E0}
 		{C8A487A8-8399-4A13-8402-3629998E2A4D} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
 		{87BDC267-91D2-4CD1-B088-0F0791948C0E} = {AD40570E-5084-4507-AFB7-647230B007E0}
+		{6197D26E-C895-4E92-8EC3-A59821F3A7CE} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
 	EndGlobalSection
 EndGlobal

@@ -9,8 +9,13 @@ namespace Unosquare.RaspberryIO.Playground
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine($"This is a test {DateTime.Now}");
+            //var initTest = GpioController.TestWiringPi();
+            //Console.WriteLine($"Init Test: {initTest}");
+
+            //return;
             try
-            {
+            {                
                 var pinCount = GpioController.Instance.Count;
                 Console.WriteLine($"GPIO Controller initialized successfully with {pinCount} pins on the {GpioController.System.RaspberryPiVersion}");
             }
@@ -22,6 +27,7 @@ namespace Unosquare.RaspberryIO.Playground
             {
                 Console.Write("Press any key to continue . . .");
                 Console.ReadKey(true);
+                Console.WriteLine();
             }
         }
     }

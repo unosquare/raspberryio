@@ -21,6 +21,16 @@
         static private readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         static private readonly object SyncLock = new object();
 
+        static public int TestWiringPi()
+        {
+            Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1", EnvironmentVariableTarget.Process);
+
+            var setupResult = Interop.wiringPiSetup();
+            var bcmPin = Interop.wpiPinToGpio(1);
+
+            return bcmPin;
+        }
+
         #endregion
 
         #region Private Declarations
@@ -98,38 +108,38 @@
 
             #region Pin Registration (32 WiringPi Pins)
 
-            RegisterPin(GpioPin.Pin00);
-            RegisterPin(GpioPin.Pin01);
-            RegisterPin(GpioPin.Pin02);
-            RegisterPin(GpioPin.Pin03);
-            RegisterPin(GpioPin.Pin04);
-            RegisterPin(GpioPin.Pin05);
-            RegisterPin(GpioPin.Pin06);
-            RegisterPin(GpioPin.Pin07);
-            RegisterPin(GpioPin.Pin08);
-            RegisterPin(GpioPin.Pin09);
-            RegisterPin(GpioPin.Pin10);
-            RegisterPin(GpioPin.Pin11);
-            RegisterPin(GpioPin.Pin12);
-            RegisterPin(GpioPin.Pin13);
-            RegisterPin(GpioPin.Pin14);
-            RegisterPin(GpioPin.Pin15);
-            RegisterPin(GpioPin.Pin16);
-            RegisterPin(GpioPin.Pin17);
-            RegisterPin(GpioPin.Pin18);
-            RegisterPin(GpioPin.Pin19);
-            RegisterPin(GpioPin.Pin20);
-            RegisterPin(GpioPin.Pin21);
-            RegisterPin(GpioPin.Pin22);
-            RegisterPin(GpioPin.Pin23);
-            RegisterPin(GpioPin.Pin24);
-            RegisterPin(GpioPin.Pin25);
-            RegisterPin(GpioPin.Pin26);
-            RegisterPin(GpioPin.Pin27);
-            RegisterPin(GpioPin.Pin28);
-            RegisterPin(GpioPin.Pin29);
-            RegisterPin(GpioPin.Pin30);
-            RegisterPin(GpioPin.Pin31);
+            RegisterPin(GpioPin.Pin00.Value);
+            RegisterPin(GpioPin.Pin01.Value);
+            RegisterPin(GpioPin.Pin02.Value);
+            RegisterPin(GpioPin.Pin03.Value);
+            RegisterPin(GpioPin.Pin04.Value);
+            RegisterPin(GpioPin.Pin05.Value);
+            RegisterPin(GpioPin.Pin06.Value);
+            RegisterPin(GpioPin.Pin07.Value);
+            RegisterPin(GpioPin.Pin08.Value);
+            RegisterPin(GpioPin.Pin09.Value);
+            RegisterPin(GpioPin.Pin10.Value);
+            RegisterPin(GpioPin.Pin11.Value);
+            RegisterPin(GpioPin.Pin12.Value);
+            RegisterPin(GpioPin.Pin13.Value);
+            RegisterPin(GpioPin.Pin14.Value);
+            RegisterPin(GpioPin.Pin15.Value);
+            RegisterPin(GpioPin.Pin16.Value);
+            RegisterPin(GpioPin.Pin17.Value);
+            RegisterPin(GpioPin.Pin18.Value);
+            RegisterPin(GpioPin.Pin19.Value);
+            RegisterPin(GpioPin.Pin20.Value);
+            RegisterPin(GpioPin.Pin21.Value);
+            RegisterPin(GpioPin.Pin22.Value);
+            RegisterPin(GpioPin.Pin23.Value);
+            RegisterPin(GpioPin.Pin24.Value);
+            RegisterPin(GpioPin.Pin25.Value);
+            RegisterPin(GpioPin.Pin26.Value);
+            RegisterPin(GpioPin.Pin27.Value);
+            RegisterPin(GpioPin.Pin28.Value);
+            RegisterPin(GpioPin.Pin29.Value);
+            RegisterPin(GpioPin.Pin30.Value);
+            RegisterPin(GpioPin.Pin31.Value);
 
             #endregion
 
@@ -142,7 +152,10 @@
         /// <param name="pin">The pin.</param>
         private void RegisterPin(GpioPin pin)
         {
-            RegisteredPins[pin.PinNumber] = pin;
+            if (RegisteredPins.ContainsKey(pin.PinNumber) == false)
+                RegisteredPins[pin.PinNumber] = pin;
+            else
+                throw new InvalidOperationException($"Pin {pin.PinNumber} has been registered");
         }
 
         /// <summary>
