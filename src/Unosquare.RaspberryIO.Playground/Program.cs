@@ -25,8 +25,8 @@ namespace Unosquare.RaspberryIO.Playground
             }
             finally
             {
-                Console.Write("Press any key to continue . . .");
-                Console.ReadKey(true);
+                Console.Write("Program finished");
+                //Console.ReadKey(true);
                 Console.WriteLine();
             }
         }
