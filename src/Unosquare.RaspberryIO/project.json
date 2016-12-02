@@ -9,5 +9,9 @@
     "net452": {
 
     }
+  },
+
+  "buildOptions": {
+    "copyToOutput": { "includeFiles": [ "libwiringPi.so.2.32" ] }
   }
 }

@@ -14,8 +14,6 @@ namespace Unosquare.RaspberryIO
         #region Library References
 
         private const string WiringPiLibrary = "libwiringPi.so";
-        private const string WiringPiSpiLibrary = "libwiringPiSPI.so";
-        private const string WiringPiI2CLibrary = "libwiringPiI2C.so";
         private const string LibCLibrary = "libc";
 
         #endregion
@@ -538,7 +536,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="channel">The channel.</param>
         /// <returns></returns>
-        [DllImport(WiringPiSpiLibrary, EntryPoint = nameof(wiringPiSPIGetFd))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPIGetFd))]
         public static extern int wiringPiSPIGetFd(int channel);
 
         /// <summary>
@@ -551,7 +549,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="data">The data.</param>
         /// <param name="len">The length.</param>
         /// <returns></returns>
-        [DllImport(WiringPiSpiLibrary, EntryPoint = nameof(wiringPiSPIDataRW))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPIDataRW))]
         public static extern int wiringPiSPIDataRW(int channel, byte[] data, int len);
 
         /// <summary>
@@ -561,7 +559,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="speed">The speed.</param>
         /// <param name="mode">The mode.</param>
         /// <returns></returns>
-        [DllImport(WiringPiSpiLibrary, EntryPoint = nameof(wiringPiSPISetupMode))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPISetupMode))]
         public static extern int wiringPiSPISetupMode(int channel, int speed, int mode);
 
         /// <summary>
@@ -572,7 +570,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="channel">The channel.</param>
         /// <param name="speed">The speed.</param>
         /// <returns></returns>
-        [DllImport(WiringPiSpiLibrary, EntryPoint = nameof(wiringPiSPISetup))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPISetup))]
         public static extern int wiringPiSPISetup(int channel, int speed);
 
         #endregion
@@ -584,7 +582,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <returns></returns>
-        [DllImport(WiringPiI2CLibrary, EntryPoint = nameof(wiringPiI2CRead))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CRead))]
         public static extern int wiringPiI2CRead(int fd);
 
         /// <summary>
@@ -593,7 +591,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="fd">The fd.</param>
         /// <param name="reg">The reg.</param>
         /// <returns></returns>
-        [DllImport(WiringPiI2CLibrary, EntryPoint = nameof(wiringPiI2CReadReg8))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CReadReg8))]
         public static extern int wiringPiI2CReadReg8(int fd, int reg);
 
         /// <summary>
@@ -602,7 +600,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="fd">The fd.</param>
         /// <param name="reg">The reg.</param>
         /// <returns></returns>
-        [DllImport(WiringPiI2CLibrary, EntryPoint = nameof(wiringPiI2CReadReg16))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CReadReg16))]
         public static extern int wiringPiI2CReadReg16(int fd, int reg);
 
         /// <summary>
@@ -611,7 +609,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="fd">The fd.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        [DllImport(WiringPiI2CLibrary, EntryPoint = nameof(wiringPiI2CWrite))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CWrite))]
         public static extern int wiringPiI2CWrite(int fd, int data);
 
         /// <summary>
@@ -621,7 +619,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="reg">The reg.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        [DllImport(WiringPiI2CLibrary, EntryPoint = nameof(wiringPiI2CWriteReg8))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CWriteReg8))]
         public static extern int wiringPiI2CWriteReg8(int fd, int reg, int data);
 
         /// <summary>
@@ -631,7 +629,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="reg">The reg.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        [DllImport(WiringPiI2CLibrary, EntryPoint = nameof(wiringPiI2CWriteReg16))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CWriteReg16))]
         public static extern int wiringPiI2CWriteReg16(int fd, int reg, int data);
 
         /// <summary>
@@ -643,7 +641,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="devId">The dev identifier.</param>
         /// <returns></returns>
-        [DllImport(WiringPiI2CLibrary, EntryPoint = nameof(wiringPiI2CSetup))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CSetup))]
         public static extern int wiringPiI2CSetup(int devId);
 
         #endregion

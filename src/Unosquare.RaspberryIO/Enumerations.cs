@@ -1,6 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO
 {
-    public enum PinMode : int
+    public enum GpioPinDriveMode : int
     {
         Input = 0,
         Output = 1,
@@ -16,7 +16,7 @@
         EdgeBoth = 3
     }
 
-    internal enum PinValue : int
+    internal enum GpioPinValue : int
     {
         High = 1,
         Low = 0

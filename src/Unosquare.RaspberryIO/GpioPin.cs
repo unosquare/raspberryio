@@ -124,7 +124,7 @@
         {
             return new GpioPin(WiringPiPin.Pin08, 3)
             {
-                Capabilities = new PinCapability[] { PinCapability.I2CSDA },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.I2CSDA },
                 Name = "BCM 2 (I2C Data)"
             };
         });
@@ -133,7 +133,7 @@
         {
             return new GpioPin(WiringPiPin.Pin09, 5)
             {
-                Capabilities = new PinCapability[] { PinCapability.I2CSCL },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.I2CSCL },
                 Name = "BCM 3 (I2C Clock)"
             };
         });
@@ -178,7 +178,7 @@
         {
             return new GpioPin(WiringPiPin.Pin12, 19)
             {
-                Capabilities = new PinCapability[] { PinCapability.SPIMOSI },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPIMOSI },
                 Name = "BCM 10"
             };
         });
@@ -187,7 +187,7 @@
             {
                 return new GpioPin(WiringPiPin.Pin13, 21)
                 {
-                    Capabilities = new PinCapability[] { PinCapability.SPIMISO },
+                    Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPIMISO },
                     Name = "BCM 9"
                 };
             });
@@ -195,7 +195,7 @@
         {
             return new GpioPin(WiringPiPin.Pin14, 23)
             {
-                Capabilities = new PinCapability[] { PinCapability.SPICLK },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPICLK },
                 Name = "BCM 11"
             };
         });
@@ -222,7 +222,7 @@
         {
             return new GpioPin(WiringPiPin.Pin11, 26)
             {
-                Capabilities = new PinCapability[] { PinCapability.SPICS },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPICS },
                 Name = "BCM 7 (SPI Chip Select 1)"
             };
         });
@@ -231,7 +231,7 @@
         {
             return new GpioPin(WiringPiPin.Pin10, 24)
             {
-                Capabilities = new PinCapability[] { PinCapability.SPICS },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPICS },
                 Name = "BCM 8 (SPI Chip Select 0)"
             };
         });
@@ -320,7 +320,7 @@
         {
             return new GpioPin(WiringPiPin.Pin24, 35)
             {
-                Capabilities = new PinCapability[] { PinCapability.SPIMISO },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPIMISO },
                 Name = "BCM 19 (SPI Master-In)"
             };
         });
@@ -338,7 +338,7 @@
         {
             return new GpioPin(WiringPiPin.Pin29, 40)
             {
-                Capabilities = new PinCapability[] { PinCapability.SPICLK },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPICLK },
                 Name = "BCM 21 (SPI Clock)"
             };
         });
@@ -347,7 +347,7 @@
         {
             return new GpioPin(WiringPiPin.Pin28, 38)
             {
-                Capabilities = new PinCapability[] { PinCapability.SPIMOSI },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPIMOSI },
                 Name = "BCM 20 (SPI Master-Out)"
             };
         });

@@ -21,16 +21,6 @@
         static private readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         static private readonly object SyncLock = new object();
 
-        static public int TestWiringPi()
-        {
-            Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1", EnvironmentVariableTarget.Process);
-
-            var setupResult = Interop.wiringPiSetup();
-            var bcmPin = Interop.wpiPinToGpio(1);
-
-            return bcmPin;
-        }
-
         #endregion
 
         #region Private Declarations
@@ -76,11 +66,6 @@
         /// Gets or sets the initialization mode.
         /// </summary>
         static private ControllerMode Mode { get; set; } = ControllerMode.NotInitialized;
-
-        /// <summary>
-        /// Gets the Raspberry Pi board information.
-        /// </summary>
-        static public SystemInfo System { get { return Utilities.BoardInformation; } }
 
         #endregion
 
