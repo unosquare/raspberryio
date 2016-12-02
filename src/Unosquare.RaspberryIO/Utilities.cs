@@ -15,6 +15,32 @@ namespace Unosquare.RaspberryIO
         private static bool? m_IsLinuxOS = new Nullable<bool>();
         private static bool? m_IsRunningAsRoot = new Nullable<bool>();
 
+        public static string EntryAssemblyDirectory
+        {
+            get
+            {
+                string codeBase = Assembly.GetEntryAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                string path = Uri.UnescapeDataString(uri.Path);
+                return Path.GetDirectoryName(path);
+            }
+        }
+
+        public static void ExtractLibWiringPi()
+        {
+            var targetPath = Path.Combine(EntryAssemblyDirectory, Interop.WiringPiLibrary);
+            if (File.Exists(targetPath)) return;
+
+            using (var stream = typeof(Utilities).Assembly.GetManifestResourceStream($"{typeof(Utilities).Namespace}.{Interop.WiringPiLibrary}"))
+            {
+                using (var outputStream = File.OpenWrite(targetPath))
+                {
+                    stream.CopyTo(outputStream);
+                }
+            }
+
+        }
+
         public static bool IsLinuxOS
         {
             get

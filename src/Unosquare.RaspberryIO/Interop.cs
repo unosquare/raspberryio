@@ -13,8 +13,8 @@ namespace Unosquare.RaspberryIO
     {
         #region Library References
 
-        private const string WiringPiLibrary = "libwiringPi.so";
-        private const string LibCLibrary = "libc";
+        internal const string WiringPiLibrary = "libwiringPi.so.2.32";
+        internal const string LibCLibrary = "libc";
 
         #endregion
 
