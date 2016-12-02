@@ -8,7 +8,7 @@
     using System.Threading;
 
     /// <summary>
-    /// Our main character. Represents a singleton of the Raspberry Pi GPIO controller 
+    /// Represents a singleton of the Raspberry Pi GPIO controller 
     /// as an IReadOnlyCollection of GpioPins
     /// Low level operations are accomplished by using the Wiring Pi library.
     /// Use the Instance property to access the singleton's instance

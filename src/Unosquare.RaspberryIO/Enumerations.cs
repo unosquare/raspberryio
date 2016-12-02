@@ -8,6 +8,13 @@
         GpioClock = 3
     }
 
+    public enum GpioPinResistorPullMode : int
+    {
+        Off = 0,
+        PullDown = 1,
+        PullUp = 2,
+    }
+
     public enum InterruptLevels : int
     {
         EdgeSetup = 0,
@@ -16,7 +23,7 @@
         EdgeBoth = 3
     }
 
-    internal enum GpioPinValue : int
+    public enum GpioPinValue : int
     {
         High = 1,
         Low = 0
@@ -99,6 +106,10 @@
         /// General Purpose capability: Digitala nd Analog Read/Write
         /// </summary>
         GP,
+        /// <summary>
+        /// General Purpose Clock (not PWM)
+        /// </summary>
+        GPCLK,
         /// <summary>
         /// i2c data channel
         /// </summary>

@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO
 {
     using System;
+    using System.Linq;
     using System.Security;
 
     /// <summary>
@@ -25,16 +26,22 @@
         /// <param name="headerPinNumber">The header pin number.</param>
         private GpioPin(WiringPiPin wiringPiPinNumber, int headerPinNumber)
         {
+            Pin =(int)wiringPiPinNumber;
             PinNumber = wiringPiPinNumber;
             BcmPinNumber = Utilities.WiringPiToBcmPinNumber((int)wiringPiPinNumber);
             HeaderPinNumber = headerPinNumber;
-            Header = ((int)PinNumber >= 17 && (int)PinNumber <= 20) ?
+            Header = (Pin >= 17 && Pin <= 20) ?
                 GpioHeader.P5 : GpioHeader.P1;
         }
 
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the pin number as an integer.
+        /// </summary>
+        private int Pin { get; set; }
 
         /// <summary>
         /// Gets the WiringPi Pin number
@@ -116,6 +123,103 @@
             }
         }
 
+        #region Pin Mode
+
+        private GpioPinDriveMode m_PinMode;
+        private GpioPinResistorPullMode m_ResistorPullMode;
+        private int m_PwmRegister = 0;
+
+        public GpioPinDriveMode PinMode
+        {
+            get { return m_PinMode; }
+            set
+            {
+                var mode = value;
+                if ((mode == GpioPinDriveMode.GpioClock && Capabilities.Contains(PinCapability.GPCLK) == false) ||
+                    (mode == GpioPinDriveMode.PwmOutput && Capabilities.Contains(PinCapability.PWM) == false) ||
+                    (mode == GpioPinDriveMode.Input && Capabilities.Contains(PinCapability.GP) == false) ||
+                    (mode == GpioPinDriveMode.Output && Capabilities.Contains(PinCapability.GP) == false))
+                    throw new NotSupportedException($"Pin {PinNumber} '{Name}' does not support mode '{mode}'");
+
+                Interop.pinMode(Pin, (int)mode);
+                m_PinMode = mode;
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input. 
+        /// Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors. 
+        /// The parameter pud should be; PUD_OFF, (no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v) 
+        /// The internal pull up/down resistors have a value of approximately 50KΩ on the Raspberry Pi.
+        /// </summary>
+        public GpioPinResistorPullMode ResistorPullMode
+        {
+            get { return m_ResistorPullMode; }
+            set
+            {
+                Interop.pullUpDnControl(Pin, (int)value);
+                m_ResistorPullMode = value;
+            }
+        }
+
+        public int PwmRegister
+        {
+            get { return m_PwmRegister; }
+            set
+            {
+                var val = value > 1024 ? 1024 : value;
+                val = value < 0 ? 0 : value;
+
+                Interop.pwmWrite(Pin, val);
+                m_PwmRegister = val;
+            }
+        }
+
+        /// <summary>
+        /// Writes the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public void Write(GpioPinValue value)
+        {
+            Interop.digitalWrite(Pin, (int)value);
+        }
+        /// <summary>
+        /// Writes the specified value.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> [value].</param>
+        public void Write(bool value)
+        {
+            Write(value ? GpioPinValue.High : GpioPinValue.Low);
+        }
+
+        public void Write(int value)
+        {
+            Write(value != 0 ? GpioPinValue.High : GpioPinValue.Low);
+        }
+
+        public void WriteLevel(int value)
+        {
+            Interop.analogWrite(Pin, value);
+        }
+
+        public bool Read()
+        {
+            return Interop.digitalRead(Pin) == 0 ? false : true;
+        }
+
+        public GpioPinValue ReadValue()
+        {
+            return (GpioPinValue)Interop.digitalRead(Pin);
+        }
+
+        public int ReadLevel()
+        {
+            return Interop.analogRead(Pin);
+        }
+
+
         #endregion
 
         #region Static Pin Definitions
@@ -142,7 +246,7 @@
         {
             return new GpioPin(WiringPiPin.Pin07, 7)
             {
-                Capabilities = new PinCapability[] { PinCapability.GP },
+                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.GPCLK },
                 Name = "BCM 4"
             };
         });

@@ -8,9 +8,10 @@
         {
             Console.WriteLine($"Starting program at {DateTime.Now}");
 
-            //return;
+            
+            
             try
-            {                
+            {
                 Console.WriteLine($"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins");
                 Console.WriteLine($"{Pi.Info.ToString()}");
             }

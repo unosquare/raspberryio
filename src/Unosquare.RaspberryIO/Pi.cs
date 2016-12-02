@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Unosquare.RaspberryIO
 {
     /// <summary>
-    /// Static class that provides access to the Raspberry Pi's GPIO, system information and Camera
+    /// Our main character. Provides access to the Raspberry Pi's GPIO, system and board information and Camera
     /// </summary>
     public static class Pi
     {
