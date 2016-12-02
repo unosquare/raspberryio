@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Unosquare.RaspberryIO
 {
-    public delegate void InterrputServiceRequestCallback();
-    public delegate void RaspberryPiThreadFunction();
+    public delegate void InterrputServiceRoutineCallback();
+    public delegate void ThreadWorker();
 
     internal static class Interop
     {
@@ -222,7 +222,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="pin">The pin.</param>
         /// <returns></returns>
         [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalReadByte))]
-        public static extern uint digitalReadByte(int pin);
+        public static extern uint digitalReadByte();
 
         /// <summary>
         /// The PWM generator can run in 2 modes – “balanced” and “mark:space”. The mark:space mode is traditional, 
@@ -291,7 +291,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="method">The method.</param>
         /// <returns></returns>
         [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiISR))]
-        public static extern int wiringPiISR(int pin, int mode, InterrputServiceRequestCallback method);
+        public static extern int wiringPiISR(int pin, int mode, InterrputServiceRoutineCallback method);
 
         /// <summary>
         /// This function creates a thread which is another function in your program previously declared using the PI_THREAD declaration. 
@@ -302,7 +302,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="method">The method.</param>
         /// <returns></returns>
         [DllImport(WiringPiLibrary, EntryPoint = nameof(piThreadCreate))]
-        public static extern int piThreadCreate(RaspberryPiThreadFunction method);
+        public static extern int piThreadCreate(ThreadWorker method);
 
         /// <summary>
         /// These allow you to synchronise variable updates from your main program to any threads running in your program. keyNum is a number from 0 to 3 and represents a “key”. 

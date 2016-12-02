@@ -16,7 +16,6 @@ namespace Unosquare.RaspberryIO
         private const string MemInfoFilePath = "/proc/meminfo";
 
         static private SystemInfo m_Instance = null;
-        static private readonly object SyncLock = new object();
 
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
@@ -129,7 +128,7 @@ namespace Unosquare.RaspberryIO
         {
             get
             {
-                lock (SyncLock)
+                lock (Pi.SyncLock)
                 {
                     if (m_Instance == null)
                     {

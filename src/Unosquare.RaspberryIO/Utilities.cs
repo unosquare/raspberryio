@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-
-namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO
 {
+    using System;
+    using System.IO;
+    using System.Reflection;
+
+    /// <summary>
+    /// Miscellaneous utilities and helper methods.
+    /// </summary>
     internal static class Utilities
     {
 
@@ -15,6 +14,12 @@ namespace Unosquare.RaspberryIO
         private static bool? m_IsLinuxOS = new Nullable<bool>();
         private static bool? m_IsRunningAsRoot = new Nullable<bool>();
 
+        /// <summary>
+        /// Gets the entry assembly directory (full path).
+        /// </summary>
+        /// <value>
+        /// The entry assembly directory.
+        /// </value>
         public static string EntryAssemblyDirectory
         {
             get
@@ -26,6 +31,9 @@ namespace Unosquare.RaspberryIO
             }
         }
 
+        /// <summary>
+        /// Extracts the library wiring pi binary to the current working directory.
+        /// </summary>
         public static void ExtractLibWiringPi()
         {
             var targetPath = Path.Combine(EntryAssemblyDirectory, Interop.WiringPiLibrary);
@@ -41,6 +49,12 @@ namespace Unosquare.RaspberryIO
 
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the current assembly running on a linux os.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is linux os; otherwise, <c>false</c>.
+        /// </value>
         public static bool IsLinuxOS
         {
             get
@@ -58,6 +72,12 @@ namespace Unosquare.RaspberryIO
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this program is running as Root
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is running as root; otherwise, <c>false</c>.
+        /// </value>
         public static bool IsRunningAsRoot
         {
             get
@@ -76,6 +96,11 @@ namespace Unosquare.RaspberryIO
 
         }
 
+        /// <summary>
+        /// Converts the Wirings Pi pin number to the BCM pin number.
+        /// </summary>
+        /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>
+        /// <returns></returns>
         static public int WiringPiToBcmPinNumber(this int wiringPiPinNumber)
         {
             lock (SyncLock)
@@ -84,6 +109,11 @@ namespace Unosquare.RaspberryIO
             }
         }
 
+        /// <summary>
+        /// Converts the Physical (Hader) pin number to BCM pin number.
+        /// </summary>
+        /// <param name="headerPinNumber">The header pin number.</param>
+        /// <returns></returns>
         static public int HaderToBcmPinNumber(this int headerPinNumber)
         {
             lock (SyncLock)

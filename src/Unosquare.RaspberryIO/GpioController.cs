@@ -19,7 +19,6 @@
 
         static private GpioController m_Instance = null;
         static private readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
-        static private readonly object SyncLock = new object();
 
         #endregion
 
@@ -42,7 +41,7 @@
         {
             get
             {
-                lock (SyncLock)
+                lock (Pi.SyncLock)
                 {
                     if (m_Instance == null)
                     {
@@ -60,7 +59,7 @@
         /// <value>
         /// <c>true</c> if the controller is properly initialized; otherwise, <c>false</c>.
         /// </value>
-        static public bool IsInitialized { get { lock (SyncLock) { return Mode != ControllerMode.NotInitialized; } } }
+        static public bool IsInitialized { get { lock (Pi.SyncLock) { return Mode != ControllerMode.NotInitialized; } } }
 
         /// <summary>
         /// Gets or sets the initialization mode.
@@ -137,10 +136,10 @@
         /// <param name="pin">The pin.</param>
         private void RegisterPin(GpioPin pin)
         {
-            if (RegisteredPins.ContainsKey(pin.PinNumber) == false)
-                RegisteredPins[pin.PinNumber] = pin;
+            if (RegisteredPins.ContainsKey(pin.WiringPiPinNumber) == false)
+                RegisteredPins[pin.WiringPiPinNumber] = pin;
             else
-                throw new InvalidOperationException($"Pin {pin.PinNumber} has been registered");
+                throw new InvalidOperationException($"Pin {pin.WiringPiPinNumber} has been registered");
         }
 
         /// <summary>
@@ -160,7 +159,7 @@
             if (Utilities.IsLinuxOS == false)
                 throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion.ToString()}");
 
-            lock (SyncLock)
+            lock (Pi.SyncLock)
             {
                 if (IsInitialized)
                     throw new InvalidOperationException($"Cannot call {nameof(Initialize)} more than once.");
@@ -250,6 +249,61 @@
                     throw new IndexOutOfRangeException($"Pin {pinNumber} is not registered in the GPIO controller.");
 
                 return RegisteredPins[(WiringPiPin)pinNumber];
+            }
+        }
+
+        #endregion
+
+        #region Pin Group Methods (Read, Write, Pad Drive)
+
+        /// <summary>
+        /// This sets the “strength” of the pad drivers for a particular group of pins. 
+        /// There are 3 groups of pins and the drive strength is from 0 to 7. 
+        /// Do not use this unless you know what you are doing.
+        /// </summary>
+        /// <param name="group">The group.</param>
+        /// <param name="value">The value.</param>
+        public void SetPadDrive(int group, int value)
+        {
+            lock (Pi.SyncLock)
+            {
+                Interop.setPadDrive(group, value);
+            }
+        }
+
+        /// <summary>
+        /// This writes the 8-bit byte supplied to the first 8 GPIO pins. 
+        /// It’s the fastest way to set all 8 bits at once to a particular value, 
+        /// although it still takes two write operations to the Pi’s GPIO hardware.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <exception cref="System.InvalidOperationException">PinMode</exception>
+        public void WriteByte(byte value)
+        {
+            lock (Pi.SyncLock)
+            {
+                if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Output))
+                    throw new InvalidOperationException($"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Output}");
+
+                Interop.digitalWriteByte(value);
+            }
+        }
+
+        /// <summary>
+        /// This reads the 8-bit byte supplied to the first 8 GPIO pins. 
+        /// It’s the fastest way to get all 8 bits at once to a particular value.
+        /// Please note this function is undocumented and unsopported
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException">PinMode</exception>
+        public byte ReadByte()
+        {
+            lock (Pi.SyncLock)
+            {
+                if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Input))
+                    throw new InvalidOperationException($"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input}");
+
+                return (byte)Interop.digitalReadByte();
             }
         }
 

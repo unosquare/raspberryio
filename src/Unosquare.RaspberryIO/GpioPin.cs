@@ -9,14 +9,8 @@
     /// Full pin reference avaliable here:
     /// http://pinout.xyz/pinout/pin31_gpio6 and  http://wiringpi.com/pins/
     /// </summary>
-    public sealed class GpioPin
+    public sealed partial class GpioPin
     {
-        #region Static Definitions
-
-        static private readonly object SyncLock = new object();
-
-        #endregion
-
         #region Constructor
 
         /// <summary>
@@ -26,27 +20,37 @@
         /// <param name="headerPinNumber">The header pin number.</param>
         private GpioPin(WiringPiPin wiringPiPinNumber, int headerPinNumber)
         {
-            Pin =(int)wiringPiPinNumber;
-            PinNumber = wiringPiPinNumber;
+            PinNumber = (int)wiringPiPinNumber;
+            WiringPiPinNumber = wiringPiPinNumber;
             BcmPinNumber = Utilities.WiringPiToBcmPinNumber((int)wiringPiPinNumber);
             HeaderPinNumber = headerPinNumber;
-            Header = (Pin >= 17 && Pin <= 20) ?
+            Header = (PinNumber >= 17 && PinNumber <= 20) ?
                 GpioHeader.P5 : GpioHeader.P1;
         }
 
         #endregion
 
-        #region Properties
+        #region Property Backing
+
+        private GpioPinDriveMode m_PinMode;
+        private GpioPinResistorPullMode m_ResistorPullMode;
+        private int m_PwmRegister = 0;
+        private PwmMode m_PwmMode = PwmMode.Balanced;
+        private uint m_PwmRange = 1024;
+        private int m_PwmClockDivisor = 1;
+
+        #endregion
+
+        #region Pin Properties
 
         /// <summary>
-        /// Gets or sets the pin number as an integer.
+        /// Gets or sets the Wiring Pi pin number as an integer.
         /// </summary>
-        private int Pin { get; set; }
-
+        public int PinNumber { get; private set; }
         /// <summary>
         /// Gets the WiringPi Pin number
         /// </summary>
-        public WiringPiPin PinNumber { get; private set; }
+        public WiringPiPin WiringPiPinNumber { get; private set; }
         /// <summary>
         /// Gets the BCM chip (hardware) pin number.
         /// </summary>
@@ -68,125 +72,61 @@
         /// </summary>
         public PinCapability[] Capabilities { get; private set; }
 
-        /// <summary>
-        /// Gets a value indicating whether this pin has an exclusive lock by the Lock Owner
-        /// Returns false if the pin is not lock for exclusive use 
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is locked; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsLocked { get; private set; } = false;
-
-        /// <summary>
-        /// Gets the name of the owner of the current exclusive use lock.
-        /// Returns null if no locking is in place
-        /// </summary>
-        /// <value>
-        /// The lock owner.
-        /// </value>
-        public string LockOwner { get; private set; } = null;
-
         #endregion
 
-        #region Methods
+        #region Hardware-Specific Properties
 
         /// <summary>
-        /// Locks the pin for exclusive use of the specified lock owner.
+        /// Gets or sets the pin operating mode.
         /// </summary>
-        /// <param name="lockOwner">The lock owner.</param>
-        /// <exception cref="System.ArgumentException">lockOwner</exception>
-        /// <exception cref="System.Security.SecurityException"></exception>
-        public void Lock(string lockOwner)
-        {
-            if (string.IsNullOrWhiteSpace(lockOwner))
-                throw new ArgumentException($"Argument '{nameof(lockOwner)}' cannot be null or empty.");
-
-            lock (SyncLock)
-            {
-                if (IsLocked)
-                    throw new SecurityException($"Pin {PinNumber} has already acquired a lock by '{LockOwner}'");
-
-                IsLocked = true;
-                LockOwner = lockOwner;
-            }
-        }
-
-        /// <summary>
-        /// Releases the lock from exclusive lock owner use.
-        /// </summary>
-        public void Release()
-        {
-            lock (SyncLock)
-            {
-                IsLocked = false;
-                LockOwner = null;
-            }
-        }
-
-        #region Pin Mode
-
-        private GpioPinDriveMode m_PinMode;
-        private GpioPinResistorPullMode m_ResistorPullMode;
-        private int m_PwmRegister = 0;
-
+        /// <value>
+        /// The pin mode.
+        /// </value>
+        /// <exception cref="System.NotSupportedException"></exception>
         public GpioPinDriveMode PinMode
         {
             get { return m_PinMode; }
             set
             {
-                var mode = value;
-                if ((mode == GpioPinDriveMode.GpioClock && Capabilities.Contains(PinCapability.GPCLK) == false) ||
-                    (mode == GpioPinDriveMode.PwmOutput && Capabilities.Contains(PinCapability.PWM) == false) ||
-                    (mode == GpioPinDriveMode.Input && Capabilities.Contains(PinCapability.GP) == false) ||
-                    (mode == GpioPinDriveMode.Output && Capabilities.Contains(PinCapability.GP) == false))
-                    throw new NotSupportedException($"Pin {PinNumber} '{Name}' does not support mode '{mode}'");
+                lock (Pi.SyncLock)
+                {
+                    var mode = value;
+                    if ((mode == GpioPinDriveMode.GpioClock && Capabilities.Contains(PinCapability.GPCLK) == false) ||
+                        (mode == GpioPinDriveMode.PwmOutput && Capabilities.Contains(PinCapability.PWM) == false) ||
+                        (mode == GpioPinDriveMode.Input && Capabilities.Contains(PinCapability.GP) == false) ||
+                        (mode == GpioPinDriveMode.Output && Capabilities.Contains(PinCapability.GP) == false))
+                        throw new NotSupportedException($"Pin {WiringPiPinNumber} '{Name}' does not support mode '{mode}'. Pin capabilities are limited to: {string.Join(", ", Capabilities)}");
 
-                Interop.pinMode(Pin, (int)mode);
-                m_PinMode = mode;
+                    Interop.pinMode(PinNumber, (int)mode);
+                    m_PinMode = mode;
+                }
             }
         }
 
         #endregion
 
-        /// <summary>
-        /// This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input. 
-        /// Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors. 
-        /// The parameter pud should be; PUD_OFF, (no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v) 
-        /// The internal pull up/down resistors have a value of approximately 50KΩ on the Raspberry Pi.
-        /// </summary>
-        public GpioPinResistorPullMode ResistorPullMode
-        {
-            get { return m_ResistorPullMode; }
-            set
-            {
-                Interop.pullUpDnControl(Pin, (int)value);
-                m_ResistorPullMode = value;
-            }
-        }
-
-        public int PwmRegister
-        {
-            get { return m_PwmRegister; }
-            set
-            {
-                var val = value > 1024 ? 1024 : value;
-                val = value < 0 ? 0 : value;
-
-                Interop.pwmWrite(Pin, val);
-                m_PwmRegister = val;
-            }
-        }
+        #region Output Mode (Write) Members
 
         /// <summary>
-        /// Writes the specified value.
+        /// Writes the specified pin value.
+        /// This method performs a digital write
         /// </summary>
         /// <param name="value">The value.</param>
         public void Write(GpioPinValue value)
         {
-            Interop.digitalWrite(Pin, (int)value);
+            lock (Pi.SyncLock)
+            {
+                if (PinMode != GpioPinDriveMode.Output)
+                    throw new InvalidOperationException($"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
+                        + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
+
+                Interop.digitalWrite(PinNumber, (int)value);
+            }
         }
+
         /// <summary>
-        /// Writes the specified value.
+        /// Writes the specified bit value.
+        /// This method performs a digital write
         /// </summary>
         /// <param name="value">if set to <c>true</c> [value].</param>
         public void Write(bool value)
@@ -194,321 +134,285 @@
             Write(value ? GpioPinValue.High : GpioPinValue.Low);
         }
 
+        /// <summary>
+        /// Writes the specified value. 0 for low, any other value for high
+        /// This method performs a digital write
+        /// </summary>
+        /// <param name="value">The value.</param>
         public void Write(int value)
         {
             Write(value != 0 ? GpioPinValue.High : GpioPinValue.Low);
         }
 
+        /// <summary>
+        /// Writes the specified value as an analog level.
+        /// You will need to register additional analog modules to enable this function for devices such as the Gertboard.
+        /// </summary>
+        /// <param name="value">The value.</param>
         public void WriteLevel(int value)
         {
-            Interop.analogWrite(Pin, value);
+            lock (Pi.SyncLock)
+            {
+                if (PinMode != GpioPinDriveMode.Output)
+                    throw new InvalidOperationException($"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
+                        + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
+
+                Interop.analogWrite(PinNumber, value);
+            }
         }
 
+        #endregion
+
+        #region Input Mode (Read) Members
+
+        /// <summary>
+        /// This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input. 
+        /// Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors. 
+        /// The parameter pud should be; PUD_OFF, (no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v) 
+        /// The internal pull up/down resistors have a value of approximately 50KΩ on the Raspberry Pi.
+        /// </summary>
+        public GpioPinResistorPullMode InputPullMode
+        {
+            get { return PinMode == GpioPinDriveMode.Input ? m_ResistorPullMode : GpioPinResistorPullMode.Off; }
+            set
+            {
+                lock (Pi.SyncLock)
+                {
+                    if (PinMode != GpioPinDriveMode.Input)
+                    {
+                        m_ResistorPullMode = GpioPinResistorPullMode.Off;
+                        throw new InvalidOperationException($"Unable to set the {nameof(InputPullMode)} for pin {PinNumber} because operating mode is {PinMode}."
+                            + $" Setting the {nameof(InputPullMode)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
+                    }
+                    Interop.pullUpDnControl(PinNumber, (int)value);
+                    m_ResistorPullMode = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reads the digital value on the pin as a boolean value.
+        /// </summary>
+        /// <returns></returns>
         public bool Read()
         {
-            return Interop.digitalRead(Pin) == 0 ? false : true;
+            lock (Pi.SyncLock)
+            {
+                if (PinMode != GpioPinDriveMode.Input)
+                    throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
+                        + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
+
+                return Interop.digitalRead(PinNumber) == 0 ? false : true;
+            }
         }
 
+        /// <summary>
+        /// Reads the digital value on the pin as a High or Low value.
+        /// </summary>
+        /// <returns></returns>
         public GpioPinValue ReadValue()
         {
-            return (GpioPinValue)Interop.digitalRead(Pin);
+            return Read() ? GpioPinValue.High : GpioPinValue.Low;
         }
 
+        /// <summary>
+        /// Reads the analog value on the pin.
+        /// This returns the value read on the supplied analog input pin. You will need to register 
+        /// additional analog modules to enable this function for devices such as the Gertboard, 
+        /// quick2Wire analog board, etc.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException"></exception>
         public int ReadLevel()
         {
-            return Interop.analogRead(Pin);
+            lock (Pi.SyncLock)
+            {
+                if (PinMode != GpioPinDriveMode.Input)
+                    throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
+                        + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
+
+                return Interop.analogRead(PinNumber);
+            }
+
         }
 
-
         #endregion
 
-        #region Static Pin Definitions
+        #region Hardware PWM Members
 
-        static internal readonly Lazy<GpioPin> Pin08 = new Lazy<GpioPin>(() =>
+        /// <summary>
+        /// Gets or sets the PWM register. Values should be between 0 and 1024
+        /// </summary>
+        /// <value>
+        /// The PWM register.
+        /// </value>
+        public int PwmRegister
         {
-            return new GpioPin(WiringPiPin.Pin08, 3)
+            get { return m_PwmRegister; }
+            set
             {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.I2CSDA },
-                Name = "BCM 2 (I2C Data)"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin09 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin09, 5)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.I2CSCL },
-                Name = "BCM 3 (I2C Clock)"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin07 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin07, 7)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.GPCLK },
-                Name = "BCM 4"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin00 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin00, 11)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.UARTRTS },
-                Name = "BCM 17"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin02 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin02, 13)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 27"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin03 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin03, 15)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 22"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin12 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin12, 19)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPIMOSI },
-                Name = "BCM 10"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin13 = new Lazy<GpioPin>(() =>
-            {
-                return new GpioPin(WiringPiPin.Pin13, 21)
+                lock (Pi.SyncLock)
                 {
-                    Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPIMISO },
-                    Name = "BCM 9"
-                };
-            });
-        static internal readonly Lazy<GpioPin> Pin14 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin14, 23)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPICLK },
-                Name = "BCM 11"
-            };
-        });
+                    if (PinMode != GpioPinDriveMode.PwmOutput)
+                    {
+                        m_PwmRegister = 0;
 
-        static internal readonly Lazy<GpioPin> Pin30 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin30, 27)
-            {
-                Capabilities = new PinCapability[] { PinCapability.I2CSDA },
-                Name = "BCM 0 (HAT EEPROM i2c Data)"
-            };
-        });
+                        throw new InvalidOperationException($"Unable to write PWM register for pin {PinNumber} because operating mode is {PinMode}."
+                            + $" Writing the PWM register is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
+                    }
 
-        static internal readonly Lazy<GpioPin> Pin31 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin31, 28)
-            {
-                Capabilities = new PinCapability[] { PinCapability.I2CSCL },
-                Name = "BCM 1 (HAT EEPROM i2c Clock)"
-            };
-        });
 
-        static internal readonly Lazy<GpioPin> Pin11 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin11, 26)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPICS },
-                Name = "BCM 7 (SPI Chip Select 1)"
-            };
-        });
+                    var val = value > 1024 ? 1024 : value;
+                    val = value < 0 ? 0 : value;
 
-        static internal readonly Lazy<GpioPin> Pin10 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin10, 24)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPICS },
-                Name = "BCM 8 (SPI Chip Select 0)"
-            };
-        });
+                    Interop.pwmWrite(PinNumber, val);
+                    m_PwmRegister = val;
+                }
+            }
+        }
 
-        static internal readonly Lazy<GpioPin> Pin06 = new Lazy<GpioPin>(() =>
+        /// <summary>
+        /// The PWM generator can run in 2 modes – “balanced” and “mark:space”. The mark:space mode is traditional, 
+        /// however the default mode in the Pi is “balanced”.
+        /// </summary>
+        /// <value>
+        /// The PWM mode.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException"></exception>
+        public PwmMode PwmMode
         {
-            return new GpioPin(WiringPiPin.Pin06, 22)
+            get { return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmMode : PwmMode.Balanced; }
+            set
             {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 25"
-            };
-        });
-        static internal readonly Lazy<GpioPin> Pin05 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin05, 18)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 24"
-            };
-        });
+                lock (Pi.SyncLock)
+                {
+                    if (PinMode != GpioPinDriveMode.PwmOutput)
+                    {
+                        m_PwmMode = PwmMode.Balanced;
 
-        static internal readonly Lazy<GpioPin> Pin04 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin04, 16)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 23"
-            };
-        });
+                        throw new InvalidOperationException($"Unable to set PWM mode for pin {PinNumber} because operating mode is {PinMode}."
+                            + $" Setting the PWM mode is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
+                    }
 
-        static internal readonly Lazy<GpioPin> Pin01 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin01, 12)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.PWM },
-                Name = "BCM 18 (PWM0)"
-            };
-        });
+                    Interop.pwmSetMode((int)value);
+                    m_PwmMode = value;
+                }
+            }
+        }
 
-        static internal readonly Lazy<GpioPin> Pin16 = new Lazy<GpioPin>(() =>
+        /// <summary>
+        /// This sets the range register in the PWM generator. The default is 1024.
+        /// </summary>
+        /// <value>
+        /// The PWM range.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException"></exception>
+        public uint PwmRange
         {
-            return new GpioPin(WiringPiPin.Pin16, 10)
+            get { return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmRange : 0; }
+            set
             {
-                Capabilities = new PinCapability[] { PinCapability.UARTRXD },
-                Name = "BCM 15 (UART Receive)"
-            };
-        });
+                lock (Pi.SyncLock)
+                {
+                    if (PinMode != GpioPinDriveMode.PwmOutput)
+                    {
+                        m_PwmRange = 1024;
 
-        static internal readonly Lazy<GpioPin> Pin15 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin15, 8)
-            {
-                Capabilities = new PinCapability[] { PinCapability.UARTTXD },
-                Name = "BCM 14 (UART Transmit)"
-            };
-        });
+                        throw new InvalidOperationException($"Unable to set PWM range for pin {PinNumber} because operating mode is {PinMode}."
+                            + $" Setting the PWM range is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
+                    }
 
-        static internal readonly Lazy<GpioPin> Pin21 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin21, 29)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 5"
-            };
-        });
+                    Interop.pwmSetRange(value);
+                    m_PwmRange = value;
+                }
+            }
+        }
 
-        static internal readonly Lazy<GpioPin> Pin22 = new Lazy<GpioPin>(() =>
+        /// <summary>
+        /// Gets or sets the PWM clock divisor.
+        /// </summary>
+        /// <value>
+        /// The PWM clock divisor.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException"></exception>
+        public int PwmClockDivisor
         {
-            return new GpioPin(WiringPiPin.Pin22, 31)
+            get { return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmClockDivisor : 0; }
+            set
             {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 6"
-            };
-        });
+                lock (Pi.SyncLock)
+                {
+                    if (PinMode != GpioPinDriveMode.PwmOutput)
+                    {
+                        m_PwmClockDivisor = 1;
 
-        static internal readonly Lazy<GpioPin> Pin23 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin23, 33)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.PWM },
-                Name = "BCM 13"
-            };
-        });
+                        throw new InvalidOperationException($"Unable to set PWM range for pin {PinNumber} because operating mode is {PinMode}."
+                            + $" Setting the PWM range is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
+                    }
 
-        static internal readonly Lazy<GpioPin> Pin24 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin24, 35)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPIMISO },
-                Name = "BCM 19 (SPI Master-In)"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin25 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin25, 37)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 26"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin29 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin29, 40)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPICLK },
-                Name = "BCM 21 (SPI Clock)"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin28 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin28, 38)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP, PinCapability.SPIMOSI },
-                Name = "BCM 20 (SPI Master-Out)"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin27 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin27, 36)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 16"
-            };
-        });
-        static internal readonly Lazy<GpioPin> Pin26 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin26, 32)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 12"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin17 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin17, 3)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 28"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin18 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin18, 4)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 29"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin19 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin19, 5)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 30"
-            };
-        });
-
-        static internal readonly Lazy<GpioPin> Pin20 = new Lazy<GpioPin>(() =>
-        {
-            return new GpioPin(WiringPiPin.Pin20, 6)
-            {
-                Capabilities = new PinCapability[] { PinCapability.GP },
-                Name = "BCM 31"
-            };
-        });
+                    Interop.pwmSetClock(value);
+                    m_PwmClockDivisor = value;
+                }
+            }
+        }
 
         #endregion
+
+        #region Interrupts
+
+        /// <summary>
+        /// Gets the interrupt callback. Returns null if no interrupt
+        /// has been registered.
+        /// </summary>
+        public InterrputServiceRoutineCallback InterruptCallback { get; private set; }
+
+        /// <summary>
+        /// Gets the interrupt edge detection mode.
+        /// </summary>
+        public EdgeDetection InterruptEdgeDetection { get; private set; } = EdgeDetection.EdgeSetup;
+
+        /// <summary>
+        /// Registers the interrupt callback on the pin. Pin mode has to be set to Input.
+        /// 
+        /// </summary>
+        /// <param name="edgeDetection">The edge detection.</param>
+        /// <param name="callback">The callback.</param>
+        /// <exception cref="System.ArgumentException">callback</exception>
+        /// <exception cref="System.InvalidOperationException">
+        /// An interrupt callback was already registered.
+        /// or
+        /// RegisterInterruptCallback
+        /// </exception>
+        /// <exception cref="System.InvalidProgramException"></exception>
+        public void RegisterInterruptCallback(EdgeDetection edgeDetection, InterrputServiceRoutineCallback callback)
+        {
+            if (callback == null)
+                throw new ArgumentException($"{nameof(callback)} cannot be null");
+
+            if (InterruptCallback != null)
+                throw new InvalidOperationException("An interrupt callback was already registered.");
+
+            if (PinMode != GpioPinDriveMode.Input)
+                throw new InvalidOperationException($"Unable to {nameof(RegisterInterruptCallback)} for pin {PinNumber} because operating mode is {PinMode}."
+                    + $" Calling {nameof(RegisterInterruptCallback)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
+
+            lock (Pi.SyncLock)
+            {
+                var registerResult = Interop.wiringPiISR(PinNumber, (int)edgeDetection, callback);
+                if (registerResult == 0)
+                {
+                    InterruptEdgeDetection = edgeDetection;
+                    InterruptCallback = callback;
+                }
+                else
+                {
+                    throw new InvalidProgramException($"Unable to register the required interrupt. Result was: {registerResult}");
+                }
+
+            }
+        }
+
+        #endregion
+
     }
 }

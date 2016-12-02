@@ -15,7 +15,21 @@
         PullUp = 2,
     }
 
-    public enum InterruptLevels : int
+    public enum PwmMode : int
+    {
+        MarkSign = 0,
+        Balanced = 1,
+    }
+
+    public enum LockKey : int
+    {
+        Lock0,
+        Lock1,
+        Lock2,
+        Lock3,
+    }
+
+    public enum EdgeDetection : int
     {
         EdgeSetup = 0,
         EdgeFalling = 1,
