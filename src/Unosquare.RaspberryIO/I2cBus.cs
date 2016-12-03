@@ -86,7 +86,7 @@
         /// <param name="register">The register.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        public int WriteRegisterByte(int fileDescriptor, int, int register, byte data)
+        public int WriteRegisterByte(int fileDescriptor, int register, byte data)
         {
             lock (Pi.SyncLock)
             {
@@ -116,7 +116,7 @@
         /// <param name="register">The register.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        public int WriteRegisterWord(int fileDescriptor, int, int register, UInt16 data)
+        public int WriteRegisterWord(int fileDescriptor, int register, UInt16 data)
         {
             lock (Pi.SyncLock)
             {
