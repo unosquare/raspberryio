@@ -82,7 +82,6 @@
         /// These write an 8 or 16-bit data value into the device register indicated.
         /// </summary>
         /// <param name="fileDescriptor">The file descriptor.</param>
-        /// <param name="Int32">The int32.</param>
         /// <param name="register">The register.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
@@ -112,7 +111,6 @@
         /// These write an 8 or 16-bit data value into the device register indicated.
         /// </summary>
         /// <param name="fileDescriptor">The file descriptor.</param>
-        /// <param name="Int32">The int32.</param>
         /// <param name="register">The register.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
