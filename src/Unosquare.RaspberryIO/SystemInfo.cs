@@ -124,7 +124,7 @@ namespace Unosquare.RaspberryIO
         /// Provides access to the (singleton) Info
         /// This property is thread-safe
         /// </summary>
-        static public SystemInfo Instance
+        static internal SystemInfo Instance
         {
             get
             {

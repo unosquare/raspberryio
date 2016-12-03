@@ -24,7 +24,7 @@
         /// Provides access to the (singleton) Time Functions
         /// This property is thread-safe
         /// </summary>
-        static public Timing Instance
+        static internal Timing Instance
         {
             get
             {
@@ -119,16 +119,18 @@
         }
 
         /// <summary>
-        /// This is really nothing more than a simplified interface to the Posix threads mechanism that Linux supports. 
+        /// This is really nothing more than a simplified interface to the Posix threads mechanism that Linux supports.
         /// See the manual pages on Posix threads (man pthread) if you need more control over them.
         /// </summary>
         /// <param name="worker">The worker.</param>
-        public void CreateThread(ThreadWorker worker)
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">worker</exception>
+        public int CreateThread(ThreadWorker worker)
         {
             if (worker == null)
                 throw new ArgumentNullException(nameof(worker));
 
-            Interop.piThreadCreate(worker);
+            return Interop.piThreadCreate(worker);
         }
 
         /// <summary>

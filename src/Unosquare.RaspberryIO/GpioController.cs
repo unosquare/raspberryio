@@ -37,7 +37,7 @@
         /// It automatically initializes the underlying library and populates the pins upon first access.
         /// This property is thread-safe
         /// </summary>
-        static public GpioController Instance
+        static internal GpioController Instance
         {
             get
             {

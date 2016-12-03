@@ -43,6 +43,12 @@
         Low = 0
     }
 
+    public enum SpiChannel
+    {
+        Channel0 = 0,
+        Channel1 = 1,
+    }
+
     internal enum ControllerMode
     {
         NotInitialized,

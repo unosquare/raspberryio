@@ -7,9 +7,10 @@
         public static void Main(string[] args)
         {
             Console.WriteLine($"Starting program at {DateTime.Now}");
-
+            
             try
             {
+                
                 Console.WriteLine($"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins");
                 Console.WriteLine($"{Pi.Info.ToString()}");
                 Console.WriteLine($"Micros Since Setup: {Pi.Timing.MicrosecondsSinceSetup}");

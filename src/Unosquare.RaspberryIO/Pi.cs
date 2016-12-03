@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO
 {
     /// <summary>
     /// Our main character. Provides access to the Raspberry Pi's GPIO, system and board information and Camera
@@ -15,6 +10,9 @@ namespace Unosquare.RaspberryIO
         static private readonly GpioController m_GpioController;
         static private readonly SystemInfo m_Info;
         static private readonly Timing m_Timing;
+        static private readonly SpiChannels m_Spi;
+        static private readonly I2cBus m_I2c;
+
         /// <summary>
         /// Initializes the <see cref="Pi"/> class.
         /// </summary>
@@ -25,6 +23,8 @@ namespace Unosquare.RaspberryIO
                 m_GpioController = GpioController.Instance;
                 m_Info = SystemInfo.Instance;
                 m_Timing = Timing.Instance;
+                m_Spi = SpiChannels.Instance;
+                m_I2c = I2cBus.Instance;
             }
 
         }
@@ -45,6 +45,16 @@ namespace Unosquare.RaspberryIO
         /// Provides access to The PI's Timing and threading API
         /// </summary>
         static public Timing Timing { get { return m_Timing; } }
+
+        /// <summary>
+        /// Provides access to the 2-channel SPI bus
+        /// </summary>
+        static public SpiChannels Spi { get { return m_Spi; } }
+
+        /// <summary>
+        /// Provides access to the functionality of the i2c bus.
+        /// </summary>
+        static public I2cBus I2c { get { return m_I2c; } }
 
         #endregion
 
