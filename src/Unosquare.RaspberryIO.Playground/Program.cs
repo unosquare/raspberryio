@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using System;
+    using System.IO;
 
     public class Program
     {
@@ -10,6 +11,14 @@
             
             try
             {
+                var pictureBytes = Pi.Camera.CaptureJpeg(640, 480).GetAwaiter().GetResult();
+                var targetPath = "/home/pi/picture.jpg";
+                if (File.Exists(targetPath))
+                    File.Delete(targetPath);
+
+                File.WriteAllBytes(targetPath, pictureBytes);
+                Console.WriteLine($"Took picture -- Byte count: {pictureBytes.Length}");
+
                 Pi.Gpio.Pin00.RegisterInterruptCallback(EdgeDetection.EdgeBoth, new InterrputServiceRoutineCallback(() => { Console.WriteLine("Detected ISR on pin"); }));
                 Console.WriteLine($"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins");
                 Console.WriteLine($"{Pi.Info.ToString()}");

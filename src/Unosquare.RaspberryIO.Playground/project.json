@@ -11,6 +11,6 @@
     "Unosquare.RaspberryIO": "1.0.0-*"
   },
   "scripts": {
-    "postcompile": "%project:Directory%\\..\\..\\create-sshdeploy.cmd %compile:RuntimeOutputDir% %project:Directory%\\..\\..\\sshdeploy.cmd /home/pi/raspberryio 172.16.16.158 pi raspberry %project:Name%"
+    "postcompile": "%project:Directory%\\..\\..\\create-sshdeploy.cmd %compile:RuntimeOutputDir% %project:Directory%\\..\\..\\sshdeploy.cmd /home/pi/raspberryio 192.168.2.132 pi raspberry %project:Name%"
   }
 }

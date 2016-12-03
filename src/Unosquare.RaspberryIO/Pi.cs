@@ -12,6 +12,7 @@
         static private readonly Timing m_Timing;
         static private readonly SpiBus m_Spi;
         static private readonly I2cBus m_I2c;
+        static private readonly CameraController m_Camera;
 
         /// <summary>
         /// Initializes the <see cref="Pi"/> class.
@@ -25,6 +26,7 @@
                 m_Timing = Timing.Instance;
                 m_Spi = SpiBus.Instance;
                 m_I2c = I2cBus.Instance;
+                m_Camera = CameraController.Instance;
             }
 
         }
@@ -55,6 +57,11 @@
         /// Provides access to the functionality of the i2c bus.
         /// </summary>
         static public I2cBus I2c { get { return m_I2c; } }
+
+        /// <summary>
+        /// Provides access to the offical Raspberry Pi Camera
+        /// </summary>
+        static public CameraController Camera { get { return m_Camera; } }
 
         #endregion
 
