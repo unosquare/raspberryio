@@ -510,7 +510,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         [DllImport(WiringPiLibrary, EntryPoint = nameof(softToneCreate))]
-        public static extern void softToneCreate(int pin);
+        public static extern int softToneCreate(int pin);
 
         /// <summary>
         /// This function is undocumented

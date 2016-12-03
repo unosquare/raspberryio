@@ -43,7 +43,7 @@
         Low = 0
     }
 
-    public enum SpiChannel
+    public enum SpiChannelNumber
     {
         Channel0 = 0,
         Channel1 = 1,

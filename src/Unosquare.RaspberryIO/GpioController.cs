@@ -254,6 +254,139 @@
 
         #endregion
 
+        #region Individual Pin Properties
+
+        /// <summary>
+        /// Provides direct access to the Pin 00.
+        /// </summary>
+        public GpioPin Pin00 { get { return GpioPin.Pin00.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 01.
+        /// </summary>
+        public GpioPin Pin01 { get { return GpioPin.Pin01.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 02.
+        /// </summary>
+        public GpioPin Pin02 { get { return GpioPin.Pin02.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 03.
+        /// </summary>
+        public GpioPin Pin03 { get { return GpioPin.Pin03.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 04.
+        /// </summary>
+        public GpioPin Pin04 { get { return GpioPin.Pin04.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 05.
+        /// </summary>
+        public GpioPin Pin05 { get { return GpioPin.Pin05.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 06.
+        /// </summary>
+        public GpioPin Pin06 { get { return GpioPin.Pin06.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 07.
+        /// </summary>
+        public GpioPin Pin07 { get { return GpioPin.Pin07.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 08.
+        /// </summary>
+        public GpioPin Pin08 { get { return GpioPin.Pin08.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 09.
+        /// </summary>
+        public GpioPin Pin09 { get { return GpioPin.Pin09.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 10.
+        /// </summary>
+        public GpioPin Pin10 { get { return GpioPin.Pin10.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 11.
+        /// </summary>
+        public GpioPin Pin11 { get { return GpioPin.Pin11.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 12.
+        /// </summary>
+        public GpioPin Pin12 { get { return GpioPin.Pin12.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 13.
+        /// </summary>
+        public GpioPin Pin13 { get { return GpioPin.Pin13.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 14.
+        /// </summary>
+        public GpioPin Pin14 { get { return GpioPin.Pin14.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 15.
+        /// </summary>
+        public GpioPin Pin15 { get { return GpioPin.Pin15.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 16.
+        /// </summary>
+        public GpioPin Pin16 { get { return GpioPin.Pin16.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 17.
+        /// </summary>
+        public GpioPin Pin17 { get { return GpioPin.Pin17.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 18.
+        /// </summary>
+        public GpioPin Pin18 { get { return GpioPin.Pin18.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 19.
+        /// </summary>
+        public GpioPin Pin19 { get { return GpioPin.Pin19.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 20.
+        /// </summary>
+        public GpioPin Pin20 { get { return GpioPin.Pin20.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 21.
+        /// </summary>
+        public GpioPin Pin21 { get { return GpioPin.Pin21.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 22.
+        /// </summary>
+        public GpioPin Pin22 { get { return GpioPin.Pin22.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 23.
+        /// </summary>
+        public GpioPin Pin23 { get { return GpioPin.Pin23.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 24.
+        /// </summary>
+        public GpioPin Pin24 { get { return GpioPin.Pin24.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 25.
+        /// </summary>
+        public GpioPin Pin25 { get { return GpioPin.Pin25.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 26.
+        /// </summary>
+        public GpioPin Pin26 { get { return GpioPin.Pin26.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 27.
+        /// </summary>
+        public GpioPin Pin27 { get { return GpioPin.Pin27.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 28.
+        /// </summary>
+        public GpioPin Pin28 { get { return GpioPin.Pin28.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 29.
+        /// </summary>
+        public GpioPin Pin29 { get { return GpioPin.Pin29.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 30.
+        /// </summary>
+        public GpioPin Pin30 { get { return GpioPin.Pin30.Value; } }
+        /// <summary>
+        /// Provides direct access to the Pin 31.
+        /// </summary>
+        public GpioPin Pin31 { get { return GpioPin.Pin31.Value; } }
+
+        #endregion
+
         #region Pin Group Methods (Read, Write, Pad Drive)
 
         /// <summary>

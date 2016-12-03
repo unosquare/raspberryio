@@ -1,88 +1,90 @@
 ﻿namespace Unosquare.RaspberryIO
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
-    /// Provides access to using the SPI buses on the GPIO.
-    /// SPI is a bus that works like a ring shift register 
-    /// The number of bytes pushed is equal to the number of bytes received.
+    /// The SPI Bus containing the 2 SPI channels
     /// </summary>
-    public sealed class SpiBus
+    public class SpiBus
     {
-        static private Dictionary<SpiChannel, SpiBus> Buses = new Dictionary<SpiChannel, SpiBus>();
-
-        public const int MinFrequency = 500000;
-        public const int MaxFrequency = 32000000;
+        private static SpiBus m_Instance = null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SpiBus"/> class.
+        /// Gets the singleton's instance.
         /// </summary>
-        /// <param name="channel">The channel.</param>
-        /// <param name="frequency">The frequency.</param>
-        /// <exception cref="System.SystemException"></exception>
-        private SpiBus(SpiChannel channel, int frequency)
+        internal static SpiBus Instance
         {
-            if (frequency > MaxFrequency) frequency = MaxFrequency;
-            if (frequency < MinFrequency) frequency = MinFrequency;
-
-            var busResult = Interop.wiringPiSPISetup((int)channel, frequency);
-            Channel = channel;
-            Frequency = frequency;
-
-            if (busResult != 0)
+            get
             {
-                throw new SystemException($"Could not register SPI bus on channel {channel} at {frequency} Hz.");
+                lock (Pi.SyncLock)
+                {
+                    if (m_Instance == null)
+                        m_Instance = new SpiBus();
+
+                    return m_Instance;
+                }
             }
         }
 
         /// <summary>
-        /// Gets the channel.
+        /// Prevents a default instance of the <see cref="SpiBus"/> class from being created.
         /// </summary>
-        public SpiChannel Channel { get; private set; }
+        private SpiBus() { }
+
+        #region SPI Access
 
         /// <summary>
-        /// Gets the frequency.
+        /// Gets or sets the channel 0 frequency.
         /// </summary>
-        public int Frequency { get; private set; }
+        /// <value>
+        /// The channel0 frequency.
+        /// </value>
+        public int Channel0Frequency { get; set; }
 
         /// <summary>
-        /// Retrieves the spi bus. If the bus channel is not registered it sets it up automatically.
-        /// If it had been previously registered, then the bus is simply returned.
+        /// Gets the SPI bus on channel 1.
         /// </summary>
-        /// <param name="channel">The channel.</param>
-        /// <param name="frequency">The frequency.</param>
-        /// <returns></returns>
-        static internal SpiBus Retrieve(SpiChannel channel, int frequency)
+        /// <value>
+        /// The channel0.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException">Channel0Frequency</exception>
+        public SpiChannel Channel0
         {
-            lock (Pi.SyncLock)
+            get
             {
-                if (Buses.ContainsKey(channel))
-                    return Buses[channel];
-                var newBus = new SpiBus(channel, frequency);
-                Buses[channel] = newBus;
-                return newBus;
+                if (Channel0Frequency == 0)
+                    throw new InvalidOperationException($"Set the {nameof(Channel0Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
+
+                return SpiChannel.Retrieve(SpiChannelNumber.Channel0, Channel0Frequency);
             }
         }
 
         /// <summary>
-        /// Sends data and simultaneously receives the data in the return buffer
+        /// Gets or sets the channel 1 frequency.
         /// </summary>
-        /// <param name="buffer">The buffer.</param>
-        /// <returns></returns>
-        public byte[] SendReceive(byte[] buffer)
+        /// <value>
+        /// The channel1 frequency.
+        /// </value>
+        public int Channel1Frequency { get; set; }
+
+        /// <summary>
+        /// Gets the SPI bus on channel 1.
+        /// </summary>
+        /// <value>
+        /// The channel1.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException">Channel1Frequency</exception>
+        public SpiChannel Channel1
         {
-            if (buffer == null || buffer.Length == 0)
-                return null;
-
-            lock (Pi.SyncLock)
+            get
             {
-                var spiBuffer = new byte[buffer.Length];
-                Array.Copy(buffer, spiBuffer, buffer.Length);
+                if (Channel1Frequency == 0)
+                    throw new InvalidOperationException($"Set the {nameof(Channel1Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
 
-                Interop.wiringPiSPIDataRW((int)Channel, spiBuffer, spiBuffer.Length);
-                return spiBuffer;
+                return SpiChannel.Retrieve(SpiChannelNumber.Channel1, Channel1Frequency);
             }
         }
+
+        #endregion
     }
 }

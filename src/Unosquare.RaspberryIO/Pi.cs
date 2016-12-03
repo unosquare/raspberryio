@@ -10,7 +10,7 @@
         static private readonly GpioController m_GpioController;
         static private readonly SystemInfo m_Info;
         static private readonly Timing m_Timing;
-        static private readonly SpiChannels m_Spi;
+        static private readonly SpiBus m_Spi;
         static private readonly I2cBus m_I2c;
 
         /// <summary>
@@ -23,7 +23,7 @@
                 m_GpioController = GpioController.Instance;
                 m_Info = SystemInfo.Instance;
                 m_Timing = Timing.Instance;
-                m_Spi = SpiChannels.Instance;
+                m_Spi = SpiBus.Instance;
                 m_I2c = I2cBus.Instance;
             }
 
@@ -49,7 +49,7 @@
         /// <summary>
         /// Provides access to the 2-channel SPI bus
         /// </summary>
-        static public SpiChannels Spi { get { return m_Spi; } }
+        static public SpiBus Spi { get { return m_Spi; } }
 
         /// <summary>
         /// Provides access to the functionality of the i2c bus.

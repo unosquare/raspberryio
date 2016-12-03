@@ -38,6 +38,9 @@
         private PwmMode m_PwmMode = PwmMode.Balanced;
         private uint m_PwmRange = 1024;
         private int m_PwmClockDivisor = 1;
+        private int m_SoftPwmValue = -1;
+        private int m_SoftPwmRange = -1;
+        private int m_SoftToneFrequency = -1;
 
         #endregion
 
@@ -352,6 +355,131 @@
 
                     Interop.pwmSetClock(value);
                     m_PwmClockDivisor = value;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Software PWM Members
+
+        /// <summary>
+        /// Gets a value indicating whether this pin is in software based PWM mode.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is in soft PWM mode; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsInSoftPwmMode { get { return m_SoftPwmValue >= 0; } }
+
+        /// <summary>
+        /// Starts the software based PWM on this pin.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="range">The range.</param>
+        /// <exception cref="System.NotSupportedException"></exception>
+        /// <exception cref="System.InvalidOperationException">StartSoftPwm
+        /// or</exception>
+        public void StartSoftPwm(int value, int range)
+        {
+
+            lock (Pi.SyncLock)
+            {
+                if (Capabilities.Contains(PinCapability.GP) == false)
+                    throw new NotSupportedException($"Pin {PinNumber} does not support software PWM");
+
+                if (IsInSoftPwmMode)
+                    throw new InvalidOperationException($"{nameof(StartSoftPwm)} has already been called.");
+
+                var startResult = Interop.softPwmCreate(PinNumber, value, range);
+                if (startResult == 0)
+                {
+                    m_SoftPwmValue = value;
+                    m_SoftPwmRange = range;
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Could not start software based PWM on pin {PinNumber}. Error code: {startResult}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the software PWM value on the pin.
+        /// </summary>
+        /// <value>
+        /// The soft PWM value.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException">StartSoftPwm</exception>
+        public int SoftPwmValue
+        {
+            get { return m_SoftPwmValue; }
+            set
+            {
+                lock (Pi.SyncLock)
+                {
+                    if (IsInSoftPwmMode && value >= 0)
+                    {
+                        Interop.softPwmWrite(PinNumber, value);
+                        m_SoftPwmValue = value;
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"Software PWM requires a call to {nameof(StartSoftPwm)}.");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the software PWM range used upon starting the PWM.
+        /// </summary>
+        public int SoftPwmRange
+        {
+            get
+            {
+                return m_SoftPwmRange;
+            }
+        }
+
+        #endregion
+
+        #region Software Tone Members
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is in software based tone generator mode.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is in soft tone mode; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsInSoftToneMode { get { return m_SoftToneFrequency >= 0; } }
+
+        /// <summary>
+        /// Gets or sets the soft tone frequency. 0 to 5000 Hz is typical
+        /// </summary>
+        /// <value>
+        /// The soft tone frequency.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException"></exception>
+        public int SoftToneFrequency
+        {
+            get
+            {
+                return m_SoftToneFrequency;
+            }
+            set
+            {
+                lock (Pi.SyncLock)
+                {
+                    var frquency = value;
+                    if (IsInSoftToneMode == false)
+                    {
+                        var setupResult = Interop.softToneCreate(PinNumber);
+                        if (setupResult != 0)
+                            throw new InvalidOperationException($"Unable to initialize soft tone on pin {PinNumber}. Error Code: {setupResult}");
+                    }
+
+                    Interop.softToneWrite(PinNumber, value);
+                    m_SoftToneFrequency = value;
                 }
             }
         }
