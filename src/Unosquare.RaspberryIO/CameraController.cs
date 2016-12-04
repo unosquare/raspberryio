@@ -50,8 +50,19 @@ namespace Unosquare.RaspberryIO
 
                 var outputStream = new MemoryStream();
 
-                process.StandardOutput.DiscardBufferedData();
-                await process.StandardOutput.BaseStream.CopyToAsync(outputStream, 1024, ct);
+                { // replacement for fined graned control equivalent to process.StandardOutput.BaseStream.CopyToAsync
+                    var swapBuffer = new byte[2048];
+                    var readCount = -1;
+
+                    process.StandardOutput.DiscardBufferedData();
+                    while (ct.IsCancellationRequested == false)
+                    {
+                        readCount = await process.StandardOutput.BaseStream.ReadAsync(swapBuffer, 0, swapBuffer.Length, ct);
+                        if (readCount <= 0) break;
+                        await outputStream.WriteAsync(swapBuffer, 0, readCount);
+                    }
+
+                }
 
                 process.WaitForExit();
                 return outputStream.ToArray();
