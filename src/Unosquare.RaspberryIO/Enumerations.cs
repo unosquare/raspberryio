@@ -1,5 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO
 {
+    using System;
+
     public enum GpioPinDriveMode : int
     {
         Input = 0,
@@ -203,5 +205,110 @@
         PiZero1v3 = 0x900093,
         Pi3ModelBSony = 0xa02082,
         Pi3ModelBEmbest = 0xa22082,
+    }
+
+    public enum CameraImageEncodingFormat
+    {
+        Jpg,
+        Bmp,
+        Gif,
+        Png,
+    }
+
+    public enum CameraExposureMode
+    {
+        Auto,
+        Night,
+        NightPreview,
+        Backlight,
+        Spotlight,
+        Sports,
+        Snow,
+        Beach,
+        VeryLong,
+        FixedFps,
+        AntiShake,
+        Fireworks,
+    }
+
+    public enum CameraWhiteBalanceMode
+    {
+        Off,
+        Auto,
+        Sun,
+        Cloud,
+        Shade,
+        Tungsten,
+        Fluorescent,
+        Incandescent,
+        Flash,
+        Horizon
+    }
+
+    public enum CameraImageEffect
+    {
+        None,
+        Negative,
+        Solarise,
+        Whiteboard,
+        Blackboard,
+        Sketch,
+        Denoise,
+        Emboss,
+        OilPaint,
+        Hatch,
+        GPen,
+        Pastel,
+        WaterColour,
+        Film,
+        Blur,
+        Saturation,
+        SolourSwap,
+        WashedOut,
+        ColourPoint,
+        ColourBalance,
+        Cartoon
+    }
+
+    public enum CameraMeteringMode
+    {
+        Average,
+        Spot,
+        Backlit,
+        Matrix,
+    }
+
+    public enum CameraImageRotation
+    {
+        None = 0,
+        Degrees90 = 90,
+        Degrees180 = 180,
+        Degrees270 = 270
+    }
+
+    public enum CameraDynamicRangeCompensation
+    {
+        Off,
+        Low,
+        Medium,
+        High
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Flags]
+    public enum CameraAnnotation
+    {
+        None = 0,
+        Time = 4,
+        Date = 8,
+        ShutterSettings = 16,
+        CafSettings = 32,
+        GainSettings = 64,
+        LensSettings = 128,
+        MotionSettings = 256,
+        FrameNumber = 512,
+        BlackBackground = 1024,
     }
 }

@@ -1,20 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO
 {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+
+    /// <summary>
+    /// The Raspberry Pi's camera controller wrapping RaspiStill and RaspiVid programs.
+    /// This class is a singleton
+    /// </summary>
     public class CameraController
     {
         private static CameraController m_Instance = null;
 
+        private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         private static readonly object SyncLock = new object();
         private const string RaspiVideo = "raspivid";
 
+        #region Properties
+
+        /// <summary>
+        /// Gets the instance of the Pi's camera controller.
+        /// </summary>
         static internal CameraController Instance
         {
             get
@@ -31,51 +40,56 @@ namespace Unosquare.RaspberryIO
             }
         }
 
-        public bool IsBusy { get; private set; }
+        /// <summary>
+        /// Gets a value indicating whether the camera is busy.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsBusy { get { return OperationDone.IsSet == false; } }
 
-        public async Task<byte[]> CaptureJpeg(int width, int height, CancellationToken ct)
+        #endregion
+
+        #region Helpers
+
+        static private async Task<int> CopyStandardOutputAsync(Process process, Stream outputStream, CancellationToken ct)
         {
-            var task = Task.Factory.StartNew(async () =>
-            {
-                var arguments = new PictureArguments()
-                {
-                    Width = width,
-                    Height = height,
-                    Quality = 90
-                };
+            var swapBuffer = new byte[2048];
+            var readCount = -1;
+            var totalCount = 0;
 
+            process.StandardOutput.DiscardBufferedData();
+            while (ct.IsCancellationRequested == false)
+            {
+                readCount = await process.StandardOutput.BaseStream.ReadAsync(swapBuffer, 0, swapBuffer.Length, ct);
+                if (readCount <= 0) break;
+                await outputStream.WriteAsync(swapBuffer, 0, readCount);
+            }
+
+            return totalCount;
+        }
+
+        #endregion
+
+        #region Image Capture Methods
+
+        public async Task<byte[]> CapturePictureAsync(PictureArguments arguments, CancellationToken ct)
+        {
+            if (Instance.IsBusy)
+                throw new InvalidOperationException("Cannot use camera module because it is currently busy.");
+
+            try
+            {
+                OperationDone.Reset();
                 var process = arguments.CreateProcess();
                 if (process.Start() == false)
                     return new byte[] { };
 
                 var outputStream = new MemoryStream();
-
-                { // replacement for fined graned control equivalent to process.StandardOutput.BaseStream.CopyToAsync
-                    var swapBuffer = new byte[2048];
-                    var readCount = -1;
-
-                    process.StandardOutput.DiscardBufferedData();
-                    while (ct.IsCancellationRequested == false)
-                    {
-                        readCount = await process.StandardOutput.BaseStream.ReadAsync(swapBuffer, 0, swapBuffer.Length, ct);
-                        if (readCount <= 0) break;
-                        await outputStream.WriteAsync(swapBuffer, 0, readCount);
-                    }
-
-                }
+                await CopyStandardOutputAsync(process, outputStream, ct);
 
                 process.WaitForExit();
                 return outputStream.ToArray();
-            }, ct);
-
-            try
-            {
-                if (IsBusy)
-                    throw new InvalidOperationException("Cannot use camera module because it is currently busy.");
-
-                IsBusy = true;
-                var result = await task.Unwrap();
-                return result;
             }
             catch (Exception ex)
             {
@@ -83,10 +97,48 @@ namespace Unosquare.RaspberryIO
             }
             finally
             {
-                IsBusy = false;
+                OperationDone.Set();
             }
-
-
         }
+
+        public async Task<byte[]> CaptureImageAsync(PictureArguments arguments)
+        {
+            var cts = new CancellationTokenSource();
+            return await CapturePictureAsync(arguments, cts.Token);
+        }
+
+        public byte[] CaptureImage(PictureArguments arguments)
+        {
+            return CaptureImageAsync(arguments).GetAwaiter().GetResult();
+        }
+
+        public async Task<byte[]> CaptureJpegAsync(int width, int height, CancellationToken ct)
+        {
+            var arguments = new PictureArguments()
+            {
+                
+                ImageWidth = width,
+                ImageHeight = height,
+                CaptureJpegQuality = 90,
+                CaptureDisplayPreview = true,
+                CaptureTimeoutMilliseconds = 2000,
+                CaptureExposure = CameraExposureMode.Night,
+                CaptureEncoding = CameraImageEncodingFormat.Jpg,
+                ImageAnnotationsText = "Hello, this is some nice text",
+                ImageAnnotations = CameraAnnotation.Date | CameraAnnotation.Time,
+                ImageAnnotationFontSize = 30,
+                ImageAnnotationFontColor = Color.Red,
+            };
+
+            return await CapturePictureAsync(arguments, ct);
+        }
+
+        public byte[] CaptureJpeg(int width, int height)
+        {
+            var cts = new CancellationTokenSource();
+            return CaptureJpegAsync(width, height, cts.Token).GetAwaiter().GetResult();
+        }
+
+        #endregion
     }
 }

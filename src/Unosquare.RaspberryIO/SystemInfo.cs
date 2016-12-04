@@ -118,6 +118,18 @@ namespace Unosquare.RaspberryIO
 
             #endregion
 
+            #region Version Information
+
+            {
+                var libParts = Interop.WiringPiLibrary.Split('.');
+                var major = int.Parse(libParts[libParts.Length - 2]);
+                var minor = int.Parse(libParts[libParts.Length - 1]);
+                var version = new Version(major, minor);
+                WiringPiVersion = version;
+            }
+
+            #endregion
+
         }
 
         /// <summary>
@@ -139,6 +151,11 @@ namespace Unosquare.RaspberryIO
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the wiring pi library version.
+        /// </summary>
+        public Version WiringPiVersion { get; private set; }
 
         /// <summary>
         /// Gets the Raspberry Pi version.
@@ -244,6 +261,7 @@ namespace Unosquare.RaspberryIO
 
             var properyValues = new List<string>();
             properyValues.Add("System Information");
+            properyValues.Add($"\t{nameof(WiringPiVersion), -22}: {WiringPiVersion.ToString()}");
             properyValues.Add($"\t{nameof(RaspberryPiVersion), -22}: {RaspberryPiVersion}");
 
             foreach (var property in properties)

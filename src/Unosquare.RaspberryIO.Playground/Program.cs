@@ -9,12 +9,26 @@
         public static void Main(string[] args)
         {
             Console.WriteLine($"Starting program at {DateTime.Now}");
+
+            var colors = new Color[]
+            {
+                Color.Black,
+                Color.White,
+                Color.Red,
+                Color.Green,
+                Color.Blue
+            };
+
+            foreach (var color in colors)
+            {
+                Console.WriteLine($"{color.Name, -15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}");
+            }
             
             try
             {
                 var cts = new CancellationTokenSource();
 
-                var pictureBytes = Pi.Camera.CaptureJpeg(640, 480, cts.Token).GetAwaiter().GetResult();
+                var pictureBytes = Pi.Camera.CaptureJpeg(640, 480);
                 var targetPath = "/home/pi/picture.jpg";
                 if (File.Exists(targetPath))
                     File.Delete(targetPath);
@@ -30,6 +44,7 @@
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.GetType()} {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
             }
             finally
             {
