@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Threading;
 
     public class Program
     {
@@ -11,7 +12,9 @@
             
             try
             {
-                var pictureBytes = Pi.Camera.CaptureJpeg(640, 480).GetAwaiter().GetResult();
+                var cts = new CancellationTokenSource();
+
+                var pictureBytes = Pi.Camera.CaptureJpeg(640, 480, cts.Token).GetAwaiter().GetResult();
                 var targetPath = "/home/pi/picture.jpg";
                 if (File.Exists(targetPath))
                     File.Delete(targetPath);

@@ -33,7 +33,7 @@ namespace Unosquare.RaspberryIO
 
         public bool IsBusy { get; private set; }
 
-        public async Task<byte[]> CaptureJpeg(int width, int height)
+        public async Task<byte[]> CaptureJpeg(int width, int height, CancellationToken ct)
         {
             var task = Task.Factory.StartNew(async () =>
             {
@@ -51,10 +51,11 @@ namespace Unosquare.RaspberryIO
                 var outputStream = new MemoryStream();
 
                 process.StandardOutput.DiscardBufferedData();
-                await process.StandardOutput.BaseStream.CopyToAsync(outputStream);
+                await process.StandardOutput.BaseStream.CopyToAsync(outputStream, 1024, ct);
+
                 process.WaitForExit();
                 return outputStream.ToArray();
-            });
+            }, ct);
 
             try
             {
@@ -65,7 +66,7 @@ namespace Unosquare.RaspberryIO
                 var result = await task.Unwrap();
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
