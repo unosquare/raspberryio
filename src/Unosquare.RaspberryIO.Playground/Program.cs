@@ -9,7 +9,67 @@
         public static void Main(string[] args)
         {
             Console.WriteLine($"Starting program at {DateTime.Now}");
+            try
+            {
+                TestSystemInfo();
+                TestCaptureVideo();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.GetType()} {ex.Message}");
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                Console.WriteLine("Program finished.");
+            }
+        }
 
+        static void TestSystemInfo()
+        {
+            Console.WriteLine($"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins");
+            Console.WriteLine($"{Pi.Info.ToString()}");
+            Console.WriteLine($"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}");
+        }
+
+        static void TestCaptureImage()
+        {
+            var pictureBytes = Pi.Camera.CaptureImageJpeg(640, 480);
+            var targetPath = "/home/pi/picture.jpg";
+            if (File.Exists(targetPath))
+                File.Delete(targetPath);
+
+            File.WriteAllBytes(targetPath, pictureBytes);
+            Console.WriteLine($"Took picture -- Byte count: {pictureBytes.Length}");
+        }
+
+        static void TestCaptureVideo()
+        {
+            var videoByteCount = 0;
+            var videoEventCount = 0;
+            var videoSettings = new CameraVideoSettings()
+            {
+                CaptureTimeoutMilliseconds = 0,
+                CaptureDisplayPreview = true,
+                ImageFlipVertically = true,
+                //CaptureDisplayPreviewEncoded = true,
+                //ImageEffect = CameraImageEffect.Denoise,
+                CaptureExposure = CameraExposureMode.Night,
+                CaptureWidth = 1920,
+                CaptureHeight = 1080
+            };
+
+            Pi.Camera.OpenVideoStream(videoSettings,
+                (data) => { videoByteCount += data.Length; videoEventCount++; }, null);
+
+            Console.WriteLine("Press any key to stop reading the video stream . . .");
+            Console.ReadKey(true);
+            Pi.Camera.CloseVideoStream();
+            Console.WriteLine($"Capture Stopped. Received {videoByteCount} bytes in {videoEventCount} callbacks");
+        }
+
+        static void TestColors()
+        {
             var colors = new Color[]
             {
                 Color.Black,
@@ -22,61 +82,6 @@
             foreach (var color in colors)
             {
                 Console.WriteLine($"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}");
-            }
-
-            try
-            {
-                if (false)
-                { // Picture Test
-                    var pictureBytes = Pi.Camera.CaptureImageJpeg(640, 480);
-                    var targetPath = "/home/pi/picture.jpg";
-                    if (File.Exists(targetPath))
-                        File.Delete(targetPath);
-
-                    File.WriteAllBytes(targetPath, pictureBytes);
-                    Console.WriteLine($"Took picture -- Byte count: {pictureBytes.Length}");
-                }
-
-                var videoByteCount = 0;
-                var videoEventCount = 0;
-                Pi.Camera.OpenVideoStream(new CameraVideoSettings()
-                {
-                    CaptureTimeoutMilliseconds = 0,
-                    CaptureDisplayPreview = true,
-                    //CaptureDisplayPreviewEncoded = true,
-                    //ImageEffect = CameraImageEffect.Denoise,
-                    CaptureExposure = CameraExposureMode.Night,
-                    CaptureWidth = 1920,
-                    CaptureHeight = 1080
-                },
-                    (data) =>
-                    {
-                        videoByteCount += data.Length;
-                        videoEventCount++;
-                    },
-                    () =>
-                    {
-                        Console.WriteLine($"Capture Stopped. Received {videoByteCount} bytes in {videoEventCount} callbacks");
-                    });
-
-                Console.WriteLine("Press any key to stop reading the video stream . . .");
-                Console.ReadKey();
-                Pi.Camera.CloseVideoStream();
-
-
-                Pi.Gpio.Pin00.RegisterInterruptCallback(EdgeDetection.EdgeBoth, new InterrputServiceRoutineCallback(() => { Console.WriteLine("Detected ISR on pin"); }));
-                Console.WriteLine($"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins");
-                Console.WriteLine($"{Pi.Info.ToString()}");
-                Console.WriteLine($"Micros Since Setup: {Pi.Timing.MicrosecondsSinceSetup}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.GetType()} {ex.Message}");
-                Console.WriteLine(ex.StackTrace);
-            }
-            finally
-            {
-                Console.WriteLine("Program finished.");
             }
         }
     }
