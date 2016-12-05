@@ -309,6 +309,6 @@
         LensSettings = 128,
         MotionSettings = 256,
         FrameNumber = 512,
-        BlackBackground = 1024,
+        SolidBackground = 1024,
     }
 }

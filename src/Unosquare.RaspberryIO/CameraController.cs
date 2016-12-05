@@ -73,7 +73,7 @@
 
         #region Image Capture Methods
 
-        public async Task<byte[]> CapturePictureAsync(PictureArguments arguments, CancellationToken ct)
+        public async Task<byte[]> CapturePictureAsync(CameraStillSettings arguments, CancellationToken ct)
         {
             if (Instance.IsBusy)
                 throw new InvalidOperationException("Cannot use camera module because it is currently busy.");
@@ -101,33 +101,24 @@
             }
         }
 
-        public async Task<byte[]> CaptureImageAsync(PictureArguments arguments)
+        public async Task<byte[]> CaptureImageAsync(CameraStillSettings arguments)
         {
             var cts = new CancellationTokenSource();
             return await CapturePictureAsync(arguments, cts.Token);
         }
 
-        public byte[] CaptureImage(PictureArguments arguments)
+        public byte[] CaptureImage(CameraStillSettings arguments)
         {
             return CaptureImageAsync(arguments).GetAwaiter().GetResult();
         }
 
         public async Task<byte[]> CaptureJpegAsync(int width, int height, CancellationToken ct)
         {
-            var arguments = new PictureArguments()
+            var arguments = new CameraStillSettings()
             {
-                
                 ImageWidth = width,
                 ImageHeight = height,
                 CaptureJpegQuality = 90,
-                CaptureDisplayPreview = true,
-                CaptureTimeoutMilliseconds = 2000,
-                CaptureExposure = CameraExposureMode.Night,
-                CaptureEncoding = CameraImageEncodingFormat.Jpg,
-                ImageAnnotationsText = "Hello, this is some nice text",
-                ImageAnnotations = CameraAnnotation.Date | CameraAnnotation.Time,
-                ImageAnnotationFontSize = 30,
-                ImageAnnotationFontColor = Color.Red,
             };
 
             return await CapturePictureAsync(arguments, ct);
