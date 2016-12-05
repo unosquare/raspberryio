@@ -311,4 +311,11 @@
         FrameNumber = 512,
         SolidBackground = 1024,
     }
+
+    public enum CameraH264Profile
+    {
+        Baseline,
+        Main,
+        High
+    }
 }

@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Text;
 
     /// <summary>
     /// A base class to implement Raspistill and Raspivid wrappers
@@ -16,32 +17,11 @@
         #region Capture Settings
 
         /// <summary>
-        /// Gets or sets the timeout milliseconds. Anything less than 1 will be set to 1
-        /// Recommended value is 300 in order to let the light collectors open
+        /// Gets or sets the timeout milliseconds.
+        /// Default value is 5000
+        /// Recommended value is at least 300 in order to let the light collectors open
         /// </summary>
-        public int CaptureTimeoutMilliseconds { get; set; } = 1;
-
-        /// <summary>
-        /// Gets or sets the encoding format the hardware will use for the output.
-        /// </summary>
-        public CameraImageEncodingFormat CaptureEncoding { get; set; } = CameraImageEncodingFormat.Jpg;
-
-        /// <summary>
-        /// Gets or sets the quality for JPEG only encoding mode.
-        /// Value ranges from 0 to 100
-        /// </summary>
-        public int CaptureJpegQuality { get; set; } = 90;
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the JPEG encoder should add raw bayer metadata.
-        /// </summary>
-        public bool CaptureJpegIncludeRawBayerMetadata { get; set; } = false;
-
-        /// <summary>
-        /// JPEG EXIF data
-        /// Keys and values must be already properly escaped. Otherwise the command will fail.
-        /// </summary>
-        public Dictionary<string, string> CaptureJpegExtendedInfo { get; private set; } = new Dictionary<string, string>();
+        public int CaptureTimeoutMilliseconds { get; set; } = 5000;
 
         /// <summary>
         /// Gets or sets a value indicating whether or not to show a preview window on the screen
@@ -52,12 +32,6 @@
         /// Gets or sets a value indicating whether a preview window is shown in full screen  mode if enabled
         /// </summary>
         public bool CaptureDisplayPreviewInFullScreen { get; set; } = true;
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the preview window (if enabled) uses native capture resolution
-        /// This may slow down preview FPS
-        /// </summary>
-        public bool CaptureDisplayPreviewAtResolution { get; set; } = false;
 
         /// <summary>
         /// Gets or sets a value indicating whether video stabilization should be enabled.
@@ -132,13 +106,13 @@
         /// Gets or sets the width of the picture to take.
         /// Less than or equal to 0 in either width or height means maximum resolution available.
         /// </summary>
-        public int ImageWidth { get; set; } = 640;
+        public int CaptureWidth { get; set; } = 640;
 
         /// <summary>
         /// Gets or sets the height of the picture to take.
         /// Less than or equal to 0 in either width or height means maximum resolution available.
         /// </summary>
-        public int ImageHeight { get; set; } = 480;
+        public int CaptureHeight { get; set; } = 480;
 
         /// <summary>
         /// Gets or sets the picture sharpness. Default is 0, Range form -100 to 100
@@ -248,7 +222,110 @@
         /// Creates the process arguments.
         /// </summary>
         /// <returns></returns>
-        public abstract string CreateProcessArguments();
+        public virtual string CreateProcessArguments()
+        {
+            var sb = new StringBuilder();
+            sb.Append($"-o -"); // output to standard output as opposed to a file.
+            sb.Append($" -t { (CaptureTimeoutMilliseconds < 0 ? "0" : CaptureTimeoutMilliseconds.ToString(CI))}");
+
+            // Basic Width and height
+            if (CaptureWidth > 0 && CaptureHeight > 0)
+            {
+                sb.Append($" -w {CaptureWidth.ToString(CI)}");
+                sb.Append($" -h {CaptureHeight.ToString(CI)}");
+            }
+
+            // Display Preview
+            if (CaptureDisplayPreview)
+            {
+                if (CaptureDisplayPreviewInFullScreen) sb.Append($" -f");
+                if (CaptureDisplayPreviewOpacity != byte.MaxValue) sb.Append($" -op {CaptureDisplayPreviewOpacity.ToString(CI)}");
+            }
+            else
+            {
+                sb.Append($" -n"); // no preview
+            }
+
+            // Picture Settings
+            if (ImageSharpness != 0)
+                sb.Append($" -sh {ImageSharpness.Clamp(-100, 100).ToString(CI)}");
+
+            if (ImageContrast != 0)
+                sb.Append($" -co {ImageContrast.Clamp(-100, 100).ToString(CI)}");
+
+            if (ImageBrightness != 50)
+                sb.Append($" -br {ImageBrightness.Clamp(0, 100).ToString(CI)}");
+
+            if (ImageSaturation != 0)
+                sb.Append($" -sa {ImageSaturation.Clamp(-100, 100).ToString(CI)}");
+
+            if (ImageISO >= 100)
+                sb.Append($" -ISO {ImageISO.Clamp(100, 800).ToString(CI)}");
+
+            if (CaptureVideoStabilizationEnabled)
+                sb.Append($" -vs");
+
+            if (CaptureExposureCompensation != 0)
+                sb.Append($" -ev {CaptureExposureCompensation.Clamp(-10, 10).ToString(CI)}");
+
+            if (CaptureExposure != CameraExposureMode.Auto)
+                sb.Append($" -ex {CaptureExposure.ToString().ToLowerInvariant()}");
+
+            if (CaptureWhiteBalanceControl != CameraWhiteBalanceMode.Auto)
+                sb.Append($" -awb {CaptureWhiteBalanceControl.ToString().ToLowerInvariant()}");
+
+            if (ImageEffect != CameraImageEffect.None)
+                sb.Append($" -ifx {ImageEffect.ToString().ToLowerInvariant()}");
+
+            if (ImageColorEffectU >= 0 && ImageColorEffectV >= 0)
+                sb.Append($" -cfx {ImageColorEffectU.Clamp(0, 255).ToString(CI)}:{ImageColorEffectV.Clamp(0, 255).ToString(CI)}");
+
+            if (CaptureMeteringMode != CameraMeteringMode.Average)
+                sb.Append($" -mm {CaptureMeteringMode.ToString().ToLowerInvariant()}");
+
+            if (ImageRotation != CameraImageRotation.None)
+                sb.Append($" -rot {((int)ImageRotation).ToString(CI)}");
+
+            if (ImageFlipHorizontally)
+                sb.Append($" -hf");
+
+            if (ImageFlipVertically)
+                sb.Append($" -vf");
+
+            if (CaptureSensorRoi.IsDefault == false)
+                sb.Append($" -roi {CaptureSensorRoi.ToString()}");
+
+            if (CaptureShutterSpeedMicroseconds > 0)
+                sb.Append($" -ss {CaptureShutterSpeedMicroseconds.Clamp(0, 6000000).ToString(CI)}");
+
+            if (CaptureDynamicRangeCompensation != CameraDynamicRangeCompensation.Off)
+                sb.Append($" -drc {CaptureDynamicRangeCompensation.ToString().ToLowerInvariant()}");
+
+            if (CaptureWhiteBalanceControl == CameraWhiteBalanceMode.Off && (CaptureWhiteBalanceGainBlue != 0M || CaptureWhiteBalanceGainRed != 0M))
+                sb.Append($" -awbg {CaptureWhiteBalanceGainBlue.ToString(CI)},{CaptureWhiteBalanceGainRed.ToString(CI)}");
+
+            if (ImageAnnotationFontSize > 0)
+            {
+                sb.Append($" -ae {ImageAnnotationFontSize.Clamp(6, 160).ToString(CI)}");
+                sb.Append($",{(ImageAnnotationFontColor == null ? "0xff" : ImageAnnotationFontColor.ToYuvHex(true))}");
+
+                if (ImageAnnotationBackground != null)
+                {
+                    ImageAnnotations |= CameraAnnotation.SolidBackground;
+                    sb.Append($",{ImageAnnotationBackground.ToYuvHex(true)}");
+                }
+
+            }
+
+            if (ImageAnnotations != CameraAnnotation.None)
+                sb.Append($" -a {((int)ImageAnnotations).ToString(CI)}");
+
+            if (string.IsNullOrWhiteSpace(ImageAnnotationsText) == false)
+                sb.Append($" -a \"{ImageAnnotationsText.Replace("\"", "'")}\"");
+
+            var result = sb.ToString();
+            return result;
+        }
 
         /// <summary>
         /// Creates the process.
