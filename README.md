@@ -1,4 +1,5 @@
-# Raspberry IO
+# Raspberry IO [![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO)
+
 The Raspberry Pi's IO Functionality in an easy-to use API for Mono/.NET/C#
 
 This library enables developers to use the various Raspberry Pi's hardware modules
@@ -12,4 +13,5 @@ This library enables developers to use the various Raspberry Pi's hardware modul
 Please note you program needs to be run with ```sudo```. Example ```sudo mono myprogram.exe```
 
 The ```Pi.Camera``` module uses ```raspivid``` and ```raspistill``` to access to camera so they must be installed in order for your program to work propely.
+
 The rest of the modules mostly use the wonderful ```wiring Pi``` library. You do not need to install this library yourself. The Raspberry IO assembly will automatically extract the compiled library in the same path as the entry assembly.
