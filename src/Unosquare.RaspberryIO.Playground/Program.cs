@@ -59,13 +59,15 @@
                 CaptureHeight = 1080
             };
 
+
             Pi.Camera.OpenVideoStream(videoSettings,
                 (data) => { videoByteCount += data.Length; videoEventCount++; }, null);
+            var startTime = DateTime.UtcNow;
 
             Console.WriteLine("Press any key to stop reading the video stream . . .");
             Console.ReadKey(true);
             Pi.Camera.CloseVideoStream();
-            Console.WriteLine($"Capture Stopped. Received {videoByteCount} bytes in {videoEventCount} callbacks");
+            Console.WriteLine($"Capture Stopped. Received {((float)videoByteCount / (float)(1024f * 1024f)).ToString("0.000")} Mbytes in {videoEventCount} callbacks in {DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000")} seconds");
         }
 
         static void TestColors()

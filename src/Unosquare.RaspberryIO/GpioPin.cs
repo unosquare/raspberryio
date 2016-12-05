@@ -497,7 +497,7 @@
         /// <summary>
         /// Gets the interrupt edge detection mode.
         /// </summary>
-        public EdgeDetection InterruptEdgeDetection { get; private set; } = EdgeDetection.EdgeSetup;
+        public EdgeDetection InterruptEdgeDetection { get; private set; } = EdgeDetection.ExternalSetup;
 
         /// <summary>
         /// Registers the interrupt callback on the pin. Pin mode has to be set to Input.
