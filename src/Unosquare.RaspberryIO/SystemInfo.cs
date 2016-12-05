@@ -15,7 +15,7 @@
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
 
-        static private SystemInfo m_Instance = null;
+        private static SystemInfo m_Instance = null;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
@@ -136,7 +136,7 @@
         /// Provides access to the (singleton) Info
         /// This property is thread-safe
         /// </summary>
-        static internal SystemInfo Instance
+        internal static SystemInfo Instance
         {
             get
             {
@@ -155,12 +155,12 @@
         /// <summary>
         /// Gets the wiring pi library version.
         /// </summary>
-        public Version WiringPiVersion { get; private set; }
+        public Version WiringPiVersion { get; }
 
         /// <summary>
         /// Gets the Raspberry Pi version.
         /// </summary>
-        public RaspberryPiVersion RaspberryPiVersion { get; private set; }
+        public RaspberryPiVersion RaspberryPiVersion { get; }
 
         /// <summary>
         /// Gets the Wiring Pi board revision (1 or 2).
@@ -196,7 +196,8 @@
         /// <summary>
         /// Gets a value indicating whether this CPU is little endian.
         /// </summary>
-        public bool IsLittleEndian { get { return BitConverter.IsLittleEndian; } }
+        public bool IsLittleEndian => BitConverter.IsLittleEndian;
+
         /// <summary>
         /// Placeholder for processor index
         /// </summary>
@@ -259,10 +260,12 @@
                     ))
                 .ToArray();
 
-            var properyValues = new List<string>();
-            properyValues.Add("System Information");
-            properyValues.Add($"\t{nameof(WiringPiVersion), -22}: {WiringPiVersion.ToString()}");
-            properyValues.Add($"\t{nameof(RaspberryPiVersion), -22}: {RaspberryPiVersion}");
+            var properyValues = new List<string>
+            {
+                "System Information",
+                $"\t{nameof(WiringPiVersion),-22}: {WiringPiVersion.ToString()}",
+                $"\t{nameof(RaspberryPiVersion),-22}: {RaspberryPiVersion}"
+            };
 
             foreach (var property in properties)
             {
@@ -276,8 +279,7 @@
                     properyValues.Add($"\t{property.Name,-22}: {concatValues}");
                 }
             }
-
-
+            
             return string.Join(Environment.NewLine, properyValues.ToArray());
         }
     }

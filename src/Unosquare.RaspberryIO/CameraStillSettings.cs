@@ -12,13 +12,7 @@
         /// <summary>
         /// Gets the command file executable.
         /// </summary>
-        protected override string CommandName
-        {
-            get
-            {
-                return "raspistill";
-            }
-        }
+        protected override string CommandName => "raspistill";
 
         /// <summary>
         /// Gets or sets a value indicating whether the preview window (if enabled) uses native capture resolution
@@ -46,7 +40,7 @@
         /// JPEG EXIF data
         /// Keys and values must be already properly escaped. Otherwise the command will fail.
         /// </summary>
-        public Dictionary<string, string> CaptureJpegExtendedInfo { get; private set; } = new Dictionary<string, string>();
+        public Dictionary<string, string> CaptureJpegExtendedInfo { get; } = new Dictionary<string, string>();
 
         /// <summary>
         /// Creates the process arguments.

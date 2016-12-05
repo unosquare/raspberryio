@@ -2,11 +2,10 @@
 {
     using System;
     using System.Linq;
-    using System.Security;
 
     /// <summary>
     /// Represents a GPIO Pin, its location and its capabilities.
-    /// Full pin reference avaliable here:
+    /// Full pin reference available here:
     /// http://pinout.xyz/pinout/pin31_gpio6 and  http://wiringpi.com/pins/
     /// </summary>
     public sealed partial class GpioPin
@@ -22,7 +21,7 @@
         {
             PinNumber = (int)wiringPiPinNumber;
             WiringPiPinNumber = wiringPiPinNumber;
-            BcmPinNumber = Utilities.WiringPiToBcmPinNumber((int)wiringPiPinNumber);
+            BcmPinNumber = ((int)wiringPiPinNumber).WiringPiToBcmPinNumber();
             HeaderPinNumber = headerPinNumber;
             Header = (PinNumber >= 17 && PinNumber <= 20) ?
                 GpioHeader.P5 : GpioHeader.P1;
@@ -49,11 +48,13 @@
         /// <summary>
         /// Gets or sets the Wiring Pi pin number as an integer.
         /// </summary>
-        public int PinNumber { get; private set; }
+        public int PinNumber { get; }
+
         /// <summary>
         /// Gets the WiringPi Pin number
         /// </summary>
-        public WiringPiPin WiringPiPinNumber { get; private set; }
+        public WiringPiPin WiringPiPinNumber { get; }
+
         /// <summary>
         /// Gets the BCM chip (hardware) pin number.
         /// </summary>
@@ -205,7 +206,7 @@
                     throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
                         + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
 
-                return Interop.digitalRead(PinNumber) == 0 ? false : true;
+                return Interop.digitalRead(PinNumber) != 0;
             }
         }
 
@@ -369,7 +370,7 @@
         /// <value>
         /// <c>true</c> if this instance is in soft PWM mode; otherwise, <c>false</c>.
         /// </value>
-        public bool IsInSoftPwmMode { get { return m_SoftPwmValue >= 0; } }
+        public bool IsInSoftPwmMode => m_SoftPwmValue >= 0;
 
         /// <summary>
         /// Starts the software based PWM on this pin.
@@ -433,13 +434,7 @@
         /// <summary>
         /// Gets the software PWM range used upon starting the PWM.
         /// </summary>
-        public int SoftPwmRange
-        {
-            get
-            {
-                return m_SoftPwmRange;
-            }
-        }
+        public int SoftPwmRange => m_SoftPwmRange;
 
         #endregion
 
@@ -451,7 +446,7 @@
         /// <value>
         /// <c>true</c> if this instance is in soft tone mode; otherwise, <c>false</c>.
         /// </value>
-        public bool IsInSoftToneMode { get { return m_SoftToneFrequency >= 0; } }
+        public bool IsInSoftToneMode => m_SoftToneFrequency >= 0;
 
         /// <summary>
         /// Gets or sets the soft tone frequency. 0 to 5000 Hz is typical
@@ -470,7 +465,6 @@
             {
                 lock (Pi.SyncLock)
                 {
-                    var frquency = value;
                     if (IsInSoftToneMode == false)
                     {
                         var setupResult = Interop.softToneCreate(PinNumber);

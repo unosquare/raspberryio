@@ -39,7 +39,7 @@
         /// <summary>
         /// The default ROI which is the entire area.
         /// </summary>
-        static public readonly CameraRect Default = new CameraRect() { X = 0M, Y = 0M, W = 1.0M, H = 1.0M };
+        public static readonly CameraRect Default = new CameraRect() { X = 0M, Y = 0M, W = 1.0M, H = 1.0M };
 
         /// <summary>
         /// Clamps the members of this ROI to their minimum and maximum values

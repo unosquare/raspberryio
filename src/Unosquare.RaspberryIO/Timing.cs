@@ -7,7 +7,7 @@
     /// </summary>
     public class Timing
     {
-        static private Timing m_Instance = null;
+        private static Timing m_Instance = null;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="Timing"/> class from being created.
@@ -24,7 +24,7 @@
         /// Provides access to the (singleton) Time Functions
         /// This property is thread-safe
         /// </summary>
-        static internal Timing Instance
+        internal static Timing Instance
         {
             get
             {
@@ -78,7 +78,7 @@
         /// Note that the maximum delay is an unsigned 32-bit integer or approximately 49 days.
         /// </summary>
         /// <param name="value">The value.</param>
-        static public void SleepMilliseconds(uint value)
+        public static void SleepMilliseconds(uint value)
         {
             Interop.delay(value);
         }

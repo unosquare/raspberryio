@@ -11,14 +11,14 @@
     {
         // TODO: It would be nice to integrate i2c device detection. 
 
-        static private I2cBus m_Instance = null;
-        static private readonly Dictionary<int, I2cDevice> m_Devices = new Dictionary<int, I2cDevice>();
+        private static I2cBus m_Instance = null;
+        private static readonly Dictionary<int, I2cDevice> m_Devices = new Dictionary<int, I2cDevice>();
 
 
         /// <summary>
         /// Gets the instance of this singleton.
         /// </summary>
-        static internal I2cBus Instance
+        internal static I2cBus Instance
         {
             get
             {
@@ -42,10 +42,7 @@
         /// <summary>
         /// Gets the registered devices as a read only collection.
         /// </summary>
-        public ReadOnlyCollection<I2cDevice> Devices
-        {
-            get { return new ReadOnlyCollection<I2cDevice>(m_Devices.Values.ToArray()); }
-        }
+        public ReadOnlyCollection<I2cDevice> Devices => new ReadOnlyCollection<I2cDevice>(m_Devices.Values.ToArray());
 
         /// <summary>
         /// Gets the device by identifier.

@@ -17,15 +17,15 @@
     {
         #region Static Declarations
 
-        static private GpioController m_Instance = null;
-        static private readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
+        private static GpioController m_Instance = null;
+        private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
 
         #endregion
 
         #region Private Declarations
 
         private const string WiringPiCodesEnvironmentVariable = "WIRINGPI_CODES";
-        private ReadOnlyCollection<GpioPin> PinCollection = null;
+        private readonly ReadOnlyCollection<GpioPin> PinCollection = null;
         private readonly Dictionary<WiringPiPin, GpioPin> RegisteredPins = new Dictionary<WiringPiPin, GpioPin>();
 
         #endregion
@@ -37,7 +37,7 @@
         /// It automatically initializes the underlying library and populates the pins upon first access.
         /// This property is thread-safe
         /// </summary>
-        static internal GpioController Instance
+        internal static GpioController Instance
         {
             get
             {
@@ -54,17 +54,17 @@
         }
 
         /// <summary>
-        /// Determines if the underlyng GPIO controller has been initialized properly.
+        /// Determines if the underlying GPIO controller has been initialized properly.
         /// </summary>
         /// <value>
         /// <c>true</c> if the controller is properly initialized; otherwise, <c>false</c>.
         /// </value>
-        static public bool IsInitialized { get { lock (Pi.SyncLock) { return Mode != ControllerMode.NotInitialized; } } }
+        public static bool IsInitialized { get { lock (Pi.SyncLock) { return Mode != ControllerMode.NotInitialized; } } }
 
         /// <summary>
         /// Gets or sets the initialization mode.
         /// </summary>
-        static private ControllerMode Mode { get; set; } = ControllerMode.NotInitialized;
+        private static ControllerMode Mode { get; set; } = ControllerMode.NotInitialized;
 
         #endregion
 
@@ -131,7 +131,7 @@
         }
 
         /// <summary>
-        /// Short-hand method of registerning pins
+        /// Short-hand method of registering pins
         /// </summary>
         /// <param name="pin">The pin.</param>
         private void RegisterPin(GpioPin pin)
@@ -217,7 +217,7 @@
         /// <summary>
         /// Gets a red-only collection of all registered pins.
         /// </summary>
-        public ReadOnlyCollection<GpioPin> Pins { get { return PinCollection; } }
+        public ReadOnlyCollection<GpioPin> Pins => PinCollection;
 
         /// <summary>
         /// Gets the <see cref="GpioPin"/> with the specified pin number.
@@ -227,10 +227,7 @@
         /// </value>
         /// <param name="pinNumber">The pin number.</param>
         /// <returns></returns>
-        public GpioPin this[WiringPiPin pinNumber]
-        {
-            get { return RegisteredPins[pinNumber]; }
-        }
+        public GpioPin this[WiringPiPin pinNumber] => RegisteredPins[pinNumber];
 
         /// <summary>
         /// Gets the <see cref="GpioPin"/> with the specified pin number.
@@ -259,131 +256,162 @@
         /// <summary>
         /// Provides direct access to the Pin 00.
         /// </summary>
-        public GpioPin Pin00 { get { return GpioPin.Pin00.Value; } }
+        public GpioPin Pin00 => GpioPin.Pin00.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 01.
         /// </summary>
-        public GpioPin Pin01 { get { return GpioPin.Pin01.Value; } }
+        public GpioPin Pin01 => GpioPin.Pin01.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 02.
         /// </summary>
-        public GpioPin Pin02 { get { return GpioPin.Pin02.Value; } }
+        public GpioPin Pin02 => GpioPin.Pin02.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 03.
         /// </summary>
-        public GpioPin Pin03 { get { return GpioPin.Pin03.Value; } }
+        public GpioPin Pin03 => GpioPin.Pin03.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 04.
         /// </summary>
-        public GpioPin Pin04 { get { return GpioPin.Pin04.Value; } }
+        public GpioPin Pin04 => GpioPin.Pin04.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 05.
         /// </summary>
-        public GpioPin Pin05 { get { return GpioPin.Pin05.Value; } }
+        public GpioPin Pin05 => GpioPin.Pin05.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 06.
         /// </summary>
-        public GpioPin Pin06 { get { return GpioPin.Pin06.Value; } }
+        public GpioPin Pin06 => GpioPin.Pin06.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 07.
         /// </summary>
-        public GpioPin Pin07 { get { return GpioPin.Pin07.Value; } }
+        public GpioPin Pin07 => GpioPin.Pin07.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 08.
         /// </summary>
-        public GpioPin Pin08 { get { return GpioPin.Pin08.Value; } }
+        public GpioPin Pin08 => GpioPin.Pin08.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 09.
         /// </summary>
-        public GpioPin Pin09 { get { return GpioPin.Pin09.Value; } }
+        public GpioPin Pin09 => GpioPin.Pin09.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 10.
         /// </summary>
-        public GpioPin Pin10 { get { return GpioPin.Pin10.Value; } }
+        public GpioPin Pin10 => GpioPin.Pin10.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 11.
         /// </summary>
-        public GpioPin Pin11 { get { return GpioPin.Pin11.Value; } }
+        public GpioPin Pin11 => GpioPin.Pin11.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 12.
         /// </summary>
-        public GpioPin Pin12 { get { return GpioPin.Pin12.Value; } }
+        public GpioPin Pin12 => GpioPin.Pin12.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 13.
         /// </summary>
-        public GpioPin Pin13 { get { return GpioPin.Pin13.Value; } }
+        public GpioPin Pin13 => GpioPin.Pin13.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 14.
         /// </summary>
-        public GpioPin Pin14 { get { return GpioPin.Pin14.Value; } }
+        public GpioPin Pin14 => GpioPin.Pin14.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 15.
         /// </summary>
-        public GpioPin Pin15 { get { return GpioPin.Pin15.Value; } }
+        public GpioPin Pin15 => GpioPin.Pin15.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 16.
         /// </summary>
-        public GpioPin Pin16 { get { return GpioPin.Pin16.Value; } }
+        public GpioPin Pin16 => GpioPin.Pin16.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 17.
         /// </summary>
-        public GpioPin Pin17 { get { return GpioPin.Pin17.Value; } }
+        public GpioPin Pin17 => GpioPin.Pin17.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 18.
         /// </summary>
-        public GpioPin Pin18 { get { return GpioPin.Pin18.Value; } }
+        public GpioPin Pin18 => GpioPin.Pin18.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 19.
         /// </summary>
-        public GpioPin Pin19 { get { return GpioPin.Pin19.Value; } }
+        public GpioPin Pin19 => GpioPin.Pin19.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 20.
         /// </summary>
-        public GpioPin Pin20 { get { return GpioPin.Pin20.Value; } }
+        public GpioPin Pin20 => GpioPin.Pin20.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 21.
         /// </summary>
-        public GpioPin Pin21 { get { return GpioPin.Pin21.Value; } }
+        public GpioPin Pin21 => GpioPin.Pin21.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 22.
         /// </summary>
-        public GpioPin Pin22 { get { return GpioPin.Pin22.Value; } }
+        public GpioPin Pin22 => GpioPin.Pin22.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 23.
         /// </summary>
-        public GpioPin Pin23 { get { return GpioPin.Pin23.Value; } }
+        public GpioPin Pin23 => GpioPin.Pin23.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 24.
         /// </summary>
-        public GpioPin Pin24 { get { return GpioPin.Pin24.Value; } }
+        public GpioPin Pin24 => GpioPin.Pin24.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 25.
         /// </summary>
-        public GpioPin Pin25 { get { return GpioPin.Pin25.Value; } }
+        public GpioPin Pin25 => GpioPin.Pin25.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 26.
         /// </summary>
-        public GpioPin Pin26 { get { return GpioPin.Pin26.Value; } }
+        public GpioPin Pin26 => GpioPin.Pin26.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 27.
         /// </summary>
-        public GpioPin Pin27 { get { return GpioPin.Pin27.Value; } }
+        public GpioPin Pin27 => GpioPin.Pin27.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 28.
         /// </summary>
-        public GpioPin Pin28 { get { return GpioPin.Pin28.Value; } }
+        public GpioPin Pin28 => GpioPin.Pin28.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 29.
         /// </summary>
-        public GpioPin Pin29 { get { return GpioPin.Pin29.Value; } }
+        public GpioPin Pin29 => GpioPin.Pin29.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 30.
         /// </summary>
-        public GpioPin Pin30 { get { return GpioPin.Pin30.Value; } }
+        public GpioPin Pin30 => GpioPin.Pin30.Value;
+
         /// <summary>
         /// Provides direct access to the Pin 31.
         /// </summary>
-        public GpioPin Pin31 { get { return GpioPin.Pin31.Value; } }
+        public GpioPin Pin31 => GpioPin.Pin31.Value;
 
         #endregion
 
@@ -463,7 +491,7 @@
         /// <summary>
         /// Gets the number of registered pins in the controller.
         /// </summary>
-        public int Count { get { return PinCollection.Count; } }
+        public int Count => PinCollection.Count;
 
         #endregion
 
