@@ -24,9 +24,9 @@
         {
             get
             {
-                string codeBase = Assembly.GetEntryAssembly().CodeBase;
+                var codeBase = Assembly.GetEntryAssembly().CodeBase;
                 UriBuilder uri = new UriBuilder(codeBase);
-                string path = Uri.UnescapeDataString(uri.Path);
+                var path = Uri.UnescapeDataString(uri.Path);
                 return Path.GetDirectoryName(path);
             }
         }
@@ -43,7 +43,7 @@
             {
                 using (var outputStream = File.OpenWrite(targetPath))
                 {
-                    stream.CopyTo(outputStream);
+                    stream?.CopyTo(outputStream);
                 }
             }
 
@@ -68,7 +68,6 @@
 
                     return m_IsLinuxOS.Value;
                 }
-
             }
         }
 

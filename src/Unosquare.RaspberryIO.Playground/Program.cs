@@ -25,14 +25,14 @@
             }
         }
 
-        static void TestSystemInfo()
+        private static void TestSystemInfo()
         {
             Console.WriteLine($"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins");
-            Console.WriteLine($"{Pi.Info.ToString()}");
+            Console.WriteLine($"{Pi.Info}");
             Console.WriteLine($"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}");
         }
 
-        static void TestCaptureImage()
+        private static void TestCaptureImage()
         {
             var pictureBytes = Pi.Camera.CaptureImageJpeg(640, 480);
             var targetPath = "/home/pi/picture.jpg";

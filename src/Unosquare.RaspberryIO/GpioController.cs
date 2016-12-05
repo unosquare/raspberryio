@@ -157,7 +157,7 @@
             Utilities.ExtractLibWiringPi();
 
             if (Utilities.IsLinuxOS == false)
-                throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion.ToString()}");
+                throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion}");
 
             lock (Pi.SyncLock)
             {

@@ -180,14 +180,13 @@
         #region Video Capture Methods
 
         /// <summary>
-        /// Performs a continous read of the standard output and fires the corresponding events.
+        /// Performs a continuous read of the standard output and fires the corresponding events.
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <param name="onDataCallback">The on data callback.</param>
         /// <param name="onExitCallback">The on exit callback.</param>
         private static void VideoWorkerDoWork(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback)
         {
-
             var readBuffer = new byte[1024 * 8];
             var readCount = 0;
             var totalRead = 0;

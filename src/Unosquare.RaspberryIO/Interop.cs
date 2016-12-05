@@ -216,7 +216,6 @@ namespace Unosquare.RaspberryIO
         /// This reads the 8-bit byte supplied to the first 8 GPIO pins. 
         /// It’s the fastest way to get all 8 bits at once to a particular value.
         /// </summary>
-        /// <param name="pin">The pin.</param>
         /// <returns></returns>
         [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalReadByte))]
         public static extern uint digitalReadByte();

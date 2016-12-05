@@ -8,9 +8,6 @@
     /// </summary>
     public class Color
     {
-        private readonly byte[] RgbBytes;
-        private readonly byte[] YuvBytes;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Color"/> class.
         /// </summary>
@@ -31,13 +28,13 @@
         /// <param name="name">The well-known color name.</param>
         public Color(int r, int g, int b, string name)
         {
-            RgbBytes = new byte[3] { Convert.ToByte(r.Clamp(0, 255)), Convert.ToByte(g.Clamp(0, 255)), Convert.ToByte(b.Clamp(0, 255)) };
+            RGB = new byte[] { Convert.ToByte(r.Clamp(0, 255)), Convert.ToByte(g.Clamp(0, 255)), Convert.ToByte(b.Clamp(0, 255)) };
 
             float y = R * .299000f + G * .587000f + B * .114000f;
             float u = R * -.168736f + G * -.331264f + B * .500000f + 128f;
             float v = R * .500000f + G * -.418688f + B * -.081312f + 128f;
 
-            YuvBytes = new byte[3] { (byte)y.Clamp(0, 255), (byte)u.Clamp(0, 255), (byte)v.Clamp(0, 255) };
+            YUV = new byte[] { (byte)y.Clamp(0, 255), (byte)u.Clamp(0, 255), (byte)v.Clamp(0, 255) };
             Name = name;
         }
 
@@ -49,27 +46,27 @@
         /// <summary>
         /// Gets the red byte.
         /// </summary>
-        public byte R => RgbBytes[0];
+        public byte R => RGB[0];
 
         /// <summary>
         /// Gets the green byte.
         /// </summary>
-        public byte G => RgbBytes[1];
+        public byte G => RGB[1];
 
         /// <summary>
         /// Gets the blue byte.
         /// </summary>
-        public byte B => RgbBytes[2];
+        public byte B => RGB[2];
 
         /// <summary>
         /// Gets the RGB byte array (3 bytes).
         /// </summary>
-        public byte[] RGB => RgbBytes;
+        public byte[] RGB { get; }
 
         /// <summary>
         /// Gets the YUV byte array (3 bytes).
         /// </summary>
-        public byte[] YUV => YuvBytes;
+        public byte[] YUV { get; }
 
         /// <summary>
         /// Returns a hexadecimal representation of the data byte array 

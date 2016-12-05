@@ -191,7 +191,6 @@
         /// <summary>
         /// Gets the installed ram in bytes.
         /// </summary>
-        /// <value>
         public int InstalledRam { get; private set; }
         /// <summary>
         /// Gets a value indicating whether this CPU is little endian.
@@ -263,7 +262,7 @@
             var properyValues = new List<string>
             {
                 "System Information",
-                $"\t{nameof(WiringPiVersion),-22}: {WiringPiVersion.ToString()}",
+                $"\t{nameof(WiringPiVersion),-22}: {WiringPiVersion}",
                 $"\t{nameof(RaspberryPiVersion),-22}: {RaspberryPiVersion}"
             };
 
