@@ -15,5 +15,8 @@
     }
   },
 
-  "buildOptions": { "embed": [ "libwiringPi.so.2.32" ] }
+  "buildOptions": {
+    "embed": [ "libwiringPi.so.2.32" ],
+    "xmlDoc": true
+  }
 }
