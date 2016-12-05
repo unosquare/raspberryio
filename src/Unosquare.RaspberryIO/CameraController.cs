@@ -13,12 +13,15 @@
     /// </summary>
     public class CameraController
     {
-        private static CameraController m_Instance = null;
+        #region Private Declarations
 
+        private static CameraController m_Instance = null;
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         private static readonly object SyncLock = new object();
         static private Thread VideoWorker = null;
         static private Process VideoProcess = null;
+
+        #endregion
 
         #region Properties
 
@@ -233,6 +236,22 @@
 
         }
 
+        /// <summary>
+        /// Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
+        /// No preview is shown
+        /// </summary>
+        /// <param name="onDataCallback">The on data callback.</param>
+        public void OpenVideoStream(Action<byte[]> onDataCallback)
+        {
+            OpenVideoStream(onDataCallback, null);
+        }
+
+        /// <summary>
+        /// Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
+        /// No preview is shown
+        /// </summary>
+        /// <param name="onDataCallback">The on data callback.</param>
+        /// <param name="onExitCallback">The on exit callback.</param>
         public void OpenVideoStream(Action<byte[]> onDataCallback, Action onExitCallback)
         {
             var settings = new CameraVideoSettings()
@@ -246,6 +265,14 @@
             OpenVideoStream(settings, onDataCallback, onExitCallback);
         }
 
+        /// <summary>
+        /// Opens the video stream with the supplied settings. Capture Timeout Milliseconds has to be 0 or greater
+        /// </summary>
+        /// <param name="settings">The settings.</param>
+        /// <param name="onDataCallback">The on data callback.</param>
+        /// <param name="onExitCallback">The on exit callback.</param>
+        /// <exception cref="System.InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
+        /// <exception cref="System.ArgumentException">CaptureTimeoutMilliseconds</exception>
         public void OpenVideoStream(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback)
         {
             if (Instance.IsBusy)
@@ -269,6 +296,9 @@
 
         }
 
+        /// <summary>
+        /// Closes the video stream of a video stream is open.
+        /// </summary>
         public void CloseVideoStream()
         {
             lock (SyncLock)

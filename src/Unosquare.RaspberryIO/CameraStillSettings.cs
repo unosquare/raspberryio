@@ -5,14 +5,14 @@
     using System.Text;
 
     /// <summary>
-    /// Defines a wrapper for the raspistill program
+    /// Defines a wrapper for the raspistill program and its settings (command-line arguments)
     /// </summary>
     public class CameraStillSettings : CameraSettingsBase
     {
         /// <summary>
         /// Gets the command file executable.
         /// </summary>
-        protected override string CommandFile
+        protected override string CommandName
         {
             get
             {
@@ -85,7 +85,7 @@
             }
 
             var result = sb.ToString();
-            Console.WriteLine($"{CommandFile} {result}");
+            Console.WriteLine($"{CommandName} {result}");
             return result;
         }
 

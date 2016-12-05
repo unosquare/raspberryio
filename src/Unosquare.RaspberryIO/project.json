@@ -1,5 +1,9 @@
-﻿{
-  "version": "1.0.0-*",
+{
+  "title": "Unosquare Raspberry IO",
+  "copyright": "Unosquare (c) 2016",
+  "description": "An API that provides access to the Pi's GPIO, SPI, I2C, and Camera modules",
+  "language": "en",
+  "version": "0.9.0-*",
 
   "dependencies": {
     "NETStandard.Library": "1.6.0"

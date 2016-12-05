@@ -2,55 +2,131 @@
 {
     using System;
 
+    /// <summary>
+    /// Defines the different drive modes of a GPIO pin
+    /// </summary>
     public enum GpioPinDriveMode : int
     {
+        /// <summary>
+        /// Input drive mode (perform reads)
+        /// </summary>
         Input = 0,
+        /// <summary>
+        /// Output drive mode (perform writes)
+        /// </summary>
         Output = 1,
+        /// <summary>
+        /// PWM output mode (only certain pins support this -- 2 of them at the moment)
+        /// </summary>
         PwmOutput = 2,
+        /// <summary>
+        /// GPIO Clock output mode (only a pin supports this at this time)
+        /// </summary>
         GpioClock = 3
     }
 
+    /// <summary>
+    /// The GPIO pin resistor mode. This is used on input pins so that their
+    /// lines are not floating
+    /// </summary>
     public enum GpioPinResistorPullMode : int
     {
+        /// <summary>
+        /// Pull resistor not active. Line floating
+        /// </summary>
         Off = 0,
+        /// <summary>
+        /// Pull resistor sets a default value of 0 on no-connects
+        /// </summary>
         PullDown = 1,
+        /// <summary>
+        /// Pull resistor sets a default value of 1 on no-connects
+        /// </summary>
         PullUp = 2,
     }
 
+    /// <summary>
+    /// The PWM mode.
+    /// </summary>
     public enum PwmMode : int
     {
+        /// <summary>
+        /// PWM pulses are sent using mark-sign patterns (old school)
+        /// </summary>
         MarkSign = 0,
+        /// <summary>
+        /// PWM pulses are sent as a balanced signal (default, newer mode)
+        /// </summary>
         Balanced = 1,
     }
 
+    /// <summary>
+    /// Defines the different threading locking keys
+    /// </summary>
     public enum LockKey : int
     {
-        Lock0,
-        Lock1,
-        Lock2,
-        Lock3,
+        Lock0 = 0,
+        Lock1 = 1,
+        Lock2 = 2,
+        Lock3 = 3,
     }
 
+    /// <summary>
+    /// Defines the different edge detection modes  for pin interrupts
+    /// </summary>
     public enum EdgeDetection : int
     {
-        EdgeSetup = 0,
-        EdgeFalling = 1,
-        EdgeRising = 2,
-        EdgeBoth = 3
+        /// <summary>
+        /// Assumes edge detection was already setup externally
+        /// </summary>
+        ExternalSetup = 0,
+        /// <summary>
+        /// Falling Edge
+        /// </summary>
+        FallingEdge = 1,
+        /// <summary>
+        /// Rising edge
+        /// </summary>
+        RisingEdge = 2,
+        /// <summary>
+        /// Both, rising and falling edges
+        /// </summary>
+        RisingAndFallingEdges = 3
     }
 
+    /// <summary>
+    /// Defines the GPIO Pin values 0 for low, 1 for High
+    /// </summary>
     public enum GpioPinValue : int
     {
+        /// <summary>
+        /// Digital high
+        /// </summary>
         High = 1,
+        /// <summary>
+        /// Digital low
+        /// </summary>
         Low = 0
     }
 
+    /// <summary>
+    /// Defines the SPI channel numbers
+    /// </summary>
     public enum SpiChannelNumber
     {
+        /// <summary>
+        /// The channel 0
+        /// </summary>
         Channel0 = 0,
+        /// <summary>
+        /// The channel 1
+        /// </summary>
         Channel1 = 1,
     }
 
+    /// <summary>
+    /// Defines GPIO controller initialization modes
+    /// </summary>
     internal enum ControllerMode
     {
         NotInitialized,
@@ -207,6 +283,9 @@
         Pi3ModelBEmbest = 0xa22082,
     }
 
+    /// <summary>
+    /// Defines the available encoding formats for the Raspberry Pi camera module
+    /// </summary>
     public enum CameraImageEncodingFormat
     {
         Jpg,
@@ -215,6 +294,9 @@
         Png,
     }
 
+    /// <summary>
+    /// Defines the different exposure modes for the Raspberry Pi's camera module
+    /// </summary>
     public enum CameraExposureMode
     {
         Auto,
@@ -231,6 +313,9 @@
         Fireworks,
     }
 
+    /// <summary>
+    /// Defines the different AWB (Auto White Balance) modes for the Raspberry Pi's camera module
+    /// </summary>
     public enum CameraWhiteBalanceMode
     {
         Off,
@@ -245,6 +330,9 @@
         Horizon
     }
 
+    /// <summary>
+    /// Defines the available image effects for the Raspberry Pi's camera module
+    /// </summary>
     public enum CameraImageEffect
     {
         None,
@@ -270,6 +358,9 @@
         Cartoon
     }
 
+    /// <summary>
+    /// Defines the different metering modes for the Raspberry Pi's camera module
+    /// </summary>
     public enum CameraMeteringMode
     {
         Average,
@@ -278,6 +369,9 @@
         Matrix,
     }
 
+    /// <summary>
+    /// Defines the different image rotation modes for the Raspberry Pi's camera module
+    /// </summary>
     public enum CameraImageRotation
     {
         None = 0,
@@ -286,6 +380,10 @@
         Degrees270 = 270
     }
 
+    /// <summary>
+    /// Defines the different DRC (Dynamic Range Compensation)  modes for the Raspberry Pi's camera module
+    /// Helpful for low light photos
+    /// </summary>
     public enum CameraDynamicRangeCompensation
     {
         Off,
@@ -295,7 +393,7 @@
     }
 
     /// <summary>
-    /// 
+    /// Defines the bit-wise mask flags for the available annotation elements for the Raspberry Pi's camera module
     /// </summary>
     [Flags]
     public enum CameraAnnotation
@@ -312,10 +410,25 @@
         SolidBackground = 1024,
     }
 
+    /// <summary>
+    /// Defines the different H.264 encoding profiles to be used when capturing video.
+    /// </summary>
     public enum CameraH264Profile
     {
+        /// <summary>
+        /// BP:  Primarily for lower-cost applications with limited computing resources, 
+        /// this profile is used widely in videoconferencing and mobile applications.
+        /// </summary>
         Baseline,
+        /// <summary>
+        /// MP: Originally intended as the mainstream consumer profile for broadcast 
+        /// and storage applications, the importance of this profile faded when the High profile was developed for those applications.
+        /// </summary>
         Main,
+        /// <summary>
+        /// HiP: The primary profile for broadcast and disc storage applications, particularly 
+        /// for high-definition television applications (this is the profile adopted into HD DVD and Blu-ray Disc, for example).
+        /// </summary>
         High
     }
 }

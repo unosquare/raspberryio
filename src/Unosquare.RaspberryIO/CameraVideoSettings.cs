@@ -3,12 +3,16 @@
     using System;
     using System.Text;
 
+    /// <summary>
+    /// Represents the raspivid camera settings for video capture functionality
+    /// </summary>
+    /// <seealso cref="Unosquare.RaspberryIO.CameraSettingsBase" />
     public class CameraVideoSettings : CameraSettingsBase
     {
         /// <summary>
         /// Gets the command file executable.
         /// </summary>
-        protected override string CommandFile
+        protected override string CommandName
         {
             get
             {
@@ -98,7 +102,7 @@
                 sb.Append($" -ih");
 
             var result = sb.ToString();
-            Console.WriteLine($"{CommandFile} {result}");
+            Console.WriteLine($"{CommandName} {result}");
             return result;
         }
 

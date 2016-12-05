@@ -1,12 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO
 {
-    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
     using System.Text;
 
     /// <summary>
-    /// A base class to implement Raspistill and Raspivid wrappers
+    /// A base class to implement raspistill and raspivid wrappers
     /// Full documentation available at
     /// https://www.raspberrypi.org/documentation/raspbian/applications/camera.md
     /// </summary>
@@ -46,7 +45,7 @@
         /// <summary>
         /// Gets or sets the capture sensor region of interest in relative coordinates.
         /// </summary>
-        public CameraRegionOfInterest CaptureSensorRoi { get; set; } = CameraRegionOfInterest.Default;
+        public CameraRect CaptureSensorRoi { get; set; } = CameraRect.Default;
 
         /// <summary>
         /// Gets or sets the capture shutter speed in microseconds.
@@ -211,12 +210,12 @@
 
         #endregion
 
-        #region Methods
+        #region Interface
 
         /// <summary>
         /// Gets the command file executable.
         /// </summary>
-        protected abstract string CommandFile { get; }
+        protected abstract string CommandName { get; }
 
         /// <summary>
         /// Creates the process arguments.
@@ -339,7 +338,7 @@
                 {
                     Arguments = CreateProcessArguments(),
                     CreateNoWindow = true,
-                    FileName = CommandFile,
+                    FileName = CommandName,
                     RedirectStandardError = true,
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,

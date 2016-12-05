@@ -3,9 +3,9 @@
     using System.Globalization;
 
     /// <summary>
-    /// Defines the Raspberry Pi camera's sensor ROI
+    /// Defines the Raspberry Pi camera's sensor ROI (Region of Interest)
     /// </summary>
-    public struct CameraRegionOfInterest
+    public struct CameraRect
     {
         /// <summary>
         /// Gets or sets the x in relative coordinates. (0.0 to 1.0)
@@ -39,7 +39,7 @@
         /// <summary>
         /// The default ROI which is the entire area.
         /// </summary>
-        static public readonly CameraRegionOfInterest Default = new CameraRegionOfInterest() { X = 0M, Y = 0M, W = 1.0M, H = 1.0M };
+        static public readonly CameraRect Default = new CameraRect() { X = 0M, Y = 0M, W = 1.0M, H = 1.0M };
 
         /// <summary>
         /// Clamps the members of this ROI to their minimum and maximum values
@@ -75,7 +75,6 @@
         /// </returns>
         public override string ToString()
         {
-
             return $"{X.ToString(CultureInfo.InvariantCulture)},{Y.ToString(CultureInfo.InvariantCulture)},{W.ToString(CultureInfo.InvariantCulture)},{H.ToString(CultureInfo.InvariantCulture)}";
         }
     }

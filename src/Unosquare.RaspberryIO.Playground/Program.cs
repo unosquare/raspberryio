@@ -50,7 +50,7 @@
             var videoSettings = new CameraVideoSettings()
             {
                 CaptureTimeoutMilliseconds = 0,
-                CaptureDisplayPreview = true,
+                CaptureDisplayPreview = false,
                 ImageFlipVertically = true,
                 //CaptureDisplayPreviewEncoded = true,
                 //ImageEffect = CameraImageEffect.Denoise,

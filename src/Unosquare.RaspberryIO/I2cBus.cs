@@ -1,6 +1,5 @@
 ﻿namespace Unosquare.RaspberryIO
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -10,6 +9,8 @@
     /// </summary>
     public class I2cBus
     {
+        // TODO: It would be nice to integrate i2c device detection. 
+
         static private I2cBus m_Instance = null;
         static private readonly Dictionary<int, I2cDevice> m_Devices = new Dictionary<int, I2cDevice>();
 
