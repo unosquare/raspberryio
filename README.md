@@ -178,9 +178,9 @@ In order to use an SPI channel you **MUST** always set the ```Channel0Frequency`
 
 Example of using the SPI Bus
 ```csharp
-    Pi.Spi.Channel0Frequency = SpiChannel.MinFrequency;
-    var request = System.Text.Encoding.ASCII.GetBytes("HELLO!");
-    var response = Pi.Spi.Channel0.SendReceive(request);
+Pi.Spi.Channel0Frequency = SpiChannel.MinFrequency;
+var request = System.Text.Encoding.ASCII.GetBytes("HELLO!");
+var response = Pi.Spi.Channel0.SendReceive(request);
 ```
 
 ## I2C to connect ICs
