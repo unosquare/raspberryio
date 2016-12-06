@@ -1,7 +1,7 @@
 [![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO)
 [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/raspberryio/)](https://github.com/igrigorik/ga-beacon)
 
-# RaspberryIO - *Pi's hardware access from Mono*
+# <img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberry-io.png" width="32" height="32"></img> RaspberryIO - *Pi's hardware access from Mono*
 The Raspberry Pi's IO Functionality in an easy-to-use API for Mono/.NET/C#
 
 *:star:Please star this project if you find it useful!*
@@ -161,7 +161,7 @@ Example of using the SPI Bus
 ```
 
 ## I2C to connect ICs
-The Inter IC Bus (I2C) is a cousing of the SPI bus but it is somewhat more complex and it does not work as a ring buffer like the SPI bus. There is a nice tutorial on using the I2C bus at [Robot Electronics](http://www.robot-electronics.co.uk/i2c-tutorial). From their site: _The physical bus is just two wires, called SCL and SDA. SCL is the clock line. It is used to synchronize all data transfers over the I2C bus. SDA is the data line. The SCL & SDA lines are connected to all devices on the I2C bus. There needs to be a third wire which is just the ground or 0 volts. There may also be a 5volt wire is power is being distributed to the devices. Both SCL and SDA lines are "open drain" drivers. What this means is that the chip can drive its output low, but it cannot drive it high. For the line to be able to go high you must provide pull-up resistors to the 5v supply. There should be a resistor from the SCL line to the 5v line and another from the SDA line to the 5v line. You only need one set of pull-up resistors for the whole I2C bus, not for each device.
+The Inter IC Bus (I2C) is a cousing of the SPI bus but it is somewhat more complex and it does not work as a ring buffer like the SPI bus. There is a nice tutorial on using the I2C bus at [Robot Electronics](http://www.robot-electronics.co.uk/i2c-tutorial). From their site: _The physical bus is just two wires, called SCL and SDA. SCL is the clock line. It is used to synchronize all data transfers over the I2C bus. SDA is the data line. The SCL & SDA lines are connected to all devices on the I2C bus. There needs to be a third wire which is just the ground or 0 volts. There may also be a 5volt wire is power is being distributed to the devices. Both SCL and SDA lines are "open drain" drivers. What this means is that the chip can drive its output low, but it cannot drive it high. For the line to be able to go high you must provide pull-up resistors to the 5v supply. There should be a resistor from the SCL line to the 5v line and another from the SDA line to the 5v line. You only need one set of pull-up resistors for the whole I2C bus, not for each device._
 
 ```RaspberryIO``` provides easy access to the I2C bus available on the Raspberry. The functionality depends on ```Wiring Pi```'s I2C library. Please note that you may need to issue the command ```gpio load i2c``` before starting your application (or as a ```System.Diagnostics.Process``` when your application starts) if the I2C kernel drivers have not been loaded. The default baud rate is 100Kbps. If you wish to initialize the bus at a different baud rate you may issue for example, ```gpio load i2c 200```. This will load the bus at 200kbps.
 
