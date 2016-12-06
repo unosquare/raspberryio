@@ -173,18 +173,18 @@ i2cdetect -y 1 # Rev 2
 
 Example of using the I2C Bus
 ```csharp
-    // Register a device on the bus
-    var myDevice = Pi.I2c.AddDevice(0x20);
+// Register a device on the bus
+var myDevice = Pi.I2c.AddDevice(0x20);
 
-    // Simple Write and Read (there are algo register read and write methods)
-    myDevice.Write(0x44);
-    var response = myDevice.Read();
+// Simple Write and Read (there are algo register read and write methods)
+myDevice.Write(0x44);
+var response = myDevice.Read();
 
-    // List registered devices on the I2C Bus
-    foreach (var device in Pi.I2c.Devices)
-    {
-        Console.WriteLine($"Registered I2C Device: {device.DeviceId}");
-    }
+// List registered devices on the I2C Bus
+foreach (var device in Pi.I2c.Devices)
+{
+    Console.WriteLine($"Registered I2C Device: {device.DeviceId}");
+}
 ```
 
 ## Timing and Threading
