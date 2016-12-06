@@ -126,7 +126,7 @@ static void TestCaptureVideo()
 Please note ```Pi.Info``` depends on ```Wiring Pi```, and the ```/proc/cpuinfo``` and ```/proc/meminfo``` files.
 
 ## Using the GPIO Pins
-Pin reference for the B plus (B+)
+Pin reference for the B plus (B+) - Header P1
 
 | BCM | wPi | Name    | Mode | V   | L      | R      | V   | Mode | Name    | wPi | BCM |
 | --- | --- | ------- | ---- | --- | ------ | ------ | --- | ---- | ------- | --- | --- |
@@ -151,10 +151,59 @@ Pin reference for the B plus (B+)
 |  26 |  25 | GPIO.25 |   IN | 0   | **37** | **38** | 0   | IN   | GPIO.28 | 28  | 20  |
 |     |     |      0v |      |     | **39** | **40** | 0   | IN   | GPIO.29 | 29  | 21  |
 
+But wait a second, Where are Wiring Pi (wPi) pins 17 through 20? The above diagram shows the pins of GPIO Header P1. There is an additional GPIO header on the Pi called P5. [More info available here](http://www.raspberrypi-spy.co.uk/2012/09/raspberry-pi-p5-header/)
+
+In order to access the pins, use ```Pi.Gpio```. The pins can have multiple behaviors and fortunately ```Pi.Gpio``` can be iterated, addressed by index, addessed by Wiring Pi pin number and provides the pins as publicly accessible properties.
+
+Here is an example of addressing the pins in all the various ways:
+```csharp
+public static void TestLedBlinking()
+{
+    // Get a reference to the pin you need to use.
+    // All 3 methods below are exactly equivalente
+    var blinkingPin = Pi.Gpio[0];
+    blinkingPin = Pi.Gpio[WiringPiPin.Pin00];
+    blinkingPin = Pi.Gpio.Pin00;
+
+    // Configure the pin as an output
+    blinkingPin.PinMode = GpioPinDriveMode.Output;
+
+    // perform writes to the pin by toggling the isOn variable
+    var isOn = false;
+    for (var i = 0; i < 20; i++)
+    {
+        isOn = !isOn;
+        blinkingPin.Write(isOn);
+        System.Threading.Thread.Sleep(500);
+    }
+}
+```
+
 ### Pin Information
-TODO
+All pins have handy properties and methods that you can use to drive them. For example you can examine the ```Capabilities``` property to find out which features are avilable on the pin. You can also use the ```PinMode``` property to get or set the operating mode of the pin. Please note that the value of the ```PinMode``` property is by default set to _Input_ and it will return the last mode you set the property to.
 
 ### Digital Read and Write
+It is very easy to read and write values to the pins. In general, it is a 2-step process.
+- Set the pin mode
+- Read or write the bit value
+
+Reading the value of a pin example:
+```csharp
+Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Input;
+// The below lines are reoughly equivalent
+var isOn = Pi.Gpio.Pin02.Read(); // Reads as a boolean
+var pinValue = Pi.Gpio.Pin02.ReadValue(); // Reads as a GpioPinValue
+```
+
+Writing to a pin example
+```csharp
+Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Output;
+// The below lines are reoughly equivalent
+Pi.Gpio.Pin02.Write(true); // Writes a boolean
+Pi.Gpio.Pin02.Write(GpioPinValue.High); // Writes a pin value
+```
+
+### Analog (Level) Read and Write
 TODO
 
 ### Hardware PWM
