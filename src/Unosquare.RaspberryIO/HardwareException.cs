@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO
 {
     using System;
+    using System.Runtime.InteropServices;
 
     /// <summary>
     /// Represents a low-level exception, typically thrown when return codes from a
@@ -9,6 +10,18 @@
     /// <seealso cref="System.Exception" />
     public class HardwareException : Exception
     {
+        /// <summary>
+        /// Throws a new instance of a hardware error by retrieving the last error number (errno).
+        /// </summary>
+        /// <param name="className">Name of the class.</param>
+        /// <param name="methodName">Name of the method.</param>
+        /// <exception cref="Unosquare.RaspberryIO.HardwareException"></exception>
+        static public void Throw(string className, string methodName)
+        {
+            var errno = Marshal.GetLastWin32Error();
+            throw new HardwareException(errno, $"{className}.{methodName}");
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="HardwareException" /> class.
         /// </summary>

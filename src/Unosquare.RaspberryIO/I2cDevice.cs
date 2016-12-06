@@ -27,35 +27,59 @@
         public int DeviceId { get; private set; }
 
         /// <summary>
-        /// Gets the file descriptor.
+        /// Gets the standard POSIX file descriptor.
         /// </summary>
         /// <value>
         /// The file descriptor.
         /// </value>
         public int FileDescriptor { get; }
-        
+
         /// <summary>
-        /// Reads from the specified file descriptor
+        /// Reads a byte from the specified file descriptor
         /// </summary>
         /// <returns></returns>
-        public int Read()
+        public byte Read()
         {
             lock (Pi.SyncLock)
             {
-                return Interop.wiringPiI2CRead(FileDescriptor);
+                var result = Interop.wiringPiI2CRead(FileDescriptor);
+                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(Read));
+                return (byte)result;
             }
         }
 
         /// <summary>
-        /// Writes to the specified file descriptor.
+        /// Reads a buffer of the specified length, one byte at a time
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="length">The length.</param>
         /// <returns></returns>
-        public int Write(int data)
+        public byte[] Read(int length)
         {
             lock (Pi.SyncLock)
             {
-                return Interop.wiringPiI2CWrite(FileDescriptor, data);
+                var result = 0;
+                var buffer = new byte[length];
+                for (int i = 0; i < length; i++)
+                {
+                    result = Interop.wiringPiI2CRead(FileDescriptor);
+                    if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(Read));
+                    buffer[i] = (byte)result;
+                }
+
+                return buffer;
+            }
+        }
+
+        /// <summary>
+        /// Writes a byte of data the specified file descriptor.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        public void Write(byte data)
+        {
+            lock (Pi.SyncLock)
+            {
+                var result = Interop.wiringPiI2CWrite(FileDescriptor, data);
+                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(Write));
             }
         }
 
@@ -63,72 +87,76 @@
         /// Writes a set of bytes to the specified file descriptor.
         /// </summary>
         /// <param name="data">The data.</param>
-        /// <returns></returns>
-        public int Write(byte[] data)
+        public void Write(byte[] data)
         {
             var result = 0;
             lock (Pi.SyncLock)
             {
                 foreach (var b in data)
                 {
-                    result += Interop.wiringPiI2CWrite(FileDescriptor, b);
+                    Interop.wiringPiI2CWrite(FileDescriptor, b);
+                    if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(Write));
                 }
-
-                return result;
             }
         }
 
         /// <summary>
         /// These write an 8 or 16-bit data value into the device register indicated.
         /// </summary>
-        /// <param name="register">The register.</param>
+        /// <param name="address">The register.</param>
         /// <param name="data">The data.</param>
-        /// <returns></returns>
-        public int WriteRegisterByte(int register, byte data)
+        public void WriteAddressByte(int address, byte data)
         {
             lock (Pi.SyncLock)
             {
-                return Interop.wiringPiI2CWriteReg8(FileDescriptor, register, data);
-            }
-        }
-
-        /// <summary>
-        /// These read an 8 or 16-bit value from the device register indicated.
-        /// </summary>
-        /// <param name="register">The register.</param>
-        /// <returns></returns>
-        public int ReadRegisterByte(int register)
-        {
-            lock (Pi.SyncLock)
-            {
-                return Interop.wiringPiI2CReadReg8(FileDescriptor, register);
+                var result = Interop.wiringPiI2CWriteReg8(FileDescriptor, address, data);
+                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(WriteAddressByte));
             }
         }
 
         /// <summary>
         /// These write an 8 or 16-bit data value into the device register indicated.
         /// </summary>
-        /// <param name="register">The register.</param>
+        /// <param name="address">The register.</param>
         /// <param name="data">The data.</param>
-        /// <returns></returns>
-        public int WriteRegisterWord(int register, UInt16 data)
+        public void WriteAddressWord(int address, ushort data)
         {
             lock (Pi.SyncLock)
             {
-                return Interop.wiringPiI2CWriteReg16(FileDescriptor, register, data);
+                var result = Interop.wiringPiI2CWriteReg16(FileDescriptor, address, data);
+                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(WriteAddressWord));
             }
         }
 
         /// <summary>
         /// These read an 8 or 16-bit value from the device register indicated.
         /// </summary>
-        /// <param name="register">The register.</param>
+        /// <param name="address">The register.</param>
         /// <returns></returns>
-        public int ReadRegisterWord(int register)
+        public byte ReadAddressByte(int address)
         {
             lock (Pi.SyncLock)
             {
-                return Interop.wiringPiI2CReadReg16(FileDescriptor, register);
+                var result = Interop.wiringPiI2CReadReg8(FileDescriptor, address);
+                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(ReadAddressByte));
+
+                return (byte)result;
+            }
+        }
+
+        /// <summary>
+        /// These read an 8 or 16-bit value from the device register indicated.
+        /// </summary>
+        /// <param name="address">The register.</param>
+        /// <returns></returns>
+        public ushort ReadAddressWord(int address)
+        {
+            lock (Pi.SyncLock)
+            {
+                var result = Interop.wiringPiI2CReadReg16(FileDescriptor, address);
+                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(ReadAddressWord));
+
+                return Convert.ToUInt16(result);
             }
         }
     }

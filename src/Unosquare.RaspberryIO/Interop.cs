@@ -3,7 +3,14 @@ using System.Runtime.InteropServices;
 
 namespace Unosquare.RaspberryIO
 {
+    /// <summary>
+    /// A delegate definining a callback for an Interrupt Service Routine
+    /// </summary>
     public delegate void InterrputServiceRoutineCallback();
+
+    /// <summary>
+    /// Defines the body of a thread worker
+    /// </summary>
     public delegate void ThreadWorker();
 
     internal static class Interop
@@ -24,7 +31,7 @@ namespace Unosquare.RaspberryIO
         /// This function needs to be called with root privileges.
         /// </summary>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSetup))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSetup), SetLastError = true)]
         public static extern int wiringPiSetup();
 
         /// <summary>
@@ -39,7 +46,7 @@ namespace Unosquare.RaspberryIO
         /// (although you can use system() to call gpio to set/change modes if needed)
         /// </summary>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSetupSys))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSetupSys), SetLastError = true)]
         public static extern int wiringPiSetupSys();
 
         /// <summary>
@@ -49,7 +56,7 @@ namespace Unosquare.RaspberryIO
         /// from revision 1 to revision 2 boards.
         /// </summary>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSetupGpio))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSetupGpio), SetLastError = true)]
         public static extern int wiringPiSetupGpio();
 
         /// <summary>
@@ -57,7 +64,7 @@ namespace Unosquare.RaspberryIO
         /// This function needs to be called with root privileges.
         /// </summary>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSetupPhys))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSetupPhys), SetLastError = true)]
         public static extern int wiringPiSetupPhys();
 
         /// <summary>
@@ -65,7 +72,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="mode">The mode.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(pinModeAlt))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(pinModeAlt), SetLastError = true)]
         public static extern void pinModeAlt(int pin, int mode);
 
         /// <summary>
@@ -78,7 +85,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="mode">The mode.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(pinMode))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(pinMode), SetLastError = true)]
         public static extern void pinMode(int pin, int mode);
 
         /// <summary>
@@ -92,7 +99,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="pud">The pud.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(pullUpDnControl))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(pullUpDnControl), SetLastError = true)]
         public static extern void pullUpDnControl(int pin, int pud);
 
         /// <summary>
@@ -100,7 +107,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalRead))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalRead), SetLastError = true)]
         public static extern int digitalRead(int pin);
 
         /// <summary>
@@ -109,7 +116,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="value">The value.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalWrite))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalWrite), SetLastError = true)]
         public static extern void digitalWrite(int pin, int value);
 
         /// <summary>
@@ -120,7 +127,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="value">The value.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmWrite))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmWrite), SetLastError = true)]
         public static extern void pwmWrite(int pin, int value);
 
         /// <summary>
@@ -129,7 +136,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(analogRead))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(analogRead), SetLastError = true)]
         public static extern int analogRead(int pin);
 
         /// <summary>
@@ -138,7 +145,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="value">The value.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(analogWrite))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(analogWrite), SetLastError = true)]
         public static extern void analogWrite(int pin, int value);
 
         /// <summary>
@@ -146,7 +153,7 @@ namespace Unosquare.RaspberryIO
         /// function when moving from board revision 1 to 2, so if you are using BCM_GPIO pin numbers, then you need to be aware of the differences.
         /// </summary>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(piBoardRev))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(piBoardRev), SetLastError = true)]
         public static extern int piBoardRev();
 
         /// <summary>
@@ -157,7 +164,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="maker">The maker.</param>
         /// <param name="overVolted">The over volted.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(piBoardId))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(piBoardId), SetLastError = true)]
         public static extern int piBoardId(ref int model, ref int mem, ref int maker, ref int overVolted);
 
         /// <summary>
@@ -165,7 +172,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="wPiPin">The w pi pin.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wpiPinToGpio))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wpiPinToGpio), SetLastError = true)]
         public static extern int wpiPinToGpio(int wPiPin);
 
         /// <summary>
@@ -173,7 +180,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="physPin">The physical pin.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(physPinToGpio))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(physPinToGpio), SetLastError = true)]
         public static extern int physPinToGpio(int physPin);
 
         /// <summary>
@@ -183,7 +190,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="group">The group.</param>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(setPadDrive))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(setPadDrive), SetLastError = true)]
         public static extern int setPadDrive(int group, int value);
 
         /// <summary>
@@ -191,7 +198,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(getAlt))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(getAlt), SetLastError = true)]
         public static extern int getAlt(int pin);
 
         /// <summary>
@@ -200,7 +207,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="pin">The pin.</param>
         /// <param name="freq">The freq.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmToneWrite))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmToneWrite), SetLastError = true)]
         public static extern int pwmToneWrite(int pin, int freq);
 
         /// <summary>
@@ -208,7 +215,7 @@ namespace Unosquare.RaspberryIO
         /// It’s the fastest way to set all 8 bits at once to a particular value, although it still takes two write operations to the Pi’s GPIO hardware.
         /// </summary>
         /// <param name="value">The value.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalWriteByte))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalWriteByte), SetLastError = true)]
         public static extern void digitalWriteByte(int value);
 
         /// <summary>
@@ -217,7 +224,7 @@ namespace Unosquare.RaspberryIO
         /// It’s the fastest way to get all 8 bits at once to a particular value.
         /// </summary>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalReadByte))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(digitalReadByte), SetLastError = true)]
         public static extern uint digitalReadByte();
 
         /// <summary>
@@ -225,14 +232,14 @@ namespace Unosquare.RaspberryIO
         /// however the default mode in the Pi is “balanced”. You can switch modes by supplying the parameter: PWM_MODE_BAL or PWM_MODE_MS.
         /// </summary>
         /// <param name="mode">The mode.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmSetMode))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmSetMode), SetLastError = true)]
         public static extern void pwmSetMode(int mode);
 
         /// <summary>
         /// This sets the range register in the PWM generator. The default is 1024.
         /// </summary>
         /// <param name="range">The range.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmSetRange))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmSetRange), SetLastError = true)]
         public static extern void pwmSetRange(uint range);
 
         /// <summary>
@@ -241,7 +248,7 @@ namespace Unosquare.RaspberryIO
         /// To understand more about the PWM system, you’ll need to read the Broadcom ARM peripherals manual.
         /// </summary>
         /// <param name="divisor">The divisor.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmSetClock))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(pwmSetClock), SetLastError = true)]
         public static extern void pwmSetClock(int divisor);
 
         /// <summary>
@@ -249,7 +256,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="freq">The freq.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(gpioClockSet))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(gpioClockSet), SetLastError = true)]
         public static extern void gpioClockSet(int pin, int freq);
 
         /// <summary>
@@ -265,7 +272,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="pin">The pin.</param>
         /// <param name="timeout">The timeout.</param>
         /// <returns></returns>
-        [Obsolete, DllImport(WiringPiLibrary, EntryPoint = nameof(waitForInterrupt))]
+        [Obsolete, DllImport(WiringPiLibrary, EntryPoint = nameof(waitForInterrupt), SetLastError = true)]
         public static extern int waitForInterrupt(int pin, int timeout);
 
         /// <summary>
@@ -286,7 +293,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="mode">The mode.</param>
         /// <param name="method">The method.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiISR))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiISR), SetLastError = true)]
         public static extern int wiringPiISR(int pin, int mode, InterrputServiceRoutineCallback method);
 
         /// <summary>
@@ -297,7 +304,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="method">The method.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(piThreadCreate))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(piThreadCreate), SetLastError = true)]
         public static extern int piThreadCreate(ThreadWorker method);
 
         /// <summary>
@@ -308,7 +315,7 @@ namespace Unosquare.RaspberryIO
         /// so the data you end up copying is incomplete, or invalid. See the wfi.c program in the examples directory for an example.
         /// </summary>
         /// <param name="key">The key.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(piLock))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(piLock), SetLastError = true)]
         public static extern void piLock(int key);
 
         /// <summary>
@@ -319,7 +326,7 @@ namespace Unosquare.RaspberryIO
         /// so the data you end up copying is incomplete, or invalid. See the wfi.c program in the examples directory for an example.
         /// </summary>
         /// <param name="key">The key.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(piUnlock))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(piUnlock), SetLastError = true)]
         public static extern void piUnlock(int key);
 
         /// <summary>
@@ -334,7 +341,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="priority">The priority.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(piHiPri))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(piHiPri), SetLastError = true)]
         public static extern int piHiPri(int priority);
 
         /// <summary>
@@ -343,7 +350,7 @@ namespace Unosquare.RaspberryIO
         /// Note that the maximum delay is an unsigned 32-bit integer or approximately 49 days.
         /// </summary>
         /// <param name="howLong">The how long.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(delay))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(delay), SetLastError = true)]
         public static extern void delay(uint howLong);
 
         /// <summary>
@@ -355,7 +362,7 @@ namespace Unosquare.RaspberryIO
         /// of very short delays on the overall performance of the system, especially if using threads.
         /// </summary>
         /// <param name="howLong">The how long.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(delayMicroseconds))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(delayMicroseconds), SetLastError = true)]
         public static extern void delayMicroseconds(uint howLong);
 
         /// <summary>
@@ -363,7 +370,7 @@ namespace Unosquare.RaspberryIO
         /// It returns an unsigned 32-bit number which wraps after 49 days.
         /// </summary>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(millis))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(millis), SetLastError = true)]
         public static extern uint millis();
 
         /// <summary>
@@ -371,7 +378,7 @@ namespace Unosquare.RaspberryIO
         /// the wiringPiSetup functions. It returns an unsigned 32-bit number which wraps after approximately 71 minutes.
         /// </summary>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(micros))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(micros), SetLastError = true)]
         public static extern uint micros();
 
         #endregion
@@ -388,7 +395,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="device">The device.</param>
         /// <param name="baud">The baud.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialOpen))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialOpen), SetLastError = true)]
         public static extern int serialOpen(string device, int baud);
 
         /// <summary>
@@ -396,7 +403,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialClose))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialClose), SetLastError = true)]
         public static extern int serialClose(int fd);
 
         /// <summary>
@@ -404,7 +411,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <param name="c">The c.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialPutchar))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialPutchar), SetLastError = true)]
         public static extern void serialPutchar(int fd, byte c);
 
         /// <summary>
@@ -412,7 +419,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <param name="s">The s.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialPuts))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialPuts), SetLastError = true)]
         public static extern void serialPuts(int fd, string s);
 
         /// <summary>
@@ -421,7 +428,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialDataAvail))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialDataAvail), SetLastError = true)]
         public static extern int serialDataAvail(int fd);
 
         /// <summary>
@@ -430,14 +437,14 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialGetchar))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialGetchar), SetLastError = true)]
         public static extern int serialGetchar(int fd);
 
         /// <summary>
         /// This discards all data received, or waiting to be send down the given device.
         /// </summary>
         /// <param name="fd">The fd.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialFlush))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(serialFlush), SetLastError = true)]
         public static extern void serialFlush(int fd);
 
         #endregion
@@ -453,7 +460,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="cPin">The c pin.</param>
         /// <param name="order">The order.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(shiftIn))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(shiftIn), SetLastError = true)]
         public static extern byte shiftIn(byte dPin, byte cPin, byte order);
 
         /// <summary>
@@ -465,7 +472,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="cPin">The c pin.</param>
         /// <param name="order">The order.</param>
         /// <param name="val">The value.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(shiftOut))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(shiftOut), SetLastError = true)]
         public static extern void shiftOut(byte dPin, byte cPin, byte order, byte val);
 
         #endregion
@@ -481,7 +488,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="initialValue">The initial value.</param>
         /// <param name="pwmRange">The PWM range.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(softPwmCreate))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(softPwmCreate), SetLastError = true)]
         public static extern int softPwmCreate(int pin, int initialValue, int pwmRange);
 
         /// <summary>
@@ -490,14 +497,14 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="value">The value.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(softPwmWrite))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(softPwmWrite), SetLastError = true)]
         public static extern void softPwmWrite(int pin, int value);
 
         /// <summary>
         /// This function is undocumented
         /// </summary>
         /// <param name="pin">The pin.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(softPwmStop))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(softPwmStop), SetLastError = true)]
         public static extern void softPwmStop(int pin);
 
         /// <summary>
@@ -505,14 +512,14 @@ namespace Unosquare.RaspberryIO
         /// The return value is 0 for success. Anything else and you should check the global errno variable to see what went wrong.
         /// </summary>
         /// <param name="pin">The pin.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(softToneCreate))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(softToneCreate), SetLastError = true)]
         public static extern int softToneCreate(int pin);
 
         /// <summary>
         /// This function is undocumented
         /// </summary>
         /// <param name="pin">The pin.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(softToneStop))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(softToneStop), SetLastError = true)]
         public static extern void softToneStop(int pin);
 
         /// <summary>
@@ -520,7 +527,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="freq">The freq.</param>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(softToneWrite))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(softToneWrite), SetLastError = true)]
         public static extern void softToneWrite(int pin, int freq);
 
         #endregion
@@ -532,7 +539,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="channel">The channel.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPIGetFd))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPIGetFd), SetLastError = true)]
         public static extern int wiringPiSPIGetFd(int channel);
 
         /// <summary>
@@ -545,7 +552,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="data">The data.</param>
         /// <param name="len">The length.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPIDataRW))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPIDataRW), SetLastError = true)]
         public static extern int wiringPiSPIDataRW(int channel, byte[] data, int len);
 
         /// <summary>
@@ -555,7 +562,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="speed">The speed.</param>
         /// <param name="mode">The mode.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPISetupMode))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPISetupMode), SetLastError = true)]
         public static extern int wiringPiSPISetupMode(int channel, int speed, int mode);
 
         /// <summary>
@@ -566,7 +573,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="channel">The channel.</param>
         /// <param name="speed">The speed.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPISetup))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPISetup), SetLastError = true)]
         public static extern int wiringPiSPISetup(int channel, int speed);
 
         #endregion
@@ -578,7 +585,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CRead))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CRead), SetLastError = true)]
         public static extern int wiringPiI2CRead(int fd);
 
         /// <summary>
@@ -587,7 +594,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="fd">The fd.</param>
         /// <param name="reg">The reg.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CReadReg8))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CReadReg8), SetLastError = true)]
         public static extern int wiringPiI2CReadReg8(int fd, int reg);
 
         /// <summary>
@@ -596,7 +603,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="fd">The fd.</param>
         /// <param name="reg">The reg.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CReadReg16))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CReadReg16), SetLastError = true)]
         public static extern int wiringPiI2CReadReg16(int fd, int reg);
 
         /// <summary>
@@ -605,7 +612,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="fd">The fd.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CWrite))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CWrite), SetLastError = true)]
         public static extern int wiringPiI2CWrite(int fd, int data);
 
         /// <summary>
@@ -615,7 +622,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="reg">The reg.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CWriteReg8))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CWriteReg8), SetLastError = true)]
         public static extern int wiringPiI2CWriteReg8(int fd, int reg, int data);
 
         /// <summary>
@@ -625,7 +632,7 @@ namespace Unosquare.RaspberryIO
         /// <param name="reg">The reg.</param>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CWriteReg16))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CWriteReg16), SetLastError = true)]
         public static extern int wiringPiI2CWriteReg16(int fd, int reg, int data);
 
         /// <summary>
@@ -637,7 +644,7 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="devId">The dev identifier.</param>
         /// <returns></returns>
-        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CSetup))]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiI2CSetup), SetLastError = true)]
         public static extern int wiringPiI2CSetup(int devId);
 
         #endregion
@@ -660,5 +667,6 @@ namespace Unosquare.RaspberryIO
         public static extern string strerror(int errnum);
 
         #endregion
+
     }
 }

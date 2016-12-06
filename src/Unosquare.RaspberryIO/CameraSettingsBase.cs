@@ -11,6 +11,9 @@
     /// </summary>
     public abstract class CameraSettingsBase
     {
+        /// <summary>
+        /// The Invariant Culture shorthand
+        /// </summary>
         protected static readonly CultureInfo CI = CultureInfo.InvariantCulture;
 
         #region Capture Settings
