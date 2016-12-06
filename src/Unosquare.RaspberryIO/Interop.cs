@@ -651,6 +651,14 @@ namespace Unosquare.RaspberryIO
         [DllImport(LibCLibrary)]
         public static extern uint getuid();
 
+        /// <summary>
+        /// Gets a string describing the error number.
+        /// </summary>
+        /// <param name="errnum">The errnum.</param>
+        /// <returns></returns>
+        [DllImport(LibCLibrary)]
+        public static extern string strerror(int errnum);
+
         #endregion
     }
 }
