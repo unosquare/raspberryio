@@ -10,7 +10,7 @@
     /// </summary>
     public sealed class SpiChannel
     {
-        static private Dictionary<SpiChannelNumber, SpiChannel> Buses = new Dictionary<SpiChannelNumber, SpiChannel>();
+        private static readonly Dictionary<SpiChannelNumber, SpiChannel> Buses = new Dictionary<SpiChannelNumber, SpiChannel>();
 
         public const int MinFrequency = 500000;
         public const int MaxFrequency = 32000000;
@@ -39,7 +39,7 @@
         /// <summary>
         /// Gets the channel.
         /// </summary>
-        public SpiChannelNumber Channel { get; private set; }
+        public SpiChannelNumber Channel { get; }
 
         /// <summary>
         /// Gets the frequency.
@@ -53,7 +53,7 @@
         /// <param name="channel">The channel.</param>
         /// <param name="frequency">The frequency.</param>
         /// <returns></returns>
-        static internal SpiChannel Retrieve(SpiChannelNumber channel, int frequency)
+        internal static SpiChannel Retrieve(SpiChannelNumber channel, int frequency)
         {
             lock (Pi.SyncLock)
             {

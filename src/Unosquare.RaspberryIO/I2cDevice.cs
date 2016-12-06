@@ -32,9 +32,8 @@
         /// <value>
         /// The file descriptor.
         /// </value>
-        public int FileDescriptor { get; private set; }
-
-
+        public int FileDescriptor { get; }
+        
         /// <summary>
         /// Reads from the specified file descriptor
         /// </summary>

@@ -39,7 +39,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sshdeploy", "sshdeploy", "{
 		sshdeploy\CommandLine.dll = sshdeploy\CommandLine.dll
 		sshdeploy\Renci.SshNet.dll = sshdeploy\Renci.SshNet.dll
 		sshdeploy\SshDeploy.exe = sshdeploy\SshDeploy.exe
-		sshdeploy\SshDeploy.pdb = sshdeploy\SshDeploy.pdb
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logos", "logos", "{589B0F6C-14BD-4DB7-9108-A016EA3F476F}"

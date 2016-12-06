@@ -11,7 +11,7 @@
     /// </summary>
     public abstract class CameraSettingsBase
     {
-        static protected readonly CultureInfo CI = CultureInfo.InvariantCulture;
+        protected static readonly CultureInfo CI = CultureInfo.InvariantCulture;
 
         #region Capture Settings
 
@@ -224,7 +224,7 @@
         public virtual string CreateProcessArguments()
         {
             var sb = new StringBuilder();
-            sb.Append($"-o -"); // output to standard output as opposed to a file.
+            sb.Append("-o -"); // output to standard output as opposed to a file.
             sb.Append($" -t { (CaptureTimeoutMilliseconds < 0 ? "0" : CaptureTimeoutMilliseconds.ToString(CI))}");
 
             // Basic Width and height
@@ -242,7 +242,7 @@
             }
             else
             {
-                sb.Append($" -n"); // no preview
+                sb.Append(" -n"); // no preview
             }
 
             // Picture Settings

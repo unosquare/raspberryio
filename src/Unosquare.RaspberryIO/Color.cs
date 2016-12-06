@@ -8,15 +8,12 @@
     /// </summary>
     public class Color
     {
-        private readonly byte[] RgbBytes;
-        private readonly byte[] YuvBytes;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Color"/> class.
         /// </summary>
         /// <param name="r">The red.</param>
         /// <param name="g">The green.</param>
-        /// <param name="b">The bblue.</param>
+        /// <param name="b">The blue.</param>
         public Color(int r, int g, int b)
             : this(r, g, b, string.Empty)
         {
@@ -31,13 +28,13 @@
         /// <param name="name">The well-known color name.</param>
         public Color(int r, int g, int b, string name)
         {
-            RgbBytes = new byte[3] { Convert.ToByte(r.Clamp(0, 255)), Convert.ToByte(g.Clamp(0, 255)), Convert.ToByte(b.Clamp(0, 255)) };
+            RGB = new byte[] { Convert.ToByte(r.Clamp(0, 255)), Convert.ToByte(g.Clamp(0, 255)), Convert.ToByte(b.Clamp(0, 255)) };
 
             float y = R * .299000f + G * .587000f + B * .114000f;
             float u = R * -.168736f + G * -.331264f + B * .500000f + 128f;
             float v = R * .500000f + G * -.418688f + B * -.081312f + 128f;
 
-            YuvBytes = new byte[3] { (byte)y.Clamp(0, 255), (byte)u.Clamp(0, 255), (byte)v.Clamp(0, 255) };
+            YUV = new byte[] { (byte)y.Clamp(0, 255), (byte)u.Clamp(0, 255), (byte)v.Clamp(0, 255) };
             Name = name;
         }
 
@@ -49,27 +46,27 @@
         /// <summary>
         /// Gets the red byte.
         /// </summary>
-        public byte R { get { return RgbBytes[0]; } }
+        public byte R => RGB[0];
 
         /// <summary>
         /// Gets the green byte.
         /// </summary>
-        public byte G { get { return RgbBytes[1]; } }
+        public byte G => RGB[1];
 
         /// <summary>
         /// Gets the blue byte.
         /// </summary>
-        public byte B { get { return RgbBytes[2]; } }
+        public byte B => RGB[2];
 
         /// <summary>
         /// Gets the RGB byte array (3 bytes).
         /// </summary>
-        public byte[] RGB { get { return RgbBytes; } }
+        public byte[] RGB { get; }
 
         /// <summary>
         /// Gets the YUV byte array (3 bytes).
         /// </summary>
-        public byte[] YUV { get { return YuvBytes; } }
+        public byte[] YUV { get; }
 
         /// <summary>
         /// Returns a hexadecimal representation of the data byte array 
@@ -81,7 +78,7 @@
 
         /// <summary>
         /// Returns a hexadecimal representation of the RGB byte array.
-        /// Preceeded by 0x and all in lowercase
+        /// Preceded by 0x and all in lowercase
         /// </summary>
         /// <param name="reverse">if set to <c>true</c> [reverse].</param>
         /// <returns></returns>
@@ -94,7 +91,7 @@
 
         /// <summary>
         /// Returns a hexadecimal representation of the YUV byte array.
-        /// Preceeded by 0x and all in lowercase
+        /// Preceded by 0x and all in lowercase
         /// </summary>
         /// <param name="reverse">if set to <c>true</c> [reverse].</param>
         /// <returns></returns>
@@ -108,26 +105,26 @@
         /// <summary>
         /// Gets the predefined white color.
         /// </summary>
-        static public Color White => new Color(255, 255, 255, nameof(White));
+        public static Color White => new Color(255, 255, 255, nameof(White));
         
         /// <summary>
         /// Gets the predefined red color.
         /// </summary>
-        static public Color Red => new Color(255, 0, 0, nameof(Red));
+        public static Color Red => new Color(255, 0, 0, nameof(Red));
 
         /// <summary>
         /// Gets the predefined green color.
         /// </summary>
-        static public Color Green => new Color(0, 255, 0, nameof(Green));
+        public static Color Green => new Color(0, 255, 0, nameof(Green));
 
         /// <summary>
         /// Gets the predefined blue color.
         /// </summary>
-        static public Color Blue => new Color(0, 0, 255, nameof(Blue));
+        public static Color Blue => new Color(0, 0, 255, nameof(Blue));
 
         /// <summary>
         /// Gets the predefined black color.
         /// </summary>
-        static public Color Black => new Color(0, 0, 0, nameof(Black));
+        public static Color Black => new Color(0, 0, 0, nameof(Black));
     }
 }

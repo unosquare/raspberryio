@@ -18,8 +18,8 @@
         private static CameraController m_Instance = null;
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         private static readonly object SyncLock = new object();
-        static private Thread VideoWorker = null;
-        static private Process VideoProcess = null;
+        private static Thread VideoWorker = null;
+        private static Process VideoProcess = null;
 
         #endregion
 
@@ -28,7 +28,7 @@
         /// <summary>
         /// Gets the instance of the Pi's camera controller.
         /// </summary>
-        static internal CameraController Instance
+        internal static CameraController Instance
         {
             get
             {
@@ -50,7 +50,7 @@
         /// <value>
         ///   <c>true</c> if this instance is busy; otherwise, <c>false</c>.
         /// </value>
-        public bool IsBusy { get { return OperationDone.IsSet == false; } }
+        public bool IsBusy => OperationDone.IsSet == false;
 
         #endregion
 
@@ -63,7 +63,7 @@
         /// <param name="outputStream">The output stream.</param>
         /// <param name="ct">The ct.</param>
         /// <returns></returns>
-        static private async Task<int> CopyStandardOutputAsync(Process process, Stream outputStream, CancellationToken ct)
+        private static async Task<int> CopyStandardOutputAsync(Process process, Stream outputStream, CancellationToken ct)
         {
             var swapBuffer = new byte[2048];
             var readCount = -1;
@@ -74,7 +74,7 @@
             {
                 readCount = await process.StandardOutput.BaseStream.ReadAsync(swapBuffer, 0, swapBuffer.Length, ct);
                 if (readCount <= 0) break;
-                await outputStream.WriteAsync(swapBuffer, 0, readCount);
+                await outputStream.WriteAsync(swapBuffer, 0, readCount, ct);
             }
 
             return totalCount;
@@ -180,14 +180,13 @@
         #region Video Capture Methods
 
         /// <summary>
-        /// Performs a continous read of the standard output and fires the corresponding events.
+        /// Performs a continuous read of the standard output and fires the corresponding events.
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <param name="onDataCallback">The on data callback.</param>
         /// <param name="onExitCallback">The on exit callback.</param>
         private static void VideoWorkerDoWork(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback)
         {
-
             var readBuffer = new byte[1024 * 8];
             var readCount = 0;
             var totalRead = 0;

@@ -24,9 +24,9 @@
         {
             get
             {
-                string codeBase = Assembly.GetEntryAssembly().CodeBase;
+                var codeBase = Assembly.GetEntryAssembly().CodeBase;
                 UriBuilder uri = new UriBuilder(codeBase);
-                string path = Uri.UnescapeDataString(uri.Path);
+                var path = Uri.UnescapeDataString(uri.Path);
                 return Path.GetDirectoryName(path);
             }
         }
@@ -43,7 +43,7 @@
             {
                 using (var outputStream = File.OpenWrite(targetPath))
                 {
-                    stream.CopyTo(outputStream);
+                    stream?.CopyTo(outputStream);
                 }
             }
 
@@ -68,7 +68,6 @@
 
                     return m_IsLinuxOS.Value;
                 }
-
             }
         }
 
@@ -101,7 +100,7 @@
         /// </summary>
         /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>
         /// <returns></returns>
-        static public int WiringPiToBcmPinNumber(this int wiringPiPinNumber)
+        public static int WiringPiToBcmPinNumber(this int wiringPiPinNumber)
         {
             lock (SyncLock)
             {
@@ -114,7 +113,7 @@
         /// </summary>
         /// <param name="headerPinNumber">The header pin number.</param>
         /// <returns></returns>
-        static public int HaderToBcmPinNumber(this int headerPinNumber)
+        public static int HaderToBcmPinNumber(this int headerPinNumber)
         {
             lock (SyncLock)
             {
@@ -122,7 +121,7 @@
             }
         }
 
-        static public T Clamp<T>(this T value, T min, T max)
+        public static T Clamp<T>(this T value, T min, T max)
             where T : IComparable
         {
             if (value.CompareTo(min) < 0) return min;
