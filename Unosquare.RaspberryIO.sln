@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		create-sshdeploy.cmd = create-sshdeploy.cmd
 		global.json = global.json
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Unosquare.RaspberryIO", "src\Unosquare.RaspberryIO\Unosquare.RaspberryIO.xproj", "{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB}"
