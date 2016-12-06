@@ -60,6 +60,25 @@
         }
 
         /// <summary>
+        /// Writes a set of bytes to the specified file descriptor.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
+        public int Write(byte[] data)
+        {
+            var result = 0;
+            lock (Pi.SyncLock)
+            {
+                foreach (var b in data)
+                {
+                    result += Interop.wiringPiI2CWrite(FileDescriptor, b);
+                }
+
+                return result;
+            }
+        }
+
+        /// <summary>
         /// These write an 8 or 16-bit data value into the device register indicated.
         /// </summary>
         /// <param name="register">The register.</param>

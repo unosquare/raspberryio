@@ -12,7 +12,13 @@
     {
         private static readonly Dictionary<SpiChannelNumber, SpiChannel> Buses = new Dictionary<SpiChannelNumber, SpiChannel>();
 
+        /// <summary>
+        /// The minimum frequency of an SPI Channel
+        /// </summary>
         public const int MinFrequency = 500000;
+        /// <summary>
+        /// The maximum frequency of an SPI channel
+        /// </summary>
         public const int MaxFrequency = 32000000;
 
         /// <summary>

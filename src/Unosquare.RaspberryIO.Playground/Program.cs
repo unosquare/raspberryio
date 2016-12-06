@@ -2,7 +2,6 @@
 {
     using System;
     using System.IO;
-    using System.Threading;
 
     public class Program
     {
@@ -45,29 +44,48 @@
 
         static void TestCaptureVideo()
         {
+            // Setup our working variables
             var videoByteCount = 0;
             var videoEventCount = 0;
+            var startTime = DateTime.UtcNow;
+
+            // Configure video settings
             var videoSettings = new CameraVideoSettings()
             {
                 CaptureTimeoutMilliseconds = 0,
                 CaptureDisplayPreview = false,
                 ImageFlipVertically = true,
-                //CaptureDisplayPreviewEncoded = true,
-                //ImageEffect = CameraImageEffect.Denoise,
                 CaptureExposure = CameraExposureMode.Night,
                 CaptureWidth = 1920,
                 CaptureHeight = 1080
             };
 
+            try
+            {
+                // Start the video recording
+                Pi.Camera.OpenVideoStream(videoSettings,
+                    onDataCallback: (data) => { videoByteCount += data.Length; videoEventCount++; },
+                    onExitCallback: null);
 
-            Pi.Camera.OpenVideoStream(videoSettings,
-                (data) => { videoByteCount += data.Length; videoEventCount++; }, null);
-            var startTime = DateTime.UtcNow;
+                // Wait for user interaction
+                startTime = DateTime.UtcNow;
+                Console.WriteLine("Press any key to stop reading the video stream . . .");
+                Console.ReadKey(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.GetType()}: {ex.Message}");
+            }
+            finally
+            {
+                // Always close the video stream to ensure raspivid quits
+                Pi.Camera.CloseVideoStream();
 
-            Console.WriteLine("Press any key to stop reading the video stream . . .");
-            Console.ReadKey(true);
-            Pi.Camera.CloseVideoStream();
-            Console.WriteLine($"Capture Stopped. Received {((float)videoByteCount / (float)(1024f * 1024f)).ToString("0.000")} Mbytes in {videoEventCount} callbacks in {DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000")} seconds");
+                // Output the stats
+                var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000");
+                var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000");
+                Console.WriteLine($"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds");
+            }            
         }
 
         static void TestColors()
