@@ -20,8 +20,10 @@ _Please note you program needs to be run with ```sudo```. Example ```sudo mono m
 
 This library depends on the wonderful ```WiringPi``` library avaialble [here](http://wiringpi.com/). You do not need to install this library yourself. The ```Raspberry IO``` assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.
 
-## Installing
-TODO
+## NuGet Installation:
+```
+PM> Install-Package Unosquare.Raspberry.IO
+```
 
 ## Running the latest version of Mono
 It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:
