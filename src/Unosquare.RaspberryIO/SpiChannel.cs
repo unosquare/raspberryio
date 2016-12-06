@@ -38,7 +38,7 @@
 
             if (busResult != 0)
             {
-                throw new SystemException($"Could not register SPI bus on channel {channel} at {frequency} Hz.");
+                HardwareException.Throw(nameof(SpiChannel), channel.ToString());
             }
         }
 
@@ -86,7 +86,9 @@
                 var spiBuffer = new byte[buffer.Length];
                 Array.Copy(buffer, spiBuffer, buffer.Length);
 
-                Interop.wiringPiSPIDataRW((int)Channel, spiBuffer, spiBuffer.Length);
+                var result = Interop.wiringPiSPIDataRW((int)Channel, spiBuffer, spiBuffer.Length);
+                if (result < 0) HardwareException.Throw(nameof(SpiChannel), nameof(SendReceive));
+
                 return spiBuffer;
             }
         }
