@@ -42,6 +42,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sshdeploy", "sshdeploy", "{
 		sshdeploy\SshDeploy.pdb = sshdeploy\SshDeploy.pdb
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logos", "logos", "{589B0F6C-14BD-4DB7-9108-A016EA3F476F}"
+	ProjectSection(SolutionItems) = preProject
+		logos\raspberry-io.fw.png = logos\raspberry-io.fw.png
+		logos\raspberry-io.ico = logos\raspberry-io.ico
+		logos\raspberry-io.png = logos\raspberry-io.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,5 +72,6 @@ Global
 		{C8A487A8-8399-4A13-8402-3629998E2A4D} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
 		{87BDC267-91D2-4CD1-B088-0F0791948C0E} = {AD40570E-5084-4507-AFB7-647230B007E0}
 		{6197D26E-C895-4E92-8EC3-A59821F3A7CE} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
+		{589B0F6C-14BD-4DB7-9108-A016EA3F476F} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
 	EndGlobalSection
 EndGlobal
