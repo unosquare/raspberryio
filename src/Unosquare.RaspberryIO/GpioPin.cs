@@ -528,7 +528,7 @@
                 }
                 else
                 {
-                    throw new InvalidProgramException($"Unable to register the required interrupt. Result was: {registerResult}");
+                    HardwareException.Throw(nameof(GpioPin), nameof(RegisterInterruptCallback));
                 }
 
             }

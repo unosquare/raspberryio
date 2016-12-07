@@ -114,7 +114,8 @@
 
             lock (Pi.SyncLock)
             {
-                Interop.piHiPri(priority);
+                var result = Interop.piHiPri(priority);
+                if (result < 0) HardwareException.Throw(nameof(Timing), nameof(SetThreadPriority));
             }
         }
 
@@ -123,14 +124,14 @@
         /// See the manual pages on Posix threads (man pthread) if you need more control over them.
         /// </summary>
         /// <param name="worker">The worker.</param>
-        /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">worker</exception>
-        public int CreateThread(ThreadWorker worker)
+        public void CreateThread(ThreadWorker worker)
         {
             if (worker == null)
                 throw new ArgumentNullException(nameof(worker));
 
-            return Interop.piThreadCreate(worker);
+            var result = Interop.piThreadCreate(worker);
+            if (result != 0) HardwareException.Throw(nameof(Timing), nameof(CreateThread));
         }
 
         /// <summary>
