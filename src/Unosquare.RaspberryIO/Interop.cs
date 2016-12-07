@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace Unosquare.RaspberryIO
 {
     /// <summary>
-    /// A delegate definining a callback for an Interrupt Service Routine
+    /// A delegate defining a callback for an Interrupt Service Routine
     /// </summary>
     public delegate void InterrputServiceRoutineCallback();
 

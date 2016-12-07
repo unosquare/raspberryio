@@ -9,7 +9,6 @@
     /// </summary>
     internal static class Utilities
     {
-
         private static readonly object SyncLock = new object();
         private static bool? m_IsLinuxOS = new Nullable<bool>();
         private static bool? m_IsRunningAsRoot = new Nullable<bool>();
@@ -20,7 +19,7 @@
         /// <value>
         /// The entry assembly directory.
         /// </value>
-        public static string EntryAssemblyDirectory
+        internal static string EntryAssemblyDirectory
         {
             get
             {
@@ -34,11 +33,11 @@
         /// <summary>
         /// Extracts the library wiring pi binary to the current working directory.
         /// </summary>
-        public static void ExtractLibWiringPi()
+        internal static void ExtractLibWiringPi()
         {
             var targetPath = Path.Combine(EntryAssemblyDirectory, Interop.WiringPiLibrary);
             if (File.Exists(targetPath)) return;
-
+            
             using (var stream = typeof(Utilities).Assembly.GetManifestResourceStream($"{typeof(Utilities).Namespace}.{Interop.WiringPiLibrary}"))
             {
                 using (var outputStream = File.OpenWrite(targetPath))
@@ -46,14 +45,13 @@
                     stream?.CopyTo(outputStream);
                 }
             }
-
         }
 
         /// <summary>
-        /// Gets a value indicating whether the current assembly running on a linux os.
+        /// Gets a value indicating whether the current assembly running on a Linux os.
         /// </summary>
         /// <value>
-        /// <c>true</c> if this instance is linux os; otherwise, <c>false</c>.
+        /// <c>true</c> if this instance is Linux os; otherwise, <c>false</c>.
         /// </value>
         public static bool IsLinuxOS
         {
@@ -109,7 +107,7 @@
         }
 
         /// <summary>
-        /// Converts the Physical (Hader) pin number to BCM pin number.
+        /// Converts the Physical (Header) pin number to BCM pin number.
         /// </summary>
         /// <param name="headerPinNumber">The header pin number.</param>
         /// <returns></returns>
@@ -121,6 +119,14 @@
             }
         }
 
+        /// <summary>
+        /// Clamps the specified minimum.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">The value.</param>
+        /// <param name="min">The minimum.</param>
+        /// <param name="max">The maximum.</param>
+        /// <returns></returns>
         public static T Clamp<T>(this T value, T min, T max)
             where T : IComparable
         {
@@ -128,7 +134,5 @@
             if (value.CompareTo(max) > 0) return max;
             return value;
         }
-
-        
     }
 }

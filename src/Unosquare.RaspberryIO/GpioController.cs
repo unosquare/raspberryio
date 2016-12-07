@@ -45,6 +45,7 @@
                 {
                     if (m_Instance == null)
                     {
+                        Utilities.ExtractLibWiringPi();
                         m_Instance = new GpioController();
                     }
 
@@ -153,9 +154,6 @@
         /// <exception cref="System.ArgumentException"></exception>
         private bool Initialize(ControllerMode mode)
         {
-
-            Utilities.ExtractLibWiringPi();
-
             if (Utilities.IsLinuxOS == false)
                 throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion}");
 
