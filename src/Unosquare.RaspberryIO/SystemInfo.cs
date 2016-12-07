@@ -23,10 +23,6 @@
         /// <exception cref="System.NotSupportedException">Could not initialize the GPIO controller</exception>
         private SystemInfo()
         {
-            var controller = GpioController.Instance;
-            if (GpioController.IsInitialized == false)
-                throw new NotSupportedException("Could not initialize the GPIO controller");
-
             #region Obtain and format a property dictionary
 
             var properties = typeof(SystemInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)

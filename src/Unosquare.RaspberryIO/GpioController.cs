@@ -45,7 +45,6 @@
                 {
                     if (m_Instance == null)
                     {
-                        Utilities.ExtractLibWiringPi();
                         m_Instance = new GpioController();
                     }
 

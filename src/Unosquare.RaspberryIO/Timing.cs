@@ -15,9 +15,7 @@
         /// <exception cref="System.NotSupportedException">Could not initialize the GPIO controller</exception>
         private Timing()
         {
-            var controller = GpioController.Instance;
-            if (GpioController.IsInitialized == false)
-                throw new NotSupportedException("Could not initialize the GPIO controller");
+
         }
 
         /// <summary>
