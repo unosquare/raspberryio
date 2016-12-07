@@ -16,7 +16,7 @@
   },
 
   "buildOptions": {
-    "embed": [ "libwiringPi.so.2.32" ],
+    "embed": [ "libwiringPi.so.2.32", "gpio.2.32" ],
     "xmlDoc": true
   }
 }

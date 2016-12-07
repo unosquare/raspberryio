@@ -15,6 +15,7 @@
             lock (SyncLock)
             {
                 Utilities.ExtractLibWiringPi();
+                Utilities.ExtractGpioTool();
 
                 Gpio = GpioController.Instance;
                 Info = SystemInfo.Instance;

@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO
 {
     using System;
+    using System.Diagnostics;
     using System.IO;
     using System.Reflection;
 
@@ -12,6 +13,7 @@
         private static readonly object SyncLock = new object();
         private static bool? m_IsLinuxOS = new Nullable<bool>();
         private static bool? m_IsRunningAsRoot = new Nullable<bool>();
+        private const string GpioToolFileName = "gpio.2.32";
 
         /// <summary>
         /// Gets the entry assembly directory (full path).
@@ -45,6 +47,49 @@
                     stream?.CopyTo(outputStream);
                 }
             }
+        }
+
+        /// <summary>
+        /// Extracts the gpio tool.
+        /// </summary>
+        internal static void ExtractGpioTool()
+        {
+            var targetPath = Path.Combine(EntryAssemblyDirectory, GpioToolFileName);
+            if (File.Exists(targetPath)) return;
+
+            using (var stream = typeof(Utilities).Assembly.GetManifestResourceStream($"{typeof(Utilities).Namespace}.{GpioToolFileName}"))
+            {
+                using (var outputStream = File.OpenWrite(targetPath))
+                {
+                    stream?.CopyTo(outputStream);
+                }
+                var executablePermissions = Interop.strtol("0777", IntPtr.Zero, 8);
+                Interop.chmod(targetPath, (uint)executablePermissions);
+            }
+        }
+
+        /// <summary>
+        /// Creates a GPIO tool process
+        /// </summary>
+        /// <param name="arguments">The arguments.</param>
+        /// <returns></returns>
+        public static Process CreateGpioToolProcess(string arguments)
+        {
+            return new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    Arguments = arguments,
+                    CreateNoWindow = true,
+                    FileName = Path.Combine(EntryAssemblyDirectory, GpioToolFileName),
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true,
+                    RedirectStandardOutput = true,
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    UseShellExecute = false
+                },
+                EnableRaisingEvents = true
+            };
         }
 
         /// <summary>

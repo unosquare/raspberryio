@@ -655,7 +655,7 @@ namespace Unosquare.RaspberryIO
         /// Gets the User ID - a user ID of 0 represents the root user
         /// </summary>
         /// <returns></returns>
-        [DllImport(LibCLibrary)]
+        [DllImport(LibCLibrary, EntryPoint = nameof(getuid), SetLastError = true)]
         public static extern uint getuid();
 
         /// <summary>
@@ -663,8 +663,27 @@ namespace Unosquare.RaspberryIO
         /// </summary>
         /// <param name="errnum">The errnum.</param>
         /// <returns></returns>
-        [DllImport(LibCLibrary)]
+        [DllImport(LibCLibrary, EntryPoint = nameof(strerror), SetLastError = true)]
         public static extern string strerror(int errnum);
+
+        /// <summary>
+        /// Changes file permissions on a Unix file system
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <param name="mode">The mode.</param>
+        /// <returns></returns>
+        [DllImport(LibCLibrary, EntryPoint = nameof(chmod), SetLastError = true)]
+        public static extern int chmod(string filename, uint mode);
+
+        /// <summary>
+        /// Converts a string to a 32 bit integer. Use endpointer as IntPtr.Zero
+        /// </summary>
+        /// <param name="numberString">The number string.</param>
+        /// <param name="endPointer">The end pointer.</param>
+        /// <param name="numberBase">The number base.</param>
+        /// <returns></returns>
+        [DllImport(LibCLibrary, EntryPoint = nameof(strtol), SetLastError = true)]
+        public static extern int strtol(string numberString, IntPtr endPointer, int numberBase);
 
         #endregion
 
