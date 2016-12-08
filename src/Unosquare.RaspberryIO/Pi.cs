@@ -59,6 +59,12 @@
         /// </summary>
         public static CameraController Camera { get; }
 
+        /// <summary>
+        /// Provides access to the official Raspberry Pi 7-inch DSI Display
+        /// </summary>
+        /// <value>
+        /// The display.
+        /// </value>
         public static DsiDisplay Display { get; }
 
         #endregion

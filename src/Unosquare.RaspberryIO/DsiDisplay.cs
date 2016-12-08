@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO
 {
+    using System.Globalization;
+    using System.IO;
+
     /// <summary>
     /// 
     /// Some docs available here:
@@ -19,6 +15,13 @@ namespace Unosquare.RaspberryIO
 
 
         static private DsiDisplay m_Instance = null;
+
+        /// <summary>
+        /// Gets DSI Display Instance
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         static public DsiDisplay Instance
         {
             get
@@ -35,11 +38,20 @@ namespace Unosquare.RaspberryIO
             }
         }
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="DsiDisplay"/> class from being created.
+        /// </summary>
         private DsiDisplay()
         {
             // placeholder
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the Pi Foundation Dsiplay files are present.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is present; otherwise, <c>false</c>.
+        /// </value>
         public bool IsPresent
         {
             get
@@ -48,6 +60,12 @@ namespace Unosquare.RaspberryIO
             }
         }
 
+        /// <summary>
+        /// Gets or sets the brightness of the DSI display via filesystem.
+        /// </summary>
+        /// <value>
+        /// The brightness.
+        /// </value>
         public byte Brightness
         {
             get
@@ -66,6 +84,13 @@ namespace Unosquare.RaspberryIO
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the backlight of the DSI display on.
+        /// This operation is perfomed via the file system
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is backlight on; otherwise, <c>false</c>.
+        /// </value>
         public bool IsBacklightOn
         {
             get

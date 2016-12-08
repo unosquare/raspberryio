@@ -12,27 +12,7 @@
             try
             {
                 TestSystemInfo();
-                
-                for (var i = 1; i < 250; i++)
-                {
-                    Pi.Display.Brightness = (byte)i;
-                    Console.WriteLine("+ " + Pi.Display.Brightness);
-                    Thread.Sleep(200);
-                }
-
-                for (var i = 250; i > 1; i--)
-                {
-                    Pi.Display.Brightness = (byte)i;
-                    Console.WriteLine("- " + Pi.Display.Brightness);
-                    Thread.Sleep(200);
-                }
-
-                Pi.Display.Brightness = 128;
-                Pi.Display.IsBacklightOn = false;
-                Console.ReadKey(true);
-                Pi.Display.IsBacklightOn = true;
-
-                //TestCaptureVideo();
+                TestDisplay();
             }
             catch (Exception ex)
             {
@@ -42,6 +22,35 @@
             finally
             {
                 Console.WriteLine("Program finished.");
+            }
+        }
+
+        public static void TestDisplay()
+        {
+            string input = string.Empty;
+
+            while (input.Equals("x") == false)
+            {
+                Console.WriteLine("Enter brightness value (0 to 255). Enter b to toggle Backlight, Enter x to Exit");
+                input = Console.ReadLine();
+
+                if (input.Equals("b"))
+                {
+                    Pi.Display.IsBacklightOn = !Pi.Display.IsBacklightOn;
+                }
+                else
+                {
+                    byte value = 128;
+                    if (byte.TryParse(input, out value))
+                    {
+                        if (value != Pi.Display.Brightness)
+                        {
+                            Console.WriteLine($"Start Value: {Pi.Display.Brightness}, Target Value: {value}");
+                            Pi.Display.Brightness = value;                            
+                        }
+                    }
+                }
+
             }
         }
 
