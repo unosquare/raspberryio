@@ -23,6 +23,7 @@
                 Spi = SpiBus.Instance;
                 I2c = I2cBus.Instance;
                 Camera = CameraController.Instance;
+                Display = DsiDisplay.Instance;
             }
         }
 
@@ -57,6 +58,8 @@
         /// Provides access to the official Raspberry Pi Camera
         /// </summary>
         public static CameraController Camera { get; }
+
+        public static DsiDisplay Display { get; }
 
         #endregion
 

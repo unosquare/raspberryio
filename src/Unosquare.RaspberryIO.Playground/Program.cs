@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Threading;
 
     public class Program
     {
@@ -11,7 +12,27 @@
             try
             {
                 TestSystemInfo();
-                TestCaptureVideo();
+                
+                for (var i = 1; i < 250; i++)
+                {
+                    Pi.Display.Brightness = (byte)i;
+                    Console.WriteLine("+ " + Pi.Display.Brightness);
+                    Thread.Sleep(200);
+                }
+
+                for (var i = 250; i > 1; i--)
+                {
+                    Pi.Display.Brightness = (byte)i;
+                    Console.WriteLine("- " + Pi.Display.Brightness);
+                    Thread.Sleep(200);
+                }
+
+                Pi.Display.Brightness = 128;
+                Pi.Display.IsBacklightOn = false;
+                Console.ReadKey(true);
+                Pi.Display.IsBacklightOn = true;
+
+                //TestCaptureVideo();
             }
             catch (Exception ex)
             {
