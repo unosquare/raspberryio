@@ -39,7 +39,7 @@
         {
             var targetPath = Path.Combine(EntryAssemblyDirectory, Interop.WiringPiLibrary);
             if (File.Exists(targetPath)) return;
-            
+
             using (var stream = typeof(Utilities).Assembly.GetManifestResourceStream($"{typeof(Utilities).Namespace}.{Interop.WiringPiLibrary}"))
             {
                 using (var outputStream = File.OpenWrite(targetPath))

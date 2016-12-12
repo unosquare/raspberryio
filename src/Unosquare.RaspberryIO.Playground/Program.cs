@@ -36,17 +36,17 @@
 
                 if (input.Equals("b"))
                 {
-                    Pi.Display.IsBacklightOn = !Pi.Display.IsBacklightOn;
+                    Pi.PiDisplay.IsBacklightOn = !Pi.PiDisplay.IsBacklightOn;
                 }
                 else
                 {
                     byte value = 128;
                     if (byte.TryParse(input, out value))
                     {
-                        if (value != Pi.Display.Brightness)
+                        if (value != Pi.PiDisplay.Brightness)
                         {
-                            Console.WriteLine($"Start Value: {Pi.Display.Brightness}, Target Value: {value}");
-                            Pi.Display.Brightness = value;                            
+                            Console.WriteLine($"Start Value: {Pi.PiDisplay.Brightness}, Target Value: {value}");
+                            Pi.PiDisplay.Brightness = value;                            
                         }
                     }
                 }

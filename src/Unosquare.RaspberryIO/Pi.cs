@@ -23,7 +23,7 @@
                 Spi = SpiBus.Instance;
                 I2c = I2cBus.Instance;
                 Camera = CameraController.Instance;
-                Display = DsiDisplay.Instance;
+                PiDisplay = DsiDisplay.Instance;
             }
         }
 
@@ -65,7 +65,7 @@
         /// <value>
         /// The display.
         /// </value>
-        public static DsiDisplay Display { get; }
+        public static DsiDisplay PiDisplay { get; }
 
         #endregion
 
