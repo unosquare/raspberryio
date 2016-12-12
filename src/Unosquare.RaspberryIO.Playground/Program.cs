@@ -2,8 +2,10 @@
 {
     using Samples;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading;
+    using System.Linq;
 
     public class Program
     {
@@ -29,50 +31,79 @@
 
         public static void TestLedStripGraphics()
         {
-            var bitmap = new System.Drawing.Bitmap("fractal.jpg");
-            Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
+
+            PixelData pixels = null;
+
+            try
+            {
+                using (var bitmap = new System.Drawing.Bitmap("fractal.jpg"))
+                {
+                    Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
+                    pixels = new PixelData(bitmap);
+                    Console.WriteLine($"Loaded Pixel Data: {pixels.Data.Length} bytes");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error Loading image: {ex.Message}");
+            }
 
             var exitAnimation = false;
+            var frameRenderTimes = new List<int>();
+            var frameTimes = new List<int>();
 
             var thread = new Thread(() =>
             {
-                var strip = new LedStrip(60 * 4);
-                var millisecondsPerFrame = 1000 / 24;
+                var strip = new LedStrip(60 * 4, 1, 1000000); // 1 Mhz is sufficient for such a short strip (only 240 LEDs)
+                var millisecondsPerFrame = 1000 / 25;
                 var lastRenderTime = DateTime.UtcNow;
+
+                var currentBrightness = 0.0f;
                 var currentRow = 0;
                 var currentDirection = 1;
 
                 while (!exitAnimation)
                 {
-                    strip.ClearPixels();
+                    // Push pixels into the Frame Buffer
+                    strip.SetPixels(pixels, 0, currentRow, currentBrightness);
 
-                    strip.SetPixels(0, currentRow, bitmap, 0.1f);
+                    // Move the current row slowly at FPS
                     currentRow += currentDirection;
-                    if (currentRow >= bitmap.Height)
+                    if (currentRow >= pixels.ImageHeight)
                     {
-                        currentRow = bitmap.Height - 2;
+                        currentRow = pixels.ImageHeight - 2;
                         currentDirection = -1;
                     }
-
-                    if (currentRow <= 0)
+                    else if (currentRow <= 0)
                     {
                         currentRow = 1;
                         currentDirection = 1;
                     }
 
+                    currentBrightness = 0.05f + 0.80f * (currentRow / (pixels.ImageHeight - 1f));
+
+                    // Stats and sleep time
                     var delayMilliseconds = (int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
+                    frameRenderTimes.Add(delayMilliseconds);
                     delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
+
                     if (delayMilliseconds > 0 && exitAnimation == false)
                         Thread.Sleep(delayMilliseconds);
                     else
                         Console.WriteLine($"Lagging framerate: {delayMilliseconds} milliseconds");
 
-
+                    frameTimes.Add((int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
                     lastRenderTime = DateTime.UtcNow;
+
+                    // Push the framebuffer to SPI
                     strip.Render();
                 }
 
                 strip.ClearPixels();
+                strip.Render();
+
+                var avg = frameRenderTimes.Average();
+                Console.WriteLine($"Frames: {frameTimes.Count}, FPS: {Math.Round((1000f / frameTimes.Average()), 3)}, Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}");
                 strip.Render();
 
             });
