@@ -98,14 +98,14 @@
                 if (IsPresent == false) return false;
                 int backlight = 0;
                 if (int.TryParse(File.ReadAllText(BacklightFilename).Trim(), out backlight))
-                    return backlight != 0;
+                    return backlight == 0;
 
                 return false;
             }
             set
             {
                 if (IsPresent == false) return;
-                File.WriteAllText(BacklightFilename, (value ? "1" : "0"));
+                File.WriteAllText(BacklightFilename, (value ? "0" : "1"));
             }
         }
 

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
 
     /// <summary>
     /// Provides access to using the SPI buses on the GPIO.
@@ -10,6 +11,7 @@
     /// </summary>
     public sealed class SpiChannel
     {
+        private static readonly CultureInfo CI = CultureInfo.InvariantCulture;
         private static readonly Dictionary<SpiChannelNumber, SpiChannel> Buses = new Dictionary<SpiChannelNumber, SpiChannel>();
 
         /// <summary>
@@ -29,23 +31,31 @@
         /// <exception cref="System.SystemException"></exception>
         private SpiChannel(SpiChannelNumber channel, int frequency)
         {
-            if (frequency > MaxFrequency) frequency = MaxFrequency;
-            if (frequency < MinFrequency) frequency = MinFrequency;
-
+            frequency = frequency.Clamp(MinFrequency, MaxFrequency);
             var busResult = Interop.wiringPiSPISetup((int)channel, frequency);
-            Channel = channel;
+            Channel = (int)channel;
             Frequency = frequency;
+            FileDescriptor = busResult;
 
-            if (busResult != 0)
+            if (busResult < 0)
             {
                 HardwareException.Throw(nameof(SpiChannel), channel.ToString());
             }
         }
 
         /// <summary>
+        /// Gets the standard initialization file descriptor.
+        /// anything negative means error.
+        /// </summary>
+        /// <value>
+        /// The file descriptor.
+        /// </value>
+        public int FileDescriptor { get; private set; }
+
+        /// <summary>
         /// Gets the channel.
         /// </summary>
-        public SpiChannelNumber Channel { get; }
+        public int Channel { get; }
 
         /// <summary>
         /// Gets the frequency.
@@ -86,11 +96,30 @@
                 var spiBuffer = new byte[buffer.Length];
                 Array.Copy(buffer, spiBuffer, buffer.Length);
 
-                var result = Interop.wiringPiSPIDataRW((int)Channel, spiBuffer, spiBuffer.Length);
+                var result = Interop.wiringPiSPIDataRW(Channel, spiBuffer, spiBuffer.Length);
                 if (result < 0) HardwareException.Throw(nameof(SpiChannel), nameof(SendReceive));
 
                 return spiBuffer;
             }
         }
+
+        /// <summary>
+        /// Writes the specified buffer the the underlying FileDescriptor.
+        /// Do not use this method if you expect data back. 
+        /// This method is efficient if used in a fire-and-forget scenario
+        /// like sending data over to those long RGB LED strips
+        /// </summary>
+        /// <param name="buffer">The buffer.</param>
+        public void Write(byte[] buffer)
+        {
+            lock (Pi.SyncLock)
+            {
+                var result = Interop.write(FileDescriptor, buffer, buffer.Length);
+
+                if (result < 0)
+                    HardwareException.Throw(nameof(SpiChannel), nameof(Write));
+            }
+        }
+
     }
 }

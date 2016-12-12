@@ -124,7 +124,7 @@
     /// <summary>
     /// Defines the SPI channel numbers
     /// </summary>
-    public enum SpiChannelNumber
+    internal enum SpiChannelNumber
     {
         /// <summary>
         /// The channel 0

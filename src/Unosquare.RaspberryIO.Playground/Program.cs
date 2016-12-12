@@ -1,8 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
+    using Samples;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading;
+    using System.Linq;
 
     public class Program
     {
@@ -11,8 +14,9 @@
             Console.WriteLine($"Starting program at {DateTime.Now}");
             try
             {
-                TestSystemInfo();
-                TestDisplay();
+                //TestSystemInfo();
+                TestLedStripGraphics();
+                //TestLedStrip();
             }
             catch (Exception ex)
             {
@@ -23,6 +27,164 @@
             {
                 Console.WriteLine("Program finished.");
             }
+        }
+
+        public static void TestLedStripGraphics()
+        {
+
+            PixelData pixels = null;
+
+            try
+            {
+                using (var bitmap = new System.Drawing.Bitmap("fractal.jpg"))
+                {
+                    Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
+                    pixels = new PixelData(bitmap);
+                    Console.WriteLine($"Loaded Pixel Data: {pixels.Data.Length} bytes");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error Loading image: {ex.Message}");
+            }
+
+            var exitAnimation = false;
+            var frameRenderTimes = new List<int>();
+            var frameTimes = new List<int>();
+
+            var thread = new Thread(() =>
+            {
+                var strip = new LedStrip(60 * 4, 1, 1000000); // 1 Mhz is sufficient for such a short strip (only 240 LEDs)
+                var millisecondsPerFrame = 1000 / 25;
+                var lastRenderTime = DateTime.UtcNow;
+
+                var currentBrightness = 0.0f;
+                var currentRow = 0;
+                var currentDirection = 1;
+
+                while (!exitAnimation)
+                {
+                    // Push pixels into the Frame Buffer
+                    strip.SetPixels(pixels, 0, currentRow, currentBrightness);
+
+                    // Move the current row slowly at FPS
+                    currentRow += currentDirection;
+                    if (currentRow >= pixels.ImageHeight)
+                    {
+                        currentRow = pixels.ImageHeight - 2;
+                        currentDirection = -1;
+                    }
+                    else if (currentRow <= 0)
+                    {
+                        currentRow = 1;
+                        currentDirection = 1;
+                    }
+
+                    currentBrightness = 0.05f + 0.80f * (currentRow / (pixels.ImageHeight - 1f));
+
+                    // Stats and sleep time
+                    var delayMilliseconds = (int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
+                    frameRenderTimes.Add(delayMilliseconds);
+                    delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
+
+                    if (delayMilliseconds > 0 && exitAnimation == false)
+                        Thread.Sleep(delayMilliseconds);
+                    else
+                        Console.WriteLine($"Lagging framerate: {delayMilliseconds} milliseconds");
+
+                    frameTimes.Add((int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
+                    lastRenderTime = DateTime.UtcNow;
+
+                    // Push the framebuffer to SPI
+                    strip.Render();
+                }
+
+                strip.ClearPixels();
+                strip.Render();
+
+                var avg = frameRenderTimes.Average();
+                Console.WriteLine($"Frames: {frameTimes.Count}, FPS: {Math.Round((1000f / frameTimes.Average()), 3)}, Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}");
+                strip.Render();
+
+            });
+
+            thread.Start();
+            Console.Write("Press any key to stop and clear");
+            Console.ReadKey(true);
+            Console.WriteLine();
+            exitAnimation = true;
+
+        }
+
+        public static void TestLedStrip()
+        {
+            var exitAnimation = false;
+
+            var thread = new Thread(() =>
+            {
+                var strip = new LedStrip(60 * 4);
+                var millisecondsPerFrame = 1000 / 25;
+                var lastRenderTime = DateTime.UtcNow;
+
+                var tailSize = strip.LedCount;
+                byte red = 0;
+
+                while (!exitAnimation)
+                {
+                    strip.ClearPixels();
+
+                    red = red >= 254 ? default(byte) : (byte)(red + 1);
+
+                    for (int i = 0; i < tailSize; i++)
+                    {
+                        strip[i].Brightness = i / (tailSize - 1f);
+                        strip[i].R = red;
+                        strip[i].G = (byte)(255 - red);
+                        strip[i].B = (byte)(strip[i].Brightness * 254);
+                    }
+
+                    var delayMilliseconds = (int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
+                    delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
+                    if (delayMilliseconds > 0 && exitAnimation == false)
+                    {
+                        Thread.Sleep(delayMilliseconds);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Lagging framerate: {delayMilliseconds} milliseconds");
+                    }
+
+
+                    lastRenderTime = DateTime.UtcNow;
+                    strip.Render();
+                }
+
+                strip.ClearPixels();
+                strip.Render();
+
+            });
+
+            thread.Start();
+            Console.Write("Press any key to stop and clear");
+            Console.ReadKey(true);
+            Console.WriteLine();
+            exitAnimation = true;
+        }
+
+        public static void TestSpi()
+        {
+            Pi.Spi.Channel0Frequency = SpiChannel.MinFrequency;
+
+            var request = System.Text.Encoding.UTF8.GetBytes("Hello over SPI");
+            Console.WriteLine($"SPI Request: {BitConverter.ToString(request)}");
+            var response = Pi.Spi.Channel0.SendReceive(request);
+            Console.WriteLine($"SPI Response: {BitConverter.ToString(response)}");
+
+            Console.WriteLine($"SPI Base Stream Request: {BitConverter.ToString(request)}");
+            Pi.Spi.Channel0.Write(request);
+            response = Pi.Spi.Channel0.SendReceive(new byte[request.Length]);
+            Console.WriteLine($"SPI Base Stream Response: {BitConverter.ToString(response)}");
+
         }
 
         public static void TestDisplay()
@@ -36,22 +198,27 @@
 
                 if (input.Equals("b"))
                 {
-                    Pi.PiDisplay.IsBacklightOn = !Pi.PiDisplay.IsBacklightOn;
+                    Pi.Display.IsBacklightOn = !Pi.Display.IsBacklightOn;
                 }
                 else
                 {
                     byte value = 128;
                     if (byte.TryParse(input, out value))
                     {
-                        if (value != Pi.PiDisplay.Brightness)
+                        if (value != Pi.Display.Brightness)
                         {
-                            Console.WriteLine($"Start Value: {Pi.PiDisplay.Brightness}, Target Value: {value}");
-                            Pi.PiDisplay.Brightness = value;                            
+                            Console.WriteLine($"Current Value: {Pi.Display.Brightness}, New Value: {value}");
+                            Pi.Display.Brightness = value;
                         }
                     }
                 }
 
+                Console.WriteLine($"Display Status - Backlight: {Pi.Display.IsBacklightOn}, Brightness: {Pi.Display.Brightness}");
             }
+
+            Pi.Display.IsBacklightOn = true;
+            Pi.Display.Brightness = 96;
+            Console.WriteLine($"Display Status - Backlight: {Pi.Display.IsBacklightOn}, Brightness: {Pi.Display.Brightness}");
         }
 
         public static void TestLedBlinking()
@@ -136,7 +303,7 @@
                 var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000");
                 var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000");
                 Console.WriteLine($"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds");
-            }            
+            }
         }
 
         static void TestColors()

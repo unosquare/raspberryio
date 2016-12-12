@@ -34,7 +34,7 @@
         #region SPI Access
 
         /// <summary>
-        /// Gets or sets the channel 0 frequency.
+        /// Gets or sets the channel 0 frequency in Hz.
         /// </summary>
         /// <value>
         /// The channel0 frequency.
@@ -60,7 +60,7 @@
         }
 
         /// <summary>
-        /// Gets or sets the channel 1 frequency.
+        /// Gets or sets the channel 1 frequency in Hz
         /// </summary>
         /// <value>
         /// The channel1 frequency.
