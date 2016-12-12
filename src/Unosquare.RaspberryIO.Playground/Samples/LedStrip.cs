@@ -361,6 +361,7 @@
     /// Represents a buffer of bytes containing pixels in BGRA byte order
     /// loaded from an image that is passed on to the constructor
     /// This class should be promoted to Swan maybe?
+    /// https://github.com/unosquare/swan
     /// </summary>
     public class PixelData
     {
@@ -380,6 +381,7 @@
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PixelData"/> class.
+        /// Data will not contain left-over stride bytes
         /// </summary>
         /// <param name="sourceImage">The source image.</param>
         public PixelData(Image sourceImage)

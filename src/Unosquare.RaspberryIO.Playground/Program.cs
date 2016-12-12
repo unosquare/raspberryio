@@ -6,15 +6,17 @@
     using System.IO;
     using System.Threading;
     using System.Linq;
+    using System.Reflection;
 
     public class Program
     {
+
         public static void Main(string[] args)
         {
             Console.WriteLine($"Starting program at {DateTime.Now}");
             try
             {
-                //TestSystemInfo();
+                TestSystemInfo();
                 TestLedStripGraphics();
                 //TestLedStrip();
             }
@@ -36,7 +38,7 @@
 
             try
             {
-                using (var bitmap = new System.Drawing.Bitmap("fractal.jpg"))
+                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(EntryAssemblyDirectory, "fractal.jpg")))
                 {
                     Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
                     pixels = new PixelData(bitmap);
@@ -49,16 +51,18 @@
             }
 
             var exitAnimation = false;
-            var frameRenderTimes = new List<int>();
-            var frameTimes = new List<int>();
+            var useDynamicBrightness = false;
+            var frameRenderTimes = new Queue<int>();
+            var frameTimes = new Queue<int>();
 
             var thread = new Thread(() =>
             {
                 var strip = new LedStrip(60 * 4, 1, 1000000); // 1 Mhz is sufficient for such a short strip (only 240 LEDs)
                 var millisecondsPerFrame = 1000 / 25;
                 var lastRenderTime = DateTime.UtcNow;
+                var currentFrameNumber = 0;
 
-                var currentBrightness = 0.0f;
+                var currentBrightness = 0.8f;
                 var currentRow = 0;
                 var currentDirection = 1;
 
@@ -80,11 +84,12 @@
                         currentDirection = 1;
                     }
 
-                    currentBrightness = 0.05f + 0.80f * (currentRow / (pixels.ImageHeight - 1f));
+                    if (useDynamicBrightness)
+                        currentBrightness = 0.05f + 0.80f * (currentRow / (pixels.ImageHeight - 1f));
 
                     // Stats and sleep time
                     var delayMilliseconds = (int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
-                    frameRenderTimes.Add(delayMilliseconds);
+                    frameRenderTimes.Enqueue(delayMilliseconds);
                     delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
 
                     if (delayMilliseconds > 0 && exitAnimation == false)
@@ -92,18 +97,27 @@
                     else
                         Console.WriteLine($"Lagging framerate: {delayMilliseconds} milliseconds");
 
-                    frameTimes.Add((int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
+                    frameTimes.Enqueue((int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
                     lastRenderTime = DateTime.UtcNow;
 
                     // Push the framebuffer to SPI
                     strip.Render();
+
+                    if (currentFrameNumber == int.MaxValue)
+                        currentFrameNumber = 0;
+                    else
+                        currentFrameNumber++;
+                    if (frameRenderTimes.Count >= 2048) frameRenderTimes.Dequeue();
+                    if (frameTimes.Count >= 20148) frameTimes.Dequeue();
+
                 }
 
                 strip.ClearPixels();
                 strip.Render();
 
                 var avg = frameRenderTimes.Average();
-                Console.WriteLine($"Frames: {frameTimes.Count}, FPS: {Math.Round((1000f / frameTimes.Average()), 3)}, Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}");
+                Console.WriteLine($"Frames: {currentFrameNumber + 1}, FPS: {Math.Round((1000f / frameTimes.Average()), 3)}, " + 
+                    $"Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}");
                 strip.Render();
 
             });
@@ -198,27 +212,27 @@
 
                 if (input.Equals("b"))
                 {
-                    Pi.Display.IsBacklightOn = !Pi.Display.IsBacklightOn;
+                    Pi.PiDisplay.IsBacklightOn = !Pi.PiDisplay.IsBacklightOn;
                 }
                 else
                 {
                     byte value = 128;
                     if (byte.TryParse(input, out value))
                     {
-                        if (value != Pi.Display.Brightness)
+                        if (value != Pi.PiDisplay.Brightness)
                         {
-                            Console.WriteLine($"Current Value: {Pi.Display.Brightness}, New Value: {value}");
-                            Pi.Display.Brightness = value;
+                            Console.WriteLine($"Current Value: {Pi.PiDisplay.Brightness}, New Value: {value}");
+                            Pi.PiDisplay.Brightness = value;
                         }
                     }
                 }
 
-                Console.WriteLine($"Display Status - Backlight: {Pi.Display.IsBacklightOn}, Brightness: {Pi.Display.Brightness}");
+                Console.WriteLine($"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}");
             }
 
-            Pi.Display.IsBacklightOn = true;
-            Pi.Display.Brightness = 96;
-            Console.WriteLine($"Display Status - Backlight: {Pi.Display.IsBacklightOn}, Brightness: {Pi.Display.Brightness}");
+            Pi.PiDisplay.IsBacklightOn = true;
+            Pi.PiDisplay.Brightness = 96;
+            Console.WriteLine($"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}");
         }
 
         public static void TestLedBlinking()
@@ -320,6 +334,27 @@
             foreach (var color in colors)
             {
                 Console.WriteLine($"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}");
+            }
+        }
+
+        private static Assembly m_EntryAssembly;
+
+        /// <summary>
+        /// Gets the assembly that started the application.
+        /// </summary>
+        public static Assembly EntryAssembly => m_EntryAssembly ?? (m_EntryAssembly = Assembly.GetEntryAssembly());
+
+        /// <summary>
+        /// Gets the full path of the assembly that started the application.
+        /// </summary>
+        public static string EntryAssemblyDirectory
+        {
+            get
+            {
+                var codeBase = EntryAssembly.CodeBase;
+                var uri = new UriBuilder(codeBase);
+                var path = Uri.UnescapeDataString(uri.Path);
+                return Path.GetDirectoryName(path);
             }
         }
     }
