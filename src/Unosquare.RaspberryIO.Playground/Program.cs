@@ -2,7 +2,6 @@
 {
     using Samples;
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Threading;
 
@@ -13,8 +12,9 @@
             Console.WriteLine($"Starting program at {DateTime.Now}");
             try
             {
-                TestSystemInfo();
-                TestLedStrip();
+                //TestSystemInfo();
+                TestLedStripGraphics();
+                //TestLedStrip();
             }
             catch (Exception ex)
             {
@@ -27,6 +27,64 @@
             }
         }
 
+        public static void TestLedStripGraphics()
+        {
+            var bitmap = new System.Drawing.Bitmap("fractal.jpg");
+            Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
+
+            var exitAnimation = false;
+
+            var thread = new Thread(() =>
+            {
+                var strip = new LedStrip(60 * 4);
+                var millisecondsPerFrame = 1000 / 24;
+                var lastRenderTime = DateTime.UtcNow;
+                var currentRow = 0;
+                var currentDirection = 1;
+
+                while (!exitAnimation)
+                {
+                    strip.ClearPixels();
+
+                    strip.SetPixels(0, currentRow, bitmap, 0.1f);
+                    currentRow += currentDirection;
+                    if (currentRow >= bitmap.Height)
+                    {
+                        currentRow = bitmap.Height - 2;
+                        currentDirection = -1;
+                    }
+
+                    if (currentRow <= 0)
+                    {
+                        currentRow = 1;
+                        currentDirection = 1;
+                    }
+
+                    var delayMilliseconds = (int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
+                    delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
+                    if (delayMilliseconds > 0 && exitAnimation == false)
+                        Thread.Sleep(delayMilliseconds);
+                    else
+                        Console.WriteLine($"Lagging framerate: {delayMilliseconds} milliseconds");
+
+
+                    lastRenderTime = DateTime.UtcNow;
+                    strip.Render();
+                }
+
+                strip.ClearPixels();
+                strip.Render();
+
+            });
+
+            thread.Start();
+            Console.Write("Press any key to stop and clear");
+            Console.ReadKey(true);
+            Console.WriteLine();
+            exitAnimation = true;
+
+        }
+
         public static void TestLedStrip()
         {
             var exitAnimation = false;
@@ -35,10 +93,9 @@
             {
                 var strip = new LedStrip(60 * 4);
                 var millisecondsPerFrame = 1000 / 25;
-                var tailSize = strip.LedCount;
-
                 var lastRenderTime = DateTime.UtcNow;
 
+                var tailSize = strip.LedCount;
                 byte red = 0;
 
                 while (!exitAnimation)

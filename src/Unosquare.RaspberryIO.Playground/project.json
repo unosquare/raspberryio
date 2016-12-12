@@ -1,10 +1,14 @@
 {
   "version": "1.0.0-*",
   "buildOptions": {
-    "emitEntryPoint": true
+    "emitEntryPoint": true,
+    "copyToOutput": { "includeFiles": [ "fractal.jpg" ] }
   },
   "frameworks": {
     "net452": {
+      "frameworkAssemblies": {
+        "System.Drawing": "4.0.0.0"
+      }
     }
   },
   "dependencies": {

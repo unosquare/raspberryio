@@ -2,6 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.Runtime.InteropServices;
 
     /// <summary>
     /// Represents an SPI addressable strip of RGB LEDs
@@ -28,15 +31,16 @@
                 get
                 {
                     var brightnessByte = (byte)(BrightnessGetMask & Owner.FrameBuffer[BaseAddress]);
-                    return brightnessByte / 32f;
+                    return brightnessByte / 31f;
                 }
                 set
                 {
+                    // clamp value
                     if (value < 0f) value = 0f;
                     if (value > 1f) value = 1f;
 
-                    Owner.FrameBuffer[BaseAddress] =
-                        (byte)((byte)(value * 32) | BrightnessSetMask);
+                    var brightnessByte = (byte)(value * 31);
+                    Owner.FrameBuffer[BaseAddress] = (byte)(brightnessByte | BrightnessSetMask);
                 }
             }
             public byte R
@@ -229,6 +233,44 @@
                 pixel.G = g;
                 pixel.B = b;
                 pixel.Brightness = brightness;
+            }
+
+        }
+
+        public void SetPixels(int x, int y, Bitmap bitmap, float brightness = 1f)
+        {
+            if (bitmap == null)
+                throw new ArgumentNullException(nameof(bitmap));
+
+            if (x < 0 || x > (bitmap.Width - LedCount) - 1)
+                throw new ArgumentException($"The bitmap is not wide enough to be displayed with the given x alignment", nameof(x));
+
+            if (y < 0 || y >= bitmap.Height)
+                throw new ArgumentException($"The addressed scanline or row should be between 0 and the height - 1 of the bitmap", nameof(y));
+
+            if (brightness < 0f) brightness = 0f;
+            if (brightness > 1f) brightness = 1f;
+
+            try
+            {
+                lock (SyncLock)
+                {
+                    var pixelOffset = 0;
+                    for (var xIndex = x; xIndex < x + LedCount; xIndex++)
+                    {
+                        var pixel = bitmap.GetPixel(xIndex, y);
+                        SetPixel(pixelOffset, brightness, pixel.R, pixel.G, pixel.B);
+                        pixelOffset++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {ex.GetType()}: {ex.Message}");
+            }
+            finally
+            {
+                //bitmap.UnlockBits(bitmapData);
             }
 
         }
