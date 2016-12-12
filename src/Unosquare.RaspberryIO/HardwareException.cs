@@ -28,8 +28,19 @@
         /// <param name="errorCode">The error code.</param>
         /// <param name="component">The component.</param>
         public HardwareException(int errorCode, string component)
-            : base(Interop.strerror(errorCode))
+            : base($"A hardware exception occurred. Error Code: {errorCode}")
         {
+            ExtendedMessage = null;
+
+            try
+            {
+                ExtendedMessage = Interop.strerror(errorCode);
+            }
+            catch
+            {
+                // TODO: strerror not working great...
+                Console.WriteLine("BAD STUFF OCCURRED");
+            }
             ErrorCode = errorCode;
             Component = component;
         }
@@ -49,6 +60,14 @@
         /// The component.
         /// </value>
         public string Component { get; private set; }
+
+        /// <summary>
+        /// Gets the extended message (could be null).
+        /// </summary>
+        /// <value>
+        /// The extended message.
+        /// </value>
+        public string ExtendedMessage { get; private set; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

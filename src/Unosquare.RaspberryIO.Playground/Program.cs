@@ -1,6 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
+    using Samples;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading;
 
@@ -12,7 +14,7 @@
             try
             {
                 TestSystemInfo();
-                TestDisplay();
+                TestLedStrip();
             }
             catch (Exception ex)
             {
@@ -23,6 +25,78 @@
             {
                 Console.WriteLine("Program finished.");
             }
+        }
+
+        public static void TestLedStrip()
+        {
+            var exitAnimation = false;
+
+            var thread = new Thread(() =>
+            {
+                var strip = new LedStrip(60 * 4);
+                var millisecondsPerFrame = 1000 / 25;
+                var tailSize = strip.LedCount;
+
+                var lastRenderTime = DateTime.UtcNow;
+
+                byte red = 0;
+
+                while (!exitAnimation)
+                {
+                    strip.ClearPixels();
+
+                    red = red >= 254 ? default(byte) : (byte)(red + 1);
+
+                    for (int i = 0; i < tailSize; i++)
+                    {
+                        strip[i].Brightness = i / (tailSize - 1f);
+                        strip[i].R = red;
+                        strip[i].G = (byte)(255 - red);
+                        strip[i].B = (byte)(strip[i].Brightness * 254);
+                    }
+
+                    var delayMilliseconds = (int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
+                    delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
+                    if (delayMilliseconds > 0 && exitAnimation == false)
+                    {
+                        Thread.Sleep(delayMilliseconds);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Lagging framerate: {delayMilliseconds} milliseconds");
+                    }
+
+
+                    lastRenderTime = DateTime.UtcNow;
+                    strip.Render();
+                }
+
+                strip.ClearPixels();
+                strip.Render();
+
+            });
+
+            thread.Start();
+            Console.Write("Press any key to stop and clear");
+            Console.ReadKey(true);
+            Console.WriteLine();
+            exitAnimation = true;
+        }
+
+        public static void TestSpi()
+        {
+            Pi.Spi.Channel0Frequency = SpiChannel.MinFrequency;
+
+            var request = System.Text.Encoding.UTF8.GetBytes("Hello over SPI");
+            Console.WriteLine($"SPI Request: {BitConverter.ToString(request)}");
+            var response = Pi.Spi.Channel0.SendReceive(request);
+            Console.WriteLine($"SPI Response: {BitConverter.ToString(response)}");
+
+            Console.WriteLine($"SPI Base Stream Request: {BitConverter.ToString(request)}");
+            Pi.Spi.Channel0.Write(request);
+            response = Pi.Spi.Channel0.SendReceive(new byte[request.Length]);
+            Console.WriteLine($"SPI Base Stream Response: {BitConverter.ToString(response)}");
+
         }
 
         public static void TestDisplay()
@@ -45,13 +119,18 @@
                     {
                         if (value != Pi.Display.Brightness)
                         {
-                            Console.WriteLine($"Start Value: {Pi.Display.Brightness}, Target Value: {value}");
-                            Pi.Display.Brightness = value;                            
+                            Console.WriteLine($"Current Value: {Pi.Display.Brightness}, New Value: {value}");
+                            Pi.Display.Brightness = value;
                         }
                     }
                 }
 
+                Console.WriteLine($"Display Status - Backlight: {Pi.Display.IsBacklightOn}, Brightness: {Pi.Display.Brightness}");
             }
+
+            Pi.Display.IsBacklightOn = true;
+            Pi.Display.Brightness = 96;
+            Console.WriteLine($"Display Status - Backlight: {Pi.Display.IsBacklightOn}, Brightness: {Pi.Display.Brightness}");
         }
 
         public static void TestLedBlinking()
@@ -136,7 +215,7 @@
                 var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000");
                 var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000");
                 Console.WriteLine($"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds");
-            }            
+            }
         }
 
         static void TestColors()

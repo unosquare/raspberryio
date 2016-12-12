@@ -685,6 +685,18 @@ namespace Unosquare.RaspberryIO
         [DllImport(LibCLibrary, EntryPoint = nameof(strtol), SetLastError = true)]
         public static extern int strtol(string numberString, IntPtr endPointer, int numberBase);
 
+        /// <summary>
+        /// The write() function attempts to write nbytes from buffer to the file associated with handle. On text files, it expands each LF to a CR/LF.
+        /// The function returns the number of bytes written to the file. A return value of -1 indicates an error, with errno set appropriately.
+        /// </summary>
+        /// <param name="fd">The fd.</param>
+        /// <param name="buffer">The buffer.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
+        [DllImport(LibCLibrary, EntryPoint = nameof(write), SetLastError = true)]
+        public static extern int write(int fd, byte[] buffer, int count);
+
+
         #endregion
 
     }
