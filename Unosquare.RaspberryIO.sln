@@ -17,6 +17,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Unosquare.RaspberryIO", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C8A487A8-8399-4A13-8402-3629998E2A4D}"
 	ProjectSection(SolutionItems) = preProject
+		docs\APA102C.pdf = docs\APA102C.pdf
 		docs\Core Functions _ Wiring Pi.pdf = docs\Core Functions _ Wiring Pi.pdf
 		docs\I2C Library _ Wiring Pi.pdf = docs\I2C Library _ Wiring Pi.pdf
 		docs\Pins _ Wiring Pi - Printable.pdf = docs\Pins _ Wiring Pi - Printable.pdf
