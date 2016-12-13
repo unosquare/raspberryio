@@ -143,7 +143,7 @@
         /// <param name="spiChannel">The SPI channel.</param>
         /// <param name="spiFrequency">The SPI frequency.</param>
         /// <param name="reverseRgb">if set to <c>true</c> colors will be sent to the strip as BGR, otherwise as RGB.</param>
-        public LedStrip(int ledCount = 60, int spiChannel = 1, int spiFrequency = 8000000, bool reverseRgb = true)
+        public LedStrip(int ledCount = 60, int spiChannel = 1, int spiFrequency = SpiChannel.DefaultFrequency, bool reverseRgb = true)
         {
             // Basic properties
             LedCount = ledCount;

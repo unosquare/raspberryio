@@ -50,7 +50,8 @@
             get
             {
                 if (Channel0Frequency == 0)
-                    throw new InvalidOperationException($"Set the {nameof(Channel0Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
+                    Channel0Frequency = SpiChannel.DefaultFrequency;
+                    //throw new InvalidOperationException($"Set the {nameof(Channel0Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
 
                 return SpiChannel.Retrieve(SpiChannelNumber.Channel0, Channel0Frequency);
             }
@@ -76,7 +77,8 @@
             get
             {
                 if (Channel1Frequency == 0)
-                    throw new InvalidOperationException($"Set the {nameof(Channel1Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
+                    Channel1Frequency = SpiChannel.DefaultFrequency;
+                    //throw new InvalidOperationException($"Set the {nameof(Channel1Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
 
                 return SpiChannel.Retrieve(SpiChannelNumber.Channel1, Channel1Frequency);
             }

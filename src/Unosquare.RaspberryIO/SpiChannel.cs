@@ -22,6 +22,12 @@
         public const int MaxFrequency = 32000000;
 
         /// <summary>
+        /// The default frequency of SPI channels
+        /// This is set to 8 Mhz wich is typical in modern hardware.
+        /// </summary>
+        public const int DefaultFrequency = 8000000;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SpiChannel"/> class.
         /// </summary>
         /// <param name="channel">The channel.</param>
