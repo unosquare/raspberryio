@@ -1,9 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO
 {
     using System;
-    using System.Diagnostics;
     using System.IO;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -18,8 +16,7 @@
         private static CameraController m_Instance = null;
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         private static readonly object SyncLock = new object();
-        private static Thread VideoWorker = null;
-        private static Process VideoProcess = null;
+        private static readonly CancellationTokenSource VideoCts = new CancellationTokenSource();
 
         #endregion
 
@@ -34,12 +31,7 @@
             {
                 lock (SyncLock)
                 {
-                    if (m_Instance == null)
-                    {
-                        m_Instance = new CameraController();
-                    }
-
-                    return m_Instance;
+                    return m_Instance ?? (m_Instance = new CameraController());
                 }
             }
         }
@@ -53,35 +45,7 @@
         public bool IsBusy => OperationDone.IsSet == false;
 
         #endregion
-
-        #region Helpers
-
-        /// <summary>
-        /// Copies the standard output to another stream asynchronously.
-        /// </summary>
-        /// <param name="process">The process.</param>
-        /// <param name="outputStream">The output stream.</param>
-        /// <param name="ct">The ct.</param>
-        /// <returns></returns>
-        private static async Task<int> CopyStandardOutputAsync(Process process, Stream outputStream, CancellationToken ct)
-        {
-            var swapBuffer = new byte[2048];
-            var readCount = -1;
-            var totalCount = 0;
-
-            process.StandardOutput.DiscardBufferedData();
-            while (ct.IsCancellationRequested == false)
-            {
-                readCount = await process.StandardOutput.BaseStream.ReadAsync(swapBuffer, 0, swapBuffer.Length, ct);
-                if (readCount <= 0) break;
-                await outputStream.WriteAsync(swapBuffer, 0, readCount, ct);
-            }
-
-            return totalCount;
-        }
-
-        #endregion
-
+        
         #region Image Capture Methods
 
         /// <summary>
@@ -102,15 +66,16 @@
             try
             {
                 OperationDone.Reset();
-                var process = settings.CreateProcess();
-                if (process.Start() == false)
-                    return new byte[] { };
 
-                var outputStream = new MemoryStream();
-                await CopyStandardOutputAsync(process, outputStream, ct);
+                var ms = new MemoryStream();
+                var exitCode =
+                    await ProcessHelper.RunProcessAsync(settings.CommandName, settings.CreateProcessArguments(),
+                        (data, proc) =>
+                        {
+                            ms.Write(data, 0, data.Length);
+                        }, null, true, ct);
 
-                process.WaitForExit();
-                return outputStream.ToArray();
+                return exitCode != 0 ? new byte[] {} : ms.ToArray();
             }
             catch (Exception ex)
             {
@@ -185,43 +150,18 @@
         /// <param name="settings">The settings.</param>
         /// <param name="onDataCallback">The on data callback.</param>
         /// <param name="onExitCallback">The on exit callback.</param>
-        private static void VideoWorkerDoWork(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback)
+        private static async Task VideoWorkerDoWork(CameraVideoSettings settings, Action<byte[]> onDataCallback,
+            Action onExitCallback)
         {
-            var readBuffer = new byte[1024 * 8];
-            var readCount = 0;
-            var totalRead = 0;
-            var lastReceived = DateTime.UtcNow;
-            var timeout = TimeSpan.FromMilliseconds(1000);
-
-            VideoProcess = settings.CreateProcess();
-            VideoProcess.Exited += (s, e) => { onExitCallback?.Invoke(); };
-
             try
             {
-                VideoProcess.Start();
-                VideoProcess.StandardOutput.DiscardBufferedData();
-
-                while (true)
-                {
-                    if (DateTime.UtcNow.Subtract(lastReceived) > timeout) break;
-
-                    try
+                await ProcessHelper.RunProcessAsync(settings.CommandName, settings.CreateProcessArguments(),
+                    (data, proc) =>
                     {
-                        readCount = VideoProcess.StandardOutput.BaseStream.Read(readBuffer, 0, readBuffer.Length);
-                        totalRead += readCount;
-                        if (readCount > 0)
-                        {
-                            lastReceived = DateTime.UtcNow;
-                            onDataCallback?.Invoke(readBuffer.Skip(0).Take(readCount).ToArray());
-                        }
-                    }
-                    catch
-                    {
-                        // Stop reading if an error occurs
-                        break;
-                    }
+                        onDataCallback?.Invoke(data);
+                    }, null, true, VideoCts.Token);
 
-                }
+                onExitCallback?.Invoke();
             }
             catch
             {
@@ -232,7 +172,6 @@
                 Instance.CloseVideoStream();
                 OperationDone.Set();
             }
-
         }
 
         /// <summary>
@@ -283,16 +222,13 @@
             try
             {
                 OperationDone.Reset();
-                VideoWorker = new Thread(() => { VideoWorkerDoWork(settings, onDataCallback, onExitCallback); });
-                VideoWorker.IsBackground = true;
-                VideoWorker.Start();
+                Task.Factory.StartNew(() => VideoWorkerDoWork(settings, onDataCallback, onExitCallback));
             }
             catch (Exception ex)
             {
                 OperationDone.Set();
                 throw ex;
             }
-
         }
 
         /// <summary>
@@ -302,14 +238,11 @@
         {
             lock (SyncLock)
             {
-                if (IsBusy == false || VideoProcess == null || VideoWorker == null)
+                if (IsBusy == false)
                     return;
 
-                if (VideoProcess.HasExited == false)
-                    VideoProcess.Kill();
-
-                VideoWorker = null;
-                VideoProcess = null;
+                if (VideoCts.IsCancellationRequested == false)
+                    VideoCts.Cancel();
             }
 
         }

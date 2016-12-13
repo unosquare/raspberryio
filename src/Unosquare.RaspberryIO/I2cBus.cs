@@ -24,12 +24,7 @@
             {
                 lock (Pi.SyncLock)
                 {
-                    if (m_Instance == null)
-                    {
-                        m_Instance = new I2cBus();
-                    }
-
-                    return m_Instance;
+                    return m_Instance ?? (m_Instance = new I2cBus());
                 }
             }
         }
@@ -58,7 +53,7 @@
         }
 
         /// <summary>
-        /// Adds a device to the bus by its Id. If the device is already registered it siply returns the existing device.
+        /// Adds a device to the bus by its Id. If the device is already registered it simply returns the existing device.
         /// </summary>
         /// <param name="deviceId">The device identifier.</param>
         /// <returns></returns>
@@ -81,7 +76,7 @@
         }
 
         /// <summary>
-        /// This initialises the I2C system with your given device identifier. 
+        /// This initializes the I2C system with your given device identifier. 
         /// The ID is the I2C number of the device and you can use the i2cdetect program to find this out. 
         /// wiringPiI2CSetup() will work out which revision Raspberry Pi you have and open the appropriate device in /dev.
         /// The return value is the standard Linux filehandle, or -1 if any error – in which case, you can consult errno as usual.

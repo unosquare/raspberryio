@@ -12,8 +12,7 @@
     {
         private const string BacklightFilename = "/sys/class/backlight/rpi_backlight/bl_power";
         private const string BrightnessFilename = "/sys/class/backlight/rpi_backlight/brightness";
-
-
+        
         static private DsiDisplay m_Instance = null;
 
         /// <summary>
@@ -28,12 +27,7 @@
             {
                 lock (Pi.SyncLock)
                 {
-                    if (m_Instance == null)
-                    {
-                        m_Instance = new DsiDisplay();
-                    }
-
-                    return m_Instance;
+                    return m_Instance ?? (m_Instance = new DsiDisplay());
                 }
             }
         }
@@ -47,18 +41,12 @@
         }
 
         /// <summary>
-        /// Gets a value indicating whether the Pi Foundation Dsiplay files are present.
+        /// Gets a value indicating whether the Pi Foundation Display files are present.
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance is present; otherwise, <c>false</c>.
         /// </value>
-        public bool IsPresent
-        {
-            get
-            {
-                return File.Exists(BrightnessFilename);
-            }
-        }
+        public bool IsPresent => File.Exists(BrightnessFilename);
 
         /// <summary>
         /// Gets or sets the brightness of the DSI display via filesystem.
@@ -86,7 +74,7 @@
 
         /// <summary>
         /// Gets or sets a value indicating whether the backlight of the DSI display on.
-        /// This operation is perfomed via the file system
+        /// This operation is performed via the file system
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance is backlight on; otherwise, <c>false</c>.
@@ -96,7 +84,8 @@
             get
             {
                 if (IsPresent == false) return false;
-                int backlight = 0;
+
+                int backlight;
                 if (int.TryParse(File.ReadAllText(BacklightFilename).Trim(), out backlight))
                     return backlight == 0;
 
@@ -108,7 +97,5 @@
                 File.WriteAllText(BacklightFilename, (value ? "0" : "1"));
             }
         }
-
-
     }
 }

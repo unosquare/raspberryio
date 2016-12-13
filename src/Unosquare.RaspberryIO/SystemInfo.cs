@@ -43,7 +43,7 @@
 
             foreach (var line in cpuInfoLines)
             {
-                var lineParts = line.Split(new char[] { ':' }, 2);
+                var lineParts = line.Split(new[] { ':' }, 2);
                 if (lineParts.Length != 2)
                     continue;
 
@@ -63,7 +63,6 @@
                         var propertyArrayAvalue = propertyStringValue.Split(' ');
                         property.SetValue(this, propertyArrayAvalue);
                     }
-
                 }
             }
 
@@ -138,12 +137,7 @@
             {
                 lock (Pi.SyncLock)
                 {
-                    if (m_Instance == null)
-                    {
-                        m_Instance = new SystemInfo();
-                    }
-
-                    return m_Instance;
+                    return m_Instance ?? (m_Instance = new SystemInfo());
                 }
             }
         }
@@ -178,10 +172,8 @@
                 {
                     return outIndex + 1;
                 }
-                else
-                {
-                    return 0;
-                }
+
+                return 0;
             }
         }
         /// <summary>

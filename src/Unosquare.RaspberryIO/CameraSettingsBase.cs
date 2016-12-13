@@ -1,6 +1,5 @@
 ﻿namespace Unosquare.RaspberryIO
 {
-    using System.Diagnostics;
     using System.Globalization;
     using System.Text;
 
@@ -98,7 +97,8 @@
         /// Gets or sets the dynamic range compensation.
         /// DRC changes the images by increasing the range of dark areas, and decreasing the brighter areas. This can improve the image in low light areas.
         /// </summary>
-        public CameraDynamicRangeCompensation CaptureDynamicRangeCompensation { get; set; } = CameraDynamicRangeCompensation.Off;
+        public CameraDynamicRangeCompensation CaptureDynamicRangeCompensation { get; set; } =
+            CameraDynamicRangeCompensation.Off;
 
         #endregion
 
@@ -218,7 +218,7 @@
         /// <summary>
         /// Gets the command file executable.
         /// </summary>
-        protected abstract string CommandName { get; }
+        public abstract string CommandName { get; }
 
         /// <summary>
         /// Creates the process arguments.
@@ -228,7 +228,7 @@
         {
             var sb = new StringBuilder();
             sb.Append("-o -"); // output to standard output as opposed to a file.
-            sb.Append($" -t { (CaptureTimeoutMilliseconds < 0 ? "0" : CaptureTimeoutMilliseconds.ToString(CI))}");
+            sb.Append($" -t {(CaptureTimeoutMilliseconds < 0 ? "0" : CaptureTimeoutMilliseconds.ToString(CI))}");
 
             // Basic Width and height
             if (CaptureWidth > 0 && CaptureHeight > 0)
@@ -240,8 +240,9 @@
             // Display Preview
             if (CaptureDisplayPreview)
             {
-                if (CaptureDisplayPreviewInFullScreen) sb.Append($" -f");
-                if (CaptureDisplayPreviewOpacity != byte.MaxValue) sb.Append($" -op {CaptureDisplayPreviewOpacity.ToString(CI)}");
+                if (CaptureDisplayPreviewInFullScreen) sb.Append(" -f");
+                if (CaptureDisplayPreviewOpacity != byte.MaxValue)
+                    sb.Append($" -op {CaptureDisplayPreviewOpacity.ToString(CI)}");
             }
             else
             {
@@ -280,13 +281,14 @@
                 sb.Append($" -ifx {ImageEffect.ToString().ToLowerInvariant()}");
 
             if (ImageColorEffectU >= 0 && ImageColorEffectV >= 0)
-                sb.Append($" -cfx {ImageColorEffectU.Clamp(0, 255).ToString(CI)}:{ImageColorEffectV.Clamp(0, 255).ToString(CI)}");
+                sb.Append(
+                    $" -cfx {ImageColorEffectU.Clamp(0, 255).ToString(CI)}:{ImageColorEffectV.Clamp(0, 255).ToString(CI)}");
 
             if (CaptureMeteringMode != CameraMeteringMode.Average)
                 sb.Append($" -mm {CaptureMeteringMode.ToString().ToLowerInvariant()}");
 
             if (ImageRotation != CameraImageRotation.None)
-                sb.Append($" -rot {((int)ImageRotation).ToString(CI)}");
+                sb.Append($" -rot {((int) ImageRotation).ToString(CI)}");
 
             if (ImageFlipHorizontally)
                 sb.Append($" -hf");
@@ -303,7 +305,8 @@
             if (CaptureDynamicRangeCompensation != CameraDynamicRangeCompensation.Off)
                 sb.Append($" -drc {CaptureDynamicRangeCompensation.ToString().ToLowerInvariant()}");
 
-            if (CaptureWhiteBalanceControl == CameraWhiteBalanceMode.Off && (CaptureWhiteBalanceGainBlue != 0M || CaptureWhiteBalanceGainRed != 0M))
+            if (CaptureWhiteBalanceControl == CameraWhiteBalanceMode.Off &&
+                (CaptureWhiteBalanceGainBlue != 0M || CaptureWhiteBalanceGainRed != 0M))
                 sb.Append($" -awbg {CaptureWhiteBalanceGainBlue.ToString(CI)},{CaptureWhiteBalanceGainRed.ToString(CI)}");
 
             if (ImageAnnotationFontSize > 0)
@@ -316,43 +319,16 @@
                     ImageAnnotations |= CameraAnnotation.SolidBackground;
                     sb.Append($",{ImageAnnotationBackground.ToYuvHex(true)}");
                 }
-
             }
 
             if (ImageAnnotations != CameraAnnotation.None)
-                sb.Append($" -a {((int)ImageAnnotations).ToString(CI)}");
+                sb.Append($" -a {((int) ImageAnnotations).ToString(CI)}");
 
             if (string.IsNullOrWhiteSpace(ImageAnnotationsText) == false)
                 sb.Append($" -a \"{ImageAnnotationsText.Replace("\"", "'")}\"");
 
             var result = sb.ToString();
             return result;
-        }
-
-        /// <summary>
-        /// Creates the process.
-        /// </summary>
-        /// <returns></returns>
-        public virtual Process CreateProcess()
-        {
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    Arguments = CreateProcessArguments(),
-                    CreateNoWindow = true,
-                    FileName = CommandName,
-                    RedirectStandardError = true,
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                },
-
-                EnableRaisingEvents = true
-            };
-
-            return process;
         }
 
         #endregion

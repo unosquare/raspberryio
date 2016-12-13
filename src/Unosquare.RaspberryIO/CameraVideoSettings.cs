@@ -12,7 +12,7 @@
         /// <summary>
         /// Gets the command file executable.
         /// </summary>
-        protected override string CommandName => "raspivid";
+        public override string CommandName => "raspivid";
 
         /// <summary>
         /// Use bits per second, so 10Mbits/s would be -b 10000000. For H264, 1080p30 a high quality bitrate would be 15Mbits/s or more. 

@@ -17,6 +17,8 @@
             try
             {
                 TestSystemInfo();
+                TestCaptureImage();
+                TestCaptureVideo();
                 TestLedStripGraphics();
                 //TestLedStrip();
             }

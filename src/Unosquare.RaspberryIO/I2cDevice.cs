@@ -57,11 +57,10 @@
         {
             lock (Pi.SyncLock)
             {
-                var result = 0;
                 var buffer = new byte[length];
-                for (int i = 0; i < length; i++)
+                for (var i = 0; i < length; i++)
                 {
-                    result = Interop.wiringPiI2CRead(FileDescriptor);
+                    var result = Interop.wiringPiI2CRead(FileDescriptor);
                     if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(Read));
                     buffer[i] = (byte)result;
                 }

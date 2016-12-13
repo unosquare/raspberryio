@@ -11,8 +11,8 @@
     internal static class Utilities
     {
         private static readonly object SyncLock = new object();
-        private static bool? m_IsLinuxOS = new Nullable<bool>();
-        private static bool? m_IsRunningAsRoot = new Nullable<bool>();
+        private static bool? m_IsLinuxOS = new bool?();
+        private static bool? m_IsRunningAsRoot = new bool?();
         private const string GpioToolFileName = "gpio.2.32";
 
         /// <summary>
@@ -26,7 +26,7 @@
             get
             {
                 var codeBase = Assembly.GetEntryAssembly().CodeBase;
-                UriBuilder uri = new UriBuilder(codeBase);
+                var uri = new UriBuilder(codeBase);
                 var path = Uri.UnescapeDataString(uri.Path);
                 return Path.GetDirectoryName(path);
             }
@@ -133,9 +133,7 @@
 
                     return m_IsRunningAsRoot.Value;
                 }
-
             }
-
         }
 
         /// <summary>
@@ -176,8 +174,7 @@
             where T : IComparable
         {
             if (value.CompareTo(min) < 0) return min;
-            if (value.CompareTo(max) > 0) return max;
-            return value;
+            return value.CompareTo(max) > 0 ? max : value;
         }
     }
 }

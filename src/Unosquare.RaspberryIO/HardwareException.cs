@@ -5,7 +5,7 @@
 
     /// <summary>
     /// Represents a low-level exception, typically thrown when return codes from a
-    /// low-level operation is non-zero or in some cases whe it is less than zero.
+    /// low-level operation is non-zero or in some cases when it is less than zero.
     /// </summary>
     /// <seealso cref="System.Exception" />
     public class HardwareException : Exception
@@ -41,6 +41,7 @@
                 // TODO: strerror not working great...
                 Console.WriteLine("BAD STUFF OCCURRED");
             }
+
             ErrorCode = errorCode;
             Component = component;
         }
@@ -51,7 +52,7 @@
         /// <value>
         /// The error code.
         /// </value>
-        public int ErrorCode { get; private set; }
+        public int ErrorCode { get; }
 
         /// <summary>
         /// Gets the component.
@@ -59,7 +60,7 @@
         /// <value>
         /// The component.
         /// </value>
-        public string Component { get; private set; }
+        public string Component { get; }
 
         /// <summary>
         /// Gets the extended message (could be null).

@@ -12,7 +12,7 @@
         /// <summary>
         /// Gets the command file executable.
         /// </summary>
-        protected override string CommandName => "raspistill";
+        public override string CommandName => "raspistill";
 
         /// <summary>
         /// Gets or sets a value indicating whether the preview window (if enabled) uses native capture resolution

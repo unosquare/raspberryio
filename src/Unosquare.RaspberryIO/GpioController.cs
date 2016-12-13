@@ -18,8 +18,7 @@
         #region Static Declarations
 
         private static GpioController m_Instance = null;
-        private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
-
+        
         #endregion
 
         #region Private Declarations
@@ -43,12 +42,7 @@
             {
                 lock (Pi.SyncLock)
                 {
-                    if (m_Instance == null)
-                    {
-                        m_Instance = new GpioController();
-                    }
-
-                    return m_Instance;
+                    return m_Instance ?? (m_Instance = new GpioController());
                 }
             }
         }

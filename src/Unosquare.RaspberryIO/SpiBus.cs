@@ -18,10 +18,7 @@
             {
                 lock (Pi.SyncLock)
                 {
-                    if (m_Instance == null)
-                        m_Instance = new SpiBus();
-
-                    return m_Instance;
+                    return m_Instance ?? (m_Instance = new SpiBus());
                 }
             }
         }

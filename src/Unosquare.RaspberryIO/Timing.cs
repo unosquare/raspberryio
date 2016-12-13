@@ -28,12 +28,7 @@
             {
                 lock (Pi.SyncLock)
                 {
-                    if (m_Instance == null)
-                    {
-                        m_Instance = new Timing();
-                    }
-
-                    return m_Instance;
+                    return m_Instance ?? (m_Instance = new Timing());
                 }
             }
         }
@@ -60,7 +55,7 @@
         /// It returns an unsigned 32-bit number which wraps after approximately 71 minutes.
         /// </summary>
         /// <value>
-        /// The mucroseconds since setup.
+        /// The microseconds since setup.
         /// </value>
         public uint MicrosecondsSinceSetup
         {
@@ -133,7 +128,7 @@
         }
 
         /// <summary>
-        /// These allow you to synchronise variable updates from your main program to any threads running in your program. 
+        /// These allow you to synchronize variable updates from your main program to any threads running in your program. 
         /// keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key, 
         /// it will be stalled until the first process has unlocked the same key.
         /// </summary>
@@ -144,7 +139,7 @@
         }
 
         /// <summary>
-        /// These allow you to synchronise variable updates from your main program to any threads running in your program. 
+        /// These allow you to synchronize variable updates from your main program to any threads running in your program. 
         /// keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key, 
         /// it will be stalled until the first process has unlocked the same key.
         /// </summary>

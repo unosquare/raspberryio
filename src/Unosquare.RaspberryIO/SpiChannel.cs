@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
 
     /// <summary>
     /// Provides access to using the SPI buses on the GPIO.
@@ -11,7 +10,6 @@
     /// </summary>
     public sealed class SpiChannel
     {
-        private static readonly CultureInfo CI = CultureInfo.InvariantCulture;
         private static readonly Dictionary<SpiChannelNumber, SpiChannel> Buses = new Dictionary<SpiChannelNumber, SpiChannel>();
 
         /// <summary>
@@ -50,7 +48,7 @@
         /// <value>
         /// The file descriptor.
         /// </value>
-        public int FileDescriptor { get; private set; }
+        public int FileDescriptor { get; }
 
         /// <summary>
         /// Gets the channel.
@@ -120,6 +118,5 @@
                     HardwareException.Throw(nameof(SpiChannel), nameof(Write));
             }
         }
-
     }
 }
