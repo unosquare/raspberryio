@@ -38,7 +38,7 @@
 
             try
             {
-                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(EntryAssemblyDirectory, "fractal.jpg")))
+                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(EntryAssemblyDirectory, "spectrum.png")))
                 {
                     Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
                     pixels = new PixelData(bitmap);

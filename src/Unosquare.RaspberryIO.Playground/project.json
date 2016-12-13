@@ -2,7 +2,7 @@
   "version": "1.0.0-*",
   "buildOptions": {
     "emitEntryPoint": true,
-    "copyToOutput": { "includeFiles": [ "fractal.jpg" ] }
+    "copyToOutput": { "includeFiles": [ "fractal.jpg", "spectrum.png" ] }
   },
   "frameworks": {
     "net452": {
