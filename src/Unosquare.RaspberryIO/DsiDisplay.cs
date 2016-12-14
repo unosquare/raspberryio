@@ -4,7 +4,7 @@
     using System.IO;
 
     /// <summary>
-    /// 
+    /// The Official Raspberry Pi 7-inch touch display from the foundation
     /// Some docs available here:
     /// http://forums.pimoroni.com/t/official-7-raspberry-pi-touch-screen-faq/959
     /// </summary>

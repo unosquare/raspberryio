@@ -112,7 +112,9 @@ namespace Unosquare.RaspberryIO
         }
 
         /// <summary>
-        /// Runs the process asynchronously and returns all of the standard output text.
+        /// Runs the process asynchronously and if the exit code is 0,
+        /// returns all of the standard output text. If the exit code is something other than 0
+        /// it returns the contents of standard error.
         /// </summary>
         /// <param name="filename">The filename.</param>
         /// <param name="arguments">The arguments.</param>
@@ -120,16 +122,15 @@ namespace Unosquare.RaspberryIO
         /// <returns></returns>
         public static async Task<string> GetProcessOutputAsync(string filename, string arguments = "", CancellationToken ct = default(CancellationToken))
         {
-            var result = new StringBuilder();
-            var errorResult = string.Empty;
+            var standardOutputBuilder = new StringBuilder();
+            var standardErrorBuilder = new StringBuilder();
+            var defaultEncoding = Encoding.GetEncoding(0);
 
             var processReturn = await RunProcessAsync(filename, arguments,
-                (data, proc) =>
-                {
-                    result.Append(Encoding.GetEncoding(0).GetString(data));
-                }, null, true, ct);
+                (data, proc) => { standardOutputBuilder.Append(defaultEncoding.GetString(data)); },
+                (data, proc) => { standardErrorBuilder.Append(defaultEncoding.GetString(data)); }, true, ct);
 
-            return processReturn == -1 ? errorResult : result.ToString();
+            return processReturn != 0 ? standardErrorBuilder.ToString() : standardOutputBuilder.ToString();
         }
 
         /// <summary>

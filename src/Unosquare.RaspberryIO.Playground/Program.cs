@@ -17,8 +17,8 @@
             try
             {
                 TestSystemInfo();
-                TestCaptureImage();
-                TestCaptureVideo();
+                //TestCaptureImage();
+                //TestCaptureVideo();
                 TestLedStripGraphics();
                 //TestLedStrip();
             }
@@ -40,7 +40,7 @@
 
             try
             {
-                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(EntryAssemblyDirectory, "spectrum.png")))
+                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(EntryAssemblyDirectory, "fractal.jpg")))
                 {
                     Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
                     pixels = new PixelData(bitmap);
