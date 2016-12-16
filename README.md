@@ -1,7 +1,7 @@
 [![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO)
 [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/raspberryio/)](https://github.com/igrigorik/ga-beacon)
 
-# <img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png" width="32" height="32"></img> RaspberryIO - *Pi's hardware access from Mono*
+# <img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png"></img> RaspberryIO - *Pi's hardware access from Mono*
 The Raspberry Pi's IO Functionality in an easy-to-use API for Mono/.NET/C#
 
 *:star:Please star this project if you find it useful!*
