@@ -25,9 +25,13 @@
         {
             #region Obtain and format a property dictionary
 
-            var properties = typeof(SystemInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                .Where(p => p.CanWrite && p.CanRead && (p.PropertyType == typeof(string) || p.PropertyType == typeof(string[])))
-                .ToArray();
+            var properties =
+                typeof(SystemInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                    .Where(
+                        p =>
+                            p.CanWrite && p.CanRead &&
+                            (p.PropertyType == typeof(string) || p.PropertyType == typeof(string[])))
+                    .ToArray();
             var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer.InvariantCultureIgnoreCase);
 
             foreach (var prop in properties)
@@ -43,7 +47,7 @@
 
             foreach (var line in cpuInfoLines)
             {
-                var lineParts = line.Split(new[] { ':' }, 2);
+                var lineParts = line.Split(new[] {':'}, 2);
                 if (lineParts.Length != 2)
                     continue;
 
@@ -73,7 +77,7 @@
             var memInfoLines = File.ReadAllLines(MemInfoFilePath);
             foreach (var line in memInfoLines)
             {
-                var lineParts = line.Split(new char[] { ':' }, 2);
+                var lineParts = line.Split(new char[] {':'}, 2);
                 if (lineParts.Length != 2)
                     continue;
 
@@ -84,7 +88,7 @@
                 var parsedMem = 0;
                 if (int.TryParse(memKb, out parsedMem))
                 {
-                    InstalledRam = parsedMem * 1024;
+                    InstalledRam = parsedMem*1024;
                     break;
                 }
 
@@ -105,7 +109,7 @@
                 RaspberryPiVersion = RaspberryPiVersion.Unknown;
                 if (Enum.GetValues(typeof(RaspberryPiVersion)).Cast<int>().Contains(boardVersion))
                 {
-                    RaspberryPiVersion = (RaspberryPiVersion)boardVersion;
+                    RaspberryPiVersion = (RaspberryPiVersion) boardVersion;
                 }
             }
 
@@ -125,6 +129,22 @@
 
             #endregion
 
+            #region Extract OS Info
+
+            Interop.utsname unameInfo;
+            Interop.uname(out unameInfo);
+
+            OsInfo = new OsInfo
+            {
+                DomainName = unameInfo.domainname,
+                Machine = unameInfo.machine,
+                NodeName = unameInfo.nodename,
+                Release = unameInfo.release,
+                SysName = unameInfo.sysname,
+                Version = unameInfo.version
+            };
+
+            #endregion
         }
 
         /// <summary>
@@ -146,6 +166,14 @@
         /// Gets the wiring pi library version.
         /// </summary>
         public Version WiringPiVersion { get; }
+
+        /// <summary>
+        /// Gets the OS information.
+        /// </summary>
+        /// <value>
+        /// The os information.
+        /// </value>
+        public OsInfo OsInfo { get; }
 
         /// <summary>
         /// Gets the Raspberry Pi version.
@@ -176,10 +204,12 @@
                 return 0;
             }
         }
+
         /// <summary>
         /// Gets the installed ram in bytes.
         /// </summary>
         public int InstalledRam { get; private set; }
+
         /// <summary>
         /// Gets a value indicating whether this CPU is little endian.
         /// </summary>
@@ -189,42 +219,52 @@
         /// Placeholder for processor index
         /// </summary>
         private string Processor { get; set; }
+
         /// <summary>
         /// Gets the CPU model name.
         /// </summary>
         public string ModelName { get; private set; }
+
         /// <summary>
         /// Gets a list of supported CPU features.
         /// </summary>
         public string[] Features { get; private set; }
+
         /// <summary>
         /// Gets the CPU implementer hex code.
         /// </summary>
         public string CpuImplementer { get; private set; }
+
         /// <summary>
         /// Gets the CPU architecture code.
         /// </summary>
         public string CpuArchitecture { get; private set; }
+
         /// <summary>
         /// Gets the CPU variant code.
         /// </summary>
         public string CpuVariant { get; private set; }
+
         /// <summary>
         /// Gets the CPU part code.
         /// </summary>
         public string CpuPart { get; private set; }
+
         /// <summary>
         /// Gets the CPU revision code.
         /// </summary>
         public string CpuRevision { get; private set; }
+
         /// <summary>
         /// Gets the hardware model number.
         /// </summary>
         public string Hardware { get; private set; }
+
         /// <summary>
         /// Gets the hardware revision number.
         /// </summary>
         public string Revision { get; private set; }
+
         /// <summary>
         /// Gets the serial number.
         /// </summary>
@@ -240,11 +280,11 @@
         {
             var properties = typeof(SystemInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(p => p.CanRead && (
-                    p.PropertyType == typeof(string) || 
-                    p.PropertyType == typeof(string[]) || 
-                    p.PropertyType == typeof(int) ||
-                    p.PropertyType == typeof(bool)
-                    ))
+                                p.PropertyType == typeof(string) ||
+                                p.PropertyType == typeof(string[]) ||
+                                p.PropertyType == typeof(int) ||
+                                p.PropertyType == typeof(bool)
+                            ))
                 .ToArray();
 
             var properyValues = new List<string>
@@ -258,7 +298,7 @@
             {
                 if (property.PropertyType != typeof(string[]))
                 {
-                    properyValues.Add($"\t{property.Name, -22}: {property.GetValue(this)}");
+                    properyValues.Add($"\t{property.Name,-22}: {property.GetValue(this)}");
                 }
                 else
                 {
@@ -266,7 +306,7 @@
                     properyValues.Add($"\t{property.Name,-22}: {concatValues}");
                 }
             }
-            
+
             return string.Join(Environment.NewLine, properyValues.ToArray());
         }
     }

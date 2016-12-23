@@ -187,12 +187,12 @@
         /// Gets a value indicating whether RGB values are sent as GBR
         /// This is typically true
         /// </summary>
-        public bool ReverseRgb { get; private set; }
+        public bool ReverseRgb { get; }
 
         /// <summary>
         /// Gets the LED count.
         /// </summary>
-        public int LedCount { get; private set; }
+        public int LedCount { get; }
 
         /// <summary>
         /// Gets the <see cref="LedStripPixel"/> at the specified index.
@@ -202,10 +202,7 @@
         /// </value>
         /// <param name="index">The index.</param>
         /// <returns></returns>
-        public LedStripPixel this[int index]
-        {
-            get { return GetPixel(index); }
-        }
+        public LedStripPixel this[int index] => GetPixel(index);
 
         #endregion
 
@@ -286,6 +283,8 @@
             var brightnessByte = default(byte);
 
             { // Parameter validation
+                if (pixels == null)
+                    throw new ArgumentNullException(nameof(pixels));
 
                 if (sourceOffsetX < 0 || sourceOffsetX > (pixels.ImageWidth - targetLength) - 1)
                     throw new ArgumentOutOfRangeException(nameof(sourceOffsetX));
@@ -303,9 +302,6 @@
 
                 if (targetOffset + targetLength > LedCount)
                     throw new ArgumentOutOfRangeException(nameof(targetLength));
-
-                if (pixels == null)
-                    throw new ArgumentNullException(nameof(pixels));
 
                 // Brightness Setting
                 if (brightness < 0f) brightness = 0f;

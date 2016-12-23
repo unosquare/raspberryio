@@ -7,7 +7,7 @@ namespace Unosquare.RaspberryIO
     public class NetworkSettings
     {
 
-        private static Lazy<NetworkSettings> m_Instance = new Lazy<NetworkSettings>(() => { return new NetworkSettings(); }, true);
+        private static Lazy<NetworkSettings> m_Instance = new Lazy<NetworkSettings>(() => new NetworkSettings(), true);
 
         public static NetworkSettings Instance { get { return m_Instance.Value; } }
 
@@ -16,8 +16,6 @@ namespace Unosquare.RaspberryIO
         private NetworkSettings()
         {
             
-
-
         }
 
 
@@ -26,8 +24,6 @@ namespace Unosquare.RaspberryIO
             throw new NotImplementedException();
             var result = new List<NetworkAdapter>();
             var interfacesOutput = ProcessHelper.GetProcessOutputAsync("ifconfig").Result;
-            
-
         }
 
     }
