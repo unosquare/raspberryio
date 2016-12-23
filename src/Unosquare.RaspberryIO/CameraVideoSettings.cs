@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO
 {
+    using Swan;
     using System;
     using System.Text;
 
@@ -99,6 +100,5 @@
             Console.WriteLine($"{CommandName} {result}");
             return result;
         }
-
     }
 }

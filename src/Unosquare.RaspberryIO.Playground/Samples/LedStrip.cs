@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-    using System.Runtime.InteropServices;
+    using Unosquare.Swan.Formatters;
 
     /// <summary>
     /// Represents an SPI addressable strip of RGB LEDs
@@ -15,7 +13,6 @@
     /// </summary>
     public class LedStrip
     {
-
         #region Support Classes
 
         /// <summary>
@@ -350,153 +347,5 @@
         }
 
         #endregion
-
     }
-
-    /// <summary>
-    /// Represents a buffer of bytes containing pixels in BGRA byte order
-    /// loaded from an image that is passed on to the constructor
-    /// This class should be promoted to Swan maybe?
-    /// https://github.com/unosquare/swan
-    /// </summary>
-    public class PixelData
-    {
-
-        #region Constant Definitions
-
-        public const int BytesPerPixel = 4;
-
-        public const int BOffset = 0;
-        public const int GOffset = 1;
-        public const int ROffset = 2;
-        public const int AOffset = 3;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PixelData"/> class.
-        /// Data will not contain left-over stride bytes
-        /// </summary>
-        /// <param name="sourceImage">The source image.</param>
-        public PixelData(Image sourceImage)
-        {
-
-            // Acquire or create the source bitmap in a manageable format
-            var sourceBitmap = sourceImage as Bitmap;
-            var disposeSourceBitmap = false;
-            if (sourceBitmap == null || sourceBitmap.PixelFormat != PixelFormat)
-            {
-                sourceBitmap = new Bitmap(sourceImage.Width, sourceImage.Height, PixelFormat);
-                using (var g = Graphics.FromImage(sourceBitmap))
-                {
-                    //g.Clear(Color.Black);
-                    g.DrawImage(sourceImage, 0, 0);
-                }
-
-                // We created this bitmap. Make sure we clear it from memory
-                disposeSourceBitmap = true;
-            }
-
-            // Lock the bits
-            var sourceDataLocker = sourceBitmap.LockBits(
-                new Rectangle(0, 0, sourceBitmap.Width, sourceBitmap.Height),
-                ImageLockMode.ReadOnly, sourceBitmap.PixelFormat);
-
-            // Set basic properties
-            ImageWidth = sourceBitmap.Width;
-            ImageHeight = sourceBitmap.Height;
-            LineStride = sourceDataLocker.Stride;
-
-            // State variables
-            LineLength = sourceBitmap.Width * BytesPerPixel; // may or may not be equal to the Stride
-            Data = new byte[LineLength * sourceBitmap.Height];
-            var scanLineAddress = sourceDataLocker.Scan0; // get a pointer to the first pixel of the image
-
-            // copy line by line in order to ignore the useless left-over stride
-            for (var y = 0; y < sourceBitmap.Height; y++)
-            {
-                scanLineAddress = sourceDataLocker.Scan0 + (sourceDataLocker.Stride * y);
-                Marshal.Copy(scanLineAddress, Data, (y * LineLength), LineLength);
-            }
-
-            // finally unlock the bitmap
-            sourceBitmap.UnlockBits(sourceDataLocker);
-
-            // dispose the source bitmap if we had to create it
-            if (disposeSourceBitmap)
-            {
-                sourceBitmap.Dispose();
-                sourceBitmap = null;
-            }
-
-        }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Contains all the bytes of the pixel data
-        /// Manual manipulation is not recommended
-        /// </summary>
-        public byte[] Data { get; }
-
-        /// <summary>
-        /// Gets the width of the image.
-        /// </summary>
-        public int ImageWidth { get; }
-
-        /// <summary>
-        /// Gets the height of the image.
-        /// </summary>
-        public int ImageHeight { get; }
-
-        /// <summary>
-        /// Gets the pixel format. This will always be Format32bppArgb
-        /// </summary>
-        public PixelFormat PixelFormat { get; } = PixelFormat.Format32bppArgb;
-
-        /// <summary>
-        /// Gets the length in bytes of a line of pixel data.
-        /// Basically the same as Line Length except Stride might be a little larger as
-        /// some bitmaps might be DWORD-algned
-        /// </summary>
-        public int LineStride { get; }
-
-        /// <summary>
-        /// Gets the length in bytes of a line of pixel data.
-        /// Basically the same as Stride except Stride might be a little larger as
-        /// some bitmaps might be DWORD-algned
-        /// </summary>
-        public int LineLength { get; }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Gets the index of the first byte in the BGRA pixel data for the given image coordinates.
-        /// </summary>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// x
-        /// or
-        /// y
-        /// </exception>
-        public int GetPixelOffset(int x, int y)
-        {
-            if (x < 0 || x > ImageWidth) throw new ArgumentOutOfRangeException(nameof(x));
-            if (y < 0 || y > ImageHeight) throw new ArgumentOutOfRangeException(nameof(y));
-
-            return (y * LineLength) + (x * BytesPerPixel);
-        }
-
-        #endregion
-
-    }
-
 }

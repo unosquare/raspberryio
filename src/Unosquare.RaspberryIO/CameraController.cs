@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO
 {
     using System;
+    using Unosquare.Swan;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -77,9 +78,9 @@
 
                 return exitCode != 0 ? new byte[] {} : ms.ToArray();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {

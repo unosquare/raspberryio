@@ -1,13 +1,14 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
+    using Unosquare.Swan;
+    using Unosquare.Swan.Formatters;
     using Samples;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading;
     using System.Linq;
-    using System.Reflection;
-
+    
     public class Program
     {
 
@@ -19,8 +20,9 @@
                 TestSystemInfo();
                 //TestCaptureImage();
                 //TestCaptureVideo();
-                TestLedStripGraphics();
+                //TestLedStripGraphics();
                 //TestLedStrip();
+                Console.WriteLine(NetworkSettings.Instance.HostName);
             }
             catch (Exception ex)
             {
@@ -35,12 +37,11 @@
 
         public static void TestLedStripGraphics()
         {
-
             PixelData pixels = null;
 
             try
             {
-                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(EntryAssemblyDirectory, "fractal.jpg")))
+                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(CurrentApp.EntryAssemblyDirectory, "fractal.jpg")))
                 {
                     Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
                     pixels = new PixelData(bitmap);
@@ -263,6 +264,8 @@
             Console.WriteLine($"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins");
             Console.WriteLine($"{Pi.Info}");
             Console.WriteLine($"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}");
+            Console.WriteLine($"Uname {Pi.Info.OsInfo}");
+            Console.WriteLine($"HostName {NetworkSettings.Instance.HostName}");
         }
 
         private static void TestCaptureImage()
@@ -336,27 +339,6 @@
             foreach (var color in colors)
             {
                 Console.WriteLine($"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}");
-            }
-        }
-
-        private static Assembly m_EntryAssembly;
-
-        /// <summary>
-        /// Gets the assembly that started the application.
-        /// </summary>
-        public static Assembly EntryAssembly => m_EntryAssembly ?? (m_EntryAssembly = Assembly.GetEntryAssembly());
-
-        /// <summary>
-        /// Gets the full path of the assembly that started the application.
-        /// </summary>
-        public static string EntryAssemblyDirectory
-        {
-            get
-            {
-                var codeBase = EntryAssembly.CodeBase;
-                var uri = new UriBuilder(codeBase);
-                var path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetDirectoryName(path);
             }
         }
     }

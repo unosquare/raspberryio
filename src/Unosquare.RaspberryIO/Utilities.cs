@@ -3,7 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.IO;
-    using System.Reflection;
+    using Unosquare.Swan;
 
     /// <summary>
     /// Miscellaneous utilities and helper methods.
@@ -14,30 +14,13 @@
         private static bool? m_IsLinuxOS = new bool?();
         private static bool? m_IsRunningAsRoot = new bool?();
         private const string GpioToolFileName = "gpio.2.32";
-
-        /// <summary>
-        /// Gets the entry assembly directory (full path).
-        /// </summary>
-        /// <value>
-        /// The entry assembly directory.
-        /// </value>
-        internal static string EntryAssemblyDirectory
-        {
-            get
-            {
-                var codeBase = Assembly.GetEntryAssembly().CodeBase;
-                var uri = new UriBuilder(codeBase);
-                var path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetDirectoryName(path);
-            }
-        }
-
+        
         /// <summary>
         /// Extracts the library wiring pi binary to the current working directory.
         /// </summary>
         internal static void ExtractLibWiringPi()
         {
-            var targetPath = Path.Combine(EntryAssemblyDirectory, Interop.WiringPiLibrary);
+            var targetPath = Path.Combine(CurrentApp.EntryAssemblyDirectory, Interop.WiringPiLibrary);
             if (File.Exists(targetPath)) return;
 
             using (var stream = typeof(Utilities).Assembly.GetManifestResourceStream($"{typeof(Utilities).Namespace}.{Interop.WiringPiLibrary}"))
@@ -54,7 +37,7 @@
         /// </summary>
         internal static void ExtractGpioTool()
         {
-            var targetPath = Path.Combine(EntryAssemblyDirectory, GpioToolFileName);
+            var targetPath = Path.Combine(CurrentApp.EntryAssemblyDirectory, GpioToolFileName);
             if (File.Exists(targetPath)) return;
 
             using (var stream = typeof(Utilities).Assembly.GetManifestResourceStream($"{typeof(Utilities).Namespace}.{GpioToolFileName}"))
@@ -81,7 +64,7 @@
                 {
                     Arguments = arguments,
                     CreateNoWindow = true,
-                    FileName = Path.Combine(EntryAssemblyDirectory, GpioToolFileName),
+                    FileName = Path.Combine(CurrentApp.EntryAssemblyDirectory, GpioToolFileName),
                     RedirectStandardError = true,
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
@@ -160,21 +143,6 @@
             {
                 return Interop.physPinToGpio(headerPinNumber);
             }
-        }
-
-        /// <summary>
-        /// Clamps the specified minimum.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="value">The value.</param>
-        /// <param name="min">The minimum.</param>
-        /// <param name="max">The maximum.</param>
-        /// <returns></returns>
-        public static T Clamp<T>(this T value, T min, T max)
-            where T : IComparable
-        {
-            if (value.CompareTo(min) < 0) return min;
-            return value.CompareTo(max) > 0 ? max : value;
         }
     }
 }

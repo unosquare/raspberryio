@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO
 {
+    using Swan;
     using System.Globalization;
 
     /// <summary>
@@ -29,7 +30,7 @@
         /// </value>
         decimal W { get; set; }
         /// <summary>
-        /// Gets or sets the heigth in relative coordinates.  (0.0 to 1.0)
+        /// Gets or sets the height in relative coordinates.  (0.0 to 1.0)
         /// </summary>
         /// <value>
         /// The h.

@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO
 {
+    using Swan;
     using System;
-    using System.Linq;
 
     /// <summary>
     /// A simple RGB color class to represent colors in RGB and YUV colorspaces.

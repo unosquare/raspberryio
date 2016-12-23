@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO
 {
+    using Swan;
     using System.Globalization;
     using System.Text;
 
