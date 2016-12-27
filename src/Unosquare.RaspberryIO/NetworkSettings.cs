@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
-using Unosquare.Swan;
-
-namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Net;
+    using Unosquare.Swan;
+
     /// <summary>
     /// Represents the network information
     /// </summary>
@@ -53,6 +53,12 @@ namespace Unosquare.RaspberryIO
                     {
                         Name = line.Substring(0, line.IndexOf(' '))
                     };
+
+                    if (line.IndexOf("HWaddr") > 0)
+                    {
+                        var startIndexHwd = line.IndexOf("HWaddr") + "HWaddr".Length;
+                        adapter.MacAddress = line.Substring(startIndexHwd).Trim();
+                    }
 
                     if (i + 1 >= outputLines.Length) break;
 
@@ -121,9 +127,14 @@ namespace Unosquare.RaspberryIO
         /// <summary>
         /// Gets or sets the name of the access point.
         /// </summary>
-        /// <value>
-        /// The name of the access point.
-        /// </value>
         public string AccessPointName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the mac address.
+        /// </summary>
+        /// <value>
+        /// The mac address.
+        /// </value>
+        public string MacAddress { get; set; }
     }
 }

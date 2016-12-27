@@ -1,19 +1,20 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using Unosquare.Swan;
-    using Unosquare.Swan.Formatters;
     using Samples;
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Threading;
     using System.Linq;
-    
+    using System.Threading;
+    using Unosquare.Swan;
+    using Unosquare.Swan.Formatters;
+
     public class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine($"Starting program at {DateTime.Now}");
+            $"Starting program at {DateTime.Now}".Info();
+
             try
             {
                 TestSystemInfo();
@@ -21,12 +22,10 @@
                 //TestCaptureVideo();
                 //TestLedStripGraphics();
                 //TestLedStrip();
-                Console.WriteLine(NetworkSettings.Instance.HostName);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.GetType()} {ex.Message}");
-                Console.WriteLine(ex.StackTrace);
+                ex.Log();
             }
             finally
             {
@@ -270,7 +269,7 @@
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}".Info();
 
             foreach(var adapter in NetworkSettings.Instance.RetrieveAdapters())
-                Console.WriteLine($"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName}");
+                Console.WriteLine($"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName} MAC Address: {adapter.MacAddress}");
         }
 
         private static void TestCaptureImage()
