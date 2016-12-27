@@ -319,7 +319,8 @@
                                 p.PropertyType == typeof(string) ||
                                 p.PropertyType == typeof(string[]) ||
                                 p.PropertyType == typeof(int) ||
-                                p.PropertyType == typeof(bool)
+                                p.PropertyType == typeof(bool) ||
+                                p.PropertyType == typeof(TimeSpan)
                             ))
                 .ToArray();
 

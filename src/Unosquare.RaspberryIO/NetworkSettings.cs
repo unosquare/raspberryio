@@ -42,8 +42,7 @@ namespace Unosquare.RaspberryIO
             var interfacesOutput = ProcessHelper.GetProcessOutputAsync("ifconfig").Result;
             var wlanOutput = ProcessHelper.GetProcessOutputAsync("iwconfig").Result.Split('\n');
             var outputLines = interfacesOutput.Split('\n').Where(x => string.IsNullOrWhiteSpace(x) == false).ToList().ToArray();
-
-
+            
             for (var i = 0; i < outputLines.Length; i++)
             {
                 var line = outputLines[i];
@@ -127,5 +126,4 @@ namespace Unosquare.RaspberryIO
         /// </value>
         public string AccessPointName { get; set; }
     }
-
 }
