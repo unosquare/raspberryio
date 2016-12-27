@@ -11,7 +11,6 @@
     
     public class Program
     {
-
         public static void Main(string[] args)
         {
             Console.WriteLine($"Starting program at {DateTime.Now}");
@@ -266,9 +265,12 @@
             Console.WriteLine($"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}");
             Console.WriteLine($"Uname {Pi.Info.OsInfo}");
             Console.WriteLine($"HostName {NetworkSettings.Instance.HostName}");
-            Console.WriteLine($"Uptime (seconds) {Pi.Info.Uptime}");
+            $"Uptime (seconds) {Pi.Info.Uptime}".Info();
             var timeSpan = Pi.Info.UptimeTimeSpan;
-            Console.WriteLine($"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}");
+            $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}".Info();
+
+            foreach(var adapter in NetworkSettings.Instance.RetrieveAdapters())
+                Console.WriteLine($"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName}");
         }
 
         private static void TestCaptureImage()
