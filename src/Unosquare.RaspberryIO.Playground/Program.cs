@@ -266,6 +266,9 @@
             Console.WriteLine($"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}");
             Console.WriteLine($"Uname {Pi.Info.OsInfo}");
             Console.WriteLine($"HostName {NetworkSettings.Instance.HostName}");
+            Console.WriteLine($"Uptime (seconds) {Pi.Info.Uptime}");
+            var timeSpan = Pi.Info.UptimeTimeSpan;
+            Console.WriteLine($"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}");
         }
 
         private static void TestCaptureImage()

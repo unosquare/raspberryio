@@ -47,7 +47,7 @@
 
             foreach (var line in cpuInfoLines)
             {
-                var lineParts = line.Split(new[] {':'}, 2);
+                var lineParts = line.Split(new[] { ':' }, 2);
                 if (lineParts.Length != 2)
                     continue;
 
@@ -77,7 +77,7 @@
             var memInfoLines = File.ReadAllLines(MemInfoFilePath);
             foreach (var line in memInfoLines)
             {
-                var lineParts = line.Split(new char[] {':'}, 2);
+                var lineParts = line.Split(new char[] { ':' }, 2);
                 if (lineParts.Length != 2)
                     continue;
 
@@ -88,7 +88,7 @@
                 var parsedMem = 0;
                 if (int.TryParse(memKb, out parsedMem))
                 {
-                    InstalledRam = parsedMem*1024;
+                    InstalledRam = parsedMem * 1024;
                     break;
                 }
 
@@ -109,7 +109,7 @@
                 RaspberryPiVersion = RaspberryPiVersion.Unknown;
                 if (Enum.GetValues(typeof(RaspberryPiVersion)).Cast<int>().Contains(boardVersion))
                 {
-                    RaspberryPiVersion = (RaspberryPiVersion) boardVersion;
+                    RaspberryPiVersion = (RaspberryPiVersion)boardVersion;
                 }
             }
 
@@ -269,6 +269,42 @@
         /// Gets the serial number.
         /// </summary>
         public string Serial { get; private set; }
+
+        /// <summary>
+        /// Gets the uptime (at seconds).
+        /// </summary>
+        /// <value>
+        /// The uptime.
+        /// </value>
+        public ulong Uptime
+        {
+            get
+            {
+                var sysInfo = new Interop.utssysinfo();
+                if (Interop.sysinfo(out sysInfo) == 0)
+                    return sysInfo.uptime;
+
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Gets the uptime timespan.
+        /// </summary>
+        /// <value>
+        /// The uptime time span.
+        /// </value>
+        public TimeSpan UptimeTimeSpan
+        {
+            get
+            {
+                var uptime = Uptime;
+                var hours = (uptime / 3600);
+                var mins = (uptime / 60) - (hours * 60);
+
+                return new TimeSpan((int)hours, (int)mins, 0);
+            }
+        }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
