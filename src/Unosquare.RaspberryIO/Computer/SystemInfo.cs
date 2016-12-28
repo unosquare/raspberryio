@@ -155,9 +155,6 @@
         /// <summary>
         /// Gets the OS information.
         /// </summary>
-        /// <value>
-        /// The os information.
-        /// </value>
         public OsInfo OsInfo { get; }
 
         /// <summary>
@@ -258,9 +255,6 @@
         /// <summary>
         /// Gets the uptime (at seconds).
         /// </summary>
-        /// <value>
-        /// The uptime.
-        /// </value>
         public ulong Uptime
         {
             get
@@ -276,19 +270,14 @@
         /// <summary>
         /// Gets the uptime timespan.
         /// </summary>
-        /// <value>
-        /// The uptime time span.
-        /// </value>
-        public TimeSpan UptimeTimeSpan
-        {
-            get
-            {
-                var uptime = Uptime;
-                var hours = (uptime / 3600);
-                var mins = (uptime / 60) - (hours * 60);
+        public TimeSpan UptimeTimeSpan => TimeSpan.FromSeconds(Uptime);
 
-                return new TimeSpan((int)hours, (int)mins, 0);
-            }
+        /// <summary>
+        /// Reboots this computer.
+        /// </summary>
+        public void Reboot()
+        {
+            Swan.ProcessHelper.GetProcessOutputAsync("reboot");
         }
 
         /// <summary>
