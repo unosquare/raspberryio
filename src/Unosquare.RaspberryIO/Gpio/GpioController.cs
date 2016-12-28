@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Gpio
 {
+    using Computer;
     using Native;
     using Swan.Abstractions;
     using System;
@@ -123,7 +124,7 @@
         /// <exception cref="System.ArgumentException"></exception>
         private bool Initialize(ControllerMode mode)
         {
-            if (Utilities.IsLinuxOS == false)
+            if (SystemInfo.Instance.IsLinuxOS == false)
                 throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion}");
 
             lock (SyncRoot)
@@ -139,7 +140,7 @@
                 {
                     case ControllerMode.DirectWithWiringPiPins:
                         {
-                            if (Utilities.IsRunningAsRoot == false)
+                            if (SystemInfo.Instance.IsRunningAsRoot == false)
                                 throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
 
                             setpuResult = WiringPi.wiringPiSetup();
@@ -147,7 +148,7 @@
                         }
                     case ControllerMode.DirectWithBcmPins:
                         {
-                            if (Utilities.IsRunningAsRoot == false)
+                            if (SystemInfo.Instance.IsRunningAsRoot == false)
                                 throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
 
                             setpuResult = WiringPi.wiringPiSetupGpio();
@@ -155,7 +156,7 @@
                         }
                     case ControllerMode.DirectWithHeaderPins:
                         {
-                            if (Utilities.IsRunningAsRoot == false)
+                            if (SystemInfo.Instance.IsRunningAsRoot == false)
                                 throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
 
                             setpuResult = WiringPi.wiringPiSetupPhys();
@@ -459,6 +460,36 @@
         /// Gets the number of registered pins in the controller.
         /// </summary>
         public int Count => PinCollection.Count;
+
+        #endregion
+
+        #region Helper Methods
+
+        /// <summary>
+        /// Converts the Wirings Pi pin number to the BCM pin number.
+        /// </summary>
+        /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>
+        /// <returns></returns>
+        internal static int WiringPiToBcmPinNumber(int wiringPiPinNumber)
+        {
+            lock (SyncRoot)
+            {
+                return WiringPi.wpiPinToGpio(wiringPiPinNumber);
+            }
+        }
+
+        /// <summary>
+        /// Converts the Physical (Header) pin number to BCM pin number.
+        /// </summary>
+        /// <param name="headerPinNumber">The header pin number.</param>
+        /// <returns></returns>
+        internal static int HaderToBcmPinNumber(int headerPinNumber)
+        {
+            lock (SyncRoot)
+            {
+                return WiringPi.physPinToGpio(headerPinNumber);
+            }
+        }
 
         #endregion
 

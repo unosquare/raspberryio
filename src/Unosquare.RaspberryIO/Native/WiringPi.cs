@@ -5,8 +5,10 @@
 
     /// <summary>
     /// Provides native C WiringPi Library function call wrappers
+    /// All credit for the native library goes to the author of http://wiringpi.com/
+    /// The wrappers were written based on https://github.com/WiringPi/WiringPi/blob/master/wiringPi/wiringPi.h
     /// </summary>
-    internal partial class WiringPi
+    public partial class WiringPi
     {
         internal const string WiringPiLibrary = "libwiringPi.so.2.32";
 

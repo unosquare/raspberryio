@@ -24,7 +24,7 @@ namespace Unosquare.RaspberryIO.Gpio
         {
             PinNumber = (int)wiringPiPinNumber;
             WiringPiPinNumber = wiringPiPinNumber;
-            BcmPinNumber = ((int)wiringPiPinNumber).WiringPiToBcmPinNumber();
+            BcmPinNumber = GpioController.WiringPiToBcmPinNumber((int)wiringPiPinNumber);
             HeaderPinNumber = headerPinNumber;
             Header = (PinNumber >= 17 && PinNumber <= 20) ?
                 GpioHeader.P5 : GpioHeader.P1;
