@@ -1,4 +1,6 @@
-﻿namespace Unosquare.RaspberryIO
+﻿using Unosquare.RaspberryIO.Resources;
+
+namespace Unosquare.RaspberryIO
 {
     using Camera;
     using Computer;
@@ -12,6 +14,8 @@
     {
         private static readonly object SyncLock = new object();
 
+        internal static string LoggerSource = typeof(Pi).Namespace;
+
         /// <summary>
         /// Initializes the <see cref="Pi"/> class.
         /// </summary>
@@ -19,9 +23,10 @@
         {
             lock (SyncLock)
             {
-                Utilities.ExtractLibWiringPi();
-                Utilities.ExtractGpioTool();
+                // Extraction of embedded resources
+                EmbeddedResources.ExtractAll();
 
+                // Instance assignments
                 Gpio = GpioController.Instance;
                 Info = SystemInfo.Instance;
                 Timing = Timing.Instance;

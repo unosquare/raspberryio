@@ -17,6 +17,9 @@
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
 
+        private static bool? m_IsLinuxOS = new bool?();
+        private static bool? m_IsRunningAsRoot = new bool?();
+
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
         /// </summary>
@@ -43,21 +46,22 @@
 
             #region Extract CPU information
 
-            var cpuInfoLines = File.ReadAllLines(CpuInfoFilePath);
-
-            foreach (var line in cpuInfoLines)
+            if (File.Exists(CpuInfoFilePath))
             {
-                var lineParts = line.Split(new[] { ':' }, 2);
-                if (lineParts.Length != 2)
-                    continue;
+                var cpuInfoLines = File.ReadAllLines(CpuInfoFilePath);
 
-                var propertyKey = lineParts[0].Trim().Replace(" ", "");
-                var propertyStringValue = lineParts[1].Trim();
-
-                if (propDictionary.ContainsKey(propertyKey))
+                foreach (var line in cpuInfoLines)
                 {
-                    var property = propDictionary[propertyKey];
+                    var lineParts = line.Split(new[] { ':' }, 2);
+                    if (lineParts.Length != 2)
+                        continue;
 
+                    var propertyKey = lineParts[0].Trim().Replace(" ", "");
+                    var propertyStringValue = lineParts[1].Trim();
+
+                    if (!propDictionary.ContainsKey(propertyKey)) continue;
+
+                    var property = propDictionary[propertyKey];
                     if (property.PropertyType == typeof(string))
                     {
                         property.SetValue(this, propertyStringValue);
@@ -74,46 +78,56 @@
 
             #region Extract Memory Information
 
-            var memInfoLines = File.ReadAllLines(MemInfoFilePath);
-            foreach (var line in memInfoLines)
+            if (File.Exists(MemInfoFilePath))
             {
-                var lineParts = line.Split(new[] { ':' }, 2);
-                if (lineParts.Length != 2)
-                    continue;
-
-                if (lineParts[0].ToLowerInvariant().Trim().Equals("memtotal") == false)
-                    continue;
-
-                var memKb = lineParts[1].ToLowerInvariant().Trim().Replace("kb", "").Trim();
-                int parsedMem;
-                if (int.TryParse(memKb, out parsedMem))
+                var memInfoLines = File.ReadAllLines(MemInfoFilePath);
+                foreach (var line in memInfoLines)
                 {
-                    InstalledRam = parsedMem * 1024;
-                    break;
-                }
+                    var lineParts = line.Split(new[] { ':' }, 2);
+                    if (lineParts.Length != 2)
+                        continue;
 
+                    if (lineParts[0].ToLowerInvariant().Trim().Equals("memtotal") == false)
+                        continue;
+
+                    var memKb = lineParts[1].ToLowerInvariant().Trim().Replace("kb", "").Trim();
+                    int parsedMem;
+                    if (int.TryParse(memKb, out parsedMem))
+                    {
+                        InstalledRam = parsedMem * 1024;
+                        break;
+                    }
+
+                }
             }
 
             #endregion
 
             #region Board Version and Form Factor
 
-            int boardVersion;
-            if (string.IsNullOrWhiteSpace(Revision) == false &&
-                int.TryParse(
-                    Revision.ToUpperInvariant(),
-                    NumberStyles.HexNumber,
-                    CultureInfo.InvariantCulture,
-                    out boardVersion))
+            try
             {
-                RaspberryPiVersion = PiVersion.Unknown;
-                if (Enum.GetValues(typeof(PiVersion)).Cast<int>().Contains(boardVersion))
+                int boardVersion;
+                if (string.IsNullOrWhiteSpace(Revision) == false &&
+                    int.TryParse(
+                        Revision.ToUpperInvariant(),
+                        NumberStyles.HexNumber,
+                        CultureInfo.InvariantCulture,
+                        out boardVersion))
                 {
-                    RaspberryPiVersion = (PiVersion)boardVersion;
+                    RaspberryPiVersion = PiVersion.Unknown;
+                    if (Enum.GetValues(typeof(PiVersion)).Cast<int>().Contains(boardVersion))
+                    {
+                        RaspberryPiVersion = (PiVersion)boardVersion;
+                    }
                 }
-            }
 
-            WiringPiBoardRevision = WiringPi.piBoardRev();
+                WiringPiBoardRevision = WiringPi.piBoardRev();
+            }
+            catch
+            {
+                /* Ignore */
+            }
 
             #endregion
 
@@ -132,17 +146,23 @@
             #region Extract OS Info
 
             utsname unameInfo;
-            Standard.uname(out unameInfo);
-
-            OsInfo = new OsInfo
+            try
             {
-                DomainName = unameInfo.domainname,
-                Machine = unameInfo.machine,
-                NodeName = unameInfo.nodename,
-                Release = unameInfo.release,
-                SysName = unameInfo.sysname,
-                Version = unameInfo.version
-            };
+                Standard.uname(out unameInfo);
+                OperatingSystem = new OsInfo
+                {
+                    DomainName = unameInfo.domainname,
+                    Machine = unameInfo.machine,
+                    NodeName = unameInfo.nodename,
+                    Release = unameInfo.release,
+                    SysName = unameInfo.sysname,
+                    Version = unameInfo.version
+                };
+            }
+            catch
+            {
+                OperatingSystem = new OsInfo();
+            }
 
             #endregion
         }
@@ -155,7 +175,10 @@
         /// <summary>
         /// Gets the OS information.
         /// </summary>
-        public OsInfo OsInfo { get; }
+        /// <value>
+        /// The os information.
+        /// </value>
+        public OsInfo OperatingSystem { get; }
 
         /// <summary>
         /// Gets the Raspberry Pi version.
@@ -186,6 +209,8 @@
                 return 0;
             }
         }
+
+
 
         /// <summary>
         /// Gets the installed ram in bytes.
@@ -255,21 +280,32 @@
         /// <summary>
         /// Gets the uptime (at seconds).
         /// </summary>
+        /// <value>
+        /// The uptime.
+        /// </value>
         public ulong Uptime
         {
             get
             {
-                utssysinfo sysInfo;
-                if (Standard.sysinfo(out sysInfo) == 0)
-                    return sysInfo.uptime;
+                try
+                {
+                    utssysinfo sysInfo;
+                    if (Standard.sysinfo(out sysInfo) == 0)
+                        return sysInfo.uptime;
+                }
+                catch
+                {
+                    /* Ignore */
+                }
 
                 return 0;
             }
         }
 
         /// <summary>
-        /// Gets the uptime timespan.
+        /// Gets the uptime in TimeSpan.
         /// </summary>
+        /// <value>
         public TimeSpan UptimeTimeSpan => TimeSpan.FromSeconds(Uptime);
 
         /// <summary>
@@ -278,6 +314,58 @@
         public void Reboot()
         {
             Swan.ProcessHelper.GetProcessOutputAsync("reboot");
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the current assembly running on a Linux Operating System.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is Linux os; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsLinuxOS
+        {
+            get
+            {
+                lock (SyncRoot)
+                {
+                    if (m_IsLinuxOS.HasValue == false)
+                    {
+                        m_IsLinuxOS = Environment.OSVersion.Platform == PlatformID.Unix;
+                    }
+
+                    return m_IsLinuxOS.Value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this program is running as Root
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is running as root; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsRunningAsRoot
+        {
+            get
+            {
+                lock (SyncRoot)
+                {
+                    if (m_IsRunningAsRoot.HasValue == false)
+                    {
+                        try
+                        {
+                            m_IsRunningAsRoot = Standard.getuid() == 0;
+                        }
+                        catch
+                        {
+                            m_IsRunningAsRoot = false;
+                        }
+                        
+                    }
+
+                    return m_IsRunningAsRoot.Value;
+                }
+            }
         }
 
         /// <summary>
@@ -313,8 +401,12 @@
                 }
                 else
                 {
-                    var concatValues = string.Join(" ", property.GetValue(this) as string[]);
-                    properyValues.Add($"\t{property.Name,-22}: {concatValues}");
+                    var allValues = property.GetValue(this) as string[];
+                    if (allValues != null)
+                    {
+                        var concatValues = string.Join(" ", allValues);
+                        properyValues.Add($"\t{property.Name,-22}: {concatValues}");
+                    }
                 }
             }
 

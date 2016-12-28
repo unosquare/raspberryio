@@ -1,4 +1,6 @@
-﻿namespace Unosquare.RaspberryIO.Camera
+﻿using System.CodeDom;
+
+namespace Unosquare.RaspberryIO.Camera
 {
     using Swan;
     using System;
@@ -79,9 +81,9 @@
                 if (CaptureDisplayPreviewAtResolution) sb.Append($" -fp");
             }
 
-            var result = sb.ToString();
-            Console.WriteLine($"{CommandName} {result}");
-            return result;
+            var commandArgs = sb.ToString();
+            $"{CommandName} {commandArgs}".Trace(Pi.LoggerSource);
+            return commandArgs;
         }
     }
 }

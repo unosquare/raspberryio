@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Native
 {
+    using Swan;
     using System;
     using System.Runtime.InteropServices;
 
@@ -39,7 +40,7 @@
             catch
             {
                 // TODO: strerror not working great...
-                Console.WriteLine("BAD STUFF OCCURRED");
+                $"Could not retrieve native error description using {nameof(Standard.strerror)}".Error(Pi.LoggerSource);
             }
 
             ErrorCode = errorCode;

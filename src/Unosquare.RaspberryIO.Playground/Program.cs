@@ -19,7 +19,10 @@
 
             try
             {
-                TestSystemInfo();
+                Computer.SystemInfo.Instance.ToString().Debug();
+                return;
+                
+                //TestSystemInfo();
                 //TestCaptureImage();
                 //TestCaptureVideo();
                 //TestLedStripGraphics();
@@ -31,7 +34,10 @@
             }
             finally
             {
-                Console.WriteLine("Program finished.");
+                "Program finished.".Info();
+                Terminal.Flush(TimeSpan.FromSeconds(2));
+                if (System.Diagnostics.Debugger.IsAttached)
+                    "Press any key to exit . . .".ReadKey();
             }
         }
 
@@ -119,7 +125,7 @@
                 strip.Render();
 
                 var avg = frameRenderTimes.Average();
-                Console.WriteLine($"Frames: {currentFrameNumber + 1}, FPS: {Math.Round((1000f / frameTimes.Average()), 3)}, " + 
+                Console.WriteLine($"Frames: {currentFrameNumber + 1}, FPS: {Math.Round((1000f / frameTimes.Average()), 3)}, " +
                     $"Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}");
                 strip.Render();
 
@@ -264,13 +270,13 @@
             Console.WriteLine($"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins");
             Console.WriteLine($"{Pi.Info}");
             Console.WriteLine($"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}");
-            Console.WriteLine($"Uname {Pi.Info.OsInfo}");
+            Console.WriteLine($"Uname {Pi.Info.OperatingSystem}");
             Console.WriteLine($"HostName {Computer.NetworkSettings.Instance.HostName}");
             $"Uptime (seconds) {Pi.Info.Uptime}".Info();
             var timeSpan = Pi.Info.UptimeTimeSpan;
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}".Info();
 
-            foreach(var adapter in Computer.NetworkSettings.Instance.RetrieveAdapters())
+            foreach (var adapter in Computer.NetworkSettings.Instance.RetrieveAdapters())
                 Console.WriteLine($"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName} MAC Address: {adapter.MacAddress}");
         }
 
