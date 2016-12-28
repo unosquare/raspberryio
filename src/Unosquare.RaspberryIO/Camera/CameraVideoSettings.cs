@@ -96,9 +96,9 @@
             if (CaptureInterleaveHeaders)
                 sb.Append($" -ih");
 
-            var result = sb.ToString();
-            Console.WriteLine($"{CommandName} {result}");
-            return result;
+            var commandArgs = sb.ToString();
+            $"{CommandName} {commandArgs}".Trace(Pi.LoggerSource);
+            return commandArgs;
         }
     }
 }

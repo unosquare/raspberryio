@@ -14,6 +14,8 @@ namespace Unosquare.RaspberryIO
     {
         private static readonly object SyncLock = new object();
 
+        internal static string LoggerSource = typeof(Pi).Namespace;
+
         /// <summary>
         /// Initializes the <see cref="Pi"/> class.
         /// </summary>
