@@ -1,28 +1,12 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Gpio
 {
-    using System;
+    using Swan.Abstractions;
 
     /// <summary>
     /// The SPI Bus containing the 2 SPI channels
     /// </summary>
-    public class SpiBus
+    public class SpiBus : SingletonBase<SpiBus>
     {
-        private static SpiBus m_Instance = null;
-
-        /// <summary>
-        /// Gets the singleton's instance.
-        /// </summary>
-        internal static SpiBus Instance
-        {
-            get
-            {
-                lock (Pi.SyncLock)
-                {
-                    return m_Instance ?? (m_Instance = new SpiBus());
-                }
-            }
-        }
-
         /// <summary>
         /// Prevents a default instance of the <see cref="SpiBus"/> class from being created.
         /// </summary>

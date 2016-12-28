@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Native
 {
     using System;
     using System.Runtime.InteropServices;
@@ -7,7 +7,7 @@
     /// Represents a low-level exception, typically thrown when return codes from a
     /// low-level operation is non-zero or in some cases when it is less than zero.
     /// </summary>
-    /// <seealso cref="System.Exception" />
+    /// <seealso cref="Exception" />
     public class HardwareException : Exception
     {
         /// <summary>
@@ -15,8 +15,8 @@
         /// </summary>
         /// <param name="className">Name of the class.</param>
         /// <param name="methodName">Name of the method.</param>
-        /// <exception cref="Unosquare.RaspberryIO.HardwareException"></exception>
-        static public void Throw(string className, string methodName)
+        /// <exception cref="Unosquare.RaspberryIO.Native.HardwareException"></exception>
+        public static void Throw(string className, string methodName)
         {
             var errno = Marshal.GetLastWin32Error();
             throw new HardwareException(errno, $"{className}.{methodName}");
@@ -34,7 +34,7 @@
 
             try
             {
-                ExtendedMessage = Interop.strerror(errorCode);
+                ExtendedMessage = Standard.strerror(errorCode);
             }
             catch
             {

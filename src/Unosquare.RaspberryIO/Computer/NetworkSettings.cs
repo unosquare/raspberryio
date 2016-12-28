@@ -1,24 +1,17 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using System;
+    using Swan;
+    using Swan.Abstractions;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Net;
-    using Unosquare.Swan;
 
     /// <summary>
     /// Represents the network information
     /// </summary>
-    public class NetworkSettings
+    public class NetworkSettings : SingletonBase<NetworkSettings>
     {
-        private static Lazy<NetworkSettings> m_Instance = new Lazy<NetworkSettings>(() => new NetworkSettings(), true);
-
-        /// <summary>
-        /// Gets the instance.
-        /// </summary>
-        /// <value>
-        public static NetworkSettings Instance { get { return m_Instance.Value; } }
 
         private ReadOnlyCollection<NetworkAdapter> m_Adapters;
 

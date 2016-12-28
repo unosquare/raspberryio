@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Camera
 {
     using Swan;
     using System;

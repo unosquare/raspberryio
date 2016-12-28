@@ -1,8 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO.Playground.Samples
 {
+    using Gpio;
+    using Swan;
+    using Swan.Formatters;
     using System;
     using System.Collections.Generic;
-    using Unosquare.Swan.Formatters;
 
     /// <summary>
     /// Represents an SPI addressable strip of RGB LEDs
@@ -48,9 +50,7 @@
                 set
                 {
                     // clamp value
-                    if (value < 0f) value = 0f;
-                    if (value > 1f) value = 1f;
-
+                    value = value.Clamp(0f, 1f);
                     var brightnessByte = (byte)(value * 31);
                     Owner.FrameBuffer[BaseAddress] = (byte)(brightnessByte | BrightnessSetMask);
                 }

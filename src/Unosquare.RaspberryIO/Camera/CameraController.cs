@@ -1,7 +1,8 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Camera
 {
+    using Swan;
+    using Swan.Abstractions;
     using System;
-    using Unosquare.Swan;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,32 +11,16 @@
     /// The Raspberry Pi's camera controller wrapping raspistill and raspivid programs.
     /// This class is a singleton
     /// </summary>
-    public class CameraController
+    public class CameraController : SingletonBase<CameraController>
     {
         #region Private Declarations
 
-        private static CameraController m_Instance = null;
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
-        private static readonly object SyncLock = new object();
-        private static readonly CancellationTokenSource VideoCts = new CancellationTokenSource();
+        private static readonly CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
 
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// Gets the instance of the Pi's camera controller.
-        /// </summary>
-        internal static CameraController Instance
-        {
-            get
-            {
-                lock (SyncLock)
-                {
-                    return m_Instance ?? (m_Instance = new CameraController());
-                }
-            }
-        }
 
         /// <summary>
         /// Gets a value indicating whether the camera module is busy.
@@ -46,7 +31,7 @@
         public bool IsBusy => OperationDone.IsSet == false;
 
         #endregion
-        
+
         #region Image Capture Methods
 
         /// <summary>
@@ -68,19 +53,15 @@
             {
                 OperationDone.Reset();
 
-                var ms = new MemoryStream();
+                var output = new MemoryStream();
                 var exitCode =
                     await ProcessHelper.RunProcessAsync(settings.CommandName, settings.CreateProcessArguments(),
                         (data, proc) =>
                         {
-                            ms.Write(data, 0, data.Length);
+                            output.Write(data, 0, data.Length);
                         }, null, true, ct);
 
-                return exitCode != 0 ? new byte[] {} : ms.ToArray();
-            }
-            catch (Exception)
-            {
-                throw;
+                return exitCode != 0 ? new byte[] { } : output.ToArray();
             }
             finally
             {
@@ -160,7 +141,7 @@
                     (data, proc) =>
                     {
                         onDataCallback?.Invoke(data);
-                    }, null, true, VideoCts.Token);
+                    }, null, true, VideoTokenSource.Token);
 
                 onExitCallback?.Invoke();
             }
@@ -225,10 +206,10 @@
                 OperationDone.Reset();
                 Task.Factory.StartNew(() => VideoWorkerDoWork(settings, onDataCallback, onExitCallback));
             }
-            catch (Exception ex)
+            catch
             {
                 OperationDone.Set();
-                throw ex;
+                throw;
             }
         }
 
@@ -237,13 +218,13 @@
         /// </summary>
         public void CloseVideoStream()
         {
-            lock (SyncLock)
+            lock (SyncRoot)
             {
                 if (IsBusy == false)
                     return;
 
-                if (VideoCts.IsCancellationRequested == false)
-                    VideoCts.Cancel();
+                if (VideoTokenSource.IsCancellationRequested == false)
+                    VideoTokenSource.Cancel();
             }
 
         }

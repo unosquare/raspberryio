@@ -1,5 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO
 {
+    using Camera;
+    using Computer;
+    using Gpio;
+    using Native;
+
     /// <summary>
     /// Our main character. Provides access to the Raspberry Pi's GPIO, system and board information and Camera
     /// </summary>
@@ -21,7 +26,7 @@
                 Info = SystemInfo.Instance;
                 Timing = Timing.Instance;
                 Spi = SpiBus.Instance;
-                I2c = I2cBus.Instance;
+                I2C = I2CBus.Instance;
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
             }
@@ -52,7 +57,7 @@
         /// <summary>
         /// Provides access to the functionality of the i2c bus.
         /// </summary>
-        public static I2cBus I2c { get; }
+        public static I2CBus I2C { get; }
 
         /// <summary>
         /// Provides access to the official Raspberry Pi Camera

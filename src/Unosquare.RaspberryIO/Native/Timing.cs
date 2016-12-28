@@ -1,14 +1,15 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Native
 {
+    using Swan;
+    using Swan.Abstractions;
     using System;
+
 
     /// <summary>
     /// Provides access to timing and threading properties and methods
     /// </summary>
-    public class Timing
+    public class Timing : SingletonBase<Timing>
     {
-        private static Timing m_Instance = null;
-
         /// <summary>
         /// Prevents a default instance of the <see cref="Timing"/> class from being created.
         /// </summary>
@@ -16,21 +17,6 @@
         private Timing()
         {
 
-        }
-
-        /// <summary>
-        /// Provides access to the (singleton) Time Functions
-        /// This property is thread-safe
-        /// </summary>
-        internal static Timing Instance
-        {
-            get
-            {
-                lock (Pi.SyncLock)
-                {
-                    return m_Instance ?? (m_Instance = new Timing());
-                }
-            }
         }
 
         /// <summary>
@@ -45,7 +31,7 @@
         {
             get
             {
-                lock (Pi.SyncLock) { return Interop.millis(); }
+                lock (Pi.SyncLock) { return WiringPi.millis(); }
             }
         }
 
@@ -61,7 +47,7 @@
         {
             get
             {
-                lock (Pi.SyncLock) { return Interop.micros(); }
+                lock (Pi.SyncLock) { return WiringPi.micros(); }
             }
         }
 
@@ -73,7 +59,7 @@
         /// <param name="value">The value.</param>
         public static void SleepMilliseconds(uint value)
         {
-            Interop.delay(value);
+            WiringPi.delay(value);
         }
 
         /// <summary>
@@ -88,7 +74,7 @@
         /// <param name="value">The value.</param>
         public void SleepMicroseconds(uint value)
         {
-            Interop.delayMicroseconds(value);
+            WiringPi.delayMicroseconds(value);
         }
 
         /// <summary>
@@ -102,12 +88,11 @@
         /// <param name="priority">The priority.</param>
         public void SetThreadPriority(int priority)
         {
-            if (priority > 99) priority = 99;
-            if (priority < 0) priority = 0;
+            priority = priority.Clamp(0, 99);
 
             lock (Pi.SyncLock)
             {
-                var result = Interop.piHiPri(priority);
+                var result = WiringPi.piHiPri(priority);
                 if (result < 0) HardwareException.Throw(nameof(Timing), nameof(SetThreadPriority));
             }
         }
@@ -123,7 +108,7 @@
             if (worker == null)
                 throw new ArgumentNullException(nameof(worker));
 
-            var result = Interop.piThreadCreate(worker);
+            var result = WiringPi.piThreadCreate(worker);
             if (result != 0) HardwareException.Throw(nameof(Timing), nameof(CreateThread));
         }
 
@@ -133,9 +118,9 @@
         /// it will be stalled until the first process has unlocked the same key.
         /// </summary>
         /// <param name="key">The key.</param>
-        public void Lock(LockKey key)
+        public void Lock(ThreadLockKey key)
         {
-            Interop.piLock((int)key);
+            WiringPi.piLock((int)key);
         }
 
         /// <summary>
@@ -144,9 +129,9 @@
         /// it will be stalled until the first process has unlocked the same key.
         /// </summary>
         /// <param name="key">The key.</param>
-        public void Unlock(LockKey key)
+        public void Unlock(ThreadLockKey key)
         {
-            Interop.piUnlock((int)key);
+            WiringPi.piUnlock((int)key);
         }
     }
 }

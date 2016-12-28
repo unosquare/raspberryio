@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Camera
 {
     using Swan;
     using System;
@@ -6,33 +6,33 @@
     /// <summary>
     /// A simple RGB color class to represent colors in RGB and YUV colorspaces.
     /// </summary>
-    public class Color
+    public class CameraColor
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Color"/> class.
+        /// Initializes a new instance of the <see cref="CameraColor"/> class.
         /// </summary>
         /// <param name="r">The red.</param>
         /// <param name="g">The green.</param>
         /// <param name="b">The blue.</param>
-        public Color(int r, int g, int b)
+        public CameraColor(int r, int g, int b)
             : this(r, g, b, string.Empty)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Color"/> class.
+        /// Initializes a new instance of the <see cref="CameraColor"/> class.
         /// </summary>
         /// <param name="r">The red.</param>
         /// <param name="g">The green.</param>
         /// <param name="b">The blue.</param>
         /// <param name="name">The well-known color name.</param>
-        public Color(int r, int g, int b, string name)
+        public CameraColor(int r, int g, int b, string name)
         {
             RGB = new byte[] { Convert.ToByte(r.Clamp(0, 255)), Convert.ToByte(g.Clamp(0, 255)), Convert.ToByte(b.Clamp(0, 255)) };
 
-            float y = R * .299000f + G * .587000f + B * .114000f;
-            float u = R * -.168736f + G * -.331264f + B * .500000f + 128f;
-            float v = R * .500000f + G * -.418688f + B * -.081312f + 128f;
+            var y = R * .299000f + G * .587000f + B * .114000f;
+            var u = R * -.168736f + G * -.331264f + B * .500000f + 128f;
+            var v = R * .500000f + G * -.418688f + B * -.081312f + 128f;
 
             YUV = new byte[] { (byte)y.Clamp(0, 255), (byte)u.Clamp(0, 255), (byte)v.Clamp(0, 255) };
             Name = name;
@@ -105,26 +105,26 @@
         /// <summary>
         /// Gets the predefined white color.
         /// </summary>
-        public static Color White => new Color(255, 255, 255, nameof(White));
+        public static CameraColor White => new CameraColor(255, 255, 255, nameof(White));
         
         /// <summary>
         /// Gets the predefined red color.
         /// </summary>
-        public static Color Red => new Color(255, 0, 0, nameof(Red));
+        public static CameraColor Red => new CameraColor(255, 0, 0, nameof(Red));
 
         /// <summary>
         /// Gets the predefined green color.
         /// </summary>
-        public static Color Green => new Color(0, 255, 0, nameof(Green));
+        public static CameraColor Green => new CameraColor(0, 255, 0, nameof(Green));
 
         /// <summary>
         /// Gets the predefined blue color.
         /// </summary>
-        public static Color Blue => new Color(0, 0, 255, nameof(Blue));
+        public static CameraColor Blue => new CameraColor(0, 0, 255, nameof(Blue));
 
         /// <summary>
         /// Gets the predefined black color.
         /// </summary>
-        public static Color Black => new Color(0, 0, 0, nameof(Black));
+        public static CameraColor Black => new CameraColor(0, 0, 0, nameof(Black));
     }
 }

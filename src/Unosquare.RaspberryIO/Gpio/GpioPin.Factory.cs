@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Gpio
 {
     using System;
 

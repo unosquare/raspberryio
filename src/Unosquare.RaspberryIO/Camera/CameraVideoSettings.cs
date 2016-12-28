@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Camera
 {
     using Swan;
     using System;
@@ -7,7 +7,7 @@
     /// <summary>
     /// Represents the raspivid camera settings for video capture functionality
     /// </summary>
-    /// <seealso cref="Unosquare.RaspberryIO.CameraSettingsBase" />
+    /// <seealso cref="CameraSettingsBase" />
     public class CameraVideoSettings : CameraSettingsBase
     {
         /// <summary>

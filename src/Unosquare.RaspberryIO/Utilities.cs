@@ -1,9 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO
 {
+    using Native;
+    using Swan;
     using System;
     using System.Diagnostics;
     using System.IO;
-    using Unosquare.Swan;
 
     /// <summary>
     /// Miscellaneous utilities and helper methods.
@@ -20,10 +21,10 @@
         /// </summary>
         internal static void ExtractLibWiringPi()
         {
-            var targetPath = Path.Combine(CurrentApp.EntryAssemblyDirectory, Interop.WiringPiLibrary);
+            var targetPath = Path.Combine(CurrentApp.EntryAssemblyDirectory, WiringPi.WiringPiLibrary);
             if (File.Exists(targetPath)) return;
 
-            using (var stream = typeof(Utilities).Assembly.GetManifestResourceStream($"{typeof(Utilities).Namespace}.{Interop.WiringPiLibrary}"))
+            using (var stream = typeof(Utilities).Assembly.GetManifestResourceStream($"{typeof(Utilities).Namespace}.{WiringPi.WiringPiLibrary}"))
             {
                 using (var outputStream = File.OpenWrite(targetPath))
                 {
@@ -46,8 +47,8 @@
                 {
                     stream?.CopyTo(outputStream);
                 }
-                var executablePermissions = Interop.strtol("0777", IntPtr.Zero, 8);
-                Interop.chmod(targetPath, (uint)executablePermissions);
+                var executablePermissions = Standard.strtol("0777", IntPtr.Zero, 8);
+                Standard.chmod(targetPath, (uint)executablePermissions);
             }
         }
 
@@ -111,7 +112,7 @@
                 {
                     if (m_IsRunningAsRoot.HasValue == false)
                     {
-                        m_IsRunningAsRoot = Interop.getuid() == 0;
+                        m_IsRunningAsRoot = Standard.getuid() == 0;
                     }
 
                     return m_IsRunningAsRoot.Value;
@@ -128,7 +129,7 @@
         {
             lock (SyncLock)
             {
-                return Interop.wpiPinToGpio(wiringPiPinNumber);
+                return WiringPi.wpiPinToGpio(wiringPiPinNumber);
             }
         }
 
@@ -141,7 +142,7 @@
         {
             lock (SyncLock)
             {
-                return Interop.physPinToGpio(headerPinNumber);
+                return WiringPi.physPinToGpio(headerPinNumber);
             }
         }
     }

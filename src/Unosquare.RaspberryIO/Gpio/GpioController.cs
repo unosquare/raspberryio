@@ -1,11 +1,12 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Gpio
 {
+    using Native;
+    using Swan.Abstractions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Threading;
 
     /// <summary>
     /// Represents a singleton of the Raspberry Pi GPIO controller 
@@ -13,39 +14,17 @@
     /// Low level operations are accomplished by using the Wiring Pi library.
     /// Use the Instance property to access the singleton's instance
     /// </summary>
-    public sealed class GpioController : IReadOnlyCollection<GpioPin>
+    public sealed class GpioController : SingletonBase<GpioController>, IReadOnlyCollection<GpioPin>
     {
-        #region Static Declarations
-
-        private static GpioController m_Instance = null;
-        
-        #endregion
-
         #region Private Declarations
 
         private const string WiringPiCodesEnvironmentVariable = "WIRINGPI_CODES";
-        private readonly ReadOnlyCollection<GpioPin> PinCollection = null;
+        private readonly ReadOnlyCollection<GpioPin> PinCollection;
         private readonly Dictionary<WiringPiPin, GpioPin> RegisteredPins = new Dictionary<WiringPiPin, GpioPin>();
 
         #endregion
 
         #region Singleton Implementation
-
-        /// <summary>
-        /// Provides access to the (singleton) GPIO Controller pins and functionality
-        /// It automatically initializes the underlying library and populates the pins upon first access.
-        /// This property is thread-safe
-        /// </summary>
-        internal static GpioController Instance
-        {
-            get
-            {
-                lock (Pi.SyncLock)
-                {
-                    return m_Instance ?? (m_Instance = new GpioController());
-                }
-            }
-        }
 
         /// <summary>
         /// Determines if the underlying GPIO controller has been initialized properly.
@@ -71,9 +50,6 @@
         /// <exception cref="System.SystemException">Unable to initialize the GPIO controller.</exception>
         private GpioController()
         {
-            if (m_Instance != null)
-                return;
-
             if (PinCollection != null)
                 return;
 
@@ -157,7 +133,7 @@
 
                 Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1", EnvironmentVariableTarget.Process);
 
-                var result = -1;
+                int setpuResult;
 
                 switch (mode)
                 {
@@ -166,7 +142,7 @@
                             if (Utilities.IsRunningAsRoot == false)
                                 throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
 
-                            result = Interop.wiringPiSetup();
+                            setpuResult = WiringPi.wiringPiSetup();
                             break;
                         }
                     case ControllerMode.DirectWithBcmPins:
@@ -174,7 +150,7 @@
                             if (Utilities.IsRunningAsRoot == false)
                                 throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
 
-                            result = Interop.wiringPiSetupGpio();
+                            setpuResult = WiringPi.wiringPiSetupGpio();
                             break;
                         }
                     case ControllerMode.DirectWithHeaderPins:
@@ -182,12 +158,12 @@
                             if (Utilities.IsRunningAsRoot == false)
                                 throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
 
-                            result = Interop.wiringPiSetupPhys();
+                            setpuResult = WiringPi.wiringPiSetupPhys();
                             break;
                         }
                     case ControllerMode.FileStreamWithHardwarePins:
                         {
-                            result = Interop.wiringPiSetupSys();
+                            setpuResult = WiringPi.wiringPiSetupSys();
                             break;
                         }
                     default:
@@ -196,7 +172,7 @@
                         }
                 }
 
-                Mode = result == 0 ? mode : ControllerMode.NotInitialized;
+                Mode = setpuResult == 0 ? mode : ControllerMode.NotInitialized;
                 return IsInitialized;
             }
         }
@@ -419,7 +395,7 @@
         {
             lock (Pi.SyncLock)
             {
-                Interop.setPadDrive(group, value);
+                WiringPi.setPadDrive(group, value);
             }
         }
 
@@ -437,7 +413,7 @@
                 if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Output))
                     throw new InvalidOperationException($"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Output}");
 
-                Interop.digitalWriteByte(value);
+                WiringPi.digitalWriteByte(value);
             }
         }
 
@@ -455,7 +431,7 @@
                 if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Input))
                     throw new InvalidOperationException($"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input}");
 
-                return (byte)Interop.digitalReadByte();
+                return (byte)WiringPi.digitalReadByte();
             }
         }
 

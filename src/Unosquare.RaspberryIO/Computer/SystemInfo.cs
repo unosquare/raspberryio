@@ -1,5 +1,7 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Computer
 {
+    using Native;
+    using Swan.Abstractions;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -10,12 +12,10 @@
     /// <summary>
     /// http://raspberry-pi-guide.readthedocs.io/en/latest/system.html
     /// </summary>
-    public sealed class SystemInfo
+    public sealed class SystemInfo : SingletonBase<SystemInfo>
     {
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
-
-        private static SystemInfo m_Instance = null;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
@@ -77,7 +77,7 @@
             var memInfoLines = File.ReadAllLines(MemInfoFilePath);
             foreach (var line in memInfoLines)
             {
-                var lineParts = line.Split(new char[] { ':' }, 2);
+                var lineParts = line.Split(new[] { ':' }, 2);
                 if (lineParts.Length != 2)
                     continue;
 
@@ -85,7 +85,7 @@
                     continue;
 
                 var memKb = lineParts[1].ToLowerInvariant().Trim().Replace("kb", "").Trim();
-                var parsedMem = 0;
+                int parsedMem;
                 if (int.TryParse(memKb, out parsedMem))
                 {
                     InstalledRam = parsedMem * 1024;
@@ -98,7 +98,7 @@
 
             #region Board Version and Form Factor
 
-            var boardVersion = 0;
+            int boardVersion;
             if (string.IsNullOrWhiteSpace(Revision) == false &&
                 int.TryParse(
                     Revision.ToUpperInvariant(),
@@ -106,21 +106,21 @@
                     CultureInfo.InvariantCulture,
                     out boardVersion))
             {
-                RaspberryPiVersion = RaspberryPiVersion.Unknown;
-                if (Enum.GetValues(typeof(RaspberryPiVersion)).Cast<int>().Contains(boardVersion))
+                RaspberryPiVersion = PiVersion.Unknown;
+                if (Enum.GetValues(typeof(PiVersion)).Cast<int>().Contains(boardVersion))
                 {
-                    RaspberryPiVersion = (RaspberryPiVersion)boardVersion;
+                    RaspberryPiVersion = (PiVersion)boardVersion;
                 }
             }
 
-            WiringPiBoardRevision = Interop.piBoardRev();
+            WiringPiBoardRevision = WiringPi.piBoardRev();
 
             #endregion
 
             #region Version Information
 
             {
-                var libParts = Interop.WiringPiLibrary.Split('.');
+                var libParts = WiringPi.WiringPiLibrary.Split('.');
                 var major = int.Parse(libParts[libParts.Length - 2]);
                 var minor = int.Parse(libParts[libParts.Length - 1]);
                 var version = new Version(major, minor);
@@ -131,8 +131,8 @@
 
             #region Extract OS Info
 
-            Interop.utsname unameInfo;
-            Interop.uname(out unameInfo);
+            utsname unameInfo;
+            Standard.uname(out unameInfo);
 
             OsInfo = new OsInfo
             {
@@ -145,21 +145,6 @@
             };
 
             #endregion
-        }
-
-        /// <summary>
-        /// Provides access to the (singleton) Info
-        /// This property is thread-safe
-        /// </summary>
-        internal static SystemInfo Instance
-        {
-            get
-            {
-                lock (Pi.SyncLock)
-                {
-                    return m_Instance ?? (m_Instance = new SystemInfo());
-                }
-            }
         }
 
         /// <summary>
@@ -178,7 +163,7 @@
         /// <summary>
         /// Gets the Raspberry Pi version.
         /// </summary>
-        public RaspberryPiVersion RaspberryPiVersion { get; }
+        public PiVersion RaspberryPiVersion { get; }
 
         /// <summary>
         /// Gets the Wiring Pi board revision (1 or 2).
@@ -195,7 +180,7 @@
         {
             get
             {
-                var outIndex = 0;
+                int outIndex;
                 if (int.TryParse(Processor, out outIndex))
                 {
                     return outIndex + 1;
@@ -280,8 +265,8 @@
         {
             get
             {
-                var sysInfo = new Interop.utssysinfo();
-                if (Interop.sysinfo(out sysInfo) == 0)
+                utssysinfo sysInfo;
+                if (Standard.sysinfo(out sysInfo) == 0)
                     return sysInfo.uptime;
 
                 return 0;

@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Camera
 {
     using Swan;
     using System.Globalization;
@@ -202,7 +202,7 @@
         /// <value>
         /// The color of the image annotation font.
         /// </value>
-        public Color ImageAnnotationFontColor { get; set; } = null;
+        public CameraColor ImageAnnotationFontColor { get; set; } = null;
 
         /// <summary>
         /// Gets or sets the background color for text annotations.
@@ -210,7 +210,7 @@
         /// <value>
         /// The image annotation background.
         /// </value>
-        public Color ImageAnnotationBackground { get; set; } = null;
+        public CameraColor ImageAnnotationBackground { get; set; } = null;
 
         #endregion
 

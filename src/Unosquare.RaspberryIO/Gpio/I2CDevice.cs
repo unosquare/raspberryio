@@ -1,18 +1,19 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Gpio
 {
     using System;
+    using Native;
 
     /// <summary>
     /// Represents a device on the I2C Bus
     /// </summary>
-    public class I2cDevice
+    public class I2CDevice
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="I2cDevice"/> class.
+        /// Initializes a new instance of the <see cref="I2CDevice"/> class.
         /// </summary>
         /// <param name="deviceId">The device identifier.</param>
         /// <param name="fileDescriptor">The file descriptor.</param>
-        internal I2cDevice(int deviceId, int fileDescriptor)
+        internal I2CDevice(int deviceId, int fileDescriptor)
         {
             DeviceId = deviceId;
             FileDescriptor = fileDescriptor;
@@ -42,8 +43,8 @@
         {
             lock (Pi.SyncLock)
             {
-                var result = Interop.wiringPiI2CRead(FileDescriptor);
-                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(Read));
+                var result = WiringPi.wiringPiI2CRead(FileDescriptor);
+                if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Read));
                 return (byte)result;
             }
         }
@@ -60,8 +61,8 @@
                 var buffer = new byte[length];
                 for (var i = 0; i < length; i++)
                 {
-                    var result = Interop.wiringPiI2CRead(FileDescriptor);
-                    if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(Read));
+                    var result = WiringPi.wiringPiI2CRead(FileDescriptor);
+                    if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Read));
                     buffer[i] = (byte)result;
                 }
 
@@ -77,8 +78,8 @@
         {
             lock (Pi.SyncLock)
             {
-                var result = Interop.wiringPiI2CWrite(FileDescriptor, data);
-                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(Write));
+                var result = WiringPi.wiringPiI2CWrite(FileDescriptor, data);
+                if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Write));
             }
         }
 
@@ -93,8 +94,8 @@
             {
                 foreach (var b in data)
                 {
-                    Interop.wiringPiI2CWrite(FileDescriptor, b);
-                    if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(Write));
+                    WiringPi.wiringPiI2CWrite(FileDescriptor, b);
+                    if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Write));
                 }
             }
         }
@@ -108,8 +109,8 @@
         {
             lock (Pi.SyncLock)
             {
-                var result = Interop.wiringPiI2CWriteReg8(FileDescriptor, address, data);
-                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(WriteAddressByte));
+                var result = WiringPi.wiringPiI2CWriteReg8(FileDescriptor, address, data);
+                if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(WriteAddressByte));
             }
         }
 
@@ -122,8 +123,8 @@
         {
             lock (Pi.SyncLock)
             {
-                var result = Interop.wiringPiI2CWriteReg16(FileDescriptor, address, data);
-                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(WriteAddressWord));
+                var result = WiringPi.wiringPiI2CWriteReg16(FileDescriptor, address, data);
+                if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(WriteAddressWord));
             }
         }
 
@@ -136,8 +137,8 @@
         {
             lock (Pi.SyncLock)
             {
-                var result = Interop.wiringPiI2CReadReg8(FileDescriptor, address);
-                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(ReadAddressByte));
+                var result = WiringPi.wiringPiI2CReadReg8(FileDescriptor, address);
+                if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(ReadAddressByte));
 
                 return (byte)result;
             }
@@ -152,8 +153,8 @@
         {
             lock (Pi.SyncLock)
             {
-                var result = Interop.wiringPiI2CReadReg16(FileDescriptor, address);
-                if (result < 0) HardwareException.Throw(nameof(I2cDevice), nameof(ReadAddressWord));
+                var result = WiringPi.wiringPiI2CReadReg16(FileDescriptor, address);
+                if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(ReadAddressWord));
 
                 return Convert.ToUInt16(result);
             }

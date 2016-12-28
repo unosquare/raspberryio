@@ -1,5 +1,6 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Computer
 {
+    using Swan.Abstractions;
     using System.Globalization;
     using System.IO;
 
@@ -8,30 +9,11 @@
     /// Some docs available here:
     /// http://forums.pimoroni.com/t/official-7-raspberry-pi-touch-screen-faq/959
     /// </summary>
-    public class DsiDisplay
+    public class DsiDisplay : SingletonBase<DsiDisplay>
     {
         private const string BacklightFilename = "/sys/class/backlight/rpi_backlight/bl_power";
         private const string BrightnessFilename = "/sys/class/backlight/rpi_backlight/brightness";
         
-        static private DsiDisplay m_Instance = null;
-
-        /// <summary>
-        /// Gets DSI Display Instance
-        /// </summary>
-        /// <value>
-        /// The instance.
-        /// </value>
-        static public DsiDisplay Instance
-        {
-            get
-            {
-                lock (Pi.SyncLock)
-                {
-                    return m_Instance ?? (m_Instance = new DsiDisplay());
-                }
-            }
-        }
-
         /// <summary>
         /// Prevents a default instance of the <see cref="DsiDisplay"/> class from being created.
         /// </summary>

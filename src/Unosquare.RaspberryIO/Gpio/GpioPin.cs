@@ -1,5 +1,6 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Gpio
 {
+    using Native;
     using System;
     using System.Linq;
 
@@ -101,7 +102,7 @@
                         (mode == GpioPinDriveMode.Output && Capabilities.Contains(PinCapability.GP) == false))
                         throw new NotSupportedException($"Pin {WiringPiPinNumber} '{Name}' does not support mode '{mode}'. Pin capabilities are limited to: {string.Join(", ", Capabilities)}");
 
-                    Interop.pinMode(PinNumber, (int)mode);
+                    WiringPi.pinMode(PinNumber, (int)mode);
                     m_PinMode = mode;
                 }
             }
@@ -124,7 +125,7 @@
                     throw new InvalidOperationException($"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
                         + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
 
-                Interop.digitalWrite(PinNumber, (int)value);
+                WiringPi.digitalWrite(PinNumber, (int)value);
             }
         }
 
@@ -161,7 +162,7 @@
                     throw new InvalidOperationException($"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
                         + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
 
-                Interop.analogWrite(PinNumber, value);
+                WiringPi.analogWrite(PinNumber, value);
             }
         }
 
@@ -188,7 +189,7 @@
                         throw new InvalidOperationException($"Unable to set the {nameof(InputPullMode)} for pin {PinNumber} because operating mode is {PinMode}."
                             + $" Setting the {nameof(InputPullMode)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
                     }
-                    Interop.pullUpDnControl(PinNumber, (int)value);
+                    WiringPi.pullUpDnControl(PinNumber, (int)value);
                     m_ResistorPullMode = value;
                 }
             }
@@ -206,7 +207,7 @@
                     throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
                         + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
 
-                return Interop.digitalRead(PinNumber) != 0;
+                return WiringPi.digitalRead(PinNumber) != 0;
             }
         }
 
@@ -235,7 +236,7 @@
                     throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
                         + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
 
-                return Interop.analogRead(PinNumber);
+                return WiringPi.analogRead(PinNumber);
             }
 
         }
@@ -269,7 +270,7 @@
                     var val = value > 1024 ? 1024 : value;
                     val = value < 0 ? 0 : value;
 
-                    Interop.pwmWrite(PinNumber, val);
+                    WiringPi.pwmWrite(PinNumber, val);
                     m_PwmRegister = val;
                 }
             }
@@ -298,7 +299,7 @@
                             + $" Setting the PWM mode is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
-                    Interop.pwmSetMode((int)value);
+                    WiringPi.pwmSetMode((int)value);
                     m_PwmMode = value;
                 }
             }
@@ -326,7 +327,7 @@
                             + $" Setting the PWM range is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
-                    Interop.pwmSetRange(value);
+                    WiringPi.pwmSetRange(value);
                     m_PwmRange = value;
                 }
             }
@@ -354,7 +355,7 @@
                             + $" Setting the PWM range is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
-                    Interop.pwmSetClock(value);
+                    WiringPi.pwmSetClock(value);
                     m_PwmClockDivisor = value;
                 }
             }
@@ -391,7 +392,7 @@
                 if (IsInSoftPwmMode)
                     throw new InvalidOperationException($"{nameof(StartSoftPwm)} has already been called.");
 
-                var startResult = Interop.softPwmCreate(PinNumber, value, range);
+                var startResult = WiringPi.softPwmCreate(PinNumber, value, range);
                 if (startResult == 0)
                 {
                     m_SoftPwmValue = value;
@@ -420,7 +421,7 @@
                 {
                     if (IsInSoftPwmMode && value >= 0)
                     {
-                        Interop.softPwmWrite(PinNumber, value);
+                        WiringPi.softPwmWrite(PinNumber, value);
                         m_SoftPwmValue = value;
                     }
                     else
@@ -467,12 +468,12 @@
                 {
                     if (IsInSoftToneMode == false)
                     {
-                        var setupResult = Interop.softToneCreate(PinNumber);
+                        var setupResult = WiringPi.softToneCreate(PinNumber);
                         if (setupResult != 0)
                             throw new InvalidOperationException($"Unable to initialize soft tone on pin {PinNumber}. Error Code: {setupResult}");
                     }
 
-                    Interop.softToneWrite(PinNumber, value);
+                    WiringPi.softToneWrite(PinNumber, value);
                     m_SoftToneFrequency = value;
                 }
             }
@@ -520,7 +521,7 @@
 
             lock (Pi.SyncLock)
             {
-                var registerResult = Interop.wiringPiISR(PinNumber, (int)edgeDetection, callback);
+                var registerResult = WiringPi.wiringPiISR(PinNumber, (int)edgeDetection, callback);
                 if (registerResult == 0)
                 {
                     InterruptEdgeDetection = edgeDetection;

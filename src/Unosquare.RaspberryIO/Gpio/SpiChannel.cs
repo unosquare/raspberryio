@@ -1,5 +1,6 @@
-﻿namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO.Gpio
 {
+    using Native;
     using Swan;
     using System;
     using System.Collections.Generic;
@@ -37,7 +38,7 @@
         private SpiChannel(SpiChannelNumber channel, int frequency)
         {
             frequency = frequency.Clamp(MinFrequency, MaxFrequency);
-            var busResult = Interop.wiringPiSPISetup((int)channel, frequency);
+            var busResult = WiringPi.wiringPiSPISetup((int)channel, frequency);
             Channel = (int)channel;
             Frequency = frequency;
             FileDescriptor = busResult;
@@ -101,7 +102,7 @@
                 var spiBuffer = new byte[buffer.Length];
                 Array.Copy(buffer, spiBuffer, buffer.Length);
 
-                var result = Interop.wiringPiSPIDataRW(Channel, spiBuffer, spiBuffer.Length);
+                var result = WiringPi.wiringPiSPIDataRW(Channel, spiBuffer, spiBuffer.Length);
                 if (result < 0) HardwareException.Throw(nameof(SpiChannel), nameof(SendReceive));
 
                 return spiBuffer;
@@ -119,7 +120,7 @@
         {
             lock (Pi.SyncLock)
             {
-                var result = Interop.write(FileDescriptor, buffer, buffer.Length);
+                var result = Standard.write(FileDescriptor, buffer, buffer.Length);
 
                 if (result < 0)
                     HardwareException.Throw(nameof(SpiChannel), nameof(Write));

@@ -1,13 +1,15 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
+    using Camera;
+    using Gpio;
     using Samples;
+    using Swan;
+    using Swan.Formatters;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading;
-    using Unosquare.Swan;
-    using Unosquare.Swan.Formatters;
 
     public class Program
     {
@@ -263,12 +265,12 @@
             Console.WriteLine($"{Pi.Info}");
             Console.WriteLine($"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}");
             Console.WriteLine($"Uname {Pi.Info.OsInfo}");
-            Console.WriteLine($"HostName {NetworkSettings.Instance.HostName}");
+            Console.WriteLine($"HostName {Computer.NetworkSettings.Instance.HostName}");
             $"Uptime (seconds) {Pi.Info.Uptime}".Info();
             var timeSpan = Pi.Info.UptimeTimeSpan;
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}".Info();
 
-            foreach(var adapter in NetworkSettings.Instance.RetrieveAdapters())
+            foreach(var adapter in Computer.NetworkSettings.Instance.RetrieveAdapters())
                 Console.WriteLine($"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName} MAC Address: {adapter.MacAddress}");
         }
 
@@ -331,13 +333,13 @@
 
         static void TestColors()
         {
-            var colors = new Color[]
+            var colors = new CameraColor[]
             {
-                Color.Black,
-                Color.White,
-                Color.Red,
-                Color.Green,
-                Color.Blue
+                CameraColor.Black,
+                CameraColor.White,
+                CameraColor.Red,
+                CameraColor.Green,
+                CameraColor.Blue
             };
 
             foreach (var color in colors)
