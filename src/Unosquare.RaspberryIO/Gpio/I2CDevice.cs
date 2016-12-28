@@ -8,6 +8,8 @@
     /// </summary>
     public class I2CDevice
     {
+        private readonly object SyncLock = new object();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="I2CDevice"/> class.
         /// </summary>
@@ -41,7 +43,7 @@
         /// <returns></returns>
         public byte Read()
         {
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 var result = WiringPi.wiringPiI2CRead(FileDescriptor);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Read));
@@ -56,7 +58,7 @@
         /// <returns></returns>
         public byte[] Read(int length)
         {
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 var buffer = new byte[length];
                 for (var i = 0; i < length; i++)
@@ -76,7 +78,7 @@
         /// <param name="data">The data.</param>
         public void Write(byte data)
         {
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 var result = WiringPi.wiringPiI2CWrite(FileDescriptor, data);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Write));
@@ -90,7 +92,7 @@
         public void Write(byte[] data)
         {
             var result = 0;
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 foreach (var b in data)
                 {
@@ -107,7 +109,7 @@
         /// <param name="data">The data.</param>
         public void WriteAddressByte(int address, byte data)
         {
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 var result = WiringPi.wiringPiI2CWriteReg8(FileDescriptor, address, data);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(WriteAddressByte));
@@ -121,7 +123,7 @@
         /// <param name="data">The data.</param>
         public void WriteAddressWord(int address, ushort data)
         {
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 var result = WiringPi.wiringPiI2CWriteReg16(FileDescriptor, address, data);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(WriteAddressWord));
@@ -135,7 +137,7 @@
         /// <returns></returns>
         public byte ReadAddressByte(int address)
         {
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 var result = WiringPi.wiringPiI2CReadReg8(FileDescriptor, address);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(ReadAddressByte));
@@ -151,7 +153,7 @@
         /// <returns></returns>
         public ushort ReadAddressWord(int address)
         {
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 var result = WiringPi.wiringPiI2CReadReg16(FileDescriptor, address);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(ReadAddressWord));

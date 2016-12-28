@@ -27,13 +27,7 @@
         /// <value>
         /// The milliseconds since setup.
         /// </value>
-        public uint MillisecondsSinceSetup
-        {
-            get
-            {
-                lock (Pi.SyncLock) { return WiringPi.millis(); }
-            }
-        }
+        public uint MillisecondsSinceSetup => WiringPi.millis();
 
         /// <summary>
         /// This returns a number representing the number of microseconds since your 
@@ -43,13 +37,7 @@
         /// <value>
         /// The microseconds since setup.
         /// </value>
-        public uint MicrosecondsSinceSetup
-        {
-            get
-            {
-                lock (Pi.SyncLock) { return WiringPi.micros(); }
-            }
-        }
+        public uint MicrosecondsSinceSetup => WiringPi.micros();
 
         /// <summary>
         /// This causes program execution to pause for at least howLong milliseconds. 
@@ -89,12 +77,8 @@
         public void SetThreadPriority(int priority)
         {
             priority = priority.Clamp(0, 99);
-
-            lock (Pi.SyncLock)
-            {
-                var result = WiringPi.piHiPri(priority);
-                if (result < 0) HardwareException.Throw(nameof(Timing), nameof(SetThreadPriority));
-            }
+            var result = WiringPi.piHiPri(priority);
+            if (result < 0) HardwareException.Throw(nameof(Timing), nameof(SetThreadPriority));
         }
 
         /// <summary>

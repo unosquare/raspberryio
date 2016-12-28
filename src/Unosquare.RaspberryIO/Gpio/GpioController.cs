@@ -32,7 +32,7 @@
         /// <value>
         /// <c>true</c> if the controller is properly initialized; otherwise, <c>false</c>.
         /// </value>
-        public static bool IsInitialized { get { lock (Pi.SyncLock) { return Mode != ControllerMode.NotInitialized; } } }
+        public static bool IsInitialized { get { lock (SyncRoot) { return Mode != ControllerMode.NotInitialized; } } }
 
         /// <summary>
         /// Gets or sets the initialization mode.
@@ -126,7 +126,7 @@
             if (Utilities.IsLinuxOS == false)
                 throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion}");
 
-            lock (Pi.SyncLock)
+            lock (SyncRoot)
             {
                 if (IsInitialized)
                     throw new InvalidOperationException($"Cannot call {nameof(Initialize)} more than once.");
@@ -393,7 +393,7 @@
         /// <param name="value">The value.</param>
         public void SetPadDrive(int group, int value)
         {
-            lock (Pi.SyncLock)
+            lock (SyncRoot)
             {
                 WiringPi.setPadDrive(group, value);
             }
@@ -408,7 +408,7 @@
         /// <exception cref="System.InvalidOperationException">PinMode</exception>
         public void WriteByte(byte value)
         {
-            lock (Pi.SyncLock)
+            lock (SyncRoot)
             {
                 if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Output))
                     throw new InvalidOperationException($"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Output}");
@@ -426,7 +426,7 @@
         /// <exception cref="System.InvalidOperationException">PinMode</exception>
         public byte ReadByte()
         {
-            lock (Pi.SyncLock)
+            lock (SyncRoot)
             {
                 if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Input))
                     throw new InvalidOperationException($"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input}");

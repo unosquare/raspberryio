@@ -10,7 +10,7 @@
     /// </summary>
     public static class Pi
     {
-        internal static readonly object SyncLock = new object();
+        private static readonly object SyncLock = new object();
 
         /// <summary>
         /// Initializes the <see cref="Pi"/> class.

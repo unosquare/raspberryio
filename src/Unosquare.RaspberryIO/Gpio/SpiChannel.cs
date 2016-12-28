@@ -12,6 +12,8 @@
     /// </summary>
     public sealed class SpiChannel
     {
+        private static readonly object SyncRoot = new object();
+        private readonly object SyncLock = new object();
         private static readonly Dictionary<SpiChannelNumber, SpiChannel> Buses = new Dictionary<SpiChannelNumber, SpiChannel>();
 
         /// <summary>
@@ -37,15 +39,18 @@
         /// <exception cref="System.SystemException"></exception>
         private SpiChannel(SpiChannelNumber channel, int frequency)
         {
-            frequency = frequency.Clamp(MinFrequency, MaxFrequency);
-            var busResult = WiringPi.wiringPiSPISetup((int)channel, frequency);
-            Channel = (int)channel;
-            Frequency = frequency;
-            FileDescriptor = busResult;
-
-            if (busResult < 0)
+            lock (SyncRoot)
             {
-                HardwareException.Throw(nameof(SpiChannel), channel.ToString());
+                frequency = frequency.Clamp(MinFrequency, MaxFrequency);
+                var busResult = WiringPi.wiringPiSPISetup((int)channel, frequency);
+                Channel = (int)channel;
+                Frequency = frequency;
+                FileDescriptor = busResult;
+
+                if (busResult < 0)
+                {
+                    HardwareException.Throw(nameof(SpiChannel), channel.ToString());
+                }
             }
         }
 
@@ -77,7 +82,7 @@
         /// <returns></returns>
         internal static SpiChannel Retrieve(SpiChannelNumber channel, int frequency)
         {
-            lock (Pi.SyncLock)
+            lock (SyncRoot)
             {
                 if (Buses.ContainsKey(channel))
                     return Buses[channel];
@@ -97,7 +102,7 @@
             if (buffer == null || buffer.Length == 0)
                 return null;
 
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 var spiBuffer = new byte[buffer.Length];
                 Array.Copy(buffer, spiBuffer, buffer.Length);
@@ -118,7 +123,7 @@
         /// <param name="buffer">The buffer.</param>
         public void Write(byte[] buffer)
         {
-            lock (Pi.SyncLock)
+            lock (SyncLock)
             {
                 var result = Standard.write(FileDescriptor, buffer, buffer.Length);
 
