@@ -26,6 +26,65 @@
         public string HostName => Dns.GetHostName();
 
         /// <summary>
+        /// Retrieves the wireless networks.
+        /// </summary>
+        /// <returns></returns>
+        public List<WirelessNetworkInfo> RetrieveWirelessNetworks()
+        {
+            var result = new List<WirelessNetworkInfo>();
+
+            foreach (var networkAdapter in RetrieveAdapters().Where(x => x.IsWireless))
+            {
+                var wirelessOutput = ProcessHelper.GetProcessOutputAsync("iwlist", $"{networkAdapter.Name} scanning").Result;
+                var outputLines = wirelessOutput.Split('\n').Select(x => x.Trim()).Where(x => string.IsNullOrWhiteSpace(x) == false).ToArray();
+
+                for (var i = 0; i < outputLines.Length; i++)
+                {
+                    var line = outputLines[i];
+
+                    if (line.StartsWith("ESSID:") == false) continue;
+
+                    var network = new WirelessNetworkInfo()
+                    {
+                        Name = line.Replace("ESSID:", "").Replace("\"", string.Empty)
+                    };
+
+                    while (true)
+                    {
+                        if (i + 1 >= outputLines.Length) break;
+
+                        // move next line
+                        line = outputLines[++i];
+
+                        if (line.StartsWith("Quality="))
+                        {
+                            network.Quality = line.Replace("Quality=", "");
+                            break;
+                        }
+                    }
+
+                    while (true)
+                    {
+                        if (i + 1 >= outputLines.Length) break;
+
+                        // move next line
+                        line = outputLines[++i];
+
+                        if (line.StartsWith("Encryption key:"))
+                        {
+                            network.IsEncrypted = line.Replace("Encryption key:", string.Empty).Trim() == "on";
+                            break;
+                        }
+                    }
+
+                    result.Add(network);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Retrieves the network adapters.
         /// </summary>
         /// <returns></returns>
@@ -33,9 +92,9 @@
         {
             var result = new List<NetworkAdapter>();
             var interfacesOutput = ProcessHelper.GetProcessOutputAsync("ifconfig").Result;
-            var wlanOutput = ProcessHelper.GetProcessOutputAsync("iwconfig").Result.Split('\n');
-            var outputLines = interfacesOutput.Split('\n').Where(x => string.IsNullOrWhiteSpace(x) == false).ToList().ToArray();
-            
+            var wlanOutput = ProcessHelper.GetProcessOutputAsync("iwconfig").Result.Split('\n').Where(x => x.Contains("no wireless extensions.") == false).ToArray();
+            var outputLines = interfacesOutput.Split('\n').Where(x => string.IsNullOrWhiteSpace(x) == false).ToArray();
+
             for (var i = 0; i < outputLines.Length; i++)
             {
                 var line = outputLines[i];
@@ -60,9 +119,9 @@
 
                     if (line.StartsWith("inet addr:"))
                     {
-                        var tempIP = line.Replace("inet addr:", "").Trim();
+                        var tempIP = line.Replace("inet addr:", string.Empty).Trim();
                         tempIP = tempIP.Substring(0, tempIP.IndexOf(' '));
-                        
+
                         IPAddress outValue;
                         if (IPAddress.TryParse(tempIP, out outValue))
                             adapter.IPv4 = outValue;
@@ -73,7 +132,7 @@
 
                     if (line.StartsWith("inet6 addr:"))
                     {
-                        var tempIP = line.Replace("inet6 addr:", "").Trim();
+                        var tempIP = line.Replace("inet6 addr:", string.Empty).Trim();
                         tempIP = tempIP.Substring(0, tempIP.IndexOf('/'));
 
                         IPAddress outValue;
@@ -85,8 +144,10 @@
 
                     if (wlanInfo != null)
                     {
+                        adapter.IsWireless = true;
+
                         var startIndex = wlanInfo.IndexOf("ESSID:") + "ESSID:".Length;
-                        adapter.AccessPointName = wlanInfo.Substring(startIndex).Replace("\"", "");
+                        adapter.AccessPointName = wlanInfo.Substring(startIndex).Replace("\"", string.Empty);
                     }
 
                     result.Add(adapter);
@@ -125,9 +186,31 @@
         /// <summary>
         /// Gets or sets the mac address.
         /// </summary>
-        /// <value>
-        /// The mac address.
-        /// </value>
         public string MacAddress { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is wireless.
+        /// </summary>
+        public bool IsWireless { get; internal set; }
+    }
+
+    /// <summary>
+    /// Represents a wireless network information
+    /// </summary>
+    public class WirelessNetworkInfo
+    {
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets the network quality.
+        public string Quality { get; internal set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is encrypted.
+        /// </summary>
+        public bool IsEncrypted { get; internal set; }
     }
 }
