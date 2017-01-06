@@ -1,12 +1,12 @@
 {
   "title": "Unosquare Raspberry IO",
-  "copyright": "Unosquare (c) 2016",
+  "copyright": "Unosquare (c) 2016-2017",
   "description": "An API that provides access to the Pi's GPIO, SPI, I2C, and Camera modules",
   "language": "en",
-  "version": "0.9.4-*",
+  "version": "0.9.5-*",
 
   "dependencies": {
-    "Unosquare.Swan": "0.9.10"
+    "Unosquare.Swan": "0.9.18"
   },
 
   "frameworks": {
