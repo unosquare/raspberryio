@@ -2,6 +2,7 @@
 {
     using Computer;
     using Native;
+    using Swan;
     using Swan.Abstractions;
     using System;
     using System.Collections;
@@ -124,7 +125,7 @@
         /// <exception cref="System.ArgumentException"></exception>
         private bool Initialize(ControllerMode mode)
         {
-            if (SystemInfo.Instance.IsLinuxOS == false)
+            if (CurrentApp.OS != Swan.OperatingSystem.Unix)
                 throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion}");
 
             lock (SyncRoot)

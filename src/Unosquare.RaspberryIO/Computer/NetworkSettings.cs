@@ -1,6 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Swan;
+    using Unosquare.Swan.Runtime;
     using Swan.Abstractions;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -191,7 +191,7 @@
         /// <summary>
         /// Gets a value indicating whether this instance is wireless.
         /// </summary>
-        public bool IsWireless { get; internal set; }
+        public bool IsWireless { get; set; }
     }
 
     /// <summary>
@@ -206,11 +206,12 @@
 
         /// <summary>
         /// Gets the network quality.
-        public string Quality { get; internal set; }
+        /// </summary> 
+        public string Quality { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is encrypted.
         /// </summary>
-        public bool IsEncrypted { get; internal set; }
+        public bool IsEncrypted { get; set; }
     }
 }

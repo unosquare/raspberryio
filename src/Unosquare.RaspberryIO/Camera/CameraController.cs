@@ -1,6 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
-    using Swan;
+    using Unosquare.Swan.Runtime;
     using Swan.Abstractions;
     using System;
     using System.IO;

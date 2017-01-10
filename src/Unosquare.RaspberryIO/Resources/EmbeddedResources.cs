@@ -55,14 +55,14 @@
                     try
                     {
                         var executablePermissions = Standard.strtol("0777", IntPtr.Zero, 8);
-                        Standard.chmod(targetPath, (uint)executablePermissions);
+                        Standard.chmod(targetPath, (uint) executablePermissions);
                     }
-                    catch { /* Ignore */ }
-
+                    catch
+                    {
+                        /* Ignore */
+                    }
                 }
-
             }
-
         }
     }
 }

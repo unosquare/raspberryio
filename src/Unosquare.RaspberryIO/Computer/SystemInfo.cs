@@ -2,6 +2,7 @@
 {
     using Native;
     using Swan.Abstractions;
+    using Swan.Runtime;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -16,8 +17,7 @@
     {
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
-
-        private static bool? m_IsLinuxOS = new bool?();
+        
         private static bool? m_IsRunningAsRoot = new bool?();
 
         /// <summary>
@@ -145,9 +145,9 @@
 
             #region Extract OS Info
 
-            utsname unameInfo;
             try
             {
+                utsname unameInfo;
                 Standard.uname(out unameInfo);
                 OperatingSystem = new OsInfo
                 {
@@ -305,7 +305,6 @@
         /// <summary>
         /// Gets the uptime in TimeSpan.
         /// </summary>
-        /// <value>
         public TimeSpan UptimeTimeSpan => TimeSpan.FromSeconds(Uptime);
 
         /// <summary>
@@ -313,31 +312,11 @@
         /// </summary>
         public void Reboot()
         {
-            Swan.ProcessHelper.GetProcessOutputAsync("reboot");
+#pragma warning disable 4014
+            ProcessHelper.GetProcessOutputAsync("reboot");
+#pragma warning restore 4014
         }
-
-        /// <summary>
-        /// Gets a value indicating whether the current assembly running on a Linux Operating System.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this instance is Linux os; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsLinuxOS
-        {
-            get
-            {
-                lock (SyncRoot)
-                {
-                    if (m_IsLinuxOS.HasValue == false)
-                    {
-                        m_IsLinuxOS = Environment.OSVersion.Platform == PlatformID.Unix;
-                    }
-
-                    return m_IsLinuxOS.Value;
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Gets a value indicating whether this program is running as Root
         /// </summary>
