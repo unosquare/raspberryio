@@ -1,6 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Unosquare.Swan.Runtime;
+    using Swan.Components;
     using Swan.Abstractions;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -35,7 +35,7 @@
 
             foreach (var networkAdapter in RetrieveAdapters().Where(x => x.IsWireless))
             {
-                var wirelessOutput = ProcessHelper.GetProcessOutputAsync("iwlist", $"{networkAdapter.Name} scanning").Result;
+                var wirelessOutput = ProcessRunner.GetProcessOutputAsync("iwlist", $"{networkAdapter.Name} scanning").Result;
                 var outputLines = wirelessOutput.Split('\n').Select(x => x.Trim()).Where(x => string.IsNullOrWhiteSpace(x) == false).ToArray();
 
                 for (var i = 0; i < outputLines.Length; i++)
@@ -91,8 +91,8 @@
         public List<NetworkAdapter> RetrieveAdapters()
         {
             var result = new List<NetworkAdapter>();
-            var interfacesOutput = ProcessHelper.GetProcessOutputAsync("ifconfig").Result;
-            var wlanOutput = ProcessHelper.GetProcessOutputAsync("iwconfig").Result.Split('\n').Where(x => x.Contains("no wireless extensions.") == false).ToArray();
+            var interfacesOutput = ProcessRunner.GetProcessOutputAsync("ifconfig").Result;
+            var wlanOutput = ProcessRunner.GetProcessOutputAsync("iwconfig").Result.Split('\n').Where(x => x.Contains("no wireless extensions.") == false).ToArray();
             var outputLines = interfacesOutput.Split('\n').Where(x => string.IsNullOrWhiteSpace(x) == false).ToArray();
 
             for (var i = 0; i < outputLines.Length; i++)

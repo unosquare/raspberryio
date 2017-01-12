@@ -3,10 +3,10 @@
   "copyright": "Unosquare (c) 2016-2017",
   "description": "An API that provides access to the Pi's GPIO, SPI, I2C, and Camera modules",
   "language": "en",
-  "version": "0.9.5-*",
+  "version": "0.9.6-*",
 
   "dependencies": {
-    "Unosquare.Swan": "0.10.0"
+    "Unosquare.Swan": "0.10.1"
   },
 
   "frameworks": {

@@ -21,7 +21,7 @@
             {
                 Computer.SystemInfo.Instance.ToString().Debug();
                 return;
-                
+
                 //TestSystemInfo();
                 //TestCaptureImage();
                 //TestCaptureVideo();
@@ -30,7 +30,7 @@
             }
             catch (Exception ex)
             {
-                ex.Log();
+                Terminal.Error("Error", nameof(Main), ex);
             }
             finally
             {
@@ -43,14 +43,14 @@
 
         public static void TestLedStripGraphics()
         {
-            PixelData pixels = null;
+            BitmapBuffer pixels = null;
 
             try
             {
-                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(CurrentApp.EntryAssemblyDirectory, "fractal.jpg")))
+                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(Runtime.EntryAssemblyDirectory, "fractal.jpg")))
                 {
                     Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
-                    pixels = new PixelData(bitmap);
+                    pixels = new BitmapBuffer(bitmap);
                     Console.WriteLine($"Loaded Pixel Data: {pixels.Data.Length} bytes");
                 }
             }

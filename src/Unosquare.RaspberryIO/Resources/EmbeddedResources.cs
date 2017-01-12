@@ -36,7 +36,7 @@
         public static void ExtractAll(string basePath = null)
         {
             if (string.IsNullOrWhiteSpace(basePath))
-                basePath = CurrentApp.EntryAssemblyDirectory;
+                basePath = Runtime.EntryAssemblyDirectory;
 
             foreach (var resourceName in ResourceNames)
             {

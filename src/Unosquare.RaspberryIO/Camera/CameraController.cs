@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
-    using Unosquare.Swan.Runtime;
     using Swan.Abstractions;
     using System;
+    using Swan.Components;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -54,8 +54,8 @@
                 OperationDone.Reset();
 
                 var output = new MemoryStream();
-                var exitCode =
-                    await ProcessHelper.RunProcessAsync(settings.CommandName, settings.CreateProcessArguments(),
+                var exitCode = 
+                    await ProcessRunner.RunProcessAsync(settings.CommandName, settings.CreateProcessArguments(),
                         (data, proc) =>
                         {
                             output.Write(data, 0, data.Length);
@@ -137,7 +137,7 @@
         {
             try
             {
-                await ProcessHelper.RunProcessAsync(settings.CommandName, settings.CreateProcessArguments(),
+                await ProcessRunner.RunProcessAsync(settings.CommandName, settings.CreateProcessArguments(),
                     (data, proc) =>
                     {
                         onDataCallback?.Invoke(data);

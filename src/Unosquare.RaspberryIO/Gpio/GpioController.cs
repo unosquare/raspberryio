@@ -125,7 +125,7 @@
         /// <exception cref="System.ArgumentException"></exception>
         private bool Initialize(ControllerMode mode)
         {
-            if (CurrentApp.OS != Swan.OperatingSystem.Unix)
+            if (Runtime.OS != Swan.OperatingSystem.Unix)
                 throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion}");
 
             lock (SyncRoot)

@@ -275,7 +275,7 @@
         /// or
         /// y</exception>
         /// <exception cref="ArgumentNullException">bitmap</exception>
-        public void SetPixels(PixelData pixels, int sourceOffsetX, int sourceOffsetY, float brightness = 1f, int targetOffset = 0, int targetLength = 0)
+        public void SetPixels(BitmapBuffer pixels, int sourceOffsetX, int sourceOffsetY, float brightness = 1f, int targetOffset = 0, int targetLength = 0)
         {
             var brightnessByte = default(byte);
 
@@ -315,17 +315,17 @@
             lock (SyncLock)
             {
                 var bmpOffsetBase = pixels.GetPixelOffset(sourceOffsetX, sourceOffsetY);
-                var bmpOffsetLimit = bmpOffsetBase + (targetLength * PixelData.BytesPerPixel);
+                var bmpOffsetLimit = bmpOffsetBase + (targetLength * BitmapBuffer.BytesPerPixel);
                 var setCount = 0;
 
                 var frameBufferOffset = StartFrame.Length + (targetOffset * StartFrame.Length);
 
-                for (var bmpOffset = bmpOffsetBase; bmpOffset < bmpOffsetLimit; bmpOffset += PixelData.BytesPerPixel)
+                for (var bmpOffset = bmpOffsetBase; bmpOffset < bmpOffsetLimit; bmpOffset += BitmapBuffer.BytesPerPixel)
                 {
                     FrameBuffer[frameBufferOffset + TOfsset] = brightnessByte;
-                    FrameBuffer[frameBufferOffset + ROffset] = pixels.Data[bmpOffset + PixelData.ROffset]; // R
-                    FrameBuffer[frameBufferOffset + GOffset] = pixels.Data[bmpOffset + PixelData.GOffset]; // G
-                    FrameBuffer[frameBufferOffset + BOffset] = pixels.Data[bmpOffset + PixelData.BOffset]; // B
+                    FrameBuffer[frameBufferOffset + ROffset] = pixels.Data[bmpOffset + BitmapBuffer.ROffset]; // R
+                    FrameBuffer[frameBufferOffset + GOffset] = pixels.Data[bmpOffset + BitmapBuffer.GOffset]; // G
+                    FrameBuffer[frameBufferOffset + BOffset] = pixels.Data[bmpOffset + BitmapBuffer.BOffset]; // B
                     frameBufferOffset += StartFrame.Length;
                     setCount += 1;
 

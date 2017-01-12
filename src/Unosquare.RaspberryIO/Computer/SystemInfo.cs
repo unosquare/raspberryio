@@ -2,7 +2,7 @@
 {
     using Native;
     using Swan.Abstractions;
-    using Swan.Runtime;
+    using Swan.Components;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -17,7 +17,7 @@
     {
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
-        
+
         private static bool? m_IsRunningAsRoot = new bool?();
 
         /// <summary>
@@ -313,10 +313,10 @@
         public void Reboot()
         {
 #pragma warning disable 4014
-            ProcessHelper.GetProcessOutputAsync("reboot");
+            ProcessRunner.GetProcessOutputAsync("reboot");
 #pragma warning restore 4014
         }
-        
+
         /// <summary>
         /// Gets a value indicating whether this program is running as Root
         /// </summary>
@@ -339,7 +339,7 @@
                         {
                             m_IsRunningAsRoot = false;
                         }
-                        
+
                     }
 
                     return m_IsRunningAsRoot.Value;
