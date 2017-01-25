@@ -3,18 +3,15 @@
     using Swan.Components;
     using Swan.Abstractions;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Net;
+    using System.IO;
 
     /// <summary>
     /// Represents the network information
     /// </summary>
     public class NetworkSettings : SingletonBase<NetworkSettings>
     {
-
-        private ReadOnlyCollection<NetworkAdapter> m_Adapters;
-
         private NetworkSettings()
         {
 
@@ -28,14 +25,24 @@
         /// <summary>
         /// Retrieves the wireless networks.
         /// </summary>
+        /// <param name="adapter">The adapter.</param>
         /// <returns></returns>
-        public List<WirelessNetworkInfo> RetrieveWirelessNetworks()
+        public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string adapter)
+        {
+            return RetrieveWirelessNetworks(new[] { adapter });
+        }
+
+        /// <summary>
+        /// Retrieves the wireless networks.
+        /// </summary>
+        /// <returns></returns>
+        public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string[] adapters = null)
         {
             var result = new List<WirelessNetworkInfo>();
 
-            foreach (var networkAdapter in RetrieveAdapters().Where(x => x.IsWireless))
+            foreach (var networkAdapter in adapters ?? RetrieveAdapters().Where(x => x.IsWireless).Select(x => x.Name))
             {
-                var wirelessOutput = ProcessRunner.GetProcessOutputAsync("iwlist", $"{networkAdapter.Name} scanning").Result;
+                var wirelessOutput = ProcessRunner.GetProcessOutputAsync("iwlist", $"{networkAdapter} scanning").Result;
                 var outputLines = wirelessOutput.Split('\n').Select(x => x.Trim()).Where(x => string.IsNullOrWhiteSpace(x) == false).ToArray();
 
                 for (var i = 0; i < outputLines.Length; i++)
@@ -85,10 +92,34 @@
         }
 
         /// <summary>
-        /// Retrieves the network adapters.
+        /// Setups the wireless network.
         /// </summary>
+        /// <param name="networkSsid">The network ssid.</param>
+        /// <param name="password">The password.</param>
         /// <returns></returns>
-        public List<NetworkAdapter> RetrieveAdapters()
+        public bool SetupWirelessNetwork(string networkSsid, string password = null)
+        {
+            var payload = string.IsNullOrEmpty(password) ?  
+                $"network={{\n\tssid=\"{networkSsid}\"\n\t}}" :
+                $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{password}\"\n\t}}";
+
+            try
+            {
+                File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+    /// <summary>
+    /// Retrieves the network adapters.
+    /// </summary>
+    /// <returns></returns>
+    public List<NetworkAdapter> RetrieveAdapters()
         {
             var result = new List<NetworkAdapter>();
             var interfacesOutput = ProcessRunner.GetProcessOutputAsync("ifconfig").Result;

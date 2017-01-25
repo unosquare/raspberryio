@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using Camera;
+    using Computer;
     using Gpio;
     using Samples;
     using Swan;
@@ -19,9 +20,43 @@
 
             try
             {
-                Computer.SystemInfo.Instance.ToString().Debug();
-                return;
+                $"Checking networks".Info();
+                foreach(var adapter in NetworkSettings.Instance.RetrieveAdapters())
+                {
+                    adapter.Name.Info();
+                    adapter.Stringify().Info();
 
+                    if (adapter.IsWireless)
+                    {
+                        var networks = NetworkSettings.Instance.RetrieveWirelessNetworks(adapter.Name);
+                        foreach (var network in networks)
+                        {
+                            network.Stringify().Info();
+                        }
+
+                        var keyA = ConsoleKey.A;
+                        var dict = networks.ToDictionary(x => keyA++, x => x.Name);
+                        var prompt = "Select a network".ReadPrompt(dict, "Press enter to exit");
+
+                        if (dict.ContainsKey(prompt.Key))
+                        {
+                            var network = networks.FirstOrDefault(x => x.Name == dict[prompt.Key]);
+                            
+                            if (network != null)
+                            {
+                                string password = null;
+
+                                if (network.IsEncrypted)
+                                {
+                                    Terminal.WriteLine("Type password: ");
+                                    password  = Terminal.ReadLine();
+                                }
+                                
+                                $"Configuration done: {NetworkSettings.Instance.SetupWirelessNetwork(network.Name, password)}".Info();
+                            }
+                        }
+                    }
+                }
                 //TestSystemInfo();
                 //TestCaptureImage();
                 //TestCaptureVideo();

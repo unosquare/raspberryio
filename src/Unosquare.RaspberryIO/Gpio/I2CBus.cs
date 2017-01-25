@@ -12,7 +12,7 @@
     public class I2CBus : SingletonBase<I2CBus>
     {
         // TODO: It would be nice to integrate i2c device detection.
-
+        private static object SyncRoot = new object();
         private readonly Dictionary<int, I2CDevice> m_Devices = new Dictionary<int, I2CDevice>();
 
         /// <summary>

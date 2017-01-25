@@ -17,6 +17,7 @@
 
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         private static readonly CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
+        private static object SyncRoot = new object();
 
         #endregion
 

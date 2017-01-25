@@ -18,6 +18,7 @@
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
 
+        private static object SyncRoot = new object();
         private static bool? m_IsRunningAsRoot = new bool?();
 
         /// <summary>

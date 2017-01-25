@@ -23,6 +23,7 @@
         private const string WiringPiCodesEnvironmentVariable = "WIRINGPI_CODES";
         private readonly ReadOnlyCollection<GpioPin> PinCollection;
         private readonly Dictionary<WiringPiPin, GpioPin> RegisteredPins = new Dictionary<WiringPiPin, GpioPin>();
+        private static object SyncRoot = new object();
 
         #endregion
 
