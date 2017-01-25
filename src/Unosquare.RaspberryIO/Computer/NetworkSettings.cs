@@ -99,9 +99,9 @@
         /// <returns></returns>
         public bool SetupWirelessNetwork(string networkSsid, string password = null)
         {
-            var payload = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\r\nupdate_config = 1\r\n";
+            var payload = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config = 1\n";
 
-            payload += string.IsNullOrEmpty(password) ?  
+            payload += string.IsNullOrEmpty(password) ?
                 $"network={{\n\tssid=\"{networkSsid}\"\n\t}}" :
                 $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{password}\"\n\t}}";
 
@@ -117,11 +117,11 @@
             return true;
         }
 
-    /// <summary>
-    /// Retrieves the network adapters.
-    /// </summary>
-    /// <returns></returns>
-    public List<NetworkAdapter> RetrieveAdapters()
+        /// <summary>
+        /// Retrieves the network adapters.
+        /// </summary>
+        /// <returns></returns>
+        public List<NetworkAdapter> RetrieveAdapters()
         {
             var result = new List<NetworkAdapter>();
             var interfacesOutput = ProcessRunner.GetProcessOutputAsync("ifconfig").Result;
