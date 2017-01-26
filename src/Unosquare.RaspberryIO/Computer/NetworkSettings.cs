@@ -108,6 +108,9 @@
             try
             {
                 File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
+                ProcessRunner.GetProcessOutputAsync("ifdown", "wlan0");
+                Pi.Timing.SleepMicroseconds(1000);
+                ProcessRunner.GetProcessOutputAsync("ifup", "wlan0");
             }
             catch
             {
