@@ -192,6 +192,15 @@
 
             return result;
         }
+
+        /// <summary>
+        /// Retrieves current connected network
+        /// </summary>
+        public string GetNetworkName()
+        {
+            var networkName = ProcessRunner.GetProcessOutputAsync("iwgetid -r").Result;
+            return networkName;
+        }
     }
 
     /// <summary>
