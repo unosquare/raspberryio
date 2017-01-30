@@ -1,21 +1,19 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Swan.Components;
+    using Models;
     using Swan.Abstractions;
+    using Swan.Components;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Net;
-    using System.IO;
 
     /// <summary>
     /// Represents the network information
     /// </summary>
     public class NetworkSettings : SingletonBase<NetworkSettings>
     {
-        private NetworkSettings()
-        {
-
-        }
+        private const string ESSIDTag = "ESSID:";
 
         /// <summary>
         /// Gets the local machine Host Name.
@@ -49,11 +47,11 @@
                 {
                     var line = outputLines[i];
 
-                    if (line.StartsWith("ESSID:") == false) continue;
+                    if (line.StartsWith(ESSIDTag) == false) continue;
 
                     var network = new WirelessNetworkInfo()
                     {
-                        Name = line.Replace("ESSID:", "").Replace("\"", string.Empty)
+                        Name = line.Replace(ESSIDTag, "").Replace("\"", string.Empty)
                     };
 
                     while (true)
@@ -84,20 +82,22 @@
                         }
                     }
 
-                    result.Add(network);
+                    if (result.Any(x => x.Name == network.Name) == false)
+                        result.Add(network);
                 }
             }
 
-            return result;
+            return result.OrderBy(x => x.Name).ToList();
         }
 
         /// <summary>
         /// Setups the wireless network.
         /// </summary>
+        /// <param name="adapterName">Name of the adapter.</param>
         /// <param name="networkSsid">The network ssid.</param>
         /// <param name="password">The password.</param>
         /// <returns></returns>
-        public bool SetupWirelessNetwork(string networkSsid, string password = null)
+        public bool SetupWirelessNetwork(string adapterName, string networkSsid, string password = null)
         {
             var payload = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
 
@@ -108,9 +108,9 @@
             try
             {
                 File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
-                ProcessRunner.GetProcessOutputAsync("ifdown", "wlan0");
+                ProcessRunner.GetProcessOutputAsync("ifdown", adapterName);
                 Pi.Timing.SleepMicroseconds(1000);
-                ProcessRunner.GetProcessOutputAsync("ifup", "wlan0");
+                ProcessRunner.GetProcessOutputAsync("ifup", adapterName);
             }
             catch
             {
@@ -182,7 +182,7 @@
                     {
                         adapter.IsWireless = true;
 
-                        var startIndex = wlanInfo.IndexOf("ESSID:") + "ESSID:".Length;
+                        var startIndex = wlanInfo.IndexOf(ESSIDTag) + ESSIDTag.Length;
                         adapter.AccessPointName = wlanInfo.Substring(startIndex).Replace("\"", string.Empty);
                     }
 
@@ -190,64 +190,7 @@
                 }
             }
 
-            return result;
+            return result.OrderBy(x => x.Name).ToList();
         }
-    }
-
-    /// <summary>
-    /// Represents a Network Adapter
-    /// </summary>
-    public class NetworkAdapter
-    {
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the i PV4.
-        /// </summary>
-        public IPAddress IPv4 { get; set; }
-
-        /// <summary>
-        /// Gets or sets the i PV6.
-        /// </summary>
-        public IPAddress IPv6 { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the access point.
-        /// </summary>
-        public string AccessPointName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the mac address.
-        /// </summary>
-        public string MacAddress { get; set; }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is wireless.
-        /// </summary>
-        public bool IsWireless { get; set; }
-    }
-
-    /// <summary>
-    /// Represents a wireless network information
-    /// </summary>
-    public class WirelessNetworkInfo
-    {
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets the network quality.
-        /// </summary> 
-        public string Quality { get; set; }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is encrypted.
-        /// </summary>
-        public bool IsEncrypted { get; set; }
     }
 }

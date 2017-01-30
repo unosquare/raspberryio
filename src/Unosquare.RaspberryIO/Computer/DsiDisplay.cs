@@ -76,6 +76,7 @@
             set
             {
                 if (IsPresent == false) return;
+
                 File.WriteAllText(BacklightFilename, (value ? "0" : "1"));
             }
         }
