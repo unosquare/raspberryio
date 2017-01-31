@@ -194,12 +194,8 @@
         }
 
         /// <summary>
-        /// Retrieves current connected network
+        /// Retrieves current wireless connected network
         /// </summary>
-        public string GetNetworkName()
-        {
-            var networkName = ProcessRunner.GetProcessOutputAsync("iwgetid -r").Result;
-            return networkName;
-        }
+        public string GetWirelessNetworkName() => ProcessRunner.GetProcessOutputAsync("iwgetid","-r").Result;
     }
 }
