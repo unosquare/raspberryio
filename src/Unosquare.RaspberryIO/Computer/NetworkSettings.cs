@@ -108,9 +108,7 @@
             try
             {
                 File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
-                ProcessRunner.GetProcessOutputAsync("ifdown", adapterName);
-                Pi.Timing.SleepMicroseconds(1000);
-                ProcessRunner.GetProcessOutputAsync("ifup", adapterName);
+                ProcessRunner.GetProcessOutputAsync("wpa_supplicant", $"-B -D wext -i {adapterName} -c /etc/wpa_supplicant.conf");
             }
             catch
             {
