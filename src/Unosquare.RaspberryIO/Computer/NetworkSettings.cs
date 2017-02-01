@@ -108,7 +108,7 @@
             try
             {
                 File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
-                ProcessRunner.GetProcessOutputAsync("wpa_supplicant", $"-B -D wext -i {adapterName} -c /etc/wpa_supplicant.conf");
+                ProcessRunner.GetProcessOutputAsync("pkill -f wpa_supplicant & wpa_supplicant", $"-B -D wext -i {adapterName} -c /etc/wpa_supplicant/wpa_supplicant.conf");
             }
             catch
             {
