@@ -52,7 +52,7 @@
                                     password  = Terminal.ReadLine();
                                 }
                                 
-                                $"Configuration done: {NetworkSettings.Instance.SetupWirelessNetwork(network.Name, password)}".Info();
+                                $"Configuration done: {NetworkSettings.Instance.SetupWirelessNetwork(adapter.Name, network.Name, password)}".Info();
                             }
                         }
                     }
