@@ -1,9 +1,12 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
     using Models;
+    using Swan;
     using Swan.Abstractions;
     using Swan.Components;
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Net;
@@ -100,21 +103,21 @@
         public bool SetupWirelessNetwork(string adapterName, string networkSsid, string password = null)
         {
             var payload = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
-
             payload += string.IsNullOrEmpty(password) ?
                 $"network={{\n\tssid=\"{networkSsid}\"\n\t}}\n" :
                 $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{password}\"\n\t}}\n";
-
             try
             {
                 File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
-                ProcessRunner.GetProcessOutputAsync("pkill -f wpa_supplicant & wpa_supplicant", $"-B -D wext -i {adapterName} -c /etc/wpa_supplicant/wpa_supplicant.conf");
+                ProcessRunner.GetProcessOutputAsync("pkill", "-f wpa_supplicant").Wait();
+                ProcessRunner.GetProcessOutputAsync("ifdown", adapterName).Wait();
+                ProcessRunner.GetProcessOutputAsync("ifup", adapterName).Wait();
             }
-            catch
+            catch (Exception ex)
             {
+                ex.Log(nameof(NetworkSettings));
                 return false;
             }
-
             return true;
         }
 
