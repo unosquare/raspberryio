@@ -1,0 +1,36 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "src/Unosquare.RaspberryIO/**/*.cs" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ]
+        }
+      ],
+      "dest": "obj/api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "**/*.yml" ],
+        "cwd": "obj/api",
+        "dest": "api"
+      },
+      {
+        "files": [ "*.md", "toc.yml" ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [ "litelib-logo.png" ]
+      }
+    ],
+    "globalMetadata": {
+      "_appTitle": "Unosquare LiteLib",
+      "_enableSearch": true,
+      "_appLogoPath": "litelib-logo.png"
+    },
+    "dest": "_site"
+  }
+}
