@@ -102,7 +102,8 @@
         /// <returns></returns>
         public bool SetupWirelessNetwork(string adapterName, string networkSsid, string password = null)
         {
-            var payload = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
+            //TODO: Get the country where the device is located to set 'country' param in payload var
+            var payload = "country=MX\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
             payload += string.IsNullOrEmpty(password) ?
                 $"network={{\n\tssid=\"{networkSsid}\"\n\t}}\n" :
                 $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{password}\"\n\t}}\n";
