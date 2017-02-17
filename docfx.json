@@ -23,13 +23,13 @@
     ],
     "resource": [
       {
-        "files": [ "litelib-logo.png" ]
+        "files": [ "logos/raspberryio-logo-32.png" ]
       }
     ],
     "globalMetadata": {
-      "_appTitle": "Unosquare LiteLib",
+      "_appTitle": "RaspberryIO - Pi's hardware access from Mono",
       "_enableSearch": true,
-      "_appLogoPath": "litelib-logo.png"
+      "_appLogoPath": "logos/raspberryio-logo-32.png"
     },
     "dest": "_site"
   }
