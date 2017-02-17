@@ -1,0 +1,31 @@
+MIT License
+
+Copyright (c) 2016 Unosquare
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+This software contains a compiled, unmodified version of the WiringPi library
+WiringPi is a GPIO access library written in C for the BCM2835 used in the 
+Raspberry Pi. It’s released under the GNU LGPLv3 license and is usable from C 
+and C++ and many other languages with suitable wrappers. A program that contains 
+no derivative of any portion of the Library, but is designed to work with 
+the Library by being compiled or linked with it, is called a "work that uses 
+the Library". Such a work, in isolation, is not a derivative work of the Library, 
+and therefore falls outside the scope of this License. Raspberry IO is then,
+by definition, "work that uses the Library"

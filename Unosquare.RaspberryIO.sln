@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AD40570E-5084-4507-AFB7-647230B007E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{144147AA-41C9-4639-AF1E-F08534CA8D49}"
+	ProjectSection(SolutionItems) = preProject
+		create-sshdeploy.cmd = create-sshdeploy.cmd
+		global.json = global.json
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Unosquare.RaspberryIO", "src\Unosquare.RaspberryIO\Unosquare.RaspberryIO.xproj", "{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C8A487A8-8399-4A13-8402-3629998E2A4D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\APA102C.pdf = docs\APA102C.pdf
+		docs\Core Functions _ Wiring Pi.pdf = docs\Core Functions _ Wiring Pi.pdf
+		docs\I2C Library _ Wiring Pi.pdf = docs\I2C Library _ Wiring Pi.pdf
+		docs\Pins _ Wiring Pi - Printable.pdf = docs\Pins _ Wiring Pi - Printable.pdf
+		docs\Pins _ Wiring Pi.pdf = docs\Pins _ Wiring Pi.pdf
+		docs\Raspberry Pi - Pins.txt = docs\Raspberry Pi - Pins.txt
+		docs\Raspberry Pi _ WiringPi _ Functions _ Wiring Pi.pdf = docs\Raspberry Pi _ WiringPi _ Functions _ Wiring Pi.pdf
+		docs\Raspberry Pi Specifics _ Wiring Pi.pdf = docs\Raspberry Pi Specifics _ Wiring Pi.pdf
+		docs\Serial Library _ Wiring Pi.pdf = docs\Serial Library _ Wiring Pi.pdf
+		docs\Setup _ Wiring Pi.pdf = docs\Setup _ Wiring Pi.pdf
+		docs\Shift Library _ Wiring Pi.pdf = docs\Shift Library _ Wiring Pi.pdf
+		docs\Software PWM Library _ Wiring Pi.pdf = docs\Software PWM Library _ Wiring Pi.pdf
+		docs\Software Tone Library _ Wiring Pi.pdf = docs\Software Tone Library _ Wiring Pi.pdf
+		docs\Special Pin Functions _ Wiring Pi.pdf = docs\Special Pin Functions _ Wiring Pi.pdf
+		docs\SPI Library _ Wiring Pi.pdf = docs\SPI Library _ Wiring Pi.pdf
+		docs\Timing _ Wiring Pi.pdf = docs\Timing _ Wiring Pi.pdf
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Unosquare.RaspberryIO.Playground", "src\Unosquare.RaspberryIO.Playground\Unosquare.RaspberryIO.Playground.xproj", "{87BDC267-91D2-4CD1-B088-0F0791948C0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sshdeploy", "sshdeploy", "{6197D26E-C895-4E92-8EC3-A59821F3A7CE}"
+	ProjectSection(SolutionItems) = preProject
+		sshdeploy\CommandLine.dll = sshdeploy\CommandLine.dll
+		sshdeploy\Renci.SshNet.dll = sshdeploy\Renci.SshNet.dll
+		sshdeploy\SshDeploy.exe = sshdeploy\SshDeploy.exe
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logos", "logos", "{589B0F6C-14BD-4DB7-9108-A016EA3F476F}"
+	ProjectSection(SolutionItems) = preProject
+		logos\raspberry-io.fw.png = logos\raspberry-io.fw.png
+		logos\raspberry-io.ico = logos\raspberry-io.ico
+		logos\raspberry-io.png = logos\raspberry-io.png
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87BDC267-91D2-4CD1-B088-0F0791948C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87BDC267-91D2-4CD1-B088-0F0791948C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87BDC267-91D2-4CD1-B088-0F0791948C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87BDC267-91D2-4CD1-B088-0F0791948C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB} = {AD40570E-5084-4507-AFB7-647230B007E0}
+		{C8A487A8-8399-4A13-8402-3629998E2A4D} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
+		{87BDC267-91D2-4CD1-B088-0F0791948C0E} = {AD40570E-5084-4507-AFB7-647230B007E0}
+		{6197D26E-C895-4E92-8EC3-A59821F3A7CE} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
+		{589B0F6C-14BD-4DB7-9108-A016EA3F476F} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
+	EndGlobalSection
+EndGlobal

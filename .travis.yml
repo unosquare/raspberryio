@@ -1,0 +1,15 @@
+language: csharp
+solution: Unosquare.RaspberryIO.sln
+notifications:
+  slack: unolabs:cbusXPH6pBwZ35rVDzi4k4ve
+matrix:
+  include:
+    - os: linux
+      dotnet: 1.0.0-preview2-003131
+      mono: latest
+      dist: trusty
+      sudo: false
+install:
+  - dotnet restore
+script:
+  - dotnet build ./src/Unosquare.RaspberryIO
