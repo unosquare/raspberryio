@@ -1,0 +1,1344 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GpioController
+   | Unosquare LiteLib </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GpioController
+   | Unosquare LiteLib ">
+    <meta name="generator" content="docfx 2.12.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../">
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../litelib-logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content">
+              
+              
+              <h1 id="Unosquare_RaspberryIO_Gpio_GpioController" data-uid="Unosquare.RaspberryIO.Gpio.GpioController">Class GpioController
+              </h1>
+              <div class="markdown level0 summary"><p>Represents a singleton of the Raspberry Pi GPIO controller 
+as an IReadOnlyCollection of GpioPins
+Low level operations are accomplished by using the Wiring Pi library.
+Use the Instance property to access the singleton&#39;s instance</p>
+</div>
+              <div class="markdown level0 conceptual"></div>
+              <div class="inheritance">
+                <h5>Inheritance</h5>
+                  <div class="level0"><span class="xref">System.Object</span></div>
+                  <div class="level1"><span class="xref">GpioController</span></div>
+              </div>
+              <h6><strong>Namespace</strong>:Unosquare.RaspberryIO.Gpio</h6>
+              <h6><strong>Assembly</strong>:cs.temp.dll.dll</h6>
+              <h5 id="Unosquare_RaspberryIO_Gpio_GpioController_syntax">Syntax</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public sealed class GpioController : SingletonBase&lt;GpioController&gt;, IReadOnlyCollection&lt;GpioPin&gt;, IEnumerable&lt;GpioPin&gt;, IEnumerable</code></pre>
+              </div>
+              <h3 id="properties">Properties
+              </h3>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Count_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Count*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Count" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Count">Count</h4>
+              <div class="markdown level1 summary"><p>Gets the number of registered pins in the controller.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><span class="xref">System.Collections.Generic.IReadOnlyCollection&lt;T&gt;.Count</span></div>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_IsInitialized_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.IsInitialized*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_IsInitialized" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.IsInitialized">IsInitialized</h4>
+              <div class="markdown level1 summary"><p>Determines if the underlying GPIO controller has been initialized properly.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static bool IsInitialized { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Boolean</span></td>
+                    <td><p><code>true</code> if the controller is properly initialized; otherwise, <code>false</code>.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Item_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Item*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Item_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Item(System.Int32)">Item[Int32]</h4>
+              <div class="markdown level1 summary"><p>Gets the <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a> with the specified pin number.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin this[int pinNumber] { get; }</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">pinNumber</span></td>
+                    <td><p>The pin number.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td><p>The <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a>.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.IndexOutOfRangeException</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Item_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Item*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Item_Unosquare_RaspberryIO_Gpio_WiringPiPin_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.WiringPiPin)">Item[WiringPiPin]</h4>
+              <div class="markdown level1 summary"><p>Gets the <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a> with the specified pin number.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin this[WiringPiPin pinNumber] { get; }</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.WiringPiPin.html">WiringPiPin</a></td>
+                    <td><span class="parametername">pinNumber</span></td>
+                    <td><p>The pin number.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td><p>The <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a>.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin00_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin00*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin00" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin00">Pin00</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 00.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin00 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin01_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin01*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin01" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin01">Pin01</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 01.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin01 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin02_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin02*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin02" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin02">Pin02</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 02.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin02 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin03_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin03*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin03" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin03">Pin03</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 03.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin03 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin04_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin04*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin04" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin04">Pin04</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 04.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin04 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin05_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin05*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin05" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin05">Pin05</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 05.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin05 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin06_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin06*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin06" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin06">Pin06</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 06.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin06 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin07_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin07*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin07" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin07">Pin07</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 07.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin07 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin08_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin08*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin08" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin08">Pin08</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 08.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin08 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin09_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin09*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin09" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin09">Pin09</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 09.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin09 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin10_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin10*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin10" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin10">Pin10</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 10.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin10 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin11_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin11*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin11" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin11">Pin11</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 11.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin11 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin12_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin12*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin12" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin12">Pin12</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 12.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin12 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin13_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin13*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin13" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin13">Pin13</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 13.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin13 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin14_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin14*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin14" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin14">Pin14</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 14.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin14 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin15_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin15*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin15" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin15">Pin15</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 15.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin15 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin16_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin16*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin16" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin16">Pin16</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 16.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin16 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin17_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin17*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin17" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin17">Pin17</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 17.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin17 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin18_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin18*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin18" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin18">Pin18</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 18.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin18 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin19_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin19*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin19" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin19">Pin19</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 19.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin19 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin20_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin20*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin20" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin20">Pin20</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 20.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin20 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin21_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin21*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin21" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin21">Pin21</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 21.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin21 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin22_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin22*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin22" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin22">Pin22</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 22.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin22 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin23_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin23*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin23" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin23">Pin23</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 23.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin23 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin24_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin24*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin24" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin24">Pin24</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 24.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin24 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin25_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin25*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin25" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin25">Pin25</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 25.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin25 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin26_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin26*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin26" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin26">Pin26</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 26.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin26 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin27_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin27*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin27" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin27">Pin27</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 27.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin27 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin28_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin28*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin28" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin28">Pin28</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 28.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin28 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin29_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin29*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin29" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin29">Pin29</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 29.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin29 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin30_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin30*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin30" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin30">Pin30</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 30.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin30 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin31_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin31*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin31" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin31">Pin31</h4>
+              <div class="markdown level1 summary"><p>Provides direct access to the Pin 31.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public GpioPin Pin31 { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pins_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pins*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pins" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pins">Pins</h4>
+              <div class="markdown level1 summary"><p>Gets a red-only collection of all registered pins.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;GpioPin&gt; Pins { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.ObjectModel.ReadOnlyCollection</span>&lt;<a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a>&gt;</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="methods">Methods
+              </h3>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_GetEnumerator_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.GetEnumerator*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_GetEnumerator" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.GetEnumerator">GetEnumerator()</h4>
+              <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the collection.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public IEnumerator&lt;GpioPin&gt; GetEnumerator()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.Generic.IEnumerator</span>&lt;<a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a>&gt;</td>
+                    <td><p>A <span class="xref">System.Collections.Generic.IEnumerator&lt;T&gt;</span> that can be used to iterate through the collection.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;.GetEnumerator()</span></div>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_ReadByte_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.ReadByte*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_ReadByte" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.ReadByte">ReadByte()</h4>
+              <div class="markdown level1 summary"><p>This reads the 8-bit byte supplied to the first 8 GPIO pins. 
+It’s the fastest way to get all 8 bits at once to a particular value.
+Please note this function is undocumented and unsopported</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public byte ReadByte()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Byte</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td><p>PinMode</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_SetPadDrive_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_SetPadDrive_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive(System.Int32,System.Int32)">SetPadDrive(Int32, Int32)</h4>
+              <div class="markdown level1 summary"><p>This sets the “strength” of the pad drivers for a particular group of pins. 
+There are 3 groups of pins and the drive strength is from 0 to 7. 
+Do not use this unless you know what you are doing.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public void SetPadDrive(int group, int value)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">group</span></td>
+                    <td><p>The group.</p>
+</td>
+                  </tr>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">value</span></td>
+                    <td><p>The value.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_WriteByte_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.WriteByte*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_WriteByte_System_Byte_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.WriteByte(System.Byte)">WriteByte(Byte)</h4>
+              <div class="markdown level1 summary"><p>This writes the 8-bit byte supplied to the first 8 GPIO pins. 
+It’s the fastest way to set all 8 bits at once to a particular value, 
+although it still takes two write operations to the Pi’s GPIO hardware.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public void WriteByte(byte value)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Byte</span></td>
+                    <td><span class="parametername">value</span></td>
+                    <td><p>The value.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.InvalidOperationException</span></td>
+                    <td><p>PinMode</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="eii">Explicit Interface Implementations
+              </h3>
+              
+              
+              <a id="Unosquare_RaspberryIO_Gpio_GpioController_System_Collections_IEnumerable_GetEnumerator_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.System#Collections#IEnumerable#GetEnumerator*"></a>
+              <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_System_Collections_IEnumerable_GetEnumerator" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+              <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the collection.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Collections.IEnumerator</span></td>
+                    <td><p>An <span class="xref">System.Collections.IEnumerator</span> object that can be used to iterate through the collection.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="implements">Implements</h5>
+                  <div><span class="xref">System.Collections.IEnumerable.GetEnumerator()</span></div>
+                        </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

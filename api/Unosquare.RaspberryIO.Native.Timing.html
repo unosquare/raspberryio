@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Timing
+   | Unosquare LiteLib </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Timing
+   | Unosquare LiteLib ">
+    <meta name="generator" content="docfx 2.12.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../">
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../litelib-logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content">
+              
+              
+              <h1 id="Unosquare_RaspberryIO_Native_Timing" data-uid="Unosquare.RaspberryIO.Native.Timing">Class Timing
+              </h1>
+              <div class="markdown level0 summary"><p>Provides access to timing and threading properties and methods</p>
+</div>
+              <div class="markdown level0 conceptual"></div>
+              <div class="inheritance">
+                <h5>Inheritance</h5>
+                  <div class="level0"><span class="xref">System.Object</span></div>
+                  <div class="level1"><span class="xref">Timing</span></div>
+              </div>
+              <h6><strong>Namespace</strong>:Unosquare.RaspberryIO.Native</h6>
+              <h6><strong>Assembly</strong>:cs.temp.dll.dll</h6>
+              <h5 id="Unosquare_RaspberryIO_Native_Timing_syntax">Syntax</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public class Timing : SingletonBase&lt;Timing&gt;</code></pre>
+              </div>
+              <h3 id="properties">Properties
+              </h3>
+              
+              
+              <a id="Unosquare_RaspberryIO_Native_Timing_MicrosecondsSinceSetup_" data-uid="Unosquare.RaspberryIO.Native.Timing.MicrosecondsSinceSetup*"></a>
+              <h4 id="Unosquare_RaspberryIO_Native_Timing_MicrosecondsSinceSetup" data-uid="Unosquare.RaspberryIO.Native.Timing.MicrosecondsSinceSetup">MicrosecondsSinceSetup</h4>
+              <div class="markdown level1 summary"><p>This returns a number representing the number of microseconds since your 
+program initialized the GPIO controller
+It returns an unsigned 32-bit number which wraps after approximately 71 minutes.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public uint MicrosecondsSinceSetup { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.UInt32</span></td>
+                    <td><p>The microseconds since setup.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Native_Timing_MillisecondsSinceSetup_" data-uid="Unosquare.RaspberryIO.Native.Timing.MillisecondsSinceSetup*"></a>
+              <h4 id="Unosquare_RaspberryIO_Native_Timing_MillisecondsSinceSetup" data-uid="Unosquare.RaspberryIO.Native.Timing.MillisecondsSinceSetup">MillisecondsSinceSetup</h4>
+              <div class="markdown level1 summary"><p>This returns a number representing the number of milliseconds since your program 
+initialized the GPIO controller. 
+It returns an unsigned 32-bit number which wraps after 49 days.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public uint MillisecondsSinceSetup { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.UInt32</span></td>
+                    <td><p>The milliseconds since setup.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="methods">Methods
+              </h3>
+              
+              
+              <a id="Unosquare_RaspberryIO_Native_Timing_CreateThread_" data-uid="Unosquare.RaspberryIO.Native.Timing.CreateThread*"></a>
+              <h4 id="Unosquare_RaspberryIO_Native_Timing_CreateThread_Unosquare_RaspberryIO_Native_ThreadWorker_" data-uid="Unosquare.RaspberryIO.Native.Timing.CreateThread(Unosquare.RaspberryIO.Native.ThreadWorker)">CreateThread(ThreadWorker)</h4>
+              <div class="markdown level1 summary"><p>This is really nothing more than a simplified interface to the Posix threads mechanism that Linux supports.
+See the manual pages on Posix threads (man pthread) if you need more control over them.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public void CreateThread(ThreadWorker worker)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Native.ThreadWorker.html">ThreadWorker</a></td>
+                    <td><span class="parametername">worker</span></td>
+                    <td><p>The worker.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5 class="exceptions">Exceptions</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.ArgumentNullException</span></td>
+                    <td><p>worker</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Native_Timing_Lock_" data-uid="Unosquare.RaspberryIO.Native.Timing.Lock*"></a>
+              <h4 id="Unosquare_RaspberryIO_Native_Timing_Lock_Unosquare_RaspberryIO_Native_ThreadLockKey_" data-uid="Unosquare.RaspberryIO.Native.Timing.Lock(Unosquare.RaspberryIO.Native.ThreadLockKey)">Lock(ThreadLockKey)</h4>
+              <div class="markdown level1 summary"><p>These allow you to synchronize variable updates from your main program to any threads running in your program. 
+keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key, 
+it will be stalled until the first process has unlocked the same key.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public void Lock(ThreadLockKey key)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Native.ThreadLockKey.html">ThreadLockKey</a></td>
+                    <td><span class="parametername">key</span></td>
+                    <td><p>The key.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Native_Timing_SetThreadPriority_" data-uid="Unosquare.RaspberryIO.Native.Timing.SetThreadPriority*"></a>
+              <h4 id="Unosquare_RaspberryIO_Native_Timing_SetThreadPriority_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.Timing.SetThreadPriority(System.Int32)">SetThreadPriority(Int32)</h4>
+              <div class="markdown level1 summary"><p>This attempts to shift your program (or thread in a multi-threaded program) to a higher priority and 
+enables a real-time scheduling. The priority parameter should be from 0 (the default) to 99 (the maximum). 
+This won’t make your program go any faster, but it will give it a bigger slice of time when other programs 
+are running. The priority parameter works relative to others – so you can make one program priority 1 and 
+another priority 2 and it will have the same effect as setting one to 10 and the other to 90 
+(as long as no other programs are running with elevated priorities)</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public void SetThreadPriority(int priority)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.Int32</span></td>
+                    <td><span class="parametername">priority</span></td>
+                    <td><p>The priority.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Native_Timing_SleepMicroseconds_" data-uid="Unosquare.RaspberryIO.Native.Timing.SleepMicroseconds*"></a>
+              <h4 id="Unosquare_RaspberryIO_Native_Timing_SleepMicroseconds_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.Timing.SleepMicroseconds(System.UInt32)">SleepMicroseconds(UInt32)</h4>
+              <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong microseconds. 
+Due to the multi-tasking nature of Linux it could be longer. 
+Note that the maximum delay is an unsigned 32-bit integer microseconds or approximately 71 minutes.
+Delays under 100 microseconds are timed using a hard-coded loop continually polling the system time, 
+Delays over 100 microseconds are done using the system nanosleep() function – 
+You may need to consider the implications of very short delays on the overall performance of the system, 
+especially if using threads.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public void SleepMicroseconds(uint value)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.UInt32</span></td>
+                    <td><span class="parametername">value</span></td>
+                    <td><p>The value.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Native_Timing_SleepMilliseconds_" data-uid="Unosquare.RaspberryIO.Native.Timing.SleepMilliseconds*"></a>
+              <h4 id="Unosquare_RaspberryIO_Native_Timing_SleepMilliseconds_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.Timing.SleepMilliseconds(System.UInt32)">SleepMilliseconds(UInt32)</h4>
+              <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong milliseconds. 
+Due to the multi-tasking nature of Linux it could be longer. 
+Note that the maximum delay is an unsigned 32-bit integer or approximately 49 days.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public static void SleepMilliseconds(uint value)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.UInt32</span></td>
+                    <td><span class="parametername">value</span></td>
+                    <td><p>The value.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <a id="Unosquare_RaspberryIO_Native_Timing_Unlock_" data-uid="Unosquare.RaspberryIO.Native.Timing.Unlock*"></a>
+              <h4 id="Unosquare_RaspberryIO_Native_Timing_Unlock_Unosquare_RaspberryIO_Native_ThreadLockKey_" data-uid="Unosquare.RaspberryIO.Native.Timing.Unlock(Unosquare.RaspberryIO.Native.ThreadLockKey)">Unlock(ThreadLockKey)</h4>
+              <div class="markdown level1 summary"><p>These allow you to synchronize variable updates from your main program to any threads running in your program. 
+keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key, 
+it will be stalled until the first process has unlocked the same key.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public void Unlock(ThreadLockKey key)</code></pre>
+              </div>
+              <h5 class="parameters">Parameters</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a class="xref" href="Unosquare.RaspberryIO.Native.ThreadLockKey.html">ThreadLockKey</a></td>
+                    <td><span class="parametername">key</span></td>
+                    <td><p>The key.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
+                        </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
