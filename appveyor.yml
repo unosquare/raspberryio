@@ -25,6 +25,7 @@ before_build:
             git checkout $env:APPVEYOR_REPO_BRANCH -q
             cinst docfx -y
         }
+- appveyor-retry dotnet restore -v Minimal
 build_script:
 - dotnet build "src\Unosquare.RaspberryIO" -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
 after_build:
