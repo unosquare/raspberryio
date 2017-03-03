@@ -11,7 +11,7 @@
     /// </summary>
     internal static class EmbeddedResources
     {
-        private const string GpioToolFileName = "gpio.2.32";
+        private const string GpioToolFileName = "gpio.2.42";
 
         /// <summary>
         /// Initializes the <see cref="EmbeddedResources"/> class.

@@ -18,46 +18,11 @@
         {
             $"Starting program at {DateTime.Now}".Info();
 
+            Terminal.Settings.DisplayLoggingMessageType = LogMessageType.Info;
+
             try
             {
-                $"Checking networks".Info();
-                foreach(var adapter in NetworkSettings.Instance.RetrieveAdapters())
-                {
-                    adapter.Name.Info();
-                    adapter.Stringify().Info();
-
-                    if (adapter.IsWireless)
-                    {
-                        var networks = NetworkSettings.Instance.RetrieveWirelessNetworks(adapter.Name);
-                        foreach (var network in networks)
-                        {
-                            network.Stringify().Info();
-                        }
-
-                        var keyA = ConsoleKey.A;
-                        var dict = networks.ToDictionary(x => keyA++, x => x.Name);
-                        var prompt = "Select a network".ReadPrompt(dict, "Press enter to exit");
-
-                        if (dict.ContainsKey(prompt.Key))
-                        {
-                            var network = networks.FirstOrDefault(x => x.Name == dict[prompt.Key]);
-                            
-                            if (network != null)
-                            {
-                                string password = null;
-
-                                if (network.IsEncrypted)
-                                {
-                                    Terminal.WriteLine("Type password: ");
-                                    password  = Terminal.ReadLine();
-                                }
-                                
-                                $"Configuration done: {NetworkSettings.Instance.SetupWirelessNetwork(adapter.Name, network.Name, password)}".Info();
-                            }
-                        }
-                    }
-                }
-                //TestSystemInfo();
+                TestSystemInfo();
                 //TestCaptureImage();
                 //TestCaptureVideo();
                 //TestLedStripGraphics();
@@ -65,7 +30,7 @@
             }
             catch (Exception ex)
             {
-                Terminal.Error("Error", nameof(Main), ex);
+                "Error".Error(nameof(Main), ex);
             }
             finally
             {
@@ -84,14 +49,14 @@
             {
                 using (var bitmap = new System.Drawing.Bitmap(Path.Combine(Runtime.EntryAssemblyDirectory, "fractal.jpg")))
                 {
-                    Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
+                    $"Loaded bitmap with format {bitmap.PixelFormat}".Info();
                     pixels = new BitmapBuffer(bitmap);
-                    Console.WriteLine($"Loaded Pixel Data: {pixels.Data.Length} bytes");
+                    $"Loaded Pixel Data: {pixels.Data.Length} bytes".Info();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error Loading image: {ex.Message}");
+                $"Error Loading image: {ex.Message}".Error();
             }
 
             var exitAnimation = false;
@@ -139,7 +104,7 @@
                     if (delayMilliseconds > 0 && exitAnimation == false)
                         Thread.Sleep(delayMilliseconds);
                     else
-                        Console.WriteLine($"Lagging framerate: {delayMilliseconds} milliseconds");
+                        $"Lagging framerate: {delayMilliseconds} milliseconds".Info();
 
                     frameTimes.Enqueue((int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
                     lastRenderTime = DateTime.UtcNow;
@@ -160,8 +125,7 @@
                 strip.Render();
 
                 var avg = frameRenderTimes.Average();
-                Console.WriteLine($"Frames: {currentFrameNumber + 1}, FPS: {Math.Round((1000f / frameTimes.Average()), 3)}, " +
-                    $"Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}");
+                $"Frames: {currentFrameNumber + 1}, FPS: {Math.Round((1000f / frameTimes.Average()), 3)}, Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}".Info();
                 strip.Render();
 
             });
@@ -193,7 +157,7 @@
 
                     red = red >= 254 ? default(byte) : (byte)(red + 1);
 
-                    for (int i = 0; i < tailSize; i++)
+                    for (var i = 0; i < tailSize; i++)
                     {
                         strip[i].Brightness = i / (tailSize - 1f);
                         strip[i].R = red;
@@ -209,7 +173,7 @@
                     }
                     else
                     {
-                        Console.WriteLine($"Lagging framerate: {delayMilliseconds} milliseconds");
+                        $"Lagging framerate: {delayMilliseconds} milliseconds".Info();
                     }
 
 
@@ -234,24 +198,24 @@
             Pi.Spi.Channel0Frequency = SpiChannel.MinFrequency;
 
             var request = System.Text.Encoding.UTF8.GetBytes("Hello over SPI");
-            Console.WriteLine($"SPI Request: {BitConverter.ToString(request)}");
+            $"SPI Request: {BitConverter.ToString(request)}".Info();
             var response = Pi.Spi.Channel0.SendReceive(request);
-            Console.WriteLine($"SPI Response: {BitConverter.ToString(response)}");
+            $"SPI Response: {BitConverter.ToString(response)}".Info();
 
-            Console.WriteLine($"SPI Base Stream Request: {BitConverter.ToString(request)}");
+            $"SPI Base Stream Request: {BitConverter.ToString(request)}".Info();
             Pi.Spi.Channel0.Write(request);
             response = Pi.Spi.Channel0.SendReceive(new byte[request.Length]);
-            Console.WriteLine($"SPI Base Stream Response: {BitConverter.ToString(response)}");
+            $"SPI Base Stream Response: {BitConverter.ToString(response)}".Info();
 
         }
 
         public static void TestDisplay()
         {
-            string input = string.Empty;
+            var input = string.Empty;
 
             while (input.Equals("x") == false)
             {
-                Console.WriteLine("Enter brightness value (0 to 255). Enter b to toggle Backlight, Enter x to Exit");
+                "Enter brightness value (0 to 255). Enter b to toggle Backlight, Enter x to Exit".Info();
                 input = Console.ReadLine();
 
                 if (input.Equals("b"))
@@ -265,18 +229,18 @@
                     {
                         if (value != Pi.PiDisplay.Brightness)
                         {
-                            Console.WriteLine($"Current Value: {Pi.PiDisplay.Brightness}, New Value: {value}");
+                            $"Current Value: {Pi.PiDisplay.Brightness}, New Value: {value}".Info();
                             Pi.PiDisplay.Brightness = value;
                         }
                     }
                 }
 
-                Console.WriteLine($"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}");
+                $"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}".Info();
             }
 
             Pi.PiDisplay.IsBacklightOn = true;
             Pi.PiDisplay.Brightness = 96;
-            Console.WriteLine($"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}");
+            $"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}".Info();
         }
 
         public static void TestLedBlinking()
@@ -302,17 +266,17 @@
 
         private static void TestSystemInfo()
         {
-            Console.WriteLine($"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins");
-            Console.WriteLine($"{Pi.Info}");
-            Console.WriteLine($"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}");
-            Console.WriteLine($"Uname {Pi.Info.OperatingSystem}");
-            Console.WriteLine($"HostName {Computer.NetworkSettings.Instance.HostName}");
+            $"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins".Info();
+            $"{Pi.Info}".Info();
+            $"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}".Info();
+            $"Uname {Pi.Info.OperatingSystem}".Info();
+            $"HostName {Computer.NetworkSettings.Instance.HostName}".Info();
             $"Uptime (seconds) {Pi.Info.Uptime}".Info();
             var timeSpan = Pi.Info.UptimeTimeSpan;
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}".Info();
 
             foreach (var adapter in Computer.NetworkSettings.Instance.RetrieveAdapters())
-                Console.WriteLine($"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName} MAC Address: {adapter.MacAddress}");
+                $"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName} MAC Address: {adapter.MacAddress}".Info();
         }
 
         private static void TestCaptureImage()
@@ -323,7 +287,7 @@
                 File.Delete(targetPath);
 
             File.WriteAllBytes(targetPath, pictureBytes);
-            Console.WriteLine($"Took picture -- Byte count: {pictureBytes.Length}");
+            $"Took picture -- Byte count: {pictureBytes.Length}".Info();
         }
 
         static void TestCaptureVideo()
@@ -353,12 +317,11 @@
 
                 // Wait for user interaction
                 startTime = DateTime.UtcNow;
-                Console.WriteLine("Press any key to stop reading the video stream . . .");
-                Console.ReadKey(true);
+                "Press any key to stop reading the video stream . . .".ReadKey();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"{ex.GetType()}: {ex.Message}");
+                $"{ex.GetType()}: {ex.Message}".Error();
             }
             finally
             {
@@ -368,7 +331,7 @@
                 // Output the stats
                 var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000");
                 var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000");
-                Console.WriteLine($"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds");
+                $"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds".Info();
             }
         }
 
@@ -385,7 +348,7 @@
 
             foreach (var color in colors)
             {
-                Console.WriteLine($"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}");
+                $"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}".Info();
             }
         }
     }

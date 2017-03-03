@@ -6,7 +6,6 @@
     using Swan.Components;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Net;
@@ -16,7 +15,8 @@
     /// </summary>
     public class NetworkSettings : SingletonBase<NetworkSettings>
     {
-        private const string ESSIDTag = "ESSID:";
+        private const string EssidTag = "ESSID:";
+        private const string HWaddr = "HWaddr";
 
         /// <summary>
         /// Gets the local machine Host Name.
@@ -50,11 +50,11 @@
                 {
                     var line = outputLines[i];
 
-                    if (line.StartsWith(ESSIDTag) == false) continue;
+                    if (line.StartsWith(EssidTag) == false) continue;
 
                     var network = new WirelessNetworkInfo()
                     {
-                        Name = line.Replace(ESSIDTag, "").Replace("\"", string.Empty)
+                        Name = line.Replace(EssidTag, "").Replace("\"", string.Empty)
                     };
 
                     while (true)
@@ -119,6 +119,7 @@
                 ex.Log(nameof(NetworkSettings));
                 return false;
             }
+
             return true;
         }
 
@@ -144,9 +145,9 @@
                         Name = line.Substring(0, line.IndexOf(' '))
                     };
 
-                    if (line.IndexOf("HWaddr") > 0)
+                    if (line.IndexOf(HWaddr) > 0)
                     {
-                        var startIndexHwd = line.IndexOf("HWaddr") + "HWaddr".Length;
+                        var startIndexHwd = line.IndexOf(HWaddr) + HWaddr.Length;
                         adapter.MacAddress = line.Substring(startIndexHwd).Trim();
                     }
 
@@ -184,7 +185,7 @@
                     {
                         adapter.IsWireless = true;
 
-                        var startIndex = wlanInfo.IndexOf(ESSIDTag) + ESSIDTag.Length;
+                        var startIndex = wlanInfo.IndexOf(EssidTag) + EssidTag.Length;
                         adapter.AccessPointName = wlanInfo.Substring(startIndex).Replace("\"", string.Empty);
                     }
 
