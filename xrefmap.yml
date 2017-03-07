@@ -7,6 +7,30 @@ references:
   commentId: N:Unosquare.RaspberryIO
   fullName: Unosquare.RaspberryIO
   nameWithType: Unosquare.RaspberryIO
+- uid: Unosquare.RaspberryIO.Bluetooth
+  name: Unosquare.RaspberryIO.Bluetooth
+  href: api/Unosquare.RaspberryIO.Bluetooth.html
+  commentId: N:Unosquare.RaspberryIO.Bluetooth
+  fullName: Unosquare.RaspberryIO.Bluetooth
+  nameWithType: Unosquare.RaspberryIO.Bluetooth
+- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController
+  name: BluetoothController
+  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html
+  commentId: T:Unosquare.RaspberryIO.Bluetooth.BluetoothController
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController
+  nameWithType: BluetoothController
+- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.GetStatusBT
+  name: GetStatusBT()
+  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_GetStatusBT
+  commentId: M:Unosquare.RaspberryIO.Bluetooth.BluetoothController.GetStatusBT
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.GetStatusBT()
+  nameWithType: BluetoothController.GetStatusBT()
+- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.GetStatusBT*
+  name: GetStatusBT
+  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_GetStatusBT_
+  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.GetStatusBT
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.GetStatusBT
+  nameWithType: BluetoothController.GetStatusBT
 - uid: Unosquare.RaspberryIO.Camera
   name: Unosquare.RaspberryIO.Camera
   href: api/Unosquare.RaspberryIO.Camera.html
