@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class BluetoothController
    | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.12.1.0">
+    <meta name="generator" content="docfx 2.13.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -19,6 +19,7 @@
     <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     <meta property="docfx:rel" content="../">
+    
   </head>
   <body data-spy="scroll" data-target="#affix">
     <div id="wrapper">
@@ -98,40 +99,14 @@ This class is a singleton</p>
               </h3>
               
               
-              <a id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_InitializeBT_" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT*"></a>
-              <h4 id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_InitializeBT" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT">InitializeBT</h4>
-              <div class="markdown level1 summary"><p>Retrieves current bluetooth status.</p>
+              <a id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_IsRunning_" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning*"></a>
+              <h4 id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_IsRunning" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning">IsRunning</h4>
+              <div class="markdown level1 summary"><p>Retrieves current Bluetooth status.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public string InitializeBT { get; set; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.String</span></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_StatusBT_" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.StatusBT*"></a>
-              <h4 id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_StatusBT" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.StatusBT">StatusBT</h4>
-              <div class="markdown level1 summary"><p>Retrieves current bluetooth status.</p>
-</div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public bool StatusBT { get; }</code></pre>
+                <pre><code class="lang-csharp hljs">public bool IsRunning { get; }</code></pre>
               </div>
               <h5 class="propertyValue">Property Value</h5>
               <table class="table table-bordered table-striped table-condensed">
@@ -144,6 +119,34 @@ This class is a singleton</p>
                 <tbody>
                   <tr>
                     <td><span class="xref">System.Boolean</span></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="methods">Methods
+              </h3>
+              
+              
+              <a id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_InitializeBT_" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT*"></a>
+              <h4 id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_InitializeBT" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT">InitializeBT()</h4>
+              <div class="markdown level1 summary"><p>Initialize Bluetooth Control.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public string InitializeBT()</code></pre>
+              </div>
+              <h5 class="returns">Returns</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">System.String</span></td>
                     <td></td>
                   </tr>
                 </tbody>

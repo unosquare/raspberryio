@@ -20,29 +20,29 @@ references:
   fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController
   nameWithType: BluetoothController
 - uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT
-  name: InitializeBT
+  name: InitializeBT()
   href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_InitializeBT
-  commentId: P:Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT
-  nameWithType: BluetoothController.InitializeBT
+  commentId: M:Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT()
+  nameWithType: BluetoothController.InitializeBT()
 - uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT*
   name: InitializeBT
   href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_InitializeBT_
   commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT
   fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.InitializeBT
   nameWithType: BluetoothController.InitializeBT
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.StatusBT
-  name: StatusBT
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_StatusBT
-  commentId: P:Unosquare.RaspberryIO.Bluetooth.BluetoothController.StatusBT
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.StatusBT
-  nameWithType: BluetoothController.StatusBT
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.StatusBT*
-  name: StatusBT
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_StatusBT_
-  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.StatusBT
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.StatusBT
-  nameWithType: BluetoothController.StatusBT
+- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
+  name: IsRunning
+  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_IsRunning
+  commentId: P:Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
+  nameWithType: BluetoothController.IsRunning
+- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning*
+  name: IsRunning
+  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_IsRunning_
+  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
+  nameWithType: BluetoothController.IsRunning
 - uid: Unosquare.RaspberryIO.Camera
   name: Unosquare.RaspberryIO.Camera
   href: api/Unosquare.RaspberryIO.Camera.html
