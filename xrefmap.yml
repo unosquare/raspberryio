@@ -19,6 +19,18 @@ references:
   commentId: T:Unosquare.RaspberryIO.Bluetooth.BluetoothController
   fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController
   nameWithType: BluetoothController
+- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
+  name: Devices
+  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Devices
+  commentId: P:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
+  nameWithType: BluetoothController.Devices
+- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices*
+  name: Devices
+  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Devices_
+  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
+  nameWithType: BluetoothController.Devices
 - uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
   name: IsRunning
   href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_IsRunning
@@ -31,18 +43,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
   fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
   nameWithType: BluetoothController.IsRunning
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.ScanBT
-  name: ScanBT()
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_ScanBT
-  commentId: M:Unosquare.RaspberryIO.Bluetooth.BluetoothController.ScanBT
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.ScanBT()
-  nameWithType: BluetoothController.ScanBT()
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.ScanBT*
-  name: ScanBT
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_ScanBT_
-  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.ScanBT
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.ScanBT
-  nameWithType: BluetoothController.ScanBT
+- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan
+  name: Scan()
+  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Scan
+  commentId: M:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan()
+  nameWithType: BluetoothController.Scan()
+- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan*
+  name: Scan
+  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Scan_
+  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan
+  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan
+  nameWithType: BluetoothController.Scan
 - uid: Unosquare.RaspberryIO.Camera
   name: Unosquare.RaspberryIO.Camera
   href: api/Unosquare.RaspberryIO.Camera.html
@@ -4844,18 +4856,18 @@ references:
   commentId: T:Unosquare.RaspberryIO.Pi
   fullName: Unosquare.RaspberryIO.Pi
   nameWithType: Pi
-- uid: Unosquare.RaspberryIO.Pi.BT
-  name: BT
-  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_BT
-  commentId: P:Unosquare.RaspberryIO.Pi.BT
-  fullName: Unosquare.RaspberryIO.Pi.BT
-  nameWithType: Pi.BT
-- uid: Unosquare.RaspberryIO.Pi.BT*
-  name: BT
-  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_BT_
-  commentId: Overload:Unosquare.RaspberryIO.Pi.BT
-  fullName: Unosquare.RaspberryIO.Pi.BT
-  nameWithType: Pi.BT
+- uid: Unosquare.RaspberryIO.Pi.Bluetooth
+  name: Bluetooth
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Bluetooth
+  commentId: P:Unosquare.RaspberryIO.Pi.Bluetooth
+  fullName: Unosquare.RaspberryIO.Pi.Bluetooth
+  nameWithType: Pi.Bluetooth
+- uid: Unosquare.RaspberryIO.Pi.Bluetooth*
+  name: Bluetooth
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Bluetooth_
+  commentId: Overload:Unosquare.RaspberryIO.Pi.Bluetooth
+  fullName: Unosquare.RaspberryIO.Pi.Bluetooth
+  nameWithType: Pi.Bluetooth
 - uid: Unosquare.RaspberryIO.Pi.Camera
   name: Camera
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Camera

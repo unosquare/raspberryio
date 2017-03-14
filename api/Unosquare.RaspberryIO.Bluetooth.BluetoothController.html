@@ -80,7 +80,7 @@
               
               <h1 id="Unosquare_RaspberryIO_Bluetooth_BluetoothController" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController">Class BluetoothController
               </h1>
-              <div class="markdown level0 summary"><p>The Raspberry Pi&#39;s bluetooth controller wrapping raspistill and raspivid programs.
+              <div class="markdown level0 summary"><p>The Raspberry Pi&#39;s bluetooth controller wrapping bluetoothctl.
 This class is a singleton</p>
 </div>
               <div class="markdown level0 conceptual"></div>
@@ -97,6 +97,33 @@ This class is a singleton</p>
               </div>
               <h3 id="properties">Properties
               </h3>
+              
+              
+              <a id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_Devices_" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices*"></a>
+              <h4 id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_Devices" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices">Devices</h4>
+              <div class="markdown level1 summary"><p>Gets the devices.</p>
+</div>
+              <div class="markdown level1 conceptual"></div>
+              <h5 class="decalaration">Declaration</h5>
+              <div class="codewrapper">
+                <pre><code class="lang-csharp hljs">public Dictionary&lt;string, string&gt; Devices { get; }</code></pre>
+              </div>
+              <h5 class="propertyValue">Property Value</h5>
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+                    <td><p>The devices.</p>
+</td>
+                  </tr>
+                </tbody>
+              </table>
               
               
               <a id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_IsRunning_" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning*"></a>
@@ -127,30 +154,15 @@ This class is a singleton</p>
               </h3>
               
               
-              <a id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_ScanBT_" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.ScanBT*"></a>
-              <h4 id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_ScanBT" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.ScanBT">ScanBT()</h4>
-              <div class="markdown level1 summary"><p>Initialize Bluetooth Control.</p>
+              <a id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_Scan_" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan*"></a>
+              <h4 id="Unosquare_RaspberryIO_Bluetooth_BluetoothController_Scan" data-uid="Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan">Scan()</h4>
+              <div class="markdown level1 summary"><p>Scans this bluetooths devices.</p>
 </div>
               <div class="markdown level1 conceptual"></div>
               <h5 class="decalaration">Declaration</h5>
               <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Dictionary&lt;string, string&gt; ScanBT()</code></pre>
+                <pre><code class="lang-csharp hljs">public void Scan()</code></pre>
               </div>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
                         </article>
           </div>
           
