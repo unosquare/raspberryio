@@ -1,9 +1,6 @@
-﻿using System.CodeDom;
-
-namespace Unosquare.RaspberryIO.Camera
+﻿namespace Unosquare.RaspberryIO.Camera
 {
     using Swan;
-    using System;
     using System.Collections.Generic;
     using System.Text;
 

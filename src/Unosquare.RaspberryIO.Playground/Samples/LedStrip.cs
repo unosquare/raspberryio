@@ -1,4 +1,5 @@
-﻿namespace Unosquare.RaspberryIO.Playground.Samples
+﻿#if NET452
+namespace Unosquare.RaspberryIO.Playground.Samples
 {
     using Gpio;
     using Swan;
@@ -349,3 +350,4 @@
         #endregion
     }
 }
+#endif

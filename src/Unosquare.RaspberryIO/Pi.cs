@@ -1,7 +1,6 @@
-﻿using Unosquare.RaspberryIO.Resources;
-
-namespace Unosquare.RaspberryIO
+﻿namespace Unosquare.RaspberryIO
 {
+    using Resources;
     using Camera;
     using Computer;
     using Gpio;
@@ -72,9 +71,6 @@ namespace Unosquare.RaspberryIO
         /// <summary>
         /// Provides access to the official Raspberry Pi 7-inch DSI Display
         /// </summary>
-        /// <value>
-        /// The display.
-        /// </value>
         public static DsiDisplay PiDisplay { get; }
 
         #endregion
