@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class CameraController
    | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.13.1.0">
+    <meta name="generator" content="docfx 2.18.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -57,7 +57,7 @@
           </div>
         </div>
       </header>
-      <div role="main" class="container body-content">
+      <div class="container body-content">
         
         <div id="search-results">
           <div class="search-list"></div>
@@ -75,457 +75,457 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content">
-              
-              
-              <h1 id="Unosquare_RaspberryIO_Camera_CameraController" data-uid="Unosquare.RaspberryIO.Camera.CameraController">Class CameraController
-              </h1>
-              <div class="markdown level0 summary"><p>The Raspberry Pi&#39;s camera controller wrapping raspistill and raspivid programs.
+            <article class="content wrap" id="_content" data-uid="Unosquare.RaspberryIO.Camera.CameraController">
+  
+  
+  <h1 id="Unosquare_RaspberryIO_Camera_CameraController" data-uid="Unosquare.RaspberryIO.Camera.CameraController">Class CameraController
+  </h1>
+  <div class="markdown level0 summary"><p>The Raspberry Pi&#39;s camera controller wrapping raspistill and raspivid programs.
 This class is a singleton</p>
 </div>
-              <div class="markdown level0 conceptual"></div>
-              <div class="inheritance">
-                <h5>Inheritance</h5>
-                  <div class="level0"><span class="xref">System.Object</span></div>
-                  <div class="level1"><span class="xref">CameraController</span></div>
-              </div>
-              <h6><strong>Namespace</strong>:Unosquare.RaspberryIO.Camera</h6>
-              <h6><strong>Assembly</strong>:cs.temp.dll.dll</h6>
-              <h5 id="Unosquare_RaspberryIO_Camera_CameraController_syntax">Syntax</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public class CameraController : SingletonBase&lt;CameraController&gt;</code></pre>
-              </div>
-              <h3 id="properties">Properties
-              </h3>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_IsBusy_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.IsBusy*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_IsBusy" data-uid="Unosquare.RaspberryIO.Camera.CameraController.IsBusy">IsBusy</h4>
-              <div class="markdown level1 summary"><p>Gets a value indicating whether the camera module is busy.</p>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">CameraController</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.RaspberryIO.Camera.html">Unosquare.RaspberryIO.Camera</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="Unosquare_RaspberryIO_Camera_CameraController_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CameraController : SingletonBase&lt;CameraController&gt;</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_IsBusy_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.IsBusy*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_IsBusy" data-uid="Unosquare.RaspberryIO.Camera.CameraController.IsBusy">IsBusy</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the camera module is busy.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public bool IsBusy { get; }</code></pre>
-              </div>
-              <h5 class="propertyValue">Property Value</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Boolean</span></td>
-                    <td><p><code>true</code> if this instance is busy; otherwise, <code>false</code>.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsBusy { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if this instance is busy; otherwise, <code>false</code>.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h3 id="methods">Methods
-              </h3>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImage_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImage*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImage_Unosquare_RaspberryIO_Camera_CameraStillSettings_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImage(Unosquare.RaspberryIO.Camera.CameraStillSettings)">CaptureImage(CameraStillSettings)</h4>
-              <div class="markdown level1 summary"><p>Captures an image.</p>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImage_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImage*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImage_Unosquare_RaspberryIO_Camera_CameraStillSettings_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImage(Unosquare.RaspberryIO.Camera.CameraStillSettings)">CaptureImage(CameraStillSettings)</h4>
+  <div class="markdown level1 summary"><p>Captures an image.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public byte[] CaptureImage(CameraStillSettings settings)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="Unosquare.RaspberryIO.Camera.CameraStillSettings.html">CameraStillSettings</a></td>
-                    <td><span class="parametername">settings</span></td>
-                    <td><p>The settings.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] CaptureImage(CameraStillSettings settings)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Camera.CameraStillSettings.html">CameraStillSettings</a></td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>The settings.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Byte</span>[]</td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_Unosquare_RaspberryIO_Camera_CameraStillSettings_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings)">CaptureImageAsync(CameraStillSettings)</h4>
-              <div class="markdown level1 summary"><p>Captures an image asynchronously.</p>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_Unosquare_RaspberryIO_Camera_CameraStillSettings_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings)">CaptureImageAsync(CameraStillSettings)</h4>
+  <div class="markdown level1 summary"><p>Captures an image asynchronously.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageAsync(CameraStillSettings settings)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="Unosquare.RaspberryIO.Camera.CameraStillSettings.html">CameraStillSettings</a></td>
-                    <td><span class="parametername">settings</span></td>
-                    <td><p>The settings.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageAsync(CameraStillSettings settings)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Camera.CameraStillSettings.html">CameraStillSettings</a></td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>The settings.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_Unosquare_RaspberryIO_Camera_CameraStillSettings_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings,System.Threading.CancellationToken)">CaptureImageAsync(CameraStillSettings, CancellationToken)</h4>
-              <div class="markdown level1 summary"><p>Captures an image asynchronously.</p>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_Unosquare_RaspberryIO_Camera_CameraStillSettings_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings,System.Threading.CancellationToken)">CaptureImageAsync(CameraStillSettings, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Captures an image asynchronously.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageAsync(CameraStillSettings settings, CancellationToken ct)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="Unosquare.RaspberryIO.Camera.CameraStillSettings.html">CameraStillSettings</a></td>
-                    <td><span class="parametername">settings</span></td>
-                    <td><p>The settings.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageAsync(CameraStillSettings settings, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Camera.CameraStillSettings.html">CameraStillSettings</a></td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>The settings.</p>
 </td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Threading.CancellationToken</span></td>
-                    <td><span class="parametername">ct</span></td>
-                    <td><p>The ct.</p>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>The ct.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.InvalidOperationException</span></td>
-                    <td><p>Cannot use camera module because it is currently busy.</p>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Cannot use camera module because it is currently busy.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpeg_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpeg*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpeg_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpeg(System.Int32,System.Int32)">CaptureImageJpeg(Int32, Int32)</h4>
-              <div class="markdown level1 summary"><p>Captures a JPEG encoded image at 90% quality.</p>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpeg_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpeg*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpeg_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpeg(System.Int32,System.Int32)">CaptureImageJpeg(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Captures a JPEG encoded image at 90% quality.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public byte[] CaptureImageJpeg(int width, int height)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">width</span></td>
-                    <td><p>The width.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] CaptureImageJpeg(int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width.</p>
 </td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">height</span></td>
-                    <td><p>The height.</p>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Byte</span>[]</td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpegAsync_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpegAsync*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpegAsync_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpegAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">CaptureImageJpegAsync(Int32, Int32, CancellationToken)</h4>
-              <div class="markdown level1 summary"><p>Captures a JPEG encoded image asynchronously at 90% quality.</p>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpegAsync_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpegAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpegAsync_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpegAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">CaptureImageJpegAsync(Int32, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Captures a JPEG encoded image asynchronously at 90% quality.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageJpegAsync(int width, int height, CancellationToken ct)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">width</span></td>
-                    <td><p>The width.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageJpegAsync(int width, int height, CancellationToken ct)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width.</p>
 </td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Int32</span></td>
-                    <td><span class="parametername">height</span></td>
-                    <td><p>The height.</p>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height.</p>
 </td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Threading.CancellationToken</span></td>
-                    <td><span class="parametername">ct</span></td>
-                    <td><p>The ct.</p>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">ct</span></td>
+        <td><p>The ct.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="returns">Returns</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_CloseVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CloseVideoStream*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CloseVideoStream" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CloseVideoStream">CloseVideoStream()</h4>
-              <div class="markdown level1 summary"><p>Closes the video stream of a video stream is open.</p>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_CloseVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CloseVideoStream*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CloseVideoStream" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CloseVideoStream">CloseVideoStream()</h4>
+  <div class="markdown level1 summary"><p>Closes the video stream of a video stream is open.</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public void CloseVideoStream()</code></pre>
-              </div>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]})">OpenVideoStream(Action&lt;Byte[]&gt;)</h4>
-              <div class="markdown level1 summary"><p>Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CloseVideoStream()</code></pre>
+  </div>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]})">OpenVideoStream(Action&lt;Byte[]&gt;)</h4>
+  <div class="markdown level1 summary"><p>Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
 No preview is shown</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public void OpenVideoStream(Action&lt;byte[]&gt; onDataCallback)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
-                    <td><span class="parametername">onDataCallback</span></td>
-                    <td><p>The on data callback.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OpenVideoStream(Action&lt;byte[]&gt; onDataCallback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><span class="parametername">onDataCallback</span></td>
+        <td><p>The on data callback.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____System_Action_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Action)">OpenVideoStream(Action&lt;Byte[]&gt;, Action)</h4>
-              <div class="markdown level1 summary"><p>Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____System_Action_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Action)">OpenVideoStream(Action&lt;Byte[]&gt;, Action)</h4>
+  <div class="markdown level1 summary"><p>Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
 No preview is shown</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public void OpenVideoStream(Action&lt;byte[]&gt; onDataCallback, Action onExitCallback)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
-                    <td><span class="parametername">onDataCallback</span></td>
-                    <td><p>The on data callback.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OpenVideoStream(Action&lt;byte[]&gt; onDataCallback, Action onExitCallback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><span class="parametername">onDataCallback</span></td>
+        <td><p>The on data callback.</p>
 </td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Action</span></td>
-                    <td><span class="parametername">onExitCallback</span></td>
-                    <td><p>The on exit callback.</p>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td><span class="parametername">onExitCallback</span></td>
+        <td><p>The on exit callback.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              
-              
-              <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
-              <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_Unosquare_RaspberryIO_Camera_CameraVideoSettings_System_Action_System_Byte____System_Action_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Action)">OpenVideoStream(CameraVideoSettings, Action&lt;Byte[]&gt;, Action)</h4>
-              <div class="markdown level1 summary"><p>Opens the video stream with the supplied settings. Capture Timeout Milliseconds has to be 0 or greater</p>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_Unosquare_RaspberryIO_Camera_CameraVideoSettings_System_Action_System_Byte____System_Action_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Action)">OpenVideoStream(CameraVideoSettings, Action&lt;Byte[]&gt;, Action)</h4>
+  <div class="markdown level1 summary"><p>Opens the video stream with the supplied settings. Capture Timeout Milliseconds has to be 0 or greater</p>
 </div>
-              <div class="markdown level1 conceptual"></div>
-              <h5 class="decalaration">Declaration</h5>
-              <div class="codewrapper">
-                <pre><code class="lang-csharp hljs">public void OpenVideoStream(CameraVideoSettings settings, Action&lt;byte[]&gt; onDataCallback, Action onExitCallback)</code></pre>
-              </div>
-              <h5 class="parameters">Parameters</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a class="xref" href="Unosquare.RaspberryIO.Camera.CameraVideoSettings.html">CameraVideoSettings</a></td>
-                    <td><span class="parametername">settings</span></td>
-                    <td><p>The settings.</p>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OpenVideoStream(CameraVideoSettings settings, Action&lt;byte[]&gt; onDataCallback, Action onExitCallback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Camera.CameraVideoSettings.html">CameraVideoSettings</a></td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>The settings.</p>
 </td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
-                    <td><span class="parametername">onDataCallback</span></td>
-                    <td><p>The on data callback.</p>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><span class="parametername">onDataCallback</span></td>
+        <td><p>The on data callback.</p>
 </td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.Action</span></td>
-                    <td><span class="parametername">onExitCallback</span></td>
-                    <td><p>The on exit callback.</p>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td><span class="parametername">onExitCallback</span></td>
+        <td><p>The on exit callback.</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-              <h5 class="exceptions">Exceptions</h5>
-              <table class="table table-bordered table-striped table-condensed">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Condition</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="xref">System.InvalidOperationException</span></td>
-                    <td><p>Cannot use camera module because it is currently busy.</p>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Cannot use camera module because it is currently busy.</p>
 </td>
-                  </tr>
-                  <tr>
-                    <td><span class="xref">System.ArgumentException</span></td>
-                    <td><p>CaptureTimeoutMilliseconds</p>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>CaptureTimeoutMilliseconds</p>
 </td>
-                  </tr>
-                </tbody>
-              </table>
-                        </article>
+      </tr>
+    </tbody>
+  </table>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -550,7 +550,7 @@ No preview is shown</p>
               <a href="#top">Back to top</a>
             </span>
             
-            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>

@@ -7,66 +7,6 @@ references:
   commentId: N:Unosquare.RaspberryIO
   fullName: Unosquare.RaspberryIO
   nameWithType: Unosquare.RaspberryIO
-- uid: Unosquare.RaspberryIO.Bluetooth
-  name: Unosquare.RaspberryIO.Bluetooth
-  href: api/Unosquare.RaspberryIO.Bluetooth.html
-  commentId: N:Unosquare.RaspberryIO.Bluetooth
-  fullName: Unosquare.RaspberryIO.Bluetooth
-  nameWithType: Unosquare.RaspberryIO.Bluetooth
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController
-  name: BluetoothController
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html
-  commentId: T:Unosquare.RaspberryIO.Bluetooth.BluetoothController
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController
-  nameWithType: BluetoothController
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
-  name: Devices
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Devices
-  commentId: P:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
-  nameWithType: BluetoothController.Devices
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices*
-  name: Devices
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Devices_
-  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Devices
-  nameWithType: BluetoothController.Devices
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
-  name: IsRunning
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_IsRunning
-  commentId: P:Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
-  nameWithType: BluetoothController.IsRunning
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning*
-  name: IsRunning
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_IsRunning_
-  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.IsRunning
-  nameWithType: BluetoothController.IsRunning
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Pair(System.String,System.String)
-  name: Pair(String, String)
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Pair_System_String_System_String_
-  commentId: M:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Pair(System.String,System.String)
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Pair(System.String, System.String)
-  nameWithType: BluetoothController.Pair(String, String)
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Pair*
-  name: Pair
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Pair_
-  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Pair
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Pair
-  nameWithType: BluetoothController.Pair
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan(System.Int32)
-  name: Scan(Int32)
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Scan_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan(System.Int32)
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan(System.Int32)
-  nameWithType: BluetoothController.Scan(Int32)
-- uid: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan*
-  name: Scan
-  href: api/Unosquare.RaspberryIO.Bluetooth.BluetoothController.html#Unosquare_RaspberryIO_Bluetooth_BluetoothController_Scan_
-  commentId: Overload:Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan
-  fullName: Unosquare.RaspberryIO.Bluetooth.BluetoothController.Scan
-  nameWithType: BluetoothController.Scan
 - uid: Unosquare.RaspberryIO.Camera
   name: Unosquare.RaspberryIO.Camera
   href: api/Unosquare.RaspberryIO.Camera.html
@@ -3728,48 +3668,6 @@ references:
   commentId: N:Unosquare.RaspberryIO.Models
   fullName: Unosquare.RaspberryIO.Models
   nameWithType: Unosquare.RaspberryIO.Models
-- uid: Unosquare.RaspberryIO.Models.BluetoothModel
-  name: BluetoothModel
-  href: api/Unosquare.RaspberryIO.Models.BluetoothModel.html
-  commentId: T:Unosquare.RaspberryIO.Models.BluetoothModel
-  fullName: Unosquare.RaspberryIO.Models.BluetoothModel
-  nameWithType: BluetoothModel
-- uid: Unosquare.RaspberryIO.Models.BluetoothModel.MacBT
-  name: MacBT
-  href: api/Unosquare.RaspberryIO.Models.BluetoothModel.html#Unosquare_RaspberryIO_Models_BluetoothModel_MacBT
-  commentId: P:Unosquare.RaspberryIO.Models.BluetoothModel.MacBT
-  fullName: Unosquare.RaspberryIO.Models.BluetoothModel.MacBT
-  nameWithType: BluetoothModel.MacBT
-- uid: Unosquare.RaspberryIO.Models.BluetoothModel.MacBT*
-  name: MacBT
-  href: api/Unosquare.RaspberryIO.Models.BluetoothModel.html#Unosquare_RaspberryIO_Models_BluetoothModel_MacBT_
-  commentId: Overload:Unosquare.RaspberryIO.Models.BluetoothModel.MacBT
-  fullName: Unosquare.RaspberryIO.Models.BluetoothModel.MacBT
-  nameWithType: BluetoothModel.MacBT
-- uid: Unosquare.RaspberryIO.Models.BluetoothModel.Name
-  name: Name
-  href: api/Unosquare.RaspberryIO.Models.BluetoothModel.html#Unosquare_RaspberryIO_Models_BluetoothModel_Name
-  commentId: P:Unosquare.RaspberryIO.Models.BluetoothModel.Name
-  fullName: Unosquare.RaspberryIO.Models.BluetoothModel.Name
-  nameWithType: BluetoothModel.Name
-- uid: Unosquare.RaspberryIO.Models.BluetoothModel.Name*
-  name: Name
-  href: api/Unosquare.RaspberryIO.Models.BluetoothModel.html#Unosquare_RaspberryIO_Models_BluetoothModel_Name_
-  commentId: Overload:Unosquare.RaspberryIO.Models.BluetoothModel.Name
-  fullName: Unosquare.RaspberryIO.Models.BluetoothModel.Name
-  nameWithType: BluetoothModel.Name
-- uid: Unosquare.RaspberryIO.Models.BluetoothModel.Type
-  name: Type
-  href: api/Unosquare.RaspberryIO.Models.BluetoothModel.html#Unosquare_RaspberryIO_Models_BluetoothModel_Type
-  commentId: P:Unosquare.RaspberryIO.Models.BluetoothModel.Type
-  fullName: Unosquare.RaspberryIO.Models.BluetoothModel.Type
-  nameWithType: BluetoothModel.Type
-- uid: Unosquare.RaspberryIO.Models.BluetoothModel.Type*
-  name: Type
-  href: api/Unosquare.RaspberryIO.Models.BluetoothModel.html#Unosquare_RaspberryIO_Models_BluetoothModel_Type_
-  commentId: Overload:Unosquare.RaspberryIO.Models.BluetoothModel.Type
-  fullName: Unosquare.RaspberryIO.Models.BluetoothModel.Type
-  nameWithType: BluetoothModel.Type
 - uid: Unosquare.RaspberryIO.Models.NetworkAdapter
   name: NetworkAdapter
   href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html
@@ -4868,18 +4766,6 @@ references:
   commentId: T:Unosquare.RaspberryIO.Pi
   fullName: Unosquare.RaspberryIO.Pi
   nameWithType: Pi
-- uid: Unosquare.RaspberryIO.Pi.Bluetooth
-  name: Bluetooth
-  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Bluetooth
-  commentId: P:Unosquare.RaspberryIO.Pi.Bluetooth
-  fullName: Unosquare.RaspberryIO.Pi.Bluetooth
-  nameWithType: Pi.Bluetooth
-- uid: Unosquare.RaspberryIO.Pi.Bluetooth*
-  name: Bluetooth
-  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Bluetooth_
-  commentId: Overload:Unosquare.RaspberryIO.Pi.Bluetooth
-  fullName: Unosquare.RaspberryIO.Pi.Bluetooth
-  nameWithType: Pi.Bluetooth
 - uid: Unosquare.RaspberryIO.Pi.Camera
   name: Camera
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Camera
