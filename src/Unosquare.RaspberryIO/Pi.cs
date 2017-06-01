@@ -1,6 +1,5 @@
 ﻿namespace Unosquare.RaspberryIO
 {
-    using Resources;
     using Camera;
     using Computer;
     using Gpio;
@@ -23,7 +22,7 @@
             lock (SyncLock)
             {
                 // Extraction of embedded resources
-                EmbeddedResources.ExtractAll();
+                Resources.EmbeddedResources.ExtractAll();
 
                 // Instance assignments
                 Gpio = GpioController.Instance;

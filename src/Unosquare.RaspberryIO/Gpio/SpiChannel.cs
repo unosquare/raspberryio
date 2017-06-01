@@ -36,7 +36,6 @@
         /// </summary>
         /// <param name="channel">The channel.</param>
         /// <param name="frequency">The frequency.</param>
-        /// <exception cref="System.SystemException"></exception>
         private SpiChannel(SpiChannelNumber channel, int frequency)
         {
             lock (SyncRoot)
