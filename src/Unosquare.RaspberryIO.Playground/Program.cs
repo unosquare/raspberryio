@@ -3,7 +3,6 @@
     using Camera;
     using Computer;
     using Gpio;
-    using Samples;
     using Swan;
     using Swan.Formatters;
     using System;
@@ -11,6 +10,9 @@
     using System.IO;
     using System.Linq;
     using System.Threading;
+#if NET452
+    using Samples;
+#endif
 
     public class Program
     {
@@ -41,6 +43,7 @@
             }
         }
 
+#if NET452
         public static void TestLedStripGraphics()
         {
             BitmapBuffer pixels = null;
@@ -192,6 +195,7 @@
             Console.WriteLine();
             exitAnimation = true;
         }
+#endif
 
         public static void TestSpi()
         {

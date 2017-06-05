@@ -2,18 +2,37 @@
   "version": "1.0.0-*",
   "buildOptions": {
     "emitEntryPoint": true,
-    "copyToOutput": { "includeFiles": [ "fractal.jpg", "spectrum.png" ] }
+    "copyToOutput": {
+      "includeFiles": [
+        "fractal.jpg",
+        "spectrum.png"
+      ]
+    }
   },
   "frameworks": {
-    "net452": {
-      "frameworkAssemblies": {
+    "net452": {},
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0-*"
+        },
+        "System.ComponentModel.Primitives": {
+          "version": "4.3.0",
+          "exclude": "runtime"
+        }
       }
     }
   },
   "dependencies": {
-    "Unosquare.RaspberryIO": { "target": "project" }
+    "Unosquare.RaspberryIO": {
+      "target": "project"
+    }
   },
   "scripts": {
     "postcompile": "%project:Directory%\\..\\..\\create-sshdeploy.cmd %compile:RuntimeOutputDir% %project:Directory%\\..\\..\\sshdeploy.cmd /home/pi/raspberryio 172.16.17.47 pi raspberry %project:Name%"
+  },
+  "runtimes": {
+    "win10-x64": {}
   }
 }

@@ -21,7 +21,7 @@
         /// <summary>
         /// Gets the local machine Host Name.
         /// </summary>
-        public string HostName => Dns.GetHostName();
+        public string HostName => Network.HostName;
 
         /// <summary>
         /// Retrieves the wireless networks.
@@ -30,7 +30,7 @@
         /// <returns></returns>
         public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string adapter)
         {
-            return RetrieveWirelessNetworks(new[] { adapter });
+            return RetrieveWirelessNetworks(new[] {adapter});
         }
 
         /// <summary>
@@ -44,7 +44,11 @@
             foreach (var networkAdapter in adapters ?? RetrieveAdapters().Where(x => x.IsWireless).Select(x => x.Name))
             {
                 var wirelessOutput = ProcessRunner.GetProcessOutputAsync("iwlist", $"{networkAdapter} scanning").Result;
-                var outputLines = wirelessOutput.Split('\n').Select(x => x.Trim()).Where(x => string.IsNullOrWhiteSpace(x) == false).ToArray();
+                var outputLines =
+                    wirelessOutput.Split('\n')
+                        .Select(x => x.Trim())
+                        .Where(x => string.IsNullOrWhiteSpace(x) == false)
+                        .ToArray();
 
                 for (var i = 0; i < outputLines.Length; i++)
                 {
@@ -104,9 +108,9 @@
         {
             //TODO: Get the country where the device is located to set 'country' param in payload var
             var payload = "country=MX\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
-            payload += string.IsNullOrEmpty(password) ?
-                $"network={{\n\tssid=\"{networkSsid}\"\n\t}}\n" :
-                $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{password}\"\n\t}}\n";
+            payload += string.IsNullOrEmpty(password)
+                ? $"network={{\n\tssid=\"{networkSsid}\"\n\t}}\n"
+                : $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{password}\"\n\t}}\n";
             try
             {
                 File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
@@ -131,7 +135,11 @@
         {
             var result = new List<NetworkAdapter>();
             var interfacesOutput = ProcessRunner.GetProcessOutputAsync("ifconfig").Result;
-            var wlanOutput = ProcessRunner.GetProcessOutputAsync("iwconfig").Result.Split('\n').Where(x => x.Contains("no wireless extensions.") == false).ToArray();
+            var wlanOutput =
+                ProcessRunner.GetProcessOutputAsync("iwconfig")
+                    .Result.Split('\n')
+                    .Where(x => x.Contains("no wireless extensions.") == false)
+                    .ToArray();
             var outputLines = interfacesOutput.Split('\n').Where(x => string.IsNullOrWhiteSpace(x) == false).ToArray();
 
             for (var i = 0; i < outputLines.Length; i++)
@@ -199,6 +207,6 @@
         /// <summary>
         /// Retrieves current wireless connected network
         /// </summary>
-        public string GetWirelessNetworkName() => ProcessRunner.GetProcessOutputAsync("iwgetid","-r").Result;
+        public string GetWirelessNetworkName() => ProcessRunner.GetProcessOutputAsync("iwgetid", "-r").Result;
     }
 }

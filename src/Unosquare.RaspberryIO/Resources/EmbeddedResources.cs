@@ -11,14 +11,13 @@
     /// </summary>
     internal static class EmbeddedResources
     {
-        private const string GpioToolFileName = "gpio.2.42";
-
         /// <summary>
         /// Initializes the <see cref="EmbeddedResources"/> class.
         /// </summary>
         static EmbeddedResources()
         {
-            ResourceNames = new ReadOnlyCollection<string>(typeof(EmbeddedResources).Assembly.GetManifestResourceNames());
+            ResourceNames =
+                new ReadOnlyCollection<string>(typeof(EmbeddedResources).Assembly().GetManifestResourceNames());
         }
 
         /// <summary>
@@ -44,7 +43,7 @@
                 var targetPath = Path.Combine(basePath, filename);
                 if (File.Exists(targetPath)) return;
 
-                using (var stream = typeof(EmbeddedResources).Assembly
+                using (var stream = typeof(EmbeddedResources).Assembly()
                     .GetManifestResourceStream($"{typeof(EmbeddedResources).Namespace}.{filename}"))
                 {
                     using (var outputStream = File.OpenWrite(targetPath))

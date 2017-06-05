@@ -23,7 +23,7 @@
         private const string WiringPiCodesEnvironmentVariable = "WIRINGPI_CODES";
         private readonly ReadOnlyCollection<GpioPin> PinCollection;
         private readonly Dictionary<WiringPiPin, GpioPin> RegisteredPins = new Dictionary<WiringPiPin, GpioPin>();
-        private static object SyncRoot = new object();
+        private static readonly object SyncRoot = new object();
 
         #endregion
 
@@ -35,7 +35,16 @@
         /// <value>
         /// <c>true</c> if the controller is properly initialized; otherwise, <c>false</c>.
         /// </value>
-        public static bool IsInitialized { get { lock (SyncRoot) { return Mode != ControllerMode.NotInitialized; } } }
+        public static bool IsInitialized
+        {
+            get
+            {
+                lock (SyncRoot)
+                {
+                    return Mode != ControllerMode.NotInitialized;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the initialization mode.
@@ -47,10 +56,10 @@
         #region Constructors and Initialization
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="GpioController"/> class from being created.
+        /// Prevents a default instance of the <see cref="GpioController" /> class from being created.
         /// It in turn initializes the controller and registers the pin -- in that order.
         /// </summary>
-        /// <exception cref="System.SystemException">Unable to initialize the GPIO controller.</exception>
+        /// <exception cref="System.Exception">Unable to initialize the GPIO controller.</exception>
         private GpioController()
         {
             if (PinCollection != null)
@@ -60,7 +69,7 @@
             {
                 var initResult = Initialize(ControllerMode.DirectWithWiringPiPins);
                 if (initResult == false)
-                    throw new SystemException("Unable to initialize the GPIO controller.");
+                    throw new Exception("Unable to initialize the GPIO controller.");
             }
 
             #region Pin Registration (32 WiringPi Pins)
@@ -127,52 +136,59 @@
         private bool Initialize(ControllerMode mode)
         {
             if (Runtime.OS != Swan.OperatingSystem.Unix)
-                throw new PlatformNotSupportedException($"This library does not support the platform {Environment.OSVersion}");
+                throw new PlatformNotSupportedException($"This library does not support the platform");
 
             lock (SyncRoot)
             {
                 if (IsInitialized)
                     throw new InvalidOperationException($"Cannot call {nameof(Initialize)} more than once.");
 
+#if NET452
                 Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1", EnvironmentVariableTarget.Process);
+#else
+                Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1");
+#endif
 
                 int setpuResult;
 
                 switch (mode)
                 {
                     case ControllerMode.DirectWithWiringPiPins:
-                        {
-                            if (SystemInfo.Instance.IsRunningAsRoot == false)
-                                throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
+                    {
+                        if (SystemInfo.Instance.IsRunningAsRoot == false)
+                            throw new PlatformNotSupportedException(
+                                $"This program must be started with root privileges for mode '{mode}'");
 
-                            setpuResult = WiringPi.wiringPiSetup();
-                            break;
-                        }
+                        setpuResult = WiringPi.wiringPiSetup();
+                        break;
+                    }
                     case ControllerMode.DirectWithBcmPins:
-                        {
-                            if (SystemInfo.Instance.IsRunningAsRoot == false)
-                                throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
+                    {
+                        if (SystemInfo.Instance.IsRunningAsRoot == false)
+                            throw new PlatformNotSupportedException(
+                                $"This program must be started with root privileges for mode '{mode}'");
 
-                            setpuResult = WiringPi.wiringPiSetupGpio();
-                            break;
-                        }
+                        setpuResult = WiringPi.wiringPiSetupGpio();
+                        break;
+                    }
                     case ControllerMode.DirectWithHeaderPins:
-                        {
-                            if (SystemInfo.Instance.IsRunningAsRoot == false)
-                                throw new PlatformNotSupportedException($"This program must be started with root privileges for mode '{mode}'");
+                    {
+                        if (SystemInfo.Instance.IsRunningAsRoot == false)
+                            throw new PlatformNotSupportedException(
+                                $"This program must be started with root privileges for mode '{mode}'");
 
-                            setpuResult = WiringPi.wiringPiSetupPhys();
-                            break;
-                        }
+                        setpuResult = WiringPi.wiringPiSetupPhys();
+                        break;
+                    }
                     case ControllerMode.FileStreamWithHardwarePins:
-                        {
-                            setpuResult = WiringPi.wiringPiSetupSys();
-                            break;
-                        }
+                    {
+                        setpuResult = WiringPi.wiringPiSetupSys();
+                        break;
+                    }
                     default:
-                        {
-                            throw new ArgumentException($"'{mode}' is not a valid initialization mode.");
-                        }
+                    {
+                        throw new ArgumentException($"'{mode}' is not a valid initialization mode.");
+                    }
                 }
 
                 Mode = setpuResult == 0 ? mode : ControllerMode.NotInitialized;
@@ -215,7 +231,7 @@
                 if (Enum.IsDefined(typeof(WiringPiPin), pinNumber) == false)
                     throw new IndexOutOfRangeException($"Pin {pinNumber} is not registered in the GPIO controller.");
 
-                return RegisteredPins[(WiringPiPin)pinNumber];
+                return RegisteredPins[(WiringPiPin) pinNumber];
             }
         }
 
@@ -414,7 +430,8 @@
             lock (SyncRoot)
             {
                 if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Output))
-                    throw new InvalidOperationException($"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Output}");
+                    throw new InvalidOperationException(
+                        $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Output}");
 
                 WiringPi.digitalWriteByte(value);
             }
@@ -432,9 +449,10 @@
             lock (SyncRoot)
             {
                 if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Input))
-                    throw new InvalidOperationException($"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input}");
+                    throw new InvalidOperationException(
+                        $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input}");
 
-                return (byte)WiringPi.digitalReadByte();
+                return (byte) WiringPi.digitalReadByte();
             }
         }
 
@@ -448,7 +466,10 @@
         /// <returns>
         /// A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.
         /// </returns>
-        public IEnumerator<GpioPin> GetEnumerator() { return PinCollection.GetEnumerator(); }
+        public IEnumerator<GpioPin> GetEnumerator()
+        {
+            return PinCollection.GetEnumerator();
+        }
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -456,7 +477,10 @@
         /// <returns>
         /// An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
         /// </returns>
-        IEnumerator IEnumerable.GetEnumerator() { return PinCollection.GetEnumerator(); }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return PinCollection.GetEnumerator();
+        }
 
         /// <summary>
         /// Gets the number of registered pins in the controller.

@@ -21,6 +21,12 @@
         private static object SyncRoot = new object();
         private static bool? m_IsRunningAsRoot = new bool?();
 
+#if NET452
+        private static readonly StringComparer stringComparer = StringComparer.InvariantCultureIgnoreCase;
+#else
+        private static readonly StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
+#endif
+
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
         /// </summary>
@@ -30,13 +36,14 @@
             #region Obtain and format a property dictionary
 
             var properties =
-                typeof(SystemInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                typeof(SystemInfo).GetTypeInfo()
+                    .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                     .Where(
                         p =>
                             p.CanWrite && p.CanRead &&
                             (p.PropertyType == typeof(string) || p.PropertyType == typeof(string[])))
                     .ToArray();
-            var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer.InvariantCultureIgnoreCase);
+            var propDictionary = new Dictionary<string, PropertyInfo>(stringComparer);
 
             foreach (var prop in properties)
             {
@@ -53,7 +60,7 @@
 
                 foreach (var line in cpuInfoLines)
                 {
-                    var lineParts = line.Split(new[] { ':' }, 2);
+                    var lineParts = line.Split(new[] {':'}, 2);
                     if (lineParts.Length != 2)
                         continue;
 
@@ -84,7 +91,7 @@
                 var memInfoLines = File.ReadAllLines(MemInfoFilePath);
                 foreach (var line in memInfoLines)
                 {
-                    var lineParts = line.Split(new[] { ':' }, 2);
+                    var lineParts = line.Split(new[] {':'}, 2);
                     if (lineParts.Length != 2)
                         continue;
 
@@ -119,7 +126,7 @@
                     RaspberryPiVersion = PiVersion.Unknown;
                     if (Enum.GetValues(typeof(PiVersion)).Cast<int>().Contains(boardVersion))
                     {
-                        RaspberryPiVersion = (PiVersion)boardVersion;
+                        RaspberryPiVersion = (PiVersion) boardVersion;
                     }
                 }
 
@@ -356,7 +363,7 @@
         /// </returns>
         public override string ToString()
         {
-            var properties = typeof(SystemInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public)
+            var properties = typeof(SystemInfo).GetTypeInfo().GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(p => p.CanRead && (
                                 p.PropertyType == typeof(string) ||
                                 p.PropertyType == typeof(string[]) ||
@@ -382,6 +389,7 @@
                 else
                 {
                     var allValues = property.GetValue(this) as string[];
+
                     if (allValues != null)
                     {
                         var concatValues = string.Join(" ", allValues);
