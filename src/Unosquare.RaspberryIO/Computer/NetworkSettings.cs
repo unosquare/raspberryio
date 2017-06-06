@@ -53,7 +53,7 @@
                 for (var i = 0; i < outputLines.Length; i++)
                 {
                     var line = outputLines[i];
-
+                                                          
                     if (line.StartsWith(EssidTag) == false) continue;
 
                     var network = new WirelessNetworkInfo()
@@ -65,8 +65,8 @@
                     {
                         if (i + 1 >= outputLines.Length) break;
 
-                        // move next line
-                        line = outputLines[++i];
+                        // should look for two lines before the ESSID acording to the scan
+                        line = outputLines[i-2];
 
                         if (line.StartsWith("Quality="))
                         {
@@ -79,8 +79,8 @@
                     {
                         if (i + 1 >= outputLines.Length) break;
 
-                        // move next line
-                        line = outputLines[++i];
+                        // should look for a line before the ESSID  acording to the scan
+                        line = outputLines[i-1];
 
                         if (line.StartsWith("Encryption key:"))
                         {
@@ -88,7 +88,7 @@
                             break;
                         }
                     }
-
+                    
                     if (result.Any(x => x.Name == network.Name) == false)
                         result.Add(network);
                 }
