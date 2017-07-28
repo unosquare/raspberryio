@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class WiringPi
    | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.18.2.0">
+    <meta name="generator" content="docfx 2.21.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -78,7 +78,7 @@
             <article class="content wrap" id="_content" data-uid="Unosquare.RaspberryIO.Native.WiringPi">
   
   
-  <h1 id="Unosquare_RaspberryIO_Native_WiringPi" data-uid="Unosquare.RaspberryIO.Native.WiringPi">Class WiringPi
+  <h1 id="Unosquare_RaspberryIO_Native_WiringPi" data-uid="Unosquare.RaspberryIO.Native.WiringPi" class="text-break">Class WiringPi
   </h1>
   <div class="markdown level0 summary"><p>Provides native C WiringPi Library function call wrappers
 All credit for the native library goes to the author of <a href="http://wiringpi.com/">http://wiringpi.com/</a>
@@ -1665,7 +1665,7 @@ The return value is 0 for success. Anything else and you should check the global
   <a id="Unosquare_RaspberryIO_Native_WiringPi_softPwmWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite*"></a>
   <h4 id="Unosquare_RaspberryIO_Native_WiringPi_softPwmWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite(System.Int32,System.Int32)">softPwmWrite(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>This updates the PWM value on the given pin. The value is checked to be in-range and pins that haven’t previously 
-been initialised via softPwmCreate will be silently ignored.</p>
+been initialized via softPwmCreate will be silently ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2509,7 +2509,7 @@ Devices such as A/D and D/A converters usually need to perform a concurrent writ
   
   <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetup_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup*"></a>
   <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetup_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup(System.Int32,System.Int32)">wiringPiSPISetup(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>This is the way to initialise a channel (The Pi has 2 channels; 0 and 1). The speed parameter is an integer 
+  <div class="markdown level1 summary"><p>This is the way to initialize a channel (The Pi has 2 channels; 0 and 1). The speed parameter is an integer 
 in the range 500,000 through 32,000,000 and represents the SPI clock speed in Hz.
 The returned value is the Linux file-descriptor for the device, or -1 on error. If an error has happened, you may use the standard errno global variable to see why.</p>
 </div>

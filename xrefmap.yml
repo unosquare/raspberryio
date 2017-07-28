@@ -754,6 +754,18 @@ references:
   commentId: F:Unosquare.RaspberryIO.Camera.CameraRect.Default
   fullName: Unosquare.RaspberryIO.Camera.CameraRect.Default
   nameWithType: CameraRect.Default
+- uid: Unosquare.RaspberryIO.Camera.CameraRect.H
+  name: H
+  href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_H
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraRect.H
+  fullName: Unosquare.RaspberryIO.Camera.CameraRect.H
+  nameWithType: CameraRect.H
+- uid: Unosquare.RaspberryIO.Camera.CameraRect.H*
+  name: H
+  href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_H_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.H
+  fullName: Unosquare.RaspberryIO.Camera.CameraRect.H
+  nameWithType: CameraRect.H
 - uid: Unosquare.RaspberryIO.Camera.CameraRect.IsDefault
   name: IsDefault
   href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_IsDefault
@@ -778,6 +790,42 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.ToString
   fullName: Unosquare.RaspberryIO.Camera.CameraRect.ToString
   nameWithType: CameraRect.ToString
+- uid: Unosquare.RaspberryIO.Camera.CameraRect.W
+  name: W
+  href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_W
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraRect.W
+  fullName: Unosquare.RaspberryIO.Camera.CameraRect.W
+  nameWithType: CameraRect.W
+- uid: Unosquare.RaspberryIO.Camera.CameraRect.W*
+  name: W
+  href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_W_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.W
+  fullName: Unosquare.RaspberryIO.Camera.CameraRect.W
+  nameWithType: CameraRect.W
+- uid: Unosquare.RaspberryIO.Camera.CameraRect.X
+  name: X
+  href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_X
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraRect.X
+  fullName: Unosquare.RaspberryIO.Camera.CameraRect.X
+  nameWithType: CameraRect.X
+- uid: Unosquare.RaspberryIO.Camera.CameraRect.X*
+  name: X
+  href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_X_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.X
+  fullName: Unosquare.RaspberryIO.Camera.CameraRect.X
+  nameWithType: CameraRect.X
+- uid: Unosquare.RaspberryIO.Camera.CameraRect.Y
+  name: Y
+  href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_Y
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraRect.Y
+  fullName: Unosquare.RaspberryIO.Camera.CameraRect.Y
+  nameWithType: CameraRect.Y
+- uid: Unosquare.RaspberryIO.Camera.CameraRect.Y*
+  name: Y
+  href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_Y_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.Y
+  fullName: Unosquare.RaspberryIO.Camera.CameraRect.Y
+  nameWithType: CameraRect.Y
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase
   name: CameraSettingsBase
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html
@@ -1600,31 +1648,61 @@ references:
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.DomainName
   name: DomainName
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_DomainName
-  commentId: F:Unosquare.RaspberryIO.Computer.OsInfo.DomainName
+  commentId: P:Unosquare.RaspberryIO.Computer.OsInfo.DomainName
+  fullName: Unosquare.RaspberryIO.Computer.OsInfo.DomainName
+  nameWithType: OsInfo.DomainName
+- uid: Unosquare.RaspberryIO.Computer.OsInfo.DomainName*
+  name: DomainName
+  href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_DomainName_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.DomainName
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.DomainName
   nameWithType: OsInfo.DomainName
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.Machine
   name: Machine
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_Machine
-  commentId: F:Unosquare.RaspberryIO.Computer.OsInfo.Machine
+  commentId: P:Unosquare.RaspberryIO.Computer.OsInfo.Machine
+  fullName: Unosquare.RaspberryIO.Computer.OsInfo.Machine
+  nameWithType: OsInfo.Machine
+- uid: Unosquare.RaspberryIO.Computer.OsInfo.Machine*
+  name: Machine
+  href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_Machine_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.Machine
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.Machine
   nameWithType: OsInfo.Machine
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.NodeName
   name: NodeName
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_NodeName
-  commentId: F:Unosquare.RaspberryIO.Computer.OsInfo.NodeName
+  commentId: P:Unosquare.RaspberryIO.Computer.OsInfo.NodeName
+  fullName: Unosquare.RaspberryIO.Computer.OsInfo.NodeName
+  nameWithType: OsInfo.NodeName
+- uid: Unosquare.RaspberryIO.Computer.OsInfo.NodeName*
+  name: NodeName
+  href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_NodeName_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.NodeName
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.NodeName
   nameWithType: OsInfo.NodeName
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.Release
   name: Release
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_Release
-  commentId: F:Unosquare.RaspberryIO.Computer.OsInfo.Release
+  commentId: P:Unosquare.RaspberryIO.Computer.OsInfo.Release
+  fullName: Unosquare.RaspberryIO.Computer.OsInfo.Release
+  nameWithType: OsInfo.Release
+- uid: Unosquare.RaspberryIO.Computer.OsInfo.Release*
+  name: Release
+  href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_Release_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.Release
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.Release
   nameWithType: OsInfo.Release
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.SysName
   name: SysName
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_SysName
-  commentId: F:Unosquare.RaspberryIO.Computer.OsInfo.SysName
+  commentId: P:Unosquare.RaspberryIO.Computer.OsInfo.SysName
+  fullName: Unosquare.RaspberryIO.Computer.OsInfo.SysName
+  nameWithType: OsInfo.SysName
+- uid: Unosquare.RaspberryIO.Computer.OsInfo.SysName*
+  name: SysName
+  href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_SysName_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.SysName
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.SysName
   nameWithType: OsInfo.SysName
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.ToString
@@ -1642,7 +1720,13 @@ references:
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.Version
   name: Version
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_Version
-  commentId: F:Unosquare.RaspberryIO.Computer.OsInfo.Version
+  commentId: P:Unosquare.RaspberryIO.Computer.OsInfo.Version
+  fullName: Unosquare.RaspberryIO.Computer.OsInfo.Version
+  nameWithType: OsInfo.Version
+- uid: Unosquare.RaspberryIO.Computer.OsInfo.Version*
+  name: Version
+  href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_Version_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.Version
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.Version
   nameWithType: OsInfo.Version
 - uid: Unosquare.RaspberryIO.Computer.PiVersion
