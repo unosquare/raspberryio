@@ -36,6 +36,7 @@
         /// <summary>
         /// Retrieves the wireless networks.
         /// </summary>
+        /// <param name="adapters">The adapters.</param>
         /// <returns></returns>
         public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string[] adapters = null)
         {
@@ -58,7 +59,7 @@
 
                     var network = new WirelessNetworkInfo()
                     {
-                        Name = line.Replace(EssidTag, "").Replace("\"", string.Empty)
+                        Name = line.Replace(EssidTag, string.Empty).Replace("\"", string.Empty)
                     };
 
                     while (true)
@@ -70,7 +71,7 @@
 
                         if (line.StartsWith("Quality="))
                         {
-                            network.Quality = line.Replace("Quality=", "");
+                            network.Quality = line.Replace("Quality=", string.Empty);
                             break;
                         }
                     }
@@ -106,7 +107,7 @@
         /// <returns></returns>
         public bool SetupWirelessNetwork(string adapterName, string networkSsid, string password = null)
         {
-            //TODO: Get the country where the device is located to set 'country' param in payload var
+            // TODO: Get the country where the device is located to set 'country' param in payload var
             var payload = "country=MX\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
             payload += string.IsNullOrEmpty(password)
                 ? $"network={{\n\tssid=\"{networkSsid}\"\n\t}}\n"
@@ -207,6 +208,7 @@
         /// <summary>
         /// Retrieves current wireless connected network
         /// </summary>
+        /// <returns></returns>
         public string GetWirelessNetworkName() => ProcessRunner.GetProcessOutputAsync("iwgetid", "-r").Result;
     }
 }

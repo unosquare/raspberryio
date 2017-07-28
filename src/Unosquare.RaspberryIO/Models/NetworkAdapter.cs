@@ -1,7 +1,7 @@
-﻿using System.Net;
-
-namespace Unosquare.RaspberryIO.Models
+﻿namespace Unosquare.RaspberryIO.Models
 {
+    using System.Net;
+
     /// <summary>
     /// Represents a Network Adapter
     /// </summary>

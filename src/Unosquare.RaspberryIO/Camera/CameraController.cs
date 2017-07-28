@@ -55,14 +55,18 @@
                 OperationDone.Reset();
 
                 var output = new MemoryStream();
-                var exitCode = 
-                    await ProcessRunner.RunProcessAsync(settings.CommandName, settings.CreateProcessArguments(),
-                        (data, proc) =>
-                        {
-                            output.Write(data, 0, data.Length);
-                        }, null, true, ct);
+                var exitCode = await ProcessRunner.RunProcessAsync(
+                    settings.CommandName,
+                    settings.CreateProcessArguments(),
+                    (data, proc) =>
+                    {
+                        output.Write(data, 0, data.Length);
+                    },
+                    null,
+                    true,
+                    ct);
 
-                return exitCode != 0 ? new byte[] { } : output.ToArray();
+                return exitCode != 0 ? new byte[] {} : output.ToArray();
             }
             finally
             {
@@ -133,7 +137,10 @@
         /// <param name="settings">The settings.</param>
         /// <param name="onDataCallback">The on data callback.</param>
         /// <param name="onExitCallback">The on exit callback.</param>
-        private static async Task VideoWorkerDoWork(CameraVideoSettings settings, Action<byte[]> onDataCallback,
+        /// <returns></returns>
+        private static async Task VideoWorkerDoWork(
+            CameraVideoSettings settings, 
+            Action<byte[]> onDataCallback,
             Action onExitCallback)
         {
             try
@@ -227,7 +234,6 @@
                 if (VideoTokenSource.IsCancellationRequested == false)
                     VideoTokenSource.Cancel();
             }
-
         }
 
         #endregion

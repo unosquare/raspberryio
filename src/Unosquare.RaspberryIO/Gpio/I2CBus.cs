@@ -12,13 +12,16 @@
     public class I2CBus : SingletonBase<I2CBus>
     {
         // TODO: It would be nice to integrate i2c device detection.
-        private static object SyncRoot = new object();
+        private static readonly object SyncRoot = new object();
         private readonly Dictionary<int, I2CDevice> m_Devices = new Dictionary<int, I2CDevice>();
 
         /// <summary>
         /// Prevents a default instance of the <see cref="I2CBus"/> class from being created.
         /// </summary>
-        private I2CBus() { }
+        private I2CBus()
+        {
+            // placeholder
+        }
 
         /// <summary>
         /// Gets the registered devices as a read only collection.
@@ -75,8 +78,6 @@
             {
                 return WiringPi.wiringPiI2CSetup(deviceId);
             }
-
         }
-
     }
 }

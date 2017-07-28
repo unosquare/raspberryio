@@ -262,7 +262,8 @@
         /// <param name="pin">The pin.</param>
         /// <param name="timeout">The timeout.</param>
         /// <returns></returns>
-        [Obsolete, DllImport(WiringPiLibrary, EntryPoint = nameof(waitForInterrupt), SetLastError = true)]
+        [Obsolete]
+        [DllImport(WiringPiLibrary, EntryPoint = nameof(waitForInterrupt), SetLastError = true)]
         public static extern int waitForInterrupt(int pin, int timeout);
 
         /// <summary>

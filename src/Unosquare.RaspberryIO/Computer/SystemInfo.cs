@@ -18,15 +18,15 @@
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
 
-        private static object SyncRoot = new object();
-        private static bool? m_IsRunningAsRoot = new bool?();
-
 #if NET452
         private static readonly StringComparer stringComparer = StringComparer.InvariantCultureIgnoreCase;
 #else
         private static readonly StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
 #endif
 
+        private static readonly object SyncRoot = new object();
+        private static bool? m_IsRunningAsRoot = new bool?();
+        
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
         /// </summary>
@@ -47,7 +47,7 @@
 
             foreach (var prop in properties)
             {
-                propDictionary[prop.Name.Replace(" ", "").ToLowerInvariant().Trim()] = prop;
+                propDictionary[prop.Name.Replace(" ", string.Empty).ToLowerInvariant().Trim()] = prop;
             }
 
             #endregion
@@ -64,7 +64,7 @@
                     if (lineParts.Length != 2)
                         continue;
 
-                    var propertyKey = lineParts[0].Trim().Replace(" ", "");
+                    var propertyKey = lineParts[0].Trim().Replace(" ", string.Empty);
                     var propertyStringValue = lineParts[1].Trim();
 
                     if (!propDictionary.ContainsKey(propertyKey)) continue;
@@ -98,14 +98,14 @@
                     if (lineParts[0].ToLowerInvariant().Trim().Equals("memtotal") == false)
                         continue;
 
-                    var memKb = lineParts[1].ToLowerInvariant().Trim().Replace("kb", "").Trim();
+                    var memKb = lineParts[1].ToLowerInvariant().Trim().Replace("kb", string.Empty).Trim();
                     int parsedMem;
+
                     if (int.TryParse(memKb, out parsedMem))
                     {
                         InstalledRam = parsedMem * 1024;
                         break;
                     }
-
                 }
             }
 
@@ -217,8 +217,6 @@
                 return 0;
             }
         }
-
-
 
         /// <summary>
         /// Gets the installed ram in bytes.
@@ -347,7 +345,6 @@
                         {
                             m_IsRunningAsRoot = false;
                         }
-
                     }
 
                     return m_IsRunningAsRoot.Value;

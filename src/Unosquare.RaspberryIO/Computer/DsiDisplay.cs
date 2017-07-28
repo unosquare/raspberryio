@@ -77,7 +77,7 @@
             {
                 if (IsPresent == false) return;
 
-                File.WriteAllText(BacklightFilename, (value ? "0" : "1"));
+                File.WriteAllText(BacklightFilename, value ? "0" : "1");
             }
         }
     }

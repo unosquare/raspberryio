@@ -8,27 +8,32 @@
         /// <summary>
         /// System name
         /// </summary>
-        public string SysName;
+        public string SysName { get; set; }
+
         /// <summary>
         /// Node name
         /// </summary>
-        public string NodeName;
+        public string NodeName { get; set; }
+
         /// <summary>
         /// Release level
         /// </summary>
-        public string Release;
+        public string Release { get; set; }
+
         /// <summary>
         /// Version level
         /// </summary>
-        public string Version;
+        public string Version { get; set; }
+
         /// <summary>
         /// Hardware level
         /// </summary>
-        public string Machine;
+        public string Machine { get; set; }
+
         /// <summary>
         /// Domain name
         /// </summary>
-        public string DomainName;
+        public string DomainName { get; set; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

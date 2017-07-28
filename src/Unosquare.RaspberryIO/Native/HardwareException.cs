@@ -82,7 +82,7 @@
         /// </PermissionSet>
         public override string ToString()
         {
-            return $"{GetType()}{(string.IsNullOrWhiteSpace(Component) ? "" : $" on {Component}")}: ({ErrorCode}) - {Message}";
+            return $"{GetType()}{(string.IsNullOrWhiteSpace(Component) ? string.Empty : $" on {Component}")}: ({ErrorCode}) - {Message}";
         }
     }
 }

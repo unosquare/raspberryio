@@ -2,8 +2,9 @@
 {
     using System.Runtime.InteropServices;
 
-    partial class WiringPi
+    public partial class WiringPi
     {
+#pragma warning disable SA1300
         #region WiringPi - I2C Library Calls
 
         /// <summary>
@@ -74,6 +75,6 @@
         public static extern int wiringPiI2CSetup(int devId);
 
         #endregion
-
+#pragma warning restore SA1300
     }
 }

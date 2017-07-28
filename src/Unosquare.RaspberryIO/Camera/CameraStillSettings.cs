@@ -73,10 +73,7 @@
             }
 
             // Display preview settings
-            if (CaptureDisplayPreview)
-            {
-                if (CaptureDisplayPreviewAtResolution) sb.Append($" -fp");
-            }
+            if (CaptureDisplayPreview && CaptureDisplayPreviewAtResolution) sb.Append(" -fp");
 
             var commandArgs = sb.ToString();
             $"{CommandName} {commandArgs}".Trace(Pi.LoggerSource);

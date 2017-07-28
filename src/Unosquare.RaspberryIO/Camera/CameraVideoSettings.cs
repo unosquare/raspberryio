@@ -58,7 +58,6 @@
         /// </value>
         public bool CaptureInterleaveHeaders { get; set; } = true;
 
-
         /// <summary>
         /// Switch on an option to display the preview after compression. This will show any compression artefacts in the preview window. In normal operation, 
         /// the preview will show the camera output prior to being compressed. This option is not guaranteed to work in future releases.

@@ -2,9 +2,8 @@
 {
     using System.Runtime.InteropServices;
 
-    partial class WiringPi
+    public partial class WiringPi
     {
-
         #region WiringPi - Serial Port
 
         /// <summary>
@@ -70,6 +69,5 @@
         public static extern void serialFlush(int fd);
 
         #endregion
-
     }
 }

@@ -30,5 +30,5 @@
         public uint mem_unit;   /* Memory unit size in bytes */
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 22)]
         public char[] _f; /* Padding to 64 bytes */
-    };
+    }
 }

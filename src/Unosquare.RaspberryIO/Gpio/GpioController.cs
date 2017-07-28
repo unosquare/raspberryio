@@ -162,6 +162,7 @@
                         setpuResult = WiringPi.wiringPiSetup();
                         break;
                     }
+
                     case ControllerMode.DirectWithBcmPins:
                     {
                         if (SystemInfo.Instance.IsRunningAsRoot == false)
@@ -171,6 +172,7 @@
                         setpuResult = WiringPi.wiringPiSetupGpio();
                         break;
                     }
+
                     case ControllerMode.DirectWithHeaderPins:
                     {
                         if (SystemInfo.Instance.IsRunningAsRoot == false)
@@ -180,11 +182,13 @@
                         setpuResult = WiringPi.wiringPiSetupPhys();
                         break;
                     }
+
                     case ControllerMode.FileStreamWithHardwarePins:
                     {
                         setpuResult = WiringPi.wiringPiSetupSys();
                         break;
                     }
+
                     default:
                     {
                         throw new ArgumentException($"'{mode}' is not a valid initialization mode.");

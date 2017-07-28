@@ -9,38 +9,41 @@
     public struct CameraRect
     {
         /// <summary>
+        /// The default ROI which is the entire area.
+        /// </summary>
+        public static readonly CameraRect Default = new CameraRect() { X = 0M, Y = 0M, W = 1.0M, H = 1.0M };
+
+        /// <summary>
         /// Gets or sets the x in relative coordinates. (0.0 to 1.0)
         /// </summary>
         /// <value>
         /// The x.
         /// </value>
-        decimal X { get; set; }
+        public decimal X { get; set; }
+
         /// <summary>
         /// Gets or sets the y location in relative coordinates.  (0.0 to 1.0)
         /// </summary>
         /// <value>
         /// The y.
         /// </value>
-        decimal Y { get; set; }
+        public decimal Y { get; set; }
+
         /// <summary>
         /// Gets or sets the width in relative coordinates.  (0.0 to 1.0)
         /// </summary>
         /// <value>
         /// The w.
         /// </value>
-        decimal W { get; set; }
+        public decimal W { get; set; }
+
         /// <summary>
         /// Gets or sets the height in relative coordinates.  (0.0 to 1.0)
         /// </summary>
         /// <value>
         /// The h.
         /// </value>
-        decimal H { get; set; }
-
-        /// <summary>
-        /// The default ROI which is the entire area.
-        /// </summary>
-        public static readonly CameraRect Default = new CameraRect() { X = 0M, Y = 0M, W = 1.0M, H = 1.0M };
+        public decimal H { get; set; }
 
         /// <summary>
         /// Clamps the members of this ROI to their minimum and maximum values

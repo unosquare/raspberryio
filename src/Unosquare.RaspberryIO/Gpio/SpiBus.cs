@@ -10,7 +10,10 @@
         /// <summary>
         /// Prevents a default instance of the <see cref="SpiBus"/> class from being created.
         /// </summary>
-        private SpiBus() { }
+        private SpiBus()
+        {
+            // placeholder
+        }
 
         #region SPI Access
 
@@ -35,7 +38,7 @@
             {
                 if (Channel0Frequency == 0)
                     Channel0Frequency = SpiChannel.DefaultFrequency;
-                    //throw new InvalidOperationException($"Set the {nameof(Channel0Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
+                    // throw new InvalidOperationException($"Set the {nameof(Channel0Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
 
                 return SpiChannel.Retrieve(SpiChannelNumber.Channel0, Channel0Frequency);
             }
@@ -62,7 +65,7 @@
             {
                 if (Channel1Frequency == 0)
                     Channel1Frequency = SpiChannel.DefaultFrequency;
-                    //throw new InvalidOperationException($"Set the {nameof(Channel1Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
+                    // throw new InvalidOperationException($"Set the {nameof(Channel1Frequency)} between {SpiChannel.MinFrequency} and {SpiChannel.MaxFrequency} before using the SPI bus.");
 
                 return SpiChannel.Retrieve(SpiChannelNumber.Channel1, Channel1Frequency);
             }

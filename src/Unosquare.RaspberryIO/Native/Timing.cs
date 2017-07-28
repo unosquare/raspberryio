@@ -3,8 +3,7 @@
     using Swan;
     using Swan.Abstractions;
     using System;
-
-
+    
     /// <summary>
     /// Provides access to timing and threading properties and methods
     /// </summary>
@@ -16,7 +15,7 @@
         /// <exception cref="System.NotSupportedException">Could not initialize the GPIO controller</exception>
         private Timing()
         {
-
+            // placeholder
         }
 
         /// <summary>

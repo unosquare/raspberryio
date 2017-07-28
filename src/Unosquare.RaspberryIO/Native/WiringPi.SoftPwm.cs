@@ -2,7 +2,7 @@
 {
     using System.Runtime.InteropServices;
 
-    partial class WiringPi
+    public partial class WiringPi
     {
         #region WiringPi - Soft PWM (https://github.com/WiringPi/WiringPi/blob/master/wiringPi/softPwm.h)
 
@@ -20,7 +20,7 @@
 
         /// <summary>
         /// This updates the PWM value on the given pin. The value is checked to be in-range and pins that haven’t previously 
-        /// been initialised via softPwmCreate will be silently ignored.
+        /// been initialized via softPwmCreate will be silently ignored.
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="value">The value.</param>

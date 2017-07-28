@@ -2,8 +2,9 @@
 {
     using System.Runtime.InteropServices;
 
-    partial class WiringPi
+    public partial class WiringPi
     {
+#pragma warning disable SA1306
         #region WiringPi - SPI Library Calls
 
         /// <summary>
@@ -38,7 +39,7 @@
         public static extern int wiringPiSPISetupMode(int channel, int speed, int mode);
 
         /// <summary>
-        /// This is the way to initialise a channel (The Pi has 2 channels; 0 and 1). The speed parameter is an integer 
+        /// This is the way to initialize a channel (The Pi has 2 channels; 0 and 1). The speed parameter is an integer 
         /// in the range 500,000 through 32,000,000 and represents the SPI clock speed in Hz.
         /// The returned value is the Linux file-descriptor for the device, or -1 on error. If an error has happened, you may use the standard errno global variable to see why.
         /// </summary>
@@ -49,6 +50,6 @@
         public static extern int wiringPiSPISetup(int channel, int speed);
 
         #endregion
-
+#pragma warning restore SA1306
     }
 }

@@ -1,7 +1,6 @@
-﻿using Unosquare.Swan;
-
-namespace Unosquare.RaspberryIO.Gpio
+﻿namespace Unosquare.RaspberryIO.Gpio
 {
+    using Swan;
     using Native;
     using System;
     using System.Linq;
@@ -34,7 +33,7 @@ namespace Unosquare.RaspberryIO.Gpio
 
         #region Property Backing
 
-        private readonly object SyncLock = new object();
+        private readonly object _syncLock = new object();
         private GpioPinDriveMode m_PinMode;
         private GpioPinResistorPullMode m_ResistorPullMode;
         private int m_PwmRegister = 0;
@@ -93,10 +92,14 @@ namespace Unosquare.RaspberryIO.Gpio
         /// <exception cref="System.NotSupportedException"></exception>
         public GpioPinDriveMode PinMode
         {
-            get { return m_PinMode; }
+            get
+            {
+                return m_PinMode;
+            }
+
             set
             {
-                lock (SyncLock)
+                lock (_syncLock)
                 {
                     var mode = value;
                     if ((mode == GpioPinDriveMode.GpioClock && Capabilities.Contains(PinCapability.GPCLK) == false) ||
@@ -122,7 +125,7 @@ namespace Unosquare.RaspberryIO.Gpio
         /// <param name="value">The value.</param>
         public void Write(GpioPinValue value)
         {
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 if (PinMode != GpioPinDriveMode.Output)
                     throw new InvalidOperationException($"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
@@ -159,7 +162,7 @@ namespace Unosquare.RaspberryIO.Gpio
         /// <param name="value">The value.</param>
         public void WriteLevel(int value)
         {
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 if (PinMode != GpioPinDriveMode.Output)
                     throw new InvalidOperationException($"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
@@ -181,10 +184,14 @@ namespace Unosquare.RaspberryIO.Gpio
         /// </summary>
         public GpioPinResistorPullMode InputPullMode
         {
-            get { return PinMode == GpioPinDriveMode.Input ? m_ResistorPullMode : GpioPinResistorPullMode.Off; }
+            get
+            {
+                return PinMode == GpioPinDriveMode.Input ? m_ResistorPullMode : GpioPinResistorPullMode.Off;
+            }
+
             set
             {
-                lock (SyncLock)
+                lock (_syncLock)
                 {
                     if (PinMode != GpioPinDriveMode.Input)
                     {
@@ -192,6 +199,7 @@ namespace Unosquare.RaspberryIO.Gpio
                         throw new InvalidOperationException($"Unable to set the {nameof(InputPullMode)} for pin {PinNumber} because operating mode is {PinMode}."
                             + $" Setting the {nameof(InputPullMode)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
                     }
+
                     WiringPi.pullUpDnControl(PinNumber, (int)value);
                     m_ResistorPullMode = value;
                 }
@@ -204,7 +212,7 @@ namespace Unosquare.RaspberryIO.Gpio
         /// <returns></returns>
         public bool Read()
         {
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 if (PinMode != GpioPinDriveMode.Input)
                     throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
@@ -233,7 +241,7 @@ namespace Unosquare.RaspberryIO.Gpio
         /// <exception cref="System.InvalidOperationException"></exception>
         public int ReadLevel()
         {
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 if (PinMode != GpioPinDriveMode.Input)
                     throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
@@ -241,7 +249,6 @@ namespace Unosquare.RaspberryIO.Gpio
 
                 return WiringPi.analogRead(PinNumber);
             }
-
         }
 
         #endregion
@@ -256,10 +263,14 @@ namespace Unosquare.RaspberryIO.Gpio
         /// </value>
         public int PwmRegister
         {
-            get { return m_PwmRegister; }
+            get
+            {
+                return m_PwmRegister;
+            }
+
             set
             {
-                lock (SyncLock)
+                lock (_syncLock)
                 {
                     if (PinMode != GpioPinDriveMode.PwmOutput)
                     {
@@ -268,7 +279,6 @@ namespace Unosquare.RaspberryIO.Gpio
                         throw new InvalidOperationException($"Unable to write PWM register for pin {PinNumber} because operating mode is {PinMode}."
                             + $" Writing the PWM register is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
-
 
                     var val = value.Clamp(0, 1024);
 
@@ -288,10 +298,14 @@ namespace Unosquare.RaspberryIO.Gpio
         /// <exception cref="System.InvalidOperationException"></exception>
         public PwmMode PwmMode
         {
-            get { return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmMode : PwmMode.Balanced; }
+            get
+            {
+                return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmMode : PwmMode.Balanced;
+            }
+
             set
             {
-                lock (SyncLock)
+                lock (_syncLock)
                 {
                     if (PinMode != GpioPinDriveMode.PwmOutput)
                     {
@@ -316,10 +330,14 @@ namespace Unosquare.RaspberryIO.Gpio
         /// <exception cref="System.InvalidOperationException"></exception>
         public uint PwmRange
         {
-            get { return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmRange : 0; }
+            get
+            {
+                return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmRange : 0;
+            }
+
             set
             {
-                lock (SyncLock)
+                lock (_syncLock)
                 {
                     if (PinMode != GpioPinDriveMode.PwmOutput)
                     {
@@ -344,10 +362,14 @@ namespace Unosquare.RaspberryIO.Gpio
         /// <exception cref="System.InvalidOperationException"></exception>
         public int PwmClockDivisor
         {
-            get { return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmClockDivisor : 0; }
+            get
+            {
+                return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmClockDivisor : 0;
+            }
+
             set
             {
-                lock (SyncLock)
+                lock (_syncLock)
                 {
                     if (PinMode != GpioPinDriveMode.PwmOutput)
                     {
@@ -385,8 +407,7 @@ namespace Unosquare.RaspberryIO.Gpio
         /// or</exception>
         public void StartSoftPwm(int value, int range)
         {
-
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 if (Capabilities.Contains(PinCapability.GP) == false)
                     throw new NotSupportedException($"Pin {PinNumber} does not support software PWM");
@@ -416,10 +437,14 @@ namespace Unosquare.RaspberryIO.Gpio
         /// <exception cref="System.InvalidOperationException">StartSoftPwm</exception>
         public int SoftPwmValue
         {
-            get { return m_SoftPwmValue; }
+            get
+            {
+                return m_SoftPwmValue;
+            }
+
             set
             {
-                lock (SyncLock)
+                lock (_syncLock)
                 {
                     if (IsInSoftPwmMode && value >= 0)
                     {
@@ -464,9 +489,10 @@ namespace Unosquare.RaspberryIO.Gpio
             {
                 return m_SoftToneFrequency;
             }
+
             set
             {
-                lock (SyncLock)
+                lock (_syncLock)
                 {
                     if (IsInSoftToneMode == false)
                     {
@@ -521,7 +547,7 @@ namespace Unosquare.RaspberryIO.Gpio
                 throw new InvalidOperationException($"Unable to {nameof(RegisterInterruptCallback)} for pin {PinNumber} because operating mode is {PinMode}."
                     + $" Calling {nameof(RegisterInterruptCallback)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
 
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 var registerResult = WiringPi.wiringPiISR(PinNumber, (int)edgeDetection, callback);
                 if (registerResult == 0)
@@ -533,7 +559,6 @@ namespace Unosquare.RaspberryIO.Gpio
                 {
                     HardwareException.Throw(nameof(GpioPin), nameof(RegisterInterruptCallback));
                 }
-
             }
         }
 

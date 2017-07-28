@@ -29,7 +29,7 @@
         /// <param name="name">The well-known color name.</param>
         public CameraColor(int r, int g, int b, string name)
         {
-            RGB = new byte[] { Convert.ToByte(r.Clamp(0, 255)), Convert.ToByte(g.Clamp(0, 255)), Convert.ToByte(b.Clamp(0, 255)) };
+            RGB = new[] { Convert.ToByte(r.Clamp(0, 255)), Convert.ToByte(g.Clamp(0, 255)), Convert.ToByte(b.Clamp(0, 255)) };
 
             var y = R * .299000f + G * .587000f + B * .114000f;
             var u = R * -.168736f + G * -.331264f + B * .500000f + 128f;
@@ -70,11 +70,13 @@
         public byte[] YUV { get; }
 
         /// <summary>
-        /// Returns a hexadecimal representation of the data byte array 
+        /// Returns a hexadecimal representation of the data byte array
         /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
         private static string ToHex(byte[] data)
         {
-            return $"0x{BitConverter.ToString(data).Replace("-", "").ToLowerInvariant()}";
+            return $"0x{BitConverter.ToString(data).Replace("-", string.Empty).ToLowerInvariant()}";
         }
 
         /// <summary>

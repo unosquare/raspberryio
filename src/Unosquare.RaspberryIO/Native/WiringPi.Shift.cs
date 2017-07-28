@@ -2,7 +2,7 @@
 {
     using System.Runtime.InteropServices;
 
-    partial class WiringPi
+    public partial class WiringPi
     {
         #region WiringPi - Shift Library
 
