@@ -1,1 +1,694 @@
-{"homepages":[],"source_base_path":"C:/projects/raspberryio","xrefmap":"xrefmap.yml","files":[{"type":"Conceptual","source_relative_path":"README.md","output":{".html":{"relative_path":"README.html","hash":"uGMH8KLJw3208qyRYUoOFA=="}},"is_incremental":false,"version":""},{"type":"Resource","source_relative_path":"logos/raspberryio-logo-32.png","output":{"resource":{"relative_path":"logos/raspberryio-logo-32.png"}},"is_incremental":false,"version":""},{"type":"Toc","source_relative_path":"obj/api/toc.yml","output":{".html":{"relative_path":"api/toc.html","hash":"Vfpj623zgS/h59OObbpVWw=="}},"is_incremental":false,"version":""},{"type":"Toc","source_relative_path":"toc.yml","output":{".html":{"relative_path":"toc.html","hash":"g1h+H/r07zucUKZ55hS72g=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraColor.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraColor.html","hash":"fi1C/95KEEB9Xd9V2wTiiw=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation.html","hash":"QSiQIhfwOhEg+nUxDC6ing=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraImageEffect.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraImageEffect.html","hash":"0fNEj9Nec/CMiDlutAdFQA=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraImageRotation.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraImageRotation.html","hash":"jgQidZCl9XC4cIc74ZXFLg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraRect.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraRect.html","hash":"bAYSB210gn97ILGbqXmwYA=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraStillSettings.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html","hash":"DqIkQaCI/cIItYZ84E841g=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.html","hash":"tA9jzcv691PJ7qZO2J5mJQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Computer.NetworkSettings.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Computer.NetworkSettings.html","hash":"e2xdUdi8odhly2knsuuzFQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Computer.OsInfo.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Computer.OsInfo.html","hash":"UZWYCWU4lZdOkovdl8MDuw=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Computer.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Computer.html","hash":"SNkzNV8G1zs9NGIfM6v+0g=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.EdgeDetection.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.EdgeDetection.html","hash":"Ym1ebPRB5eyl9cxQ3vvKSw=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.GpioPin.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.GpioPin.html","hash":"ZMC26t2+aJRRL0zrKDrL/A=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.GpioPinDriveMode.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.GpioPinDriveMode.html","hash":"Z3VzLRhFQnJKi2G2aMlZ6w=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.I2CBus.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.I2CBus.html","hash":"LVy469kDgpcUCudpTqJyxg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.I2CDevice.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.I2CDevice.html","hash":"A8MQ32DMiblIyTE5Rkz9xg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.SpiBus.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.SpiBus.html","hash":"tYfOnBK5vvmxS5leToSEUQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.SpiChannel.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.SpiChannel.html","hash":"Sllsonq/WJIz39KuSVWVjA=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Models.NetworkAdapter.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Models.NetworkAdapter.html","hash":"pRCTzsHrRp+Gt7/X7Uuekw=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html","hash":"Z9XViID3XDE3XKEEp9xlGA=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback.html","hash":"BlW5SVt42EArVjeT4TJpOQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Native.ThreadLockKey.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Native.ThreadLockKey.html","hash":"zyIfa8VDRFJr2cDDi16lZg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Native.WiringPi.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Native.WiringPi.html","hash":"FZ3tq5j9V7GT0yGcWC9cVg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Native.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Native.html","hash":"D4AwayUQWww/yyzQjxbnJw=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraAnnotation.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraAnnotation.html","hash":"hydGLrExHqyu9luYwZMLHg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraController.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraController.html","hash":"4vD0iWkrOLqDvu+oLXg+yg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraExposureMode.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraExposureMode.html","hash":"khIkrI32mmQpyyvo54YS2w=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraH264Profile.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraH264Profile.html","hash":"VfHg3XozVnIg2NXTWbIWxQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat.html","hash":"RaB71PAjJ+r6RBFSWYcgJA=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraMeteringMode.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraMeteringMode.html","hash":"uKjVWUvjx4gFqXOefL8Fng=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html","hash":"E5wu3K1mKIZnLSgb0KmrOw=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html","hash":"5ZCuQpVvjXZGUBc5soA77A=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Camera.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Camera.html","hash":"YWeXBJrW2qvVOV+iMxLM/w=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Computer.DsiDisplay.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Computer.DsiDisplay.html","hash":"yuiMTfUmfPFv4f84B/Pd5Q=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Computer.PiVersion.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Computer.PiVersion.html","hash":"QkoLs2B92iqJ9ToP5025rQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Computer.SystemInfo.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Computer.SystemInfo.html","hash":"qmhthC//tJKQenlnvuu2Mw=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.GpioController.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.GpioController.html","hash":"JuH3Ravpjn4rF2FfJlJpsg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.GpioHeader.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.GpioHeader.html","hash":"OTctTR8ZHPPtPJj7+nEGCQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.GpioPinResistorPullMode.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.GpioPinResistorPullMode.html","hash":"860lGCXJjR4++ujDyEwkTg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.GpioPinValue.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.GpioPinValue.html","hash":"RJyOGyuSI08MFa5Xjd4/qA=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.PinCapability.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.PinCapability.html","hash":"hBpL3/SLsK/Vbm70COHiIg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.PwmMode.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.PwmMode.html","hash":"1/CWa37Ft1rLhga6XSF0Kg=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.WiringPiPin.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.WiringPiPin.html","hash":"G4niN93VLYfl9YbQwLA+4w=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Gpio.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Gpio.html","hash":"TgJ9iurSZdKMfWiXT1z5MQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Models.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Models.html","hash":"TbVE9i12Ib38GZc+WBHshA=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Native.HardwareException.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Native.HardwareException.html","hash":"B6rt1apzos02iXxDKjYI3A=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Native.ThreadWorker.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Native.ThreadWorker.html","hash":"ew9r78HIaaWQS+MvXbExwQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Native.Timing.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Native.Timing.html","hash":"jK9fE/xaNxr6v6r474DcFQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.Pi.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.Pi.html","hash":"c1MA+3fOof8X+gg3ReA+BQ=="}},"is_incremental":false,"version":""},{"type":"ManagedReference","source_relative_path":"obj/api/Unosquare.RaspberryIO.yml","output":{".html":{"relative_path":"api/Unosquare.RaspberryIO.html","hash":"Iv/Gx/fcgics83FgvQELyw=="}},"is_incremental":false,"version":""},{"type":"Resource","output":{"resource":{"relative_path":"index.json"}},"is_incremental":false}],"incremental_info":[{"status":{"can_incremental":false,"details":"Cannot build incrementally because last build info is missing.","incrementalPhase":"build"},"processors":{"RestApiDocumentProcessor":{"can_incremental":false,"details":"Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.","incrementalPhase":"build"},"TocDocumentProcessor":{"can_incremental":false,"details":"Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.","incrementalPhase":"build"},"ConceptualDocumentProcessor":{"can_incremental":false,"incrementalPhase":"build"},"ManagedReferenceDocumentProcessor":{"can_incremental":false,"incrementalPhase":"build"},"ResourceDocumentProcessor":{"can_incremental":false,"details":"Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.","incrementalPhase":"build"}}},{"status":{"can_incremental":false,"details":"Cannot support incremental post processing, the reason is: should not trace intermediate info.","incrementalPhase":"postProcessing"},"processors":{}}],"version_info":{}}
+{
+  "homepages": [],
+  "source_base_path": "C:/projects/raspberryio",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "d6mRyvxtKYUhbuPvb5JMgQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "logos/raspberryio-logo-32.png",
+      "output": {
+        "resource": {
+          "relative_path": "logos/raspberryio-logo-32.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraAnnotation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraAnnotation.html",
+          "hash": "V5VOU9oPF14BLmd2y+Kx/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraColor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraColor.html",
+          "hash": "A9HcOYkLIaUOAKGbFrAPlg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraController.html",
+          "hash": "1ICIZHqr7K9f6VBRIKVVSg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation.html",
+          "hash": "2jLbI4qU+nJbuYiJvD75ew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraExposureMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraExposureMode.html",
+          "hash": "wCUXKq+5tVeBOZIYMLmheg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraH264Profile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraH264Profile.html",
+          "hash": "50F1+RwLTxW4oRimHPMP0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraImageEffect.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraImageEffect.html",
+          "hash": "mn5Ofm1fsDzw4KJjbAFqDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat.html",
+          "hash": "DBT+mGHQbwxSH1PLEXPuAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraImageRotation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraImageRotation.html",
+          "hash": "HcFaNTw+I2fUP84D2mZZUw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraMeteringMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraMeteringMode.html",
+          "hash": "5wE94X7hFUwEmz5wrZv4RQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraRect.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraRect.html",
+          "hash": "TZy0M77AX9kfWf6kntyR4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html",
+          "hash": "RHh39mzzzvDlwzQM1XOyjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraStillSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html",
+          "hash": "N3tcPA/NqvyiS4N5BVsH0w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html",
+          "hash": "3v25NrNXeVQiijEPYgUdsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.html",
+          "hash": "DWQaLdgmI794Qaol/8SMIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Camera.html",
+          "hash": "mpl8iSMhRJg0IAV6uqrzzw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.DsiDisplay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Computer.DsiDisplay.html",
+          "hash": "V32uE7OeX4NXiUXo4CJe2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.NetworkSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Computer.NetworkSettings.html",
+          "hash": "NwGrLmH77fixZLzipt6U9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.OsInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Computer.OsInfo.html",
+          "hash": "yYRIuoDBEwNseyB6udUdqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.PiVersion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Computer.PiVersion.html",
+          "hash": "taY51DtxjgeZCoJEQuMIjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.SystemInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Computer.SystemInfo.html",
+          "hash": "3GEfs4hg3h/TM3JTTZqg7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Computer.html",
+          "hash": "DKyAtM1iigYKar8yFkSl4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.EdgeDetection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.EdgeDetection.html",
+          "hash": "Wc7CO36tIcylfsuHBjtU1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.GpioController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioController.html",
+          "hash": "HQERgiNx4tfcpV9T74ZDNg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.GpioHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioHeader.html",
+          "hash": "e+0pb6NfVKqiuKAwQUwMVQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.GpioPin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioPin.html",
+          "hash": "M5kwG6OA+WGyuQI+4A5wtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.GpioPinDriveMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioPinDriveMode.html",
+          "hash": "gn/s75WIBLD6X1SfyLUnAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.GpioPinResistorPullMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioPinResistorPullMode.html",
+          "hash": "rZc7Yv7o+pVwSJPL/Y+vAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.GpioPinValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioPinValue.html",
+          "hash": "1Os657gcA6kaR73J4zLMbQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.I2CBus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.I2CBus.html",
+          "hash": "F97SRwojJ9OQnH8tHjpuzg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.I2CDevice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.I2CDevice.html",
+          "hash": "tML3g8mUwBunhVuSlZVTfg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.PinCapability.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.PinCapability.html",
+          "hash": "vY5nEdnEYQ0CsbEW79rTgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.PwmMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.PwmMode.html",
+          "hash": "wJWrtUjjKQz0Z1CjVbAC2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.SpiBus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.SpiBus.html",
+          "hash": "dgRY9NPUGMWqE9fGkBH13Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.SpiChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.SpiChannel.html",
+          "hash": "USkgZB3Rk7e4Z4poDACKqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.WiringPiPin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.WiringPiPin.html",
+          "hash": "nPfSEyZuWDPg047YKo1icQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.html",
+          "hash": "0fdUbe5Q2FsDD0cUjXgDPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Models.NetworkAdapter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Models.NetworkAdapter.html",
+          "hash": "jlKk28fP/5qNlNbyxFxBEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html",
+          "hash": "a4VS+DzkVdu+TdAM947FKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Models.html",
+          "hash": "oRCTPm2rCCh0hHTvclxe5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Native.HardwareException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Native.HardwareException.html",
+          "hash": "wu7BDwGfuQjo7mgMIIUFug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback.html",
+          "hash": "Kip/FtLBDvC7IX1Re/c0KA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Native.ThreadLockKey.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Native.ThreadLockKey.html",
+          "hash": "QGbNJRqpl1HJeqTThOurRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Native.ThreadWorker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Native.ThreadWorker.html",
+          "hash": "BhdnVhjs9y7VFhssVOLNuQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Native.Timing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Native.Timing.html",
+          "hash": "04Cjj36UIlyNSb3xMeqUmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Native.WiringPi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Native.WiringPi.html",
+          "hash": "yPQmqUWLrHhceP4elcK2Rg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Native.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Native.html",
+          "hash": "VcPpE7CpmPJnbbX4QlaCcw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Pi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Pi.html",
+          "hash": "lcgMzbBhnJAIqOvKC0ZOEw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.html",
+          "hash": "b3EJqSN6nAX0HaDwKhTZag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "Vfpj623zgS/h59OObbpVWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "g1h+H/r07zucUKZ55hS72g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "RestApiDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor RestApiDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {}
+}
