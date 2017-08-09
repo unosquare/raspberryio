@@ -42,6 +42,7 @@ after_build:
             git clone https://github.com/unosquare/raspberryio.git -b gh-pages origin_site -q
             Copy-Item origin_site/.git _site -recurse
             CD _site
+            Copy-Item README.html index.html -force
             git add -A 2>&1
             git commit -m "Documentation update" -q
             git push origin gh-pages -q
