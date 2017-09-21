@@ -277,12 +277,6 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraController.CaptureImage
   fullName: Unosquare.RaspberryIO.Camera.CameraController.CaptureImage
   nameWithType: CameraController.CaptureImage
-- uid: Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings)
-  name: CaptureImageAsync(CameraStillSettings)
-  href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_Unosquare_RaspberryIO_Camera_CameraStillSettings_
-  commentId: M:Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings)
-  fullName: Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings)
-  nameWithType: CameraController.CaptureImageAsync(CameraStillSettings)
 - uid: Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings,System.Threading.CancellationToken)
   name: CaptureImageAsync(CameraStillSettings, CancellationToken)
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_Unosquare_RaspberryIO_Camera_CameraStillSettings_System_Threading_CancellationToken_
@@ -343,15 +337,6 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraController.IsBusy
   fullName: Unosquare.RaspberryIO.Camera.CameraController.IsBusy
   nameWithType: CameraController.IsBusy
-- uid: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]})
-  name: OpenVideoStream(Action<Byte[]>)
-  href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____
-  commentId: M:Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]})
-  name.vb: OpenVideoStream(Action(Of Byte()))
-  fullName: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action<System.Byte[]>)
-  fullName.vb: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action(Of System.Byte()))
-  nameWithType: CameraController.OpenVideoStream(Action<Byte[]>)
-  nameWithType.vb: CameraController.OpenVideoStream(Action(Of Byte()))
 - uid: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Action)
   name: OpenVideoStream(Action<Byte[]>, Action)
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____System_Action_
@@ -1336,6 +1321,42 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.CreateProcessArguments
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.CreateProcessArguments
   nameWithType: CameraStillSettings.CreateProcessArguments
+- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
+  name: HorizontalFlip
+  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_HorizontalFlip
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
+  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
+  nameWithType: CameraStillSettings.HorizontalFlip
+- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip*
+  name: HorizontalFlip
+  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_HorizontalFlip_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
+  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
+  nameWithType: CameraStillSettings.HorizontalFlip
+- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  name: Rotate
+  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_Rotate
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  nameWithType: CameraStillSettings.Rotate
+- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate*
+  name: Rotate
+  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_Rotate_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  nameWithType: CameraStillSettings.Rotate
+- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip
+  name: VerticalFlip
+  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_VerticalFlip
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip
+  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip
+  nameWithType: CameraStillSettings.VerticalFlip
+- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip*
+  name: VerticalFlip
+  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_VerticalFlip_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip
+  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip
+  nameWithType: CameraStillSettings.VerticalFlip
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings
   name: CameraVideoSettings
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html

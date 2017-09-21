@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class CameraController
    | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.22.2.0">
+    <meta name="generator" content="docfx 2.24.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
+    
     <meta property="docfx:rel" content="../">
     
   </head>
@@ -173,57 +174,13 @@ This class is a singleton</p>
   
   
   <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync*"></a>
-  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_Unosquare_RaspberryIO_Camera_CameraStillSettings_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings)">CaptureImageAsync(CameraStillSettings)</h4>
-  <div class="markdown level1 summary"><p>Captures an image asynchronously.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageAsync(CameraStillSettings settings)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Unosquare.RaspberryIO.Camera.CameraStillSettings.html">CameraStillSettings</a></td>
-        <td><span class="parametername">settings</span></td>
-        <td><p>The settings.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync*"></a>
   <h4 id="Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_Unosquare_RaspberryIO_Camera_CameraStillSettings_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings,System.Threading.CancellationToken)">CaptureImageAsync(CameraStillSettings, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Captures an image asynchronously.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageAsync(CameraStillSettings settings, CancellationToken ct)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageAsync(CameraStillSettings settings, CancellationToken ct = default (CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -339,7 +296,7 @@ This class is a singleton</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageJpegAsync(int width, int height, CancellationToken ct)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; CaptureImageJpegAsync(int width, int height, CancellationToken ct = default (CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -400,36 +357,6 @@ This class is a singleton</p>
   
   
   <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
-  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]})">OpenVideoStream(Action&lt;Byte[]&gt;)</h4>
-  <div class="markdown level1 summary"><p>Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
-No preview is shown</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void OpenVideoStream(Action&lt;byte[]&gt; onDataCallback)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
-        <td><span class="parametername">onDataCallback</span></td>
-        <td><p>The on data callback.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
   <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____System_Action_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Action)">OpenVideoStream(Action&lt;Byte[]&gt;, Action)</h4>
   <div class="markdown level1 summary"><p>Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
 No preview is shown</p>
@@ -437,7 +364,7 @@ No preview is shown</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void OpenVideoStream(Action&lt;byte[]&gt; onDataCallback, Action onExitCallback)</code></pre>
+    <pre><code class="lang-csharp hljs">public void OpenVideoStream(Action&lt;byte[]&gt; onDataCallback, Action onExitCallback = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
