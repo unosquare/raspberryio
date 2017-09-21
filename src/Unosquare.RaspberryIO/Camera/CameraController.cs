@@ -42,7 +42,7 @@
         /// <param name="ct">The ct.</param>
         /// <returns></returns>
         /// <exception cref="System.InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
-        public async Task<byte[]> CaptureImageAsync(CameraStillSettings settings, CancellationToken ct)
+        public async Task<byte[]> CaptureImageAsync(CameraStillSettings settings, CancellationToken ct = default(CancellationToken))
         {
             if (Instance.IsBusy)
                 throw new InvalidOperationException("Cannot use camera module because it is currently busy.");
@@ -66,25 +66,14 @@
                     true,
                     ct);
 
-                return exitCode != 0 ? new byte[] {} : output.ToArray();
+                return exitCode != 0 ? new byte[] { } : output.ToArray();
             }
             finally
             {
                 OperationDone.Set();
             }
         }
-
-        /// <summary>
-        /// Captures an image asynchronously.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <returns></returns>
-        public async Task<byte[]> CaptureImageAsync(CameraStillSettings settings)
-        {
-            var cts = new CancellationTokenSource();
-            return await CaptureImageAsync(settings, cts.Token);
-        }
-
+        
         /// <summary>
         /// Captures an image.
         /// </summary>
@@ -102,7 +91,7 @@
         /// <param name="height">The height.</param>
         /// <param name="ct">The ct.</param>
         /// <returns></returns>
-        public async Task<byte[]> CaptureImageJpegAsync(int width, int height, CancellationToken ct)
+        public Task<byte[]> CaptureImageJpegAsync(int width, int height, CancellationToken ct = default(CancellationToken))
         {
             var settings = new CameraStillSettings()
             {
@@ -112,7 +101,7 @@
                 CaptureTimeoutMilliseconds = 300,
             };
 
-            return await CaptureImageAsync(settings, ct);
+            return CaptureImageAsync(settings, ct);
         }
 
         /// <summary>
@@ -123,8 +112,7 @@
         /// <returns></returns>
         public byte[] CaptureImageJpeg(int width, int height)
         {
-            var cts = new CancellationTokenSource();
-            return CaptureImageJpegAsync(width, height, cts.Token).GetAwaiter().GetResult();
+            return CaptureImageJpegAsync(width, height).GetAwaiter().GetResult();
         }
 
         #endregion
@@ -163,24 +151,14 @@
                 OperationDone.Set();
             }
         }
-
-        /// <summary>
-        /// Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
-        /// No preview is shown
-        /// </summary>
-        /// <param name="onDataCallback">The on data callback.</param>
-        public void OpenVideoStream(Action<byte[]> onDataCallback)
-        {
-            OpenVideoStream(onDataCallback, null);
-        }
-
+        
         /// <summary>
         /// Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
         /// No preview is shown
         /// </summary>
         /// <param name="onDataCallback">The on data callback.</param>
         /// <param name="onExitCallback">The on exit callback.</param>
-        public void OpenVideoStream(Action<byte[]> onDataCallback, Action onExitCallback)
+        public void OpenVideoStream(Action<byte[]> onDataCallback, Action onExitCallback = null)
         {
             var settings = new CameraVideoSettings()
             {
