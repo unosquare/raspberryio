@@ -10,6 +10,6 @@ matrix:
       dist: trusty
       sudo: false
 install:
-  - dotnet restore
+  - msbuild /t:Restore
 script:
-  - dotnet build ./src/Unosquare.RaspberryIO
+  - msbuild /p:Configuration=Release
