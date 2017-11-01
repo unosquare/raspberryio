@@ -11,6 +11,9 @@
     }
   ],
   "build": {
+    "template": [
+      "best-practices/templates/default"
+    ],
     "content": [
       {
         "files": [ "**/*.yml" ],
@@ -23,13 +26,14 @@
     ],
     "resource": [
       {
-        "files": [ "logos/raspberryio-logo-32.png" ]
+        "files": [ "best-practices/resources/**", "logos/raspberryio-logo-256.png" ]
       }
     ],
     "globalMetadata": {
       "_appTitle": "RaspberryIO - Pi's hardware access from Mono",
       "_enableSearch": true,
-      "_appLogoPath": "logos/raspberryio-logo-32.png"
+      "_appLogoPath": "best-practices/resources/images/logo.png",
+      "_docLogo": "logos/raspberryio-logo-256.png"
     },
     "dest": "_site"
   }
