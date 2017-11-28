@@ -214,9 +214,9 @@
         {
             lock (_syncLock)
             {
-                if (PinMode != GpioPinDriveMode.Input)
+                if (PinMode != GpioPinDriveMode.Input && PinMode != GpioPinDriveMode.Output)
                     throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
-                        + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
+                        + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input} or {GpioPinDriveMode.Output}");
 
                 return WiringPi.digitalRead(PinNumber) != 0;
             }
