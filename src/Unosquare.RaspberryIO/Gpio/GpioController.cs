@@ -454,7 +454,7 @@
             {
                 if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Input && p.PinMode != GpioPinDriveMode.Output))
                     throw new InvalidOperationException(
-                        $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input}");
+                        $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input} or {GpioPinDriveMode.Output}");
 
                 return (byte) WiringPi.digitalReadByte();
             }
