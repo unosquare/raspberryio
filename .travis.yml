@@ -2,13 +2,9 @@ language: csharp
 solution: Unosquare.RaspberryIO.sln
 notifications:
   slack: unolabs:cbusXPH6pBwZ35rVDzi4k4ve
-matrix:
-  include:
-    - os: linux
-      dotnet: 1.0.1
-      mono: latest
-      dist: trusty
-      sudo: false
+dotnet: 2.0.0
+mono: latest
+dist: trusty
 install:
   - msbuild /t:Restore
 script:
