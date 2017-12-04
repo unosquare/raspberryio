@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "ZViXvsSOMNmSRXEz1yHb+g=="
+          "hash": "iXzv/kTekUGXY9FY5AHDAw=="
         }
       },
       "is_incremental": false,
@@ -74,7 +74,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraAnnotation.html",
-          "hash": "+twShXhBPZxA0NQdjV5HWA=="
+          "hash": "yPQBkizL/+D6fyNmgysBSg=="
         }
       },
       "is_incremental": false,
@@ -86,7 +86,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraColor.html",
-          "hash": "yh2EXFRaBBDVcxE0q6/ExA=="
+          "hash": "L7AMtMjVdpUramBaS5klVw=="
         }
       },
       "is_incremental": false,
@@ -98,7 +98,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraController.html",
-          "hash": "4CkiOhN+IIC8BX/nlp3iPg=="
+          "hash": "ZcBT2leLAwPbZk1xkg/svA=="
         }
       },
       "is_incremental": false,
@@ -110,7 +110,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation.html",
-          "hash": "PQv/oVqhnMn+iE37uvb2Uw=="
+          "hash": "eS0SjAKUpHGiZCGtAk4VZw=="
         }
       },
       "is_incremental": false,
@@ -122,7 +122,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraExposureMode.html",
-          "hash": "/l3w0NexGHR3WmmAY6ufUA=="
+          "hash": "7knAqzu4k96De1D8Ac7ESg=="
         }
       },
       "is_incremental": false,
@@ -134,7 +134,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraH264Profile.html",
-          "hash": "sapQ6cS0dMTE3e37QIP9bQ=="
+          "hash": "s6lAJlAvGDOh7Zw0WjuSEQ=="
         }
       },
       "is_incremental": false,
@@ -146,7 +146,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraImageEffect.html",
-          "hash": "6qqAhKB6ul0NjPr53eJWsA=="
+          "hash": "91k69Su2q5P1zq1YqvCiJQ=="
         }
       },
       "is_incremental": false,
@@ -158,7 +158,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraImageEncodingFormat.html",
-          "hash": "vlvWpKEdbi6VneMN3HqhzQ=="
+          "hash": "sU/DWCaBCuAOo1kKKXg8vg=="
         }
       },
       "is_incremental": false,
@@ -170,7 +170,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraImageRotation.html",
-          "hash": "UJA0LZv8PLVDGXYjWwzKWg=="
+          "hash": "rSzx0AS2EifSgzm6/XV2dw=="
         }
       },
       "is_incremental": false,
@@ -182,7 +182,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraMeteringMode.html",
-          "hash": "42hSfLzadP7Uvtv8i4EeZA=="
+          "hash": "zYht8eHUE6GEJDEnEsgnYg=="
         }
       },
       "is_incremental": false,
@@ -194,7 +194,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraRect.html",
-          "hash": "saIHszscha8ktWAg8L1Rig=="
+          "hash": "ZmQJpnwuI0jPUcKmNQG9JQ=="
         }
       },
       "is_incremental": false,
@@ -206,7 +206,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html",
-          "hash": "n/nHblhGpO+Z9h0Z9p2hyA=="
+          "hash": "yHI42eN74Z1/oBgf7L+0zQ=="
         }
       },
       "is_incremental": false,
@@ -218,7 +218,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html",
-          "hash": "X5WFTiHIIb0PHFJi1dQsLw=="
+          "hash": "YTnUP+Ucmf1T4Cxj471Ghg=="
         }
       },
       "is_incremental": false,
@@ -230,7 +230,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html",
-          "hash": "HSKz3MEgL4gyqxzq7Kqcfg=="
+          "hash": "0fxOD0KbyTySvZ8peN0iNA=="
         }
       },
       "is_incremental": false,
@@ -242,7 +242,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.html",
-          "hash": "iHOGRE1bez4mNRAjM0T4rA=="
+          "hash": "QPYVdC59qRo0hV1n2J7aQg=="
         }
       },
       "is_incremental": false,
@@ -254,7 +254,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.html",
-          "hash": "1DmP+9l99tJnrjT0TAfyvA=="
+          "hash": "ixfQSMoZ8TwgnO73q3Acwg=="
         }
       },
       "is_incremental": false,
@@ -266,7 +266,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.DsiDisplay.html",
-          "hash": "NnA5he1NMgewsKUmQsqE5w=="
+          "hash": "sopr7yA8fU6zVQfk5zC86w=="
         }
       },
       "is_incremental": false,
@@ -278,7 +278,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.NetworkSettings.html",
-          "hash": "iAgG7Y9dxeLWKTbdGpCMdg=="
+          "hash": "V63GzTWOuQvCN0rQkluDag=="
         }
       },
       "is_incremental": false,
@@ -290,7 +290,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.OsInfo.html",
-          "hash": "cmdrmU3gVVnrNn3s/tmgoA=="
+          "hash": "GdYXuZHB6YcRFAZ89K8pAw=="
         }
       },
       "is_incremental": false,
@@ -302,7 +302,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.PiVersion.html",
-          "hash": "jDGQiU6LxuYilGgYgG4CWg=="
+          "hash": "qIbG4ULh2PBVpKIIgCcdEA=="
         }
       },
       "is_incremental": false,
@@ -314,7 +314,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.SystemInfo.html",
-          "hash": "ONCszNI25hijbSs+XU3x+A=="
+          "hash": "2Cy7sXoIHqcWnGkmUJcIXg=="
         }
       },
       "is_incremental": false,
@@ -326,7 +326,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.html",
-          "hash": "Gs+tqHGPiq0VMZMcNl63OA=="
+          "hash": "GpvW/7DOUz5t8bqnUvaTNQ=="
         }
       },
       "is_incremental": false,
@@ -338,7 +338,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.EdgeDetection.html",
-          "hash": "VjsoeqqGImUw+EkupP4Bfw=="
+          "hash": "OWzIkmgqViKRz1edjUJ/eA=="
         }
       },
       "is_incremental": false,
@@ -350,7 +350,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioController.html",
-          "hash": "wGSo/A3d0nhkajftJZM2uw=="
+          "hash": "RJCuGuzJr1KQHdEy6qohRw=="
         }
       },
       "is_incremental": false,
@@ -362,7 +362,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioHeader.html",
-          "hash": "XhuI4gbi2PVJvwJcA12KVw=="
+          "hash": "w2FMrUSua7IOWepkI4Id8g=="
         }
       },
       "is_incremental": false,
@@ -374,7 +374,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioPin.html",
-          "hash": "tcFhzpF5nadRTjYSz546vQ=="
+          "hash": "oNzUzmhCumzXwn3rSfPJbw=="
         }
       },
       "is_incremental": false,
@@ -386,7 +386,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioPinDriveMode.html",
-          "hash": "MsLuncHR2FbhPgKdGs8iFQ=="
+          "hash": "Tr+7uHlaFx151ayDXaPHWw=="
         }
       },
       "is_incremental": false,
@@ -398,7 +398,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioPinResistorPullMode.html",
-          "hash": "/aEX2grd8c1MfivrgqNVBw=="
+          "hash": "E+BQ+YeGoiBNGBFhGVoUmg=="
         }
       },
       "is_incremental": false,
@@ -410,7 +410,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioPinValue.html",
-          "hash": "Hc7khqlIM608xGbaym35jg=="
+          "hash": "YinOLXXmz0hPvxEbHscOrg=="
         }
       },
       "is_incremental": false,
@@ -422,7 +422,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.I2CBus.html",
-          "hash": "SyGzm8OSlOM3HocNovAOAA=="
+          "hash": "cErmLd/T4IBwPdNHcmMq3w=="
         }
       },
       "is_incremental": false,
@@ -434,7 +434,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.I2CDevice.html",
-          "hash": "DSOY3BL3hZ4915yXcC+nyw=="
+          "hash": "uzdrHU5fVtkDnGeldgD2Xg=="
         }
       },
       "is_incremental": false,
@@ -446,7 +446,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.PinCapability.html",
-          "hash": "9JcaacbdYlaa+acMBbE3aw=="
+          "hash": "b66I4X2zVMb20UTMdmsdpA=="
         }
       },
       "is_incremental": false,
@@ -458,7 +458,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.PwmMode.html",
-          "hash": "ZMZkL1bAJJwAHKIp/awAuw=="
+          "hash": "z/Don7P91MuKjtmuX83JoA=="
         }
       },
       "is_incremental": false,
@@ -470,7 +470,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.SpiBus.html",
-          "hash": "bmtRmESZO5ZKFyIp60K8AQ=="
+          "hash": "8uYQ1sOp4My/WYCE/PPU1w=="
         }
       },
       "is_incremental": false,
@@ -482,7 +482,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.SpiChannel.html",
-          "hash": "toXPzMEZvaIGdcGdq42MOw=="
+          "hash": "FIkrVC9KrfdoRpxKBOSGzA=="
         }
       },
       "is_incremental": false,
@@ -494,7 +494,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.WiringPiPin.html",
-          "hash": "og3u6RsPNGUjazb/2EXRBA=="
+          "hash": "JoiDXRXGbsWqcuVD5R1a9A=="
         }
       },
       "is_incremental": false,
@@ -506,7 +506,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.html",
-          "hash": "8BqM9lvJdlSzM5f0tkrFFA=="
+          "hash": "HzuXOsXrIEDKKrvnkDTulw=="
         }
       },
       "is_incremental": false,
@@ -518,7 +518,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Models.NetworkAdapter.html",
-          "hash": "JnOkjLTtjb6743pg+p8n2w=="
+          "hash": "0l36dJEmSNhhgSUlQahirA=="
         }
       },
       "is_incremental": false,
@@ -530,7 +530,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html",
-          "hash": "6ARTUo4siloP1ML03A2c0A=="
+          "hash": "1/4+K4cpJmH2bpcSZ/KcBg=="
         }
       },
       "is_incremental": false,
@@ -542,7 +542,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Models.html",
-          "hash": "oxi/L/eSoZ7JYNPBX1yF/A=="
+          "hash": "YcOnT9QN4RMFYfS41D1blA=="
         }
       },
       "is_incremental": false,
@@ -554,7 +554,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.HardwareException.html",
-          "hash": "c2nJd12YwNM/+ITMKEaHAg=="
+          "hash": "QgAvveelaoysyKAIo6wL1A=="
         }
       },
       "is_incremental": false,
@@ -566,7 +566,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback.html",
-          "hash": "Witm1unxp8ZA19gjo+MGfA=="
+          "hash": "IW6mzT/HxvQLYAgFo7uAPw=="
         }
       },
       "is_incremental": false,
@@ -578,7 +578,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.ThreadLockKey.html",
-          "hash": "48/VlyKnkJVaMhQO8HT6eQ=="
+          "hash": "sKAuhZIXDJgSlEsa3yqjfg=="
         }
       },
       "is_incremental": false,
@@ -590,7 +590,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.ThreadWorker.html",
-          "hash": "FJW0ifkG90FNJi2nPzcYsw=="
+          "hash": "MLN1b/M073hoEUzduOuluQ=="
         }
       },
       "is_incremental": false,
@@ -602,7 +602,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.Timing.html",
-          "hash": "paHRXIcfi479QqwJZIZjLw=="
+          "hash": "CCt7i493m+Ojsp4O28s+kA=="
         }
       },
       "is_incremental": false,
@@ -614,7 +614,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.WiringPi.html",
-          "hash": "ABhPqbYfCb/dl8+mXU1DUg=="
+          "hash": "gwi6f6WdisAGgODGZEcyJA=="
         }
       },
       "is_incremental": false,
@@ -626,7 +626,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.html",
-          "hash": "RMWcw368wrChgLCtSM+hpA=="
+          "hash": "qEydUrWCwSBHGnxi7ubc+A=="
         }
       },
       "is_incremental": false,
@@ -638,7 +638,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Pi.html",
-          "hash": "LuGKk5uvZsQ3mQnIMW6qjg=="
+          "hash": "Y7Xttzolv3imjmoywMKUfg=="
         }
       },
       "is_incremental": false,
@@ -650,7 +650,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.html",
-          "hash": "+ArI4CtwoYmgwci3x5dHHg=="
+          "hash": "nytz1MqVSf56ATQALVJ5Jw=="
         }
       },
       "is_incremental": false,
@@ -689,14 +689,6 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build"
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build"
-        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
@@ -705,6 +697,14 @@
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
           "incrementalPhase": "build"
         }
       }

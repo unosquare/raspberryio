@@ -8,7 +8,7 @@
     <title> RaspberryIO - Pi's hardware access from Mono | RaspberryIO - Pi's hardware access from Mono </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" RaspberryIO - Pi's hardware access from Mono | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.27.0.0">
+    <meta name="generator" content="docfx 2.28.1.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -101,7 +101,57 @@ echo &quot;deb http://download.mono-project.com/repo/debian wheezy main&quot; | 
 sudo apt-get update
 sudo apt-get dist-upgrade
 </code></pre><p>Now, verify your version of Mono by running <code>mono --version</code>. Version 4.6 and above should be good enough.</p>
-<h2 id="the-camera-module">The Camera Module</h2>
+<h2 id="running-net-core-2">Running .NET Core 2</h2>
+<p>This project can also run in .NET Core 2.</p>
+<p>Run the fallowing commands to install .NET Core 2.</p>
+<pre><code># Update Ubuntu 16.04
+sudo apt-get -y update
+
+# Install the packages necessary for .NET Core
+sudo apt-get -y install libunwind8 libunwind8-dev gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev
+
+# Download the latest binaries for .NET Core 2 
+wget https://dotnetcli.blob.core.windows.net/dotnet/Runtime/release/2.0.0/dotnet-runtime-latest-linux-arm.tar.gz
+
+# Make a directory for .NET Core to live in
+mkdir /home/ubuntu/dotnet
+
+# Unzip the binaries into the directory you just created
+tar -xvf dotnet-runtime-latest-linux-arm.tar.gz -C /home/ubuntu/dotnet
+
+# Now add the path to the dotnet executable to the environment path
+# This ensures the next time you log in, the dotnet exe is on your path
+echo &quot;PATH=\$PATH:/home/ubuntu/dotnet&quot; &gt;&gt; dotnetcore.sh
+sudo mv dotnetcore.sh /etc/profile.d
+
+# Then run the command below to add the path to the dotnet executable to the current session
+PATH=$PATH:/home/ubuntu/dotnet
+</code></pre><p>After that you can reboot the raspberry. To check if dotnet is installed just run &quot;dotnet&quot; and a message should show.</p>
+<pre><code>ubuntu@ubuntu:~$ dotnet
+
+Usage: dotnet [options]
+Usage: dotnet [path-to-application]
+
+Options:
+  -h|--help            Display help.
+  --version         Display version.
+
+path-to-application:
+  The path to an application .dll file to execute.
+</code></pre><h3 id="run-the-app-in-the-raspberry">Run the app in the raspberry</h3>
+<ul>
+<li>You need to publish the project and copy the result folder to the raspberry pi</li>
+</ul>
+<pre><code>PM&gt; dotnet publish -r ubuntu.16.04-arm 
+</code></pre><ul>
+<li>Give permissions to run the project</li>
+</ul>
+<pre><code>ubuntu@ubuntu:~/publish$ sudo chmod u+x *
+</code></pre><ul>
+<li>Run the project</li>
+</ul>
+<pre><code>ubuntu@ubuntu:~/publish$ ./ProjectName
+</code></pre><h2 id="the-camera-module">The Camera Module</h2>
 <p>The <code>Pi.Camera</code> module uses <code>raspivid</code> and <code>raspistill</code> to access to camera so they must be installed in order for your program to work propely. <code>raspistill</code> arguments are specified in an instance of the <code>CameraStillSettings</code> class, while the <code>raspivid</code> arguments are specified in an instance of the <code>CameraVideoSettings</code> class. </p>
 <h3 id="capturing-images">Capturing Images</h3>
 <p>The <code>Pi.Camera.CaptureImage*</code> methods simply return an array of bytes containing the capture image. There are synchronous and asynchronous falvors of these methods so you can use the familiar <code>async</code> and <code>await</code> pattern to capture your images. All <code>raspistill</code> arguments (except for those that control user interaction such as <code>-k</code>) are available via the <code>CameraStillSettings</code>. To start, create a new instance of the <code>CameraStillSettings</code> class and pass it on to your choice of the <code>Pi.Camera.CaptureImage*</code> methods. There are shortcut methods available that simply take a JPEG image at the given Width and Height. By default, the shortcut methods set the JPEG quality at 90%.</p>
