@@ -44,6 +44,72 @@ sudo apt-get dist-upgrade
 
 Now, verify your version of Mono by running ```mono --version```. Version 4.6 and above should be good enough.
 
+## Running .NET Core 2
+
+This project can also run in .NET Core 2.
+
+Run the fallowing commands to install .NET Core 2.
+
+```
+# Update Ubuntu 16.04
+sudo apt-get -y update
+
+# Install the packages necessary for .NET Core
+sudo apt-get -y install libunwind8 libunwind8-dev gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev
+
+# Download the latest binaries for .NET Core 2 
+wget https://dotnetcli.blob.core.windows.net/dotnet/Runtime/release/2.0.0/dotnet-runtime-latest-linux-arm.tar.gz
+
+# Make a directory for .NET Core to live in
+mkdir /home/ubuntu/dotnet
+
+# Unzip the binaries into the directory you just created
+tar -xvf dotnet-runtime-latest-linux-arm.tar.gz -C /home/ubuntu/dotnet
+
+# Now add the path to the dotnet executable to the environment path
+# This ensures the next time you log in, the dotnet exe is on your path
+echo "PATH=\$PATH:/home/ubuntu/dotnet" >> dotnetcore.sh
+sudo mv dotnetcore.sh /etc/profile.d
+
+# Then run the command below to add the path to the dotnet executable to the current session
+PATH=$PATH:/home/ubuntu/dotnet
+```
+
+After that you can reboot the raspberry. To check if dotnet is installed just run "dotnet" and a message should show.
+
+```
+ubuntu@ubuntu:~$ dotnet
+
+Usage: dotnet [options]
+Usage: dotnet [path-to-application]
+
+Options:
+  -h|--help            Display help.
+  --version         Display version.
+
+path-to-application:
+  The path to an application .dll file to execute.
+```
+### Run the app in the raspberry
+
+- You need to publish the project and copy the result folder to the raspberry pi
+
+```
+PM> dotnet publish -r ubuntu.16.04-arm 
+```
+
+- Give permissions to run the project
+
+```
+ubuntu@ubuntu:~/publish$ sudo chmod u+x *
+```
+- Run the project
+
+```
+ubuntu@ubuntu:~/publish$ ./ProjectName
+```
+
+
 ## The Camera Module
 The ```Pi.Camera``` module uses ```raspivid``` and ```raspistill``` to access to camera so they must be installed in order for your program to work propely. ```raspistill``` arguments are specified in an instance of the ```CameraStillSettings``` class, while the ```raspivid``` arguments are specified in an instance of the ```CameraVideoSettings``` class. 
 
