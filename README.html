@@ -142,7 +142,7 @@ path-to-application:
 <ul>
 <li>You need to publish the project and copy the result folder to the raspberry pi</li>
 </ul>
-<pre><code>PM&gt; dotnet publish -r ubuntu.16.04-arm 
+<pre><code>PM&gt; dotnet publish -r ubuntu.16.04-arm .\src\Unosquare.RaspberryIO.Playground -f netcoreapp2.0
 </code></pre><ul>
 <li>Give permissions to run the project</li>
 </ul>
@@ -150,7 +150,7 @@ path-to-application:
 </code></pre><ul>
 <li>Run the project</li>
 </ul>
-<pre><code>ubuntu@ubuntu:~/publish$ ./ProjectName
+<pre><code>ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
 </code></pre><h2 id="the-camera-module">The Camera Module</h2>
 <p>The <code>Pi.Camera</code> module uses <code>raspivid</code> and <code>raspistill</code> to access to camera so they must be installed in order for your program to work propely. <code>raspistill</code> arguments are specified in an instance of the <code>CameraStillSettings</code> class, while the <code>raspivid</code> arguments are specified in an instance of the <code>CameraVideoSettings</code> class. </p>
 <h3 id="capturing-images">Capturing Images</h3>
