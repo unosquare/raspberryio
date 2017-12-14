@@ -140,10 +140,34 @@ path-to-application:
   The path to an application .dll file to execute.
 </code></pre><h3 id="run-the-app-in-the-raspberry">Run the app in the raspberry</h3>
 <ul>
-<li>You need to publish the project and copy the result folder to the raspberry pi</li>
-</ul>
-<pre><code>PM&gt; dotnet publish -r ubuntu.16.04-arm .\src\Unosquare.RaspberryIO.Playground -f netcoreapp2.0
-</code></pre><ul>
+<li>You need to publish the project and you can accomplish this by using sshdeploy but first you must edit these properties inside the Playground&#39;s csproj file in order to establish an ssh connection with your raspberry
+<code>xml
+&lt;SshDeployHost&gt;172.16.17.54&lt;/SshDeployHost&gt;
+  &lt;SshDeployTargetPath&gt;/home/pi/Playground&lt;/SshDeployTargetPath&gt;
+  &lt;SshDeployUsername&gt;pi&lt;/SshDeployUsername&gt;
+  &lt;SshDeployPassword&gt;raspberry&lt;/SshDeployPassword&gt;</code></li>
+<li><p>Execute <code>dotnet sshdeploy push -f net452</code> in the same folder where Unosquare.RaspberryIO.Playground.csproj resides and if everything executes correctly you should see an output like this:</p>
+<pre><code>SSH Deployment Tool [Version 0.1.6.0]
+(c)2015 - 2017 Unosquare SA de CV. All Rights Reserved.
+For additional help, please visit https://github.com/unosquare/sshdeploy
+Deploying....
+  Configuration   Debug
+  Framework       net452
+  Source Path     C:\UnosquareRepos\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\net452\publish
+  Excluded Files  .ready|.vshost.exe|.vshost.exe.config
+  Target Address  172.16.17.54:22
+  Username        pi
+  Target Path     /home/pi/Playground
+  Clean Target    NO
+  Pre Deployment  
+  Post Deployment 
+Connecting to host 19.16.17.54:22 via SSH.
+Connecting to host 17916.17.54:22 via SFTP.
+
+  Deploying 8 files.
+  Finished deployment in 1.25 seconds.
+Completed.
+</code></pre></li>
 <li>Give permissions to run the project</li>
 </ul>
 <pre><code>ubuntu@ubuntu:~/publish$ sudo chmod u+x *
