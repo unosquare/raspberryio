@@ -1009,12 +1009,12 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWidth
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWidth
   nameWithType: CameraSettingsBase.CaptureWidth
-- uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CI
-  name: CI
-  href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CI
-  commentId: F:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CI
-  fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CI
-  nameWithType: CameraSettingsBase.CI
+- uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.Ci
+  name: Ci
+  href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_Ci
+  commentId: F:Unosquare.RaspberryIO.Camera.CameraSettingsBase.Ci
+  fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.Ci
+  nameWithType: CameraSettingsBase.Ci
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CommandName
   name: CommandName
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CommandName
