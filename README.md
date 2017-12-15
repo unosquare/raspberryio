@@ -93,22 +93,22 @@ path-to-application:
 ### Run the app in the raspberry
 
 
-- You need to publish the project and you can accomplish this by using sshdeploy but first you must edit these properties inside the Playground's csproj file in order to establish an ssh connection with your raspberry
+- You need to publish the project and you can accomplish this by using dotnet-sshdeploy but first you must edit these properties inside the Playground's csproj file in order to establish an ssh connection with your raspberry
 ``` xml
 <SshDeployHost>172.16.17.54</SshDeployHost>
-    <SshDeployTargetPath>/home/pi/Playground</SshDeployTargetPath>
-    <SshDeployUsername>pi</SshDeployUsername>
-    <SshDeployPassword>raspberry</SshDeployPassword>
+<SshDeployTargetPath>/home/pi/Playground</SshDeployTargetPath>
+<SshDeployUsername>pi</SshDeployUsername>
+<SshDeployPassword>raspberry</SshDeployPassword>
 ```
-- Execute `dotnet sshdeploy push -f net452` in the same folder where Unosquare.RaspberryIO.Playground.csproj resides and if everything executes correctly you should see an output like this:
+- Execute `dotnet sshdeploy push` in the same folder where Unosquare.RaspberryIO.Playground.csproj resides and if everything executes correctly you should see an output like this:
 ```
 SSH Deployment Tool [Version 0.1.6.0]
 (c)2015 - 2017 Unosquare SA de CV. All Rights Reserved.
 For additional help, please visit https://github.com/unosquare/sshdeploy
 Deploying....
     Configuration   Debug
-    Framework       net452
-    Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\net452\publish
+    Framework       netcoreapp2.0
+    Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\netcoreapp2.0\publish
     Excluded Files  .ready|.vshost.exe|.vshost.exe.config
     Target Address  192.16.17.54:22
     Username        pi
@@ -123,6 +123,7 @@ Connecting to host 192.16.17.54:22 via SFTP.
     Finished deployment in 1.25 seconds.
 Completed.
 ```
+* **The default TargetFramework is** `netcoreapp2.0` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this**`dotnet sshdeploy -f net452`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
 - Give permissions to run the project
 
 ```
