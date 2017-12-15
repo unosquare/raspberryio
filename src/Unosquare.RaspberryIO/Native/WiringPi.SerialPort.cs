@@ -4,6 +4,8 @@
 
     public partial class WiringPi
     {
+#pragma warning disable SA1300 // Element must begin with upper-case letter
+
         #region WiringPi - Serial Port
 
         /// <summary>
@@ -69,5 +71,7 @@
         public static extern void serialFlush(int fd);
 
         #endregion
+
+#pragma warning restore SA1300 // Element must begin with upper-case letter
     }
 }

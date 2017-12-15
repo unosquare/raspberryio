@@ -26,7 +26,7 @@
 
         private static readonly object SyncRoot = new object();
         private static bool? m_IsRunningAsRoot = new bool?();
-        
+
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
         /// </summary>
@@ -99,9 +99,8 @@
                         continue;
 
                     var memKb = lineParts[1].ToLowerInvariant().Trim().Replace("kb", string.Empty).Trim();
-                    int parsedMem;
 
-                    if (int.TryParse(memKb, out parsedMem))
+                    if (int.TryParse(memKb, out var parsedMem))
                     {
                         InstalledRam = parsedMem * 1024;
                         break;
@@ -155,8 +154,7 @@
 
             try
             {
-                utsname unameInfo;
-                Standard.uname(out unameInfo);
+                Standard.uname(out var unameInfo);
                 OperatingSystem = new OsInfo
                 {
                     DomainName = unameInfo.domainname,
@@ -199,7 +197,7 @@
         /// <value>
         /// The wiring pi board revision.
         /// </value>
-        public int WiringPiBoardRevision { get; private set; }
+        public int WiringPiBoardRevision { get; }
 
         /// <summary>
         /// Gets the number of processor cores.
@@ -208,8 +206,7 @@
         {
             get
             {
-                int outIndex;
-                if (int.TryParse(Processor, out outIndex))
+                if (int.TryParse(Processor, out var outIndex))
                 {
                     return outIndex + 1;
                 }
@@ -221,17 +218,12 @@
         /// <summary>
         /// Gets the installed ram in bytes.
         /// </summary>
-        public int InstalledRam { get; private set; }
+        public int InstalledRam { get; }
 
         /// <summary>
         /// Gets a value indicating whether this CPU is little endian.
         /// </summary>
         public bool IsLittleEndian => BitConverter.IsLittleEndian;
-
-        /// <summary>
-        /// Placeholder for processor index
-        /// </summary>
-        private string Processor { get; set; }
 
         /// <summary>
         /// Gets the CPU model name.
@@ -295,8 +287,7 @@
             {
                 try
                 {
-                    utssysinfo sysInfo;
-                    if (Standard.sysinfo(out sysInfo) == 0)
+                    if (Standard.sysinfo(out var sysInfo) == 0)
                         return sysInfo.uptime;
                 }
                 catch
@@ -312,6 +303,11 @@
         /// Gets the uptime in TimeSpan.
         /// </summary>
         public TimeSpan UptimeTimeSpan => TimeSpan.FromSeconds(Uptime);
+
+        /// <summary>
+        /// Placeholder for processor index
+        /// </summary>
+        private string Processor { get; set; }
 
         /// <summary>
         /// Reboots this computer.
@@ -383,15 +379,10 @@
                 {
                     properyValues.Add($"\t{property.Name,-22}: {property.GetValue(this)}");
                 }
-                else
+                else if (property.GetValue(this) is string[] allValues)
                 {
-                    var allValues = property.GetValue(this) as string[];
-
-                    if (allValues != null)
-                    {
-                        var concatValues = string.Join(" ", allValues);
-                        properyValues.Add($"\t{property.Name,-22}: {concatValues}");
-                    }
+                    var concatValues = string.Join(" ", allValues);
+                    properyValues.Add($"\t{property.Name,-22}: {concatValues}");
                 }
             }
 

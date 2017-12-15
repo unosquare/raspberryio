@@ -27,7 +27,7 @@
         /// <value>
         /// The device identifier.
         /// </value>
-        public int DeviceId { get; private set; }
+        public int DeviceId { get; }
 
         /// <summary>
         /// Gets the standard POSIX file descriptor.
@@ -40,7 +40,7 @@
         /// <summary>
         /// Reads a byte from the specified file descriptor
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The byte from device</returns>
         public byte Read()
         {
             lock (SyncLock)
@@ -55,7 +55,7 @@
         /// Reads a buffer of the specified length, one byte at a time
         /// </summary>
         /// <param name="length">The length.</param>
-        /// <returns></returns>
+        /// <returns>The byte array from device</returns>
         public byte[] Read(int length)
         {
             lock (SyncLock)
@@ -134,7 +134,7 @@
         /// These read an 8 or 16-bit value from the device register indicated.
         /// </summary>
         /// <param name="address">The register.</param>
-        /// <returns></returns>
+        /// <returns>The address byte from device</returns>
         public byte ReadAddressByte(int address)
         {
             lock (SyncLock)
@@ -150,7 +150,7 @@
         /// These read an 8 or 16-bit value from the device register indicated.
         /// </summary>
         /// <param name="address">The register.</param>
-        /// <returns></returns>
+        /// <returns>The address word from device</returns>
         public ushort ReadAddressWord(int address)
         {
             lock (SyncLock)

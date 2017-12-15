@@ -12,6 +12,7 @@
     using System.Threading;
 #if NET452
     using Samples;
+
 #endif
 
     public class Program
@@ -50,7 +51,8 @@
 
             try
             {
-                using (var bitmap = new System.Drawing.Bitmap(Path.Combine(Runtime.EntryAssemblyDirectory, "fractal.jpg")))
+                using (var bitmap =
+                    new System.Drawing.Bitmap(Path.Combine(Runtime.EntryAssemblyDirectory, "fractal.jpg")))
                 {
                     $"Loaded bitmap with format {bitmap.PixelFormat}".Info();
                     pixels = new BitmapBuffer(bitmap);
@@ -100,7 +102,7 @@
                         currentBrightness = 0.05f + 0.80f * (currentRow / (pixels.ImageHeight - 1f));
 
                     // Stats and sleep time
-                    var delayMilliseconds = (int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
+                    var delayMilliseconds = (int) DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
                     frameRenderTimes.Enqueue(delayMilliseconds);
                     delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
 
@@ -109,7 +111,7 @@
                     else
                         $"Lagging framerate: {delayMilliseconds} milliseconds".Info();
 
-                    frameTimes.Enqueue((int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
+                    frameTimes.Enqueue((int) DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
                     lastRenderTime = DateTime.UtcNow;
 
                     // Push the framebuffer to SPI
@@ -121,16 +123,15 @@
                         currentFrameNumber++;
                     if (frameRenderTimes.Count >= 2048) frameRenderTimes.Dequeue();
                     if (frameTimes.Count >= 20148) frameTimes.Dequeue();
-
                 }
 
                 strip.ClearPixels();
                 strip.Render();
 
                 var avg = frameRenderTimes.Average();
-                $"Frames: {currentFrameNumber + 1}, FPS: {Math.Round((1000f / frameTimes.Average()), 3)}, Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}".Info();
+                $"Frames: {currentFrameNumber + 1}, FPS: {Math.Round(1000f / frameTimes.Average(), 3)}, Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}"
+                    .Info();
                 strip.Render();
-
             });
 
             thread.Start();
@@ -138,7 +139,6 @@
             Console.ReadKey(true);
             Console.WriteLine();
             exitAnimation = true;
-
         }
 
         public static void TestLedStrip()
@@ -158,17 +158,17 @@
                 {
                     strip.ClearPixels();
 
-                    red = red >= 254 ? default(byte) : (byte)(red + 1);
+                    red = red >= 254 ? default(byte) : (byte) (red + 1);
 
                     for (var i = 0; i < tailSize; i++)
                     {
                         strip[i].Brightness = i / (tailSize - 1f);
                         strip[i].R = red;
-                        strip[i].G = (byte)(255 - red);
-                        strip[i].B = (byte)(strip[i].Brightness * 254);
+                        strip[i].G = (byte) (255 - red);
+                        strip[i].B = (byte) (strip[i].Brightness * 254);
                     }
 
-                    var delayMilliseconds = (int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
+                    var delayMilliseconds = (int) DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
                     delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
                     if (delayMilliseconds > 0 && exitAnimation == false)
                     {
@@ -179,14 +179,12 @@
                         $"Lagging framerate: {delayMilliseconds} milliseconds".Info();
                     }
 
-
                     lastRenderTime = DateTime.UtcNow;
                     strip.Render();
                 }
 
                 strip.ClearPixels();
                 strip.Render();
-
             });
 
             thread.Start();
@@ -210,7 +208,6 @@
             Pi.Spi.Channel0.Write(request);
             response = Pi.Spi.Channel0.SendReceive(new byte[request.Length]);
             $"SPI Base Stream Response: {BitConverter.ToString(response)}".Info();
-
         }
 
         public static void TestDisplay()
@@ -222,14 +219,13 @@
                 "Enter brightness value (0 to 255). Enter b to toggle Backlight, Enter x to Exit".Info();
                 input = Console.ReadLine();
 
-                if (input.Equals("b"))
+                if (input?.Equals("b") == true)
                 {
                     Pi.PiDisplay.IsBacklightOn = !Pi.PiDisplay.IsBacklightOn;
                 }
                 else
                 {
-                    byte value = 128;
-                    if (byte.TryParse(input, out value))
+                    if (byte.TryParse(input, out var value))
                     {
                         if (value != Pi.PiDisplay.Brightness)
                         {
@@ -239,7 +235,8 @@
                     }
                 }
 
-                $"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}".Info();
+                $"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}"
+                    .Info();
             }
 
             Pi.PiDisplay.IsBacklightOn = true;
@@ -277,10 +274,14 @@
             $"HostName {Computer.NetworkSettings.Instance.HostName}".Info();
             $"Uptime (seconds) {Pi.Info.Uptime}".Info();
             var timeSpan = Pi.Info.UptimeTimeSpan;
-            $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}".Info();
+            $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}"
+                .Info();
 
             foreach (var adapter in Computer.NetworkSettings.Instance.RetrieveAdapters())
-                $"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName} MAC Address: {adapter.MacAddress}".Info();
+            {
+                $"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName} MAC Address: {adapter.MacAddress}"
+                    .Info();
+            }
         }
 
         private static void TestCaptureImage()
@@ -294,7 +295,7 @@
             $"Took picture -- Byte count: {pictureBytes.Length}".Info();
         }
 
-        static void TestCaptureVideo()
+        private static void TestCaptureVideo()
         {
             // Setup our working variables
             var videoByteCount = 0;
@@ -316,7 +317,11 @@
             {
                 // Start the video recording
                 Pi.Camera.OpenVideoStream(videoSettings,
-                    onDataCallback: (data) => { videoByteCount += data.Length; videoEventCount++; },
+                    onDataCallback: (data) =>
+                    {
+                        videoByteCount += data.Length;
+                        videoEventCount++;
+                    },
                     onExitCallback: null);
 
                 // Wait for user interaction
@@ -335,11 +340,12 @@
                 // Output the stats
                 var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000");
                 var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000");
-                $"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds".Info();
+                $"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds"
+                    .Info();
             }
         }
 
-        static void TestColors()
+        private static void TestColors()
         {
             var colors = new CameraColor[]
             {

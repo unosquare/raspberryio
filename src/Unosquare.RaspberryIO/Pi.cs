@@ -10,9 +10,9 @@
     /// </summary>
     public static class Pi
     {
-        private static readonly object SyncLock = new object();
-
         internal static string LoggerSource = typeof(Pi).Namespace;
+
+        private static readonly object SyncLock = new object();
 
         /// <summary>
         /// Initializes the <see cref="Pi"/> class.

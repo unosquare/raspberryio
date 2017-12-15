@@ -12,25 +12,6 @@
     /// </summary>
     public sealed partial class GpioPin
     {
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GpioPin"/> class.
-        /// </summary>
-        /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>
-        /// <param name="headerPinNumber">The header pin number.</param>
-        private GpioPin(WiringPiPin wiringPiPinNumber, int headerPinNumber)
-        {
-            PinNumber = (int)wiringPiPinNumber;
-            WiringPiPinNumber = wiringPiPinNumber;
-            BcmPinNumber = GpioController.WiringPiToBcmPinNumber((int)wiringPiPinNumber);
-            HeaderPinNumber = headerPinNumber;
-            Header = (PinNumber >= 17 && PinNumber <= 20) ?
-                GpioHeader.P5 : GpioHeader.P1;
-        }
-
-        #endregion
-
         #region Property Backing
 
         private readonly object _syncLock = new object();
@@ -43,6 +24,24 @@
         private int m_SoftPwmValue = -1;
         private int m_SoftPwmRange = -1;
         private int m_SoftToneFrequency = -1;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GpioPin"/> class.
+        /// </summary>
+        /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>
+        /// <param name="headerPinNumber">The header pin number.</param>
+        private GpioPin(WiringPiPin wiringPiPinNumber, int headerPinNumber)
+        {
+            PinNumber = (int) wiringPiPinNumber;
+            WiringPiPinNumber = wiringPiPinNumber;
+            BcmPinNumber = GpioController.WiringPiToBcmPinNumber((int) wiringPiPinNumber);
+            HeaderPinNumber = headerPinNumber;
+            Header = (PinNumber >= 17 && PinNumber <= 20) ? GpioHeader.P5 : GpioHeader.P1;
+        }
 
         #endregion
 
@@ -61,19 +60,23 @@
         /// <summary>
         /// Gets the BCM chip (hardware) pin number.
         /// </summary>
-        public int BcmPinNumber { get; private set; }
+        public int BcmPinNumber { get; }
+
         /// <summary>
         /// Gets or the physical header (physical board) pin number.
         /// </summary>
-        public int HeaderPinNumber { get; private set; }
+        public int HeaderPinNumber { get; }
+
         /// <summary>
         /// Gets the pin's header (physical board) location.
         /// </summary>
-        public GpioHeader Header { get; private set; }
+        public GpioHeader Header { get; }
+
         /// <summary>
         /// Gets the friendly name of the pin.
         /// </summary>
         public string Name { get; private set; }
+
         /// <summary>
         /// Gets the hardware mode capabilities of this pin.
         /// </summary>
@@ -92,10 +95,7 @@
         /// <exception cref="System.NotSupportedException"></exception>
         public GpioPinDriveMode PinMode
         {
-            get
-            {
-                return m_PinMode;
-            }
+            get => m_PinMode;
 
             set
             {
@@ -106,9 +106,10 @@
                         (mode == GpioPinDriveMode.PwmOutput && Capabilities.Contains(PinCapability.PWM) == false) ||
                         (mode == GpioPinDriveMode.Input && Capabilities.Contains(PinCapability.GP) == false) ||
                         (mode == GpioPinDriveMode.Output && Capabilities.Contains(PinCapability.GP) == false))
-                        throw new NotSupportedException($"Pin {WiringPiPinNumber} '{Name}' does not support mode '{mode}'. Pin capabilities are limited to: {string.Join(", ", Capabilities)}");
+                        throw new NotSupportedException(
+                            $"Pin {WiringPiPinNumber} '{Name}' does not support mode '{mode}'. Pin capabilities are limited to: {string.Join(", ", Capabilities)}");
 
-                    WiringPi.pinMode(PinNumber, (int)mode);
+                    WiringPi.pinMode(PinNumber, (int) mode);
                     m_PinMode = mode;
                 }
             }
@@ -128,10 +129,13 @@
             lock (_syncLock)
             {
                 if (PinMode != GpioPinDriveMode.Output)
-                    throw new InvalidOperationException($"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
+                {
+                    throw new InvalidOperationException(
+                        $"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
                         + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
+                }
 
-                WiringPi.digitalWrite(PinNumber, (int)value);
+                WiringPi.digitalWrite(PinNumber, (int) value);
             }
         }
 
@@ -141,9 +145,7 @@
         /// </summary>
         /// <param name="value">if set to <c>true</c> [value].</param>
         public void Write(bool value)
-        {
-            Write(value ? GpioPinValue.High : GpioPinValue.Low);
-        }
+            => Write(value ? GpioPinValue.High : GpioPinValue.Low);
 
         /// <summary>
         /// Writes the specified value. 0 for low, any other value for high
@@ -165,8 +167,11 @@
             lock (_syncLock)
             {
                 if (PinMode != GpioPinDriveMode.Output)
-                    throw new InvalidOperationException($"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
+                {
+                    throw new InvalidOperationException(
+                        $"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
                         + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
+                }
 
                 WiringPi.analogWrite(PinNumber, value);
             }
@@ -184,10 +189,7 @@
         /// </summary>
         public GpioPinResistorPullMode InputPullMode
         {
-            get
-            {
-                return PinMode == GpioPinDriveMode.Input ? m_ResistorPullMode : GpioPinResistorPullMode.Off;
-            }
+            get => PinMode == GpioPinDriveMode.Input ? m_ResistorPullMode : GpioPinResistorPullMode.Off;
 
             set
             {
@@ -196,11 +198,12 @@
                     if (PinMode != GpioPinDriveMode.Input)
                     {
                         m_ResistorPullMode = GpioPinResistorPullMode.Off;
-                        throw new InvalidOperationException($"Unable to set the {nameof(InputPullMode)} for pin {PinNumber} because operating mode is {PinMode}."
+                        throw new InvalidOperationException(
+                            $"Unable to set the {nameof(InputPullMode)} for pin {PinNumber} because operating mode is {PinMode}."
                             + $" Setting the {nameof(InputPullMode)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
                     }
 
-                    WiringPi.pullUpDnControl(PinNumber, (int)value);
+                    WiringPi.pullUpDnControl(PinNumber, (int) value);
                     m_ResistorPullMode = value;
                 }
             }
@@ -215,8 +218,11 @@
             lock (_syncLock)
             {
                 if (PinMode != GpioPinDriveMode.Input && PinMode != GpioPinDriveMode.Output)
-                    throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
+                {
+                    throw new InvalidOperationException(
+                        $"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
                         + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input} or {GpioPinDriveMode.Output}");
+                }
 
                 return WiringPi.digitalRead(PinNumber) != 0;
             }
@@ -227,9 +233,7 @@
         /// </summary>
         /// <returns></returns>
         public GpioPinValue ReadValue()
-        {
-            return Read() ? GpioPinValue.High : GpioPinValue.Low;
-        }
+            => Read() ? GpioPinValue.High : GpioPinValue.Low;
 
         /// <summary>
         /// Reads the analog value on the pin.
@@ -244,8 +248,11 @@
             lock (_syncLock)
             {
                 if (PinMode != GpioPinDriveMode.Input)
-                    throw new InvalidOperationException($"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
+                {
+                    throw new InvalidOperationException(
+                        $"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
                         + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
+                }
 
                 return WiringPi.analogRead(PinNumber);
             }
@@ -263,10 +270,7 @@
         /// </value>
         public int PwmRegister
         {
-            get
-            {
-                return m_PwmRegister;
-            }
+            get => m_PwmRegister;
 
             set
             {
@@ -276,7 +280,8 @@
                     {
                         m_PwmRegister = 0;
 
-                        throw new InvalidOperationException($"Unable to write PWM register for pin {PinNumber} because operating mode is {PinMode}."
+                        throw new InvalidOperationException(
+                            $"Unable to write PWM register for pin {PinNumber} because operating mode is {PinMode}."
                             + $" Writing the PWM register is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
@@ -298,10 +303,7 @@
         /// <exception cref="System.InvalidOperationException"></exception>
         public PwmMode PwmMode
         {
-            get
-            {
-                return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmMode : PwmMode.Balanced;
-            }
+            get => PinMode == GpioPinDriveMode.PwmOutput ? m_PwmMode : PwmMode.Balanced;
 
             set
             {
@@ -311,11 +313,12 @@
                     {
                         m_PwmMode = PwmMode.Balanced;
 
-                        throw new InvalidOperationException($"Unable to set PWM mode for pin {PinNumber} because operating mode is {PinMode}."
+                        throw new InvalidOperationException(
+                            $"Unable to set PWM mode for pin {PinNumber} because operating mode is {PinMode}."
                             + $" Setting the PWM mode is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
-                    WiringPi.pwmSetMode((int)value);
+                    WiringPi.pwmSetMode((int) value);
                     m_PwmMode = value;
                 }
             }
@@ -330,10 +333,7 @@
         /// <exception cref="System.InvalidOperationException"></exception>
         public uint PwmRange
         {
-            get
-            {
-                return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmRange : 0;
-            }
+            get => PinMode == GpioPinDriveMode.PwmOutput ? m_PwmRange : 0;
 
             set
             {
@@ -343,7 +343,8 @@
                     {
                         m_PwmRange = 1024;
 
-                        throw new InvalidOperationException($"Unable to set PWM range for pin {PinNumber} because operating mode is {PinMode}."
+                        throw new InvalidOperationException(
+                            $"Unable to set PWM range for pin {PinNumber} because operating mode is {PinMode}."
                             + $" Setting the PWM range is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
@@ -362,10 +363,7 @@
         /// <exception cref="System.InvalidOperationException"></exception>
         public int PwmClockDivisor
         {
-            get
-            {
-                return PinMode == GpioPinDriveMode.PwmOutput ? m_PwmClockDivisor : 0;
-            }
+            get => PinMode == GpioPinDriveMode.PwmOutput ? m_PwmClockDivisor : 0;
 
             set
             {
@@ -375,7 +373,8 @@
                     {
                         m_PwmClockDivisor = 1;
 
-                        throw new InvalidOperationException($"Unable to set PWM range for pin {PinNumber} because operating mode is {PinMode}."
+                        throw new InvalidOperationException(
+                            $"Unable to set PWM range for pin {PinNumber} because operating mode is {PinMode}."
                             + $" Setting the PWM range is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
@@ -423,7 +422,8 @@
                 }
                 else
                 {
-                    throw new InvalidOperationException($"Could not start software based PWM on pin {PinNumber}. Error code: {startResult}");
+                    throw new InvalidOperationException(
+                        $"Could not start software based PWM on pin {PinNumber}. Error code: {startResult}");
                 }
             }
         }
@@ -437,10 +437,7 @@
         /// <exception cref="System.InvalidOperationException">StartSoftPwm</exception>
         public int SoftPwmValue
         {
-            get
-            {
-                return m_SoftPwmValue;
-            }
+            get => m_SoftPwmValue;
 
             set
             {
@@ -485,10 +482,7 @@
         /// <exception cref="System.InvalidOperationException"></exception>
         public int SoftToneFrequency
         {
-            get
-            {
-                return m_SoftToneFrequency;
-            }
+            get => m_SoftToneFrequency;
 
             set
             {
@@ -498,7 +492,8 @@
                     {
                         var setupResult = WiringPi.softToneCreate(PinNumber);
                         if (setupResult != 0)
-                            throw new InvalidOperationException($"Unable to initialize soft tone on pin {PinNumber}. Error Code: {setupResult}");
+                            throw new InvalidOperationException(
+                                $"Unable to initialize soft tone on pin {PinNumber}. Error Code: {setupResult}");
                     }
 
                     WiringPi.softToneWrite(PinNumber, value);
@@ -544,12 +539,15 @@
                 throw new InvalidOperationException("An interrupt callback was already registered.");
 
             if (PinMode != GpioPinDriveMode.Input)
-                throw new InvalidOperationException($"Unable to {nameof(RegisterInterruptCallback)} for pin {PinNumber} because operating mode is {PinMode}."
+            {
+                throw new InvalidOperationException(
+                    $"Unable to {nameof(RegisterInterruptCallback)} for pin {PinNumber} because operating mode is {PinMode}."
                     + $" Calling {nameof(RegisterInterruptCallback)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
+            }
 
             lock (_syncLock)
             {
-                var registerResult = WiringPi.wiringPiISR(PinNumber, (int)edgeDetection, callback);
+                var registerResult = WiringPi.wiringPiISR(PinNumber, (int) edgeDetection, callback);
                 if (registerResult == 0)
                 {
                     InterruptEdgeDetection = edgeDetection;
@@ -563,6 +561,5 @@
         }
 
         #endregion
-
     }
 }

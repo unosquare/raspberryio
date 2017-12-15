@@ -107,34 +107,6 @@
     }
 
     /// <summary>
-    /// Defines the SPI channel numbers
-    /// </summary>
-    internal enum SpiChannelNumber
-    {
-        /// <summary>
-        /// The channel 0
-        /// </summary>
-        Channel0 = 0,
-
-        /// <summary>
-        /// The channel 1
-        /// </summary>
-        Channel1 = 1,
-    }
-
-    /// <summary>
-    /// Defines GPIO controller initialization modes
-    /// </summary>
-    internal enum ControllerMode
-    {
-        NotInitialized,
-        DirectWithWiringPiPins,
-        DirectWithBcmPins,
-        DirectWithHeaderPins,
-        FileStreamWithHardwarePins,
-    }
-
-    /// <summary>
     /// Defines the Header connectors available
     /// </summary>
     public enum GpioHeader
@@ -390,5 +362,33 @@
         /// Hardware Pule Width Modulation
         /// </summary>
         PWM
+    }
+
+    /// <summary>
+    /// Defines the SPI channel numbers
+    /// </summary>
+    internal enum SpiChannelNumber
+    {
+        /// <summary>
+        /// The channel 0
+        /// </summary>
+        Channel0 = 0,
+
+        /// <summary>
+        /// The channel 1
+        /// </summary>
+        Channel1 = 1,
+    }
+
+    /// <summary>
+    /// Defines GPIO controller initialization modes
+    /// </summary>
+    internal enum ControllerMode
+    {
+        NotInitialized,
+        DirectWithWiringPiPins,
+        DirectWithBcmPins,
+        DirectWithHeaderPins,
+        FileStreamWithHardwarePins,
     }
 }

@@ -14,7 +14,7 @@
         /// <summary>
         /// The Invariant Culture shorthand
         /// </summary>
-        protected static readonly CultureInfo CI = CultureInfo.InvariantCulture;
+        protected static readonly CultureInfo Ci = CultureInfo.InvariantCulture;
 
         #region Capture Settings
 
@@ -229,13 +229,13 @@
         {
             var sb = new StringBuilder();
             sb.Append("-o -"); // output to standard output as opposed to a file.
-            sb.Append($" -t {(CaptureTimeoutMilliseconds < 0 ? "0" : CaptureTimeoutMilliseconds.ToString(CI))}");
+            sb.Append($" -t {(CaptureTimeoutMilliseconds < 0 ? "0" : CaptureTimeoutMilliseconds.ToString(Ci))}");
 
             // Basic Width and height
             if (CaptureWidth > 0 && CaptureHeight > 0)
             {
-                sb.Append($" -w {CaptureWidth.ToString(CI)}");
-                sb.Append($" -h {CaptureHeight.ToString(CI)}");
+                sb.Append($" -w {CaptureWidth.ToString(Ci)}");
+                sb.Append($" -h {CaptureHeight.ToString(Ci)}");
             }
 
             // Display Preview
@@ -243,7 +243,7 @@
             {
                 if (CaptureDisplayPreviewInFullScreen) sb.Append(" -f");
                 if (CaptureDisplayPreviewOpacity != byte.MaxValue)
-                    sb.Append($" -op {CaptureDisplayPreviewOpacity.ToString(CI)}");
+                    sb.Append($" -op {CaptureDisplayPreviewOpacity.ToString(Ci)}");
             }
             else
             {
@@ -252,25 +252,25 @@
 
             // Picture Settings
             if (ImageSharpness != 0)
-                sb.Append($" -sh {ImageSharpness.Clamp(-100, 100).ToString(CI)}");
+                sb.Append($" -sh {ImageSharpness.Clamp(-100, 100).ToString(Ci)}");
 
             if (ImageContrast != 0)
-                sb.Append($" -co {ImageContrast.Clamp(-100, 100).ToString(CI)}");
+                sb.Append($" -co {ImageContrast.Clamp(-100, 100).ToString(Ci)}");
 
             if (ImageBrightness != 50)
-                sb.Append($" -br {ImageBrightness.Clamp(0, 100).ToString(CI)}");
+                sb.Append($" -br {ImageBrightness.Clamp(0, 100).ToString(Ci)}");
 
             if (ImageSaturation != 0)
-                sb.Append($" -sa {ImageSaturation.Clamp(-100, 100).ToString(CI)}");
+                sb.Append($" -sa {ImageSaturation.Clamp(-100, 100).ToString(Ci)}");
 
             if (ImageISO >= 100)
-                sb.Append($" -ISO {ImageISO.Clamp(100, 800).ToString(CI)}");
+                sb.Append($" -ISO {ImageISO.Clamp(100, 800).ToString(Ci)}");
 
             if (CaptureVideoStabilizationEnabled)
-                sb.Append($" -vs");
+                sb.Append(" -vs");
 
             if (CaptureExposureCompensation != 0)
-                sb.Append($" -ev {CaptureExposureCompensation.Clamp(-10, 10).ToString(CI)}");
+                sb.Append($" -ev {CaptureExposureCompensation.Clamp(-10, 10).ToString(Ci)}");
 
             if (CaptureExposure != CameraExposureMode.Auto)
                 sb.Append($" -ex {CaptureExposure.ToString().ToLowerInvariant()}");
@@ -282,37 +282,39 @@
                 sb.Append($" -ifx {ImageEffect.ToString().ToLowerInvariant()}");
 
             if (ImageColorEffectU >= 0 && ImageColorEffectV >= 0)
+            {
                 sb.Append(
-                    $" -cfx {ImageColorEffectU.Clamp(0, 255).ToString(CI)}:{ImageColorEffectV.Clamp(0, 255).ToString(CI)}");
+                    $" -cfx {ImageColorEffectU.Clamp(0, 255).ToString(Ci)}:{ImageColorEffectV.Clamp(0, 255).ToString(Ci)}");
+            }
 
             if (CaptureMeteringMode != CameraMeteringMode.Average)
                 sb.Append($" -mm {CaptureMeteringMode.ToString().ToLowerInvariant()}");
 
             if (ImageRotation != CameraImageRotation.None)
-                sb.Append($" -rot {((int) ImageRotation).ToString(CI)}");
+                sb.Append($" -rot {((int) ImageRotation).ToString(Ci)}");
 
             if (ImageFlipHorizontally)
-                sb.Append($" -hf");
+                sb.Append(" -hf");
 
             if (ImageFlipVertically)
-                sb.Append($" -vf");
+                sb.Append(" -vf");
 
             if (CaptureSensorRoi.IsDefault == false)
-                sb.Append($" -roi {CaptureSensorRoi.ToString()}");
+                sb.Append($" -roi {CaptureSensorRoi}");
 
             if (CaptureShutterSpeedMicroseconds > 0)
-                sb.Append($" -ss {CaptureShutterSpeedMicroseconds.Clamp(0, 6000000).ToString(CI)}");
+                sb.Append($" -ss {CaptureShutterSpeedMicroseconds.Clamp(0, 6000000).ToString(Ci)}");
 
             if (CaptureDynamicRangeCompensation != CameraDynamicRangeCompensation.Off)
                 sb.Append($" -drc {CaptureDynamicRangeCompensation.ToString().ToLowerInvariant()}");
 
             if (CaptureWhiteBalanceControl == CameraWhiteBalanceMode.Off &&
                 (CaptureWhiteBalanceGainBlue != 0M || CaptureWhiteBalanceGainRed != 0M))
-                sb.Append($" -awbg {CaptureWhiteBalanceGainBlue.ToString(CI)},{CaptureWhiteBalanceGainRed.ToString(CI)}");
+                sb.Append($" -awbg {CaptureWhiteBalanceGainBlue.ToString(Ci)},{CaptureWhiteBalanceGainRed.ToString(Ci)}");
 
             if (ImageAnnotationFontSize > 0)
             {
-                sb.Append($" -ae {ImageAnnotationFontSize.Clamp(6, 160).ToString(CI)}");
+                sb.Append($" -ae {ImageAnnotationFontSize.Clamp(6, 160).ToString(Ci)}");
                 sb.Append($",{(ImageAnnotationFontColor == null ? "0xff" : ImageAnnotationFontColor.ToYuvHex(true))}");
 
                 if (ImageAnnotationBackground != null)
@@ -323,7 +325,7 @@
             }
 
             if (ImageAnnotations != CameraAnnotation.None)
-                sb.Append($" -a {((int) ImageAnnotations).ToString(CI)}");
+                sb.Append($" -a {((int) ImageAnnotations).ToString(Ci)}");
 
             if (string.IsNullOrWhiteSpace(ImageAnnotationsText) == false)
                 sb.Append($" -a \"{ImageAnnotationsText.Replace("\"", "'")}\"");
