@@ -279,7 +279,17 @@ TODO
 TODO
 
 ### Tone Generation
-TODO
+Create a software controlled tone pin example:
+
+```csharp
+// Get a reference to the pin
+var passiveBuzzer = Pi.Gpio[WiringPiPin.Pin01];
+// Make it a software controlled tone pin
+Unosquare.RaspberryIO.Native.WiringPi.softToneCreate(passiveBuzzer.PinNumber);
+// Set the frequency to Alto Do (523Hz)
+passiveBuzzer.SoftToneFrequency = 523
+```
+
 
 ### Interrupts and Callbacks
 TODO
