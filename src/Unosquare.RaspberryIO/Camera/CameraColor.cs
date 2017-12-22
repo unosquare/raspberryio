@@ -42,7 +42,7 @@
         /// <summary>
         /// Gets the well-known color name.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the red byte.
@@ -73,7 +73,7 @@
         /// Returns a hexadecimal representation of the data byte array
         /// </summary>
         /// <param name="data">The data.</param>
-        /// <returns></returns>
+        /// <returns>A string</returns>
         private static string ToHex(byte[] data)
         {
             return $"0x{BitConverter.ToString(data).Replace("-", string.Empty).ToLowerInvariant()}";
@@ -84,7 +84,7 @@
         /// Preceded by 0x and all in lowercase
         /// </summary>
         /// <param name="reverse">if set to <c>true</c> [reverse].</param>
-        /// <returns></returns>
+        /// <returns>A string</returns>
         public string ToRgbHex(bool reverse)
         {
             var data = RGB.ToArray();
@@ -97,7 +97,7 @@
         /// Preceded by 0x and all in lowercase
         /// </summary>
         /// <param name="reverse">if set to <c>true</c> [reverse].</param>
-        /// <returns></returns>
+        /// <returns>A string</returns>
         public string ToYuvHex(bool reverse)
         {
             var data = YUV.ToArray();

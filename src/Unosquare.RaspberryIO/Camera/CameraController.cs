@@ -17,7 +17,7 @@
 
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         private static readonly CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
-        private static object SyncRoot = new object();
+        private static readonly object SyncRoot = new object();
 
         #endregion
 
@@ -120,39 +120,6 @@
         #region Video Capture Methods
 
         /// <summary>
-        /// Performs a continuous read of the standard output and fires the corresponding events.
-        /// </summary>
-        /// <param name="settings">The settings.</param>
-        /// <param name="onDataCallback">The on data callback.</param>
-        /// <param name="onExitCallback">The on exit callback.</param>
-        /// <returns></returns>
-        private static async Task VideoWorkerDoWork(
-            CameraVideoSettings settings, 
-            Action<byte[]> onDataCallback,
-            Action onExitCallback)
-        {
-            try
-            {
-                await ProcessRunner.RunProcessAsync(settings.CommandName, settings.CreateProcessArguments(),
-                    (data, proc) =>
-                    {
-                        onDataCallback?.Invoke(data);
-                    }, null, true, VideoTokenSource.Token);
-
-                onExitCallback?.Invoke();
-            }
-            catch
-            {
-                // swallow
-            }
-            finally
-            {
-                Instance.CloseVideoStream();
-                OperationDone.Set();
-            }
-        }
-        
-        /// <summary>
         /// Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
         /// No preview is shown
         /// </summary>
@@ -213,7 +180,34 @@
                     VideoTokenSource.Cancel();
             }
         }
+        
+        private static async Task VideoWorkerDoWork(
+            CameraVideoSettings settings,
+            Action<byte[]> onDataCallback,
+            Action onExitCallback)
+        {
+            try
+            {
+                await ProcessRunner.RunProcessAsync(
+                    settings.CommandName, 
+                    settings.CreateProcessArguments(),
+                    (data, proc) => onDataCallback?.Invoke(data), 
+                    null, 
+                    true, 
+                    VideoTokenSource.Token);
 
+                onExitCallback?.Invoke();
+            }
+            catch
+            {
+                // swallow
+            }
+            finally
+            {
+                Instance.CloseVideoStream();
+                OperationDone.Set();
+            }
+        }
         #endregion
     }
 }

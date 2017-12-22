@@ -1,7 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
     using Swan;
-    using System;
     using System.Text;
 
     /// <summary>
@@ -70,30 +69,29 @@
         /// <summary>
         /// Creates the process arguments.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string representing the arguments</returns>
         public override string CreateProcessArguments()
         {
             var sb = new StringBuilder(base.CreateProcessArguments());
 
             sb.Append($" -pf {CaptureProfile.ToString().ToLowerInvariant()}");
             if (CaptureBitrate < 0)
-                sb.Append($" -b {CaptureBitrate.Clamp(0, 25000000).ToString(CI)}");
+                sb.Append($" -b {CaptureBitrate.Clamp(0, 25000000).ToString(Ci)}");
 
             if (CaptureFramerate >= 2)
-                sb.Append($" -fps {CaptureFramerate.Clamp(2, 30).ToString(CI)}");
+                sb.Append($" -fps {CaptureFramerate.Clamp(2, 30).ToString(Ci)}");
 
-            if (CaptureDisplayPreview)
-                if (CaptureDisplayPreviewEncoded)
+            if (CaptureDisplayPreview && CaptureDisplayPreviewEncoded)
                     sb.Append($" -e");
 
             if (CaptureKeyframeRate > 0)
-                sb.Append($" -g {CaptureKeyframeRate.ToString(CI)}");
+                sb.Append($" -g {CaptureKeyframeRate.ToString(Ci)}");
 
             if (CaptureQuantisation >= 0)
-                sb.Append($" -qp {CaptureQuantisation.Clamp(0, 40).ToString(CI)}");
+                sb.Append($" -qp {CaptureQuantisation.Clamp(0, 40).ToString(Ci)}");
 
             if (CaptureInterleaveHeaders)
-                sb.Append($" -ih");
+                sb.Append(" -ih");
 
             var commandArgs = sb.ToString();
             $"{CommandName} {commandArgs}".Trace(Pi.LoggerSource);

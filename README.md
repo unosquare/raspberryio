@@ -1,14 +1,15 @@
 [![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO)
 [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/raspberryio/)](https://github.com/igrigorik/ga-beacon)
 
-# <img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png"></img> RaspberryIO - *Pi's hardware access from Mono*
-The Raspberry Pi's IO Functionality in an easy-to-use API for Mono/.NET/C#. Our mission is to make Mono a first-class citizen in the Python-centric community of Raspberry Pi developers.
+# <img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png"></img> RaspberryIO - *Pi's hardware access from .NET*
+The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.
 
-*:star:Please star this project if you find it useful!*
+:star: *Please star this project if you find it useful!*
 
 ## Features
 
-This library enables developers to use the various Raspberry Pi's hardware modules
+This library enables developers to use the various Raspberry Pi's hardware modules:
+
 * ```Pi.Camera``` Provides access to the offical Raspberry Pi Camera module.
 * ```Pi.Info``` Provides information on this Raspberry Pi's CPU and form factor.
 * ```Pi.Gpio``` Provides access to the Raspberry Pi's GPIO as a collection of GPIO Pins.
@@ -28,7 +29,7 @@ PM> Install-Package Unosquare.Raspberry.IO
 ## Running the latest version of Mono
 It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:
 ``` 
-Mono JIT compiler version 4.6.2 (Stable 4.6.2.7/08fd525 Mon Nov 14 12:43:54 UTC 2016) 
+Mono JIT compiler version 5.4.1.6 (tarball Wed Nov  8 21:42:16 UTC 2017)
 ```
 
 The commands to get Mono installed are the following:
@@ -92,12 +93,38 @@ path-to-application:
 ```
 ### Run the app in the raspberry
 
-- You need to publish the project and copy the result folder to the raspberry pi
 
+- You need to publish the project and you can accomplish this by using dotnet-sshdeploy but first you must edit these properties inside the Playground's csproj file in order to establish an ssh connection with your raspberry
+``` xml
+<SshDeployHost>172.16.17.54</SshDeployHost>
+<SshDeployTargetPath>/home/pi/Playground</SshDeployTargetPath>
+<SshDeployUsername>pi</SshDeployUsername>
+<SshDeployPassword>raspberry</SshDeployPassword>
 ```
-PM> dotnet publish -r ubuntu.16.04-arm .\src\Unosquare.RaspberryIO.Playground -f netcoreapp2.0
+- Execute `dotnet sshdeploy push` in the same folder where Unosquare.RaspberryIO.Playground.csproj resides and if everything executes correctly you should see an output like this:
 ```
+SSH Deployment Tool [Version 0.1.6.0]
+(c)2015 - 2017 Unosquare SA de CV. All Rights Reserved.
+For additional help, please visit https://github.com/unosquare/sshdeploy
+Deploying....
+    Configuration   Debug
+    Framework       netcoreapp2.0
+    Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\netcoreapp2.0\publish
+    Excluded Files  .ready|.vshost.exe|.vshost.exe.config
+    Target Address  192.16.17.54:22
+    Username        pi
+    Target Path     /home/pi/Playground
+    Clean Target    NO
+    Pre Deployment  
+    Post Deployment 
+Connecting to host 192.16.17.54:22 via SSH.
+Connecting to host 192.16.17.54:22 via SFTP.
 
+    Deploying 8 files.
+    Finished deployment in 1.25 seconds.
+Completed.
+```
+* **The default TargetFramework is** `netcoreapp2.0` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this**`dotnet sshdeploy -f net452`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
 - Give permissions to run the project
 
 ```

@@ -9,14 +9,17 @@
         /// The lock 0
         /// </summary>
         Lock0 = 0,
+        
         /// <summary>
         /// The lock 1
         /// </summary>
         Lock1 = 1,
+        
         /// <summary>
         /// The lock 2
         /// </summary>
         Lock2 = 2,
+        
         /// <summary>
         /// The lock 3
         /// </summary>

@@ -88,7 +88,7 @@
             // JPEG Encoder specific arguments
             if (CaptureEncoding == CameraImageEncodingFormat.Jpg)
             {
-                sb.Append($" -q {CaptureJpegQuality.Clamp(0, 100).ToString(CI)}");
+                sb.Append($" -q {CaptureJpegQuality.Clamp(0, 100).ToString(Ci)}");
 
                 if (CaptureJpegIncludeRawBayerMetadata)
                     sb.Append(" -r");

@@ -1,12 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <TargetFrameworks>net452;netcoreapp2.0</TargetFrameworks>
     <AssemblyName>Unosquare.RaspberryIO.Playground</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>Unosquare.RaspberryIO.Playground</PackageId>
-    <RuntimeIdentifiers>win10-x64;ubuntu.14.04-arm;ubuntu.16.04-arm</RuntimeIdentifiers>
+    <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
+    <RuntimeIdentifiers>linux-arm;win10-x64;ubuntu.14.04-arm;ubuntu.16.04-arm</RuntimeIdentifiers>
     <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">1.1.1</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <SshDeployHost>192.16.17.54</SshDeployHost>
+    <SshDeployTargetPath>/home/pi/Playground</SshDeployTargetPath>
+    <SshDeployUsername>pi</SshDeployUsername>
+    <SshDeployPassword>raspberry</SshDeployPassword>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +41,10 @@
     <PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0">
       <IncludeAssets>Analyzers;Build;Compile;ContentFiles;Native</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-sshdeploy" Version="0.1.6-r1" />
   </ItemGroup>
 
 </Project>

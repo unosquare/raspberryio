@@ -10,6 +10,7 @@
     /// </summary>
     public partial class WiringPi
     {
+#pragma warning disable SA1300 // Element must begin with upper-case letter
         internal const string WiringPiLibrary = "libwiringPi.so.2.42";
 
         #region WiringPi - Core Functions (https://github.com/WiringPi/WiringPi/blob/master/wiringPi/wiringPi.h)
@@ -373,5 +374,7 @@
         public static extern uint micros();
 
         #endregion
+
+#pragma warning restore SA1300 // Element must begin with upper-case letter
     }
 }

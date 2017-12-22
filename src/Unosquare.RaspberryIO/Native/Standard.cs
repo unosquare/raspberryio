@@ -7,6 +7,8 @@
     {
         internal const string LibCLibrary = "libc";
 
+#pragma warning disable SA1300 // Element must begin with upper-case letter
+
         #region LibC Calls
 
         /// <summary>
@@ -72,5 +74,6 @@
 
         #endregion
 
+#pragma warning restore SA1300 // Element must begin with upper-case letter
     }
 }

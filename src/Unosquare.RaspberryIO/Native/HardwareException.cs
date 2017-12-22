@@ -12,18 +12,6 @@
     public class HardwareException : Exception
     {
         /// <summary>
-        /// Throws a new instance of a hardware error by retrieving the last error number (errno).
-        /// </summary>
-        /// <param name="className">Name of the class.</param>
-        /// <param name="methodName">Name of the method.</param>
-        /// <exception cref="Unosquare.RaspberryIO.Native.HardwareException"></exception>
-        public static void Throw(string className, string methodName)
-        {
-            var errno = Marshal.GetLastWin32Error();
-            throw new HardwareException(errno, $"{className}.{methodName}");
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="HardwareException" /> class.
         /// </summary>
         /// <param name="errorCode">The error code.</param>
@@ -69,7 +57,19 @@
         /// <value>
         /// The extended message.
         /// </value>
-        public string ExtendedMessage { get; private set; }
+        public string ExtendedMessage { get; }
+
+        /// <summary>
+        /// Throws a new instance of a hardware error by retrieving the last error number (errno).
+        /// </summary>
+        /// <param name="className">Name of the class.</param>
+        /// <param name="methodName">Name of the method.</param>
+        /// <exception cref="Native.HardwareException"></exception>
+        public static void Throw(string className, string methodName)
+        {
+            var errno = Marshal.GetLastWin32Error();
+            throw new HardwareException(errno, $"{className}.{methodName}");
+        }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

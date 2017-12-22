@@ -21,35 +21,9 @@
         #region Private Declarations
 
         private const string WiringPiCodesEnvironmentVariable = "WIRINGPI_CODES";
-        private readonly ReadOnlyCollection<GpioPin> PinCollection;
-        private readonly Dictionary<WiringPiPin, GpioPin> RegisteredPins = new Dictionary<WiringPiPin, GpioPin>();
+        private readonly ReadOnlyCollection<GpioPin> _pinCollection;
+        private readonly Dictionary<WiringPiPin, GpioPin> _registeredPins = new Dictionary<WiringPiPin, GpioPin>();
         private static readonly object SyncRoot = new object();
-
-        #endregion
-
-        #region Singleton Implementation
-
-        /// <summary>
-        /// Determines if the underlying GPIO controller has been initialized properly.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if the controller is properly initialized; otherwise, <c>false</c>.
-        /// </value>
-        public static bool IsInitialized
-        {
-            get
-            {
-                lock (SyncRoot)
-                {
-                    return Mode != ControllerMode.NotInitialized;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the initialization mode.
-        /// </summary>
-        private static ControllerMode Mode { get; set; } = ControllerMode.NotInitialized;
 
         #endregion
 
@@ -62,7 +36,7 @@
         /// <exception cref="System.Exception">Unable to initialize the GPIO controller.</exception>
         private GpioController()
         {
-            if (PinCollection != null)
+            if (_pinCollection != null)
                 return;
 
             if (IsInitialized == false)
@@ -109,8 +83,30 @@
 
             #endregion
 
-            PinCollection = new ReadOnlyCollection<GpioPin>(RegisteredPins.Values.ToArray());
+            _pinCollection = new ReadOnlyCollection<GpioPin>(_registeredPins.Values.ToArray());
         }
+
+        /// <summary>
+        /// Determines if the underlying GPIO controller has been initialized properly.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the controller is properly initialized; otherwise, <c>false</c>.
+        /// </value>
+        public static bool IsInitialized
+        {
+            get
+            {
+                lock (SyncRoot)
+                {
+                    return Mode != ControllerMode.NotInitialized;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the initialization mode.
+        /// </summary>
+        private static ControllerMode Mode { get; set; } = ControllerMode.NotInitialized;
 
         /// <summary>
         /// Short-hand method of registering pins
@@ -118,8 +114,8 @@
         /// <param name="pin">The pin.</param>
         private void RegisterPin(GpioPin pin)
         {
-            if (RegisteredPins.ContainsKey(pin.WiringPiPinNumber) == false)
-                RegisteredPins[pin.WiringPiPinNumber] = pin;
+            if (_registeredPins.ContainsKey(pin.WiringPiPinNumber) == false)
+                _registeredPins[pin.WiringPiPinNumber] = pin;
             else
                 throw new InvalidOperationException($"Pin {pin.WiringPiPinNumber} has been registered");
         }
@@ -136,7 +132,7 @@
         private bool Initialize(ControllerMode mode)
         {
             if (Runtime.OS != Swan.OperatingSystem.Unix)
-                throw new PlatformNotSupportedException($"This library does not support the platform");
+                throw new PlatformNotSupportedException("This library does not support the platform");
 
             lock (SyncRoot)
             {
@@ -156,8 +152,10 @@
                     case ControllerMode.DirectWithWiringPiPins:
                     {
                         if (SystemInfo.Instance.IsRunningAsRoot == false)
+                        {
                             throw new PlatformNotSupportedException(
                                 $"This program must be started with root privileges for mode '{mode}'");
+                        }
 
                         setpuResult = WiringPi.wiringPiSetup();
                         break;
@@ -166,8 +164,10 @@
                     case ControllerMode.DirectWithBcmPins:
                     {
                         if (SystemInfo.Instance.IsRunningAsRoot == false)
+                        {
                             throw new PlatformNotSupportedException(
                                 $"This program must be started with root privileges for mode '{mode}'");
+                        }
 
                         setpuResult = WiringPi.wiringPiSetupGpio();
                         break;
@@ -176,8 +176,10 @@
                     case ControllerMode.DirectWithHeaderPins:
                     {
                         if (SystemInfo.Instance.IsRunningAsRoot == false)
+                        {
                             throw new PlatformNotSupportedException(
                                 $"This program must be started with root privileges for mode '{mode}'");
+                        }
 
                         setpuResult = WiringPi.wiringPiSetupPhys();
                         break;
@@ -207,7 +209,7 @@
         /// <summary>
         /// Gets a red-only collection of all registered pins.
         /// </summary>
-        public ReadOnlyCollection<GpioPin> Pins => PinCollection;
+        public ReadOnlyCollection<GpioPin> Pins => _pinCollection;
 
         /// <summary>
         /// Gets the <see cref="GpioPin"/> with the specified pin number.
@@ -217,7 +219,7 @@
         /// </value>
         /// <param name="pinNumber">The pin number.</param>
         /// <returns></returns>
-        public GpioPin this[WiringPiPin pinNumber] => RegisteredPins[pinNumber];
+        public GpioPin this[WiringPiPin pinNumber] => _registeredPins[pinNumber];
 
         /// <summary>
         /// Gets the <see cref="GpioPin"/> with the specified pin number.
@@ -235,7 +237,7 @@
                 if (Enum.IsDefined(typeof(WiringPiPin), pinNumber) == false)
                     throw new IndexOutOfRangeException($"Pin {pinNumber} is not registered in the GPIO controller.");
 
-                return RegisteredPins[(WiringPiPin) pinNumber];
+                return _registeredPins[(WiringPiPin) pinNumber];
             }
         }
 
@@ -434,8 +436,10 @@
             lock (SyncRoot)
             {
                 if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Output))
+                {
                     throw new InvalidOperationException(
                         $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Output}");
+                }
 
                 WiringPi.digitalWriteByte(value);
             }
@@ -446,15 +450,18 @@
         /// It’s the fastest way to get all 8 bits at once to a particular value.
         /// Please note this function is undocumented and unsopported
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A byte from the GPIO</returns>
         /// <exception cref="System.InvalidOperationException">PinMode</exception>
         public byte ReadByte()
         {
             lock (SyncRoot)
             {
-                if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Input && p.PinMode != GpioPinDriveMode.Output))
+                if (this.Skip(0).Take(8).Any(p =>
+                    p.PinMode != GpioPinDriveMode.Input && p.PinMode != GpioPinDriveMode.Output))
+                {
                     throw new InvalidOperationException(
                         $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input} or {GpioPinDriveMode.Output}");
+                }
 
                 return (byte) WiringPi.digitalReadByte();
             }
@@ -472,7 +479,7 @@
         /// </returns>
         public IEnumerator<GpioPin> GetEnumerator()
         {
-            return PinCollection.GetEnumerator();
+            return _pinCollection.GetEnumerator();
         }
 
         /// <summary>
@@ -483,13 +490,13 @@
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return PinCollection.GetEnumerator();
+            return _pinCollection.GetEnumerator();
         }
 
         /// <summary>
         /// Gets the number of registered pins in the controller.
         /// </summary>
-        public int Count => PinCollection.Count;
+        public int Count => _pinCollection.Count;
 
         #endregion
 

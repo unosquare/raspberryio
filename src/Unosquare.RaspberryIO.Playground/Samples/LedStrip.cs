@@ -62,10 +62,7 @@ namespace Unosquare.RaspberryIO.Playground.Samples
             /// </summary>
             public byte R
             {
-                get
-                {
-                    return Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 3] : Owner.FrameBuffer[BaseAddress + 1];
-                }
+                get => Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 3] : Owner.FrameBuffer[BaseAddress + 1];
                 set
                 {
                     if (Owner.ReverseRgb)
@@ -80,14 +77,8 @@ namespace Unosquare.RaspberryIO.Playground.Samples
             /// </summary>
             public byte G
             {
-                get
-                {
-                    return Owner.FrameBuffer[BaseAddress + 2];
-                }
-                set
-                {
-                    Owner.FrameBuffer[BaseAddress + 2] = value;
-                }
+                get => Owner.FrameBuffer[BaseAddress + 2];
+                set => Owner.FrameBuffer[BaseAddress + 2] = value;
             }
 
             /// <summary>
@@ -95,10 +86,7 @@ namespace Unosquare.RaspberryIO.Playground.Samples
             /// </summary>
             public byte B
             {
-                get
-                {
-                    return Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 1] : Owner.FrameBuffer[BaseAddress + 3];
-                }
+                get => Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 1] : Owner.FrameBuffer[BaseAddress + 3];
                 set
                 {
                     if (Owner.ReverseRgb)
@@ -117,7 +105,7 @@ namespace Unosquare.RaspberryIO.Playground.Samples
         private const byte BrightnessGetMask = 0x1F;
 
         private static readonly byte[] StartFrame = new byte[4];
-        private static readonly byte[] EndFrame = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF };
+        private static readonly byte[] EndFrame = { 0xFF, 0xFF, 0xFF, 0xFF };
 
         #endregion
 
@@ -258,7 +246,6 @@ namespace Unosquare.RaspberryIO.Playground.Samples
                 pixel.B = b;
                 pixel.Brightness = brightness;
             }
-
         }
 
         /// <summary>
@@ -280,37 +267,40 @@ namespace Unosquare.RaspberryIO.Playground.Samples
         {
             var brightnessByte = default(byte);
 
-            { // Parameter validation
-                if (pixels == null)
-                    throw new ArgumentNullException(nameof(pixels));
+            // Parameter validation
+            if (pixels == null)
+                throw new ArgumentNullException(nameof(pixels));
 
-                if (sourceOffsetX < 0 || sourceOffsetX > (pixels.ImageWidth - targetLength) - 1)
-                    throw new ArgumentOutOfRangeException(nameof(sourceOffsetX));
+            if (sourceOffsetX < 0 || sourceOffsetX > (pixels.ImageWidth - targetLength) - 1)
+                throw new ArgumentOutOfRangeException(nameof(sourceOffsetX));
 
-                if (sourceOffsetY < 0 || sourceOffsetY >= pixels.ImageHeight)
-                    throw new ArgumentOutOfRangeException(nameof(sourceOffsetY), 
-                        $"{nameof(sourceOffsetY)} was '{sourceOffsetY}' but it must be between '0' and '{pixels.ImageHeight - 1}'");
-
-                if (targetOffset < 0) targetOffset = 0;
-                if (targetOffset > LedCount - 1)
-                    throw new ArgumentOutOfRangeException(nameof(targetOffset));
-
-                if (targetLength <= 0)
-                    targetLength = LedCount;
-
-                if (targetOffset + targetLength > LedCount)
-                    throw new ArgumentOutOfRangeException(nameof(targetLength));
-
-                // Brightness Setting
-                if (brightness < 0f) brightness = 0f;
-                if (brightness > 1f) brightness = 1f;
-                brightnessByte = (byte)(brightness * 31);
-                brightnessByte = (byte)(brightnessByte | BrightnessSetMask);
-
+            if (sourceOffsetY < 0 || sourceOffsetY >= pixels.ImageHeight)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sourceOffsetY),
+                    $"{nameof(sourceOffsetY)} was '{sourceOffsetY}' but it must be between '0' and '{pixels.ImageHeight - 1}'");
             }
 
+            if (targetOffset < 0) targetOffset = 0;
+            if (targetOffset > LedCount - 1)
+                throw new ArgumentOutOfRangeException(nameof(targetOffset));
+
+            if (targetLength <= 0)
+                targetLength = LedCount;
+
+            if (targetOffset + targetLength > LedCount)
+                throw new ArgumentOutOfRangeException(nameof(targetLength));
+
+            // Brightness Setting
+            if (brightness < 0f) brightness = 0f;
+            if (brightness > 1f) brightness = 1f;
+            brightnessByte = (byte)(brightness * 31);
+            brightnessByte = (byte)(brightnessByte | BrightnessSetMask);
+
             // Offset settings
-            var BOffset = ReverseRgb ? 1 : 3; var GOffset = 2; var ROffset = ReverseRgb ? 3 : 1; var TOfsset = 0;
+            var bOffset = ReverseRgb ? 1 : 3;
+            const int GOffset = 2;
+            var ROffset = ReverseRgb ? 3 : 1;
+            var TOfsset = 0;
 
             // Pixel copying
             lock (SyncLock)
@@ -326,7 +316,7 @@ namespace Unosquare.RaspberryIO.Playground.Samples
                     FrameBuffer[frameBufferOffset + TOfsset] = brightnessByte;
                     FrameBuffer[frameBufferOffset + ROffset] = pixels.Data[bmpOffset + BitmapBuffer.ROffset]; // R
                     FrameBuffer[frameBufferOffset + GOffset] = pixels.Data[bmpOffset + BitmapBuffer.GOffset]; // G
-                    FrameBuffer[frameBufferOffset + BOffset] = pixels.Data[bmpOffset + BitmapBuffer.BOffset]; // B
+                    FrameBuffer[frameBufferOffset + bOffset] = pixels.Data[bmpOffset + BitmapBuffer.BOffset]; // B
                     frameBufferOffset += StartFrame.Length;
                     setCount += 1;
 

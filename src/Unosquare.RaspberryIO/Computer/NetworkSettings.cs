@@ -170,8 +170,7 @@
                         var tempIP = line.Replace("inet addr:", string.Empty).Trim();
                         tempIP = tempIP.Substring(0, tempIP.IndexOf(' '));
 
-                        IPAddress outValue;
-                        if (IPAddress.TryParse(tempIP, out outValue))
+                        if (IPAddress.TryParse(tempIP, out var outValue))
                             adapter.IPv4 = outValue;
 
                         if (i + 1 >= outputLines.Length) break;
@@ -183,8 +182,7 @@
                         var tempIP = line.Replace("inet6 addr:", string.Empty).Trim();
                         tempIP = tempIP.Substring(0, tempIP.IndexOf('/'));
 
-                        IPAddress outValue;
-                        if (IPAddress.TryParse(tempIP, out outValue))
+                        if (IPAddress.TryParse(tempIP, out var outValue))
                             adapter.IPv6 = outValue;
                     }
 

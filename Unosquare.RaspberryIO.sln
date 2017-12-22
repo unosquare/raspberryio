@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AD40570E-5084-4507-AFB7-647230B007E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{144147AA-41C9-4639-AF1E-F08534CA8D49}"
 	ProjectSection(SolutionItems) = preProject
-		create-sshdeploy.cmd = create-sshdeploy.cmd
 		LICENSE = LICENSE
 		README.md = README.md
+		StyleCop.Analyzers.ruleset = StyleCop.Analyzers.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C8A487A8-8399-4A13-8402-3629998E2A4D}"
@@ -30,13 +30,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C8A487A8-8
 		docs\Special Pin Functions _ Wiring Pi.pdf = docs\Special Pin Functions _ Wiring Pi.pdf
 		docs\SPI Library _ Wiring Pi.pdf = docs\SPI Library _ Wiring Pi.pdf
 		docs\Timing _ Wiring Pi.pdf = docs\Timing _ Wiring Pi.pdf
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sshdeploy", "sshdeploy", "{6197D26E-C895-4E92-8EC3-A59821F3A7CE}"
-	ProjectSection(SolutionItems) = preProject
-		sshdeploy\CommandLine.dll = sshdeploy\CommandLine.dll
-		sshdeploy\Renci.SshNet.dll = sshdeploy\Renci.SshNet.dll
-		sshdeploy\SshDeploy.exe = sshdeploy\SshDeploy.exe
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logos", "logos", "{589B0F6C-14BD-4DB7-9108-A016EA3F476F}"
@@ -70,7 +63,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C8A487A8-8399-4A13-8402-3629998E2A4D} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
-		{6197D26E-C895-4E92-8EC3-A59821F3A7CE} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
 		{589B0F6C-14BD-4DB7-9108-A016EA3F476F} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
 		{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB} = {AD40570E-5084-4507-AFB7-647230B007E0}
 		{87BDC267-91D2-4CD1-B088-0F0791948C0E} = {AD40570E-5084-4507-AFB7-647230B007E0}

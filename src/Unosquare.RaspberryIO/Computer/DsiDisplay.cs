@@ -41,8 +41,7 @@
             get
             {
                 if (IsPresent == false) return 0;
-                byte brightness = 0;
-                if (byte.TryParse(File.ReadAllText(BrightnessFilename).Trim(), out brightness))
+                if (byte.TryParse(File.ReadAllText(BrightnessFilename).Trim(), out var brightness))
                     return brightness;
 
                 return 0;
@@ -67,8 +66,7 @@
             {
                 if (IsPresent == false) return false;
 
-                int backlight;
-                if (int.TryParse(File.ReadAllText(BacklightFilename).Trim(), out backlight))
+                if (int.TryParse(File.ReadAllText(BacklightFilename).Trim(), out var backlight))
                     return backlight == 0;
 
                 return false;
