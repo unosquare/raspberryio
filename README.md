@@ -306,7 +306,18 @@ TODO
 TODO
 
 ### Tone Generation
-TODO
+You can emit tones by using SoftToneFrequency. Example:
+
+```csharp
+// Get a reference to the pin
+var passiveBuzzer = Pi.Gpio[WiringPiPin.Pin01];
+// Set the frequency to Alto Do (523Hz)
+passiveBuzzer.SoftToneFrequency = 523
+// Wait 1 second
+System.Threading.Thread.Sleep(1000);
+// And stop
+passiveBuzzer.SoftToneFrequency = 0;
+```
 
 ### Interrupts and Callbacks
 Register an Interrupt Callback example:
