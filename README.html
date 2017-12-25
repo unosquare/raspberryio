@@ -8,7 +8,7 @@
     <title> RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.29.0.0">
+    <meta name="generator" content="docfx 2.29.1.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -596,8 +596,29 @@ Pi.Gpio.Pin02.Write(GpioPinValue.High); // Writes a pin value
 <h3 id="tone-generation">Tone Generation</h3>
 <p>TODO</p>
 <h3 id="interrupts-and-callbacks">Interrupts and Callbacks</h3>
-<p>TODO</p>
-<h2 id="using-the-spi-bus">Using the SPI Bus</h2>
+<p>Register an Interrupt Callback example:</p>
+<pre><code class="lang-csharp">using System;
+using Unosquare.RaspberryIO;
+using Unosquare.RaspberryIO.Gpio;
+
+class Program
+{
+  // Define the implementation of the delegate;
+  static void ISRCallback()
+  {
+     Console.WriteLine(&quot;Pin Activated...&quot;);         
+  }
+
+  static void Main(string[] args)
+  {
+        Console.WriteLine(&quot;Gpio Interrupts&quot;);
+        var pin = Pi.Gpio.Pin00;
+        pin.PinMode = GpioPinDriveMode.Input;
+        pin.RegisterInterruptCallback(EdgeDetection.FallingEdge, ISRCallback);
+        Console.ReadKey();
+  }
+}
+</code></pre><h2 id="using-the-spi-bus">Using the SPI Bus</h2>
 <p>I really liked the following description from <a href="http://nrqm.ca/nrf24l01/serial-peripheral-interface/">Neil&#39;s Log Book</a>: <em>The SPI (Serial Peripheral Interface) protocol behaves like a ring buffer, so that whenever the master sends a byte to the slave, the slave sends a byte back to the master. The slave can use this behaviour to return a status byte, a response to a previous byte, or null data (the master may choose to read the returned byte, or ignore it). The bus operates on a 4-wire interface.</em></p>
 <p><code>RaspberryIO</code> provides easy access to the 2 SPI channels available on the Raspberry. The functionality depends on <code>Wiring Pi</code>&#39;s SPI library. Please note that you may need to issue the command <code>gpio load spi</code> before starting your application (or as a <code>System.Diagnostics.Process</code> when your application starts) if the SPI kernel drivers have not been loaded.</p>
 <p>In order to use an SPI channel you <strong>MUST</strong> always set the <code>Channel0Frequency</code> or <code>Channel1Frequency</code> (depending on the channel you want to use) before calling the <code>SendReceive</code> method. If the property is not set beforehand the SPI channel will fail initialization. See an example below: </p>
