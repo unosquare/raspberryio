@@ -594,8 +594,16 @@ Pi.Gpio.Pin02.Write(GpioPinValue.High); // Writes a pin value
 <h3 id="software-pwm">Software PWM</h3>
 <p>TODO</p>
 <h3 id="tone-generation">Tone Generation</h3>
-<p>TODO</p>
-<h3 id="interrupts-and-callbacks">Interrupts and Callbacks</h3>
+<p>You can emit tones by using SoftToneFrequency. Example:</p>
+<pre><code class="lang-csharp">// Get a reference to the pin
+var passiveBuzzer = Pi.Gpio[WiringPiPin.Pin01];
+// Set the frequency to Alto Do (523Hz)
+passiveBuzzer.SoftToneFrequency = 523
+// Wait 1 second
+System.Threading.Thread.Sleep(1000);
+// And stop
+passiveBuzzer.SoftToneFrequency = 0;
+</code></pre><h3 id="interrupts-and-callbacks">Interrupts and Callbacks</h3>
 <p>Register an Interrupt Callback example:</p>
 <pre><code class="lang-csharp">using System;
 using Unosquare.RaspberryIO;
