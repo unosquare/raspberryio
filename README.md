@@ -309,7 +309,31 @@ TODO
 TODO
 
 ### Interrupts and Callbacks
-TODO
+Register an Interrupt Callback example:
+
+```csharp
+using System;
+using Unosquare.RaspberryIO;
+using Unosquare.RaspberryIO.Gpio;
+
+class Program
+{
+  // Define the implementation of the delegate;
+  static void ISRCallback()
+  {
+     Console.WriteLine("Pin Activated...");         
+  }
+
+  static void Main(string[] args)
+  {
+        Console.WriteLine("Gpio Interrupts");
+        var pin = Pi.Gpio.Pin00;
+        pin.PinMode = GpioPinDriveMode.Input;
+        pin.RegisterInterruptCallback(EdgeDetection.FallingEdge, ISRCallback);
+        Console.ReadKey();
+  }
+}
+```
 
 ## Using the SPI Bus
 I really liked the following description from [Neil's Log Book](http://nrqm.ca/nrf24l01/serial-peripheral-interface/): _The SPI (Serial Peripheral Interface) protocol behaves like a ring buffer, so that whenever the master sends a byte to the slave, the slave sends a byte back to the master. The slave can use this behaviour to return a status byte, a response to a previous byte, or null data (the master may choose to read the returned byte, or ignore it). The bus operates on a 4-wire interface._
