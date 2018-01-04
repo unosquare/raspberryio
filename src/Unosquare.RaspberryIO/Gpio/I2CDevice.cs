@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Gpio
 {
     using System;
+    using System.Threading.Tasks;
     using Native;
 
     /// <summary>
@@ -52,6 +53,15 @@
         }
 
         /// <summary>
+        /// Reads a byte from the specified file descriptor
+        /// </summary>
+        /// <returns>The byte from device</returns>
+        public async Task<byte> ReadAsync()
+        {
+            return await Task.Run(() => { return Read(); });
+        }
+
+        /// <summary>
         /// Reads a buffer of the specified length, one byte at a time
         /// </summary>
         /// <param name="length">The length.</param>
@@ -73,6 +83,16 @@
         }
 
         /// <summary>
+        /// Reads a buffer of the specified length, one byte at a time
+        /// </summary>
+        /// <param name="length">The length.</param>
+        /// <returns>The byte array from device</returns>
+        public async Task<byte[]> ReadAsync(int length)
+        {
+            return await Task.Run(() => { return Read(length); });
+        }
+
+        /// <summary>
         /// Writes a byte of data the specified file descriptor.
         /// </summary>
         /// <param name="data">The data.</param>
@@ -83,6 +103,16 @@
                 var result = WiringPi.wiringPiI2CWrite(FileDescriptor, data);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Write));
             }
+        }
+
+        /// <summary>
+        /// Writes a byte of data the specified file descriptor.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns>The awaitable task</returns>
+        public async Task WriteAsync(byte data)
+        {
+            await Task.Run(() => { Write(data); });
         }
 
         /// <summary>
@@ -100,6 +130,16 @@
                     if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Write));
                 }
             }
+        }
+
+        /// <summary>
+        /// Writes a set of bytes to the specified file descriptor.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns>The awaitable task</returns>
+        public async Task WriteAsync(byte[] data)
+        {
+            await Task.Run(() => { Write(data); });
         }
 
         /// <summary>

@@ -9,6 +9,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Represents a singleton of the Raspberry Pi GPIO controller 
@@ -425,6 +426,19 @@
         }
 
         /// <summary>
+        /// This sets the “strength” of the pad drivers for a particular group of pins.
+        /// There are 3 groups of pins and the drive strength is from 0 to 7.
+        /// Do not use this unless you know what you are doing.
+        /// </summary>
+        /// <param name="group">The group.</param>
+        /// <param name="value">The value.</param>
+        /// <returns>The awaitable task</returns>
+        public async Task SetPadDriveAsync(int group, int value)
+        {
+            await Task.Run(() => { SetPadDrive(group, value); });
+        }
+
+        /// <summary>
         /// This writes the 8-bit byte supplied to the first 8 GPIO pins. 
         /// It’s the fastest way to set all 8 bits at once to a particular value, 
         /// although it still takes two write operations to the Pi’s GPIO hardware.
@@ -443,6 +457,18 @@
 
                 WiringPi.digitalWriteByte(value);
             }
+        }
+
+        /// <summary>
+        /// This writes the 8-bit byte supplied to the first 8 GPIO pins.
+        /// It’s the fastest way to set all 8 bits at once to a particular value,
+        /// although it still takes two write operations to the Pi’s GPIO hardware.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The awaitable task</returns>
+        public async Task WriteByteAsync(byte value)
+        {
+            await Task.Run(() => { WriteByte(value); });
         }
 
         /// <summary>
@@ -465,6 +491,17 @@
 
                 return (byte) WiringPi.digitalReadByte();
             }
+        }
+
+        /// <summary>
+        /// This reads the 8-bit byte supplied to the first 8 GPIO pins. 
+        /// It’s the fastest way to get all 8 bits at once to a particular value.
+        /// Please note this function is undocumented and unsopported
+        /// </summary>
+        /// <returns>A byte from the GPIO</returns>
+        public async Task<byte> ReadByteAsync()
+        {
+            return await Task.Run(() => { return ReadByte(); });
         }
 
         #endregion

@@ -4,6 +4,8 @@
     using Computer;
     using Gpio;
     using Native;
+    using System.Threading.Tasks;
+    using Unosquare.Swan.Components;
 
     /// <summary>
     /// Our main character. Provides access to the Raspberry Pi's GPIO, system and board information and Camera
@@ -11,11 +13,10 @@
     public static class Pi
     {
         internal static string LoggerSource = typeof(Pi).Namespace;
-
         private static readonly object SyncLock = new object();
 
         /// <summary>
-        /// Initializes the <see cref="Pi"/> class.
+        /// Initializes static members of the <see cref="Pi" /> class.
         /// </summary>
         static Pi()
         {
@@ -33,6 +34,42 @@
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
             }
+        }
+
+        /// <summary>
+        /// Restarts the Pi. Must be running as SU
+        /// </summary>
+        /// <returns>The process result</returns>
+        public static async Task<ProcessResult> RestartAsync()
+        {
+            return await ProcessRunner.GetProcessResultAsync("reboot");
+        }
+
+        /// <summary>
+        /// Restarts the Pi. Must be running as SU
+        /// </summary>
+        /// <returns>The process result</returns>
+        public static ProcessResult Restart()
+        {
+            return RestartAsync().GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Halts the Pi. Must be running as SU
+        /// </summary>
+        /// <returns>The process result</returns>
+        public static async Task<ProcessResult> ShutdownAsync()
+        {
+            return await ProcessRunner.GetProcessResultAsync("halt");
+        }
+
+        /// <summary>
+        /// Halts the Pi. Must be running as SU
+        /// </summary>
+        /// <returns>The process result</returns>
+        public static ProcessResult Shutdown()
+        {
+            return ShutdownAsync().GetAwaiter().GetResult();
         }
 
         #region Components

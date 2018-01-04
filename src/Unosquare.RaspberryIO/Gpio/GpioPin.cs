@@ -4,6 +4,7 @@
     using Native;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Represents a GPIO Pin, its location and its capabilities.
@@ -36,9 +37,9 @@
         /// <param name="headerPinNumber">The header pin number.</param>
         private GpioPin(WiringPiPin wiringPiPinNumber, int headerPinNumber)
         {
-            PinNumber = (int) wiringPiPinNumber;
+            PinNumber = (int)wiringPiPinNumber;
             WiringPiPinNumber = wiringPiPinNumber;
-            BcmPinNumber = GpioController.WiringPiToBcmPinNumber((int) wiringPiPinNumber);
+            BcmPinNumber = GpioController.WiringPiToBcmPinNumber((int)wiringPiPinNumber);
             HeaderPinNumber = headerPinNumber;
             Header = (PinNumber >= 17 && PinNumber <= 20) ? GpioHeader.P5 : GpioHeader.P1;
         }
@@ -109,7 +110,7 @@
                         throw new NotSupportedException(
                             $"Pin {WiringPiPinNumber} '{Name}' does not support mode '{mode}'. Pin capabilities are limited to: {string.Join(", ", Capabilities)}");
 
-                    WiringPi.pinMode(PinNumber, (int) mode);
+                    WiringPi.pinMode(PinNumber, (int)mode);
                     m_PinMode = mode;
                 }
             }
@@ -135,8 +136,18 @@
                         + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
                 }
 
-                WiringPi.digitalWrite(PinNumber, (int) value);
+                WiringPi.digitalWrite(PinNumber, (int)value);
             }
+        }
+
+        /// <summary>
+        /// Writes the value asynchronously.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The awaitable task</returns>
+        public async Task WriteAsync(GpioPinValue value)
+        {
+            await Task.Run(() => { Write(value); });
         }
 
         /// <summary>
@@ -148,6 +159,19 @@
             => Write(value ? GpioPinValue.High : GpioPinValue.Low);
 
         /// <summary>
+        /// Writes the specified bit value.
+        /// This method performs a digital write
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        /// The awaitable task
+        /// </returns>
+        public async Task WriteAsync(bool value)
+        {
+            await Task.Run(() => { Write(value); });
+        }
+
+        /// <summary>
         /// Writes the specified value. 0 for low, any other value for high
         /// This method performs a digital write
         /// </summary>
@@ -155,6 +179,17 @@
         public void Write(int value)
         {
             Write(value != 0 ? GpioPinValue.High : GpioPinValue.Low);
+        }
+
+        /// <summary>
+        /// Writes the specified value. 0 for low, any other value for high
+        /// This method performs a digital write
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The awaitable task</returns>
+        public async Task WriteAsync(int value)
+        {
+            await Task.Run(() => { Write(value); });
         }
 
         /// <summary>
@@ -175,6 +210,17 @@
 
                 WiringPi.analogWrite(PinNumber, value);
             }
+        }
+
+        /// <summary>
+        /// Writes the specified value as an analog level.
+        /// You will need to register additional analog modules to enable this function for devices such as the Gertboard.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The awaitable task</returns>
+        public async Task WriteLevelAsync(int value)
+        {
+            await Task.Run(() => { WriteLevel(value); });
         }
 
         #endregion
@@ -203,7 +249,7 @@
                             + $" Setting the {nameof(InputPullMode)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
                     }
 
-                    WiringPi.pullUpDnControl(PinNumber, (int) value);
+                    WiringPi.pullUpDnControl(PinNumber, (int)value);
                     m_ResistorPullMode = value;
                 }
             }
@@ -212,7 +258,7 @@
         /// <summary>
         /// Reads the digital value on the pin as a boolean value.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The state of the pin</returns>
         public bool Read()
         {
             lock (_syncLock)
@@ -229,11 +275,29 @@
         }
 
         /// <summary>
+        /// Reads the digital value on the pin as a boolean value.
+        /// </summary>
+        /// <returns>The state of the pin</returns>
+        public async Task<bool> ReadAsync()
+        {
+            return await Task.Run(() => { return Read(); });
+        }
+
+        /// <summary>
         /// Reads the digital value on the pin as a High or Low value.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The state of the pin</returns>
         public GpioPinValue ReadValue()
             => Read() ? GpioPinValue.High : GpioPinValue.Low;
+
+        /// <summary>
+        /// Reads the digital value on the pin as a High or Low value.
+        /// </summary>
+        /// <returns>The state of the pin</returns>
+        public async Task<GpioPinValue> ReadValueAsync()
+        {
+            return await Task.Run(() => { return ReadValue(); });
+        }
 
         /// <summary>
         /// Reads the analog value on the pin.
@@ -241,8 +305,8 @@
         /// additional analog modules to enable this function for devices such as the Gertboard, 
         /// quick2Wire analog board, etc.
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="System.InvalidOperationException"></exception>
+        /// <returns>The analog level</returns>
+        /// <exception cref="System.InvalidOperationException">When the pin mode is not configured as an input.</exception>
         public int ReadLevel()
         {
             lock (_syncLock)
@@ -256,6 +320,18 @@
 
                 return WiringPi.analogRead(PinNumber);
             }
+        }
+
+        /// <summary>
+        /// Reads the analog value on the pin.
+        /// This returns the value read on the supplied analog input pin. You will need to register 
+        /// additional analog modules to enable this function for devices such as the Gertboard, 
+        /// quick2Wire analog board, etc.
+        /// </summary>
+        /// <returns>The analog level</returns>
+        public async Task<int> ReadLevelAsync()
+        {
+            return await Task.Run(() => { return ReadLevel(); });
         }
 
         #endregion
@@ -300,7 +376,7 @@
         /// <value>
         /// The PWM mode.
         /// </value>
-        /// <exception cref="System.InvalidOperationException"></exception>
+        /// <exception cref="System.InvalidOperationException">When pin mode is not set a Pwn output</exception>
         public PwmMode PwmMode
         {
             get => PinMode == GpioPinDriveMode.PwmOutput ? m_PwmMode : PwmMode.Balanced;
@@ -318,7 +394,7 @@
                             + $" Setting the PWM mode is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
-                    WiringPi.pwmSetMode((int) value);
+                    WiringPi.pwmSetMode((int)value);
                     m_PwmMode = value;
                 }
             }
@@ -401,7 +477,7 @@
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="range">The range.</param>
-        /// <exception cref="System.NotSupportedException"></exception>
+        /// <exception cref="System.NotSupportedException">When the pin does not suppoert PWM</exception>
         /// <exception cref="System.InvalidOperationException">StartSoftPwm
         /// or</exception>
         public void StartSoftPwm(int value, int range)
@@ -479,7 +555,7 @@
         /// <value>
         /// The soft tone frequency.
         /// </value>
-        /// <exception cref="System.InvalidOperationException"></exception>
+        /// <exception cref="System.InvalidOperationException">When soft tones cannot be initialized on the pin</exception>
         public int SoftToneFrequency
         {
             get => m_SoftToneFrequency;
@@ -547,7 +623,7 @@
 
             lock (_syncLock)
             {
-                var registerResult = WiringPi.wiringPiISR(PinNumber, (int) edgeDetection, callback);
+                var registerResult = WiringPi.wiringPiISR(PinNumber, (int)edgeDetection, callback);
                 if (registerResult == 0)
                 {
                     InterruptEdgeDetection = edgeDetection;

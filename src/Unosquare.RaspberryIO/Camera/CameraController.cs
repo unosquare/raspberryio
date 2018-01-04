@@ -40,7 +40,7 @@
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <param name="ct">The ct.</param>
-        /// <returns></returns>
+        /// <returns>The image bytes</returns>
         /// <exception cref="System.InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
         public async Task<byte[]> CaptureImageAsync(CameraStillSettings settings, CancellationToken ct = default(CancellationToken))
         {
@@ -78,7 +78,7 @@
         /// Captures an image.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        /// <returns></returns>
+        /// <returns>The image bytes</returns>
         public byte[] CaptureImage(CameraStillSettings settings)
         {
             return CaptureImageAsync(settings).GetAwaiter().GetResult();
@@ -90,7 +90,7 @@
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="ct">The ct.</param>
-        /// <returns></returns>
+        /// <returns>The image bytes</returns>
         public Task<byte[]> CaptureImageJpegAsync(int width, int height, CancellationToken ct = default(CancellationToken))
         {
             var settings = new CameraStillSettings()
@@ -109,7 +109,7 @@
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <returns></returns>
+        /// <returns>The image bytes</returns>
         public byte[] CaptureImageJpeg(int width, int height)
         {
             return CaptureImageJpegAsync(width, height).GetAwaiter().GetResult();

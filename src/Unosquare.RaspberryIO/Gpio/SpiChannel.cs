@@ -4,6 +4,7 @@
     using Swan;
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Provides access to using the SPI buses on the GPIO.
@@ -77,7 +78,7 @@
         /// Sends data and simultaneously receives the data in the return buffer
         /// </summary>
         /// <param name="buffer">The buffer.</param>
-        /// <returns></returns>
+        /// <returns>The read bytes from the ring-style bus</returns>
         public byte[] SendReceive(byte[] buffer)
         {
             if (buffer == null || buffer.Length == 0)
@@ -93,6 +94,18 @@
 
                 return spiBuffer;
             }
+        }
+
+        /// <summary>
+        /// Sends data and simultaneously receives the data in the return buffer
+        /// </summary>
+        /// <param name="buffer">The buffer.</param>
+        /// <returns>
+        /// The read bytes from the ring-style bus
+        /// </returns>
+        public async Task<byte[]> SendReceiveAsync(byte[] buffer)
+        {
+            return await Task.Run(() => { return SendReceive(buffer); });
         }
 
         /// <summary>
@@ -114,12 +127,25 @@
         }
 
         /// <summary>
+        /// Writes the specified buffer the the underlying FileDescriptor.
+        /// Do not use this method if you expect data back.
+        /// This method is efficient if used in a fire-and-forget scenario
+        /// like sending data over to those long RGB LED strips
+        /// </summary>
+        /// <param name="buffer">The buffer.</param>
+        /// <returns>The awaitable task</returns>
+        public async Task WriteAsync(byte[] buffer)
+        {
+            await Task.Run(() => { Write(buffer); });
+        }
+
+        /// <summary>
         /// Retrieves the spi bus. If the bus channel is not registered it sets it up automatically.
         /// If it had been previously registered, then the bus is simply returned.
         /// </summary>
         /// <param name="channel">The channel.</param>
         /// <param name="frequency">The frequency.</param>
-        /// <returns></returns>
+        /// <returns>The usable SPI channel</returns>
         internal static SpiChannel Retrieve(SpiChannelNumber channel, int frequency)
         {
             lock (SyncRoot)

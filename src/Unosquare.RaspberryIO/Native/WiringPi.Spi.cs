@@ -11,7 +11,7 @@
         /// This function is undocumented
         /// </summary>
         /// <param name="channel">The channel.</param>
-        /// <returns></returns>
+        /// <returns>Unknown</returns>
         [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPIGetFd), SetLastError = true)]
         public static extern int wiringPiSPIGetFd(int channel);
 
@@ -34,7 +34,7 @@
         /// <param name="channel">The channel.</param>
         /// <param name="speed">The speed.</param>
         /// <param name="mode">The mode.</param>
-        /// <returns></returns>
+        /// <returns>Unkown</returns>
         [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPISetupMode), SetLastError = true)]
         public static extern int wiringPiSPISetupMode(int channel, int speed, int mode);
 
@@ -45,7 +45,7 @@
         /// </summary>
         /// <param name="channel">The channel.</param>
         /// <param name="speed">The speed.</param>
-        /// <returns></returns>
+        /// <returns>The Linux file descriptor for the device or -1 for error</returns>
         [DllImport(WiringPiLibrary, EntryPoint = nameof(wiringPiSPISetup), SetLastError = true)]
         public static extern int wiringPiSPISetup(int channel, int speed);
 
