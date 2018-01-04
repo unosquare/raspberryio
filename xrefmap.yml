@@ -2686,6 +2686,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.ReadByte
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.ReadByte
   nameWithType: GpioController.ReadByte
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync
+  name: ReadByteAsync()
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_ReadByteAsync
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync()
+  nameWithType: GpioController.ReadByteAsync()
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync*
+  name: ReadByteAsync
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_ReadByteAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync
+  nameWithType: GpioController.ReadByteAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive(System.Int32,System.Int32)
   name: SetPadDrive(Int32, Int32)
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_SetPadDrive_System_Int32_System_Int32_
@@ -2698,6 +2710,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive
   nameWithType: GpioController.SetPadDrive
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync(System.Int32,System.Int32)
+  name: SetPadDriveAsync(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_SetPadDriveAsync_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync(System.Int32, System.Int32)
+  nameWithType: GpioController.SetPadDriveAsync(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync*
+  name: SetPadDriveAsync
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_SetPadDriveAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync
+  nameWithType: GpioController.SetPadDriveAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.System#Collections#IEnumerable#GetEnumerator
   name: IEnumerable.GetEnumerator()
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_System_Collections_IEnumerable_GetEnumerator
@@ -2726,6 +2750,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.WriteByte
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.WriteByte
   nameWithType: GpioController.WriteByte
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync(System.Byte)
+  name: WriteByteAsync(Byte)
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_WriteByteAsync_System_Byte_
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync(System.Byte)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync(System.Byte)
+  nameWithType: GpioController.WriteByteAsync(Byte)
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync*
+  name: WriteByteAsync
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_WriteByteAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync
+  nameWithType: GpioController.WriteByteAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioHeader
   name: GpioHeader
   href: api/Unosquare.RaspberryIO.Gpio.GpioHeader.html
@@ -2960,6 +2996,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.Read
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.Read
   nameWithType: GpioPin.Read
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync
+  name: ReadAsync()
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadAsync
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync()
+  nameWithType: GpioPin.ReadAsync()
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync*
+  name: ReadAsync
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync
+  nameWithType: GpioPin.ReadAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevel
   name: ReadLevel()
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevel
@@ -2972,6 +3020,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevel
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevel
   nameWithType: GpioPin.ReadLevel
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync
+  name: ReadLevelAsync()
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevelAsync
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync()
+  nameWithType: GpioPin.ReadLevelAsync()
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync*
+  name: ReadLevelAsync
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevelAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync
+  nameWithType: GpioPin.ReadLevelAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValue
   name: ReadValue()
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadValue
@@ -2984,6 +3044,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadValue
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValue
   nameWithType: GpioPin.ReadValue
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync
+  name: ReadValueAsync()
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadValueAsync
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync()
+  nameWithType: GpioPin.ReadValueAsync()
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync*
+  name: ReadValueAsync
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadValueAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync
+  nameWithType: GpioPin.ReadValueAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Gpio.EdgeDetection,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
   name: RegisterInterruptCallback(EdgeDetection, InterrputServiceRoutineCallback)
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_RegisterInterruptCallback_Unosquare_RaspberryIO_Gpio_EdgeDetection_Unosquare_RaspberryIO_Native_InterrputServiceRoutineCallback_
@@ -3080,6 +3152,30 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.Write
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.Write
   nameWithType: GpioPin.Write
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(System.Boolean)
+  name: WriteAsync(Boolean)
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_System_Boolean_
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(System.Boolean)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(System.Boolean)
+  nameWithType: GpioPin.WriteAsync(Boolean)
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(System.Int32)
+  name: WriteAsync(Int32)
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(System.Int32)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(System.Int32)
+  nameWithType: GpioPin.WriteAsync(Int32)
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(Unosquare.RaspberryIO.Gpio.GpioPinValue)
+  name: WriteAsync(GpioPinValue)
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_Unosquare_RaspberryIO_Gpio_GpioPinValue_
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(Unosquare.RaspberryIO.Gpio.GpioPinValue)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(Unosquare.RaspberryIO.Gpio.GpioPinValue)
+  nameWithType: GpioPin.WriteAsync(GpioPinValue)
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync*
+  name: WriteAsync
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync
+  nameWithType: GpioPin.WriteAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevel(System.Int32)
   name: WriteLevel(Int32)
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteLevel_System_Int32_
@@ -3092,6 +3188,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevel
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevel
   nameWithType: GpioPin.WriteLevel
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync(System.Int32)
+  name: WriteLevelAsync(Int32)
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteLevelAsync_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync(System.Int32)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync(System.Int32)
+  nameWithType: GpioPin.WriteLevelAsync(Int32)
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync*
+  name: WriteLevelAsync
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteLevelAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync
+  nameWithType: GpioPin.WriteLevelAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPinDriveMode
   name: GpioPinDriveMode
   href: api/Unosquare.RaspberryIO.Gpio.GpioPinDriveMode.html
@@ -3278,6 +3386,24 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAddressWord
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAddressWord
   nameWithType: I2CDevice.ReadAddressWord
+- uid: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync
+  name: ReadAsync()
+  href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAsync
+  commentId: M:Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync
+  fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync()
+  nameWithType: I2CDevice.ReadAsync()
+- uid: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync(System.Int32)
+  name: ReadAsync(Int32)
+  href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAsync_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync(System.Int32)
+  fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync(System.Int32)
+  nameWithType: I2CDevice.ReadAsync(Int32)
+- uid: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync*
+  name: ReadAsync
+  href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync
+  fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync
+  nameWithType: I2CDevice.ReadAsync
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.Write(System.Byte)
   name: Write(Byte)
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_Write_System_Byte_
@@ -3323,6 +3449,27 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAddressWord
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAddressWord
   nameWithType: I2CDevice.WriteAddressWord
+- uid: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte)
+  name: WriteAsync(Byte)
+  href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAsync_System_Byte_
+  commentId: M:Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte)
+  fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte)
+  nameWithType: I2CDevice.WriteAsync(Byte)
+- uid: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte[])
+  name: WriteAsync(Byte[])
+  href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAsync_System_Byte___
+  commentId: M:Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte[])
+  name.vb: WriteAsync(Byte())
+  fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte[])
+  fullName.vb: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte())
+  nameWithType: I2CDevice.WriteAsync(Byte[])
+  nameWithType.vb: I2CDevice.WriteAsync(Byte())
+- uid: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync*
+  name: WriteAsync
+  href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync
+  fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync
+  nameWithType: I2CDevice.WriteAsync
 - uid: Unosquare.RaspberryIO.Gpio.PinCapability
   name: PinCapability
   href: api/Unosquare.RaspberryIO.Gpio.PinCapability.html
@@ -3548,6 +3695,21 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceive
   fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceive
   nameWithType: SpiChannel.SendReceive
+- uid: Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync(System.Byte[])
+  name: SendReceiveAsync(Byte[])
+  href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_SendReceiveAsync_System_Byte___
+  commentId: M:Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync(System.Byte[])
+  name.vb: SendReceiveAsync(Byte())
+  fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync(System.Byte[])
+  fullName.vb: Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync(System.Byte())
+  nameWithType: SpiChannel.SendReceiveAsync(Byte[])
+  nameWithType.vb: SpiChannel.SendReceiveAsync(Byte())
+- uid: Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync*
+  name: SendReceiveAsync
+  href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_SendReceiveAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync
+  fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync
+  nameWithType: SpiChannel.SendReceiveAsync
 - uid: Unosquare.RaspberryIO.Gpio.SpiChannel.Write(System.Byte[])
   name: Write(Byte[])
   href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_Write_System_Byte___
@@ -3563,6 +3725,21 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.Write
   fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.Write
   nameWithType: SpiChannel.Write
+- uid: Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync(System.Byte[])
+  name: WriteAsync(Byte[])
+  href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_WriteAsync_System_Byte___
+  commentId: M:Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync(System.Byte[])
+  name.vb: WriteAsync(Byte())
+  fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync(System.Byte[])
+  fullName.vb: Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync(System.Byte())
+  nameWithType: SpiChannel.WriteAsync(Byte[])
+  nameWithType.vb: SpiChannel.WriteAsync(Byte())
+- uid: Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync*
+  name: WriteAsync
+  href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_WriteAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync
+  fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync
+  nameWithType: SpiChannel.WriteAsync
 - uid: Unosquare.RaspberryIO.Gpio.WiringPiPin
   name: WiringPiPin
   href: api/Unosquare.RaspberryIO.Gpio.WiringPiPin.html
@@ -4931,6 +5108,54 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Pi.PiDisplay
   fullName: Unosquare.RaspberryIO.Pi.PiDisplay
   nameWithType: Pi.PiDisplay
+- uid: Unosquare.RaspberryIO.Pi.Restart
+  name: Restart()
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Restart
+  commentId: M:Unosquare.RaspberryIO.Pi.Restart
+  fullName: Unosquare.RaspberryIO.Pi.Restart()
+  nameWithType: Pi.Restart()
+- uid: Unosquare.RaspberryIO.Pi.Restart*
+  name: Restart
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Restart_
+  commentId: Overload:Unosquare.RaspberryIO.Pi.Restart
+  fullName: Unosquare.RaspberryIO.Pi.Restart
+  nameWithType: Pi.Restart
+- uid: Unosquare.RaspberryIO.Pi.RestartAsync
+  name: RestartAsync()
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_RestartAsync
+  commentId: M:Unosquare.RaspberryIO.Pi.RestartAsync
+  fullName: Unosquare.RaspberryIO.Pi.RestartAsync()
+  nameWithType: Pi.RestartAsync()
+- uid: Unosquare.RaspberryIO.Pi.RestartAsync*
+  name: RestartAsync
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_RestartAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Pi.RestartAsync
+  fullName: Unosquare.RaspberryIO.Pi.RestartAsync
+  nameWithType: Pi.RestartAsync
+- uid: Unosquare.RaspberryIO.Pi.Shutdown
+  name: Shutdown()
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Shutdown
+  commentId: M:Unosquare.RaspberryIO.Pi.Shutdown
+  fullName: Unosquare.RaspberryIO.Pi.Shutdown()
+  nameWithType: Pi.Shutdown()
+- uid: Unosquare.RaspberryIO.Pi.Shutdown*
+  name: Shutdown
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Shutdown_
+  commentId: Overload:Unosquare.RaspberryIO.Pi.Shutdown
+  fullName: Unosquare.RaspberryIO.Pi.Shutdown
+  nameWithType: Pi.Shutdown
+- uid: Unosquare.RaspberryIO.Pi.ShutdownAsync
+  name: ShutdownAsync()
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_ShutdownAsync
+  commentId: M:Unosquare.RaspberryIO.Pi.ShutdownAsync
+  fullName: Unosquare.RaspberryIO.Pi.ShutdownAsync()
+  nameWithType: Pi.ShutdownAsync()
+- uid: Unosquare.RaspberryIO.Pi.ShutdownAsync*
+  name: ShutdownAsync
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_ShutdownAsync_
+  commentId: Overload:Unosquare.RaspberryIO.Pi.ShutdownAsync
+  fullName: Unosquare.RaspberryIO.Pi.ShutdownAsync
+  nameWithType: Pi.ShutdownAsync
 - uid: Unosquare.RaspberryIO.Pi.Spi
   name: Spi
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Spi

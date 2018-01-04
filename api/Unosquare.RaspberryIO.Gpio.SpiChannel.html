@@ -323,7 +323,53 @@ anything negative means error.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
-        <td></td>
+        <td><p>The read bytes from the ring-style bus</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_SpiChannel_SendReceiveAsync_" data-uid="Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_SpiChannel_SendReceiveAsync_System_Byte___" data-uid="Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync(System.Byte[])">SendReceiveAsync(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Sends data and simultaneously receives the data in the return buffer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; SendReceiveAsync(byte[] buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The buffer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><p>The read bytes from the ring-style bus</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -355,6 +401,54 @@ like sending data over to those long RGB LED strips</p>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>The buffer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_SpiChannel_WriteAsync_" data-uid="Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_SpiChannel_WriteAsync_System_Byte___" data-uid="Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync(System.Byte[])">WriteAsync(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Writes the specified buffer the the underlying FileDescriptor.
+Do not use this method if you expect data back.
+This method is efficient if used in a fire-and-forget scenario
+like sending data over to those long RGB LED strips</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task WriteAsync(byte[] buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The buffer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>The awaitable task</p>
 </td>
       </tr>
     </tbody>

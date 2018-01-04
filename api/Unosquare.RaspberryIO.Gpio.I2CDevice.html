@@ -341,6 +341,78 @@
   </table>
   
   
+  <a id="Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAsync_" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAsync" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync">ReadAsync()</h4>
+  <div class="markdown level1 summary"><p>Reads a byte from the specified file descriptor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;byte&gt; ReadAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>The byte from device</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAsync_" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAsync_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync(System.Int32)">ReadAsync(Int32)</h4>
+  <div class="markdown level1 summary"><p>Reads a buffer of the specified length, one byte at a time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;byte[]&gt; ReadAsync(int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>The length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><p>The byte array from device</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_RaspberryIO_Gpio_I2CDevice_Write_" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.Write*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_I2CDevice_Write_System_Byte_" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.Write(System.Byte)">Write(Byte)</h4>
   <div class="markdown level1 summary"><p>Writes a byte of data the specified file descriptor.</p>
@@ -463,6 +535,96 @@
         <td><span class="xref">System.UInt16</span></td>
         <td><span class="parametername">data</span></td>
         <td><p>The data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAsync_" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAsync_System_Byte_" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte)">WriteAsync(Byte)</h4>
+  <div class="markdown level1 summary"><p>Writes a byte of data the specified file descriptor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task WriteAsync(byte data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>The awaitable task</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAsync_" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAsync_System_Byte___" data-uid="Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte[])">WriteAsync(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Writes a set of bytes to the specified file descriptor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task WriteAsync(byte[] data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>The awaitable task</p>
 </td>
       </tr>
     </tbody>

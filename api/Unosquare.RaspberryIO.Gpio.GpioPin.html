@@ -538,7 +538,8 @@ however the default mode in the Pi is “balanced”.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td></td>
+        <td><p>When pin mode is not set a Pwn output</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -718,7 +719,8 @@ however the default mode in the Pi is “balanced”.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td></td>
+        <td><p>When soft tones cannot be initialized on the pin</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -772,7 +774,35 @@ however the default mode in the Pi is “balanced”.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>The state of the pin</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadAsync" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync">ReadAsync()</h4>
+  <div class="markdown level1 summary"><p>Reads the digital value on the pin as a boolean value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; ReadAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>The state of the pin</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -801,7 +831,8 @@ quick2Wire analog board, etc.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The analog level</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -816,7 +847,38 @@ quick2Wire analog board, etc.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td></td>
+        <td><p>When the pin mode is not configured as an input.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevelAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevelAsync" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync">ReadLevelAsync()</h4>
+  <div class="markdown level1 summary"><p>Reads the analog value on the pin.
+This returns the value read on the supplied analog input pin. You will need to register 
+additional analog modules to enable this function for devices such as the Gertboard, 
+quick2Wire analog board, etc.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; ReadLevelAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><p>The analog level</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -842,7 +904,35 @@ quick2Wire analog board, etc.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPinValue.html">GpioPinValue</a></td>
-        <td></td>
+        <td><p>The state of the pin</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadValueAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadValueAsync" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync">ReadValueAsync()</h4>
+  <div class="markdown level1 summary"><p>Reads the digital value on the pin as a High or Low value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;GpioPinValue&gt; ReadValueAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPinValue.html">GpioPinValue</a>&gt;</td>
+        <td><p>The state of the pin</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -954,7 +1044,8 @@ RegisterInterruptCallback</p>
     <tbody>
       <tr>
         <td><span class="xref">System.NotSupportedException</span></td>
-        <td></td>
+        <td><p>When the pin does not suppoert PWM</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
@@ -1056,6 +1147,143 @@ This method performs a digital write</p>
   </table>
   
   
+  <a id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_System_Boolean_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(System.Boolean)">WriteAsync(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Writes the specified bit value.
+This method performs a digital write</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task WriteAsync(bool value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>The awaitable task</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(System.Int32)">WriteAsync(Int32)</h4>
+  <div class="markdown level1 summary"><p>Writes the specified value. 0 for low, any other value for high
+This method performs a digital write</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task WriteAsync(int value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>The awaitable task</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_Unosquare_RaspberryIO_Gpio_GpioPinValue_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(Unosquare.RaspberryIO.Gpio.GpioPinValue)">WriteAsync(GpioPinValue)</h4>
+  <div class="markdown level1 summary"><p>Writes the value asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task WriteAsync(GpioPinValue value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPinValue.html">GpioPinValue</a></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>The awaitable task</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteLevel_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevel*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteLevel_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevel(System.Int32)">WriteLevel(Int32)</h4>
   <div class="markdown level1 summary"><p>Writes the specified value as an analog level.
@@ -1080,6 +1308,52 @@ You will need to register additional analog modules to enable this function for 
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteLevelAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_WriteLevelAsync_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync(System.Int32)">WriteLevelAsync(Int32)</h4>
+  <div class="markdown level1 summary"><p>Writes the specified value as an analog level.
+You will need to register additional analog modules to enable this function for devices such as the Gertboard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task WriteLevelAsync(int value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>The awaitable task</p>
 </td>
       </tr>
     </tbody>

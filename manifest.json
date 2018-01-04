@@ -98,7 +98,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraController.html",
-          "hash": "CHQc5zCSy52XH+0bRl8J3A=="
+          "hash": "fsK9k6QPd/whPjPKoaWb4g=="
         }
       },
       "is_incremental": false,
@@ -350,7 +350,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioController.html",
-          "hash": "1CtSamJqgYosnrD42o5RqQ=="
+          "hash": "ZHK+lXx8TSLLg9/ezfJh4Q=="
         }
       },
       "is_incremental": false,
@@ -374,7 +374,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioPin.html",
-          "hash": "wRP14slvr23vOiMVEpJJRw=="
+          "hash": "7O97YLYT3t8YP3dqeFIK3Q=="
         }
       },
       "is_incremental": false,
@@ -422,7 +422,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.I2CBus.html",
-          "hash": "zVFKi2WobaQo1KCGrInLuw=="
+          "hash": "P1iljgqRBZ9af8Cu0u2WPQ=="
         }
       },
       "is_incremental": false,
@@ -434,7 +434,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.I2CDevice.html",
-          "hash": "CuZuPnsasI/uoriVRpyGOw=="
+          "hash": "KHBfa/Y6zw5cKD3Dm3XqiA=="
         }
       },
       "is_incremental": false,
@@ -482,7 +482,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.SpiChannel.html",
-          "hash": "ggulUvixhXCbV2IYcN98Gw=="
+          "hash": "hDIDN14MboQS3utugf2GGw=="
         }
       },
       "is_incremental": false,
@@ -614,7 +614,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.WiringPi.html",
-          "hash": "mObfvtlnrfmqmi3cGtiC9w=="
+          "hash": "KiDNm9Pu0gR4bYxkFcQ6bQ=="
         }
       },
       "is_incremental": false,
@@ -638,7 +638,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Pi.html",
-          "hash": "vcOxwyn2vZ/QwNKKLR6Mkw=="
+          "hash": "K4FbhElGoHwFmeHe1BeMBQ=="
         }
       },
       "is_incremental": false,

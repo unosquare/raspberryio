@@ -1198,6 +1198,35 @@ Please note this function is undocumented and unsopported</p>
   </table>
   
   
+  <a id="Unosquare_RaspberryIO_Gpio_GpioController_ReadByteAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_ReadByteAsync" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync">ReadByteAsync()</h4>
+  <div class="markdown level1 summary"><p>This reads the 8-bit byte supplied to the first 8 GPIO pins. 
+It’s the fastest way to get all 8 bits at once to a particular value.
+Please note this function is undocumented and unsopported</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;byte&gt; ReadByteAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>A byte from the GPIO</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_SetPadDrive_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_SetPadDrive_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive(System.Int32,System.Int32)">SetPadDrive(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>This sets the “strength” of the pad drivers for a particular group of pins. 
@@ -1229,6 +1258,59 @@ Do not use this unless you know what you are doing.</p>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_GpioController_SetPadDriveAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_SetPadDriveAsync_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync(System.Int32,System.Int32)">SetPadDriveAsync(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>This sets the “strength” of the pad drivers for a particular group of pins.
+There are 3 groups of pins and the drive strength is from 0 to 7.
+Do not use this unless you know what you are doing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SetPadDriveAsync(int group, int value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">group</span></td>
+        <td><p>The group.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>The awaitable task</p>
 </td>
       </tr>
     </tbody>
@@ -1276,6 +1358,53 @@ although it still takes two write operations to the Pi’s GPIO hardware.</p>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>PinMode</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_GpioController_WriteByteAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_WriteByteAsync_System_Byte_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync(System.Byte)">WriteByteAsync(Byte)</h4>
+  <div class="markdown level1 summary"><p>This writes the 8-bit byte supplied to the first 8 GPIO pins.
+It’s the fastest way to set all 8 bits at once to a particular value,
+although it still takes two write operations to the Pi’s GPIO hardware.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task WriteByteAsync(byte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>The awaitable task</p>
 </td>
       </tr>
     </tbody>
