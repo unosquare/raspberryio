@@ -205,6 +205,7 @@
                 {
                     throw new InvalidOperationException(
                         $"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
+
                         + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
                 }
 
@@ -225,8 +226,42 @@
 
         #endregion
 
+        /// <summary>
+        /// Wait for specified delay.
+        /// </summary>
+        /// <param name="delay">time to wait</param>
+        public void Wait(uint microseconds)
+        {   
+            WiringPi.delayMicroseconds(microseconds);            
+        }
+            
         #region Input Mode (Read) Members
 
+        /// <summary>
+        /// Wait for specific pin status
+        /// </summary>
+        /// <param name="status">status to check</param>
+        /// <param name="timeOutMillisecond">timeout to reach status</param>
+        /// <returns>true/false</returns>
+        public bool WaitForValue(GpioPinValue status, int timeOutMillisecond)
+        {            
+            if (PinMode != GpioPinDriveMode.Input)
+            {
+                throw new InvalidOperationException(
+                    $"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
+                    + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
+            }            
+            HighResolutionTimer hrt = new HighResolutionTimer();            
+            hrt.Start();
+            do
+            {
+                if (this.ReadValue() == status)                
+                    return true;
+            }
+            while (hrt.ElapsedMilliseconds <= timeOutMillisecond);
+            return false;
+        }
+            
         /// <summary>
         /// This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input. 
         /// Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors. 
