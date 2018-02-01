@@ -27,7 +27,6 @@
         private int m_SoftPwmRange = -1;
         private int m_SoftToneFrequency = -1;
         
-
         #endregion
 
         #region Constructor
