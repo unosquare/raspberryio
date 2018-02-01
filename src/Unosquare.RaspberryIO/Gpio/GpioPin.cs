@@ -1,10 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO.Gpio
 {
-    using Swan;
-    using Native;
+    using Swan;    
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.IO;    
+    using Native;
 
     /// <summary>
     /// Represents a GPIO Pin, its location and its capabilities.
@@ -14,8 +15,8 @@
     public sealed partial class GpioPin
     {
         #region Property Backing
-
-        private readonly object _syncLock = new object();
+                
+        private readonly object _syncLock = new object();        
         private GpioPinDriveMode m_PinMode;
         private GpioPinResistorPullMode m_ResistorPullMode;
         private int m_PwmRegister = 0;
@@ -25,6 +26,7 @@
         private int m_SoftPwmValue = -1;
         private int m_SoftPwmRange = -1;
         private int m_SoftToneFrequency = -1;
+        
 
         #endregion
 
@@ -36,8 +38,8 @@
         /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>
         /// <param name="headerPinNumber">The header pin number.</param>
         private GpioPin(WiringPiPin wiringPiPinNumber, int headerPinNumber)
-        {
-            PinNumber = (int)wiringPiPinNumber;
+        {            
+            PinNumber = (int)wiringPiPinNumber;            
             WiringPiPinNumber = wiringPiPinNumber;
             BcmPinNumber = GpioController.WiringPiToBcmPinNumber((int)wiringPiPinNumber);
             HeaderPinNumber = headerPinNumber;
@@ -117,7 +119,7 @@
         }
 
         #endregion
-
+        
         #region Output Mode (Write) Members
 
         /// <summary>
@@ -225,7 +227,41 @@
 
         #endregion
 
+        /// <summary>
+        /// Wait for specified delay.
+        /// </summary>
+        /// <param name="delay">time to wait</param>
+        public void WaitMicroseconds(uint microseconds)
+        {
+            WiringPi.delayMicroseconds(microseconds);
+        }
+
         #region Input Mode (Read) Members
+
+        /// <summary>
+        /// Wait for specific pin status
+        /// </summary>
+        /// <param name="status">status to check</param>
+        /// <param name="timeOutMillisecond">timeout to reach status</param>
+        /// <returns>true/false</returns>
+        public bool WaitForValue(GpioPinValue status, int timeOutMillisecond)
+        {            
+            if (PinMode != GpioPinDriveMode.Input)
+            {
+                throw new InvalidOperationException(
+                    $"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
+                    + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
+            }            
+            HighResolutionTimer hrt = new HighResolutionTimer();            
+            hrt.Start();
+            do
+            {
+                if (this.ReadValue() == status)                
+                    return true;
+            }
+            while (hrt.ElapsedMilliseconds <= timeOutMillisecond);
+            return false;
+        }
 
         /// <summary>
         /// This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input. 
@@ -633,7 +669,7 @@
                 {
                     HardwareException.Throw(nameof(GpioPin), nameof(RegisterInterruptCallback));
                 }
-            }
+            }                        
         }
 
         #endregion

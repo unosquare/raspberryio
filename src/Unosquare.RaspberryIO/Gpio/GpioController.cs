@@ -36,7 +36,7 @@
         /// </summary>
         /// <exception cref="System.Exception">Unable to initialize the GPIO controller.</exception>
         private GpioController()
-        {
+        {            
             if (_pinCollection != null)
                 return;
 
@@ -48,7 +48,7 @@
             }
 
             #region Pin Registration (32 WiringPi Pins)
-
+                        
             RegisterPin(GpioPin.Pin00.Value);
             RegisterPin(GpioPin.Pin01.Value);
             RegisterPin(GpioPin.Pin02.Value);

@@ -304,7 +304,7 @@
     public enum PinCapability
     {
         /// <summary>
-        /// General Purpose capability: Digitala nd Analog Read/Write
+        /// General Purpose capability: Digital and Analog Read/Write
         /// </summary>
         GP,
 

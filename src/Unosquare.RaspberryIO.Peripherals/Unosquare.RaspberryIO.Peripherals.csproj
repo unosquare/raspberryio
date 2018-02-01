@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,10 +47,6 @@
     <Compile Include="THData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogManager\LogManager.csproj">
-      <Project>{45dcae91-64bf-4e39-b6ae-2d49e8a568d2}</Project>
-      <Name>LogManager</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Unosquare.RaspberryIO\Unosquare.RaspberryIO.csproj">
       <Project>{2b5b9019-fc6d-4f8a-b700-746d7f2ac874}</Project>
       <Name>Unosquare.RaspberryIO</Name>

@@ -8,7 +8,7 @@ namespace Unosquare.RaspberryIO.Peripherals
     using System.Threading;    
     using Unosquare.RaspberryIO;
     using Unosquare.RaspberryIO.Gpio;
-    using LogManager;
+    using Unosquare.RaspberryIO.Native;    
 
     /// <summary>
     /// Manager to a DHT22 sensor
@@ -18,7 +18,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         public delegate void SensorReadEventHandler(THData measure);
         public event SensorReadEventHandler OnSensorRead = null;
         private readonly TimeSpan _measureTime = TimeSpan.FromSeconds(2);        
-        private readonly TimeSpan _bitDataTime = new TimeSpan(10 * 50); // 26µs -> 50 for "0", 50 -> 70µs for "1"           
+        private readonly TimeSpan _bitDataTime = new TimeSpan(10 * 50); // 26µs -> 50 for "0", 50 -> 70µs for "1"                           
         private bool _started = false;        
         private GpioPin _pin;
         private Thread _th;        
@@ -26,9 +26,9 @@ namespace Unosquare.RaspberryIO.Peripherals
         public bool IsStarted { get { return _started; } }
 
         public AM2302(int pinNumber)
-        {
-            _pin = CreatePin(pinNumber);                         
-            _th = new Thread(GetMeasure);
+        {            
+            _pin = CreatePin(pinNumber);             
+            _th = new Thread(GetMeasure);            
         }
 
         private void GetMeasure()
@@ -52,10 +52,10 @@ namespace Unosquare.RaspberryIO.Peripherals
                     //Start to counter measure time
                     hrt.Start();
                     //Send request to trasmission from board to sensor
-                    _pin.Write(GpioPinValue.Low);
-                    _pin.Wait(1000);
+                    _pin.Write(GpioPinValue.Low);                    
+                    _pin.WaitMicroseconds(1000);                    
                     _pin.Write(GpioPinValue.High);
-                    _pin.Wait(20);                    
+                    _pin.WaitMicroseconds(20);
                     _pin.Write(GpioPinValue.Low);                    
 
                     //Acquire measure
