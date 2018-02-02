@@ -225,16 +225,7 @@
         }
 
         #endregion
-
-        /// <summary>
-        /// Wait for specified delay.
-        /// </summary>
-        /// <param name="delay">time to wait</param>
-        public void WaitMicroseconds(uint microseconds)
-        {
-            WiringPi.delayMicroseconds(microseconds);
-        }
-
+                
         #region Input Mode (Read) Members
 
         /// <summary>
