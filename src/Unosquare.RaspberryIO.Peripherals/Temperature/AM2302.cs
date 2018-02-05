@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Unosquare.RaspberryIO.Peripherals
 {
     using System.Threading;    
     using Unosquare.RaspberryIO;
     using Unosquare.RaspberryIO.Gpio;
-    using Unosquare.RaspberryIO.Native;
-    using Swan;
+    using Unosquare.RaspberryIO.Native;    
 
     /// <summary>
     /// Manager to a DHT22 sensor
