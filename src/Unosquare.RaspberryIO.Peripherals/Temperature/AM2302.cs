@@ -1,33 +1,33 @@
 ﻿using System;
 
-namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals.Temperature
 {
-    using System.Threading;    
+    using System.Threading;
     using Unosquare.RaspberryIO;
     using Unosquare.RaspberryIO.Gpio;
-    using Unosquare.RaspberryIO.Native;    
+    using Unosquare.RaspberryIO.Native;
 
     /// <summary>
     /// Manager to a DHT22 sensor
     /// </summary>
     public class AM2302 : IDisposable
-    {   
+    {
         public delegate void SensorReadEventHandler(THData measure);
         public event SensorReadEventHandler OnSensorRead = null;
-        private readonly TimeSpan _measureTime = TimeSpan.FromSeconds(2);        
+        private readonly TimeSpan _measureTime = TimeSpan.FromSeconds(2);
         private readonly TimeSpan _bitDataTime = new TimeSpan(10 * 50); // 26µs -> 50 for "0", 50 -> 70µs for "1"                           
         private readonly Timing _timing;
-        private bool _started = false;        
+        private bool _started = false;
         private GpioPin _pin;
-        private Thread _th;        
+        private Thread _th;
 
         public bool IsStarted { get { return _started; } }
 
         public AM2302(int pinNumber)
         {
             _timing = Timing.Instance;
-            _pin = CreatePin(pinNumber);             
-            _th = new Thread(GetMeasure);            
+            _pin = CreatePin(pinNumber);
+            _th = new Thread(GetMeasure);
         }
 
         private void GetMeasure()
@@ -35,9 +35,9 @@ namespace Unosquare.RaspberryIO.Peripherals
             var hrt = new HighResolutionTimer();
             var lastElapsedTime = TimeSpan.FromSeconds(0);
             while (_started)
-            {                               
+            {
                 try
-                {                    
+                {
                     THData measure = null;
                     //Start to comunicate with sensor
                     //Inform sensor that must finish last execution and put it's state in idle                
@@ -52,26 +52,26 @@ namespace Unosquare.RaspberryIO.Peripherals
                     hrt.Start();
                     //Send request to trasmission from board to sensor
                     _pin.Write(GpioPinValue.Low);
-                    _timing.SleepMicroseconds(1000);                                        
-                    _pin.Write(GpioPinValue.High);                    
+                    _timing.SleepMicroseconds(1000);
+                    _pin.Write(GpioPinValue.High);
                     _timing.SleepMicroseconds(20);
-                    _pin.Write(GpioPinValue.Low);                    
+                    _pin.Write(GpioPinValue.Low);
 
                     //Acquire measure
-                    measure = TryGetMeasure();                    
-                    OnSensorRead(measure);                    
+                    measure = TryGetMeasure();
+                    OnSensorRead(measure);
                 }
                 catch
                 {
                     //ignored                    
                 }
                 lastElapsedTime = hrt.Elapsed;
-                if(hrt.IsRunning)
+                if (hrt.IsRunning)
                     hrt.Stop();
                 hrt.Reset();
-            }            
+            }
         }
-        
+
         private THData TryGetMeasure()
         {
             //Prepare buffer to store measure and checksum
@@ -108,12 +108,12 @@ namespace Unosquare.RaspberryIO.Peripherals
                     cnt = 7; //restart with next byte
                 }
                 else
-                    cnt--;                
+                    cnt--;
             }
 
             var checkSum = data[0] + data[1] + data[2] + data[3];
             if ((checkSum & 0xff) != data[4])
-                return null;                            
+                return null;
 
             var sign = 1;
             //Check negative temperature 
@@ -122,7 +122,7 @@ namespace Unosquare.RaspberryIO.Peripherals
                 data[2] = (byte)(data[2] & 0x7F);
                 sign = -1;
             }
-                       
+
             return new THData
             {
                 HumidityPercentage = ((data[0] << 8) + data[1]) / 10,
@@ -131,13 +131,13 @@ namespace Unosquare.RaspberryIO.Peripherals
         }
 
         public void StartListener()
-        {            
+        {
             _started = true;
-            _th.Start();                      
-        }        
+            _th.Start();
+        }
 
         public void StopListener()
-        {            
+        {
             _started = false;
             _th.Abort();
         }
@@ -145,9 +145,9 @@ namespace Unosquare.RaspberryIO.Peripherals
         public void Dispose()
         {
             if (_started)
-                StopListener();            
+                StopListener();
         }
-        
+
         private GpioPin CreatePin(int pin)
         {
             switch (pin)
