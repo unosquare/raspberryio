@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class GpioPin
    | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.29.1.0">
+    <meta name="generator" content="docfx 2.31.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -1051,6 +1051,57 @@ RegisterInterruptCallback</p>
         <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>StartSoftPwm
 or</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Gpio_GpioPin_WaitForValue_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue*"></a>
+  <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_WaitForValue_Unosquare_RaspberryIO_Gpio_GpioPinValue_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue(Unosquare.RaspberryIO.Gpio.GpioPinValue,System.Int32)">WaitForValue(GpioPinValue, Int32)</h4>
+  <div class="markdown level1 summary"><p>Wait for specific pin status</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WaitForValue(GpioPinValue status, int timeOutMillisecond)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPinValue.html">GpioPinValue</a></td>
+        <td><span class="parametername">status</span></td>
+        <td><p>status to check</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">timeOutMillisecond</span></td>
+        <td><p>timeout to reach status</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true/false</p>
 </td>
       </tr>
     </tbody>

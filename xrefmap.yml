@@ -3116,6 +3116,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.StartSoftPwm
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.StartSoftPwm
   nameWithType: GpioPin.StartSoftPwm
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue(Unosquare.RaspberryIO.Gpio.GpioPinValue,System.Int32)
+  name: WaitForValue(GpioPinValue, Int32)
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WaitForValue_Unosquare_RaspberryIO_Gpio_GpioPinValue_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue(Unosquare.RaspberryIO.Gpio.GpioPinValue,System.Int32)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue(Unosquare.RaspberryIO.Gpio.GpioPinValue, System.Int32)
+  nameWithType: GpioPin.WaitForValue(GpioPinValue, Int32)
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue*
+  name: WaitForValue
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WaitForValue_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue
+  nameWithType: GpioPin.WaitForValue
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.WiringPiPinNumber
   name: WiringPiPinNumber
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WiringPiPinNumber
@@ -3944,6 +3956,36 @@ references:
   commentId: F:Unosquare.RaspberryIO.Gpio.WiringPiPin.Unknown
   fullName: Unosquare.RaspberryIO.Gpio.WiringPiPin.Unknown
   nameWithType: WiringPiPin.Unknown
+- uid: Unosquare.RaspberryIO.HighResolutionTimer
+  name: HighResolutionTimer
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html
+  commentId: T:Unosquare.RaspberryIO.HighResolutionTimer
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer
+  nameWithType: HighResolutionTimer
+- uid: Unosquare.RaspberryIO.HighResolutionTimer.#ctor
+  name: HighResolutionTimer()
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html#Unosquare_RaspberryIO_HighResolutionTimer__ctor
+  commentId: M:Unosquare.RaspberryIO.HighResolutionTimer.#ctor
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer.HighResolutionTimer()
+  nameWithType: HighResolutionTimer.HighResolutionTimer()
+- uid: Unosquare.RaspberryIO.HighResolutionTimer.#ctor*
+  name: HighResolutionTimer
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html#Unosquare_RaspberryIO_HighResolutionTimer__ctor_
+  commentId: Overload:Unosquare.RaspberryIO.HighResolutionTimer.#ctor
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer.HighResolutionTimer
+  nameWithType: HighResolutionTimer.HighResolutionTimer
+- uid: Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  name: ElapsedMicroseconds
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html#Unosquare_RaspberryIO_HighResolutionTimer_ElapsedMicroseconds
+  commentId: P:Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  nameWithType: HighResolutionTimer.ElapsedMicroseconds
+- uid: Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds*
+  name: ElapsedMicroseconds
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html#Unosquare_RaspberryIO_HighResolutionTimer_ElapsedMicroseconds_
+  commentId: Overload:Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  nameWithType: HighResolutionTimer.ElapsedMicroseconds
 - uid: Unosquare.RaspberryIO.Models
   name: Unosquare.RaspberryIO.Models
   href: api/Unosquare.RaspberryIO.Models.html
