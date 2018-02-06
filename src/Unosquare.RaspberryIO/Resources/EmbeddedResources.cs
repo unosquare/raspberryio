@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="basePath">The base path.</param>
         public static void ExtractAll(string basePath = null)
-        {
+        {   
             if (string.IsNullOrWhiteSpace(basePath))
                 basePath = Runtime.EntryAssemblyDirectory;
 
@@ -58,7 +58,7 @@
                     }
                     catch
                     {
-                        /* Ignore */
+                        /* Ignore */                        
                     }
                 }
             }

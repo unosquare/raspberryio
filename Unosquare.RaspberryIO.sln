@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AD40570E-5084-4507-AFB7-647230B007E0}"
 EndProject
@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unosquare.RaspberryIO", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unosquare.RaspberryIO.Playground", "src\Unosquare.RaspberryIO.Playground\Unosquare.RaspberryIO.Playground.csproj", "{87BDC267-91D2-4CD1-B088-0F0791948C0E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unosquare.RaspberryIO.Peripherals", "src\Unosquare.RaspberryIO.Peripherals\Unosquare.RaspberryIO.Peripherals.csproj", "{2E1822A8-C08F-4379-B29A-F476B1CD2EE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{87BDC267-91D2-4CD1-B088-0F0791948C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87BDC267-91D2-4CD1-B088-0F0791948C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87BDC267-91D2-4CD1-B088-0F0791948C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E1822A8-C08F-4379-B29A-F476B1CD2EE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E1822A8-C08F-4379-B29A-F476B1CD2EE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E1822A8-C08F-4379-B29A-F476B1CD2EE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E1822A8-C08F-4379-B29A-F476B1CD2EE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{589B0F6C-14BD-4DB7-9108-A016EA3F476F} = {144147AA-41C9-4639-AF1E-F08534CA8D49}
 		{71BF0E4E-9BCF-40C2-AE1C-7F17FE6C82CB} = {AD40570E-5084-4507-AFB7-647230B007E0}
 		{87BDC267-91D2-4CD1-B088-0F0791948C0E} = {AD40570E-5084-4507-AFB7-647230B007E0}
+		{2E1822A8-C08F-4379-B29A-F476B1CD2EE0} = {AD40570E-5084-4507-AFB7-647230B007E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {284182C7-6434-490D-BFC0-4DB344A38C2A}
