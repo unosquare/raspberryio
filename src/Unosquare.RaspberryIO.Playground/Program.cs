@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
+    using Peripherals;
     using Camera;
     using Computer;
     using Gpio;
@@ -12,7 +13,6 @@
     using System.Threading;
 #if NET452
     using Samples;
-
 #endif
 
     public class Program
@@ -25,6 +25,9 @@
 
             try
             {
+                // Uncomment the following line to test Mfrc522Controller
+                // Tag();
+
                 TestSystemInfo();
                 //TestCaptureImage();
                 //TestCaptureVideo();
@@ -41,6 +44,56 @@
                 Terminal.Flush(TimeSpan.FromSeconds(2));
                 if (System.Diagnostics.Debugger.IsAttached)
                     "Press any key to exit . . .".ReadKey();
+            }
+        }
+
+        private static void Tag()
+        {
+            var mfrc522 = new Mfrc522Controller();
+
+            while (true)
+            {
+                // Scan for cards
+                var result = mfrc522.Request(Mfrc522Controller.PICC_REQIDL);
+                var status = result.Item1;
+
+                // If a card is found
+                if (status == Mfrc522Controller.MI_OK)
+                {
+                    "Card detected".Info();
+                }
+
+                // Get the UID of the card
+                var resultAnticoll = mfrc522.Anticoll();
+                var status2 = resultAnticoll.Item1; 
+                var uid = resultAnticoll.Item2;
+
+                // If we have the UID, continue
+                if (status2 == Mfrc522Controller.MI_OK)
+                {
+                    // Print UID
+                    $"Card read UID: {uid[0]},{uid[1]},{uid[2]},{uid[3]}".Info();
+
+                    // This is the default key for authentication
+                    var key = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+
+                    // Select the scanned tag
+                    mfrc522.SelectTag(uid);
+
+                    // Authenticate
+                    var status3 = mfrc522.Auth(Mfrc522Controller.PICC_AUTHENT1A, 8, key, uid);
+
+                    // Check if authenticated
+                    if (status3 == Mfrc522Controller.MI_OK)
+                    {
+                        mfrc522.ReadSpi(8);
+                        mfrc522.StopCrypto1();
+                    }
+                    else
+                    {
+                        "Authentication error".Error();
+                    }
+                }
             }
         }
 
@@ -135,7 +188,7 @@
             });
 
             thread.Start();
-            Console.Write("Press any key to stop and clear");
+            "Press any key to stop and clear".Info();
             Console.ReadKey(true);
             Console.WriteLine();
             exitAnimation = true;
@@ -188,7 +241,7 @@
             });
 
             thread.Start();
-            Console.Write("Press any key to stop and clear");
+            "Press any key to stop and clear".Info();
             Console.ReadKey(true);
             Console.WriteLine();
             exitAnimation = true;
@@ -271,7 +324,7 @@
             $"{Pi.Info}".Info();
             $"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}".Info();
             $"Uname {Pi.Info.OperatingSystem}".Info();
-            $"HostName {Computer.NetworkSettings.Instance.HostName}".Info();
+            $"HostName {NetworkSettings.Instance.HostName}".Info();
             $"Uptime (seconds) {Pi.Info.Uptime}".Info();
             var timeSpan = Pi.Info.UptimeTimeSpan;
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}"
