@@ -188,7 +188,7 @@
             ClearBitMask(TxControlReg, 0x03);
         }
 
-        private Tuple<byte, byte[], byte> ToCard(byte command, byte[] sendData)
+        private (byte status, byte[] backData, byte backLen) ToCard(byte command, byte[] sendData)
         {
             var backData = new List<byte>();
             byte backLen = 0;
@@ -291,7 +291,7 @@
                 status = MI_ERR;
             }
 
-            return new Tuple<byte, byte[], byte>(status, backData.ToArray(), backLen);
+            return (status, backData.ToArray(), backLen);
         }
 
         public Tuple<byte, int> Request(byte reqMode)
