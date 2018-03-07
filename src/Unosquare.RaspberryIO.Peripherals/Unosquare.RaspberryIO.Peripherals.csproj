@@ -4,6 +4,7 @@
     <AssemblyName>Unosquare.RaspberryIO.Peripherals</AssemblyName>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
