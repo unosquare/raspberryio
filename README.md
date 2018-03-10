@@ -34,17 +34,59 @@ Mono JIT compiler version 5.4.1.6 (tarball Wed Nov  8 21:42:16 UTC 2017)
 ```
 
 The commands to get Mono installed are the following:
+
+### For Debian Wheezy
+
 ```
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install mono-complete
+sudo apt-get install dirmngr
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
 sudo apt-get update
 sudo apt-get dist-upgrade
 ```
 
+### For Debian Stretch
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install mono-complete
+sudo apt-get install dirmngr
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo "deb http://download.mono-project.com/repo/debian stretch main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+sudo apt-get update
+sudo apt-get dist-upgrade
+```
+
 Now, verify your version of Mono by running ```mono --version```. Version 4.6 and above should be good enough.
+
+### Handy Notes
+
+In order to setup Wi-Fi, run: `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
+
+A good file should look like this:
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="your_real_wifi_ssid"
+    scan_ssid=1
+    psk="your_real_password"
+}
+```
+
+And then restart the services as follows:
+```
+sudo systemctl daemon-reload
+sudo systemctl restart dhcpcd
+```
+
+You can also configure most boot options by running: `sudo raspi-config`
 
 ## Running .NET Core 2
 
