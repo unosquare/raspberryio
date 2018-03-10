@@ -244,7 +244,7 @@
 
             ClearBitMask(BitFramingReg, 0x80);
 
-            if (i == 0) return new Tuple<byte, byte[], byte>(status, backData.ToArray(), backLen);
+            if (i == 0) return (status, backData.ToArray(), backLen);
 
             if ((ReadSpi(ErrorReg) & 0x1B) == 0x00)
             {
@@ -294,23 +294,23 @@
             return (status, backData.ToArray(), backLen);
         }
 
-        public Tuple<byte, int> Request(byte reqMode)
+        public (byte, int) Request(byte reqMode)
         {
             var tagType = new List<byte> {reqMode};
 
-            var result = ToCard(PCD_TRANSCEIVE, tagType.ToArray());
-            var status = result.Item1;
-            var backBits = result.Item3;
+            WriteSpi(BitFramingReg, 0x07);
+
+            var (status, backData, backBits) = ToCard(PCD_TRANSCEIVE, tagType.ToArray());
 
             if ((status != MI_OK) | (backBits != 0x10))
             {
                 status = MI_ERR;
             }
 
-            return new Tuple<byte, int>(status, backBits);
+            return (status, backBits);
         }
 
-        public Tuple<byte, byte[]> Anticoll()
+        public (byte status, byte[] data) Anticoll()
         {
             byte serNumCheck = 0;
 
@@ -321,9 +321,7 @@
             serNum.Add(PICC_ANTICOLL);
             serNum.Add(0x20);
 
-            var result = ToCard(PCD_TRANSCEIVE, serNum.ToArray());
-            var status = result.Item1;
-            var backData = result.Item2;
+            var (status, backData, _) = ToCard(PCD_TRANSCEIVE, serNum.ToArray());
 
             var i = 0;
             if (status == MI_OK)
@@ -349,7 +347,7 @@
                 status = MI_ERR;
             }
 
-            return new Tuple<byte, byte[]>(status, backData);
+            return (status, backData);
         }
 
         private byte[] CalulateCRC(byte[] pIndata)
@@ -392,10 +390,7 @@
             var pOut = CalulateCRC(buf.ToArray());
             buf.Add(pOut[0]);
             buf.Add(pOut[1]);
-            var result = ToCard(PCD_TRANSCEIVE, buf.ToArray());
-            var status = result.Item1;
-            var backData = result.Item2;
-            var backBits = result.Item3;
+            var (status, backData, backBits) = ToCard(PCD_TRANSCEIVE, buf.ToArray());
 
             if (status != MI_OK || backBits != 0x18) 
                 return 0;
@@ -428,8 +423,7 @@
             }
 
             // Now we start the authentication itself
-            var result = ToCard(PCD_AUTHENT, buff.ToArray());
-            var status = result.Item1;
+            var (status, _, _) = ToCard(PCD_AUTHENT, buff.ToArray());
 
             // Check if an error occurred
             if (status != MI_OK)
@@ -457,10 +451,7 @@
             var crc = CalulateCRC(buff.ToArray());
             buff.Add(crc[0]);
             buff.Add(crc[1]);
-            var result = ToCard(PCD_TRANSCEIVE, buff.ToArray());
-            var status = result.Item1;
-            var backData = result.Item2;
-            var backLen = result.Item3;
+            var (status, backData, backLen) = ToCard(PCD_TRANSCEIVE, buff.ToArray());
 
             if (status != MI_OK || backLen != 4 || (backData[0] & 0x0F) != 0x0A)
             {
@@ -482,10 +473,9 @@
             crc = CalulateCRC(buf.ToArray());
             buf.Add(crc[0]);
             buf.Add(crc[1]);
-            result = ToCard(PCD_TRANSCEIVE, buf.ToArray());
-            status = result.Item1;
-            backData = result.Item2;
-            backLen = result.Item3;
+
+            (status, backData, backLen) = ToCard(PCD_TRANSCEIVE, buf.ToArray());
+
             if (status != MI_OK || backLen != 4 || (backData[0] & 0x0F) != 0x0A)
             {
                 "Error while writing".Error();
