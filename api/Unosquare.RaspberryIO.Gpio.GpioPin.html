@@ -231,9 +231,9 @@ Full pin reference available here:
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioPin_InputPullMode_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.InputPullMode*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_InputPullMode" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.InputPullMode">InputPullMode</h4>
-  <div class="markdown level1 summary"><p>This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input.
-Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors.
-The parameter pud should be; PUD_OFF, (no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v)
+  <div class="markdown level1 summary"><p>This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input. 
+Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors. 
+The parameter pud should be; PUD_OFF, (no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v) 
 The internal pull up/down resistors have a value of approximately 50KΩ on the Raspberry Pi.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -427,8 +427,7 @@ has been registered.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when a pin does not support the given operation mode.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -496,8 +495,7 @@ has been registered.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>When pin mode is not set to PWM output</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -505,7 +503,7 @@ has been registered.</p>
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioPin_PwmMode_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.PwmMode*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_PwmMode" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.PwmMode">PwmMode</h4>
-  <div class="markdown level1 summary"><p>The PWM generator can run in 2 modes – “balanced” and “mark:space”. The mark:space mode is traditional,
+  <div class="markdown level1 summary"><p>The PWM generator can run in 2 modes – “balanced” and “mark:space”. The mark:space mode is traditional, 
 however the default mode in the Pi is “balanced”.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -583,8 +581,7 @@ however the default mode in the Pi is “balanced”.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>When pin mode is not set to PWM output</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -814,8 +811,8 @@ however the default mode in the Pi is “balanced”.</p>
   <a id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevel_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevel*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevel" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevel">ReadLevel()</h4>
   <div class="markdown level1 summary"><p>Reads the analog value on the pin.
-This returns the value read on the supplied analog input pin. You will need to register
-additional analog modules to enable this function for devices such as the Gertboard,
+This returns the value read on the supplied analog input pin. You will need to register 
+additional analog modules to enable this function for devices such as the Gertboard, 
 quick2Wire analog board, etc.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -860,8 +857,8 @@ quick2Wire analog board, etc.</p>
   <a id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevelAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevelAsync" data-uid="Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync">ReadLevelAsync()</h4>
   <div class="markdown level1 summary"><p>Reads the analog value on the pin.
-This returns the value read on the supplied analog input pin. You will need to register
-additional analog modules to enable this function for devices such as the Gertboard,
+This returns the value read on the supplied analog input pin. You will need to register 
+additional analog modules to enable this function for devices such as the Gertboard, 
 quick2Wire analog board, etc.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -994,6 +991,10 @@ quick2Wire analog board, etc.</p>
 or
 RegisterInterruptCallback</p>
 </td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidProgramException</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

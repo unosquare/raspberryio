@@ -1333,18 +1333,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
   nameWithType: CameraStillSettings.HorizontalFlip
-- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation
-  name: Rotation
-  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_Rotation
-  commentId: P:Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation
-  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation
-  nameWithType: CameraStillSettings.Rotation
-- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation*
-  name: Rotation
-  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_Rotation_
-  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation
-  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation
-  nameWithType: CameraStillSettings.Rotation
+- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  name: Rotate
+  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_Rotate
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  nameWithType: CameraStillSettings.Rotate
+- uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate*
+  name: Rotate
+  href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_Rotate_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotate
+  nameWithType: CameraStillSettings.Rotate
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip
   name: VerticalFlip
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_VerticalFlip
@@ -1585,84 +1585,6 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Computer.DsiDisplay.IsPresent
   fullName: Unosquare.RaspberryIO.Computer.DsiDisplay.IsPresent
   nameWithType: DsiDisplay.IsPresent
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo
-  name: NetworkAdapterInfo
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html
-  commentId: T:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo
-  nameWithType: NetworkAdapterInfo
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.AccessPointName
-  name: AccessPointName
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_AccessPointName
-  commentId: P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.AccessPointName
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.AccessPointName
-  nameWithType: NetworkAdapterInfo.AccessPointName
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.AccessPointName*
-  name: AccessPointName
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_AccessPointName_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.AccessPointName
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.AccessPointName
-  nameWithType: NetworkAdapterInfo.AccessPointName
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4
-  name: IPv4
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_IPv4
-  commentId: P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4
-  nameWithType: NetworkAdapterInfo.IPv4
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4*
-  name: IPv4
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_IPv4_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4
-  nameWithType: NetworkAdapterInfo.IPv4
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6
-  name: IPv6
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_IPv6
-  commentId: P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6
-  nameWithType: NetworkAdapterInfo.IPv6
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6*
-  name: IPv6
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_IPv6_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6
-  nameWithType: NetworkAdapterInfo.IPv6
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless
-  name: IsWireless
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_IsWireless
-  commentId: P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless
-  nameWithType: NetworkAdapterInfo.IsWireless
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless*
-  name: IsWireless
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_IsWireless_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless
-  nameWithType: NetworkAdapterInfo.IsWireless
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress
-  name: MacAddress
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_MacAddress
-  commentId: P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress
-  nameWithType: NetworkAdapterInfo.MacAddress
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress*
-  name: MacAddress
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_MacAddress_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress
-  nameWithType: NetworkAdapterInfo.MacAddress
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name
-  name: Name
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_Name
-  commentId: P:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name
-  nameWithType: NetworkAdapterInfo.Name
-- uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name*
-  name: Name
-  href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_Name_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name
-  fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name
-  nameWithType: NetworkAdapterInfo.Name
 - uid: Unosquare.RaspberryIO.Computer.NetworkSettings
   name: NetworkSettings
   href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html
@@ -1726,12 +1648,12 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveWirelessNetworks
   fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveWirelessNetworks
   nameWithType: NetworkSettings.RetrieveWirelessNetworks
-- uid: Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork(System.String,System.String,System.String,System.String)
-  name: SetupWirelessNetwork(String, String, String, String)
-  href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_SetupWirelessNetwork_System_String_System_String_System_String_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork(System.String,System.String,System.String,System.String)
-  fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork(System.String, System.String, System.String, System.String)
-  nameWithType: NetworkSettings.SetupWirelessNetwork(String, String, String, String)
+- uid: Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork(System.String,System.String,System.String)
+  name: SetupWirelessNetwork(String, String, String)
+  href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_SetupWirelessNetwork_System_String_System_String_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork(System.String,System.String,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork(System.String, System.String, System.String)
+  nameWithType: NetworkSettings.SetupWirelessNetwork(String, String, String)
 - uid: Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork*
   name: SetupWirelessNetwork
   href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_SetupWirelessNetwork_
@@ -2254,48 +2176,6 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.WiringPiVersion
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.WiringPiVersion
   nameWithType: SystemInfo.WiringPiVersion
-- uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo
-  name: WirelessNetworkInfo
-  href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html
-  commentId: T:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo
-  fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo
-  nameWithType: WirelessNetworkInfo
-- uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.IsEncrypted
-  name: IsEncrypted
-  href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Computer_WirelessNetworkInfo_IsEncrypted
-  commentId: P:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.IsEncrypted
-  fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.IsEncrypted
-  nameWithType: WirelessNetworkInfo.IsEncrypted
-- uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.IsEncrypted*
-  name: IsEncrypted
-  href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Computer_WirelessNetworkInfo_IsEncrypted_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.IsEncrypted
-  fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.IsEncrypted
-  nameWithType: WirelessNetworkInfo.IsEncrypted
-- uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name
-  name: Name
-  href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Computer_WirelessNetworkInfo_Name
-  commentId: P:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name
-  fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name
-  nameWithType: WirelessNetworkInfo.Name
-- uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name*
-  name: Name
-  href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Computer_WirelessNetworkInfo_Name_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name
-  fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name
-  nameWithType: WirelessNetworkInfo.Name
-- uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality
-  name: Quality
-  href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Computer_WirelessNetworkInfo_Quality
-  commentId: P:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality
-  fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality
-  nameWithType: WirelessNetworkInfo.Quality
-- uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality*
-  name: Quality
-  href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Computer_WirelessNetworkInfo_Quality_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality
-  fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality
-  nameWithType: WirelessNetworkInfo.Quality
 - uid: Unosquare.RaspberryIO.Gpio
   name: Unosquare.RaspberryIO.Gpio
   href: api/Unosquare.RaspberryIO.Gpio.html
@@ -2362,30 +2242,6 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.GetEnumerator
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.GetEnumerator
   nameWithType: GpioController.GetEnumerator
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
-  name: HeaderP1
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_HeaderP1
-  commentId: P:Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
-  nameWithType: GpioController.HeaderP1
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1*
-  name: HeaderP1
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_HeaderP1_
-  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
-  nameWithType: GpioController.HeaderP1
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5
-  name: HeaderP5
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_HeaderP5
-  commentId: P:Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5
-  nameWithType: GpioController.HeaderP5
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5*
-  name: HeaderP5
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_HeaderP5_
-  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5
-  nameWithType: GpioController.HeaderP5
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.IsInitialized
   name: IsInitialized
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_IsInitialized
@@ -4100,6 +3956,162 @@ references:
   commentId: F:Unosquare.RaspberryIO.Gpio.WiringPiPin.Unknown
   fullName: Unosquare.RaspberryIO.Gpio.WiringPiPin.Unknown
   nameWithType: WiringPiPin.Unknown
+- uid: Unosquare.RaspberryIO.HighResolutionTimer
+  name: HighResolutionTimer
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html
+  commentId: T:Unosquare.RaspberryIO.HighResolutionTimer
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer
+  nameWithType: HighResolutionTimer
+- uid: Unosquare.RaspberryIO.HighResolutionTimer.#ctor
+  name: HighResolutionTimer()
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html#Unosquare_RaspberryIO_HighResolutionTimer__ctor
+  commentId: M:Unosquare.RaspberryIO.HighResolutionTimer.#ctor
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer.HighResolutionTimer()
+  nameWithType: HighResolutionTimer.HighResolutionTimer()
+- uid: Unosquare.RaspberryIO.HighResolutionTimer.#ctor*
+  name: HighResolutionTimer
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html#Unosquare_RaspberryIO_HighResolutionTimer__ctor_
+  commentId: Overload:Unosquare.RaspberryIO.HighResolutionTimer.#ctor
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer.HighResolutionTimer
+  nameWithType: HighResolutionTimer.HighResolutionTimer
+- uid: Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  name: ElapsedMicroseconds
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html#Unosquare_RaspberryIO_HighResolutionTimer_ElapsedMicroseconds
+  commentId: P:Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  nameWithType: HighResolutionTimer.ElapsedMicroseconds
+- uid: Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds*
+  name: ElapsedMicroseconds
+  href: api/Unosquare.RaspberryIO.HighResolutionTimer.html#Unosquare_RaspberryIO_HighResolutionTimer_ElapsedMicroseconds_
+  commentId: Overload:Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  fullName: Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds
+  nameWithType: HighResolutionTimer.ElapsedMicroseconds
+- uid: Unosquare.RaspberryIO.Models
+  name: Unosquare.RaspberryIO.Models
+  href: api/Unosquare.RaspberryIO.Models.html
+  commentId: N:Unosquare.RaspberryIO.Models
+  fullName: Unosquare.RaspberryIO.Models
+  nameWithType: Unosquare.RaspberryIO.Models
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter
+  name: NetworkAdapter
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html
+  commentId: T:Unosquare.RaspberryIO.Models.NetworkAdapter
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter
+  nameWithType: NetworkAdapter
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.AccessPointName
+  name: AccessPointName
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_AccessPointName
+  commentId: P:Unosquare.RaspberryIO.Models.NetworkAdapter.AccessPointName
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.AccessPointName
+  nameWithType: NetworkAdapter.AccessPointName
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.AccessPointName*
+  name: AccessPointName
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_AccessPointName_
+  commentId: Overload:Unosquare.RaspberryIO.Models.NetworkAdapter.AccessPointName
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.AccessPointName
+  nameWithType: NetworkAdapter.AccessPointName
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.IPv4
+  name: IPv4
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_IPv4
+  commentId: P:Unosquare.RaspberryIO.Models.NetworkAdapter.IPv4
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.IPv4
+  nameWithType: NetworkAdapter.IPv4
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.IPv4*
+  name: IPv4
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_IPv4_
+  commentId: Overload:Unosquare.RaspberryIO.Models.NetworkAdapter.IPv4
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.IPv4
+  nameWithType: NetworkAdapter.IPv4
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.IPv6
+  name: IPv6
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_IPv6
+  commentId: P:Unosquare.RaspberryIO.Models.NetworkAdapter.IPv6
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.IPv6
+  nameWithType: NetworkAdapter.IPv6
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.IPv6*
+  name: IPv6
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_IPv6_
+  commentId: Overload:Unosquare.RaspberryIO.Models.NetworkAdapter.IPv6
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.IPv6
+  nameWithType: NetworkAdapter.IPv6
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.IsWireless
+  name: IsWireless
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_IsWireless
+  commentId: P:Unosquare.RaspberryIO.Models.NetworkAdapter.IsWireless
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.IsWireless
+  nameWithType: NetworkAdapter.IsWireless
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.IsWireless*
+  name: IsWireless
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_IsWireless_
+  commentId: Overload:Unosquare.RaspberryIO.Models.NetworkAdapter.IsWireless
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.IsWireless
+  nameWithType: NetworkAdapter.IsWireless
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.MacAddress
+  name: MacAddress
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_MacAddress
+  commentId: P:Unosquare.RaspberryIO.Models.NetworkAdapter.MacAddress
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.MacAddress
+  nameWithType: NetworkAdapter.MacAddress
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.MacAddress*
+  name: MacAddress
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_MacAddress_
+  commentId: Overload:Unosquare.RaspberryIO.Models.NetworkAdapter.MacAddress
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.MacAddress
+  nameWithType: NetworkAdapter.MacAddress
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.Name
+  name: Name
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_Name
+  commentId: P:Unosquare.RaspberryIO.Models.NetworkAdapter.Name
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.Name
+  nameWithType: NetworkAdapter.Name
+- uid: Unosquare.RaspberryIO.Models.NetworkAdapter.Name*
+  name: Name
+  href: api/Unosquare.RaspberryIO.Models.NetworkAdapter.html#Unosquare_RaspberryIO_Models_NetworkAdapter_Name_
+  commentId: Overload:Unosquare.RaspberryIO.Models.NetworkAdapter.Name
+  fullName: Unosquare.RaspberryIO.Models.NetworkAdapter.Name
+  nameWithType: NetworkAdapter.Name
+- uid: Unosquare.RaspberryIO.Models.WirelessNetworkInfo
+  name: WirelessNetworkInfo
+  href: api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html
+  commentId: T:Unosquare.RaspberryIO.Models.WirelessNetworkInfo
+  fullName: Unosquare.RaspberryIO.Models.WirelessNetworkInfo
+  nameWithType: WirelessNetworkInfo
+- uid: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.IsEncrypted
+  name: IsEncrypted
+  href: api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Models_WirelessNetworkInfo_IsEncrypted
+  commentId: P:Unosquare.RaspberryIO.Models.WirelessNetworkInfo.IsEncrypted
+  fullName: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.IsEncrypted
+  nameWithType: WirelessNetworkInfo.IsEncrypted
+- uid: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.IsEncrypted*
+  name: IsEncrypted
+  href: api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Models_WirelessNetworkInfo_IsEncrypted_
+  commentId: Overload:Unosquare.RaspberryIO.Models.WirelessNetworkInfo.IsEncrypted
+  fullName: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.IsEncrypted
+  nameWithType: WirelessNetworkInfo.IsEncrypted
+- uid: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Name
+  name: Name
+  href: api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Models_WirelessNetworkInfo_Name
+  commentId: P:Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Name
+  fullName: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Name
+  nameWithType: WirelessNetworkInfo.Name
+- uid: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Name*
+  name: Name
+  href: api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Models_WirelessNetworkInfo_Name_
+  commentId: Overload:Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Name
+  fullName: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Name
+  nameWithType: WirelessNetworkInfo.Name
+- uid: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Quality
+  name: Quality
+  href: api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Models_WirelessNetworkInfo_Quality
+  commentId: P:Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Quality
+  fullName: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Quality
+  nameWithType: WirelessNetworkInfo.Quality
+- uid: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Quality*
+  name: Quality
+  href: api/Unosquare.RaspberryIO.Models.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Models_WirelessNetworkInfo_Quality_
+  commentId: Overload:Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Quality
+  fullName: Unosquare.RaspberryIO.Models.WirelessNetworkInfo.Quality
+  nameWithType: WirelessNetworkInfo.Quality
 - uid: Unosquare.RaspberryIO.Native
   name: Unosquare.RaspberryIO.Native
   href: api/Unosquare.RaspberryIO.Native.html
@@ -4184,48 +4196,6 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Native.HardwareException.ToString
   fullName: Unosquare.RaspberryIO.Native.HardwareException.ToString
   nameWithType: HardwareException.ToString
-- uid: Unosquare.RaspberryIO.Native.HighResolutionTimer
-  name: HighResolutionTimer
-  href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html
-  commentId: T:Unosquare.RaspberryIO.Native.HighResolutionTimer
-  fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer
-  nameWithType: HighResolutionTimer
-- uid: Unosquare.RaspberryIO.Native.HighResolutionTimer.#ctor
-  name: HighResolutionTimer()
-  href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html#Unosquare_RaspberryIO_Native_HighResolutionTimer__ctor
-  commentId: M:Unosquare.RaspberryIO.Native.HighResolutionTimer.#ctor
-  fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.HighResolutionTimer()
-  nameWithType: HighResolutionTimer.HighResolutionTimer()
-- uid: Unosquare.RaspberryIO.Native.HighResolutionTimer.#ctor*
-  name: HighResolutionTimer
-  href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html#Unosquare_RaspberryIO_Native_HighResolutionTimer__ctor_
-  commentId: Overload:Unosquare.RaspberryIO.Native.HighResolutionTimer.#ctor
-  fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.HighResolutionTimer
-  nameWithType: HighResolutionTimer.HighResolutionTimer
-- uid: Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds
-  name: ElapsedMicroseconds
-  href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html#Unosquare_RaspberryIO_Native_HighResolutionTimer_ElapsedMicroseconds
-  commentId: P:Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds
-  fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds
-  nameWithType: HighResolutionTimer.ElapsedMicroseconds
-- uid: Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds*
-  name: ElapsedMicroseconds
-  href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html#Unosquare_RaspberryIO_Native_HighResolutionTimer_ElapsedMicroseconds_
-  commentId: Overload:Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds
-  fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds
-  nameWithType: HighResolutionTimer.ElapsedMicroseconds
-- uid: Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick
-  name: MicrosecondsPerTick
-  href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html#Unosquare_RaspberryIO_Native_HighResolutionTimer_MicrosecondsPerTick
-  commentId: P:Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick
-  fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick
-  nameWithType: HighResolutionTimer.MicrosecondsPerTick
-- uid: Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick*
-  name: MicrosecondsPerTick
-  href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html#Unosquare_RaspberryIO_Native_HighResolutionTimer_MicrosecondsPerTick_
-  commentId: Overload:Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick
-  fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick
-  nameWithType: HighResolutionTimer.MicrosecondsPerTick
 - uid: Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback
   name: InterrputServiceRoutineCallback
   href: api/Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback.html
@@ -4376,768 +4346,744 @@ references:
   commentId: T:Unosquare.RaspberryIO.Native.WiringPi
   fullName: Unosquare.RaspberryIO.Native.WiringPi
   nameWithType: WiringPi
-- uid: Unosquare.RaspberryIO.Native.WiringPi.AnalogRead(System.Int32)
-  name: AnalogRead(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_AnalogRead_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.AnalogRead(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.AnalogRead(System.Int32)
-  nameWithType: WiringPi.AnalogRead(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.AnalogRead*
-  name: AnalogRead
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_AnalogRead_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.AnalogRead
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.AnalogRead
-  nameWithType: WiringPi.AnalogRead
-- uid: Unosquare.RaspberryIO.Native.WiringPi.AnalogWrite(System.Int32,System.Int32)
-  name: AnalogWrite(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_AnalogWrite_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.AnalogWrite(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.AnalogWrite(System.Int32, System.Int32)
-  nameWithType: WiringPi.AnalogWrite(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.AnalogWrite*
-  name: AnalogWrite
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_AnalogWrite_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.AnalogWrite
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.AnalogWrite
-  nameWithType: WiringPi.AnalogWrite
-- uid: Unosquare.RaspberryIO.Native.WiringPi.Delay(System.UInt32)
-  name: Delay(UInt32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_Delay_System_UInt32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.Delay(System.UInt32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.Delay(System.UInt32)
-  nameWithType: WiringPi.Delay(UInt32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.Delay*
-  name: Delay
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_Delay_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.Delay
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.Delay
-  nameWithType: WiringPi.Delay
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DelayMicroseconds(System.UInt32)
-  name: DelayMicroseconds(UInt32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DelayMicroseconds_System_UInt32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.DelayMicroseconds(System.UInt32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DelayMicroseconds(System.UInt32)
-  nameWithType: WiringPi.DelayMicroseconds(UInt32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DelayMicroseconds*
-  name: DelayMicroseconds
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DelayMicroseconds_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.DelayMicroseconds
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DelayMicroseconds
-  nameWithType: WiringPi.DelayMicroseconds
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalRead(System.Int32)
-  name: DigitalRead(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalRead_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.DigitalRead(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalRead(System.Int32)
-  nameWithType: WiringPi.DigitalRead(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalRead*
-  name: DigitalRead
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalRead_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.DigitalRead
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalRead
-  nameWithType: WiringPi.DigitalRead
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte
-  name: DigitalReadByte()
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalReadByte
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte()
-  nameWithType: WiringPi.DigitalReadByte()
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte*
-  name: DigitalReadByte
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalReadByte_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte
-  nameWithType: WiringPi.DigitalReadByte
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte2
-  name: DigitalReadByte2()
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalReadByte2
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte2
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte2()
-  nameWithType: WiringPi.DigitalReadByte2()
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte2*
-  name: DigitalReadByte2
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalReadByte2_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte2
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte2
-  nameWithType: WiringPi.DigitalReadByte2
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalWrite(System.Int32,System.Int32)
-  name: DigitalWrite(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalWrite_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.DigitalWrite(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalWrite(System.Int32, System.Int32)
-  nameWithType: WiringPi.DigitalWrite(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalWrite*
-  name: DigitalWrite
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalWrite_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.DigitalWrite
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalWrite
-  nameWithType: WiringPi.DigitalWrite
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte(System.Int32)
-  name: DigitalWriteByte(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalWriteByte_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte(System.Int32)
-  nameWithType: WiringPi.DigitalWriteByte(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte*
-  name: DigitalWriteByte
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalWriteByte_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte
-  nameWithType: WiringPi.DigitalWriteByte
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte2(System.Int32)
-  name: DigitalWriteByte2(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalWriteByte2_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte2(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte2(System.Int32)
-  nameWithType: WiringPi.DigitalWriteByte2(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte2*
-  name: DigitalWriteByte2
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_DigitalWriteByte2_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte2
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte2
-  nameWithType: WiringPi.DigitalWriteByte2
-- uid: Unosquare.RaspberryIO.Native.WiringPi.GetAlt(System.Int32)
-  name: GetAlt(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_GetAlt_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.GetAlt(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.GetAlt(System.Int32)
-  nameWithType: WiringPi.GetAlt(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.GetAlt*
-  name: GetAlt
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_GetAlt_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.GetAlt
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.GetAlt
-  nameWithType: WiringPi.GetAlt
-- uid: Unosquare.RaspberryIO.Native.WiringPi.GpioClockSet(System.Int32,System.Int32)
-  name: GpioClockSet(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_GpioClockSet_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.GpioClockSet(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.GpioClockSet(System.Int32, System.Int32)
-  nameWithType: WiringPi.GpioClockSet(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.GpioClockSet*
-  name: GpioClockSet
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_GpioClockSet_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.GpioClockSet
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.GpioClockSet
-  nameWithType: WiringPi.GpioClockSet
-- uid: Unosquare.RaspberryIO.Native.WiringPi.Micros
-  name: Micros()
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_Micros
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.Micros
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.Micros()
-  nameWithType: WiringPi.Micros()
-- uid: Unosquare.RaspberryIO.Native.WiringPi.Micros*
-  name: Micros
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_Micros_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.Micros
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.Micros
-  nameWithType: WiringPi.Micros
-- uid: Unosquare.RaspberryIO.Native.WiringPi.Millis
-  name: Millis()
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_Millis
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.Millis
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.Millis()
-  nameWithType: WiringPi.Millis()
-- uid: Unosquare.RaspberryIO.Native.WiringPi.Millis*
-  name: Millis
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_Millis_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.Millis
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.Millis
-  nameWithType: WiringPi.Millis
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PhysPinToGpio(System.Int32)
-  name: PhysPinToGpio(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PhysPinToGpio_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PhysPinToGpio(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PhysPinToGpio(System.Int32)
-  nameWithType: WiringPi.PhysPinToGpio(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PhysPinToGpio*
-  name: PhysPinToGpio
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PhysPinToGpio_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PhysPinToGpio
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PhysPinToGpio
-  nameWithType: WiringPi.PhysPinToGpio
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiBoardId(System.Int32@,System.Int32@,System.Int32@,System.Int32@)
-  name: PiBoardId(ref Int32, ref Int32, ref Int32, ref Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiBoardId_System_Int32__System_Int32__System_Int32__System_Int32__
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PiBoardId(System.Int32@,System.Int32@,System.Int32@,System.Int32@)
-  name.vb: PiBoardId(ByRef Int32, ByRef Int32, ByRef Int32, ByRef Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiBoardId(ref System.Int32, ref System.Int32, ref System.Int32, ref System.Int32)
-  fullName.vb: Unosquare.RaspberryIO.Native.WiringPi.PiBoardId(ByRef System.Int32, ByRef System.Int32, ByRef System.Int32, ByRef System.Int32)
-  nameWithType: WiringPi.PiBoardId(ref Int32, ref Int32, ref Int32, ref Int32)
-  nameWithType.vb: WiringPi.PiBoardId(ByRef Int32, ByRef Int32, ByRef Int32, ByRef Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiBoardId*
-  name: PiBoardId
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiBoardId_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PiBoardId
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiBoardId
-  nameWithType: WiringPi.PiBoardId
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiBoardRev
-  name: PiBoardRev()
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiBoardRev
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PiBoardRev
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiBoardRev()
-  nameWithType: WiringPi.PiBoardRev()
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiBoardRev*
-  name: PiBoardRev
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiBoardRev_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PiBoardRev
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiBoardRev
-  nameWithType: WiringPi.PiBoardRev
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiHiPri(System.Int32)
-  name: PiHiPri(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiHiPri_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PiHiPri(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiHiPri(System.Int32)
-  nameWithType: WiringPi.PiHiPri(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiHiPri*
-  name: PiHiPri
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiHiPri_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PiHiPri
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiHiPri
-  nameWithType: WiringPi.PiHiPri
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiLock(System.Int32)
-  name: PiLock(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiLock_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PiLock(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiLock(System.Int32)
-  nameWithType: WiringPi.PiLock(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiLock*
-  name: PiLock
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiLock_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PiLock
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiLock
-  nameWithType: WiringPi.PiLock
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PinMode(System.Int32,System.Int32)
-  name: PinMode(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PinMode_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PinMode(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PinMode(System.Int32, System.Int32)
-  nameWithType: WiringPi.PinMode(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PinMode*
-  name: PinMode
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PinMode_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PinMode
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PinMode
-  nameWithType: WiringPi.PinMode
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PinModeAlt(System.Int32,System.Int32)
-  name: PinModeAlt(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PinModeAlt_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PinModeAlt(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PinModeAlt(System.Int32, System.Int32)
-  nameWithType: WiringPi.PinModeAlt(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PinModeAlt*
-  name: PinModeAlt
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PinModeAlt_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PinModeAlt
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PinModeAlt
-  nameWithType: WiringPi.PinModeAlt
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiThreadCreate(Unosquare.RaspberryIO.Native.ThreadWorker)
-  name: PiThreadCreate(ThreadWorker)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiThreadCreate_Unosquare_RaspberryIO_Native_ThreadWorker_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PiThreadCreate(Unosquare.RaspberryIO.Native.ThreadWorker)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiThreadCreate(Unosquare.RaspberryIO.Native.ThreadWorker)
-  nameWithType: WiringPi.PiThreadCreate(ThreadWorker)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiThreadCreate*
-  name: PiThreadCreate
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiThreadCreate_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PiThreadCreate
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiThreadCreate
-  nameWithType: WiringPi.PiThreadCreate
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiUnlock(System.Int32)
-  name: PiUnlock(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiUnlock_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PiUnlock(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiUnlock(System.Int32)
-  nameWithType: WiringPi.PiUnlock(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PiUnlock*
-  name: PiUnlock
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PiUnlock_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PiUnlock
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PiUnlock
-  nameWithType: WiringPi.PiUnlock
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PullUpDnControl(System.Int32,System.Int32)
-  name: PullUpDnControl(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PullUpDnControl_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PullUpDnControl(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PullUpDnControl(System.Int32, System.Int32)
-  nameWithType: WiringPi.PullUpDnControl(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PullUpDnControl*
-  name: PullUpDnControl
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PullUpDnControl_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PullUpDnControl
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PullUpDnControl
-  nameWithType: WiringPi.PullUpDnControl
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmSetClock(System.Int32)
-  name: PwmSetClock(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmSetClock_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PwmSetClock(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmSetClock(System.Int32)
-  nameWithType: WiringPi.PwmSetClock(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmSetClock*
-  name: PwmSetClock
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmSetClock_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PwmSetClock
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmSetClock
-  nameWithType: WiringPi.PwmSetClock
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmSetMode(System.Int32)
-  name: PwmSetMode(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmSetMode_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PwmSetMode(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmSetMode(System.Int32)
-  nameWithType: WiringPi.PwmSetMode(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmSetMode*
-  name: PwmSetMode
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmSetMode_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PwmSetMode
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmSetMode
-  nameWithType: WiringPi.PwmSetMode
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmSetRange(System.UInt32)
-  name: PwmSetRange(UInt32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmSetRange_System_UInt32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PwmSetRange(System.UInt32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmSetRange(System.UInt32)
-  nameWithType: WiringPi.PwmSetRange(UInt32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmSetRange*
-  name: PwmSetRange
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmSetRange_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PwmSetRange
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmSetRange
-  nameWithType: WiringPi.PwmSetRange
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmToneWrite(System.Int32,System.Int32)
-  name: PwmToneWrite(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmToneWrite_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PwmToneWrite(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmToneWrite(System.Int32, System.Int32)
-  nameWithType: WiringPi.PwmToneWrite(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmToneWrite*
-  name: PwmToneWrite
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmToneWrite_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PwmToneWrite
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmToneWrite
-  nameWithType: WiringPi.PwmToneWrite
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmWrite(System.Int32,System.Int32)
-  name: PwmWrite(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmWrite_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.PwmWrite(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmWrite(System.Int32, System.Int32)
-  nameWithType: WiringPi.PwmWrite(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.PwmWrite*
-  name: PwmWrite
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_PwmWrite_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.PwmWrite
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.PwmWrite
-  nameWithType: WiringPi.PwmWrite
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialClose(System.Int32)
-  name: SerialClose(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialClose_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SerialClose(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialClose(System.Int32)
-  nameWithType: WiringPi.SerialClose(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialClose*
-  name: SerialClose
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialClose_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SerialClose
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialClose
-  nameWithType: WiringPi.SerialClose
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialDataAvail(System.Int32)
-  name: SerialDataAvail(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialDataAvail_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SerialDataAvail(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialDataAvail(System.Int32)
-  nameWithType: WiringPi.SerialDataAvail(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialDataAvail*
-  name: SerialDataAvail
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialDataAvail_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SerialDataAvail
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialDataAvail
-  nameWithType: WiringPi.SerialDataAvail
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialFlush(System.Int32)
-  name: SerialFlush(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialFlush_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SerialFlush(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialFlush(System.Int32)
-  nameWithType: WiringPi.SerialFlush(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialFlush*
-  name: SerialFlush
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialFlush_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SerialFlush
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialFlush
-  nameWithType: WiringPi.SerialFlush
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialGetchar(System.Int32)
-  name: SerialGetchar(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialGetchar_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SerialGetchar(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialGetchar(System.Int32)
-  nameWithType: WiringPi.SerialGetchar(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialGetchar*
-  name: SerialGetchar
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialGetchar_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SerialGetchar
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialGetchar
-  nameWithType: WiringPi.SerialGetchar
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialOpen(System.String,System.Int32)
-  name: SerialOpen(String, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialOpen_System_String_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SerialOpen(System.String,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialOpen(System.String, System.Int32)
-  nameWithType: WiringPi.SerialOpen(String, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialOpen*
-  name: SerialOpen
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialOpen_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SerialOpen
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialOpen
-  nameWithType: WiringPi.SerialOpen
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialPutchar(System.Int32,System.Byte)
-  name: SerialPutchar(Int32, Byte)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialPutchar_System_Int32_System_Byte_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SerialPutchar(System.Int32,System.Byte)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialPutchar(System.Int32, System.Byte)
-  nameWithType: WiringPi.SerialPutchar(Int32, Byte)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialPutchar*
-  name: SerialPutchar
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialPutchar_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SerialPutchar
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialPutchar
-  nameWithType: WiringPi.SerialPutchar
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialPuts(System.Int32,System.String)
-  name: SerialPuts(Int32, String)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialPuts_System_Int32_System_String_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SerialPuts(System.Int32,System.String)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialPuts(System.Int32, System.String)
-  nameWithType: WiringPi.SerialPuts(Int32, String)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SerialPuts*
-  name: SerialPuts
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SerialPuts_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SerialPuts
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SerialPuts
-  nameWithType: WiringPi.SerialPuts
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SetPadDrive(System.Int32,System.Int32)
-  name: SetPadDrive(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SetPadDrive_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SetPadDrive(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SetPadDrive(System.Int32, System.Int32)
-  nameWithType: WiringPi.SetPadDrive(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SetPadDrive*
-  name: SetPadDrive
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SetPadDrive_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SetPadDrive
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SetPadDrive
-  nameWithType: WiringPi.SetPadDrive
-- uid: Unosquare.RaspberryIO.Native.WiringPi.ShiftIn(System.Byte,System.Byte,System.Byte)
-  name: ShiftIn(Byte, Byte, Byte)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_ShiftIn_System_Byte_System_Byte_System_Byte_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.ShiftIn(System.Byte,System.Byte,System.Byte)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.ShiftIn(System.Byte, System.Byte, System.Byte)
-  nameWithType: WiringPi.ShiftIn(Byte, Byte, Byte)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.ShiftIn*
-  name: ShiftIn
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_ShiftIn_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.ShiftIn
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.ShiftIn
-  nameWithType: WiringPi.ShiftIn
-- uid: Unosquare.RaspberryIO.Native.WiringPi.ShiftOut(System.Byte,System.Byte,System.Byte,System.Byte)
-  name: ShiftOut(Byte, Byte, Byte, Byte)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_ShiftOut_System_Byte_System_Byte_System_Byte_System_Byte_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.ShiftOut(System.Byte,System.Byte,System.Byte,System.Byte)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.ShiftOut(System.Byte, System.Byte, System.Byte, System.Byte)
-  nameWithType: WiringPi.ShiftOut(Byte, Byte, Byte, Byte)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.ShiftOut*
-  name: ShiftOut
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_ShiftOut_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.ShiftOut
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.ShiftOut
-  nameWithType: WiringPi.ShiftOut
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmCreate(System.Int32,System.Int32,System.Int32)
-  name: SoftPwmCreate(Int32, Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftPwmCreate_System_Int32_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SoftPwmCreate(System.Int32,System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmCreate(System.Int32, System.Int32, System.Int32)
-  nameWithType: WiringPi.SoftPwmCreate(Int32, Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmCreate*
-  name: SoftPwmCreate
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftPwmCreate_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SoftPwmCreate
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmCreate
-  nameWithType: WiringPi.SoftPwmCreate
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmStop(System.Int32)
-  name: SoftPwmStop(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftPwmStop_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SoftPwmStop(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmStop(System.Int32)
-  nameWithType: WiringPi.SoftPwmStop(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmStop*
-  name: SoftPwmStop
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftPwmStop_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SoftPwmStop
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmStop
-  nameWithType: WiringPi.SoftPwmStop
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmWrite(System.Int32,System.Int32)
-  name: SoftPwmWrite(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftPwmWrite_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SoftPwmWrite(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmWrite(System.Int32, System.Int32)
-  nameWithType: WiringPi.SoftPwmWrite(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmWrite*
-  name: SoftPwmWrite
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftPwmWrite_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SoftPwmWrite
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftPwmWrite
-  nameWithType: WiringPi.SoftPwmWrite
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftToneCreate(System.Int32)
-  name: SoftToneCreate(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftToneCreate_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SoftToneCreate(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftToneCreate(System.Int32)
-  nameWithType: WiringPi.SoftToneCreate(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftToneCreate*
-  name: SoftToneCreate
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftToneCreate_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SoftToneCreate
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftToneCreate
-  nameWithType: WiringPi.SoftToneCreate
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftToneStop(System.Int32)
-  name: SoftToneStop(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftToneStop_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SoftToneStop(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftToneStop(System.Int32)
-  nameWithType: WiringPi.SoftToneStop(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftToneStop*
-  name: SoftToneStop
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftToneStop_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SoftToneStop
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftToneStop
-  nameWithType: WiringPi.SoftToneStop
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftToneWrite(System.Int32,System.Int32)
-  name: SoftToneWrite(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftToneWrite_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.SoftToneWrite(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftToneWrite(System.Int32, System.Int32)
-  nameWithType: WiringPi.SoftToneWrite(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.SoftToneWrite*
-  name: SoftToneWrite
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_SoftToneWrite_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.SoftToneWrite
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.SoftToneWrite
-  nameWithType: WiringPi.SoftToneWrite
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WaitForInterrupt(System.Int32,System.Int32)
-  name: WaitForInterrupt(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WaitForInterrupt_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WaitForInterrupt(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WaitForInterrupt(System.Int32, System.Int32)
-  nameWithType: WiringPi.WaitForInterrupt(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WaitForInterrupt*
-  name: WaitForInterrupt
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WaitForInterrupt_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WaitForInterrupt
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WaitForInterrupt
-  nameWithType: WiringPi.WaitForInterrupt
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CRead(System.Int32)
-  name: WiringPiI2CRead(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CRead_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CRead(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CRead(System.Int32)
-  nameWithType: WiringPi.WiringPiI2CRead(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CRead*
-  name: WiringPiI2CRead
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CRead_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CRead
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CRead
-  nameWithType: WiringPi.WiringPiI2CRead
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg16(System.Int32,System.Int32)
-  name: WiringPiI2CReadReg16(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CReadReg16_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg16(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg16(System.Int32, System.Int32)
-  nameWithType: WiringPi.WiringPiI2CReadReg16(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg16*
-  name: WiringPiI2CReadReg16
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CReadReg16_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg16
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg16
-  nameWithType: WiringPi.WiringPiI2CReadReg16
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg8(System.Int32,System.Int32)
-  name: WiringPiI2CReadReg8(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CReadReg8_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg8(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg8(System.Int32, System.Int32)
-  nameWithType: WiringPi.WiringPiI2CReadReg8(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg8*
-  name: WiringPiI2CReadReg8
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CReadReg8_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg8
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg8
-  nameWithType: WiringPi.WiringPiI2CReadReg8
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CSetup(System.Int32)
-  name: WiringPiI2CSetup(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CSetup_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CSetup(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CSetup(System.Int32)
-  nameWithType: WiringPi.WiringPiI2CSetup(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CSetup*
-  name: WiringPiI2CSetup
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CSetup_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CSetup
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CSetup
-  nameWithType: WiringPi.WiringPiI2CSetup
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWrite(System.Int32,System.Int32)
-  name: WiringPiI2CWrite(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWrite_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWrite(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWrite(System.Int32, System.Int32)
-  nameWithType: WiringPi.WiringPiI2CWrite(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWrite*
-  name: WiringPiI2CWrite
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWrite_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWrite
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWrite
-  nameWithType: WiringPi.WiringPiI2CWrite
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg16(System.Int32,System.Int32,System.Int32)
-  name: WiringPiI2CWriteReg16(Int32, Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWriteReg16_System_Int32_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg16(System.Int32,System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg16(System.Int32, System.Int32, System.Int32)
-  nameWithType: WiringPi.WiringPiI2CWriteReg16(Int32, Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg16*
-  name: WiringPiI2CWriteReg16
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWriteReg16_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg16
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg16
-  nameWithType: WiringPi.WiringPiI2CWriteReg16
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8(System.Int32,System.Int32,System.Int32)
-  name: WiringPiI2CWriteReg8(Int32, Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWriteReg8_System_Int32_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8(System.Int32,System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8(System.Int32, System.Int32, System.Int32)
-  nameWithType: WiringPi.WiringPiI2CWriteReg8(Int32, Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8*
-  name: WiringPiI2CWriteReg8
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWriteReg8_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8
-  nameWithType: WiringPi.WiringPiI2CWriteReg8
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
-  name: WiringPiISR(Int32, Int32, InterrputServiceRoutineCallback)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_System_Int32_System_Int32_Unosquare_RaspberryIO_Native_InterrputServiceRoutineCallback_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32, System.Int32, Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
-  nameWithType: WiringPi.WiringPiISR(Int32, Int32, InterrputServiceRoutineCallback)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR*
-  name: WiringPiISR
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR
-  nameWithType: WiringPi.WiringPiISR
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetup
-  name: WiringPiSetup()
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetup
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetup
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetup()
-  nameWithType: WiringPi.WiringPiSetup()
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetup*
-  name: WiringPiSetup
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetup_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetup
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetup
-  nameWithType: WiringPi.WiringPiSetup
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupGpio
-  name: WiringPiSetupGpio()
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupGpio
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupGpio
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupGpio()
-  nameWithType: WiringPi.WiringPiSetupGpio()
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupGpio*
-  name: WiringPiSetupGpio
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupGpio_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupGpio
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupGpio
-  nameWithType: WiringPi.WiringPiSetupGpio
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupPhys
-  name: WiringPiSetupPhys()
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupPhys
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupPhys
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupPhys()
-  nameWithType: WiringPi.WiringPiSetupPhys()
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupPhys*
-  name: WiringPiSetupPhys
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupPhys_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupPhys
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupPhys
-  nameWithType: WiringPi.WiringPiSetupPhys
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupSys
-  name: WiringPiSetupSys()
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupSys
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupSys
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupSys()
-  nameWithType: WiringPi.WiringPiSetupSys()
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupSys*
-  name: WiringPiSetupSys
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupSys_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupSys
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupSys
-  nameWithType: WiringPi.WiringPiSetupSys
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIDataRW(System.Int32,System.Byte[],System.Int32)
-  name: WiringPiSPIDataRW(Int32, Byte[], Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPIDataRW_System_Int32_System_Byte___System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIDataRW(System.Int32,System.Byte[],System.Int32)
-  name.vb: WiringPiSPIDataRW(Int32, Byte(), Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIDataRW(System.Int32, System.Byte[], System.Int32)
-  fullName.vb: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIDataRW(System.Int32, System.Byte(), System.Int32)
-  nameWithType: WiringPi.WiringPiSPIDataRW(Int32, Byte[], Int32)
-  nameWithType.vb: WiringPi.WiringPiSPIDataRW(Int32, Byte(), Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIDataRW*
-  name: WiringPiSPIDataRW
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPIDataRW_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIDataRW
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIDataRW
-  nameWithType: WiringPi.WiringPiSPIDataRW
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIGetFd(System.Int32)
-  name: WiringPiSPIGetFd(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPIGetFd_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIGetFd(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIGetFd(System.Int32)
-  nameWithType: WiringPi.WiringPiSPIGetFd(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIGetFd*
-  name: WiringPiSPIGetFd
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPIGetFd_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIGetFd
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIGetFd
-  nameWithType: WiringPi.WiringPiSPIGetFd
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetup(System.Int32,System.Int32)
-  name: WiringPiSPISetup(Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPISetup_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetup(System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetup(System.Int32, System.Int32)
-  nameWithType: WiringPi.WiringPiSPISetup(Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetup*
-  name: WiringPiSPISetup
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPISetup_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetup
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetup
-  nameWithType: WiringPi.WiringPiSPISetup
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetupMode(System.Int32,System.Int32,System.Int32)
-  name: WiringPiSPISetupMode(Int32, Int32, Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPISetupMode_System_Int32_System_Int32_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetupMode(System.Int32,System.Int32,System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetupMode(System.Int32, System.Int32, System.Int32)
-  nameWithType: WiringPi.WiringPiSPISetupMode(Int32, Int32, Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetupMode*
-  name: WiringPiSPISetupMode
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPISetupMode_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetupMode
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetupMode
-  nameWithType: WiringPi.WiringPiSPISetupMode
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WpiPinToGpio(System.Int32)
-  name: WpiPinToGpio(Int32)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WpiPinToGpio_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WpiPinToGpio(System.Int32)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WpiPinToGpio(System.Int32)
-  nameWithType: WiringPi.WpiPinToGpio(Int32)
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WpiPinToGpio*
-  name: WpiPinToGpio
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WpiPinToGpio_
-  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WpiPinToGpio
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WpiPinToGpio
-  nameWithType: WiringPi.WpiPinToGpio
+- uid: Unosquare.RaspberryIO.Native.WiringPi.analogRead(System.Int32)
+  name: analogRead(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_analogRead_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.analogRead(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.analogRead(System.Int32)
+  nameWithType: WiringPi.analogRead(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.analogRead*
+  name: analogRead
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_analogRead_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.analogRead
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.analogRead
+  nameWithType: WiringPi.analogRead
+- uid: Unosquare.RaspberryIO.Native.WiringPi.analogWrite(System.Int32,System.Int32)
+  name: analogWrite(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_analogWrite_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.analogWrite(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.analogWrite(System.Int32, System.Int32)
+  nameWithType: WiringPi.analogWrite(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.analogWrite*
+  name: analogWrite
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_analogWrite_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.analogWrite
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.analogWrite
+  nameWithType: WiringPi.analogWrite
+- uid: Unosquare.RaspberryIO.Native.WiringPi.delay(System.UInt32)
+  name: delay(UInt32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_delay_System_UInt32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.delay(System.UInt32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.delay(System.UInt32)
+  nameWithType: WiringPi.delay(UInt32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.delay*
+  name: delay
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_delay_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.delay
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.delay
+  nameWithType: WiringPi.delay
+- uid: Unosquare.RaspberryIO.Native.WiringPi.delayMicroseconds(System.UInt32)
+  name: delayMicroseconds(UInt32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_delayMicroseconds_System_UInt32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.delayMicroseconds(System.UInt32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.delayMicroseconds(System.UInt32)
+  nameWithType: WiringPi.delayMicroseconds(UInt32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.delayMicroseconds*
+  name: delayMicroseconds
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_delayMicroseconds_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.delayMicroseconds
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.delayMicroseconds
+  nameWithType: WiringPi.delayMicroseconds
+- uid: Unosquare.RaspberryIO.Native.WiringPi.digitalRead(System.Int32)
+  name: digitalRead(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_digitalRead_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.digitalRead(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.digitalRead(System.Int32)
+  nameWithType: WiringPi.digitalRead(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.digitalRead*
+  name: digitalRead
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_digitalRead_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.digitalRead
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.digitalRead
+  nameWithType: WiringPi.digitalRead
+- uid: Unosquare.RaspberryIO.Native.WiringPi.digitalReadByte
+  name: digitalReadByte()
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_digitalReadByte
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.digitalReadByte
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.digitalReadByte()
+  nameWithType: WiringPi.digitalReadByte()
+- uid: Unosquare.RaspberryIO.Native.WiringPi.digitalReadByte*
+  name: digitalReadByte
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_digitalReadByte_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.digitalReadByte
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.digitalReadByte
+  nameWithType: WiringPi.digitalReadByte
+- uid: Unosquare.RaspberryIO.Native.WiringPi.digitalWrite(System.Int32,System.Int32)
+  name: digitalWrite(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_digitalWrite_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.digitalWrite(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.digitalWrite(System.Int32, System.Int32)
+  nameWithType: WiringPi.digitalWrite(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.digitalWrite*
+  name: digitalWrite
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_digitalWrite_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.digitalWrite
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.digitalWrite
+  nameWithType: WiringPi.digitalWrite
+- uid: Unosquare.RaspberryIO.Native.WiringPi.digitalWriteByte(System.Int32)
+  name: digitalWriteByte(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_digitalWriteByte_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.digitalWriteByte(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.digitalWriteByte(System.Int32)
+  nameWithType: WiringPi.digitalWriteByte(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.digitalWriteByte*
+  name: digitalWriteByte
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_digitalWriteByte_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.digitalWriteByte
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.digitalWriteByte
+  nameWithType: WiringPi.digitalWriteByte
+- uid: Unosquare.RaspberryIO.Native.WiringPi.getAlt(System.Int32)
+  name: getAlt(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_getAlt_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.getAlt(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.getAlt(System.Int32)
+  nameWithType: WiringPi.getAlt(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.getAlt*
+  name: getAlt
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_getAlt_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.getAlt
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.getAlt
+  nameWithType: WiringPi.getAlt
+- uid: Unosquare.RaspberryIO.Native.WiringPi.gpioClockSet(System.Int32,System.Int32)
+  name: gpioClockSet(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_gpioClockSet_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.gpioClockSet(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.gpioClockSet(System.Int32, System.Int32)
+  nameWithType: WiringPi.gpioClockSet(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.gpioClockSet*
+  name: gpioClockSet
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_gpioClockSet_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.gpioClockSet
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.gpioClockSet
+  nameWithType: WiringPi.gpioClockSet
+- uid: Unosquare.RaspberryIO.Native.WiringPi.micros
+  name: micros()
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_micros
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.micros
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.micros()
+  nameWithType: WiringPi.micros()
+- uid: Unosquare.RaspberryIO.Native.WiringPi.micros*
+  name: micros
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_micros_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.micros
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.micros
+  nameWithType: WiringPi.micros
+- uid: Unosquare.RaspberryIO.Native.WiringPi.millis
+  name: millis()
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_millis
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.millis
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.millis()
+  nameWithType: WiringPi.millis()
+- uid: Unosquare.RaspberryIO.Native.WiringPi.millis*
+  name: millis
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_millis_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.millis
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.millis
+  nameWithType: WiringPi.millis
+- uid: Unosquare.RaspberryIO.Native.WiringPi.physPinToGpio(System.Int32)
+  name: physPinToGpio(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_physPinToGpio_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.physPinToGpio(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.physPinToGpio(System.Int32)
+  nameWithType: WiringPi.physPinToGpio(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.physPinToGpio*
+  name: physPinToGpio
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_physPinToGpio_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.physPinToGpio
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.physPinToGpio
+  nameWithType: WiringPi.physPinToGpio
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piBoardId(System.Int32@,System.Int32@,System.Int32@,System.Int32@)
+  name: piBoardId(ref Int32, ref Int32, ref Int32, ref Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piBoardId_System_Int32__System_Int32__System_Int32__System_Int32__
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.piBoardId(System.Int32@,System.Int32@,System.Int32@,System.Int32@)
+  name.vb: piBoardId(ByRef Int32, ByRef Int32, ByRef Int32, ByRef Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piBoardId(ref System.Int32, ref System.Int32, ref System.Int32, ref System.Int32)
+  fullName.vb: Unosquare.RaspberryIO.Native.WiringPi.piBoardId(ByRef System.Int32, ByRef System.Int32, ByRef System.Int32, ByRef System.Int32)
+  nameWithType: WiringPi.piBoardId(ref Int32, ref Int32, ref Int32, ref Int32)
+  nameWithType.vb: WiringPi.piBoardId(ByRef Int32, ByRef Int32, ByRef Int32, ByRef Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piBoardId*
+  name: piBoardId
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piBoardId_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.piBoardId
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piBoardId
+  nameWithType: WiringPi.piBoardId
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piBoardRev
+  name: piBoardRev()
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piBoardRev
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.piBoardRev
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piBoardRev()
+  nameWithType: WiringPi.piBoardRev()
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piBoardRev*
+  name: piBoardRev
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piBoardRev_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.piBoardRev
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piBoardRev
+  nameWithType: WiringPi.piBoardRev
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piHiPri(System.Int32)
+  name: piHiPri(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piHiPri_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.piHiPri(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piHiPri(System.Int32)
+  nameWithType: WiringPi.piHiPri(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piHiPri*
+  name: piHiPri
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piHiPri_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.piHiPri
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piHiPri
+  nameWithType: WiringPi.piHiPri
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piLock(System.Int32)
+  name: piLock(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piLock_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.piLock(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piLock(System.Int32)
+  nameWithType: WiringPi.piLock(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piLock*
+  name: piLock
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piLock_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.piLock
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piLock
+  nameWithType: WiringPi.piLock
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pinMode(System.Int32,System.Int32)
+  name: pinMode(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pinMode_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.pinMode(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pinMode(System.Int32, System.Int32)
+  nameWithType: WiringPi.pinMode(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pinMode*
+  name: pinMode
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pinMode_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.pinMode
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pinMode
+  nameWithType: WiringPi.pinMode
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pinModeAlt(System.Int32,System.Int32)
+  name: pinModeAlt(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pinModeAlt_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.pinModeAlt(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pinModeAlt(System.Int32, System.Int32)
+  nameWithType: WiringPi.pinModeAlt(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pinModeAlt*
+  name: pinModeAlt
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pinModeAlt_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.pinModeAlt
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pinModeAlt
+  nameWithType: WiringPi.pinModeAlt
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piThreadCreate(Unosquare.RaspberryIO.Native.ThreadWorker)
+  name: piThreadCreate(ThreadWorker)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piThreadCreate_Unosquare_RaspberryIO_Native_ThreadWorker_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.piThreadCreate(Unosquare.RaspberryIO.Native.ThreadWorker)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piThreadCreate(Unosquare.RaspberryIO.Native.ThreadWorker)
+  nameWithType: WiringPi.piThreadCreate(ThreadWorker)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piThreadCreate*
+  name: piThreadCreate
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piThreadCreate_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.piThreadCreate
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piThreadCreate
+  nameWithType: WiringPi.piThreadCreate
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piUnlock(System.Int32)
+  name: piUnlock(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piUnlock_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.piUnlock(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piUnlock(System.Int32)
+  nameWithType: WiringPi.piUnlock(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.piUnlock*
+  name: piUnlock
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_piUnlock_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.piUnlock
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.piUnlock
+  nameWithType: WiringPi.piUnlock
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pullUpDnControl(System.Int32,System.Int32)
+  name: pullUpDnControl(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pullUpDnControl_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.pullUpDnControl(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pullUpDnControl(System.Int32, System.Int32)
+  nameWithType: WiringPi.pullUpDnControl(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pullUpDnControl*
+  name: pullUpDnControl
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pullUpDnControl_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.pullUpDnControl
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pullUpDnControl
+  nameWithType: WiringPi.pullUpDnControl
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmSetClock(System.Int32)
+  name: pwmSetClock(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmSetClock_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.pwmSetClock(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmSetClock(System.Int32)
+  nameWithType: WiringPi.pwmSetClock(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmSetClock*
+  name: pwmSetClock
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmSetClock_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.pwmSetClock
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmSetClock
+  nameWithType: WiringPi.pwmSetClock
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmSetMode(System.Int32)
+  name: pwmSetMode(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmSetMode_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.pwmSetMode(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmSetMode(System.Int32)
+  nameWithType: WiringPi.pwmSetMode(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmSetMode*
+  name: pwmSetMode
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmSetMode_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.pwmSetMode
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmSetMode
+  nameWithType: WiringPi.pwmSetMode
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmSetRange(System.UInt32)
+  name: pwmSetRange(UInt32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmSetRange_System_UInt32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.pwmSetRange(System.UInt32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmSetRange(System.UInt32)
+  nameWithType: WiringPi.pwmSetRange(UInt32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmSetRange*
+  name: pwmSetRange
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmSetRange_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.pwmSetRange
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmSetRange
+  nameWithType: WiringPi.pwmSetRange
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmToneWrite(System.Int32,System.Int32)
+  name: pwmToneWrite(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmToneWrite_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.pwmToneWrite(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmToneWrite(System.Int32, System.Int32)
+  nameWithType: WiringPi.pwmToneWrite(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmToneWrite*
+  name: pwmToneWrite
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmToneWrite_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.pwmToneWrite
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmToneWrite
+  nameWithType: WiringPi.pwmToneWrite
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmWrite(System.Int32,System.Int32)
+  name: pwmWrite(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmWrite_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.pwmWrite(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmWrite(System.Int32, System.Int32)
+  nameWithType: WiringPi.pwmWrite(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.pwmWrite*
+  name: pwmWrite
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_pwmWrite_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.pwmWrite
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.pwmWrite
+  nameWithType: WiringPi.pwmWrite
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialClose(System.Int32)
+  name: serialClose(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialClose_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.serialClose(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialClose(System.Int32)
+  nameWithType: WiringPi.serialClose(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialClose*
+  name: serialClose
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialClose_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.serialClose
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialClose
+  nameWithType: WiringPi.serialClose
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialDataAvail(System.Int32)
+  name: serialDataAvail(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialDataAvail_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.serialDataAvail(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialDataAvail(System.Int32)
+  nameWithType: WiringPi.serialDataAvail(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialDataAvail*
+  name: serialDataAvail
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialDataAvail_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.serialDataAvail
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialDataAvail
+  nameWithType: WiringPi.serialDataAvail
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialFlush(System.Int32)
+  name: serialFlush(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialFlush_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.serialFlush(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialFlush(System.Int32)
+  nameWithType: WiringPi.serialFlush(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialFlush*
+  name: serialFlush
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialFlush_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.serialFlush
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialFlush
+  nameWithType: WiringPi.serialFlush
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialGetchar(System.Int32)
+  name: serialGetchar(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialGetchar_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.serialGetchar(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialGetchar(System.Int32)
+  nameWithType: WiringPi.serialGetchar(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialGetchar*
+  name: serialGetchar
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialGetchar_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.serialGetchar
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialGetchar
+  nameWithType: WiringPi.serialGetchar
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialOpen(System.String,System.Int32)
+  name: serialOpen(String, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialOpen_System_String_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.serialOpen(System.String,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialOpen(System.String, System.Int32)
+  nameWithType: WiringPi.serialOpen(String, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialOpen*
+  name: serialOpen
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialOpen_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.serialOpen
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialOpen
+  nameWithType: WiringPi.serialOpen
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialPutchar(System.Int32,System.Byte)
+  name: serialPutchar(Int32, Byte)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialPutchar_System_Int32_System_Byte_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.serialPutchar(System.Int32,System.Byte)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialPutchar(System.Int32, System.Byte)
+  nameWithType: WiringPi.serialPutchar(Int32, Byte)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialPutchar*
+  name: serialPutchar
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialPutchar_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.serialPutchar
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialPutchar
+  nameWithType: WiringPi.serialPutchar
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialPuts(System.Int32,System.String)
+  name: serialPuts(Int32, String)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialPuts_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.serialPuts(System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialPuts(System.Int32, System.String)
+  nameWithType: WiringPi.serialPuts(Int32, String)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.serialPuts*
+  name: serialPuts
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_serialPuts_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.serialPuts
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.serialPuts
+  nameWithType: WiringPi.serialPuts
+- uid: Unosquare.RaspberryIO.Native.WiringPi.setPadDrive(System.Int32,System.Int32)
+  name: setPadDrive(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_setPadDrive_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.setPadDrive(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.setPadDrive(System.Int32, System.Int32)
+  nameWithType: WiringPi.setPadDrive(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.setPadDrive*
+  name: setPadDrive
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_setPadDrive_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.setPadDrive
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.setPadDrive
+  nameWithType: WiringPi.setPadDrive
+- uid: Unosquare.RaspberryIO.Native.WiringPi.shiftIn(System.Byte,System.Byte,System.Byte)
+  name: shiftIn(Byte, Byte, Byte)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_shiftIn_System_Byte_System_Byte_System_Byte_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.shiftIn(System.Byte,System.Byte,System.Byte)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.shiftIn(System.Byte, System.Byte, System.Byte)
+  nameWithType: WiringPi.shiftIn(Byte, Byte, Byte)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.shiftIn*
+  name: shiftIn
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_shiftIn_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.shiftIn
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.shiftIn
+  nameWithType: WiringPi.shiftIn
+- uid: Unosquare.RaspberryIO.Native.WiringPi.shiftOut(System.Byte,System.Byte,System.Byte,System.Byte)
+  name: shiftOut(Byte, Byte, Byte, Byte)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_shiftOut_System_Byte_System_Byte_System_Byte_System_Byte_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.shiftOut(System.Byte,System.Byte,System.Byte,System.Byte)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.shiftOut(System.Byte, System.Byte, System.Byte, System.Byte)
+  nameWithType: WiringPi.shiftOut(Byte, Byte, Byte, Byte)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.shiftOut*
+  name: shiftOut
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_shiftOut_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.shiftOut
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.shiftOut
+  nameWithType: WiringPi.shiftOut
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softPwmCreate(System.Int32,System.Int32,System.Int32)
+  name: softPwmCreate(Int32, Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softPwmCreate_System_Int32_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.softPwmCreate(System.Int32,System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softPwmCreate(System.Int32, System.Int32, System.Int32)
+  nameWithType: WiringPi.softPwmCreate(Int32, Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softPwmCreate*
+  name: softPwmCreate
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softPwmCreate_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.softPwmCreate
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softPwmCreate
+  nameWithType: WiringPi.softPwmCreate
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softPwmStop(System.Int32)
+  name: softPwmStop(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softPwmStop_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.softPwmStop(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softPwmStop(System.Int32)
+  nameWithType: WiringPi.softPwmStop(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softPwmStop*
+  name: softPwmStop
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softPwmStop_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.softPwmStop
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softPwmStop
+  nameWithType: WiringPi.softPwmStop
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite(System.Int32,System.Int32)
+  name: softPwmWrite(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softPwmWrite_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite(System.Int32, System.Int32)
+  nameWithType: WiringPi.softPwmWrite(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite*
+  name: softPwmWrite
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softPwmWrite_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite
+  nameWithType: WiringPi.softPwmWrite
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softToneCreate(System.Int32)
+  name: softToneCreate(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softToneCreate_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.softToneCreate(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softToneCreate(System.Int32)
+  nameWithType: WiringPi.softToneCreate(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softToneCreate*
+  name: softToneCreate
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softToneCreate_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.softToneCreate
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softToneCreate
+  nameWithType: WiringPi.softToneCreate
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softToneStop(System.Int32)
+  name: softToneStop(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softToneStop_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.softToneStop(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softToneStop(System.Int32)
+  nameWithType: WiringPi.softToneStop(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softToneStop*
+  name: softToneStop
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softToneStop_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.softToneStop
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softToneStop
+  nameWithType: WiringPi.softToneStop
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softToneWrite(System.Int32,System.Int32)
+  name: softToneWrite(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softToneWrite_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.softToneWrite(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softToneWrite(System.Int32, System.Int32)
+  nameWithType: WiringPi.softToneWrite(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.softToneWrite*
+  name: softToneWrite
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_softToneWrite_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.softToneWrite
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.softToneWrite
+  nameWithType: WiringPi.softToneWrite
+- uid: Unosquare.RaspberryIO.Native.WiringPi.waitForInterrupt(System.Int32,System.Int32)
+  name: waitForInterrupt(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_waitForInterrupt_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.waitForInterrupt(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.waitForInterrupt(System.Int32, System.Int32)
+  nameWithType: WiringPi.waitForInterrupt(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.waitForInterrupt*
+  name: waitForInterrupt
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_waitForInterrupt_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.waitForInterrupt
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.waitForInterrupt
+  nameWithType: WiringPi.waitForInterrupt
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CRead(System.Int32)
+  name: wiringPiI2CRead(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CRead_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CRead(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CRead(System.Int32)
+  nameWithType: WiringPi.wiringPiI2CRead(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CRead*
+  name: wiringPiI2CRead
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CRead_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CRead
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CRead
+  nameWithType: WiringPi.wiringPiI2CRead
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg16(System.Int32,System.Int32)
+  name: wiringPiI2CReadReg16(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CReadReg16_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg16(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg16(System.Int32, System.Int32)
+  nameWithType: WiringPi.wiringPiI2CReadReg16(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg16*
+  name: wiringPiI2CReadReg16
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CReadReg16_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg16
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg16
+  nameWithType: WiringPi.wiringPiI2CReadReg16
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg8(System.Int32,System.Int32)
+  name: wiringPiI2CReadReg8(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CReadReg8_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg8(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg8(System.Int32, System.Int32)
+  nameWithType: WiringPi.wiringPiI2CReadReg8(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg8*
+  name: wiringPiI2CReadReg8
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CReadReg8_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg8
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg8
+  nameWithType: WiringPi.wiringPiI2CReadReg8
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CSetup(System.Int32)
+  name: wiringPiI2CSetup(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CSetup_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CSetup(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CSetup(System.Int32)
+  nameWithType: WiringPi.wiringPiI2CSetup(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CSetup*
+  name: wiringPiI2CSetup
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CSetup_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CSetup
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CSetup
+  nameWithType: WiringPi.wiringPiI2CSetup
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWrite(System.Int32,System.Int32)
+  name: wiringPiI2CWrite(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWrite_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWrite(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWrite(System.Int32, System.Int32)
+  nameWithType: WiringPi.wiringPiI2CWrite(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWrite*
+  name: wiringPiI2CWrite
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWrite_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWrite
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWrite
+  nameWithType: WiringPi.wiringPiI2CWrite
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg16(System.Int32,System.Int32,System.Int32)
+  name: wiringPiI2CWriteReg16(Int32, Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWriteReg16_System_Int32_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg16(System.Int32,System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg16(System.Int32, System.Int32, System.Int32)
+  nameWithType: WiringPi.wiringPiI2CWriteReg16(Int32, Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg16*
+  name: wiringPiI2CWriteReg16
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWriteReg16_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg16
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg16
+  nameWithType: WiringPi.wiringPiI2CWriteReg16
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg8(System.Int32,System.Int32,System.Int32)
+  name: wiringPiI2CWriteReg8(Int32, Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWriteReg8_System_Int32_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg8(System.Int32,System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg8(System.Int32, System.Int32, System.Int32)
+  nameWithType: WiringPi.wiringPiI2CWriteReg8(Int32, Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg8*
+  name: wiringPiI2CWriteReg8
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWriteReg8_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg8
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg8
+  nameWithType: WiringPi.wiringPiI2CWriteReg8
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
+  name: wiringPiISR(Int32, Int32, InterrputServiceRoutineCallback)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiISR_System_Int32_System_Int32_Unosquare_RaspberryIO_Native_InterrputServiceRoutineCallback_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiISR(System.Int32, System.Int32, Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
+  nameWithType: WiringPi.wiringPiISR(Int32, Int32, InterrputServiceRoutineCallback)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiISR*
+  name: wiringPiISR
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiISR_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiISR
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiISR
+  nameWithType: WiringPi.wiringPiISR
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetup
+  name: wiringPiSetup()
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetup
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetup
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetup()
+  nameWithType: WiringPi.wiringPiSetup()
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetup*
+  name: wiringPiSetup
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetup_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetup
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetup
+  nameWithType: WiringPi.wiringPiSetup
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupGpio
+  name: wiringPiSetupGpio()
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupGpio
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupGpio
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupGpio()
+  nameWithType: WiringPi.wiringPiSetupGpio()
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupGpio*
+  name: wiringPiSetupGpio
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupGpio_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupGpio
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupGpio
+  nameWithType: WiringPi.wiringPiSetupGpio
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupPhys
+  name: wiringPiSetupPhys()
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupPhys
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupPhys
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupPhys()
+  nameWithType: WiringPi.wiringPiSetupPhys()
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupPhys*
+  name: wiringPiSetupPhys
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupPhys_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupPhys
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupPhys
+  nameWithType: WiringPi.wiringPiSetupPhys
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupSys
+  name: wiringPiSetupSys()
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupSys
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupSys
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupSys()
+  nameWithType: WiringPi.wiringPiSetupSys()
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupSys*
+  name: wiringPiSetupSys
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupSys_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupSys
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupSys
+  nameWithType: WiringPi.wiringPiSetupSys
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIDataRW(System.Int32,System.Byte[],System.Int32)
+  name: wiringPiSPIDataRW(Int32, Byte[], Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPIDataRW_System_Int32_System_Byte___System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIDataRW(System.Int32,System.Byte[],System.Int32)
+  name.vb: wiringPiSPIDataRW(Int32, Byte(), Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIDataRW(System.Int32, System.Byte[], System.Int32)
+  fullName.vb: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIDataRW(System.Int32, System.Byte(), System.Int32)
+  nameWithType: WiringPi.wiringPiSPIDataRW(Int32, Byte[], Int32)
+  nameWithType.vb: WiringPi.wiringPiSPIDataRW(Int32, Byte(), Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIDataRW*
+  name: wiringPiSPIDataRW
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPIDataRW_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIDataRW
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIDataRW
+  nameWithType: WiringPi.wiringPiSPIDataRW
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIGetFd(System.Int32)
+  name: wiringPiSPIGetFd(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPIGetFd_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIGetFd(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIGetFd(System.Int32)
+  nameWithType: WiringPi.wiringPiSPIGetFd(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIGetFd*
+  name: wiringPiSPIGetFd
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPIGetFd_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIGetFd
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIGetFd
+  nameWithType: WiringPi.wiringPiSPIGetFd
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup(System.Int32,System.Int32)
+  name: wiringPiSPISetup(Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetup_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup(System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup(System.Int32, System.Int32)
+  nameWithType: WiringPi.wiringPiSPISetup(Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup*
+  name: wiringPiSPISetup
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetup_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup
+  nameWithType: WiringPi.wiringPiSPISetup
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetupMode(System.Int32,System.Int32,System.Int32)
+  name: wiringPiSPISetupMode(Int32, Int32, Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetupMode_System_Int32_System_Int32_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetupMode(System.Int32,System.Int32,System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetupMode(System.Int32, System.Int32, System.Int32)
+  nameWithType: WiringPi.wiringPiSPISetupMode(Int32, Int32, Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetupMode*
+  name: wiringPiSPISetupMode
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetupMode_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetupMode
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetupMode
+  nameWithType: WiringPi.wiringPiSPISetupMode
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wpiPinToGpio(System.Int32)
+  name: wpiPinToGpio(Int32)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wpiPinToGpio_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.wpiPinToGpio(System.Int32)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wpiPinToGpio(System.Int32)
+  nameWithType: WiringPi.wpiPinToGpio(Int32)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.wpiPinToGpio*
+  name: wpiPinToGpio
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_wpiPinToGpio_
+  commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.wpiPinToGpio
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.wpiPinToGpio
+  nameWithType: WiringPi.wpiPinToGpio
 - uid: Unosquare.RaspberryIO.Pi
   name: Pi
   href: api/Unosquare.RaspberryIO.Pi.html

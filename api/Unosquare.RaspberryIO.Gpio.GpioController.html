@@ -82,7 +82,7 @@
   
   <h1 id="Unosquare_RaspberryIO_Gpio_GpioController" data-uid="Unosquare.RaspberryIO.Gpio.GpioController" class="text-break">Class GpioController
   </h1>
-  <div class="markdown level0 summary"><p>Represents a singleton of the Raspberry Pi GPIO controller
+  <div class="markdown level0 summary"><p>Represents a singleton of the Raspberry Pi GPIO controller 
 as an IReadOnlyCollection of GpioPins
 Low level operations are accomplished by using the Wiring Pi library.
 Use the Instance property to access the singleton&apos;s instance</p>
@@ -134,60 +134,6 @@ Use the Instance property to access the singleton&apos;s instance</p>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Gpio_GpioController_HeaderP1_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1*"></a>
-  <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_HeaderP1" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1">HeaderP1</h4>
-  <div class="markdown level1 summary"><p>Provides all the pins on Header P1 of the Pi as a lookup by physical header pin number.
-This header is the main header and it is the one commonly used.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ReadOnlyDictionary&lt;int, GpioPin&gt; HeaderP1 { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.ObjectModel.ReadOnlyDictionary</span>&lt;<span class="xref">System.Int32</span>, <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Unosquare_RaspberryIO_Gpio_GpioController_HeaderP5_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5*"></a>
-  <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_HeaderP5" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5">HeaderP5</h4>
-  <div class="markdown level1 summary"><p>Provides all the pins on Header P5 of the Pi as a lookup by physical header pin number.
-This header is the secondary header and it is rarely used.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ReadOnlyDictionary&lt;int, GpioPin&gt; HeaderP5 { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.ObjectModel.ReadOnlyDictionary</span>&lt;<span class="xref">System.Int32</span>, <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_IsInitialized_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.IsInitialized*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_IsInitialized" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.IsInitialized">IsInitialized</h4>
   <div class="markdown level1 summary"><p>Determines if the underlying GPIO controller has been initialized properly.</p>
@@ -217,13 +163,12 @@ This header is the secondary header and it is rarely used.</p>
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Item_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Item*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Item_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Item(System.Int32)">Item[Int32]</h4>
-  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a> with the specified Wiring Pi pin number.
-Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by physical pin number.</p>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a> with the specified pin number.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GpioPin this[int wiringPiPinNumber] { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public GpioPin this[int pinNumber] { get; }</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -237,8 +182,8 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">wiringPiPinNumber</span></td>
-        <td><p>The pin number as defined by Wiring Pi. This is not the header pin number as pin number in headers are obvoisly repeating.</p>
+        <td><span class="parametername">pinNumber</span></td>
+        <td><p>The pin number.</p>
 </td>
       </tr>
     </tbody>
@@ -270,8 +215,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
     <tbody>
       <tr>
         <td><span class="xref">System.IndexOutOfRangeException</span></td>
-        <td><p>When the pin index is not found</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -279,7 +223,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Item_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Item*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Item_Unosquare_RaspberryIO_Gpio_WiringPiPin_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.WiringPiPin)">Item[WiringPiPin]</h4>
-  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a> with the specified Wiring Pi pin number.</p>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="Unosquare.RaspberryIO.Gpio.GpioPin.html">GpioPin</a> with the specified pin number.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -324,7 +268,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin00_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin00*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin00" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin00">Pin00</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 00.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 00.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -350,7 +294,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin01_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin01*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin01" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin01">Pin01</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 01.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 01.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -376,7 +320,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin02_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin02*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin02" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin02">Pin02</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 02.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 02.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -402,7 +346,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin03_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin03*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin03" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin03">Pin03</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 03.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 03.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -428,7 +372,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin04_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin04*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin04" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin04">Pin04</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 04.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 04.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -454,7 +398,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin05_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin05*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin05" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin05">Pin05</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 05.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 05.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -480,7 +424,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin06_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin06*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin06" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin06">Pin06</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 06.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 06.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -506,7 +450,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin07_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin07*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin07" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin07">Pin07</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 07.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 07.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -532,7 +476,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin08_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin08*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin08" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin08">Pin08</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 08.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 08.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -558,7 +502,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin09_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin09*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin09" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin09">Pin09</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 09.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 09.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -584,7 +528,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin10_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin10*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin10" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin10">Pin10</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 10.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 10.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -610,7 +554,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin11_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin11*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin11" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin11">Pin11</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 11.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 11.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -636,7 +580,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin12_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin12*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin12" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin12">Pin12</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 12.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 12.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -662,7 +606,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin13_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin13*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin13" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin13">Pin13</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 13.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 13.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -688,7 +632,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin14_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin14*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin14" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin14">Pin14</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 14.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 14.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -714,7 +658,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin15_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin15*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin15" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin15">Pin15</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 15.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 15.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -740,7 +684,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin16_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin16*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin16" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin16">Pin16</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 16.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 16.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -766,7 +710,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin17_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin17*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin17" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin17">Pin17</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 17.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 17.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -792,7 +736,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin18_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin18*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin18" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin18">Pin18</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 18.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 18.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -818,7 +762,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin19_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin19*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin19" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin19">Pin19</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 19.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 19.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -844,7 +788,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin20_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin20*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin20" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin20">Pin20</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 20.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 20.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -870,7 +814,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin21_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin21*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin21" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin21">Pin21</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 21.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 21.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -896,7 +840,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin22_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin22*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin22" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin22">Pin22</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 22.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 22.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -922,7 +866,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin23_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin23*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin23" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin23">Pin23</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 23.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 23.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -948,7 +892,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin24_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin24*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin24" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin24">Pin24</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 24.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 24.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -974,7 +918,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin25_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin25*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin25" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin25">Pin25</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 25.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 25.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1000,7 +944,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin26_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin26*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin26" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin26">Pin26</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 26.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 26.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1026,7 +970,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin27_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin27*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin27" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin27">Pin27</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 27.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 27.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1052,7 +996,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin28_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin28*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin28" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin28">Pin28</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 28.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 28.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1078,7 +1022,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin29_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin29*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin29" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin29">Pin29</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 29.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 29.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1104,7 +1048,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin30_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin30*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin30" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin30">Pin30</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 30.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 30.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1130,7 +1074,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_Pin31_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin31*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_Pin31" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.Pin31">Pin31</h4>
-  <div class="markdown level1 summary"><p>Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 31.</p>
+  <div class="markdown level1 summary"><p>Provides direct access to the Pin 31.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1211,7 +1155,7 @@ Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by phys
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_ReadByte_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.ReadByte*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_ReadByte" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.ReadByte">ReadByte()</h4>
-  <div class="markdown level1 summary"><p>This reads the 8-bit byte supplied to the first 8 GPIO pins.
+  <div class="markdown level1 summary"><p>This reads the 8-bit byte supplied to the first 8 GPIO pins. 
 It’s the fastest way to get all 8 bits at once to a particular value.
 Please note this function is undocumented and unsopported</p>
 </div>
@@ -1256,7 +1200,7 @@ Please note this function is undocumented and unsopported</p>
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_ReadByteAsync_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_ReadByteAsync" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync">ReadByteAsync()</h4>
-  <div class="markdown level1 summary"><p>This reads the 8-bit byte supplied to the first 8 GPIO pins.
+  <div class="markdown level1 summary"><p>This reads the 8-bit byte supplied to the first 8 GPIO pins. 
 It’s the fastest way to get all 8 bits at once to a particular value.
 Please note this function is undocumented and unsopported</p>
 </div>
@@ -1285,8 +1229,8 @@ Please note this function is undocumented and unsopported</p>
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_SetPadDrive_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_SetPadDrive_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive(System.Int32,System.Int32)">SetPadDrive(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>This sets the “strength” of the pad drivers for a particular group of pins.
-There are 3 groups of pins and the drive strength is from 0 to 7.
+  <div class="markdown level1 summary"><p>This sets the “strength” of the pad drivers for a particular group of pins. 
+There are 3 groups of pins and the drive strength is from 0 to 7. 
 Do not use this unless you know what you are doing.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1375,8 +1319,8 @@ Do not use this unless you know what you are doing.</p>
   
   <a id="Unosquare_RaspberryIO_Gpio_GpioController_WriteByte_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.WriteByte*"></a>
   <h4 id="Unosquare_RaspberryIO_Gpio_GpioController_WriteByte_System_Byte_" data-uid="Unosquare.RaspberryIO.Gpio.GpioController.WriteByte(System.Byte)">WriteByte(Byte)</h4>
-  <div class="markdown level1 summary"><p>This writes the 8-bit byte supplied to the first 8 GPIO pins.
-It’s the fastest way to set all 8 bits at once to a particular value,
+  <div class="markdown level1 summary"><p>This writes the 8-bit byte supplied to the first 8 GPIO pins. 
+It’s the fastest way to set all 8 bits at once to a particular value, 
 although it still takes two write operations to the Pi’s GPIO hardware.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
