@@ -101,7 +101,7 @@
   
   <a id="Unosquare_RaspberryIO_Native_Timing_MicrosecondsSinceSetup_" data-uid="Unosquare.RaspberryIO.Native.Timing.MicrosecondsSinceSetup*"></a>
   <h4 id="Unosquare_RaspberryIO_Native_Timing_MicrosecondsSinceSetup" data-uid="Unosquare.RaspberryIO.Native.Timing.MicrosecondsSinceSetup">MicrosecondsSinceSetup</h4>
-  <div class="markdown level1 summary"><p>This returns a number representing the number of microseconds since your 
+  <div class="markdown level1 summary"><p>This returns a number representing the number of microseconds since your
 program initialized the GPIO controller
 It returns an unsigned 32-bit number which wraps after approximately 71 minutes.</p>
 </div>
@@ -130,8 +130,8 @@ It returns an unsigned 32-bit number which wraps after approximately 71 minutes.
   
   <a id="Unosquare_RaspberryIO_Native_Timing_MillisecondsSinceSetup_" data-uid="Unosquare.RaspberryIO.Native.Timing.MillisecondsSinceSetup*"></a>
   <h4 id="Unosquare_RaspberryIO_Native_Timing_MillisecondsSinceSetup" data-uid="Unosquare.RaspberryIO.Native.Timing.MillisecondsSinceSetup">MillisecondsSinceSetup</h4>
-  <div class="markdown level1 summary"><p>This returns a number representing the number of milliseconds since your program 
-initialized the GPIO controller. 
+  <div class="markdown level1 summary"><p>This returns a number representing the number of milliseconds since your program
+initialized the GPIO controller.
 It returns an unsigned 32-bit number which wraps after 49 days.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -207,8 +207,8 @@ See the manual pages on Posix threads (man pthread) if you need more control ove
   
   <a id="Unosquare_RaspberryIO_Native_Timing_Lock_" data-uid="Unosquare.RaspberryIO.Native.Timing.Lock*"></a>
   <h4 id="Unosquare_RaspberryIO_Native_Timing_Lock_Unosquare_RaspberryIO_Native_ThreadLockKey_" data-uid="Unosquare.RaspberryIO.Native.Timing.Lock(Unosquare.RaspberryIO.Native.ThreadLockKey)">Lock(ThreadLockKey)</h4>
-  <div class="markdown level1 summary"><p>These allow you to synchronize variable updates from your main program to any threads running in your program. 
-keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key, 
+  <div class="markdown level1 summary"><p>These allow you to synchronize variable updates from your main program to any threads running in your program.
+keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key,
 it will be stalled until the first process has unlocked the same key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -238,11 +238,11 @@ it will be stalled until the first process has unlocked the same key.</p>
   
   <a id="Unosquare_RaspberryIO_Native_Timing_SetThreadPriority_" data-uid="Unosquare.RaspberryIO.Native.Timing.SetThreadPriority*"></a>
   <h4 id="Unosquare_RaspberryIO_Native_Timing_SetThreadPriority_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.Timing.SetThreadPriority(System.Int32)">SetThreadPriority(Int32)</h4>
-  <div class="markdown level1 summary"><p>This attempts to shift your program (or thread in a multi-threaded program) to a higher priority and 
-enables a real-time scheduling. The priority parameter should be from 0 (the default) to 99 (the maximum). 
-This won’t make your program go any faster, but it will give it a bigger slice of time when other programs 
-are running. The priority parameter works relative to others – so you can make one program priority 1 and 
-another priority 2 and it will have the same effect as setting one to 10 and the other to 90 
+  <div class="markdown level1 summary"><p>This attempts to shift your program (or thread in a multi-threaded program) to a higher priority and
+enables a real-time scheduling. The priority parameter should be from 0 (the default) to 99 (the maximum).
+This won’t make your program go any faster, but it will give it a bigger slice of time when other programs
+are running. The priority parameter works relative to others – so you can make one program priority 1 and
+another priority 2 and it will have the same effect as setting one to 10 and the other to 90
 (as long as no other programs are running with elevated priorities)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -272,12 +272,12 @@ another priority 2 and it will have the same effect as setting one to 10 and the
   
   <a id="Unosquare_RaspberryIO_Native_Timing_SleepMicroseconds_" data-uid="Unosquare.RaspberryIO.Native.Timing.SleepMicroseconds*"></a>
   <h4 id="Unosquare_RaspberryIO_Native_Timing_SleepMicroseconds_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.Timing.SleepMicroseconds(System.UInt32)">SleepMicroseconds(UInt32)</h4>
-  <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong microseconds. 
-Due to the multi-tasking nature of Linux it could be longer. 
+  <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong microseconds.
+Due to the multi-tasking nature of Linux it could be longer.
 Note that the maximum delay is an unsigned 32-bit integer microseconds or approximately 71 minutes.
-Delays under 100 microseconds are timed using a hard-coded loop continually polling the system time, 
-Delays over 100 microseconds are done using the system nanosleep() function – 
-You may need to consider the implications of very short delays on the overall performance of the system, 
+Delays under 100 microseconds are timed using a hard-coded loop continually polling the system time,
+Delays over 100 microseconds are done using the system nanosleep() function –
+You may need to consider the implications of very short delays on the overall performance of the system,
 especially if using threads.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -307,8 +307,8 @@ especially if using threads.</p>
   
   <a id="Unosquare_RaspberryIO_Native_Timing_SleepMilliseconds_" data-uid="Unosquare.RaspberryIO.Native.Timing.SleepMilliseconds*"></a>
   <h4 id="Unosquare_RaspberryIO_Native_Timing_SleepMilliseconds_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.Timing.SleepMilliseconds(System.UInt32)">SleepMilliseconds(UInt32)</h4>
-  <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong milliseconds. 
-Due to the multi-tasking nature of Linux it could be longer. 
+  <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong milliseconds.
+Due to the multi-tasking nature of Linux it could be longer.
 Note that the maximum delay is an unsigned 32-bit integer or approximately 49 days.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -338,8 +338,8 @@ Note that the maximum delay is an unsigned 32-bit integer or approximately 49 da
   
   <a id="Unosquare_RaspberryIO_Native_Timing_Unlock_" data-uid="Unosquare.RaspberryIO.Native.Timing.Unlock*"></a>
   <h4 id="Unosquare_RaspberryIO_Native_Timing_Unlock_Unosquare_RaspberryIO_Native_ThreadLockKey_" data-uid="Unosquare.RaspberryIO.Native.Timing.Unlock(Unosquare.RaspberryIO.Native.ThreadLockKey)">Unlock(ThreadLockKey)</h4>
-  <div class="markdown level1 summary"><p>These allow you to synchronize variable updates from your main program to any threads running in your program. 
-keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key, 
+  <div class="markdown level1 summary"><p>These allow you to synchronize variable updates from your main program to any threads running in your program.
+keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key,
 it will be stalled until the first process has unlocked the same key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>

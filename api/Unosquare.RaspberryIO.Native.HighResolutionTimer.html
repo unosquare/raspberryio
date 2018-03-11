@@ -77,20 +77,21 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Unosquare.RaspberryIO.HighResolutionTimer">
+            <article class="content wrap" id="_content" data-uid="Unosquare.RaspberryIO.Native.HighResolutionTimer">
   
   
-  <h1 id="Unosquare_RaspberryIO_HighResolutionTimer" data-uid="Unosquare.RaspberryIO.HighResolutionTimer" class="text-break">Class HighResolutionTimer
+  <h1 id="Unosquare_RaspberryIO_Native_HighResolutionTimer" data-uid="Unosquare.RaspberryIO.Native.HighResolutionTimer" class="text-break">Class HighResolutionTimer
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Provides access to a high- esolution, time measuring device.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">HighResolutionTimer</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.RaspberryIO.html">Unosquare.RaspberryIO</a></h6>
-  <h5 id="Unosquare_RaspberryIO_HighResolutionTimer_syntax">Syntax</h5>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.RaspberryIO.Native.html">Unosquare.RaspberryIO.Native</a></h6>
+  <h5 id="Unosquare_RaspberryIO_Native_HighResolutionTimer_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class HighResolutionTimer : Stopwatch</code></pre>
   </div>
@@ -98,21 +99,39 @@
   </h3>
   
   
-  <a id="Unosquare_RaspberryIO_HighResolutionTimer__ctor_" data-uid="Unosquare.RaspberryIO.HighResolutionTimer.#ctor*"></a>
-  <h4 id="Unosquare_RaspberryIO_HighResolutionTimer__ctor" data-uid="Unosquare.RaspberryIO.HighResolutionTimer.#ctor">HighResolutionTimer()</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Unosquare_RaspberryIO_Native_HighResolutionTimer__ctor_" data-uid="Unosquare.RaspberryIO.Native.HighResolutionTimer.#ctor*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_HighResolutionTimer__ctor" data-uid="Unosquare.RaspberryIO.Native.HighResolutionTimer.#ctor">HighResolutionTimer()</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Unosquare.RaspberryIO.Native.HighResolutionTimer.html">HighResolutionTimer</a> class.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public HighResolutionTimer()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>High-resolution timer not available</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   
   
-  <a id="Unosquare_RaspberryIO_HighResolutionTimer_ElapsedMicroseconds_" data-uid="Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds*"></a>
-  <h4 id="Unosquare_RaspberryIO_HighResolutionTimer_ElapsedMicroseconds" data-uid="Unosquare.RaspberryIO.HighResolutionTimer.ElapsedMicroseconds">ElapsedMicroseconds</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Unosquare_RaspberryIO_Native_HighResolutionTimer_ElapsedMicroseconds_" data-uid="Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_HighResolutionTimer_ElapsedMicroseconds" data-uid="Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds">ElapsedMicroseconds</h4>
+  <div class="markdown level1 summary"><p>Gets the elapsed microseconds.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -129,6 +148,32 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Native_HighResolutionTimer_MicrosecondsPerTick_" data-uid="Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_HighResolutionTimer_MicrosecondsPerTick" data-uid="Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick">MicrosecondsPerTick</h4>
+  <div class="markdown level1 summary"><p>Gets the numer of microseconds per timer tick.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double MicrosecondsPerTick { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
         <td></td>
       </tr>
     </tbody>
