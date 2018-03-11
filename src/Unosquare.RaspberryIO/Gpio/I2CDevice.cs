@@ -46,7 +46,7 @@
         {
             lock (SyncLock)
             {
-                var result = WiringPi.wiringPiI2CRead(FileDescriptor);
+                var result = WiringPi.WiringPiI2CRead(FileDescriptor);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Read));
                 return (byte)result;
             }
@@ -73,7 +73,7 @@
                 var buffer = new byte[length];
                 for (var i = 0; i < length; i++)
                 {
-                    var result = WiringPi.wiringPiI2CRead(FileDescriptor);
+                    var result = WiringPi.WiringPiI2CRead(FileDescriptor);
                     if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Read));
                     buffer[i] = (byte)result;
                 }
@@ -100,7 +100,7 @@
         {
             lock (SyncLock)
             {
-                var result = WiringPi.wiringPiI2CWrite(FileDescriptor, data);
+                var result = WiringPi.WiringPiI2CWrite(FileDescriptor, data);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Write));
             }
         }
@@ -126,7 +126,7 @@
             {
                 foreach (var b in data)
                 {
-                    WiringPi.wiringPiI2CWrite(FileDescriptor, b);
+                    WiringPi.WiringPiI2CWrite(FileDescriptor, b);
                     if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(Write));
                 }
             }
@@ -151,7 +151,7 @@
         {
             lock (SyncLock)
             {
-                var result = WiringPi.wiringPiI2CWriteReg8(FileDescriptor, address, data);
+                var result = WiringPi.WiringPiI2CWriteReg8(FileDescriptor, address, data);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(WriteAddressByte));
             }
         }
@@ -165,7 +165,7 @@
         {
             lock (SyncLock)
             {
-                var result = WiringPi.wiringPiI2CWriteReg16(FileDescriptor, address, data);
+                var result = WiringPi.WiringPiI2CWriteReg16(FileDescriptor, address, data);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(WriteAddressWord));
             }
         }
@@ -179,7 +179,7 @@
         {
             lock (SyncLock)
             {
-                var result = WiringPi.wiringPiI2CReadReg8(FileDescriptor, address);
+                var result = WiringPi.WiringPiI2CReadReg8(FileDescriptor, address);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(ReadAddressByte));
 
                 return (byte)result;
@@ -195,7 +195,7 @@
         {
             lock (SyncLock)
             {
-                var result = WiringPi.wiringPiI2CReadReg16(FileDescriptor, address);
+                var result = WiringPi.WiringPiI2CReadReg16(FileDescriptor, address);
                 if (result < 0) HardwareException.Throw(nameof(I2CDevice), nameof(ReadAddressWord));
 
                 return Convert.ToUInt16(result);

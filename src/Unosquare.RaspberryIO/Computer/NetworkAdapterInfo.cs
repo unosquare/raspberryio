@@ -1,11 +1,11 @@
-﻿namespace Unosquare.RaspberryIO.Models
+﻿namespace Unosquare.RaspberryIO.Computer
 {
     using System.Net;
 
     /// <summary>
     /// Represents a Network Adapter
     /// </summary>
-    public class NetworkAdapter
+    public class NetworkAdapterInfo
     {
         /// <summary>
         /// Gets or sets the name.

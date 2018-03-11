@@ -2,49 +2,46 @@
 {
     using System.Runtime.InteropServices;
 
-#pragma warning disable SA1300 // Element must begin with upper-case letter
     /// <summary>
     /// OS uname structure
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal struct utsname
+    internal struct SystemName
     {
         /// <summary>
         /// System name
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
-        public string sysname;
+        public string SysName;
 
         /// <summary>
         /// Node name
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
-        public string nodename;
+        public string NodeName;
 
         /// <summary>
         /// Release level
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
-        public string release;
+        public string Release;
 
         /// <summary>
         /// Version level
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
-        public string version;
+        public string Version;
 
         /// <summary>
         /// Hardware level
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
-        public string machine;
+        public string Machine;
 
         /// <summary>
         /// Domain name
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
-        public string domainname;
-
-#pragma warning restore SA1300 // Element must begin with upper-case letter
+        public string DomainName;
     }
 }

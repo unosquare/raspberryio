@@ -1,6 +1,5 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Models;
     using Swan;
     using Swan.Abstractions;
     using Swan.Components;
@@ -27,17 +26,17 @@
         /// Retrieves the wireless networks.
         /// </summary>
         /// <param name="adapter">The adapter.</param>
-        /// <returns></returns>
+        /// <returns>A list of WiFi networks</returns>
         public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string adapter)
         {
-            return RetrieveWirelessNetworks(new[] {adapter});
+            return RetrieveWirelessNetworks(new[] { adapter });
         }
 
         /// <summary>
         /// Retrieves the wireless networks.
         /// </summary>
         /// <param name="adapters">The adapters.</param>
-        /// <returns></returns>
+        /// <returns>A list of WiFi networks</returns>
         public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string[] adapters = null)
         {
             var result = new List<WirelessNetworkInfo>();
@@ -54,7 +53,7 @@
                 for (var i = 0; i < outputLines.Length; i++)
                 {
                     var line = outputLines[i];
-                                                          
+
                     if (line.StartsWith(EssidTag) == false) continue;
 
                     var network = new WirelessNetworkInfo()
@@ -67,7 +66,7 @@
                         if (i + 1 >= outputLines.Length) break;
 
                         // should look for two lines before the ESSID acording to the scan
-                        line = outputLines[i-2];
+                        line = outputLines[i - 2];
 
                         if (line.StartsWith("Quality="))
                         {
@@ -81,7 +80,7 @@
                         if (i + 1 >= outputLines.Length) break;
 
                         // should look for a line before the ESSID  acording to the scan
-                        line = outputLines[i-1];
+                        line = outputLines[i - 1];
 
                         if (line.StartsWith("Encryption key:"))
                         {
@@ -89,7 +88,7 @@
                             break;
                         }
                     }
-                    
+
                     if (result.Any(x => x.Name == network.Name) == false)
                         result.Add(network);
                 }
@@ -104,11 +103,12 @@
         /// <param name="adapterName">Name of the adapter.</param>
         /// <param name="networkSsid">The network ssid.</param>
         /// <param name="password">The password.</param>
-        /// <returns></returns>
-        public bool SetupWirelessNetwork(string adapterName, string networkSsid, string password = null)
+        /// <param name="countryCode">The 2-letter country code in uppercase. Default is US.</param>
+        /// <returns>True if successful. Otherwise, false.</returns>
+        public bool SetupWirelessNetwork(string adapterName, string networkSsid, string password = null, string countryCode = "US")
         {
             // TODO: Get the country where the device is located to set 'country' param in payload var
-            var payload = "country=MX\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
+            var payload = $"country={countryCode}\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
             payload += string.IsNullOrEmpty(password)
                 ? $"network={{\n\tssid=\"{networkSsid}\"\n\t}}\n"
                 : $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{password}\"\n\t}}\n";
@@ -131,10 +131,10 @@
         /// <summary>
         /// Retrieves the network adapters.
         /// </summary>
-        /// <returns></returns>
-        public List<NetworkAdapter> RetrieveAdapters()
+        /// <returns>A list of network adapters.</returns>
+        public List<NetworkAdapterInfo> RetrieveAdapters()
         {
-            var result = new List<NetworkAdapter>();
+            var result = new List<NetworkAdapterInfo>();
             var interfacesOutput = ProcessRunner.GetProcessOutputAsync("ifconfig").Result;
             var wlanOutput =
                 ProcessRunner.GetProcessOutputAsync("iwconfig")
@@ -149,7 +149,7 @@
 
                 if (line[0] >= 'a' && line[0] <= 'z')
                 {
-                    var adapter = new NetworkAdapter
+                    var adapter = new NetworkAdapterInfo
                     {
                         Name = line.Substring(0, line.IndexOf(' '))
                     };
@@ -204,9 +204,9 @@
         }
 
         /// <summary>
-        /// Retrieves current wireless connected network
+        /// Retrieves current wireless connected network name.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The connected network name.</returns>
         public string GetWirelessNetworkName() => ProcessRunner.GetProcessOutputAsync("iwgetid", "-r").Result;
     }
 }

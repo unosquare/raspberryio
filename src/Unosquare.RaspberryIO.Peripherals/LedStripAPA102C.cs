@@ -1,5 +1,5 @@
 ﻿#if NET452
-namespace Unosquare.RaspberryIO.Playground.Samples
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using Gpio;
     using Swan;
@@ -14,91 +14,8 @@ namespace Unosquare.RaspberryIO.Playground.Samples
     /// You can get it here: https://www.adafruit.com/products/2239
     /// or here: https://www.aliexpress.com/wholesale?SearchText=APA102C
     /// </summary>
-    public class LedStrip
+    public class LedStripAPA102C
     {
-        #region Support Classes
-
-        /// <summary>
-        /// Represents an LED in a strip of LEDs
-        /// This class is not meant to be instantiated by the user.
-        /// </summary>
-        public class LedStripPixel
-        {
-            private readonly int BaseAddress;
-            private readonly LedStrip Owner;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="LedStripPixel"/> class.
-            /// </summary>
-            /// <param name="owner">The owner.</param>
-            /// <param name="baseAddress">The base address.</param>
-            public LedStripPixel(LedStrip owner, int baseAddress)
-            {
-                Owner = owner;
-                BaseAddress = baseAddress;
-            }
-
-            /// <summary>
-            /// Gets or sets the brightness, from 0 to 1.
-            /// </summary>
-            public float Brightness
-            {
-                get
-                {
-                    var brightnessByte = (byte)(BrightnessGetMask & Owner.FrameBuffer[BaseAddress]);
-                    return brightnessByte / 31f;
-                }
-                set
-                {
-                    // clamp value
-                    value = value.Clamp(0f, 1f);
-                    var brightnessByte = (byte)(value * 31);
-                    Owner.FrameBuffer[BaseAddress] = (byte)(brightnessByte | BrightnessSetMask);
-                }
-            }
-
-            /// <summary>
-            /// The Red Buye
-            /// </summary>
-            public byte R
-            {
-                get => Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 3] : Owner.FrameBuffer[BaseAddress + 1];
-                set
-                {
-                    if (Owner.ReverseRgb)
-                        Owner.FrameBuffer[BaseAddress + 3] = value;
-                    else
-                        Owner.FrameBuffer[BaseAddress + 1] = value;
-                }
-            }
-
-            /// <summary>
-            /// The green
-            /// </summary>
-            public byte G
-            {
-                get => Owner.FrameBuffer[BaseAddress + 2];
-                set => Owner.FrameBuffer[BaseAddress + 2] = value;
-            }
-
-            /// <summary>
-            /// The blue
-            /// </summary>
-            public byte B
-            {
-                get => Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 1] : Owner.FrameBuffer[BaseAddress + 3];
-                set
-                {
-                    if (Owner.ReverseRgb)
-                        Owner.FrameBuffer[BaseAddress + 1] = value;
-                    else
-                        Owner.FrameBuffer[BaseAddress + 3] = value;
-                }
-            }
-        }
-
-        #endregion
-
         #region Static Declarations
 
         private const byte BrightnessSetMask = 0xE0;
@@ -123,13 +40,13 @@ namespace Unosquare.RaspberryIO.Playground.Samples
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LedStrip"/> class.
+        /// Initializes a new instance of the <see cref="LedStripAPA102C"/> class.
         /// </summary>
         /// <param name="ledCount">The length of the stip.</param>
         /// <param name="spiChannel">The SPI channel.</param>
         /// <param name="spiFrequency">The SPI frequency.</param>
         /// <param name="reverseRgb">if set to <c>true</c> colors will be sent to the strip as BGR, otherwise as RGB.</param>
-        public LedStrip(int ledCount = 60, int spiChannel = 1, int spiFrequency = SpiChannel.DefaultFrequency, bool reverseRgb = true)
+        public LedStripAPA102C(int ledCount = 60, int spiChannel = 1, int spiFrequency = SpiChannel.DefaultFrequency, bool reverseRgb = true)
         {
             // Basic properties
             LedCount = ledCount;
@@ -187,7 +104,7 @@ namespace Unosquare.RaspberryIO.Playground.Samples
         /// The <see cref="LedStripPixel"/>.
         /// </value>
         /// <param name="index">The index.</param>
-        /// <returns></returns>
+        /// <returns>A reference to the strip pixel</returns>
         public LedStripPixel this[int index] => GetPixel(index);
 
         #endregion
@@ -209,7 +126,7 @@ namespace Unosquare.RaspberryIO.Playground.Samples
         /// Gets the pixel.
         /// </summary>
         /// <param name="index">The index.</param>
-        /// <returns></returns>
+        /// <returns>A refrence to the stip pixel</returns>
         public LedStripPixel GetPixel(int index)
         {
             if (index < 0 || index > LedCount - 1)
@@ -297,10 +214,10 @@ namespace Unosquare.RaspberryIO.Playground.Samples
             brightnessByte = (byte)(brightnessByte | BrightnessSetMask);
 
             // Offset settings
-            var bOffset = ReverseRgb ? 1 : 3;
-            const int GOffset = 2;
-            var ROffset = ReverseRgb ? 3 : 1;
-            var TOfsset = 0;
+            const int brightnessOffset = 0;
+            var blueOffset = ReverseRgb ? 1 : 3;
+            const int greenOffset = 2;
+            var redOffset = ReverseRgb ? 3 : 1;
 
             // Pixel copying
             lock (SyncLock)
@@ -313,10 +230,10 @@ namespace Unosquare.RaspberryIO.Playground.Samples
 
                 for (var bmpOffset = bmpOffsetBase; bmpOffset < bmpOffsetLimit; bmpOffset += BitmapBuffer.BytesPerPixel)
                 {
-                    FrameBuffer[frameBufferOffset + TOfsset] = brightnessByte;
-                    FrameBuffer[frameBufferOffset + ROffset] = pixels.Data[bmpOffset + BitmapBuffer.ROffset]; // R
-                    FrameBuffer[frameBufferOffset + GOffset] = pixels.Data[bmpOffset + BitmapBuffer.GOffset]; // G
-                    FrameBuffer[frameBufferOffset + bOffset] = pixels.Data[bmpOffset + BitmapBuffer.BOffset]; // B
+                    FrameBuffer[frameBufferOffset + brightnessOffset] = brightnessByte;
+                    FrameBuffer[frameBufferOffset + redOffset] = pixels.Data[bmpOffset + BitmapBuffer.ROffset]; // R
+                    FrameBuffer[frameBufferOffset + greenOffset] = pixels.Data[bmpOffset + BitmapBuffer.GOffset]; // G
+                    FrameBuffer[frameBufferOffset + blueOffset] = pixels.Data[bmpOffset + BitmapBuffer.BOffset]; // B
                     frameBufferOffset += StartFrame.Length;
                     setCount += 1;
 
@@ -334,6 +251,89 @@ namespace Unosquare.RaspberryIO.Playground.Samples
             lock (SyncLock)
             {
                 Channel.Write(FrameBuffer);
+            }
+        }
+
+        #endregion
+
+        #region Support Classes
+
+        /// <summary>
+        /// Represents an LED in a strip of LEDs
+        /// This class is not meant to be instantiated by the user.
+        /// </summary>
+        public class LedStripPixel
+        {
+            private readonly int BaseAddress;
+            private readonly LedStripAPA102C Owner;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="LedStripPixel"/> class.
+            /// </summary>
+            /// <param name="owner">The owner.</param>
+            /// <param name="baseAddress">The base address.</param>
+            public LedStripPixel(LedStripAPA102C owner, int baseAddress)
+            {
+                Owner = owner;
+                BaseAddress = baseAddress;
+            }
+
+            /// <summary>
+            /// Gets or sets the brightness, from 0 to 1.
+            /// </summary>
+            public float Brightness
+            {
+                get
+                {
+                    var brightnessByte = (byte)(BrightnessGetMask & Owner.FrameBuffer[BaseAddress]);
+                    return brightnessByte / 31f;
+                }
+                set
+                {
+                    // clamp value
+                    value = value.Clamp(0f, 1f);
+                    var brightnessByte = (byte)(value * 31);
+                    Owner.FrameBuffer[BaseAddress] = (byte)(brightnessByte | BrightnessSetMask);
+                }
+            }
+
+            /// <summary>
+            /// The Red Buye
+            /// </summary>
+            public byte R
+            {
+                get => Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 3] : Owner.FrameBuffer[BaseAddress + 1];
+                set
+                {
+                    if (Owner.ReverseRgb)
+                        Owner.FrameBuffer[BaseAddress + 3] = value;
+                    else
+                        Owner.FrameBuffer[BaseAddress + 1] = value;
+                }
+            }
+
+            /// <summary>
+            /// The green
+            /// </summary>
+            public byte G
+            {
+                get => Owner.FrameBuffer[BaseAddress + 2];
+                set => Owner.FrameBuffer[BaseAddress + 2] = value;
+            }
+
+            /// <summary>
+            /// The blue
+            /// </summary>
+            public byte B
+            {
+                get => Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 1] : Owner.FrameBuffer[BaseAddress + 3];
+                set
+                {
+                    if (Owner.ReverseRgb)
+                        Owner.FrameBuffer[BaseAddress + 1] = value;
+                    else
+                        Owner.FrameBuffer[BaseAddress + 3] = value;
+                }
             }
         }
 

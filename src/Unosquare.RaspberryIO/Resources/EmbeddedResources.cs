@@ -1,10 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO.Resources
 {
+    using Native;
     using Swan;
     using System;
     using System.Collections.ObjectModel;
     using System.IO;
-    using Native;
 
     /// <summary>
     /// Provides access to embedded assembly files
@@ -12,7 +12,7 @@
     internal static class EmbeddedResources
     {
         /// <summary>
-        /// Initializes the <see cref="EmbeddedResources"/> class.
+        /// Initializes static members of the <see cref="EmbeddedResources"/> class.
         /// </summary>
         static EmbeddedResources()
         {
@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="basePath">The base path.</param>
         public static void ExtractAll(string basePath = null)
-        {   
+        {
             if (string.IsNullOrWhiteSpace(basePath))
                 basePath = Runtime.EntryAssemblyDirectory;
 
@@ -53,12 +53,12 @@
 
                     try
                     {
-                        var executablePermissions = Standard.strtol("0777", IntPtr.Zero, 8);
-                        Standard.chmod(targetPath, (uint) executablePermissions);
+                        var executablePermissions = Standard.StringToInteger("0777", IntPtr.Zero, 8);
+                        Standard.Chmod(targetPath, (uint)executablePermissions);
                     }
                     catch
                     {
-                        /* Ignore */                        
+                        /* Ignore */
                     }
                 }
             }

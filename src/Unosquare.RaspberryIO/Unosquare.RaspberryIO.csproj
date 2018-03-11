@@ -18,15 +18,16 @@ This library enables developers to use the various Raspberry Pi's hardware modul
     <PackageProjectUrl>https://github.com/unosquare/raspberryio</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/unosquare/raspberryio/master/LICENSE</PackageLicenseUrl>
     <PackageTags>Raspberry Pi GPIO Camera SPI I2C Embedded IoT Mono C# .NET</PackageTags>
+	<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\libwiringPi.so.2.42;Resources\gpio.2.42" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+    <EmbeddedResource Include="Resources\libwiringPi.so.2.44;Resources\gpio.2.44" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-    <PackageReference Include="Unosquare.Swan" Version="0.24.0" />
+    <PackageReference Include="Unosquare.Swan" Version="0.27.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">

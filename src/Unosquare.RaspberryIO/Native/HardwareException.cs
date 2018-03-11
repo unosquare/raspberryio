@@ -23,12 +23,12 @@
 
             try
             {
-                ExtendedMessage = Standard.strerror(errorCode);
+                ExtendedMessage = Standard.StrError(errorCode);
             }
             catch
             {
                 // TODO: strerror not working great...
-                $"Could not retrieve native error description using {nameof(Standard.strerror)}".Error(Pi.LoggerSource);
+                $"Could not retrieve native error description using {nameof(Standard.StrError)}".Error(Pi.LoggerSource);
             }
 
             ErrorCode = errorCode;
@@ -64,7 +64,7 @@
         /// </summary>
         /// <param name="className">Name of the class.</param>
         /// <param name="methodName">Name of the method.</param>
-        /// <exception cref="Native.HardwareException"></exception>
+        /// <exception cref="HardwareException">When an error thrown by an API call occurs</exception>
         public static void Throw(string className, string methodName)
         {
             var errno = Marshal.GetLastWin32Error();
@@ -72,10 +72,10 @@
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
+        /// A <see cref="string" /> that represents this instance.
         /// </returns>
         /// <PermissionSet>
         ///   <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" PathDiscovery="*AllFiles*" />
