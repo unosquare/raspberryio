@@ -31,6 +31,7 @@
                 // TestLedStripGraphics();
                 // TestLedStrip();
                 TestSystemInfo();
+                TestInfraredSensor();
             }
             catch (Exception ex)
             {
@@ -42,6 +43,32 @@
                 Terminal.Flush(TimeSpan.FromSeconds(2));
                 if (System.Diagnostics.Debugger.IsAttached)
                     "Press any key to exit . . .".ReadKey();
+            }
+        }
+
+        /// <summary>
+        /// Tests the infrared sensor HX1838.
+        /// </summary>
+        public static void TestInfraredSensor()
+        {
+            var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
+            inputPin.PinMode = GpioPinDriveMode.Input;
+            var timer = new Native.HighResolutionTimer();
+            var currentValue = inputPin.Read();
+            while (true)
+            {
+                if (currentValue != inputPin.Read())
+                {
+                    if (timer.IsRunning == false)
+                        timer.Start();
+
+                    currentValue = !currentValue;
+                    $"Bit Value: {(currentValue ? "1" : "0"),4} | Elapsed: {timer.ElapsedMicroseconds,10} us.".Info("IR");
+                    timer.Restart();
+                    continue;
+                }
+
+                Pi.Timing.SleepMicroseconds(50);
             }
         }
 
@@ -138,7 +165,7 @@
 
             foreach (var adapter in NetworkSettings.Instance.RetrieveAdapters())
             {
-                $"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName} MAC Address: {adapter.MacAddress}"
+                $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}"
                     .Info();
             }
         }

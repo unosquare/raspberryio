@@ -16,8 +16,8 @@
   </ItemGroup>
   
   <PropertyGroup>
-    <SshDeployHost>192.16.17.54</SshDeployHost>
-    <SshDeployTargetPath>/home/pi/Playground</SshDeployTargetPath>
+    <SshDeployHost>10.168.1.112</SshDeployHost>
+    <SshDeployTargetPath>/home/pi/rpio-playgound</SshDeployTargetPath>
     <SshDeployUsername>pi</SshDeployUsername>
     <SshDeployPassword>raspberry</SshDeployPassword>
   </PropertyGroup>
@@ -46,6 +46,12 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="dotnet-sshdeploy" Version="0.1.6-r1" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
+    <PackageReference Include="dotnet-sshdeploy">
+      <Version>0.1.6-r1</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
