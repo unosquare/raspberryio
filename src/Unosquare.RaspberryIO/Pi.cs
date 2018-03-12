@@ -12,7 +12,6 @@
     /// </summary>
     public static class Pi
     {
-        internal static string LoggerSource = typeof(Pi).Namespace;
         private static readonly object SyncLock = new object();
 
         /// <summary>
@@ -34,42 +33,6 @@
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
             }
-        }
-
-        /// <summary>
-        /// Restarts the Pi. Must be running as SU
-        /// </summary>
-        /// <returns>The process result</returns>
-        public static async Task<ProcessResult> RestartAsync()
-        {
-            return await ProcessRunner.GetProcessResultAsync("reboot");
-        }
-
-        /// <summary>
-        /// Restarts the Pi. Must be running as SU
-        /// </summary>
-        /// <returns>The process result</returns>
-        public static ProcessResult Restart()
-        {
-            return RestartAsync().GetAwaiter().GetResult();
-        }
-
-        /// <summary>
-        /// Halts the Pi. Must be running as SU
-        /// </summary>
-        /// <returns>The process result</returns>
-        public static async Task<ProcessResult> ShutdownAsync()
-        {
-            return await ProcessRunner.GetProcessResultAsync("halt");
-        }
-
-        /// <summary>
-        /// Halts the Pi. Must be running as SU
-        /// </summary>
-        /// <returns>The process result</returns>
-        public static ProcessResult Shutdown()
-        {
-            return ShutdownAsync().GetAwaiter().GetResult();
         }
 
         #region Components
@@ -109,7 +72,39 @@
         /// </summary>
         public static DsiDisplay PiDisplay { get; }
 
+        /// <summary>
+        /// Gets the logger source name.
+        /// </summary>
+        internal static string LoggerSource { get => typeof(Pi).Namespace; }
+
         #endregion
 
+        #region Methods
+
+        /// <summary>
+        /// Restarts the Pi. Must be running as SU
+        /// </summary>
+        /// <returns>The process result</returns>
+        public static async Task<ProcessResult> RestartAsync() => await ProcessRunner.GetProcessResultAsync("reboot");
+
+        /// <summary>
+        /// Restarts the Pi. Must be running as SU
+        /// </summary>
+        /// <returns>The process result</returns>
+        public static ProcessResult Restart() => RestartAsync().GetAwaiter().GetResult();
+
+        /// <summary>
+        /// Halts the Pi. Must be running as SU
+        /// </summary>
+        /// <returns>The process result</returns>
+        public static async Task<ProcessResult> ShutdownAsync() => await ProcessRunner.GetProcessResultAsync("halt");
+
+        /// <summary>
+        /// Halts the Pi. Must be running as SU
+        /// </summary>
+        /// <returns>The process result</returns>
+        public static ProcessResult Shutdown() => ShutdownAsync().GetAwaiter().GetResult();
+
+        #endregion
     }
 }

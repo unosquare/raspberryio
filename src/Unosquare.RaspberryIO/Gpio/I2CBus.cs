@@ -46,7 +46,7 @@
         /// </summary>
         /// <param name="deviceId">The device identifier.</param>
         /// <returns>The device reference</returns>
-        /// <exception cref="System.Collections.Generic.KeyNotFoundException">When the device file descriptor is not found</exception>
+        /// <exception cref="KeyNotFoundException">When the device file descriptor is not found</exception>
         public I2CDevice AddDevice(int deviceId)
         {
             lock (SyncRoot)
@@ -61,12 +61,12 @@
                 var device = new I2CDevice(deviceId, fileDescriptor);
                 m_Devices[deviceId] = device;
                 return device;
-            }            
+            }
         }
 
         /// <summary>
-        /// This initializes the I2C system with your given device identifier. 
-        /// The ID is the I2C number of the device and you can use the i2cdetect program to find this out. 
+        /// This initializes the I2C system with your given device identifier.
+        /// The ID is the I2C number of the device and you can use the i2cdetect program to find this out.
         /// wiringPiI2CSetup() will work out which revision Raspberry Pi you have and open the appropriate device in /dev.
         /// The return value is the standard Linux filehandle, or -1 if any error – in which case, you can consult errno as usual.
         /// </summary>
@@ -76,7 +76,7 @@
         {
             lock (SyncRoot)
             {
-                return WiringPi.wiringPiI2CSetup(deviceId);
+                return WiringPi.WiringPiI2CSetup(deviceId);
             }
         }
     }

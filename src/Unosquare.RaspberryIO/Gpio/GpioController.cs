@@ -12,7 +12,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Represents a singleton of the Raspberry Pi GPIO controller 
+    /// Represents a singleton of the Raspberry Pi GPIO controller
     /// as an IReadOnlyCollection of GpioPins
     /// Low level operations are accomplished by using the Wiring Pi library.
     /// Use the Instance property to access the singleton's instance
@@ -22,9 +22,11 @@
         #region Private Declarations
 
         private const string WiringPiCodesEnvironmentVariable = "WIRINGPI_CODES";
-        private readonly ReadOnlyCollection<GpioPin> _pinCollection;
-        private readonly Dictionary<WiringPiPin, GpioPin> _registeredPins = new Dictionary<WiringPiPin, GpioPin>();
         private static readonly object SyncRoot = new object();
+        private readonly ReadOnlyCollection<GpioPin> PinCollection;
+        private readonly ReadOnlyDictionary<int, GpioPin> HeaderP1Pins = null;
+        private readonly ReadOnlyDictionary<int, GpioPin> HeaderP5Pins = null;
+        private readonly Dictionary<WiringPiPin, GpioPin> PinsByWiringPiPinNumber = new Dictionary<WiringPiPin, GpioPin>();
 
         #endregion
 
@@ -34,10 +36,10 @@
         /// Prevents a default instance of the <see cref="GpioController" /> class from being created.
         /// It in turn initializes the controller and registers the pin -- in that order.
         /// </summary>
-        /// <exception cref="System.Exception">Unable to initialize the GPIO controller.</exception>
+        /// <exception cref="Exception">Unable to initialize the GPIO controller.</exception>
         private GpioController()
-        {            
-            if (_pinCollection != null)
+        {
+            if (PinCollection != null)
                 return;
 
             if (IsInitialized == false)
@@ -48,7 +50,7 @@
             }
 
             #region Pin Registration (32 WiringPi Pins)
-                        
+
             RegisterPin(GpioPin.Pin00.Value);
             RegisterPin(GpioPin.Pin01.Value);
             RegisterPin(GpioPin.Pin02.Value);
@@ -84,7 +86,17 @@
 
             #endregion
 
-            _pinCollection = new ReadOnlyCollection<GpioPin>(_registeredPins.Values.ToArray());
+            PinCollection = new ReadOnlyCollection<GpioPin>(PinsByWiringPiPinNumber.Values.ToArray());
+            var headerP1 = new Dictionary<int, GpioPin>(PinCollection.Count);
+            var headerP5 = new Dictionary<int, GpioPin>(PinCollection.Count);
+            foreach (var pin in PinCollection)
+            {
+                var target = pin.Header == GpioHeader.P1 ? headerP1 : headerP5;
+                target[pin.HeaderPinNumber] = pin;
+            }
+
+            HeaderP1Pins = new ReadOnlyDictionary<int, GpioPin>(headerP1);
+            HeaderP5Pins = new ReadOnlyDictionary<int, GpioPin>(headerP5);
         }
 
         /// <summary>
@@ -105,314 +117,242 @@
         }
 
         /// <summary>
-        /// Gets or sets the initialization mode.
+        /// Gets the number of registered pins in the controller.
         /// </summary>
-        private static ControllerMode Mode { get; set; } = ControllerMode.NotInitialized;
-
-        /// <summary>
-        /// Short-hand method of registering pins
-        /// </summary>
-        /// <param name="pin">The pin.</param>
-        private void RegisterPin(GpioPin pin)
-        {
-            if (_registeredPins.ContainsKey(pin.WiringPiPinNumber) == false)
-                _registeredPins[pin.WiringPiPinNumber] = pin;
-            else
-                throw new InvalidOperationException($"Pin {pin.WiringPiPinNumber} has been registered");
-        }
-
-        /// <summary>
-        /// Initializes the controller given the initialization mode and pin numbering scheme
-        /// </summary>
-        /// <param name="mode">The mode.</param>
-        /// <returns></returns>
-        /// <exception cref="System.PlatformNotSupportedException">
-        /// </exception>
-        /// <exception cref="System.InvalidOperationException">Initialize</exception>
-        /// <exception cref="System.ArgumentException"></exception>
-        private bool Initialize(ControllerMode mode)
-        {
-            if (Runtime.OS != Swan.OperatingSystem.Unix)
-                throw new PlatformNotSupportedException("This library does not support the platform");
-
-            lock (SyncRoot)
-            {
-                if (IsInitialized)
-                    throw new InvalidOperationException($"Cannot call {nameof(Initialize)} more than once.");
-
-#if NET452
-                Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1", EnvironmentVariableTarget.Process);
-#else
-                Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1");
-#endif
-
-                int setpuResult;
-
-                switch (mode)
-                {
-                    case ControllerMode.DirectWithWiringPiPins:
-                    {
-                        if (SystemInfo.Instance.IsRunningAsRoot == false)
-                        {
-                            throw new PlatformNotSupportedException(
-                                $"This program must be started with root privileges for mode '{mode}'");
-                        }
-
-                        setpuResult = WiringPi.wiringPiSetup();
-                        break;
-                    }
-
-                    case ControllerMode.DirectWithBcmPins:
-                    {
-                        if (SystemInfo.Instance.IsRunningAsRoot == false)
-                        {
-                            throw new PlatformNotSupportedException(
-                                $"This program must be started with root privileges for mode '{mode}'");
-                        }
-
-                        setpuResult = WiringPi.wiringPiSetupGpio();
-                        break;
-                    }
-
-                    case ControllerMode.DirectWithHeaderPins:
-                    {
-                        if (SystemInfo.Instance.IsRunningAsRoot == false)
-                        {
-                            throw new PlatformNotSupportedException(
-                                $"This program must be started with root privileges for mode '{mode}'");
-                        }
-
-                        setpuResult = WiringPi.wiringPiSetupPhys();
-                        break;
-                    }
-
-                    case ControllerMode.FileStreamWithHardwarePins:
-                    {
-                        setpuResult = WiringPi.wiringPiSetupSys();
-                        break;
-                    }
-
-                    default:
-                    {
-                        throw new ArgumentException($"'{mode}' is not a valid initialization mode.");
-                    }
-                }
-
-                Mode = setpuResult == 0 ? mode : ControllerMode.NotInitialized;
-                return IsInitialized;
-            }
-        }
+        public int Count => PinCollection.Count;
 
         #endregion
 
-        #region Pin Addressing Methods
+        #region Pin Addressing
 
         /// <summary>
         /// Gets a red-only collection of all registered pins.
         /// </summary>
-        public ReadOnlyCollection<GpioPin> Pins => _pinCollection;
+        public ReadOnlyCollection<GpioPin> Pins => PinCollection;
 
         /// <summary>
-        /// Gets the <see cref="GpioPin"/> with the specified pin number.
+        /// Provides all the pins on Header P1 of the Pi as a lookup by physical header pin number.
+        /// This header is the main header and it is the one commonly used.
         /// </summary>
-        /// <value>
-        /// The <see cref="GpioPin"/>.
-        /// </value>
-        /// <param name="pinNumber">The pin number.</param>
-        /// <returns></returns>
-        public GpioPin this[WiringPiPin pinNumber] => _registeredPins[pinNumber];
+        public ReadOnlyDictionary<int, GpioPin> HeaderP1 => HeaderP1Pins;
 
         /// <summary>
-        /// Gets the <see cref="GpioPin"/> with the specified pin number.
+        /// Provides all the pins on Header P5 of the Pi as a lookup by physical header pin number.
+        /// This header is the secondary header and it is rarely used.
         /// </summary>
-        /// <value>
-        /// The <see cref="GpioPin"/>.
-        /// </value>
-        /// <param name="pinNumber">The pin number.</param>
-        /// <returns></returns>
-        /// <exception cref="System.IndexOutOfRangeException"></exception>
-        public GpioPin this[int pinNumber]
-        {
-            get
-            {
-                if (Enum.IsDefined(typeof(WiringPiPin), pinNumber) == false)
-                    throw new IndexOutOfRangeException($"Pin {pinNumber} is not registered in the GPIO controller.");
-
-                return _registeredPins[(WiringPiPin) pinNumber];
-            }
-        }
+        public ReadOnlyDictionary<int, GpioPin> HeaderP5 => HeaderP5Pins;
 
         #endregion
 
         #region Individual Pin Properties
 
         /// <summary>
-        /// Provides direct access to the Pin 00.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 00.
         /// </summary>
         public GpioPin Pin00 => GpioPin.Pin00.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 01.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 01.
         /// </summary>
         public GpioPin Pin01 => GpioPin.Pin01.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 02.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 02.
         /// </summary>
         public GpioPin Pin02 => GpioPin.Pin02.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 03.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 03.
         /// </summary>
         public GpioPin Pin03 => GpioPin.Pin03.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 04.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 04.
         /// </summary>
         public GpioPin Pin04 => GpioPin.Pin04.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 05.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 05.
         /// </summary>
         public GpioPin Pin05 => GpioPin.Pin05.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 06.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 06.
         /// </summary>
         public GpioPin Pin06 => GpioPin.Pin06.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 07.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 07.
         /// </summary>
         public GpioPin Pin07 => GpioPin.Pin07.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 08.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 08.
         /// </summary>
         public GpioPin Pin08 => GpioPin.Pin08.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 09.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 09.
         /// </summary>
         public GpioPin Pin09 => GpioPin.Pin09.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 10.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 10.
         /// </summary>
         public GpioPin Pin10 => GpioPin.Pin10.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 11.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 11.
         /// </summary>
         public GpioPin Pin11 => GpioPin.Pin11.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 12.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 12.
         /// </summary>
         public GpioPin Pin12 => GpioPin.Pin12.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 13.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 13.
         /// </summary>
         public GpioPin Pin13 => GpioPin.Pin13.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 14.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 14.
         /// </summary>
         public GpioPin Pin14 => GpioPin.Pin14.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 15.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 15.
         /// </summary>
         public GpioPin Pin15 => GpioPin.Pin15.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 16.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 16.
         /// </summary>
         public GpioPin Pin16 => GpioPin.Pin16.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 17.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 17.
         /// </summary>
         public GpioPin Pin17 => GpioPin.Pin17.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 18.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 18.
         /// </summary>
         public GpioPin Pin18 => GpioPin.Pin18.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 19.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 19.
         /// </summary>
         public GpioPin Pin19 => GpioPin.Pin19.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 20.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 20.
         /// </summary>
         public GpioPin Pin20 => GpioPin.Pin20.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 21.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 21.
         /// </summary>
         public GpioPin Pin21 => GpioPin.Pin21.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 22.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 22.
         /// </summary>
         public GpioPin Pin22 => GpioPin.Pin22.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 23.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 23.
         /// </summary>
         public GpioPin Pin23 => GpioPin.Pin23.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 24.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 24.
         /// </summary>
         public GpioPin Pin24 => GpioPin.Pin24.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 25.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 25.
         /// </summary>
         public GpioPin Pin25 => GpioPin.Pin25.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 26.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 26.
         /// </summary>
         public GpioPin Pin26 => GpioPin.Pin26.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 27.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 27.
         /// </summary>
         public GpioPin Pin27 => GpioPin.Pin27.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 28.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 28.
         /// </summary>
         public GpioPin Pin28 => GpioPin.Pin28.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 29.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 29.
         /// </summary>
         public GpioPin Pin29 => GpioPin.Pin29.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 30.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 30.
         /// </summary>
         public GpioPin Pin30 => GpioPin.Pin30.Value;
 
         /// <summary>
-        /// Provides direct access to the Pin 31.
+        /// Provides direct access to Pin known to Wiring Pi (not the pin header number) as Pin 31.
         /// </summary>
         public GpioPin Pin31 => GpioPin.Pin31.Value;
+
+        #endregion
+
+        #region Indexers
+
+        /// <summary>
+        /// Gets or sets the initialization mode.
+        /// </summary>
+        private static ControllerMode Mode { get; set; } = ControllerMode.NotInitialized;
+
+        /// <summary>
+        /// Gets the <see cref="GpioPin"/> with the specified Wiring Pi pin number.
+        /// </summary>
+        /// <value>
+        /// The <see cref="GpioPin"/>.
+        /// </value>
+        /// <param name="pinNumber">The pin number.</param>
+        /// <returns>A reference to the GPIO pin</returns>
+        public GpioPin this[WiringPiPin pinNumber] => PinsByWiringPiPinNumber[pinNumber];
+
+        /// <summary>
+        /// Gets the <see cref="GpioPin"/> with the specified Wiring Pi pin number.
+        /// Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by physical pin number.
+        /// </summary>
+        /// <value>
+        /// The <see cref="GpioPin"/>.
+        /// </value>
+        /// <param name="wiringPiPinNumber">The pin number as defined by Wiring Pi. This is not the header pin number as pin number in headers are obvoisly repeating.</param>
+        /// <returns>A reference to the GPIO pin</returns>
+        /// <exception cref="IndexOutOfRangeException">When the pin index is not found</exception>
+        public GpioPin this[int wiringPiPinNumber]
+        {
+            get
+            {
+                if (Enum.IsDefined(typeof(WiringPiPin), wiringPiPinNumber) == false)
+                    throw new IndexOutOfRangeException($"Pin {wiringPiPinNumber} is not registered in the GPIO controller.");
+
+                return PinsByWiringPiPinNumber[(WiringPiPin)wiringPiPinNumber];
+            }
+        }
 
         #endregion
 
         #region Pin Group Methods (Read, Write, Pad Drive)
 
         /// <summary>
-        /// This sets the “strength” of the pad drivers for a particular group of pins. 
-        /// There are 3 groups of pins and the drive strength is from 0 to 7. 
+        /// This sets the “strength” of the pad drivers for a particular group of pins.
+        /// There are 3 groups of pins and the drive strength is from 0 to 7.
         /// Do not use this unless you know what you are doing.
         /// </summary>
         /// <param name="group">The group.</param>
@@ -421,7 +361,7 @@
         {
             lock (SyncRoot)
             {
-                WiringPi.setPadDrive(group, value);
+                WiringPi.SetPadDrive(group, value);
             }
         }
 
@@ -439,12 +379,12 @@
         }
 
         /// <summary>
-        /// This writes the 8-bit byte supplied to the first 8 GPIO pins. 
-        /// It’s the fastest way to set all 8 bits at once to a particular value, 
+        /// This writes the 8-bit byte supplied to the first 8 GPIO pins.
+        /// It’s the fastest way to set all 8 bits at once to a particular value,
         /// although it still takes two write operations to the Pi’s GPIO hardware.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <exception cref="System.InvalidOperationException">PinMode</exception>
+        /// <exception cref="InvalidOperationException">PinMode</exception>
         public void WriteByte(byte value)
         {
             lock (SyncRoot)
@@ -455,7 +395,7 @@
                         $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Output}");
                 }
 
-                WiringPi.digitalWriteByte(value);
+                WiringPi.DigitalWriteByte(value);
             }
         }
 
@@ -472,12 +412,12 @@
         }
 
         /// <summary>
-        /// This reads the 8-bit byte supplied to the first 8 GPIO pins. 
+        /// This reads the 8-bit byte supplied to the first 8 GPIO pins.
         /// It’s the fastest way to get all 8 bits at once to a particular value.
         /// Please note this function is undocumented and unsopported
         /// </summary>
         /// <returns>A byte from the GPIO</returns>
-        /// <exception cref="System.InvalidOperationException">PinMode</exception>
+        /// <exception cref="InvalidOperationException">PinMode</exception>
         public byte ReadByte()
         {
             lock (SyncRoot)
@@ -489,12 +429,12 @@
                         $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input} or {GpioPinDriveMode.Output}");
                 }
 
-                return (byte) WiringPi.digitalReadByte();
+                return (byte)WiringPi.DigitalReadByte();
             }
         }
 
         /// <summary>
-        /// This reads the 8-bit byte supplied to the first 8 GPIO pins. 
+        /// This reads the 8-bit byte supplied to the first 8 GPIO pins.
         /// It’s the fastest way to get all 8 bits at once to a particular value.
         /// Please note this function is undocumented and unsopported
         /// </summary>
@@ -516,7 +456,7 @@
         /// </returns>
         public IEnumerator<GpioPin> GetEnumerator()
         {
-            return _pinCollection.GetEnumerator();
+            return PinCollection.GetEnumerator();
         }
 
         /// <summary>
@@ -527,28 +467,23 @@
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _pinCollection.GetEnumerator();
+            return PinCollection.GetEnumerator();
         }
-
-        /// <summary>
-        /// Gets the number of registered pins in the controller.
-        /// </summary>
-        public int Count => _pinCollection.Count;
 
         #endregion
 
-        #region Helper Methods
+        #region Helper and Init Methods
 
         /// <summary>
         /// Converts the Wirings Pi pin number to the BCM pin number.
         /// </summary>
         /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>
-        /// <returns></returns>
+        /// <returns>The converted pin</returns>
         internal static int WiringPiToBcmPinNumber(int wiringPiPinNumber)
         {
             lock (SyncRoot)
             {
-                return WiringPi.wpiPinToGpio(wiringPiPinNumber);
+                return WiringPi.WpiPinToGpio(wiringPiPinNumber);
             }
         }
 
@@ -556,12 +491,102 @@
         /// Converts the Physical (Header) pin number to BCM pin number.
         /// </summary>
         /// <param name="headerPinNumber">The header pin number.</param>
-        /// <returns></returns>
+        /// <returns>The converted pin</returns>
         internal static int HaderToBcmPinNumber(int headerPinNumber)
         {
             lock (SyncRoot)
             {
-                return WiringPi.physPinToGpio(headerPinNumber);
+                return WiringPi.PhysPinToGpio(headerPinNumber);
+            }
+        }
+
+        /// <summary>
+        /// Short-hand method of registering pins
+        /// </summary>
+        /// <param name="pin">The pin.</param>
+        private void RegisterPin(GpioPin pin)
+        {
+            if (PinsByWiringPiPinNumber.ContainsKey(pin.WiringPiPinNumber) == false)
+                PinsByWiringPiPinNumber[pin.WiringPiPinNumber] = pin;
+            else
+                throw new InvalidOperationException($"Pin {pin.WiringPiPinNumber} has been registered");
+        }
+
+        /// <summary>
+        /// Initializes the controller given the initialization mode and pin numbering scheme
+        /// </summary>
+        /// <param name="mode">The mode.</param>
+        /// <returns>True when successful.</returns>
+        /// <exception cref="PlatformNotSupportedException">
+        /// This library does not support the platform
+        /// </exception>
+        /// <exception cref="InvalidOperationException">Library was already Initialized</exception>
+        /// <exception cref="ArgumentException">The init mode is invalid</exception>
+        private bool Initialize(ControllerMode mode)
+        {
+            if (Runtime.OS != Swan.OperatingSystem.Unix)
+                throw new PlatformNotSupportedException("This library does not support the platform");
+
+            lock (SyncRoot)
+            {
+                if (IsInitialized)
+                    throw new InvalidOperationException($"Cannot call {nameof(Initialize)} more than once.");
+
+                Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1", EnvironmentVariableTarget.Process);
+                var setpuResult = default(int);
+
+                switch (mode)
+                {
+                    case ControllerMode.DirectWithWiringPiPins:
+                        {
+                            if (SystemInfo.Instance.IsRunningAsRoot == false)
+                            {
+                                throw new PlatformNotSupportedException(
+                                    $"This program must be started with root privileges for mode '{mode}'");
+                            }
+
+                            setpuResult = WiringPi.WiringPiSetup();
+                            break;
+                        }
+
+                    case ControllerMode.DirectWithBcmPins:
+                        {
+                            if (SystemInfo.Instance.IsRunningAsRoot == false)
+                            {
+                                throw new PlatformNotSupportedException(
+                                    $"This program must be started with root privileges for mode '{mode}'");
+                            }
+
+                            setpuResult = WiringPi.WiringPiSetupGpio();
+                            break;
+                        }
+
+                    case ControllerMode.DirectWithHeaderPins:
+                        {
+                            if (SystemInfo.Instance.IsRunningAsRoot == false)
+                            {
+                                throw new PlatformNotSupportedException(
+                                    $"This program must be started with root privileges for mode '{mode}'");
+                            }
+
+                            setpuResult = WiringPi.WiringPiSetupPhys();
+                            break;
+                        }
+
+                    case ControllerMode.FileStreamWithHardwarePins:
+                        {
+                            setpuResult = WiringPi.WiringPiSetupSys();
+                            break;
+                        }
+
+                    default:
+                        {
+                            throw new ArgumentException($"'{mode}' is not a valid initialization mode.");
+                        }
+                }
+
+                Mode = setpuResult == 0 ? mode : ControllerMode.NotInitialized;
+                return IsInitialized;
             }
         }
 

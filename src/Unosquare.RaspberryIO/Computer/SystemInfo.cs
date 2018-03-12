@@ -17,20 +17,16 @@
     {
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
-
-#if NET452
-        private static readonly StringComparer stringComparer = StringComparer.InvariantCultureIgnoreCase;
-#else
-        private static readonly StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
-#endif
+        private const string UptimeFilePath = "/proc/uptime";
+        private static readonly StringComparer StringComparer = StringComparer.InvariantCultureIgnoreCase;
 
         private static readonly object SyncRoot = new object();
-        private static bool? m_IsRunningAsRoot = new bool?();
+        private static bool? m_IsRunningAsRoot = default(bool?);
 
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
         /// </summary>
-        /// <exception cref="System.NotSupportedException">Could not initialize the GPIO controller</exception>
+        /// <exception cref="NotSupportedException">Could not initialize the GPIO controller</exception>
         private SystemInfo()
         {
             #region Obtain and format a property dictionary
@@ -43,7 +39,7 @@
                             p.CanWrite && p.CanRead &&
                             (p.PropertyType == typeof(string) || p.PropertyType == typeof(string[])))
                     .ToArray();
-            var propDictionary = new Dictionary<string, PropertyInfo>(stringComparer);
+            var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer);
 
             foreach (var prop in properties)
             {
@@ -60,7 +56,7 @@
 
                 foreach (var line in cpuInfoLines)
                 {
-                    var lineParts = line.Split(new[] {':'}, 2);
+                    var lineParts = line.Split(new[] { ':' }, 2);
                     if (lineParts.Length != 2)
                         continue;
 
@@ -91,7 +87,7 @@
                 var memInfoLines = File.ReadAllLines(MemInfoFilePath);
                 foreach (var line in memInfoLines)
                 {
-                    var lineParts = line.Split(new[] {':'}, 2);
+                    var lineParts = line.Split(new[] { ':' }, 2);
                     if (lineParts.Length != 2)
                         continue;
 
@@ -114,22 +110,21 @@
 
             try
             {
-                int boardVersion;
                 if (string.IsNullOrWhiteSpace(Revision) == false &&
                     int.TryParse(
                         Revision.ToUpperInvariant(),
                         NumberStyles.HexNumber,
                         CultureInfo.InvariantCulture,
-                        out boardVersion))
+                        out int boardVersion))
                 {
                     RaspberryPiVersion = PiVersion.Unknown;
                     if (Enum.GetValues(typeof(PiVersion)).Cast<int>().Contains(boardVersion))
                     {
-                        RaspberryPiVersion = (PiVersion) boardVersion;
+                        RaspberryPiVersion = (PiVersion)boardVersion;
                     }
                 }
 
-                WiringPiBoardRevision = WiringPi.piBoardRev();
+                WiringPiBoardRevision = WiringPi.PiBoardRev();
             }
             catch
             {
@@ -154,15 +149,15 @@
 
             try
             {
-                Standard.uname(out var unameInfo);
+                Standard.Uname(out var unameInfo);
                 OperatingSystem = new OsInfo
                 {
-                    DomainName = unameInfo.domainname,
-                    Machine = unameInfo.machine,
-                    NodeName = unameInfo.nodename,
-                    Release = unameInfo.release,
-                    SysName = unameInfo.sysname,
-                    Version = unameInfo.version
+                    DomainName = unameInfo.DomainName,
+                    Machine = unameInfo.Machine,
+                    NodeName = unameInfo.NodeName,
+                    Release = unameInfo.Release,
+                    SysName = unameInfo.SysName,
+                    Version = unameInfo.Version
                 };
             }
             catch
@@ -276,19 +271,18 @@
         public string Serial { get; private set; }
 
         /// <summary>
-        /// Gets the uptime (at seconds).
+        /// Gets the system uptime (in seconds).
         /// </summary>
-        /// <value>
-        /// The uptime.
-        /// </value>
-        public ulong Uptime
+        public double Uptime
         {
             get
             {
                 try
                 {
-                    if (Standard.sysinfo(out var sysInfo) == 0)
-                        return sysInfo.uptime;
+                    if (File.Exists(UptimeFilePath) == false) return 0;
+                    var parts = File.ReadAllText(UptimeFilePath).Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (parts.Length >= 1 && float.TryParse(parts[0], out var result))
+                        return result;
                 }
                 catch
                 {
@@ -303,21 +297,6 @@
         /// Gets the uptime in TimeSpan.
         /// </summary>
         public TimeSpan UptimeTimeSpan => TimeSpan.FromSeconds(Uptime);
-
-        /// <summary>
-        /// Placeholder for processor index
-        /// </summary>
-        private string Processor { get; set; }
-
-        /// <summary>
-        /// Reboots this computer.
-        /// </summary>
-        public void Reboot()
-        {
-#pragma warning disable 4014
-            ProcessRunner.GetProcessOutputAsync("reboot");
-#pragma warning restore 4014
-        }
 
         /// <summary>
         /// Gets a value indicating whether this program is running as Root
@@ -335,7 +314,7 @@
                     {
                         try
                         {
-                            m_IsRunningAsRoot = Standard.getuid() == 0;
+                            m_IsRunningAsRoot = Standard.GetUid() == 0;
                         }
                         catch
                         {
@@ -349,10 +328,23 @@
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Placeholder for processor index
+        /// </summary>
+        private string Processor { get; set; }
+
+        /// <summary>
+        /// Reboots this computer.
+        /// </summary>
+        public void Reboot()
+        {
+            var rebootTask = ProcessRunner.GetProcessOutputAsync("reboot");
+        }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
+        /// A <see cref="string" /> that represents this instance.
         /// </returns>
         public override string ToString()
         {
@@ -362,8 +354,7 @@
                                 p.PropertyType == typeof(string[]) ||
                                 p.PropertyType == typeof(int) ||
                                 p.PropertyType == typeof(bool) ||
-                                p.PropertyType == typeof(TimeSpan)
-                            ))
+                                p.PropertyType == typeof(TimeSpan)))
                 .ToArray();
 
             var properyValues = new List<string>

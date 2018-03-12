@@ -8,7 +8,7 @@
 
     /// <summary>
     /// Provides access to using the SPI buses on the GPIO.
-    /// SPI is a bus that works like a ring shift register 
+    /// SPI is a bus that works like a ring shift register
     /// The number of bytes pushed is equal to the number of bytes received.
     /// </summary>
     public sealed class SpiChannel
@@ -30,8 +30,8 @@
         public const int DefaultFrequency = 8000000;
 
         private static readonly object SyncRoot = new object();
-        private readonly object _syncLock = new object();
         private static readonly Dictionary<SpiChannelNumber, SpiChannel> Buses = new Dictionary<SpiChannelNumber, SpiChannel>();
+        private readonly object SyncLock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpiChannel"/> class.
@@ -43,7 +43,7 @@
             lock (SyncRoot)
             {
                 frequency = frequency.Clamp(MinFrequency, MaxFrequency);
-                var busResult = WiringPi.wiringPiSPISetup((int)channel, frequency);
+                var busResult = WiringPi.WiringPiSPISetup((int)channel, frequency);
                 Channel = (int)channel;
                 Frequency = frequency;
                 FileDescriptor = busResult;
@@ -84,12 +84,12 @@
             if (buffer == null || buffer.Length == 0)
                 return null;
 
-            lock (_syncLock)
+            lock (SyncLock)
             {
                 var spiBuffer = new byte[buffer.Length];
                 Array.Copy(buffer, spiBuffer, buffer.Length);
 
-                var result = WiringPi.wiringPiSPIDataRW(Channel, spiBuffer, spiBuffer.Length);
+                var result = WiringPi.WiringPiSPIDataRW(Channel, spiBuffer, spiBuffer.Length);
                 if (result < 0) HardwareException.Throw(nameof(SpiChannel), nameof(SendReceive));
 
                 return spiBuffer;
@@ -110,16 +110,16 @@
 
         /// <summary>
         /// Writes the specified buffer the the underlying FileDescriptor.
-        /// Do not use this method if you expect data back. 
+        /// Do not use this method if you expect data back.
         /// This method is efficient if used in a fire-and-forget scenario
         /// like sending data over to those long RGB LED strips
         /// </summary>
         /// <param name="buffer">The buffer.</param>
         public void Write(byte[] buffer)
         {
-            lock (_syncLock)
+            lock (SyncLock)
             {
-                var result = Standard.write(FileDescriptor, buffer, buffer.Length);
+                var result = Standard.Write(FileDescriptor, buffer, buffer.Length);
 
                 if (result < 0)
                     HardwareException.Throw(nameof(SpiChannel), nameof(Write));

@@ -41,7 +41,7 @@
         /// <param name="settings">The settings.</param>
         /// <param name="ct">The ct.</param>
         /// <returns>The image bytes</returns>
-        /// <exception cref="System.InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
+        /// <exception cref="InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
         public async Task<byte[]> CaptureImageAsync(CameraStillSettings settings, CancellationToken ct = default(CancellationToken))
         {
             if (Instance.IsBusy)
@@ -73,7 +73,7 @@
                 OperationDone.Set();
             }
         }
-        
+
         /// <summary>
         /// Captures an image.
         /// </summary>
@@ -144,8 +144,8 @@
         /// <param name="settings">The settings.</param>
         /// <param name="onDataCallback">The on data callback.</param>
         /// <param name="onExitCallback">The on exit callback.</param>
-        /// <exception cref="System.InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
-        /// <exception cref="System.ArgumentException">CaptureTimeoutMilliseconds</exception>
+        /// <exception cref="InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
+        /// <exception cref="ArgumentException">CaptureTimeoutMilliseconds</exception>
         public void OpenVideoStream(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback)
         {
             if (Instance.IsBusy)
@@ -180,7 +180,7 @@
                     VideoTokenSource.Cancel();
             }
         }
-        
+
         private static async Task VideoWorkerDoWork(
             CameraVideoSettings settings,
             Action<byte[]> onDataCallback,
@@ -189,11 +189,11 @@
             try
             {
                 await ProcessRunner.RunProcessAsync(
-                    settings.CommandName, 
+                    settings.CommandName,
                     settings.CreateProcessArguments(),
-                    (data, proc) => onDataCallback?.Invoke(data), 
-                    null, 
-                    true, 
+                    (data, proc) => onDataCallback?.Invoke(data),
+                    null,
+                    true,
                     VideoTokenSource.Token);
 
                 onExitCallback?.Invoke();

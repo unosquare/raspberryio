@@ -122,7 +122,7 @@
         P1,
 
         /// <summary>
-        /// The P5 connector (auxiliary, not commenly used)
+        /// The P5 connector (auxiliary, not commonly used)
         /// </summary>
         P5,
     }
@@ -385,10 +385,29 @@
     /// </summary>
     internal enum ControllerMode
     {
+        /// <summary>
+        /// The not initialized
+        /// </summary>
         NotInitialized,
+
+        /// <summary>
+        /// The direct with wiring pi pins
+        /// </summary>
         DirectWithWiringPiPins,
+
+        /// <summary>
+        /// The direct with BCM pins
+        /// </summary>
         DirectWithBcmPins,
+
+        /// <summary>
+        /// The direct with header pins
+        /// </summary>
         DirectWithHeaderPins,
+
+        /// <summary>
+        /// The file stream with hardware pins
+        /// </summary>
         FileStreamWithHardwarePins,
     }
 }

@@ -13,7 +13,7 @@
     {
         private const string BacklightFilename = "/sys/class/backlight/rpi_backlight/bl_power";
         private const string BrightnessFilename = "/sys/class/backlight/rpi_backlight/brightness";
-        
+
         /// <summary>
         /// Prevents a default instance of the <see cref="DsiDisplay"/> class from being created.
         /// </summary>

@@ -63,9 +63,9 @@
 
         /// <summary>
         /// Gets or sets the picture EV compensation. Default is 0, Range is -10 to 10
-        /// Camera exposure compensation is commonly stated in terms of EV units; 
-        /// 1 EV is equal to one exposure step (or stop), corresponding to a doubling of exposure. 
-        /// Exposure can be adjusted by changing either the lens f-number or the exposure time; 
+        /// Camera exposure compensation is commonly stated in terms of EV units;
+        /// 1 EV is equal to one exposure step (or stop), corresponding to a doubling of exposure.
+        /// Exposure can be adjusted by changing either the lens f-number or the exposure time;
         /// which one is changed usually depends on the camera's exposure mode.
         /// </summary>
         public int CaptureExposureCompensation { get; set; } = 0;
@@ -149,14 +149,14 @@
         public CameraImageEffect ImageEffect { get; set; } = CameraImageEffect.None;
 
         /// <summary>
-        /// Gets or sets the color effect U coordinates. 
+        /// Gets or sets the color effect U coordinates.
         /// Default is -1, Range is 0 to 255
         /// 128:128 should be effectively a monochrome image.
         /// </summary>
         public int ImageColorEffectU { get; set; } = -1; // 0 to 255
 
         /// <summary>
-        /// Gets or sets the color effect V coordinates. 
+        /// Gets or sets the color effect V coordinates.
         /// Default is -1, Range is 0 to 255
         /// 128:128 should be effectively a monochrome image.
         /// </summary>
@@ -224,7 +224,7 @@
         /// <summary>
         /// Creates the process arguments.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The string that represents the process arguments</returns>
         public virtual string CreateProcessArguments()
         {
             var sb = new StringBuilder();
@@ -291,7 +291,7 @@
                 sb.Append($" -mm {CaptureMeteringMode.ToString().ToLowerInvariant()}");
 
             if (ImageRotation != CameraImageRotation.None)
-                sb.Append($" -rot {((int) ImageRotation).ToString(Ci)}");
+                sb.Append($" -rot {((int)ImageRotation).ToString(Ci)}");
 
             if (ImageFlipHorizontally)
                 sb.Append(" -hf");
@@ -325,7 +325,7 @@
             }
 
             if (ImageAnnotations != CameraAnnotation.None)
-                sb.Append($" -a {((int) ImageAnnotations).ToString(Ci)}");
+                sb.Append($" -a {((int)ImageAnnotations).ToString(Ci)}");
 
             if (string.IsNullOrWhiteSpace(ImageAnnotationsText) == false)
                 sb.Append($" -a \"{ImageAnnotationsText.Replace("\"", "'")}\"");

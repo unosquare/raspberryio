@@ -46,17 +46,6 @@
         public decimal H { get; set; }
 
         /// <summary>
-        /// Clamps the members of this ROI to their minimum and maximum values
-        /// </summary>
-        public void Clamp()
-        {
-            X = X.Clamp(0M, 1M);
-            Y = Y.Clamp(0M, 1M);
-            W = W.Clamp(0M, 1M - X);
-            H = H.Clamp(0M, 1M - Y);
-        }
-
-        /// <summary>
         /// Gets a value indicating whether this instance is equal to the default (The entire area).
         /// </summary>
         /// <value>
@@ -72,10 +61,21 @@
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Clamps the members of this ROI to their minimum and maximum values
+        /// </summary>
+        public void Clamp()
+        {
+            X = X.Clamp(0M, 1M);
+            Y = Y.Clamp(0M, 1M);
+            W = W.Clamp(0M, 1M - X);
+            H = H.Clamp(0M, 1M - Y);
+        }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
+        /// A <see cref="string" /> that represents this instance.
         /// </returns>
         public override string ToString()
         {

@@ -8,7 +8,7 @@
     /// <summary>
     /// Defines a wrapper for the raspistill program and its settings (command-line arguments)
     /// </summary>
-    /// <seealso cref="Unosquare.RaspberryIO.Camera.CameraSettingsBase" />
+    /// <seealso cref="CameraSettingsBase" />
     public class CameraStillSettings : CameraSettingsBase
     {
         private int _rotate;
@@ -62,7 +62,11 @@
         /// </value>
         public bool VerticalFlip { get; set; } = false;
 
-        public int Rotate
+        /// <summary>
+        /// Gets or sets the rotation.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Valid range 0-359</exception>
+        public int Rotation
         {
             get => _rotate;
             set
@@ -109,7 +113,7 @@
             // Display preview settings
             if (CaptureDisplayPreview && CaptureDisplayPreviewAtResolution) sb.Append(" -fp");
 
-            if (Rotate != 0) sb.Append($" -rot {Rotate}");
+            if (Rotation != 0) sb.Append($" -rot {Rotation}");
 
             if (HorizontalFlip) sb.Append(" -hf");
 

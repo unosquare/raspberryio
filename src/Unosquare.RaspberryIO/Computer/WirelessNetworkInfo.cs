@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Models
+﻿namespace Unosquare.RaspberryIO.Computer
 {
     /// <summary>
     /// Represents a wireless network information
@@ -12,7 +12,7 @@
 
         /// <summary>
         /// Gets the network quality.
-        /// </summary> 
+        /// </summary>
         public string Quality { get; set; }
 
         /// <summary>

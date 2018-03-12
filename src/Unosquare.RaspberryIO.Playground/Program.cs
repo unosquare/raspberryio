@@ -5,18 +5,19 @@
     using Computer;
     using Gpio;
     using Swan;
-    using Swan.Formatters;
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Threading;
-#if NET452
-    using Samples;
-#endif
 
-    public class Program
+    /// <summary>
+    /// Main entry point class
+    /// </summary>
+    public partial class Program
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The CLI arguments.</param>
         public static void Main(string[] args)
         {
             $"Starting program at {DateTime.Now}".Info();
@@ -25,14 +26,14 @@
 
             try
             {
-                // Uncomment the following line to test Mfrc522Controller
-                // Tag();
-
+                // A set of very simple tests:
+                // TestCaptureImage();
+                // TestCaptureVideo();
+                // TestLedStripGraphics();
+                // TestLedStrip();
+                // TestTag();
                 TestSystemInfo();
-                //TestCaptureImage();
-                //TestCaptureVideo();
-                //TestLedStripGraphics();
-                //TestLedStrip();
+                TestInfraredSensor();
             }
             catch (Exception ex)
             {
@@ -47,207 +48,35 @@
             }
         }
 
-        private static void Tag()
+        /// <summary>
+        /// Tests the infrared sensor HX1838.
+        /// </summary>
+        public static void TestInfraredSensor()
         {
-            var mfrc522 = new Mfrc522Controller();
-
+            var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
+            inputPin.PinMode = GpioPinDriveMode.Input;
+            var timer = new Native.HighResolutionTimer();
+            var currentValue = inputPin.Read();
             while (true)
             {
-                // Scan for cards
-                var result = mfrc522.Request(Mfrc522Controller.PICC_REQIDL);
-                var status = result.Item1;
-
-                // If a card is found
-                if (status == Mfrc522Controller.MI_OK)
+                if (currentValue != inputPin.Read())
                 {
-                    "Card detected".Info();
+                    if (timer.IsRunning == false)
+                        timer.Start();
+
+                    currentValue = !currentValue;
+                    $"Bit Value: {(currentValue ? "1" : "0"),4} | Elapsed: {timer.ElapsedMicroseconds,10} us.".Info("IR");
+                    timer.Restart();
+                    continue;
                 }
 
-                // Get the UID of the card
-                var resultAnticoll = mfrc522.Anticoll();
-                var status2 = resultAnticoll.Item1; 
-                var uid = resultAnticoll.Item2;
-
-                // If we have the UID, continue
-                if (status2 == Mfrc522Controller.MI_OK)
-                {
-                    // Print UID
-                    $"Card read UID: {uid[0]},{uid[1]},{uid[2]},{uid[3]}".Info();
-
-                    // This is the default key for authentication
-                    var key = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-
-                    // Select the scanned tag
-                    mfrc522.SelectTag(uid);
-
-                    // Authenticate
-                    var status3 = mfrc522.Auth(Mfrc522Controller.PICC_AUTHENT1A, 8, key, uid);
-
-                    // Check if authenticated
-                    if (status3 == Mfrc522Controller.MI_OK)
-                    {
-                        mfrc522.ReadSpi(8);
-                        mfrc522.StopCrypto1();
-                    }
-                    else
-                    {
-                        "Authentication error".Error();
-                    }
-                }
+                Pi.Timing.SleepMicroseconds(50);
             }
         }
 
-#if NET452
-        public static void TestLedStripGraphics()
-        {
-            BitmapBuffer pixels = null;
-
-            try
-            {
-                using (var bitmap =
-                    new System.Drawing.Bitmap(Path.Combine(Runtime.EntryAssemblyDirectory, "fractal.jpg")))
-                {
-                    $"Loaded bitmap with format {bitmap.PixelFormat}".Info();
-                    pixels = new BitmapBuffer(bitmap);
-                    $"Loaded Pixel Data: {pixels.Data.Length} bytes".Info();
-                }
-            }
-            catch (Exception ex)
-            {
-                $"Error Loading image: {ex.Message}".Error();
-            }
-
-            var exitAnimation = false;
-            var useDynamicBrightness = false;
-            var frameRenderTimes = new Queue<int>();
-            var frameTimes = new Queue<int>();
-
-            var thread = new Thread(() =>
-            {
-                var strip = new LedStrip(60 * 4, 1, 1000000); // 1 Mhz is sufficient for such a short strip (only 240 LEDs)
-                var millisecondsPerFrame = 1000 / 25;
-                var lastRenderTime = DateTime.UtcNow;
-                var currentFrameNumber = 0;
-
-                var currentBrightness = 0.8f;
-                var currentRow = 0;
-                var currentDirection = 1;
-
-                while (!exitAnimation)
-                {
-                    // Push pixels into the Frame Buffer
-                    strip.SetPixels(pixels, 0, currentRow, currentBrightness);
-
-                    // Move the current row slowly at FPS
-                    currentRow += currentDirection;
-                    if (currentRow >= pixels.ImageHeight)
-                    {
-                        currentRow = pixels.ImageHeight - 2;
-                        currentDirection = -1;
-                    }
-                    else if (currentRow <= 0)
-                    {
-                        currentRow = 1;
-                        currentDirection = 1;
-                    }
-
-                    if (useDynamicBrightness)
-                        currentBrightness = 0.05f + 0.80f * (currentRow / (pixels.ImageHeight - 1f));
-
-                    // Stats and sleep time
-                    var delayMilliseconds = (int) DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
-                    frameRenderTimes.Enqueue(delayMilliseconds);
-                    delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
-
-                    if (delayMilliseconds > 0 && exitAnimation == false)
-                        Thread.Sleep(delayMilliseconds);
-                    else
-                        $"Lagging framerate: {delayMilliseconds} milliseconds".Info();
-
-                    frameTimes.Enqueue((int) DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
-                    lastRenderTime = DateTime.UtcNow;
-
-                    // Push the framebuffer to SPI
-                    strip.Render();
-
-                    if (currentFrameNumber == int.MaxValue)
-                        currentFrameNumber = 0;
-                    else
-                        currentFrameNumber++;
-                    if (frameRenderTimes.Count >= 2048) frameRenderTimes.Dequeue();
-                    if (frameTimes.Count >= 20148) frameTimes.Dequeue();
-                }
-
-                strip.ClearPixels();
-                strip.Render();
-
-                var avg = frameRenderTimes.Average();
-                $"Frames: {currentFrameNumber + 1}, FPS: {Math.Round(1000f / frameTimes.Average(), 3)}, Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}"
-                    .Info();
-                strip.Render();
-            });
-
-            thread.Start();
-            "Press any key to stop and clear".Info();
-            Console.ReadKey(true);
-            Console.WriteLine();
-            exitAnimation = true;
-        }
-
-        public static void TestLedStrip()
-        {
-            var exitAnimation = false;
-
-            var thread = new Thread(() =>
-            {
-                var strip = new LedStrip(60 * 4);
-                var millisecondsPerFrame = 1000 / 25;
-                var lastRenderTime = DateTime.UtcNow;
-
-                var tailSize = strip.LedCount;
-                byte red = 0;
-
-                while (!exitAnimation)
-                {
-                    strip.ClearPixels();
-
-                    red = red >= 254 ? default(byte) : (byte) (red + 1);
-
-                    for (var i = 0; i < tailSize; i++)
-                    {
-                        strip[i].Brightness = i / (tailSize - 1f);
-                        strip[i].R = red;
-                        strip[i].G = (byte) (255 - red);
-                        strip[i].B = (byte) (strip[i].Brightness * 254);
-                    }
-
-                    var delayMilliseconds = (int) DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds;
-                    delayMilliseconds = millisecondsPerFrame - delayMilliseconds;
-                    if (delayMilliseconds > 0 && exitAnimation == false)
-                    {
-                        Thread.Sleep(delayMilliseconds);
-                    }
-                    else
-                    {
-                        $"Lagging framerate: {delayMilliseconds} milliseconds".Info();
-                    }
-
-                    lastRenderTime = DateTime.UtcNow;
-                    strip.Render();
-                }
-
-                strip.ClearPixels();
-                strip.Render();
-            });
-
-            thread.Start();
-            "Press any key to stop and clear".Info();
-            Console.ReadKey(true);
-            Console.WriteLine();
-            exitAnimation = true;
-        }
-#endif
-
+        /// <summary>
+        /// Tests the SPI bus functionality.
+        /// </summary>
         public static void TestSpi()
         {
             Pi.Spi.Channel0Frequency = SpiChannel.MinFrequency;
@@ -263,6 +92,9 @@
             $"SPI Base Stream Response: {BitConverter.ToString(response)}".Info();
         }
 
+        /// <summary>
+        /// Tests the display.
+        /// </summary>
         public static void TestDisplay()
         {
             var input = string.Empty;
@@ -297,10 +129,13 @@
             $"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}".Info();
         }
 
+        /// <summary>
+        /// Tests the LED blinking logic.
+        /// </summary>
         public static void TestLedBlinking()
         {
             // Get a reference to the pin you need to use.
-            // All 3 methods below are exactly equivalente
+            // All 3 methods below are exactly equivalent
             var blinkingPin = Pi.Gpio[0];
             blinkingPin = Pi.Gpio[WiringPiPin.Pin00];
             blinkingPin = Pi.Gpio.Pin00;
@@ -314,7 +149,7 @@
             {
                 isOn = !isOn;
                 blinkingPin.Write(isOn);
-                System.Threading.Thread.Sleep(500);
+                Thread.Sleep(500);
             }
         }
 
@@ -330,9 +165,9 @@
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}"
                 .Info();
 
-            foreach (var adapter in Computer.NetworkSettings.Instance.RetrieveAdapters())
+            foreach (var adapter in NetworkSettings.Instance.RetrieveAdapters())
             {
-                $"Network Adapters = {adapter.Name} IPv4 {adapter.IPv4} IPv6 {adapter.IPv6} AccessPoint {adapter.AccessPointName} MAC Address: {adapter.MacAddress}"
+                $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}"
                     .Info();
             }
         }
@@ -412,6 +247,56 @@
             foreach (var color in colors)
             {
                 $"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}".Info();
+            }
+        }
+        
+        private static void Tag()
+        {
+            var mfrc522 = new Mfrc522Controller();
+
+            while (true)
+            {
+                // Scan for cards
+                var result = mfrc522.Request(Mfrc522Controller.PICC_REQIDL);
+                var status = result.Item1;
+
+                // If a card is found
+                if (status == Mfrc522Controller.MI_OK)
+                {
+                    "Card detected".Info();
+                }
+
+                // Get the UID of the card
+                var resultAnticoll = mfrc522.Anticoll();
+                var status2 = resultAnticoll.Item1; 
+                var uid = resultAnticoll.Item2;
+
+                // If we have the UID, continue
+                if (status2 == Mfrc522Controller.MI_OK)
+                {
+                    // Print UID
+                    $"Card read UID: {uid[0]},{uid[1]},{uid[2]},{uid[3]}".Info();
+
+                    // This is the default key for authentication
+                    var key = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+
+                    // Select the scanned tag
+                    mfrc522.SelectTag(uid);
+
+                    // Authenticate
+                    var status3 = mfrc522.Auth(Mfrc522Controller.PICC_AUTHENT1A, 8, key, uid);
+
+                    // Check if authenticated
+                    if (status3 == Mfrc522Controller.MI_OK)
+                    {
+                        mfrc522.ReadSpi(8);
+                        mfrc522.StopCrypto1();
+                    }
+                    else
+                    {
+                        "Authentication error".Error();
+                    }
+                }
             }
         }
     }
