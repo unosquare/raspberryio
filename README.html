@@ -94,14 +94,41 @@
 <p>It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:</p>
 <pre><code>Mono JIT compiler version 5.4.1.6 (tarball Wed Nov  8 21:42:16 UTC 2017)
 </code></pre><p>The commands to get Mono installed are the following:</p>
+<h3 id="for-debian-wheezy">For Debian Wheezy</h3>
 <pre><code>sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install mono-complete
+sudo apt-get install dirmngr
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo &quot;deb http://download.mono-project.com/repo/debian wheezy main&quot; | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
 sudo apt-get update
 sudo apt-get dist-upgrade
+</code></pre><h3 id="for-debian-stretch">For Debian Stretch</h3>
+<pre><code>sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install mono-complete
+sudo apt-get install dirmngr
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo &quot;deb http://download.mono-project.com/repo/debian stretch main&quot; | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+sudo apt-get update
+sudo apt-get dist-upgrade
 </code></pre><p>Now, verify your version of Mono by running <code>mono --version</code>. Version 4.6 and above should be good enough.</p>
+<h3 id="handy-notes">Handy Notes</h3>
+<p>In order to setup Wi-Fi, run: <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></p>
+<p>A good file should look like this:</p>
+<pre><code>country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid=&quot;your_real_wifi_ssid&quot;
+    scan_ssid=1
+    psk=&quot;your_real_password&quot;
+}
+</code></pre><p>And then restart the services as follows:</p>
+<pre><code>sudo systemctl daemon-reload
+sudo systemctl restart dhcpcd
+</code></pre><p>You can also configure most boot options by running: <code>sudo raspi-config</code></p>
 <h2 id="running-net-core-2">Running .NET Core 2</h2>
 <p>This project can also run in .NET Core 2.</p>
 <p>Run the following commands to install .NET Core 2.</p>
@@ -677,7 +704,7 @@ foreach (var device in Pi.I2C.Devices)
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/Issue30-AddRFIDModule/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

@@ -125,15 +125,15 @@ The wrappers were written based on <a href="https://github.com/WiringPi/WiringPi
   </h3>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_analogRead_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.analogRead*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_analogRead_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.analogRead(System.Int32)">analogRead(Int32)</h4>
-  <div class="markdown level1 summary"><p>This returns the value read on the supplied analog input pin. You will need to 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_AnalogRead_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.AnalogRead*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_AnalogRead_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.AnalogRead(System.Int32)">AnalogRead(Int32)</h4>
+  <div class="markdown level1 summary"><p>This returns the value read on the supplied analog input pin. You will need to
 register additional analog modules to enable this function for devices such as the Gertboard, quick2Wire analog board, etc.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int analogRead(int pin)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int AnalogRead(int pin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -164,21 +164,22 @@ register additional analog modules to enable this function for devices such as t
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_analogWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.analogWrite*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_analogWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.analogWrite(System.Int32,System.Int32)">analogWrite(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>This writes the given value to the supplied analog pin. You will need to register additional 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_AnalogWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.AnalogWrite*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_AnalogWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.AnalogWrite(System.Int32,System.Int32)">AnalogWrite(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>This writes the given value to the supplied analog pin. You will need to register additional
 analog modules to enable this function for devices such as the Gertboard.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void analogWrite(int pin, int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void AnalogWrite(int pin, int value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -206,16 +207,16 @@ analog modules to enable this function for devices such as the Gertboard.</p>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_delay_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.delay*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_delay_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.delay(System.UInt32)">delay(UInt32)</h4>
-  <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong milliseconds. 
-Due to the multi-tasking nature of Linux it could be longer. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_Delay_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.Delay*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_Delay_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.Delay(System.UInt32)">Delay(UInt32)</h4>
+  <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong milliseconds.
+Due to the multi-tasking nature of Linux it could be longer.
 Note that the maximum delay is an unsigned 32-bit integer or approximately 49 days.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void delay(uint howLong)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void Delay(uint howLong)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -237,19 +238,19 @@ Note that the maximum delay is an unsigned 32-bit integer or approximately 49 da
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_delayMicroseconds_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.delayMicroseconds*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_delayMicroseconds_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.delayMicroseconds(System.UInt32)">delayMicroseconds(UInt32)</h4>
-  <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong microseconds. 
-Due to the multi-tasking nature of Linux it could be longer. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_DelayMicroseconds_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DelayMicroseconds*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_DelayMicroseconds_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DelayMicroseconds(System.UInt32)">DelayMicroseconds(UInt32)</h4>
+  <div class="markdown level1 summary"><p>This causes program execution to pause for at least howLong microseconds.
+Due to the multi-tasking nature of Linux it could be longer.
 Note that the maximum delay is an unsigned 32-bit integer microseconds or approximately 71 minutes.
-Delays under 100 microseconds are timed using a hard-coded loop continually polling the system time, 
-Delays over 100 microseconds are done using the system nanosleep() function – You may need to consider the implications 
+Delays under 100 microseconds are timed using a hard-coded loop continually polling the system time,
+Delays over 100 microseconds are done using the system nanosleep() function – You may need to consider the implications
 of very short delays on the overall performance of the system, especially if using threads.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void delayMicroseconds(uint howLong)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void DelayMicroseconds(uint howLong)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -271,14 +272,14 @@ of very short delays on the overall performance of the system, especially if usi
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_digitalRead_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.digitalRead*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_digitalRead_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.digitalRead(System.Int32)">digitalRead(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_DigitalRead_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalRead*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_DigitalRead_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalRead(System.Int32)">DigitalRead(Int32)</h4>
   <div class="markdown level1 summary"><p>This function returns the value read at the given pin. It will be HIGH or LOW (1 or 0) depending on the logic level at the pin.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int digitalRead(int pin)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int DigitalRead(int pin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -309,22 +310,23 @@ of very short delays on the overall performance of the system, especially if usi
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_digitalReadByte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.digitalReadByte*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_digitalReadByte" data-uid="Unosquare.RaspberryIO.Native.WiringPi.digitalReadByte">digitalReadByte()</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_DigitalReadByte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_DigitalReadByte" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte">DigitalReadByte()</h4>
   <div class="markdown level1 summary"><p>Undocumented function
-This reads the 8-bit byte supplied to the first 8 GPIO pins. 
+This reads the 8-bit byte supplied to the first 8 GPIO pins.
 It’s the fastest way to get all 8 bits at once to a particular value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint digitalReadByte()</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint DigitalReadByte()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -337,21 +339,51 @@ It’s the fastest way to get all 8 bits at once to a particular value.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_digitalWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.digitalWrite*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_digitalWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.digitalWrite(System.Int32,System.Int32)">digitalWrite(Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_DigitalReadByte2_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte2*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_DigitalReadByte2" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalReadByte2">DigitalReadByte2()</h4>
+  <div class="markdown level1 summary"><p>Undocumented function
+This reads the 8-bit byte supplied to the first 8 GPIO pins.
+It’s the fastest way to get all 8 bits at once to a particular value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint DigitalReadByte2()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><p>The result code</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_DigitalWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalWrite*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_DigitalWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalWrite(System.Int32,System.Int32)">DigitalWrite(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Writes the value HIGH or LOW (1 or 0) to the given pin which must have been previously set as an output.
 WiringPi treats any non-zero number as HIGH, however 0 is the only representation of LOW.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void digitalWrite(int pin, int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void DigitalWrite(int pin, int value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -379,15 +411,15 @@ WiringPi treats any non-zero number as HIGH, however 0 is the only representatio
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_digitalWriteByte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.digitalWriteByte*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_digitalWriteByte_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.digitalWriteByte(System.Int32)">digitalWriteByte(Int32)</h4>
-  <div class="markdown level1 summary"><p>This writes the 8-bit byte supplied to the first 8 GPIO pins. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_DigitalWriteByte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_DigitalWriteByte_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte(System.Int32)">DigitalWriteByte(Int32)</h4>
+  <div class="markdown level1 summary"><p>This writes the 8-bit byte supplied to the first 8 GPIO pins.
 It’s the fastest way to set all 8 bits at once to a particular value, although it still takes two write operations to the Pi’s GPIO hardware.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void digitalWriteByte(int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void DigitalWriteByte(int value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -409,14 +441,44 @@ It’s the fastest way to set all 8 bits at once to a particular value, although
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_getAlt_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.getAlt*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_getAlt_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.getAlt(System.Int32)">getAlt(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_DigitalWriteByte2_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte2*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_DigitalWriteByte2_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.DigitalWriteByte2(System.Int32)">DigitalWriteByte2(Int32)</h4>
+  <div class="markdown level1 summary"><p>This writes the 8-bit byte supplied to the first 8 GPIO pins.
+It’s the fastest way to set all 8 bits at once to a particular value, although it still takes two write operations to the Pi’s GPIO hardware.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DigitalWriteByte2(int value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_GetAlt_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.GetAlt*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_GetAlt_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.GetAlt(System.Int32)">GetAlt(Int32)</h4>
   <div class="markdown level1 summary"><p>Undocumented function</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int getAlt(int pin)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int GetAlt(int pin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -447,20 +509,21 @@ It’s the fastest way to set all 8 bits at once to a particular value, although
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_gpioClockSet_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.gpioClockSet*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_gpioClockSet_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.gpioClockSet(System.Int32,System.Int32)">gpioClockSet(Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_GpioClockSet_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.GpioClockSet*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_GpioClockSet_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.GpioClockSet(System.Int32,System.Int32)">GpioClockSet(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Undocumented function</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void gpioClockSet(int pin, int freq)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void GpioClockSet(int pin, int freq)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -488,15 +551,15 @@ It’s the fastest way to set all 8 bits at once to a particular value, although
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_micros_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.micros*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_micros" data-uid="Unosquare.RaspberryIO.Native.WiringPi.micros">micros()</h4>
-  <div class="markdown level1 summary"><p>This returns a number representing the number of microseconds since your program called one of 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_Micros_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.Micros*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_Micros" data-uid="Unosquare.RaspberryIO.Native.WiringPi.Micros">Micros()</h4>
+  <div class="markdown level1 summary"><p>This returns a number representing the number of microseconds since your program called one of
 the wiringPiSetup functions. It returns an unsigned 32-bit number which wraps after approximately 71 minutes.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint micros()</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint Micros()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -509,21 +572,22 @@ the wiringPiSetup functions. It returns an unsigned 32-bit number which wraps af
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_millis_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.millis*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_millis" data-uid="Unosquare.RaspberryIO.Native.WiringPi.millis">millis()</h4>
-  <div class="markdown level1 summary"><p>This returns a number representing the number of milliseconds since your program called one of the wiringPiSetup functions. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_Millis_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.Millis*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_Millis" data-uid="Unosquare.RaspberryIO.Native.WiringPi.Millis">Millis()</h4>
+  <div class="markdown level1 summary"><p>This returns a number representing the number of milliseconds since your program called one of the wiringPiSetup functions.
 It returns an unsigned 32-bit number which wraps after 49 days.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint millis()</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint Millis()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -536,20 +600,21 @@ It returns an unsigned 32-bit number which wraps after 49 days.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_physPinToGpio_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.physPinToGpio*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_physPinToGpio_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.physPinToGpio(System.Int32)">physPinToGpio(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PhysPinToGpio_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PhysPinToGpio*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PhysPinToGpio_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PhysPinToGpio(System.Int32)">PhysPinToGpio(Int32)</h4>
   <div class="markdown level1 summary"><p>This returns the BCM_GPIO pin number of the supplied physical pin on the P1 connector.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int physPinToGpio(int physPin)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int PhysPinToGpio(int physPin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -580,20 +645,21 @@ It returns an unsigned 32-bit number which wraps after 49 days.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_piBoardId_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piBoardId*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_piBoardId_System_Int32__System_Int32__System_Int32__System_Int32__" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piBoardId(System.Int32@,System.Int32@,System.Int32@,System.Int32@)">piBoardId(ref Int32, ref Int32, ref Int32, ref Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PiBoardId_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiBoardId*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PiBoardId_System_Int32__System_Int32__System_Int32__System_Int32__" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiBoardId(System.Int32@,System.Int32@,System.Int32@,System.Int32@)">PiBoardId(ref Int32, ref Int32, ref Int32, ref Int32)</h4>
   <div class="markdown level1 summary"><p>This function is undocumented</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int piBoardId(ref int model, ref int mem, ref int maker, ref int overVolted)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int PiBoardId(ref int model, ref int mem, ref int maker, ref int overVolted)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -642,21 +708,22 @@ It returns an unsigned 32-bit number which wraps after 49 days.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_piBoardRev_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piBoardRev*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_piBoardRev" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piBoardRev">piBoardRev()</h4>
-  <div class="markdown level1 summary"><p>This returns the board revision of the Raspberry Pi. It will be either 1 or 2. Some of the BCM_GPIO pins changed number and 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PiBoardRev_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiBoardRev*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PiBoardRev" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiBoardRev">PiBoardRev()</h4>
+  <div class="markdown level1 summary"><p>This returns the board revision of the Raspberry Pi. It will be either 1 or 2. Some of the BCM_GPIO pins changed number and
 function when moving from board revision 1 to 2, so if you are using BCM_GPIO pin numbers, then you need to be aware of the differences.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int piBoardRev()</code></pre>
+    <pre><code class="lang-csharp hljs">public static int PiBoardRev()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -669,19 +736,20 @@ function when moving from board revision 1 to 2, so if you are using BCM_GPIO pi
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_piHiPri_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piHiPri*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_piHiPri_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piHiPri(System.Int32)">piHiPri(Int32)</h4>
-  <div class="markdown level1 summary"><p>This attempts to shift your program (or thread in a multi-threaded program) to a higher priority 
-and enables a real-time scheduling. The priority parameter should be from 0 (the default) to 99 (the maximum). 
-This won’t make your program go any faster, but it will give it a bigger slice of time when other programs are running. 
-The priority parameter works relative to others – so you can make one program priority 1 and another priority 2 
-and it will have the same effect as setting one to 10 and the other to 90 (as long as no other 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PiHiPri_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiHiPri*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PiHiPri_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiHiPri(System.Int32)">PiHiPri(Int32)</h4>
+  <div class="markdown level1 summary"><p>This attempts to shift your program (or thread in a multi-threaded program) to a higher priority
+and enables a real-time scheduling. The priority parameter should be from 0 (the default) to 99 (the maximum).
+This won’t make your program go any faster, but it will give it a bigger slice of time when other programs are running.
+The priority parameter works relative to others – so you can make one program priority 1 and another priority 2
+and it will have the same effect as setting one to 10 and the other to 90 (as long as no other
 programs are running with elevated priorities)
 The return value is 0 for success and -1 for error. If an error is returned, the program should then consult the errno global variable, as per the usual conventions.
 Note: Only programs running as root can change their priority. If called from a non-root program then nothing happens.</p>
@@ -689,7 +757,7 @@ Note: Only programs running as root can change their priority. If called from a 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int piHiPri(int priority)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int PiHiPri(int priority)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -720,24 +788,25 @@ Note: Only programs running as root can change their priority. If called from a 
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_piLock_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piLock*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_piLock_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piLock(System.Int32)">piLock(Int32)</h4>
-  <div class="markdown level1 summary"><p>These allow you to synchronise variable updates from your main program to any threads running in your program. keyNum is a number from 0 to 3 and represents a “key”. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PiLock_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiLock*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PiLock_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiLock(System.Int32)">PiLock(Int32)</h4>
+  <div class="markdown level1 summary"><p>These allow you to synchronise variable updates from your main program to any threads running in your program. keyNum is a number from 0 to 3 and represents a key.
 When another process tries to lock the same key, it will be stalled until the first process has unlocked the same key.
-You may need to use these functions to ensure that you get valid data when exchanging data between your main program and a thread 
-– otherwise it’s possible that the thread could wake-up halfway during your data copy and change the data – 
+You may need to use these functions to ensure that you get valid data when exchanging data between your main program and a thread
+– otherwise it’s possible that the thread could wake-up halfway during your data copy and change the data –
 so the data you end up copying is incomplete, or invalid. See the wfi.c program in the examples directory for an example.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void piLock(int key)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void PiLock(int key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -759,18 +828,18 @@ so the data you end up copying is incomplete, or invalid. See the wfi.c program 
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_pinMode_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pinMode*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_pinMode_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pinMode(System.Int32,System.Int32)">pinMode(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>This sets the mode of a pin to either INPUT, OUTPUT, PWM_OUTPUT or GPIO_CLOCK. 
-Note that only wiringPi pin 1 (BCM_GPIO 18) supports PWM output and only wiringPi pin 7 (BCM_GPIO 4) 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PinMode_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PinMode*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PinMode_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PinMode(System.Int32,System.Int32)">PinMode(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>This sets the mode of a pin to either INPUT, OUTPUT, PWM_OUTPUT or GPIO_CLOCK.
+Note that only wiringPi pin 1 (BCM_GPIO 18) supports PWM output and only wiringPi pin 7 (BCM_GPIO 4)
 supports CLOCK output modes.</p>
-<p>This function has no effect when in Sys mode. If you need to change the pin mode, then you can 
+<p>This function has no effect when in Sys mode. If you need to change the pin mode, then you can
 do it with the gpio program in a script before you start your program.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void pinMode(int pin, int mode)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void PinMode(int pin, int mode)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -798,14 +867,14 @@ do it with the gpio program in a script before you start your program.</p>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_pinModeAlt_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pinModeAlt*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_pinModeAlt_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pinModeAlt(System.Int32,System.Int32)">pinModeAlt(Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PinModeAlt_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PinModeAlt*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PinModeAlt_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PinModeAlt(System.Int32,System.Int32)">PinModeAlt(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>This function is undocumented</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void pinModeAlt(int pin, int mode)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void PinModeAlt(int pin, int mode)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -833,17 +902,17 @@ do it with the gpio program in a script before you start your program.</p>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_piThreadCreate_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piThreadCreate*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_piThreadCreate_Unosquare_RaspberryIO_Native_ThreadWorker_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piThreadCreate(Unosquare.RaspberryIO.Native.ThreadWorker)">piThreadCreate(ThreadWorker)</h4>
-  <div class="markdown level1 summary"><p>This function creates a thread which is another function in your program previously declared using the PI_THREAD declaration. 
-This function is then run concurrently with your main program. An example may be to have this function wait for an interrupt while 
-your program carries on doing other tasks. The thread can indicate an event, or action by using global variables to 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PiThreadCreate_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiThreadCreate*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PiThreadCreate_Unosquare_RaspberryIO_Native_ThreadWorker_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiThreadCreate(Unosquare.RaspberryIO.Native.ThreadWorker)">PiThreadCreate(ThreadWorker)</h4>
+  <div class="markdown level1 summary"><p>This function creates a thread which is another function in your program previously declared using the PI_THREAD declaration.
+This function is then run concurrently with your main program. An example may be to have this function wait for an interrupt while
+your program carries on doing other tasks. The thread can indicate an event, or action by using global variables to
 communicate back to the main program, or other threads.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int piThreadCreate(ThreadWorker method)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int PiThreadCreate(ThreadWorker method)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -874,24 +943,25 @@ communicate back to the main program, or other threads.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_piUnlock_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piUnlock*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_piUnlock_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.piUnlock(System.Int32)">piUnlock(Int32)</h4>
-  <div class="markdown level1 summary"><p>These allow you to synchronise variable updates from your main program to any threads running in your program. keyNum is a number from 0 to 3 and represents a “key”. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PiUnlock_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiUnlock*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PiUnlock_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PiUnlock(System.Int32)">PiUnlock(Int32)</h4>
+  <div class="markdown level1 summary"><p>These allow you to synchronise variable updates from your main program to any threads running in your program. keyNum is a number from 0 to 3 and represents a key.
 When another process tries to lock the same key, it will be stalled until the first process has unlocked the same key.
-You may need to use these functions to ensure that you get valid data when exchanging data between your main program and a thread 
-– otherwise it’s possible that the thread could wake-up halfway during your data copy and change the data – 
+You may need to use these functions to ensure that you get valid data when exchanging data between your main program and a thread
+– otherwise it’s possible that the thread could wake-up halfway during your data copy and change the data –
 so the data you end up copying is incomplete, or invalid. See the wfi.c program in the examples directory for an example.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void piUnlock(int key)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void PiUnlock(int key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -913,19 +983,19 @@ so the data you end up copying is incomplete, or invalid. See the wfi.c program 
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_pullUpDnControl_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pullUpDnControl*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_pullUpDnControl_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pullUpDnControl(System.Int32,System.Int32)">pullUpDnControl(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>This sets the pull-up or pull-down resistor mode on the given pin, which should be set as an input. 
-Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors. The parameter pud should be; PUD_OFF, 
-(no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v) The internal pull up/down resistors 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PullUpDnControl_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PullUpDnControl*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PullUpDnControl_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PullUpDnControl(System.Int32,System.Int32)">PullUpDnControl(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>This sets the pull-up or pull-down resistor mode on the given pin, which should be set as an input.
+Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors. The parameter pud should be; PUD_OFF,
+(no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v) The internal pull up/down resistors
 have a value of approximately 50KΩ on the Raspberry Pi.</p>
-<p>This function has no effect on the Raspberry Pi’s GPIO pins when in Sys mode. 
+<p>This function has no effect on the Raspberry Pi’s GPIO pins when in Sys mode.
 If you need to activate a pull-up/pull-down, then you can do it with the gpio program in a script before you start your program.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void pullUpDnControl(int pin, int pud)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void PullUpDnControl(int pin, int pud)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -953,16 +1023,16 @@ If you need to activate a pull-up/pull-down, then you can do it with the gpio pr
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_pwmSetClock_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmSetClock*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_pwmSetClock_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmSetClock(System.Int32)">pwmSetClock(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PwmSetClock_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmSetClock*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PwmSetClock_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmSetClock(System.Int32)">PwmSetClock(Int32)</h4>
   <div class="markdown level1 summary"><p>This sets the divisor for the PWM clock.
-Note: The PWM control functions can not be used when in Sys mode. 
+Note: The PWM control functions can not be used when in Sys mode.
 To understand more about the PWM system, you’ll need to read the Broadcom ARM peripherals manual.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void pwmSetClock(int divisor)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void PwmSetClock(int divisor)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -984,15 +1054,15 @@ To understand more about the PWM system, you’ll need to read the Broadcom ARM 
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_pwmSetMode_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmSetMode*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_pwmSetMode_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmSetMode(System.Int32)">pwmSetMode(Int32)</h4>
-  <div class="markdown level1 summary"><p>The PWM generator can run in 2 modes – “balanced” and “mark:space”. The mark:space mode is traditional, 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PwmSetMode_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmSetMode*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PwmSetMode_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmSetMode(System.Int32)">PwmSetMode(Int32)</h4>
+  <div class="markdown level1 summary"><p>The PWM generator can run in 2 modes – “balanced” and “mark:space”. The mark:space mode is traditional,
 however the default mode in the Pi is “balanced”. You can switch modes by supplying the parameter: PWM_MODE_BAL or PWM_MODE_MS.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void pwmSetMode(int mode)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void PwmSetMode(int mode)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1014,14 +1084,14 @@ however the default mode in the Pi is “balanced”. You can switch modes by su
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_pwmSetRange_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmSetRange*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_pwmSetRange_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmSetRange(System.UInt32)">pwmSetRange(UInt32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PwmSetRange_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmSetRange*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PwmSetRange_System_UInt32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmSetRange(System.UInt32)">PwmSetRange(UInt32)</h4>
   <div class="markdown level1 summary"><p>This sets the range register in the PWM generator. The default is 1024.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void pwmSetRange(uint range)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void PwmSetRange(uint range)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1043,14 +1113,14 @@ however the default mode in the Pi is “balanced”. You can switch modes by su
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_pwmToneWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmToneWrite*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_pwmToneWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmToneWrite(System.Int32,System.Int32)">pwmToneWrite(Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PwmToneWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmToneWrite*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PwmToneWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmToneWrite(System.Int32,System.Int32)">PwmToneWrite(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Undocumented function</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int pwmToneWrite(int pin, int freq)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int PwmToneWrite(int pin, int freq)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1087,23 +1157,24 @@ however the default mode in the Pi is “balanced”. You can switch modes by su
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_pwmWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmWrite*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_pwmWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.pwmWrite(System.Int32,System.Int32)">pwmWrite(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>Writes the value to the PWM register for the given pin. The Raspberry Pi has one 
-on-board PWM pin, pin 1 (BMC_GPIO 18, Phys 12) and the range is 0-1024. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_PwmWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmWrite*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_PwmWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.PwmWrite(System.Int32,System.Int32)">PwmWrite(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Writes the value to the PWM register for the given pin. The Raspberry Pi has one
+on-board PWM pin, pin 1 (BMC_GPIO 18, Phys 12) and the range is 0-1024.
 Other PWM devices may have other PWM ranges.
 This function is not able to control the Pi’s on-board PWM when in Sys mode.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void pwmWrite(int pin, int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void PwmWrite(int pin, int value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1131,14 +1202,14 @@ This function is not able to control the Pi’s on-board PWM when in Sys mode.</
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_serialClose_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialClose*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_serialClose_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialClose(System.Int32)">serialClose(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SerialClose_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialClose*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SerialClose_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialClose(System.Int32)">SerialClose(Int32)</h4>
   <div class="markdown level1 summary"><p>Closes the device identified by the file descriptor given.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int serialClose(int fd)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int SerialClose(int fd)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1169,21 +1240,22 @@ This function is not able to control the Pi’s on-board PWM when in Sys mode.</
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_serialDataAvail_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialDataAvail*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_serialDataAvail_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialDataAvail(System.Int32)">serialDataAvail(Int32)</h4>
-  <div class="markdown level1 summary"><p>Returns the number of characters available for reading, or -1 for any error condition, 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SerialDataAvail_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialDataAvail*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SerialDataAvail_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialDataAvail(System.Int32)">SerialDataAvail(Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the number of characters available for reading, or -1 for any error condition,
 in which case errno will be set appropriately.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int serialDataAvail(int fd)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int SerialDataAvail(int fd)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1214,20 +1286,21 @@ in which case errno will be set appropriately.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_serialFlush_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialFlush*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_serialFlush_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialFlush(System.Int32)">serialFlush(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SerialFlush_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialFlush*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SerialFlush_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialFlush(System.Int32)">SerialFlush(Int32)</h4>
   <div class="markdown level1 summary"><p>This discards all data received, or waiting to be send down the given device.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void serialFlush(int fd)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SerialFlush(int fd)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1249,15 +1322,15 @@ in which case errno will be set appropriately.</p>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_serialGetchar_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialGetchar*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_serialGetchar_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialGetchar(System.Int32)">serialGetchar(Int32)</h4>
-  <div class="markdown level1 summary"><p>Returns the next character available on the serial device. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SerialGetchar_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialGetchar*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SerialGetchar_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialGetchar(System.Int32)">SerialGetchar(Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the next character available on the serial device.
 This call will block for up to 10 seconds if no data is available (when it will return -1)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int serialGetchar(int fd)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int SerialGetchar(int fd)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1288,24 +1361,25 @@ This call will block for up to 10 seconds if no data is available (when it will 
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_serialOpen_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialOpen*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_serialOpen_System_String_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialOpen(System.String,System.Int32)">serialOpen(String, Int32)</h4>
-  <div class="markdown level1 summary"><p>This opens and initialises the serial device and sets the baud rate. It sets the port into “raw” mode (character at a time and no translations), 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SerialOpen_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialOpen*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SerialOpen_System_String_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialOpen(System.String,System.Int32)">SerialOpen(String, Int32)</h4>
+  <div class="markdown level1 summary"><p>This opens and initialises the serial device and sets the baud rate. It sets the port into “raw” mode (character at a time and no translations),
 and sets the read timeout to 10 seconds. The return value is the file descriptor or -1 for any error, in which case errno will be set as appropriate.
-The wiringSerial library is intended to provide simplified control – suitable for most applications, however if you need advanced control 
-– e.g. parity control, modem control lines (via a USB adapter, there are none on the Pi’s on-board UART!) and so on, 
+The wiringSerial library is intended to provide simplified control – suitable for most applications, however if you need advanced control
+– e.g. parity control, modem control lines (via a USB adapter, there are none on the Pi’s on-board UART!) and so on,
 then you need to do some of this the old fashioned way.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int serialOpen(string device, int baud)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int SerialOpen(string device, int baud)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1342,20 +1416,21 @@ then you need to do some of this the old fashioned way.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_serialPutchar_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialPutchar*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_serialPutchar_System_Int32_System_Byte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialPutchar(System.Int32,System.Byte)">serialPutchar(Int32, Byte)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SerialPutchar_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialPutchar*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SerialPutchar_System_Int32_System_Byte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialPutchar(System.Int32,System.Byte)">SerialPutchar(Int32, Byte)</h4>
   <div class="markdown level1 summary"><p>Sends the single byte to the serial device identified by the given file descriptor.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void serialPutchar(int fd, byte c)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SerialPutchar(int fd, byte c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1383,14 +1458,14 @@ then you need to do some of this the old fashioned way.</p>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_serialPuts_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialPuts*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_serialPuts_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.serialPuts(System.Int32,System.String)">serialPuts(Int32, String)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SerialPuts_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialPuts*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SerialPuts_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SerialPuts(System.Int32,System.String)">SerialPuts(Int32, String)</h4>
   <div class="markdown level1 summary"><p>Sends the nul-terminated string to the serial device identified by the given file descriptor.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void serialPuts(int fd, string s)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SerialPuts(int fd, string s)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1418,15 +1493,15 @@ then you need to do some of this the old fashioned way.</p>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_setPadDrive_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.setPadDrive*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_setPadDrive_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.setPadDrive(System.Int32,System.Int32)">setPadDrive(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>This sets the “strength” of the pad drivers for a particular group of pins. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SetPadDrive_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SetPadDrive*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SetPadDrive_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SetPadDrive(System.Int32,System.Int32)">SetPadDrive(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>This sets the “strength” of the pad drivers for a particular group of pins.
 There are 3 groups of pins and the drive strength is from 0 to 7. Do not use this unless you know what you are doing.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int setPadDrive(int group, int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int SetPadDrive(int group, int value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1463,22 +1538,23 @@ There are 3 groups of pins and the drive strength is from 0 to 7. Do not use thi
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_shiftIn_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.shiftIn*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_shiftIn_System_Byte_System_Byte_System_Byte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.shiftIn(System.Byte,System.Byte,System.Byte)">shiftIn(Byte, Byte, Byte)</h4>
-  <div class="markdown level1 summary"><p>This shifts an 8-bit data value in with the data appearing on the dPin and the clock being sent out on the cPin. 
-Order is either LSBFIRST or MSBFIRST. The data is sampled after the cPin goes high. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_ShiftIn_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.ShiftIn*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_ShiftIn_System_Byte_System_Byte_System_Byte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.ShiftIn(System.Byte,System.Byte,System.Byte)">ShiftIn(Byte, Byte, Byte)</h4>
+  <div class="markdown level1 summary"><p>This shifts an 8-bit data value in with the data appearing on the dPin and the clock being sent out on the cPin.
+Order is either LSBFIRST or MSBFIRST. The data is sampled after the cPin goes high.
 (So cPin high, sample data, cPin low, repeat for 8 bits) The 8-bit value is returned by the function.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static byte shiftIn(byte dPin, byte cPin, byte order)</code></pre>
+    <pre><code class="lang-csharp hljs">public static byte ShiftIn(byte dPin, byte cPin, byte order)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1521,22 +1597,23 @@ Order is either LSBFIRST or MSBFIRST. The data is sampled after the cPin goes hi
     <tbody>
       <tr>
         <td><span class="xref">System.Byte</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_shiftOut_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.shiftOut*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_shiftOut_System_Byte_System_Byte_System_Byte_System_Byte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.shiftOut(System.Byte,System.Byte,System.Byte,System.Byte)">shiftOut(Byte, Byte, Byte, Byte)</h4>
-  <div class="markdown level1 summary"><p>The shifts an 8-bit data value val out with the data being sent out on dPin and the clock being sent out on the cPin. 
-order is as above. Data is clocked out on the rising or falling edge – ie. dPin is set, then cPin is taken high then low 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_ShiftOut_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.ShiftOut*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_ShiftOut_System_Byte_System_Byte_System_Byte_System_Byte_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.ShiftOut(System.Byte,System.Byte,System.Byte,System.Byte)">ShiftOut(Byte, Byte, Byte, Byte)</h4>
+  <div class="markdown level1 summary"><p>The shifts an 8-bit data value val out with the data being sent out on dPin and the clock being sent out on the cPin.
+order is as above. Data is clocked out on the rising or falling edge – ie. dPin is set, then cPin is taken high then low
 – repeated for the 8 bits.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void shiftOut(byte dPin, byte cPin, byte order, byte val)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void ShiftOut(byte dPin, byte cPin, byte order, byte val)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1576,16 +1653,16 @@ order is as above. Data is clocked out on the rising or falling edge – ie. dPi
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_softPwmCreate_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softPwmCreate*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_softPwmCreate_System_Int32_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softPwmCreate(System.Int32,System.Int32,System.Int32)">softPwmCreate(Int32, Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>This creates a software controlled PWM pin. You can use any GPIO pin and the pin numbering will be that of the wiringPiSetup() 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SoftPwmCreate_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftPwmCreate*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SoftPwmCreate_System_Int32_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftPwmCreate(System.Int32,System.Int32,System.Int32)">SoftPwmCreate(Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>This creates a software controlled PWM pin. You can use any GPIO pin and the pin numbering will be that of the wiringPiSetup()
 function you used. Use 100 for the pwmRange, then the value can be anything from 0 (off) to 100 (fully on) for the given pin.
 The return value is 0 for success. Anything else and you should check the global errno variable to see what went wrong.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int softPwmCreate(int pin, int initialValue, int pwmRange)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int SoftPwmCreate(int pin, int initialValue, int pwmRange)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1628,20 +1705,21 @@ The return value is 0 for success. Anything else and you should check the global
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_softPwmStop_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softPwmStop*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_softPwmStop_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softPwmStop(System.Int32)">softPwmStop(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SoftPwmStop_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftPwmStop*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SoftPwmStop_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftPwmStop(System.Int32)">SoftPwmStop(Int32)</h4>
   <div class="markdown level1 summary"><p>This function is undocumented</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void softPwmStop(int pin)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SoftPwmStop(int pin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1663,15 +1741,15 @@ The return value is 0 for success. Anything else and you should check the global
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_softPwmWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_softPwmWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softPwmWrite(System.Int32,System.Int32)">softPwmWrite(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>This updates the PWM value on the given pin. The value is checked to be in-range and pins that haven’t previously 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SoftPwmWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftPwmWrite*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SoftPwmWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftPwmWrite(System.Int32,System.Int32)">SoftPwmWrite(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>This updates the PWM value on the given pin. The value is checked to be in-range and pins that haven’t previously
 been initialized via softPwmCreate will be silently ignored.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void softPwmWrite(int pin, int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SoftPwmWrite(int pin, int value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1699,15 +1777,15 @@ been initialized via softPwmCreate will be silently ignored.</p>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_softToneCreate_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softToneCreate*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_softToneCreate_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softToneCreate(System.Int32)">softToneCreate(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SoftToneCreate_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftToneCreate*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SoftToneCreate_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftToneCreate(System.Int32)">SoftToneCreate(Int32)</h4>
   <div class="markdown level1 summary"><p>This creates a software controlled tone pin. You can use any GPIO pin and the pin numbering will be that of the wiringPiSetup() function you used.
 The return value is 0 for success. Anything else and you should check the global errno variable to see what went wrong.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int softToneCreate(int pin)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int SoftToneCreate(int pin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1738,20 +1816,21 @@ The return value is 0 for success. Anything else and you should check the global
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_softToneStop_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softToneStop*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_softToneStop_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softToneStop(System.Int32)">softToneStop(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SoftToneStop_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftToneStop*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SoftToneStop_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftToneStop(System.Int32)">SoftToneStop(Int32)</h4>
   <div class="markdown level1 summary"><p>This function is undocumented</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void softToneStop(int pin)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SoftToneStop(int pin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1773,14 +1852,14 @@ The return value is 0 for success. Anything else and you should check the global
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_softToneWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softToneWrite*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_softToneWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.softToneWrite(System.Int32,System.Int32)">softToneWrite(Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_SoftToneWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftToneWrite*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_SoftToneWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.SoftToneWrite(System.Int32,System.Int32)">SoftToneWrite(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>This updates the tone frequency value on the given pin. The tone will be played until you set the frequency to 0.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void softToneWrite(int pin, int freq)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SoftToneWrite(int pin, int freq)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1808,13 +1887,13 @@ The return value is 0 for success. Anything else and you should check the global
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_waitForInterrupt_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.waitForInterrupt*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_waitForInterrupt_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.waitForInterrupt(System.Int32,System.Int32)">waitForInterrupt(Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WaitForInterrupt_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WaitForInterrupt*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WaitForInterrupt_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WaitForInterrupt(System.Int32,System.Int32)">WaitForInterrupt(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Note: Jan 2013: The waitForInterrupt() function is deprecated – you should use the newer and easier to use wiringPiISR() function below.
-When called, it will wait for an interrupt event to happen on that pin and your program will be stalled. The timeOut parameter is given in milliseconds, 
+When called, it will wait for an interrupt event to happen on that pin and your program will be stalled. The timeOut parameter is given in milliseconds,
 or can be -1 which means to wait forever.
 The return value is -1 if an error occurred (and errno will be set appropriately), 0 if it timed out, or 1 on a successful interrupt event.
-Before you call waitForInterrupt, you must first initialise the GPIO pin and at present the only way to do this is to use the gpio program, either 
+Before you call waitForInterrupt, you must first initialise the GPIO pin and at present the only way to do this is to use the gpio program, either
 in a script, or using the system() call from inside your program.
 e.g. We want to wait for a falling-edge interrupt on GPIO pin 0, so to setup the hardware, we need to run: gpio edge 0 falling
 before running the program.</p>
@@ -1823,7 +1902,7 @@ before running the program.</p>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Obsolete]
-public static int waitForInterrupt(int pin, int timeout)</code></pre>
+public static int WaitForInterrupt(int pin, int timeout)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1860,20 +1939,21 @@ public static int waitForInterrupt(int pin, int timeout)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CRead_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CRead*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CRead_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CRead(System.Int32)">wiringPiI2CRead(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CRead_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CRead*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CRead_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CRead(System.Int32)">WiringPiI2CRead(Int32)</h4>
   <div class="markdown level1 summary"><p>Simple device read. Some devices present data when you read them without having to do any register transactions.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiI2CRead(int fd)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiI2CRead(int fd)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1904,20 +1984,21 @@ public static int waitForInterrupt(int pin, int timeout)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CReadReg16_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg16*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CReadReg16_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg16(System.Int32,System.Int32)">wiringPiI2CReadReg16(Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CReadReg16_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg16*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CReadReg16_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg16(System.Int32,System.Int32)">WiringPiI2CReadReg16(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>These read a 16-bit value from the device register indicated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiI2CReadReg16(int fd, int reg)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiI2CReadReg16(int fd, int reg)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1954,20 +2035,21 @@ public static int waitForInterrupt(int pin, int timeout)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CReadReg8_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg8*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CReadReg8_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CReadReg8(System.Int32,System.Int32)">wiringPiI2CReadReg8(Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CReadReg8_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg8*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CReadReg8_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CReadReg8(System.Int32,System.Int32)">WiringPiI2CReadReg8(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>These read an 8-bit value from the device register indicated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiI2CReadReg8(int fd, int reg)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiI2CReadReg8(int fd, int reg)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2004,16 +2086,17 @@ public static int waitForInterrupt(int pin, int timeout)</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CSetup_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CSetup*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CSetup_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CSetup(System.Int32)">wiringPiI2CSetup(Int32)</h4>
-  <div class="markdown level1 summary"><p>This initialises the I2C system with your given device identifier. 
-The ID is the I2C number of the device and you can use the i2cdetect program to find this out. wiringPiI2CSetup() 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CSetup_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CSetup*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CSetup_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CSetup(System.Int32)">WiringPiI2CSetup(Int32)</h4>
+  <div class="markdown level1 summary"><p>This initialises the I2C system with your given device identifier.
+The ID is the I2C number of the device and you can use the i2cdetect program to find this out. wiringPiI2CSetup()
 will work out which revision Raspberry Pi you have and open the appropriate device in /dev.
 The return value is the standard Linux filehandle, or -1 if any error – in which case, you can consult errno as usual.
 E.g. the popular MCP23017 GPIO expander is usually device Id 0x20, so this is the number you would pass into wiringPiI2CSetup().</p>
@@ -2021,7 +2104,7 @@ E.g. the popular MCP23017 GPIO expander is usually device Id 0x20, so this is th
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiI2CSetup(int devId)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiI2CSetup(int devId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2052,20 +2135,21 @@ E.g. the popular MCP23017 GPIO expander is usually device Id 0x20, so this is th
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWrite*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWrite(System.Int32,System.Int32)">wiringPiI2CWrite(Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWrite_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWrite*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWrite_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWrite(System.Int32,System.Int32)">WiringPiI2CWrite(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Simple device write. Some devices accept data this way without needing to access any internal registers.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiI2CWrite(int fd, int data)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiI2CWrite(int fd, int data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2102,20 +2186,21 @@ E.g. the popular MCP23017 GPIO expander is usually device Id 0x20, so this is th
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWriteReg16_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg16*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWriteReg16_System_Int32_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg16(System.Int32,System.Int32,System.Int32)">wiringPiI2CWriteReg16(Int32, Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWriteReg16_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg16*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWriteReg16_System_Int32_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg16(System.Int32,System.Int32,System.Int32)">WiringPiI2CWriteReg16(Int32, Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>These write a 16-bit data value into the device register indicated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiI2CWriteReg16(int fd, int reg, int data)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiI2CWriteReg16(int fd, int reg, int data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2158,20 +2243,21 @@ E.g. the popular MCP23017 GPIO expander is usually device Id 0x20, so this is th
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWriteReg8_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg8*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiI2CWriteReg8_System_Int32_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiI2CWriteReg8(System.Int32,System.Int32,System.Int32)">wiringPiI2CWriteReg8(Int32, Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWriteReg8_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiI2CWriteReg8_System_Int32_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8(System.Int32,System.Int32,System.Int32)">WiringPiI2CWriteReg8(Int32, Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>These write an 8-bit data value into the device register indicated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiI2CWriteReg8(int fd, int reg, int data)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiI2CWriteReg8(int fd, int reg, int data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2214,31 +2300,32 @@ E.g. the popular MCP23017 GPIO expander is usually device Id 0x20, so this is th
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiISR_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiISR*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiISR_System_Int32_System_Int32_Unosquare_RaspberryIO_Native_InterrputServiceRoutineCallback_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)">wiringPiISR(Int32, Int32, InterrputServiceRoutineCallback)</h4>
-  <div class="markdown level1 summary"><p>This function registers a function to received interrupts on the specified pin. 
-The edgeType parameter is either INT_EDGE_FALLING, INT_EDGE_RISING, INT_EDGE_BOTH or INT_EDGE_SETUP. 
-If it is INT_EDGE_SETUP then no initialisation of the pin will happen – it’s assumed that you have already setup the pin elsewhere 
-(e.g. with the gpio program), but if you specify one of the other types, then the pin will be exported and initialised as specified. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_System_Int32_System_Int32_Unosquare_RaspberryIO_Native_InterrputServiceRoutineCallback_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)">WiringPiISR(Int32, Int32, InterrputServiceRoutineCallback)</h4>
+  <div class="markdown level1 summary"><p>This function registers a function to received interrupts on the specified pin.
+The edgeType parameter is either INT_EDGE_FALLING, INT_EDGE_RISING, INT_EDGE_BOTH or INT_EDGE_SETUP.
+If it is INT_EDGE_SETUP then no initialisation of the pin will happen – it’s assumed that you have already setup the pin elsewhere
+(e.g. with the gpio program), but if you specify one of the other types, then the pin will be exported and initialised as specified.
 This is accomplished via a suitable call to the gpio utility program, so it need to be available.
 The pin number is supplied in the current mode – native wiringPi, BCM_GPIO, physical or Sys modes.
 This function will work in any mode, and does not need root privileges to work.
-The function will be called when the interrupt triggers. When it is triggered, it’s cleared in the dispatcher before calling your function, 
-so if a subsequent interrupt fires before you finish your handler, then it won’t be missed. (However it can only track one more interrupt, 
+The function will be called when the interrupt triggers. When it is triggered, it’s cleared in the dispatcher before calling your function,
+so if a subsequent interrupt fires before you finish your handler, then it won’t be missed. (However it can only track one more interrupt,
 if more than one interrupt fires while one is being handled then they will be ignored)
-This function is run at a high priority (if the program is run using sudo, or as root) and executes concurrently with the main program. 
+This function is run at a high priority (if the program is run using sudo, or as root) and executes concurrently with the main program.
 It has full access to all the global variables, open file handles and so on.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiISR(int pin, int mode, InterrputServiceRoutineCallback method)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiISR(int pin, int mode, InterrputServiceRoutineCallback method)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2281,23 +2368,24 @@ It has full access to all the global variables, open file handles and so on.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetup_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetup*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetup" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetup">wiringPiSetup()</h4>
-  <div class="markdown level1 summary"><p>This initialises wiringPi and assumes that the calling program is going to be using the wiringPi pin numbering scheme. 
-This is a simplified numbering scheme which provides a mapping from virtual pin numbers 0 through 16 to the real underlying Broadcom GPIO pin numbers. 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetup_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetup*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetup" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetup">WiringPiSetup()</h4>
+  <div class="markdown level1 summary"><p>This initialises wiringPi and assumes that the calling program is going to be using the wiringPi pin numbering scheme.
+This is a simplified numbering scheme which provides a mapping from virtual pin numbers 0 through 16 to the real underlying Broadcom GPIO pin numbers.
 See the pins page for a table which maps the wiringPi pin number to the Broadcom GPIO pin number to the physical location on the edge connector.
 This function needs to be called with root privileges.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiSetup()</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiSetup()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2310,23 +2398,24 @@ This function needs to be called with root privileges.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupGpio_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupGpio*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupGpio" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupGpio">wiringPiSetupGpio()</h4>
-  <div class="markdown level1 summary"><p>This is identical to wiringPiSetup, however it allows the calling programs to use the Broadcom GPIO 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupGpio_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupGpio*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupGpio" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupGpio">WiringPiSetupGpio()</h4>
+  <div class="markdown level1 summary"><p>This is identical to wiringPiSetup, however it allows the calling programs to use the Broadcom GPIO
 pin numbers directly with no re-mapping.
-As above, this function needs to be called with root privileges, and note that some pins are different 
+As above, this function needs to be called with root privileges, and note that some pins are different
 from revision 1 to revision 2 boards.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiSetupGpio()</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiSetupGpio()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2339,21 +2428,22 @@ from revision 1 to revision 2 boards.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupPhys_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupPhys*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupPhys" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupPhys">wiringPiSetupPhys()</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupPhys_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupPhys*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupPhys" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupPhys">WiringPiSetupPhys()</h4>
   <div class="markdown level1 summary"><p>Identical to wiringPiSetup, however it allows the calling programs to use the physical pin numbers on the P1 connector only.
 This function needs to be called with root privileges.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiSetupPhys()</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiSetupPhys()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2366,27 +2456,28 @@ This function needs to be called with root privileges.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupSys_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupSys*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSetupSys" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSetupSys">wiringPiSetupSys()</h4>
-  <div class="markdown level1 summary"><p>This initialises wiringPi but uses the /sys/class/gpio interface rather than accessing the hardware directly. 
-This can be called as a non-root user provided the GPIO pins have been exported before-hand using the gpio program. 
-Pin numbering in this mode is the native Broadcom GPIO numbers – the same as wiringPiSetupGpio() above, 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupSys_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupSys*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSetupSys" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSetupSys">WiringPiSetupSys()</h4>
+  <div class="markdown level1 summary"><p>This initialises wiringPi but uses the /sys/class/gpio interface rather than accessing the hardware directly.
+This can be called as a non-root user provided the GPIO pins have been exported before-hand using the gpio program.
+Pin numbering in this mode is the native Broadcom GPIO numbers – the same as wiringPiSetupGpio() above,
 so be aware of the differences between Rev 1 and Rev 2 boards.</p>
-<p>Note: In this mode you can only use the pins which have been exported via the /sys/class/gpio interface before you run your program. 
+<p>Note: In this mode you can only use the pins which have been exported via the /sys/class/gpio interface before you run your program.
 You can do this in a separate shell-script, or by using the system() function from inside your program to call the gpio program.
-Also note that some functions have no effect when using this mode as they’re not currently possible to action unless called with root privileges. 
+Also note that some functions have no effect when using this mode as they’re not currently possible to action unless called with root privileges.
 (although you can use system() to call gpio to set/change modes if needed)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiSetupSys()</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiSetupSys()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2399,23 +2490,24 @@ Also note that some functions have no effect when using this mode as they’re n
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPIDataRW_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIDataRW*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPIDataRW_System_Int32_System_Byte___System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIDataRW(System.Int32,System.Byte[],System.Int32)">wiringPiSPIDataRW(Int32, Byte[], Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPIDataRW_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIDataRW*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPIDataRW_System_Int32_System_Byte___System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIDataRW(System.Int32,System.Byte[],System.Int32)">WiringPiSPIDataRW(Int32, Byte[], Int32)</h4>
   <div class="markdown level1 summary"><p>This performs a simultaneous write/read transaction over the selected SPI bus. Data that was in your buffer is overwritten by data returned from the SPI bus.
-That’s all there is in the helper library. It is possible to do simple read and writes over the SPI bus using the standard read() and write() system calls though – 
-write() may be better to use for sending data to chains of shift registers, or those LED strings where you send RGB triplets of data. 
+That’s all there is in the helper library. It is possible to do simple read and writes over the SPI bus using the standard read() and write() system calls though –
+write() may be better to use for sending data to chains of shift registers, or those LED strings where you send RGB triplets of data.
 Devices such as A/D and D/A converters usually need to perform a concurrent write/read transaction to work.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiSPIDataRW(int channel, byte[] data, int len)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiSPIDataRW(int channel, byte[] data, int len)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2458,20 +2550,21 @@ Devices such as A/D and D/A converters usually need to perform a concurrent writ
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPIGetFd_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIGetFd*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPIGetFd_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPIGetFd(System.Int32)">wiringPiSPIGetFd(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPIGetFd_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIGetFd*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPIGetFd_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPIGetFd(System.Int32)">WiringPiSPIGetFd(Int32)</h4>
   <div class="markdown level1 summary"><p>This function is undocumented</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiSPIGetFd(int channel)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiSPIGetFd(int channel)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2509,16 +2602,16 @@ Devices such as A/D and D/A converters usually need to perform a concurrent writ
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetup_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetup_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetup(System.Int32,System.Int32)">wiringPiSPISetup(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>This is the way to initialize a channel (The Pi has 2 channels; 0 and 1). The speed parameter is an integer 
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPISetup_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetup*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPISetup_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetup(System.Int32,System.Int32)">WiringPiSPISetup(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>This is the way to initialize a channel (The Pi has 2 channels; 0 and 1). The speed parameter is an integer
 in the range 500,000 through 32,000,000 and represents the SPI clock speed in Hz.
 The returned value is the Linux file-descriptor for the device, or -1 on error. If an error has happened, you may use the standard errno global variable to see why.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiSPISetup(int channel, int speed)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiSPISetup(int channel, int speed)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2562,14 +2655,14 @@ The returned value is the Linux file-descriptor for the device, or -1 on error. 
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetupMode_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetupMode*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wiringPiSPISetupMode_System_Int32_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wiringPiSPISetupMode(System.Int32,System.Int32,System.Int32)">wiringPiSPISetupMode(Int32, Int32, Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPISetupMode_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetupMode*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiSPISetupMode_System_Int32_System_Int32_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiSPISetupMode(System.Int32,System.Int32,System.Int32)">WiringPiSPISetupMode(Int32, Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>This function is undocumented</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wiringPiSPISetupMode(int channel, int speed, int mode)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiSPISetupMode(int channel, int speed, int mode)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2619,14 +2712,14 @@ The returned value is the Linux file-descriptor for the device, or -1 on error. 
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Native_WiringPi_wpiPinToGpio_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wpiPinToGpio*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_wpiPinToGpio_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.wpiPinToGpio(System.Int32)">wpiPinToGpio(Int32)</h4>
+  <a id="Unosquare_RaspberryIO_Native_WiringPi_WpiPinToGpio_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WpiPinToGpio*"></a>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WpiPinToGpio_System_Int32_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WpiPinToGpio(System.Int32)">WpiPinToGpio(Int32)</h4>
   <div class="markdown level1 summary"><p>This returns the BCM_GPIO pin number of the supplied wiringPi pin. It takes the board revision into account.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int wpiPinToGpio(int wPiPin)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WpiPinToGpio(int wPiPin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2657,7 +2750,8 @@ The returned value is the Linux file-descriptor for the device, or -1 on error. 
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The result code</p>
+</td>
       </tr>
     </tbody>
   </table>
