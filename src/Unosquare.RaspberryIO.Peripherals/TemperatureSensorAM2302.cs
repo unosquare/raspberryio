@@ -16,11 +16,11 @@
         private static readonly int[] AllowedPinNumbers = new int[] { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
         private static readonly TimeSpan ReadInterval = TimeSpan.FromSeconds(2);
         private static readonly long BitPulseMidMicroseconds = 50; // (26 ... 50)µs for false; (51 ... 76)µs for true
-        private readonly Timing SystemTiming = null;
+        private readonly Timing _systemTiming;
 
-        private GpioPin DataPin = null;
-        private Thread ReadWorker = null;
-        private bool m_IsRunning = false;
+        private readonly GpioPin DataPin;
+        private readonly Thread ReadWorker;
+        private bool _isRunning;
 
         /// <summary>
         /// Initializes static members of the <see cref="TemperatureSensorAM2302"/> class.
@@ -44,7 +44,7 @@
             if (AllowedPins.Contains(dataPin) == false)
                 throw new ArgumentException($"{nameof(dataPin)}, {dataPin} is not available to service this driver.");
 
-            SystemTiming = Timing.Instance;
+            _systemTiming = Timing.Instance;
             DataPin = dataPin;
             ReadWorker = new Thread(PerformContinuousReads);
         }
@@ -52,7 +52,7 @@
         /// <summary>
         /// Occurs when data from the sensor becomes available
         /// </summary>
-        public event EventHandler<AM2302DataReadEventArgs> OnDataAvailable = null;
+        public event EventHandler<AM2302DataReadEventArgs> OnDataAvailable;
 
         /// <summary>
         /// Gets a collection of pins that are allowed to run this sensor.
@@ -62,33 +62,22 @@
         /// <summary>
         /// Gets a value indicating whether the sensor is running.
         /// </summary>
-        public bool IsRunning => m_IsRunning;
+        public bool IsRunning => _isRunning;
 
         /// <summary>
         /// Starts the listener.
         /// </summary>
         public void Start()
         {
-            m_IsRunning = true;
+            _isRunning = true;
             ReadWorker.Start();
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
-            Dispose(true);
-        }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="alsoManaged"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        private void Dispose(bool alsoManaged)
-        {
             // Avoid calling this multiple times
-            if (m_IsRunning == false)
+            if (_isRunning == false)
                 return;
 
             // Abort
@@ -103,7 +92,7 @@
         {
             var stopwatch = new HighResolutionTimer();
             var lastElapsedTime = TimeSpan.FromSeconds(0);
-            while (m_IsRunning)
+            while (_isRunning)
             {
                 try
                 {
@@ -121,9 +110,9 @@
 
                     // Send request to trasmission from board to sensor
                     DataPin.Write(GpioPinValue.Low);
-                    SystemTiming.SleepMicroseconds(1000);
+                    _systemTiming.SleepMicroseconds(1000);
                     DataPin.Write(GpioPinValue.High);
-                    SystemTiming.SleepMicroseconds(20);
+                    _systemTiming.SleepMicroseconds(20);
                     DataPin.Write(GpioPinValue.Low);
 
                     // Acquire measure
@@ -221,7 +210,7 @@
         /// </summary>
         private void StopContinuousReads()
         {
-            m_IsRunning = false;
+            _isRunning = false;
             ReadWorker.Abort();
         }
 
@@ -236,7 +225,6 @@
             /// <param name="temperatureCelsius">The temperature celsius.</param>
             /// <param name="humidityPercentage">The humidity percentage.</param>
             internal AM2302DataReadEventArgs(decimal temperatureCelsius, decimal humidityPercentage)
-                : base()
             {
                 TemperatureCelsius = temperatureCelsius;
                 HumidityPercentage = humidityPercentage;
@@ -246,7 +234,6 @@
             /// Prevents a default instance of the <see cref="AM2302DataReadEventArgs"/> class from being created.
             /// </summary>
             private AM2302DataReadEventArgs()
-                : base()
             {
                 // placeholder
             }

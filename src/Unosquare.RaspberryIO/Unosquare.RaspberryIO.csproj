@@ -4,7 +4,7 @@
     <Description>The Raspberry Pi's IO Functionality in an easy-to use API for Mono/.NET/C#
 
 This library enables developers to use the various Raspberry Pi's hardware modules including the Camera to capture images and video, the GPIO pins, and both, the SPI and I2C buses.</Description>
-    <Copyright>Unosquare (c) 2016-2017</Copyright>
+    <Copyright>Unosquare (c) 2016-2018</Copyright>
     <AssemblyTitle>Unosquare Raspberry IO</AssemblyTitle>
     <VersionPrefix>0.13.0</VersionPrefix>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>

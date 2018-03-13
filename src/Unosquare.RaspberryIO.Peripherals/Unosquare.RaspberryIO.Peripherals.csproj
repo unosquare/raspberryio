@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>Unosquare.RaspberryIO.Peripherals</AssemblyName>
+    <Copyright>Unosquare (c) 2016-2018</Copyright>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
     <LangVersion>7.1</LangVersion>
