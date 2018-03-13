@@ -13,9 +13,7 @@
     {
         private int _rotate;
 
-        /// <summary>
-        /// Gets the command file executable.
-        /// </summary>
+        /// <inheritdoc />
         public override string CommandName => "raspistill";
 
         /// <summary>
@@ -73,17 +71,14 @@
             {
                 if (value < 0 || value > 359)
                 {
-                    throw new ArgumentOutOfRangeException("Valid range 0-359");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Valid range 0-359");
                 }
 
                 _rotate = value;
             }
         }
 
-        /// <summary>
-        /// Creates the process arguments.
-        /// </summary>
-        /// <returns>The process command line string</returns>
+        /// <inheritdoc />
         public override string CreateProcessArguments()
         {
             var sb = new StringBuilder(base.CreateProcessArguments());

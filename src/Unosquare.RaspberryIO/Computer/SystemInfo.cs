@@ -21,7 +21,7 @@
         private static readonly StringComparer StringComparer = StringComparer.InvariantCultureIgnoreCase;
 
         private static readonly object SyncRoot = new object();
-        private static bool? m_IsRunningAsRoot = default(bool?);
+        private static bool? _isRunningAsRoot;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
@@ -310,19 +310,19 @@
             {
                 lock (SyncRoot)
                 {
-                    if (m_IsRunningAsRoot.HasValue == false)
+                    if (_isRunningAsRoot.HasValue == false)
                     {
                         try
                         {
-                            m_IsRunningAsRoot = Standard.GetUid() == 0;
+                            _isRunningAsRoot = Standard.GetUid() == 0;
                         }
                         catch
                         {
-                            m_IsRunningAsRoot = false;
+                            _isRunningAsRoot = false;
                         }
                     }
 
-                    return m_IsRunningAsRoot.Value;
+                    return _isRunningAsRoot.Value;
                 }
             }
         }
@@ -331,15 +331,7 @@
         /// Placeholder for processor index
         /// </summary>
         private string Processor { get; set; }
-
-        /// <summary>
-        /// Reboots this computer.
-        /// </summary>
-        public void Reboot()
-        {
-            var rebootTask = ProcessRunner.GetProcessOutputAsync("reboot");
-        }
-
+        
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>

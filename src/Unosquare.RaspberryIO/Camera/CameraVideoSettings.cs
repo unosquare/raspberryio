@@ -9,9 +9,7 @@
     /// <seealso cref="CameraSettingsBase" />
     public class CameraVideoSettings : CameraSettingsBase
     {
-        /// <summary>
-        /// Gets the command file executable.
-        /// </summary>
+        /// <inheritdoc />
         public override string CommandName => "raspivid";
 
         /// <summary>
@@ -66,10 +64,7 @@
         /// </value>
         public bool CaptureDisplayPreviewEncoded { get; set; } = false;
 
-        /// <summary>
-        /// Creates the process arguments.
-        /// </summary>
-        /// <returns>A string representing the arguments</returns>
+        /// <inheritdoc />
         public override string CreateProcessArguments()
         {
             var sb = new StringBuilder(base.CreateProcessArguments());

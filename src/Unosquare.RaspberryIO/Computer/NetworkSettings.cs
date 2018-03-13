@@ -190,9 +190,7 @@
 
                     // Parse the IPv4 Address
                     {
-                        var addressText = ParseOutputTagFromLine(indentedLine, "inet addr:");
-                        if (addressText == null)
-                            addressText = ParseOutputTagFromLine(indentedLine, "inet ");
+                        var addressText = ParseOutputTagFromLine(indentedLine, "inet addr:") ?? ParseOutputTagFromLine(indentedLine, "inet ");
 
                         if (addressText != null)
                         {
@@ -203,9 +201,7 @@
 
                     // Parse the IPv6 Address
                     {
-                        var addressText = ParseOutputTagFromLine(indentedLine, "inet6 addr:");
-                        if (addressText == null)
-                            addressText = ParseOutputTagFromLine(indentedLine, "inet6 ");
+                        var addressText = ParseOutputTagFromLine(indentedLine, "inet6 addr:") ?? ParseOutputTagFromLine(indentedLine, "inet6 ");
 
                         if (addressText != null)
                         {

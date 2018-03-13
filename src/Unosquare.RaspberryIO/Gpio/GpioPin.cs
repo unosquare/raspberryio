@@ -564,9 +564,9 @@
         /// Reads the digital value on the pin as a boolean value.
         /// </summary>
         /// <returns>The state of the pin</returns>
-        public async Task<bool> ReadAsync()
+        public Task<bool> ReadAsync()
         {
-            return await Task.Run(() => { return Read(); });
+            return Task.Run(() => Read());
         }
 
         /// <summary>
@@ -580,9 +580,9 @@
         /// Reads the digital value on the pin as a High or Low value.
         /// </summary>
         /// <returns>The state of the pin</returns>
-        public async Task<GpioPinValue> ReadValueAsync()
+        public Task<GpioPinValue> ReadValueAsync()
         {
-            return await Task.Run(() => { return ReadValue(); });
+            return Task.Run(() => ReadValue());
         }
 
         /// <summary>
@@ -615,9 +615,9 @@
         /// quick2Wire analog board, etc.
         /// </summary>
         /// <returns>The analog level</returns>
-        public async Task<int> ReadLevelAsync()
+        public Task<int> ReadLevelAsync()
         {
-            return await Task.Run(() => { return ReadLevel(); });
+            return Task.Run(() => ReadLevel());
         }
 
         #endregion

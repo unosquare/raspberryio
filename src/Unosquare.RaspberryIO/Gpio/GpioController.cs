@@ -373,9 +373,9 @@
         /// <param name="group">The group.</param>
         /// <param name="value">The value.</param>
         /// <returns>The awaitable task</returns>
-        public async Task SetPadDriveAsync(int group, int value)
+        public Task SetPadDriveAsync(int group, int value)
         {
-            await Task.Run(() => { SetPadDrive(group, value); });
+            return Task.Run(() => { SetPadDrive(group, value); });
         }
 
         /// <summary>
@@ -406,9 +406,9 @@
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The awaitable task</returns>
-        public async Task WriteByteAsync(byte value)
+        public Task WriteByteAsync(byte value)
         {
-            await Task.Run(() => { WriteByte(value); });
+            return Task.Run(() => { WriteByte(value); });
         }
 
         /// <summary>
@@ -439,9 +439,9 @@
         /// Please note this function is undocumented and unsopported
         /// </summary>
         /// <returns>A byte from the GPIO</returns>
-        public async Task<byte> ReadByteAsync()
+        public Task<byte> ReadByteAsync()
         {
-            return await Task.Run(() => { return ReadByte(); });
+            return Task.Run(() => ReadByte());
         }
 
         #endregion
@@ -533,7 +533,7 @@
                     throw new InvalidOperationException($"Cannot call {nameof(Initialize)} more than once.");
 
                 Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1", EnvironmentVariableTarget.Process);
-                var setpuResult = default(int);
+                int setpuResult;
 
                 switch (mode)
                 {
