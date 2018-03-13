@@ -77,7 +77,7 @@
                 sb.Append($" -fps {CaptureFramerate.Clamp(2, 30).ToString(Ci)}");
 
             if (CaptureDisplayPreview && CaptureDisplayPreviewEncoded)
-                    sb.Append($" -e");
+                    sb.Append(" -e");
 
             if (CaptureKeyframeRate > 0)
                 sb.Append($" -g {CaptureKeyframeRate.ToString(Ci)}");

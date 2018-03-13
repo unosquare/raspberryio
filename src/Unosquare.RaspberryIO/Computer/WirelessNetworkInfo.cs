@@ -8,16 +8,16 @@
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; internal set; }
 
         /// <summary>
         /// Gets the network quality.
         /// </summary>
-        public string Quality { get; set; }
+        public string Quality { get; internal set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is encrypted.
         /// </summary>
-        public bool IsEncrypted { get; set; }
+        public bool IsEncrypted { get; internal set; }
     }
 }

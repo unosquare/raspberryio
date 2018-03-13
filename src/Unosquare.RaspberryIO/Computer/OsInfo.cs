@@ -41,9 +41,6 @@
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString()
-        {
-            return $"{SysName} {Release} {Version}";
-        }
+        public override string ToString() => $"{SysName} {Release} {Version}";
     }
 }

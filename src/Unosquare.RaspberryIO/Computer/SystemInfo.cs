@@ -2,7 +2,6 @@
 {
     using Native;
     using Swan.Abstractions;
-    using Swan.Components;
     using System;
     using System.Collections.Generic;
     using System.Globalization;

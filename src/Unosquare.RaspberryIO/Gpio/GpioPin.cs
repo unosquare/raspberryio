@@ -18,7 +18,7 @@
         private readonly object _syncLock = new object();
         private GpioPinDriveMode m_PinMode;
         private GpioPinResistorPullMode m_ResistorPullMode;
-        private int m_PwmRegister = 0;
+        private int m_PwmRegister;
         private PwmMode m_PwmMode = PwmMode.Balanced;
         private uint m_PwmRange = 1024;
         private int m_PwmClockDivisor = 1;

@@ -14,7 +14,6 @@
         /// </summary>
         /// <exception cref="NotSupportedException">High-resolution timer not available</exception>
         public HighResolutionTimer()
-            : base()
         {
             if (!IsHighResolution)
                 throw new NotSupportedException("High-resolution timer not available");

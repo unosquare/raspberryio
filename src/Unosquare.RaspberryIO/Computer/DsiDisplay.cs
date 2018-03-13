@@ -41,10 +41,8 @@
             get
             {
                 if (IsPresent == false) return 0;
-                if (byte.TryParse(File.ReadAllText(BrightnessFilename).Trim(), out var brightness))
-                    return brightness;
 
-                return 0;
+                return byte.TryParse(File.ReadAllText(BrightnessFilename).Trim(), out var brightness) ? brightness : (byte) 0;
             }
             set
             {

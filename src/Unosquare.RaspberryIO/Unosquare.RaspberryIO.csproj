@@ -28,7 +28,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-    <PackageReference Include="Unosquare.Swan" Version="0.27.0" />
+    <PackageReference Include="Unosquare.Swan" Version="0.28.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
