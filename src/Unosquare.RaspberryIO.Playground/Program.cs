@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
+    using Peripherals;
     using Camera;
     using Computer;
     using Gpio;
@@ -30,6 +31,7 @@
                 // TestCaptureVideo();
                 // TestLedStripGraphics();
                 // TestLedStrip();
+                // TestTag();
                 TestSystemInfo();
                 TestInfraredSensor();
             }
@@ -245,6 +247,56 @@
             foreach (var color in colors)
             {
                 $"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}".Info();
+            }
+        }
+        
+        private static void Tag()
+        {
+            var mfrc522 = new Mfrc522Controller();
+
+            while (true)
+            {
+                // Scan for cards
+                var result = mfrc522.Request(Mfrc522Controller.PICC_REQIDL);
+                var status = result.Item1;
+
+                // If a card is found
+                if (status == Mfrc522Controller.MI_OK)
+                {
+                    "Card detected".Info();
+                }
+
+                // Get the UID of the card
+                var resultAnticoll = mfrc522.Anticoll();
+                var status2 = resultAnticoll.Item1; 
+                var uid = resultAnticoll.Item2;
+
+                // If we have the UID, continue
+                if (status2 == Mfrc522Controller.MI_OK)
+                {
+                    // Print UID
+                    $"Card read UID: {uid[0]},{uid[1]},{uid[2]},{uid[3]}".Info();
+
+                    // This is the default key for authentication
+                    var key = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+
+                    // Select the scanned tag
+                    mfrc522.SelectTag(uid);
+
+                    // Authenticate
+                    var status3 = mfrc522.Auth(Mfrc522Controller.PICC_AUTHENT1A, 8, key, uid);
+
+                    // Check if authenticated
+                    if (status3 == Mfrc522Controller.MI_OK)
+                    {
+                        mfrc522.ReadSpi(8);
+                        mfrc522.StopCrypto1();
+                    }
+                    else
+                    {
+                        "Authentication error".Error();
+                    }
+                }
             }
         }
     }
