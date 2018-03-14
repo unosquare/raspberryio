@@ -1183,18 +1183,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipVertically
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipVertically
   nameWithType: CameraSettingsBase.ImageFlipVertically
-- uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso
-  name: ImageIso
-  href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageIso
-  commentId: P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso
-  fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso
-  nameWithType: CameraSettingsBase.ImageIso
-- uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso*
-  name: ImageIso
-  href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageIso_
-  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso
-  fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso
-  nameWithType: CameraSettingsBase.ImageIso
+- uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageISO
+  name: ImageISO
+  href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageISO
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageISO
+  fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageISO
+  nameWithType: CameraSettingsBase.ImageISO
+- uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageISO*
+  name: ImageISO
+  href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageISO_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageISO
+  fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageISO
+  nameWithType: CameraSettingsBase.ImageISO
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageRotation
   name: ImageRotation
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageRotation
@@ -2158,6 +2158,18 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.RaspberryPiVersion
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.RaspberryPiVersion
   nameWithType: SystemInfo.RaspberryPiVersion
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.Reboot
+  name: Reboot()
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Reboot
+  commentId: M:Unosquare.RaspberryIO.Computer.SystemInfo.Reboot
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Reboot()
+  nameWithType: SystemInfo.Reboot()
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.Reboot*
+  name: Reboot
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Reboot_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.Reboot
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Reboot
+  nameWithType: SystemInfo.Reboot
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.Revision
   name: Revision
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Revision
