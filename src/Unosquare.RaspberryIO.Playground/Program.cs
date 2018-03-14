@@ -6,6 +6,7 @@
     using Swan;
     using System;
     using System.IO;
+    using System.Linq;
     using System.Threading;
 
     /// <summary>
@@ -21,7 +22,7 @@
         {
             $"Starting program at {DateTime.Now}".Info();
 
-            Terminal.Settings.DisplayLoggingMessageType = LogMessageType.Info;
+            Terminal.Settings.DisplayLoggingMessageType = LogMessageType.Info | LogMessageType.Warning | LogMessageType.Error;
 
             try
             {
@@ -52,24 +53,20 @@
         public static void TestInfraredSensor()
         {
             var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
-            inputPin.PinMode = GpioPinDriveMode.Input;
-            var timer = new Native.HighResolutionTimer();
-            var currentValue = inputPin.Read();
-            while (true)
+            var sensor = new Peripherals.InfraRedSensorHX1838(inputPin);
+            sensor.DataAvailable += (s, e) =>
             {
-                if (currentValue != inputPin.Read())
+                if (e.TrainDurationMicroseconds < 50000)
                 {
-                    if (timer.IsRunning == false)
-                        timer.Start();
-
-                    currentValue = !currentValue;
-                    $"Bit Value: {(currentValue ? "1" : "0"),4} | Elapsed: {timer.ElapsedMicroseconds,10} us.".Info("IR");
-                    timer.Restart();
-                    continue;
+                    // $"Spurious Signal of {e.TrainDurationMicroseconds} micro seconds.".Error("IR");
+                    return;
                 }
 
-                Pi.Timing.SleepMicroseconds(50);
-            }
+                $"Pulses Length: {e.Pulses.Length}; Duration: {e.TrainDurationMicroseconds}; Reason: {e.State}".Warn("IR");
+                ("\r\n" + string.Join(" ", e.Pulses.Select(p => $"[{(p.Value ? "1" : "0")} {p.TimeUnits,6}]"))).Info("IR");
+            };
+
+            Console.ReadLine();
         }
 
         /// <summary>
