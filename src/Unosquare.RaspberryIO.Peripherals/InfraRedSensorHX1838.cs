@@ -2,7 +2,9 @@
 {
     using Gpio;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Text;
     using System.Threading;
     using Unosquare.Swan;
 
@@ -16,11 +18,10 @@
     {
         private const bool Mark = false;
         private const bool Space = true;
-        private const long MicrosecondsPerTimeUnit = 50;
-        private const double MarkExcess = 100;
-        private const double GapMicroseconds = 5000;
-        private const double GapTimeUnits = GapMicroseconds / MicrosecondsPerTimeUnit;
-        private const int SensorBufferLength = 101;
+        private const long UsecsPerTimeUnit = 50;
+        private const double GapUsecs = 5000;
+        private const double GapTimeUnits = GapUsecs / UsecsPerTimeUnit;
+        private const int SensorBufferLength = 128;
 
         private readonly Thread ReadThread;
         private ManualResetEvent ReadThreadLockStopped = new ManualResetEvent(true);
@@ -99,6 +100,35 @@
         public ReceiverStates ReceiverState { get; private set; } = ReceiverStates.Idle;
 
         /// <summary>
+        /// Creates a string representing all the pulses passed to this method.
+        /// </summary>
+        /// <param name="pulses">The pulses.</param>
+        /// <param name="groupSize">Number of pulse data to output per line.</param>
+        /// <returns>A string representing the pulses</returns>
+        public static string DebugPulses(InfraRedPulse[] pulses, int groupSize = 4)
+        {
+            var builder = new StringBuilder(pulses.Length * 24);
+            builder.AppendLine();
+
+            for (var i = 0; i < pulses.Length; i += groupSize)
+            {
+                var p = pulses[i];
+                for (var offset = 0; offset < groupSize; offset++)
+                {
+                    if (i + offset >= pulses.Length)
+                        continue;
+
+                    p = pulses[i + offset];
+                    builder.Append($" {(p.Value ? "S" : "M")} {p.DurationUsecs,7} | ");
+                }
+
+                builder.AppendLine();
+            }
+
+            return builder.ToString();
+        }
+
+        /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
@@ -136,7 +166,7 @@
             ReadThreadLockStopped.Reset();
 
             // Setup state variables
-            var delayMicroseconds = 0L;
+            var delayUsecs = 0L;
             var timeUnitsCount = default(uint);
             var currentSensorValue = false;
             var pulseBuffer = new List<InfraRedPulse>(SensorBufferLength);
@@ -172,9 +202,12 @@
                                 // Gap just ended; Record duration; Start recording transmission
                                 trainTimer.Restart();
                                 pulseBuffer.Clear();
+
+                                // The first pulse will be a gap
                                 var pulse = new InfraRedPulse(Mark, timeUnitsCount);
                                 pulseBuffer.Add(pulse);
                                 OnInfraredSensorPulseAvailable(pulse);
+                                timeUnitsCount = 0;
                                 ReceiverState = ReceiverStates.Mark;
                             }
 
@@ -252,9 +285,9 @@
                     break;
 
                 // Compute the amount of microseconds to pause execution
-                delayMicroseconds = (MicrosecondsPerTimeUnit - pulseTimer.ElapsedMicroseconds).Clamp(0, MicrosecondsPerTimeUnit);
-                if (delayMicroseconds > 0)
-                    Pi.Timing.SleepMicroseconds(Convert.ToUInt32(delayMicroseconds));
+                delayUsecs = (UsecsPerTimeUnit - pulseTimer.ElapsedMicroseconds).Clamp(0, UsecsPerTimeUnit);
+                if (delayUsecs > 0)
+                    Pi.Timing.SleepMicroseconds(Convert.ToUInt32(delayUsecs));
             }
 
             pulseTimer.Stop();
@@ -275,10 +308,10 @@
         /// </summary>
         /// <param name="pulses">The pulses.</param>
         /// <param name="state">The state.</param>
-        /// <param name="trainDurationMicroseconds">The train duration in microseconds.</param>
-        private void OnInfraredSensorRawDataAvailable(InfraRedPulse[] pulses, ReceiverStates state, long trainDurationMicroseconds)
+        /// <param name="trainDurationUsecs">The train duration in microseconds.</param>
+        private void OnInfraredSensorRawDataAvailable(InfraRedPulse[] pulses, ReceiverStates state, long trainDurationUsecs)
         {
-            DataAvailable?.Invoke(this, new InfraRedSensorDataEventArgs(pulses, state, trainDurationMicroseconds));
+            DataAvailable?.Invoke(this, new InfraRedSensorDataEventArgs(pulses, state, trainDurationUsecs));
         }
 
         /// <summary>
@@ -294,7 +327,7 @@
             internal InfraRedPulse(bool value, long timeUnits)
             {
                 Value = value;
-                DurationMicroseconds = timeUnits * MicrosecondsPerTimeUnit;
+                DurationUsecs = timeUnits * UsecsPerTimeUnit;
                 TimeUnits = timeUnits;
             }
 
@@ -306,7 +339,7 @@
             /// <summary>
             /// Gets the duration microseconds.
             /// </summary>
-            public long DurationMicroseconds { get; }
+            public long DurationUsecs { get; }
 
             /// <summary>
             /// Gets the time units.
@@ -315,16 +348,117 @@
         }
 
         /// <summary>
+        /// Provides decoding Methods for the NEC IR Protocol
+        /// </summary>
+        public static class NecDecoder
+        {
+            /// <summary>
+            /// Decodes the IR pulses according to the NEC protocol.
+            /// If the train of pulses does not match the protocol, then it returns a null byte array.
+            /// </summary>
+            /// <param name="pulses">The pulses.</param>
+            /// <returns>The decoded bytes</returns>
+            public static byte[] DecodePulses(InfraRedPulse[] pulses)
+            {
+                const long ShortPulseLengthMin = 560 - 160;
+                const long ShortPulseLengthMax = 560 + 140;
+
+                const long BurstSpaceLengthMin = 9000 - 1800;
+                const long BurstSpaceLengthMax = 9000 + 1800;
+
+                const long BurstMarkLengthMin = 4500 - 600;
+                const long BurstMarkLengthMax = 4500 + 600;
+
+                const int MaxBitLength = 32;
+
+                // from here: https://www.sbprojects.net/knowledge/ir/nec.php
+                var startPulseIndex = -1;
+
+                // The first thing we look for is the ACG Space (1) which should be around 9ms
+                for (var pulseIndex = 0; pulseIndex < pulses.Length; pulseIndex++)
+                {
+                    var p = pulses[pulseIndex];
+                    if (p.Value == Space && p.DurationUsecs >= BurstSpaceLengthMin && p.DurationUsecs <= BurstSpaceLengthMax)
+                    {
+                        startPulseIndex = pulseIndex;
+                        break;
+                    }
+                }
+
+                // Return a null result if we could not find ACG Space (1)
+                if (startPulseIndex == -1)
+                    return null;
+                else
+                    startPulseIndex += 1;
+
+                // Find the first 3900 to 5000 Mark (0 value, 4.5 Millisecond)
+                for (var pulseIndex = startPulseIndex; pulseIndex < pulses.Length; pulseIndex++)
+                {
+                    var p = pulses[pulseIndex];
+                    startPulseIndex = -1;
+                    if (p.Value == Mark && p.DurationUsecs >= BurstMarkLengthMin && p.DurationUsecs <= BurstMarkLengthMax)
+                    {
+                        startPulseIndex = pulseIndex;
+                        break;
+                    }
+                }
+
+                // Return a null result if we could not find the start of the train of pulses
+                if (startPulseIndex == -1)
+                    return null;
+                else
+                    startPulseIndex += 1;
+
+                // Verify that the last pulse is a space (1) and and it is a short pulse
+                var bits = new BitArray(MaxBitLength);
+                var bitCount = 0;
+
+                var lastPulse = pulses[pulses.Length - 1];
+                if (lastPulse.Value == false || lastPulse.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax) == false)
+                    return null;
+
+                // preallocate the pulse references
+                var p1 = default(InfraRedPulse);
+                var p2 = default(InfraRedPulse);
+
+                // parse the bits
+                for (var pulseIndex = startPulseIndex; pulseIndex < pulses.Length - 1; pulseIndex += 2)
+                {
+                    // logical 1 is 1 space (1) and 3 marks (0)
+                    // logical 0 is 1 space (1) and 1 Mark (0)
+                    p1 = pulses[pulseIndex + 0];
+                    p2 = pulses[pulseIndex + 1];
+
+                    // Expect a short Space pulse followed by a Mark pulse of variable length
+                    if (p1.Value == true && p2.Value == false && p1.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax))
+                        bits[bitCount++] = p2.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax) ? true : false;
+
+                    if (bitCount >= MaxBitLength)
+                        break;
+                }
+
+                // Check the message is 4 bytes long
+                if (bitCount != 32)
+                    return null;
+
+                // Return the result
+                var result = new byte[bitCount / 8];
+                bits.CopyTo(result, 0);
+                return result;
+            }
+        }
+
+        /// <summary>
         /// Represents event arguments for when a receiver buffer is ready to be decoded.
         /// </summary>
         /// <seealso cref="EventArgs" />
         public class InfraRedSensorDataEventArgs : EventArgs
         {
-            internal InfraRedSensorDataEventArgs(InfraRedPulse[] pulses, ReceiverStates state, long trainDurationMicroseconds)
+            internal InfraRedSensorDataEventArgs(InfraRedPulse[] pulses, ReceiverStates state, long trainDurationUsecs)
             {
                 Pulses = pulses;
                 State = state;
-                TrainDurationMicroseconds = trainDurationMicroseconds;
+                TrainDurationUsecs = trainDurationUsecs;
             }
 
             /// <summary>
@@ -340,7 +474,7 @@
             /// <summary>
             /// Gets the pulse train duration in microseconds.
             /// </summary>
-            public long TrainDurationMicroseconds { get; }
+            public long TrainDurationUsecs { get; }
         }
 
         /// <summary>
@@ -357,7 +491,7 @@
                 : base()
             {
                 Value = pulse.Value;
-                DurationMicroseconds = pulse.DurationMicroseconds;
+                DurationUsecs = pulse.DurationUsecs;
                 TimeUnits = pulse.TimeUnits;
             }
 
@@ -378,7 +512,7 @@
             /// <summary>
             /// Gets the duration microseconds.
             /// </summary>
-            public long DurationMicroseconds { get; }
+            public long DurationUsecs { get; }
 
             /// <summary>
             /// Gets the time units.
