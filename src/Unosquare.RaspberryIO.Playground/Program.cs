@@ -7,8 +7,8 @@
     using Swan;
     using System;
     using System.IO;
-    using System.Linq;
-    using System.Threading;
+
+    using System.Text;    using System.Linq;    using System.Threading;
 
     /// <summary>
     /// Main entry point class
@@ -23,7 +23,7 @@
         {
             $"Starting program at {DateTime.Now}".Info();
 
-            Terminal.Settings.DisplayLoggingMessageType = LogMessageType.Info;
+            Terminal.Settings.DisplayLoggingMessageType = LogMessageType.Info | LogMessageType.Warning | LogMessageType.Error;
 
             try
             {
@@ -55,24 +55,26 @@
         public static void TestInfraredSensor()
         {
             var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
-            inputPin.PinMode = GpioPinDriveMode.Input;
-            var timer = new Native.HighResolutionTimer();
-            var currentValue = inputPin.Read();
-            while (true)
+            var sensor = new InfraRedSensorHX1838(inputPin);
+            sensor.DataAvailable += (s, e) =>
             {
-                if (currentValue != inputPin.Read())
+                if (e.TrainDurationUsecs < 50000)
                 {
-                    if (timer.IsRunning == false)
-                        timer.Start();
-
-                    currentValue = !currentValue;
-                    $"Bit Value: {(currentValue ? "1" : "0"),4} | Elapsed: {timer.ElapsedMicroseconds,10} us.".Info("IR");
-                    timer.Restart();
-                    continue;
+                    // $"Spurious Signal of {e.TrainDurationMicroseconds} micro seconds.".Error("IR");
+                    return;
                 }
 
-                Pi.Timing.SleepMicroseconds(50);
-            }
+                var necData = InfraRedSensorHX1838.NecDecoder.DecodePulses(e.Pulses);
+                var debugData = InfraRedSensorHX1838.DebugPulses(e.Pulses);
+
+                $"Pulses Length: {e.Pulses.Length}; Duration: {e.TrainDurationUsecs}; Reason: {e.State}".Warn("IR");
+                if (necData != null)
+                    ("NEC Raw Data: " + BitConverter.ToString(necData).Replace("-", " ")).Warn("IR");
+
+                debugData.Info("IR");
+            };
+
+            Console.ReadLine();
         }
 
         /// <summary>
@@ -82,7 +84,7 @@
         {
             Pi.Spi.Channel0Frequency = SpiChannel.MinFrequency;
 
-            var request = System.Text.Encoding.UTF8.GetBytes("Hello over SPI");
+            var request = Encoding.UTF8.GetBytes("Hello over SPI");
             $"SPI Request: {BitConverter.ToString(request)}".Info();
             var response = Pi.Spi.Channel0.SendReceive(request);
             $"SPI Response: {BitConverter.ToString(response)}".Info();
@@ -251,7 +253,7 @@
                 $"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}".Info();
             }
         }
-        
+
         private static void Tag()
         {
             var mfrc522 = new Mfrc522Controller();
@@ -270,8 +272,8 @@
 
                 // Get the UID of the card
                 var resultAnticoll = mfrc522.Anticoll();
-                var status2 = resultAnticoll.Item1; 
-                var uid = resultAnticoll.Item2;
+                var status2 = resultAnticoll.status;
+                var uid = resultAnticoll.data;
 
                 // If we have the UID, continue
                 if (status2 == Mfrc522Controller.MI_OK)

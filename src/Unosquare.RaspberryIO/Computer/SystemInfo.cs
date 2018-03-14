@@ -20,7 +20,7 @@
         private static readonly StringComparer StringComparer = StringComparer.InvariantCultureIgnoreCase;
 
         private static readonly object SyncRoot = new object();
-        private static bool? _isRunningAsRoot;
+        private static bool? m_IsRunningAsRoot = default;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
