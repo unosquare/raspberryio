@@ -184,24 +184,28 @@
                     // Timing Mark
                     case ReceiverStates.Mark:
                         {
-                            if (currentSensorValue != Space) break;
+                            // Mark ended; Record time
+                            if (currentSensorValue == Space)
+                            {
+                                var pulse = new InfraRedPulse(Space, timeUnitsCount);
+                                pulseBuffer.Add(pulse);
+                                OnInfraredSensorPulseAvailable(pulse);
 
-                            var pulse = new InfraRedPulse(Space, timeUnitsCount);
-                            pulseBuffer.Add(pulse);
-                            OnInfraredSensorPulseAvailable(pulse);
+                                // Reset for next pulse
+                                timeUnitsCount = 0;
+                                ReceiverState = ReceiverStates.Space;
+                            }
 
-                            // Reset for next pulse
-                            timeUnitsCount = 0;
-                            ReceiverState = ReceiverStates.Space;
                             break;
                         }
 
                     // Timing Space
                     case ReceiverStates.Space:
                         {
+                            // Space just ended; Record time
                             if (currentSensorValue == Mark)
                             {
-                                var pulse = new InfraRedPulse(Space, timeUnitsCount);
+                                var pulse = new InfraRedPulse(Mark, timeUnitsCount);
                                 pulseBuffer.Add(pulse);
                                 OnInfraredSensorPulseAvailable(pulse);
 

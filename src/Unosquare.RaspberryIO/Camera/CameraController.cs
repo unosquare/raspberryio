@@ -42,7 +42,7 @@
         /// <param name="ct">The ct.</param>
         /// <returns>The image bytes</returns>
         /// <exception cref="InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
-        public async Task<byte[]> CaptureImageAsync(CameraStillSettings settings, CancellationToken ct = default(CancellationToken))
+        public async Task<byte[]> CaptureImageAsync(CameraStillSettings settings, CancellationToken ct = default)
         {
             if (Instance.IsBusy)
                 throw new InvalidOperationException("Cannot use camera module because it is currently busy.");
@@ -91,7 +91,7 @@
         /// <param name="height">The height.</param>
         /// <param name="ct">The ct.</param>
         /// <returns>The image bytes</returns>
-        public Task<byte[]> CaptureImageJpegAsync(int width, int height, CancellationToken ct = default(CancellationToken))
+        public Task<byte[]> CaptureImageJpegAsync(int width, int height, CancellationToken ct = default)
         {
             var settings = new CameraStillSettings()
             {

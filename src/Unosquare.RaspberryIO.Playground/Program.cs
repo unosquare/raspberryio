@@ -1,13 +1,13 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using Peripherals;
     using Camera;
     using Computer;
     using Gpio;
+    using Peripherals;
     using Swan;
     using System;
     using System.IO;
-    using System.Linq;
+    using System.Text;
     using System.Threading;
 
     /// <summary>
@@ -55,7 +55,7 @@
         public static void TestInfraredSensor()
         {
             var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
-            var sensor = new Peripherals.InfraRedSensorHX1838(inputPin);
+            var sensor = new InfraRedSensorHX1838(inputPin);
             sensor.DataAvailable += (s, e) =>
             {
                 if (e.TrainDurationMicroseconds < 50000)
@@ -64,8 +64,51 @@
                     return;
                 }
 
+                const int groupSize = 4;
+                var builder = new StringBuilder();
+                builder.AppendLine();
+
+                for (var i = 0; i < e.Pulses.Length; i += groupSize)
+                {
+                    var p = e.Pulses[i];
+                    for (var offset = 0; offset < groupSize; offset++)
+                    {
+                        if (i + offset >= e.Pulses.Length)
+                            continue;
+
+                        p = e.Pulses[i + offset];
+                        builder.Append($" {(p.Value ? "1" : "0")} {p.DurationMicroseconds,7} | ");
+                    }
+
+                    builder.AppendLine();
+                }
+
+                // NEC Decode attempt
+                // from here: https://www.sbprojects.net/knowledge/ir/nec.php
+                // 1. Find the first 3900 to 5000 Mark (0)
+                var startPulseIndex = -1;
+                for (var pulseIndex = 0; pulseIndex <= 6; pulseIndex++)
+                {
+                    var p = e.Pulses[pulseIndex];
+                    if (p.DurationMicroseconds >= 3900 && p.DurationMicroseconds <= 5000)
+                    {
+                        startPulseIndex = pulseIndex;
+                        break;
+                    }
+                }
+
+                if (startPulseIndex != -1)
+                {
+                    for (var pulseIndex = startPulseIndex + 1; pulseIndex < e.Pulses.Length; pulseIndex++)
+                    {
+                        // TODO:
+                        // logical 1 is 1 space (1) and 3 marks (0)
+                        // logical 0 is 1 space (1) and 1 Mark (0)
+                    }
+                }
+
                 $"Pulses Length: {e.Pulses.Length}; Duration: {e.TrainDurationMicroseconds}; Reason: {e.State}".Warn("IR");
-                ("\r\n" + string.Join(" ", e.Pulses.Select(p => $"[{(p.Value ? "1" : "0")} {p.TimeUnits,6}]"))).Info("IR");
+                builder.ToString().Info("IR");
             };
 
             Console.ReadLine();
@@ -78,7 +121,7 @@
         {
             Pi.Spi.Channel0Frequency = SpiChannel.MinFrequency;
 
-            var request = System.Text.Encoding.UTF8.GetBytes("Hello over SPI");
+            var request = Encoding.UTF8.GetBytes("Hello over SPI");
             $"SPI Request: {BitConverter.ToString(request)}".Info();
             var response = Pi.Spi.Channel0.SendReceive(request);
             $"SPI Response: {BitConverter.ToString(response)}".Info();
@@ -246,7 +289,7 @@
                 $"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}".Info();
             }
         }
-        
+
         private static void Tag()
         {
             var mfrc522 = new Mfrc522Controller();
@@ -265,8 +308,8 @@
 
                 // Get the UID of the card
                 var resultAnticoll = mfrc522.Anticoll();
-                var status2 = resultAnticoll.Item1; 
-                var uid = resultAnticoll.Item2;
+                var status2 = resultAnticoll.status;
+                var uid = resultAnticoll.data;
 
                 // If we have the UID, continue
                 if (status2 == Mfrc522Controller.MI_OK)
