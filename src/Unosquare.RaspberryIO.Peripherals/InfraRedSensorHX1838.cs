@@ -35,9 +35,6 @@
         public InfraRedSensorHX1838(GpioPin inputPin)
         {
             InputPin = inputPin;
-            InputPin.PinMode = GpioPinDriveMode.Input;
-            InputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
-
             ReadThread = new Thread(ReadThreadDoWork)
             {
                 Priority = ThreadPriority.AboveNormal,
@@ -45,7 +42,8 @@
                 Name = nameof(InfraRedSensorHX1838)
             };
 
-            ReadThread.Start();
+            // ReadThread.Start();
+            ReadInterruptDoWork();
         }
 
         /// <summary>
@@ -158,6 +156,71 @@
         }
 
         /// <summary>
+        /// Reads the interrupt do work.
+        /// </summary>
+        private void ReadInterruptDoWork()
+        {
+            // Setup the input pin
+            InputPin.PinMode = GpioPinDriveMode.Input;
+            InputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
+
+            // Get the timers started!
+            var pulseTimer = new Native.HighResolutionTimer();
+            var idleTimer = new Native.HighResolutionTimer();
+
+            pulseTimer.Start();
+            idleTimer.Start();
+
+            const long MaxElapsedMicroseconds = 250000;
+            const long MinElapsedMicroseconds = 50;
+            const int IdleCheckIntervalMilliSecs = 15;
+            const int MaxPulseCount = 128;
+
+            var pulseBuffer = new List<InfraRedPulse>(MaxPulseCount);
+            var syncLock = new object();
+
+            InputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
+            {
+                lock (syncLock)
+                {
+                    idleTimer.Restart();
+
+                    var currentLength = pulseTimer.ElapsedMicroseconds;
+                    var currentValue = InputPin.Read();
+                    var pulse = new InfraRedPulse(currentValue, currentLength.Clamp(MinElapsedMicroseconds, MaxElapsedMicroseconds));
+
+                    // Restart for the next bit coming in
+                    pulseTimer.Restart();
+
+                    // Do not add an idling pulse
+                    if (pulse.DurationUsecs < MaxElapsedMicroseconds)
+                        pulseBuffer.Add(pulse);
+
+                    if (pulseBuffer.Count >= MaxPulseCount)
+                    {
+                        OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverStates.Overflow, 50000);
+                        pulseBuffer.Clear();
+                    }
+                }
+            });
+
+            var idleChecker = default(Timer);
+            idleChecker = new Timer((s) =>
+            {
+                lock (syncLock)
+                {
+                    if (idleTimer.ElapsedMicroseconds < GapUsecs || idleTimer.IsRunning == false) return;
+                    OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverStates.Stop, 50000);
+                    pulseBuffer.Clear();
+                    idleTimer.Reset();
+                    idleChecker.Change(IdleCheckIntervalMilliSecs, IdleCheckIntervalMilliSecs);
+                }
+            });
+
+            idleChecker.Change(0, IdleCheckIntervalMilliSecs);
+        }
+
+        /// <summary>
         /// State machine to handle continuous reads of data
         /// </summary>
         private void ReadThreadDoWork()
@@ -172,6 +235,10 @@
             var pulseBuffer = new List<InfraRedPulse>(SensorBufferLength);
             var pulseTimer = new Native.HighResolutionTimer();
             var trainTimer = new Native.HighResolutionTimer();
+
+            // Setup the input pin
+            InputPin.PinMode = GpioPinDriveMode.Input;
+            InputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
 
             // Get the timer started!
             pulseTimer.Start();
@@ -204,7 +271,7 @@
                                 pulseBuffer.Clear();
 
                                 // The first pulse will be a gap
-                                var pulse = new InfraRedPulse(Mark, timeUnitsCount);
+                                var pulse = new InfraRedPulse(Mark, timeUnitsCount * UsecsPerTimeUnit);
                                 pulseBuffer.Add(pulse);
                                 OnInfraredSensorPulseAvailable(pulse);
                                 timeUnitsCount = 0;
@@ -220,7 +287,7 @@
                             // Mark ended; Record time
                             if (currentSensorValue == Space)
                             {
-                                var pulse = new InfraRedPulse(Space, timeUnitsCount);
+                                var pulse = new InfraRedPulse(Space, timeUnitsCount * UsecsPerTimeUnit);
                                 pulseBuffer.Add(pulse);
                                 OnInfraredSensorPulseAvailable(pulse);
 
@@ -238,7 +305,7 @@
                             // Space just ended; Record time
                             if (currentSensorValue == Mark)
                             {
-                                var pulse = new InfraRedPulse(Mark, timeUnitsCount);
+                                var pulse = new InfraRedPulse(Mark, timeUnitsCount * UsecsPerTimeUnit);
                                 pulseBuffer.Add(pulse);
                                 OnInfraredSensorPulseAvailable(pulse);
 
@@ -323,12 +390,11 @@
             /// Initializes a new instance of the <see cref="InfraRedPulse" /> struct.
             /// </summary>
             /// <param name="value">if set to <c>true</c> [value].</param>
-            /// <param name="timeUnits">The time units.</param>
-            internal InfraRedPulse(bool value, long timeUnits)
+            /// <param name="durationUsecs">The duration usecs.</param>
+            internal InfraRedPulse(bool value, long durationUsecs)
             {
                 Value = value;
-                DurationUsecs = timeUnits * UsecsPerTimeUnit;
-                TimeUnits = timeUnits;
+                DurationUsecs = durationUsecs;
             }
 
             /// <summary>
@@ -340,11 +406,6 @@
             /// Gets the duration microseconds.
             /// </summary>
             public long DurationUsecs { get; }
-
-            /// <summary>
-            /// Gets the time units.
-            /// </summary>
-            public long TimeUnits { get; }
         }
 
         /// <summary>
@@ -492,7 +553,6 @@
             {
                 Value = pulse.Value;
                 DurationUsecs = pulse.DurationUsecs;
-                TimeUnits = pulse.TimeUnits;
             }
 
             /// <summary>
@@ -513,11 +573,6 @@
             /// Gets the duration microseconds.
             /// </summary>
             public long DurationUsecs { get; }
-
-            /// <summary>
-            /// Gets the time units.
-            /// </summary>
-            public long TimeUnits { get; }
         }
     }
 }

@@ -56,11 +56,12 @@
         {
             var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
             var sensor = new InfraRedSensorHX1838(inputPin);
+
             sensor.DataAvailable += (s, e) =>
             {
                 if (e.TrainDurationUsecs < 50000)
                 {
-                    // $"Spurious Signal of {e.TrainDurationMicroseconds} micro seconds.".Error("IR");
+                    $"Spurious Signal of {e.TrainDurationUsecs} micro seconds.".Error("IR");
                     return;
                 }
 
