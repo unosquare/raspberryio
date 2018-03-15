@@ -7,8 +7,9 @@
     using Swan;
     using System;
     using System.IO;
-
-    using System.Text;    using System.Linq;    using System.Threading;
+    using System.Text;    
+    using System.Linq;   
+    using System.Threading;
 
     /// <summary>
     /// Main entry point class
