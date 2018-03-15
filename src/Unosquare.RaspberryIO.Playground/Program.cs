@@ -7,7 +7,8 @@
     using Swan;
     using System;
     using System.IO;
-    using System.Text;
+    using System.Text;    
+    using System.Linq;   
     using System.Threading;
 
     /// <summary>
@@ -174,17 +175,18 @@
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}"
                 .Info();
 
-            foreach (var adapter in NetworkSettings.Instance.RetrieveAdapters())
-            {
-                $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}"
-                    .Info();
-            }
+            NetworkSettings.Instance.RetrieveAdapters()
+                .Select(adapter =>
+                    $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}")
+                .ToList()
+                .ForEach(x => x.Info());
         }
 
         private static void TestCaptureImage()
         {
             var pictureBytes = Pi.Camera.CaptureImageJpeg(640, 480);
-            var targetPath = "/home/pi/picture.jpg";
+            const string targetPath = "/home/pi/picture.jpg";
+
             if (File.Exists(targetPath))
                 File.Delete(targetPath);
 

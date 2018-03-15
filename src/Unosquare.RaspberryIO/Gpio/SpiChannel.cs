@@ -31,7 +31,7 @@
 
         private static readonly object SyncRoot = new object();
         private static readonly Dictionary<SpiChannelNumber, SpiChannel> Buses = new Dictionary<SpiChannelNumber, SpiChannel>();
-        private readonly object SyncLock = new object();
+        private readonly object _syncLock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpiChannel"/> class.
@@ -84,7 +84,7 @@
             if (buffer == null || buffer.Length == 0)
                 return null;
 
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 var spiBuffer = new byte[buffer.Length];
                 Array.Copy(buffer, spiBuffer, buffer.Length);
@@ -103,9 +103,9 @@
         /// <returns>
         /// The read bytes from the ring-style bus
         /// </returns>
-        public async Task<byte[]> SendReceiveAsync(byte[] buffer)
+        public Task<byte[]> SendReceiveAsync(byte[] buffer)
         {
-            return await Task.Run(() => { return SendReceive(buffer); });
+            return Task.Run(() => SendReceive(buffer));
         }
 
         /// <summary>
@@ -117,7 +117,7 @@
         /// <param name="buffer">The buffer.</param>
         public void Write(byte[] buffer)
         {
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 var result = Standard.Write(FileDescriptor, buffer, buffer.Length);
 
@@ -134,9 +134,9 @@
         /// </summary>
         /// <param name="buffer">The buffer.</param>
         /// <returns>The awaitable task</returns>
-        public async Task WriteAsync(byte[] buffer)
+        public Task WriteAsync(byte[] buffer)
         {
-            await Task.Run(() => { Write(buffer); });
+            return Task.Run(() => { Write(buffer); });
         }
 
         /// <summary>
@@ -152,6 +152,7 @@
             {
                 if (Buses.ContainsKey(channel))
                     return Buses[channel];
+
                 var newBus = new SpiChannel(channel, frequency);
                 Buses[channel] = newBus;
                 return newBus;

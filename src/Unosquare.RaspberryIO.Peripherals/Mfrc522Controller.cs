@@ -143,20 +143,30 @@
             WriteSpi(CommandReg, PCD_RESETPHASE);
         }
 
+        /// <summary>
+        /// Writes the spi.
+        /// </summary>
+        /// <param name="addr">The addr.</param>
+        /// <param name="val">The value.</param>
         public void WriteSpi(byte addr, byte val)
         {
-            _spi.Write(new byte[]
+            _spi.Write(new[]
             {
-                (byte) ((addr << 1) & 0x7E),
+                (byte) (addr << 1 & 0x7E),
                 val
             });
         }
 
+        /// <summary>
+        /// Reads the spi.
+        /// </summary>
+        /// <param name="addr">The addr.</param>
+        /// <returns></returns>
         public byte ReadSpi(byte addr)
         {
             var val = _spi.SendReceive(new byte[]
             {
-                (byte) (((addr << 1) & 0x7E) | 0x80),
+                (byte) (addr << 1 & 0x7E | 0x80),
                 0
             });
             return val[1];
@@ -171,16 +181,12 @@
         private void ClearBitMask(byte reg, byte mask)
         {
             var tmp = ReadSpi(reg);
-            WriteSpi(reg, (byte)(tmp & (~mask)));
+            WriteSpi(reg, (byte)(tmp & ~mask));
         }
 
         private void AntennaOn()
         {
-            var temp = ReadSpi(TxControlReg);
-            //if (~(temp & 0x03) == 1)
-            //{
             SetBitMask(TxControlReg, 0x03);
-            //}
         }
 
         private void AntennaOff()
@@ -235,8 +241,8 @@
                 n = ReadSpi(CommIrqReg);
                 i -= 1;
                 if (Convert.ToBoolean(
-                    ~Convert.ToInt32(((i != 0) && Convert.ToBoolean(~(n & 0x01)) &&
-                                      Convert.ToBoolean(~(n & waitIRq))))))
+                    ~Convert.ToInt32(i != 0 && Convert.ToBoolean(~(n & 0x01)) &&
+                                     Convert.ToBoolean(~(n & waitIRq)))))
                 {
                     break;
                 }
@@ -261,7 +267,7 @@
                     byte? lastBits = (byte)(ReadSpi(ControlReg) & 0x07);
                     if (lastBits != 0)
                     {
-                        backLen = (byte)(((n - 1) * 8) + (byte)lastBits);
+                        backLen = (byte)((n - 1) * 8 + (byte)lastBits);
                     }
                     else
                     {
@@ -294,15 +300,20 @@
             return (status, backData.ToArray(), backLen);
         }
 
+        /// <summary>
+        /// Requests the specified req mode.
+        /// </summary>
+        /// <param name="reqMode">The req mode.</param>
+        /// <returns></returns>
         public (byte, int) Request(byte reqMode)
         {
             var tagType = new List<byte> {reqMode};
 
             WriteSpi(BitFramingReg, 0x07);
 
-            var (status, backData, backBits) = ToCard(PCD_TRANSCEIVE, tagType.ToArray());
+            var (status, _, backBits) = ToCard(PCD_TRANSCEIVE, tagType.ToArray());
 
-            if ((status != MI_OK) | (backBits != 0x10))
+            if (status != MI_OK | backBits != 0x10)
             {
                 status = MI_ERR;
             }
@@ -310,6 +321,10 @@
             return (status, backBits);
         }
 
+        /// <summary>
+        /// Anticolls this instance.
+        /// </summary>
+        /// <returns></returns>
         public (byte status, byte[] data) Anticoll()
         {
             byte serNumCheck = 0;
@@ -350,7 +365,7 @@
             return (status, backData);
         }
 
-        private byte[] CalulateCRC(byte[] pIndata)
+        private byte[] CalulateCrc(byte[] pIndata)
         {
             ClearBitMask(DivIrqReg, 0x04);
             SetBitMask(FIFOLevelReg, 0x80);
@@ -367,16 +382,20 @@
             {
                 var n = ReadSpi(DivIrqReg);
                 i--;
-                if (!((i != 0) && !Convert.ToBoolean(n & 0x04)))
+                if (!(i != 0 && !Convert.ToBoolean(n & 0x04)))
                 {
                     break;
                 }
             }
 
-            var pOutData = new List<byte> {ReadSpi(CRCResultRegL), ReadSpi(CRCResultRegM)};
-            return pOutData.ToArray();
+            return new[] {ReadSpi(CRCResultRegL), ReadSpi(CRCResultRegM)};
         }
 
+        /// <summary>
+        /// Selects the tag.
+        /// </summary>
+        /// <param name="serNum">The ser number.</param>
+        /// <returns></returns>
         public byte SelectTag(byte[] serNum)
         {
             var buf = new List<byte> { PICC_SElECTTAG, 0x70 };
@@ -387,7 +406,7 @@
                 i++;
             }
 
-            var pOut = CalulateCRC(buf.ToArray());
+            var pOut = CalulateCrc(buf.ToArray());
             buf.Add(pOut[0]);
             buf.Add(pOut[1]);
             var (status, backData, backBits) = ToCard(PCD_TRANSCEIVE, buf.ToArray());
@@ -397,9 +416,16 @@
 
             $"Size: {backData[0]}".Debug();
             return backData[0];
-
         }
 
+        /// <summary>
+        /// Authentications the specified authentication mode.
+        /// </summary>
+        /// <param name="authMode">The authentication mode.</param>
+        /// <param name="blockAddr">The block addr.</param>
+        /// <param name="sectorkey">The sectorkey.</param>
+        /// <param name="serNum">The ser number.</param>
+        /// <returns></returns>
         public byte Auth(byte authMode, byte blockAddr, byte[] sectorkey, byte[] serNum)
         {
             // First byte should be the authMode (A or B) Second byte is the trailerBlock (usually 7)
@@ -440,6 +466,9 @@
             return status;
         }
 
+        /// <summary>
+        /// Stops the crypto1.
+        /// </summary>
         public void StopCrypto1()
         {
             ClearBitMask(Status2Reg, 0x08);
@@ -448,7 +477,7 @@
         private void Write(byte blockAddr, byte[] writeData)
         {
             var buff = new List<byte> {PICC_WRITE, blockAddr};
-            var crc = CalulateCRC(buff.ToArray());
+            var crc = CalulateCrc(buff.ToArray());
             buff.Add(crc[0]);
             buff.Add(crc[1]);
             var (status, backData, backLen) = ToCard(PCD_TRANSCEIVE, buff.ToArray());
@@ -470,7 +499,7 @@
                 i++;
             }
 
-            crc = CalulateCRC(buf.ToArray());
+            crc = CalulateCrc(buf.ToArray());
             buf.Add(crc[0]);
             buf.Add(crc[1]);
 
@@ -487,6 +516,11 @@
             }
         }
 
+        /// <summary>
+        /// Dumps the classic1 k.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="uid">The uid.</param>
         public void DumpClassic1K(byte[] key, byte[] uid)
         {
             byte i = 0;

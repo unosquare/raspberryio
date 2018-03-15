@@ -175,10 +175,10 @@
             {
                 if (IsBusy == false)
                     return;
-
-                if (VideoTokenSource.IsCancellationRequested == false)
-                    VideoTokenSource.Cancel();
             }
+
+            if (VideoTokenSource.IsCancellationRequested == false)
+                VideoTokenSource.Cancel();
         }
 
         private static async Task VideoWorkerDoWork(
