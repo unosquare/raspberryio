@@ -225,7 +225,11 @@
                 if (wlanInfo != null)
                 {
                     adapter.IsWireless = true;
-                    adapter.AccessPointName = ParseOutputTagFromLine(wlanInfo, EssidTag)?.Trim('"');
+                    var essidParts = wlanInfo.Split(new string[] { EssidTag }, StringSplitOptions.RemoveEmptyEntries);
+                    if (essidParts.Length >= 2)
+                    {
+                        adapter.AccessPointName = essidParts[1].Replace("\"", string.Empty).Trim();
+                    }
                 }
 
                 // Add the current adapter to the result

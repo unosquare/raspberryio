@@ -59,20 +59,25 @@
 
             sensor.DataAvailable += (s, e) =>
             {
-                if (e.TrainDurationUsecs < 50000)
-                {
-                    $"Spurious Signal of {e.TrainDurationUsecs} micro seconds.".Error("IR");
-                    return;
-                }
-
                 var necData = InfraRedSensorHX1838.NecDecoder.DecodePulses(e.Pulses);
                 var debugData = InfraRedSensorHX1838.DebugPulses(e.Pulses);
 
-                $"Pulses Length: {e.Pulses.Length}; Duration: {e.TrainDurationUsecs}; Reason: {e.State}".Warn("IR");
                 if (necData != null)
-                    ("NEC Raw Data: " + BitConverter.ToString(necData).Replace("-", " ")).Warn("IR");
-
-                debugData.Info("IR");
+                {
+                    $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
+                }
+                else
+                {
+                    if (e.Pulses.Length >= 4)
+                    {
+                        $"Pulses  Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
+                        debugData.Info("IR");
+                    }
+                    else
+                    {
+                        $"Garbage Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
+                    }
+                }
             };
 
             Console.ReadLine();
