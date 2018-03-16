@@ -1,4 +1,3 @@
-[![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO)
 [![NuGet](https://img.shields.io/nuget/dt/Unosquare.Raspberry.IO.svg)](https://www.nuget.org/packages/Unosquare.Raspberry.IO)
 [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/raspberryio/)](https://github.com/igrigorik/ga-beacon)
 
@@ -11,6 +10,7 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
  Table of contents
 =================
   * [Features](#features)
+    * [Peripherals](#peripherals)
   * [Installation](#installation)
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
     * [For Debian Wheezy](#for-debian-wheezy)
@@ -51,10 +51,30 @@ _Please note you program needs to be run with ```sudo```. Example ```sudo mono m
 
 This library depends on the wonderful ```WiringPi``` library available [here](http://wiringpi.com/). You do not need to install this library yourself. The ```RaspberryIO``` assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.
 
+### Peripherals
+
+We offer an additional package with helpful classes to use peripherals, many of them are from pull requests from our contributors. The current set of peripherals supported are:
+
+* Infrared Sensor HX-1838
+* Led Strip APA-102C
+* NFC/RFID Controller MFRC-522
+* Temperature Sensor AM-2302
+
 ## Installation
+
+Install basic Raspberry.IO package:
+[![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO)
+
 ```
 PM> Install-Package Unosquare.Raspberry.IO
 ```
+
+Install Raspberry.IO Peripherals package:
+[![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.Peripherals.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO.Peripherals)
+```
+PM> Install-Package Unosquare.Raspberry.IO.Peripherals
+```
+
 
 ## Running the latest version of Mono
 It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:
