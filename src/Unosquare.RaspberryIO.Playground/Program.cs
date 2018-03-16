@@ -7,8 +7,8 @@
     using Swan;
     using System;
     using System.IO;
-    using System.Text;    
-    using System.Linq;   
+    using System.Linq;
+    using System.Text;
     using System.Threading;
 
     /// <summary>

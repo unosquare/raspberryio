@@ -330,7 +330,7 @@
         /// Placeholder for processor index
         /// </summary>
         private string Processor { get; set; }
-        
+
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
