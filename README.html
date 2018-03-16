@@ -74,8 +74,44 @@
 <a href="https://www.nuget.org/packages/Unosquare.Raspberry.IO"><img src="https://img.shields.io/nuget/dt/Unosquare.Raspberry.IO.svg" alt="NuGet"></a>
 <a href="https://github.com/igrigorik/ga-beacon"><img src="https://ga-beacon.appspot.com/UA-8535255-2/unosquare/raspberryio/" alt="Analytics"></a></p>
 <h1 id="img-srchttpsgithubcomunosquareraspberryiorawmasterlogosraspberryio-logo-32pngimg-raspberryio---pis-hardware-access-from-net"><img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png"> RaspberryIO - <em>Pi&#39;s hardware access from .NET</em></h1>
-<p>The Raspberry Pi&#39;s IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.</p>
 <p><span class="emoji" shortcode="star">⭐</span> <em>Please star this project if you find it useful!</em></p>
+<p>The Raspberry Pi&#39;s IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.</p>
+<h1 id="-table-of-contents"> Table of contents</h1>
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#running-the-latest-version-of-mono">Running the latest version of Mono</a><ul>
+<li><a href="#for-debian-wheezy">For Debian Wheezy</a></li>
+<li><a href="#for-debian-stretch">For Debian Stretch</a></li>
+<li><a href="#handy-notes">Handy Notes</a></li>
+</ul>
+</li>
+<li><a href="#running-net-core-2">Running .NET Core 2</a><ul>
+<li><a href="#run-the-app-on-the-raspberry">Run the app on the raspberry</a></li>
+</ul>
+</li>
+<li><a href="#the-camera-module">The Camera Module</a><ul>
+<li><a href="#capturing-images">Capturing Images</a></li>
+<li><a href="#capturing-video">Capturing Video</a></li>
+</ul>
+</li>
+<li><a href="#obtaining-board-and-system-information">Obtaining Board and System Information</a></li>
+<li><a href="#using-the-gpio-pins">Using the GPIO Pins</a><ul>
+<li><a href="#pin-information">Pin Information</a></li>
+<li><a href="#digital-read-and-write">Digital Read and Write</a></li>
+<li><a href="#analog-level-read-and-write">Analog (Level) Read and Write</a></li>
+<li><a href="#hardware-pwm">Hardware PWM</a></li>
+<li><a href="#software-pwm">Software PWM</a></li>
+<li><a href="#tone-generation">Tone Generation</a></li>
+<li><a href="#interrupts-and-callbacks">Interrupts and Callbacks</a></li>
+</ul>
+</li>
+<li><a href="#using-the-spi-bus">Using the SPI Bus</a></li>
+<li><a href="#i2c-to-connect-ics">I2C to connect ICs</a></li>
+<li><a href="#timing-and-threading">Timing and Threading</a></li>
+<li><a href="#serial-ports-uart">Serial Ports (UART)</a></li>
+<li><a href="#similar-projects">Similar Projects</a></li>
+</ul>
 <h2 id="features">Features</h2>
 <p>This library enables developers to use the various Raspberry Pi&#39;s hardware modules:</p>
 <ul>
@@ -88,7 +124,7 @@
 </ul>
 <p><em>Please note you program needs to be run with <code>sudo</code>. Example <code>sudo mono myprogram.exe</code> in order to work correctly.</em></p>
 <p>This library depends on the wonderful <code>WiringPi</code> library available <a href="http://wiringpi.com/">here</a>. You do not need to install this library yourself. The <code>RaspberryIO</code> assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.</p>
-<h2 id="nuget-installation">NuGet Installation:</h2>
+<h2 id="installation">Installation</h2>
 <pre><code>PM&gt; Install-Package Unosquare.Raspberry.IO
 </code></pre><h2 id="running-the-latest-version-of-mono">Running the latest version of Mono</h2>
 <p>It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:</p>
