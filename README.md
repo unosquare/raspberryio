@@ -3,10 +3,39 @@
 [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/raspberryio/)](https://github.com/igrigorik/ga-beacon)
 
 # <img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png"></img> RaspberryIO - *Pi's hardware access from .NET*
-The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.
 
 :star: *Please star this project if you find it useful!*
 
+The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.
+
+ Table of contents
+=================
+  * [Features](#features)
+  * [Installation](#installation)
+  * [Running the latest version of Mono](#running-the-latest-version-of-mono)
+    * [For Debian Wheezy](#for-debian-wheezy)
+    * [For Debian Stretch](#for-debian-stretch)
+    * [Handy Notes](#handy-notes)
+  * [Running .NET Core 2](#running-net-core-2)
+    * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
+  * [The Camera Module](#the-camera-module)
+    * [Capturing Images](#capturing-images)
+    * [Capturing Video](#capturing-video)
+  * [Obtaining Board and System Information](#obtaining-board-and-system-information)
+  * [Using the GPIO Pins](#using-the-gpio-pins)
+    * [Pin Information](#pin-information)
+    * [Digital Read and Write](#digital-read-and-write)
+    * [Analog (Level) Read and Write](#analog-level-read-and-write)
+    * [Hardware PWM](#hardware-pwm)
+    * [Software PWM](#software-pwm)
+    * [Tone Generation](#tone-generation)
+    * [Interrupts and Callbacks](#interrupts-and-callbacks)
+  * [Using the SPI Bus](#using-the-spi-bus)
+  * [I2C to connect ICs](#i2c-to-connect-ics)
+  * [Timing and Threading](#timing-and-threading)
+  * [Serial Ports (UART)](#serial-ports-uart)
+  * [Similar Projects](#similar-projects)
+  
 ## Features
 
 This library enables developers to use the various Raspberry Pi's hardware modules:
@@ -22,7 +51,7 @@ _Please note you program needs to be run with ```sudo```. Example ```sudo mono m
 
 This library depends on the wonderful ```WiringPi``` library available [here](http://wiringpi.com/). You do not need to install this library yourself. The ```RaspberryIO``` assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.
 
-## NuGet Installation:
+## Installation
 ```
 PM> Install-Package Unosquare.Raspberry.IO
 ```
