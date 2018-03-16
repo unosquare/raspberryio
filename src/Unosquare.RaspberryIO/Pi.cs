@@ -5,7 +5,7 @@
     using Gpio;
     using Native;
     using System.Threading.Tasks;
-    using Unosquare.Swan.Components;
+    using Swan.Components;
 
     /// <summary>
     /// Our main character. Provides access to the Raspberry Pi's GPIO, system and board information and Camera
@@ -75,7 +75,7 @@
         /// <summary>
         /// Gets the logger source name.
         /// </summary>
-        internal static string LoggerSource { get => typeof(Pi).Namespace; }
+        internal static string LoggerSource => typeof(Pi).Namespace;
 
         #endregion
 

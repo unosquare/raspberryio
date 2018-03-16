@@ -13,7 +13,7 @@
     {
         // TODO: It would be nice to integrate i2c device detection.
         private static readonly object SyncRoot = new object();
-        private readonly Dictionary<int, I2CDevice> m_Devices = new Dictionary<int, I2CDevice>();
+        private readonly Dictionary<int, I2CDevice> _devices = new Dictionary<int, I2CDevice>();
 
         /// <summary>
         /// Prevents a default instance of the <see cref="I2CBus"/> class from being created.
@@ -26,7 +26,7 @@
         /// <summary>
         /// Gets the registered devices as a read only collection.
         /// </summary>
-        public ReadOnlyCollection<I2CDevice> Devices => new ReadOnlyCollection<I2CDevice>(m_Devices.Values.ToArray());
+        public ReadOnlyCollection<I2CDevice> Devices => new ReadOnlyCollection<I2CDevice>(_devices.Values.ToArray());
 
         /// <summary>
         /// Gets the device by identifier.
@@ -37,7 +37,7 @@
         {
             lock (SyncRoot)
             {
-                return m_Devices[deviceId];
+                return _devices[deviceId];
             }
         }
 
@@ -51,15 +51,15 @@
         {
             lock (SyncRoot)
             {
-                if (m_Devices.ContainsKey(deviceId))
-                    return m_Devices[deviceId];
+                if (_devices.ContainsKey(deviceId))
+                    return _devices[deviceId];
 
                 var fileDescriptor = SetupFileDescriptor(deviceId);
                 if (fileDescriptor < 0)
                     throw new KeyNotFoundException($"Device with id {deviceId} could not be registered with the I2C bus. Error Code: {fileDescriptor}.");
 
                 var device = new I2CDevice(deviceId, fileDescriptor);
-                m_Devices[deviceId] = device;
+                _devices[deviceId] = device;
                 return device;
             }
         }

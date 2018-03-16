@@ -28,12 +28,12 @@ namespace Unosquare.RaspberryIO.Peripherals
 
         #region State Variables
 
-        private readonly object SyncLock = new object(); // for thread safety
-        private readonly SpiChannel Channel; // will be set in the constructor
-        private readonly byte[] ClearBuffer; // Contains clear pixel data which is a set of 0xE0 bytes
-        private readonly byte[] FrameBuffer; // Contains what needs to be written over the SPI channel
-        private readonly byte[] PixelHolder = new byte[4]; // used heavily to manipulate pixels
-        private readonly Dictionary<int, LedStripPixel> Pixels = new Dictionary<int, LedStripPixel>();
+        private readonly object _syncLock = new object(); // for thread safety
+        private readonly SpiChannel _channel; // will be set in the constructor
+        private readonly byte[] _clearBuffer; // Contains clear pixel data which is a set of 0xE0 bytes
+        private readonly byte[] _frameBuffer; // Contains what needs to be written over the SPI channel
+        private readonly byte[] _pixelHolder = new byte[4]; // used heavily to manipulate pixels
+        private readonly Dictionary<int, LedStripPixel> _pixels = new Dictionary<int, LedStripPixel>();
 
         #endregion
 
@@ -53,15 +53,15 @@ namespace Unosquare.RaspberryIO.Peripherals
             ReverseRgb = reverseRgb;
 
             // Create the frame buffer
-            FrameBuffer = new byte[(PixelHolder.Length * LedCount) + (StartFrame.Length + EndFrame.Length)];
-            Buffer.BlockCopy(StartFrame, 0, FrameBuffer, 0, StartFrame.Length);
-            Buffer.BlockCopy(EndFrame, 0, FrameBuffer, FrameBuffer.Length - EndFrame.Length, EndFrame.Length);
+            _frameBuffer = new byte[(_pixelHolder.Length * LedCount) + (StartFrame.Length + EndFrame.Length)];
+            Buffer.BlockCopy(StartFrame, 0, _frameBuffer, 0, StartFrame.Length);
+            Buffer.BlockCopy(EndFrame, 0, _frameBuffer, _frameBuffer.Length - EndFrame.Length, EndFrame.Length);
 
             // Create ther Clear buffer
-            ClearBuffer = new byte[PixelHolder.Length * LedCount];
-            for (var baseAddress = 0; baseAddress < LedCount * PixelHolder.Length; baseAddress += PixelHolder.Length)
+            _clearBuffer = new byte[_pixelHolder.Length * LedCount];
+            for (var baseAddress = 0; baseAddress < LedCount * _pixelHolder.Length; baseAddress += _pixelHolder.Length)
             {
-                Buffer.SetByte(ClearBuffer, baseAddress, BrightnessSetMask);
+                Buffer.SetByte(_clearBuffer, baseAddress, BrightnessSetMask);
             }
 
             // Set all the pixels to no value
@@ -71,12 +71,12 @@ namespace Unosquare.RaspberryIO.Peripherals
             if (spiChannel == 0)
             {
                 Pi.Spi.Channel0Frequency = spiFrequency;
-                Channel = Pi.Spi.Channel0;
+                _channel = Pi.Spi.Channel0;
             }
             else
             {
                 Pi.Spi.Channel1Frequency = spiFrequency;
-                Channel = Pi.Spi.Channel1;
+                _channel = Pi.Spi.Channel1;
             }
 
             Render();
@@ -116,9 +116,9 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// </summary>
         public void ClearPixels()
         {
-            lock (SyncLock)
+            lock (_syncLock)
             {
-                Buffer.BlockCopy(ClearBuffer, 0, FrameBuffer, StartFrame.Length, ClearBuffer.Length);
+                Buffer.BlockCopy(_clearBuffer, 0, _frameBuffer, StartFrame.Length, _clearBuffer.Length);
             }
         }
 
@@ -132,12 +132,12 @@ namespace Unosquare.RaspberryIO.Peripherals
             if (index < 0 || index > LedCount - 1)
                 return null;
 
-            lock (SyncLock)
+            lock (_syncLock)
             {
-                if (Pixels.ContainsKey(index) == false)
-                    Pixels[index] = new LedStripPixel(this, StartFrame.Length + (index * PixelHolder.Length));
+                if (_pixels.ContainsKey(index) == false)
+                    _pixels[index] = new LedStripPixel(this, StartFrame.Length + (index * _pixelHolder.Length));
 
-                return Pixels[index];
+                return _pixels[index];
             }
         }
 
@@ -152,7 +152,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <param name="b">The Blue.</param>
         public void SetPixel(int index, float brightness, byte r, byte g, byte b)
         {
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 if (index < 0 || index > LedCount - 1)
                     return;
@@ -182,8 +182,6 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <exception cref="ArgumentNullException">bitmap</exception>
         public void SetPixels(BitmapBuffer pixels, int sourceOffsetX, int sourceOffsetY, float brightness = 1f, int targetOffset = 0, int targetLength = 0)
         {
-            var brightnessByte = default(byte);
-
             // Parameter validation
             if (pixels == null)
                 throw new ArgumentNullException(nameof(pixels));
@@ -210,7 +208,7 @@ namespace Unosquare.RaspberryIO.Peripherals
             // Brightness Setting
             if (brightness < 0f) brightness = 0f;
             if (brightness > 1f) brightness = 1f;
-            brightnessByte = (byte)(brightness * 31);
+            var brightnessByte = (byte)(brightness * 31);
             brightnessByte = (byte)(brightnessByte | BrightnessSetMask);
 
             // Offset settings
@@ -220,7 +218,7 @@ namespace Unosquare.RaspberryIO.Peripherals
             var redOffset = ReverseRgb ? 3 : 1;
 
             // Pixel copying
-            lock (SyncLock)
+            lock (_syncLock)
             {
                 var bmpOffsetBase = pixels.GetPixelOffset(sourceOffsetX, sourceOffsetY);
                 var bmpOffsetLimit = bmpOffsetBase + (targetLength * BitmapBuffer.BytesPerPixel);
@@ -230,10 +228,10 @@ namespace Unosquare.RaspberryIO.Peripherals
 
                 for (var bmpOffset = bmpOffsetBase; bmpOffset < bmpOffsetLimit; bmpOffset += BitmapBuffer.BytesPerPixel)
                 {
-                    FrameBuffer[frameBufferOffset + brightnessOffset] = brightnessByte;
-                    FrameBuffer[frameBufferOffset + redOffset] = pixels.Data[bmpOffset + BitmapBuffer.ROffset]; // R
-                    FrameBuffer[frameBufferOffset + greenOffset] = pixels.Data[bmpOffset + BitmapBuffer.GOffset]; // G
-                    FrameBuffer[frameBufferOffset + blueOffset] = pixels.Data[bmpOffset + BitmapBuffer.BOffset]; // B
+                    _frameBuffer[frameBufferOffset + brightnessOffset] = brightnessByte;
+                    _frameBuffer[frameBufferOffset + redOffset] = pixels.Data[bmpOffset + BitmapBuffer.ROffset]; // R
+                    _frameBuffer[frameBufferOffset + greenOffset] = pixels.Data[bmpOffset + BitmapBuffer.GOffset]; // G
+                    _frameBuffer[frameBufferOffset + blueOffset] = pixels.Data[bmpOffset + BitmapBuffer.BOffset]; // B
                     frameBufferOffset += StartFrame.Length;
                     setCount += 1;
 
@@ -248,9 +246,9 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// </summary>
         public void Render()
         {
-            lock (SyncLock)
+            lock (_syncLock)
             {
-                Channel.Write(FrameBuffer);
+                _channel.Write(_frameBuffer);
             }
         }
 
@@ -264,8 +262,8 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// </summary>
         public class LedStripPixel
         {
-            private readonly int BaseAddress;
-            private readonly LedStripAPA102C Owner;
+            private readonly int _baseAddress;
+            private readonly LedStripAPA102C _owner;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="LedStripPixel"/> class.
@@ -274,8 +272,8 @@ namespace Unosquare.RaspberryIO.Peripherals
             /// <param name="baseAddress">The base address.</param>
             public LedStripPixel(LedStripAPA102C owner, int baseAddress)
             {
-                Owner = owner;
-                BaseAddress = baseAddress;
+                _owner = owner;
+                _baseAddress = baseAddress;
             }
 
             /// <summary>
@@ -285,7 +283,7 @@ namespace Unosquare.RaspberryIO.Peripherals
             {
                 get
                 {
-                    var brightnessByte = (byte)(BrightnessGetMask & Owner.FrameBuffer[BaseAddress]);
+                    var brightnessByte = (byte)(BrightnessGetMask & _owner._frameBuffer[_baseAddress]);
                     return brightnessByte / 31f;
                 }
                 set
@@ -293,7 +291,7 @@ namespace Unosquare.RaspberryIO.Peripherals
                     // clamp value
                     value = value.Clamp(0f, 1f);
                     var brightnessByte = (byte)(value * 31);
-                    Owner.FrameBuffer[BaseAddress] = (byte)(brightnessByte | BrightnessSetMask);
+                    _owner._frameBuffer[_baseAddress] = (byte)(brightnessByte | BrightnessSetMask);
                 }
             }
 
@@ -302,13 +300,13 @@ namespace Unosquare.RaspberryIO.Peripherals
             /// </summary>
             public byte R
             {
-                get => Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 3] : Owner.FrameBuffer[BaseAddress + 1];
+                get => _owner.ReverseRgb ? _owner._frameBuffer[_baseAddress + 3] : _owner._frameBuffer[_baseAddress + 1];
                 set
                 {
-                    if (Owner.ReverseRgb)
-                        Owner.FrameBuffer[BaseAddress + 3] = value;
+                    if (_owner.ReverseRgb)
+                        _owner._frameBuffer[_baseAddress + 3] = value;
                     else
-                        Owner.FrameBuffer[BaseAddress + 1] = value;
+                        _owner._frameBuffer[_baseAddress + 1] = value;
                 }
             }
 
@@ -317,8 +315,8 @@ namespace Unosquare.RaspberryIO.Peripherals
             /// </summary>
             public byte G
             {
-                get => Owner.FrameBuffer[BaseAddress + 2];
-                set => Owner.FrameBuffer[BaseAddress + 2] = value;
+                get => _owner._frameBuffer[_baseAddress + 2];
+                set => _owner._frameBuffer[_baseAddress + 2] = value;
             }
 
             /// <summary>
@@ -326,13 +324,13 @@ namespace Unosquare.RaspberryIO.Peripherals
             /// </summary>
             public byte B
             {
-                get => Owner.ReverseRgb ? Owner.FrameBuffer[BaseAddress + 1] : Owner.FrameBuffer[BaseAddress + 3];
+                get => _owner.ReverseRgb ? _owner._frameBuffer[_baseAddress + 1] : _owner._frameBuffer[_baseAddress + 3];
                 set
                 {
-                    if (Owner.ReverseRgb)
-                        Owner.FrameBuffer[BaseAddress + 1] = value;
+                    if (_owner.ReverseRgb)
+                        _owner._frameBuffer[_baseAddress + 1] = value;
                     else
-                        Owner.FrameBuffer[BaseAddress + 3] = value;
+                        _owner._frameBuffer[_baseAddress + 3] = value;
                 }
             }
         }

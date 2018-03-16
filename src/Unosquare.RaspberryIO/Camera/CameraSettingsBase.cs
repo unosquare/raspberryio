@@ -141,7 +141,7 @@
         /// Gets or sets the picture ISO. Default is -1 Range is 100 to 800
         /// The higher the value, the more light the sensor absorbs
         /// </summary>
-        public int ImageISO { get; set; } = -1;
+        public int ImageIso { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the image capture effect to be applied.
@@ -263,8 +263,8 @@
             if (ImageSaturation != 0)
                 sb.Append($" -sa {ImageSaturation.Clamp(-100, 100).ToString(Ci)}");
 
-            if (ImageISO >= 100)
-                sb.Append($" -ISO {ImageISO.Clamp(100, 800).ToString(Ci)}");
+            if (ImageIso >= 100)
+                sb.Append($" -ISO {ImageIso.Clamp(100, 800).ToString(Ci)}");
 
             if (CaptureVideoStabilizationEnabled)
                 sb.Append(" -vs");

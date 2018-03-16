@@ -7,7 +7,8 @@
     using Swan;
     using System;
     using System.IO;
-    using System.Text;
+    using System.Text;    
+    using System.Linq;   
     using System.Threading;
 
     /// <summary>
@@ -56,59 +57,28 @@
         {
             var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
             var sensor = new InfraRedSensorHX1838(inputPin);
+
             sensor.DataAvailable += (s, e) =>
             {
-                if (e.TrainDurationMicroseconds < 50000)
+                var necData = InfraRedSensorHX1838.NecDecoder.DecodePulses(e.Pulses);
+                var debugData = InfraRedSensorHX1838.DebugPulses(e.Pulses);
+
+                if (necData != null)
                 {
-                    // $"Spurious Signal of {e.TrainDurationMicroseconds} micro seconds.".Error("IR");
-                    return;
+                    $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
                 }
-
-                const int groupSize = 4;
-                var builder = new StringBuilder();
-                builder.AppendLine();
-
-                for (var i = 0; i < e.Pulses.Length; i += groupSize)
+                else
                 {
-                    var p = e.Pulses[i];
-                    for (var offset = 0; offset < groupSize; offset++)
+                    if (e.Pulses.Length >= 4)
                     {
-                        if (i + offset >= e.Pulses.Length)
-                            continue;
-
-                        p = e.Pulses[i + offset];
-                        builder.Append($" {(p.Value ? "1" : "0")} {p.DurationMicroseconds,7} | ");
+                        $"Pulses  Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
+                        debugData.Info("IR");
                     }
-
-                    builder.AppendLine();
-                }
-
-                // NEC Decode attempt
-                // from here: https://www.sbprojects.net/knowledge/ir/nec.php
-                // 1. Find the first 3900 to 5000 Mark (0)
-                var startPulseIndex = -1;
-                for (var pulseIndex = 0; pulseIndex <= 6; pulseIndex++)
-                {
-                    var p = e.Pulses[pulseIndex];
-                    if (p.DurationMicroseconds >= 3900 && p.DurationMicroseconds <= 5000)
+                    else
                     {
-                        startPulseIndex = pulseIndex;
-                        break;
+                        $"Garbage Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
                     }
                 }
-
-                if (startPulseIndex != -1)
-                {
-                    for (var pulseIndex = startPulseIndex + 1; pulseIndex < e.Pulses.Length; pulseIndex++)
-                    {
-                        // TODO:
-                        // logical 1 is 1 space (1) and 3 marks (0)
-                        // logical 0 is 1 space (1) and 1 Mark (0)
-                    }
-                }
-
-                $"Pulses Length: {e.Pulses.Length}; Duration: {e.TrainDurationMicroseconds}; Reason: {e.State}".Warn("IR");
-                builder.ToString().Info("IR");
             };
 
             Console.ReadLine();
@@ -205,17 +175,18 @@
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}"
                 .Info();
 
-            foreach (var adapter in NetworkSettings.Instance.RetrieveAdapters())
-            {
-                $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}"
-                    .Info();
-            }
+            NetworkSettings.Instance.RetrieveAdapters()
+                .Select(adapter =>
+                    $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}")
+                .ToList()
+                .ForEach(x => x.Info());
         }
 
         private static void TestCaptureImage()
         {
             var pictureBytes = Pi.Camera.CaptureImageJpeg(640, 480);
-            var targetPath = "/home/pi/picture.jpg";
+            const string targetPath = "/home/pi/picture.jpg";
+
             if (File.Exists(targetPath))
                 File.Delete(targetPath);
 
