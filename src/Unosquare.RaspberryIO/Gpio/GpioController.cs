@@ -126,6 +126,11 @@
         #region Pin Addressing
 
         /// <summary>
+        /// Gets the PWM base frequency (in Hz).
+        /// </summary>
+        public int PwmBaseFrequency => 19200000;
+
+        /// <summary>
         /// Gets a red-only collection of all registered pins.
         /// </summary>
         public ReadOnlyCollection<GpioPin> Pins => PinCollection;
@@ -324,6 +329,26 @@
         /// <param name="pinNumber">The pin number.</param>
         /// <returns>A reference to the GPIO pin</returns>
         public GpioPin this[WiringPiPin pinNumber] => PinsByWiringPiPinNumber[pinNumber];
+
+        /// <summary>
+        /// Gets the <see cref="GpioPin"/> with the specified pin number.
+        /// </summary>
+        /// <value>
+        /// The <see cref="GpioPin"/>.
+        /// </value>
+        /// <param name="pinNumber">The pin number.</param>
+        /// <returns>A reference to the GPIO pin</returns>
+        public GpioPin this[P1 pinNumber] => HeaderP1[(int)pinNumber];
+
+        /// <summary>
+        /// Gets the <see cref="GpioPin"/> with the specified pin number.
+        /// </summary>
+        /// <value>
+        /// The <see cref="GpioPin"/>.
+        /// </value>
+        /// <param name="pinNumber">The pin number.</param>
+        /// <returns>A reference to the GPIO pin</returns>
+        public GpioPin this[P5 pinNumber] => HeaderP5[(int)pinNumber];
 
         /// <summary>
         /// Gets the <see cref="GpioPin"/> with the specified Wiring Pi pin number.

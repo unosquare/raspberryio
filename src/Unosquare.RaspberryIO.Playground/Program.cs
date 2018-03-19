@@ -29,12 +29,15 @@
             try
             {
                 // A set of very simple tests:
+                TestSystemInfo();
+
                 // TestCaptureImage();
                 // TestCaptureVideo();
                 // TestLedStripGraphics();
                 // TestLedStrip();
                 // TestTag();
-                TestSystemInfo();
+                // TestLedBlinking();
+                TestHardwarePwm();
                 TestInfraredSensor();
             }
             catch (Exception ex)
@@ -145,10 +148,12 @@
         public static void TestLedBlinking()
         {
             // Get a reference to the pin you need to use.
-            // All 3 methods below are exactly equivalent
+            // All methods below are exactly equivalent and reference the same pin
             var blinkingPin = Pi.Gpio[0];
             blinkingPin = Pi.Gpio[WiringPiPin.Pin00];
             blinkingPin = Pi.Gpio.Pin00;
+            blinkingPin = Pi.Gpio.HeaderP1[11];
+            blinkingPin = Pi.Gpio[P1.Gpio17];
 
             // Configure the pin as an output
             blinkingPin.PinMode = GpioPinDriveMode.Output;
@@ -161,6 +166,76 @@
                 blinkingPin.Write(isOn);
                 Thread.Sleep(500);
             }
+        }
+
+        /// <summary>
+        /// Tests the hardware PWM.
+        /// </summary>
+        public static void TestHardwarePwm()
+        {
+            // TODO: Check out:
+            // https://raspberrypi.stackexchange.com/questions/4906/control-hardware-pwm-frequency
+            // https://stackoverflow.com/questions/20081286/controlling-a-servo-with-raspberry-pi-using-the-hardware-pwm-with-wiringpi
+            var pin = Pi.Gpio[P1.Gpio18];
+            pin.PinMode = GpioPinDriveMode.PwmOutput;
+            pin.PwmMode = PwmMode.MarkSign;
+            pin.PwmRegister = 0;
+            pin.PwmClockDivisor = 192;
+            pin.PwmRange = 2000;
+
+            var frequency = Pi.Gpio.PwmBaseFrequency / pin.PwmClockDivisor / pin.PwmRange;
+
+            const int MinValue = 53;
+            const int MaxValue = 250;
+
+            while (true)
+            {
+                var userPwm = $"Enter values {MinValue} to {MaxValue}".ReadNumber(0);
+                if (userPwm <= 0)
+                    break;
+
+                pin.PwmRegister = userPwm;
+            }
+
+            var currentValue = MinValue;
+            var increment = 1;
+            var exitRequested = false;
+            var workerExited = new ManualResetEventSlim(false);
+
+            ThreadPool.QueueUserWorkItem((s) =>
+            {
+                while (exitRequested == false)
+                {
+                    pin.PwmRegister = currentValue;
+                    var range = (double)(MaxValue - MinValue);
+                    var angle = 180d * (currentValue - MinValue) / range;
+                    $"Pulse Value: {currentValue,4}; Angle: {angle,6:0.00}".Info("PWM");
+
+                    if (currentValue == MinValue || currentValue == MaxValue)
+                        Pi.Timing.SleepMicroseconds(1000000);
+
+                    currentValue += increment;
+                    if (currentValue >= MaxValue)
+                    {
+                        currentValue = MaxValue;
+                        increment = -1;
+                    }
+                    else if (currentValue <= MinValue)
+                    {
+                        currentValue = MinValue;
+                        increment = 1;
+                    }
+
+                    Pi.Timing.SleepMicroseconds(10000);
+                }
+
+                workerExited.Set();
+            });
+
+            Console.ReadKey(true);
+            exitRequested = true;
+            workerExited.Wait();
+            pin.PwmRegister = MaxValue;
         }
 
         private static void TestSystemInfo()

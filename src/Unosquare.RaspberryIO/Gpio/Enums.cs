@@ -299,6 +299,172 @@
     }
 
     /// <summary>
+    /// Enumerates the different pins on the P1 Header
+    /// as commonly referenced by Raspberry Pi Documentation.
+    /// Enumeration values correspond to the physical pin number.
+    /// </summary>
+    public enum P1
+    {
+        /// <summary>
+        /// Header P1, GPIO Pin 02
+        /// </summary>
+        Gpio02 = 3,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 03
+        /// </summary>
+        Gpio03 = 5,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 04
+        /// </summary>
+        Gpio04 = 7,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 17
+        /// </summary>
+        Gpio17 = 11,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 27
+        /// </summary>
+        Gpio27 = 13,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 22
+        /// </summary>
+        Gpio22 = 15,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 10
+        /// </summary>
+        Gpio10 = 19,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 09
+        /// </summary>
+        Gpio09 = 21,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 11
+        /// </summary>
+        Gpio11 = 23,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 05
+        /// </summary>
+        Gpio05 = 29,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 06
+        /// </summary>
+        Gpio06 = 31,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 13
+        /// </summary>
+        Gpio13 = 33,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 19
+        /// </summary>
+        Gpio19 = 35,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 26
+        /// </summary>
+        Gpio26 = 37,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 14
+        /// </summary>
+        Gpio14 = 8,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 15
+        /// </summary>
+        Gpio15 = 10,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 18
+        /// </summary>
+        Gpio18 = 12,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 23
+        /// </summary>
+        Gpio23 = 16,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 24
+        /// </summary>
+        Gpio24 = 18,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 25
+        /// </summary>
+        Gpio25 = 22,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 08
+        /// </summary>
+        Gpio08 = 24,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 07
+        /// </summary>
+        Gpio07 = 26,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 12
+        /// </summary>
+        Gpio12 = 32,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 16
+        /// </summary>
+        Gpio16 = 36,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 20
+        /// </summary>
+        Gpio20 = 38,
+
+        /// <summary>
+        /// Header P1, GPIO Pin 21
+        /// </summary>
+        Gpio21 = 40
+    }
+
+    /// <summary>
+    /// Enumerates the different pins on the P5 Header
+    /// as commonly referenced by Raspberry Pi documentation.
+    /// Enumeration values correspond to the physical pin number.
+    /// </summary>
+    public enum P5
+    {
+        /// <summary>
+        /// Header P5, GPIO Pin 28
+        /// </summary>
+        Gpio28 = 3,
+
+        /// <summary>
+        /// Header P5, GPIO Pin 29
+        /// </summary>
+        Gpio29 = 4,
+
+        /// <summary>
+        /// Header P5, GPIO Pin 30
+        /// </summary>
+        Gpio30 = 5,
+
+        /// <summary>
+        /// Header P5, GPIO Pin 31
+        /// </summary>
+        Gpio31 = 6
+    }
+
+    /// <summary>
     /// Defines the different pin capabilities
     /// </summary>
     public enum PinCapability
