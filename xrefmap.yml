@@ -101,6 +101,7 @@ references:
   name: CameraColor
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor__ctor_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.#ctor
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.CameraColor
   nameWithType: CameraColor.CameraColor
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.B
@@ -113,6 +114,7 @@ references:
   name: B
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_B_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.B
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.B
   nameWithType: CameraColor.B
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.Black
@@ -125,6 +127,7 @@ references:
   name: Black
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_Black_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.Black
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.Black
   nameWithType: CameraColor.Black
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.Blue
@@ -137,6 +140,7 @@ references:
   name: Blue
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_Blue_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.Blue
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.Blue
   nameWithType: CameraColor.Blue
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.G
@@ -149,6 +153,7 @@ references:
   name: G
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_G_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.G
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.G
   nameWithType: CameraColor.G
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.Green
@@ -161,6 +166,7 @@ references:
   name: Green
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_Green_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.Green
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.Green
   nameWithType: CameraColor.Green
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.Name
@@ -173,6 +179,7 @@ references:
   name: Name
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_Name_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.Name
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.Name
   nameWithType: CameraColor.Name
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.R
@@ -185,6 +192,7 @@ references:
   name: R
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_R_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.R
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.R
   nameWithType: CameraColor.R
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.Red
@@ -197,6 +205,7 @@ references:
   name: Red
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_Red_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.Red
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.Red
   nameWithType: CameraColor.Red
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.RGB
@@ -209,6 +218,7 @@ references:
   name: RGB
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_RGB_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.RGB
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.RGB
   nameWithType: CameraColor.RGB
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.ToRgbHex(System.Boolean)
@@ -221,6 +231,7 @@ references:
   name: ToRgbHex
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_ToRgbHex_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.ToRgbHex
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.ToRgbHex
   nameWithType: CameraColor.ToRgbHex
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.ToYuvHex(System.Boolean)
@@ -233,6 +244,7 @@ references:
   name: ToYuvHex
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_ToYuvHex_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.ToYuvHex
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.ToYuvHex
   nameWithType: CameraColor.ToYuvHex
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.White
@@ -245,6 +257,7 @@ references:
   name: White
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_White_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.White
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.White
   nameWithType: CameraColor.White
 - uid: Unosquare.RaspberryIO.Camera.CameraColor.YUV
@@ -257,6 +270,7 @@ references:
   name: YUV
   href: api/Unosquare.RaspberryIO.Camera.CameraColor.html#Unosquare_RaspberryIO_Camera_CameraColor_YUV_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraColor.YUV
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraColor.YUV
   nameWithType: CameraColor.YUV
 - uid: Unosquare.RaspberryIO.Camera.CameraController
@@ -275,6 +289,7 @@ references:
   name: CaptureImage
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_CaptureImage_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraController.CaptureImage
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraController.CaptureImage
   nameWithType: CameraController.CaptureImage
 - uid: Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync(Unosquare.RaspberryIO.Camera.CameraStillSettings,System.Threading.CancellationToken)
@@ -287,6 +302,7 @@ references:
   name: CaptureImageAsync
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_CaptureImageAsync_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraController.CaptureImageAsync
   nameWithType: CameraController.CaptureImageAsync
 - uid: Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpeg(System.Int32,System.Int32)
@@ -299,6 +315,7 @@ references:
   name: CaptureImageJpeg
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpeg_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpeg
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpeg
   nameWithType: CameraController.CaptureImageJpeg
 - uid: Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpegAsync(System.Int32,System.Int32,System.Threading.CancellationToken)
@@ -311,6 +328,7 @@ references:
   name: CaptureImageJpegAsync
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_CaptureImageJpegAsync_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpegAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraController.CaptureImageJpegAsync
   nameWithType: CameraController.CaptureImageJpegAsync
 - uid: Unosquare.RaspberryIO.Camera.CameraController.CloseVideoStream
@@ -323,6 +341,7 @@ references:
   name: CloseVideoStream
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_CloseVideoStream_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraController.CloseVideoStream
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraController.CloseVideoStream
   nameWithType: CameraController.CloseVideoStream
 - uid: Unosquare.RaspberryIO.Camera.CameraController.IsBusy
@@ -335,6 +354,7 @@ references:
   name: IsBusy
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_IsBusy_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraController.IsBusy
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraController.IsBusy
   nameWithType: CameraController.IsBusy
 - uid: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Action)
@@ -359,6 +379,7 @@ references:
   name: OpenVideoStream
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream
   nameWithType: CameraController.OpenVideoStream
 - uid: Unosquare.RaspberryIO.Camera.CameraDynamicRangeCompensation
@@ -731,6 +752,7 @@ references:
   name: Clamp
   href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_Clamp_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.Clamp
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraRect.Clamp
   nameWithType: CameraRect.Clamp
 - uid: Unosquare.RaspberryIO.Camera.CameraRect.Default
@@ -749,6 +771,7 @@ references:
   name: H
   href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_H_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.H
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraRect.H
   nameWithType: CameraRect.H
 - uid: Unosquare.RaspberryIO.Camera.CameraRect.IsDefault
@@ -761,6 +784,7 @@ references:
   name: IsDefault
   href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_IsDefault_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.IsDefault
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraRect.IsDefault
   nameWithType: CameraRect.IsDefault
 - uid: Unosquare.RaspberryIO.Camera.CameraRect.ToString
@@ -773,6 +797,7 @@ references:
   name: ToString
   href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_ToString_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.ToString
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraRect.ToString
   nameWithType: CameraRect.ToString
 - uid: Unosquare.RaspberryIO.Camera.CameraRect.W
@@ -785,6 +810,7 @@ references:
   name: W
   href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_W_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.W
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraRect.W
   nameWithType: CameraRect.W
 - uid: Unosquare.RaspberryIO.Camera.CameraRect.X
@@ -797,6 +823,7 @@ references:
   name: X
   href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_X_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.X
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraRect.X
   nameWithType: CameraRect.X
 - uid: Unosquare.RaspberryIO.Camera.CameraRect.Y
@@ -809,6 +836,7 @@ references:
   name: Y
   href: api/Unosquare.RaspberryIO.Camera.CameraRect.html#Unosquare_RaspberryIO_Camera_CameraRect_Y_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraRect.Y
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraRect.Y
   nameWithType: CameraRect.Y
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase
@@ -827,6 +855,7 @@ references:
   name: CaptureDisplayPreview
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureDisplayPreview_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreview
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreview
   nameWithType: CameraSettingsBase.CaptureDisplayPreview
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreviewInFullScreen
@@ -839,6 +868,7 @@ references:
   name: CaptureDisplayPreviewInFullScreen
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureDisplayPreviewInFullScreen_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreviewInFullScreen
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreviewInFullScreen
   nameWithType: CameraSettingsBase.CaptureDisplayPreviewInFullScreen
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreviewOpacity
@@ -851,6 +881,7 @@ references:
   name: CaptureDisplayPreviewOpacity
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureDisplayPreviewOpacity_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreviewOpacity
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDisplayPreviewOpacity
   nameWithType: CameraSettingsBase.CaptureDisplayPreviewOpacity
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDynamicRangeCompensation
@@ -863,6 +894,7 @@ references:
   name: CaptureDynamicRangeCompensation
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureDynamicRangeCompensation_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDynamicRangeCompensation
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureDynamicRangeCompensation
   nameWithType: CameraSettingsBase.CaptureDynamicRangeCompensation
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureExposure
@@ -875,6 +907,7 @@ references:
   name: CaptureExposure
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureExposure_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureExposure
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureExposure
   nameWithType: CameraSettingsBase.CaptureExposure
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureExposureCompensation
@@ -887,6 +920,7 @@ references:
   name: CaptureExposureCompensation
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureExposureCompensation_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureExposureCompensation
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureExposureCompensation
   nameWithType: CameraSettingsBase.CaptureExposureCompensation
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureHeight
@@ -899,6 +933,7 @@ references:
   name: CaptureHeight
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureHeight_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureHeight
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureHeight
   nameWithType: CameraSettingsBase.CaptureHeight
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureMeteringMode
@@ -911,6 +946,7 @@ references:
   name: CaptureMeteringMode
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureMeteringMode_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureMeteringMode
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureMeteringMode
   nameWithType: CameraSettingsBase.CaptureMeteringMode
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureSensorRoi
@@ -923,6 +959,7 @@ references:
   name: CaptureSensorRoi
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureSensorRoi_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureSensorRoi
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureSensorRoi
   nameWithType: CameraSettingsBase.CaptureSensorRoi
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureShutterSpeedMicroseconds
@@ -935,6 +972,7 @@ references:
   name: CaptureShutterSpeedMicroseconds
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureShutterSpeedMicroseconds_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureShutterSpeedMicroseconds
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureShutterSpeedMicroseconds
   nameWithType: CameraSettingsBase.CaptureShutterSpeedMicroseconds
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureTimeoutMilliseconds
@@ -947,6 +985,7 @@ references:
   name: CaptureTimeoutMilliseconds
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureTimeoutMilliseconds_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureTimeoutMilliseconds
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureTimeoutMilliseconds
   nameWithType: CameraSettingsBase.CaptureTimeoutMilliseconds
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureVideoStabilizationEnabled
@@ -959,6 +998,7 @@ references:
   name: CaptureVideoStabilizationEnabled
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureVideoStabilizationEnabled_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureVideoStabilizationEnabled
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureVideoStabilizationEnabled
   nameWithType: CameraSettingsBase.CaptureVideoStabilizationEnabled
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceControl
@@ -971,6 +1011,7 @@ references:
   name: CaptureWhiteBalanceControl
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureWhiteBalanceControl_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceControl
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceControl
   nameWithType: CameraSettingsBase.CaptureWhiteBalanceControl
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceGainBlue
@@ -983,6 +1024,7 @@ references:
   name: CaptureWhiteBalanceGainBlue
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureWhiteBalanceGainBlue_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceGainBlue
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceGainBlue
   nameWithType: CameraSettingsBase.CaptureWhiteBalanceGainBlue
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceGainRed
@@ -995,6 +1037,7 @@ references:
   name: CaptureWhiteBalanceGainRed
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureWhiteBalanceGainRed_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceGainRed
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWhiteBalanceGainRed
   nameWithType: CameraSettingsBase.CaptureWhiteBalanceGainRed
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWidth
@@ -1007,6 +1050,7 @@ references:
   name: CaptureWidth
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CaptureWidth_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWidth
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CaptureWidth
   nameWithType: CameraSettingsBase.CaptureWidth
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.Ci
@@ -1025,6 +1069,7 @@ references:
   name: CommandName
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CommandName_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CommandName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CommandName
   nameWithType: CameraSettingsBase.CommandName
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CreateProcessArguments
@@ -1037,6 +1082,7 @@ references:
   name: CreateProcessArguments
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_CreateProcessArguments_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.CreateProcessArguments
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.CreateProcessArguments
   nameWithType: CameraSettingsBase.CreateProcessArguments
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationBackground
@@ -1049,6 +1095,7 @@ references:
   name: ImageAnnotationBackground
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageAnnotationBackground_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationBackground
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationBackground
   nameWithType: CameraSettingsBase.ImageAnnotationBackground
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationFontColor
@@ -1061,6 +1108,7 @@ references:
   name: ImageAnnotationFontColor
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageAnnotationFontColor_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationFontColor
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationFontColor
   nameWithType: CameraSettingsBase.ImageAnnotationFontColor
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationFontSize
@@ -1073,6 +1121,7 @@ references:
   name: ImageAnnotationFontSize
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageAnnotationFontSize_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationFontSize
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationFontSize
   nameWithType: CameraSettingsBase.ImageAnnotationFontSize
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotations
@@ -1085,6 +1134,7 @@ references:
   name: ImageAnnotations
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageAnnotations_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotations
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotations
   nameWithType: CameraSettingsBase.ImageAnnotations
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationsText
@@ -1097,6 +1147,7 @@ references:
   name: ImageAnnotationsText
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageAnnotationsText_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationsText
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageAnnotationsText
   nameWithType: CameraSettingsBase.ImageAnnotationsText
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageBrightness
@@ -1109,6 +1160,7 @@ references:
   name: ImageBrightness
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageBrightness_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageBrightness
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageBrightness
   nameWithType: CameraSettingsBase.ImageBrightness
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageColorEffectU
@@ -1121,6 +1173,7 @@ references:
   name: ImageColorEffectU
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageColorEffectU_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageColorEffectU
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageColorEffectU
   nameWithType: CameraSettingsBase.ImageColorEffectU
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageColorEffectV
@@ -1133,6 +1186,7 @@ references:
   name: ImageColorEffectV
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageColorEffectV_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageColorEffectV
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageColorEffectV
   nameWithType: CameraSettingsBase.ImageColorEffectV
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageContrast
@@ -1145,6 +1199,7 @@ references:
   name: ImageContrast
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageContrast_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageContrast
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageContrast
   nameWithType: CameraSettingsBase.ImageContrast
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageEffect
@@ -1157,6 +1212,7 @@ references:
   name: ImageEffect
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageEffect_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageEffect
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageEffect
   nameWithType: CameraSettingsBase.ImageEffect
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipHorizontally
@@ -1169,6 +1225,7 @@ references:
   name: ImageFlipHorizontally
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageFlipHorizontally_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipHorizontally
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipHorizontally
   nameWithType: CameraSettingsBase.ImageFlipHorizontally
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipVertically
@@ -1181,6 +1238,7 @@ references:
   name: ImageFlipVertically
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageFlipVertically_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipVertically
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageFlipVertically
   nameWithType: CameraSettingsBase.ImageFlipVertically
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso
@@ -1193,6 +1251,7 @@ references:
   name: ImageIso
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageIso_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageIso
   nameWithType: CameraSettingsBase.ImageIso
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageRotation
@@ -1205,6 +1264,7 @@ references:
   name: ImageRotation
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageRotation_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageRotation
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageRotation
   nameWithType: CameraSettingsBase.ImageRotation
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageSaturation
@@ -1217,6 +1277,7 @@ references:
   name: ImageSaturation
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageSaturation_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageSaturation
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageSaturation
   nameWithType: CameraSettingsBase.ImageSaturation
 - uid: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageSharpness
@@ -1229,6 +1290,7 @@ references:
   name: ImageSharpness
   href: api/Unosquare.RaspberryIO.Camera.CameraSettingsBase.html#Unosquare_RaspberryIO_Camera_CameraSettingsBase_ImageSharpness_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageSharpness
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraSettingsBase.ImageSharpness
   nameWithType: CameraSettingsBase.ImageSharpness
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings
@@ -1247,6 +1309,7 @@ references:
   name: CaptureDisplayPreviewAtResolution
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_CaptureDisplayPreviewAtResolution_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureDisplayPreviewAtResolution
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureDisplayPreviewAtResolution
   nameWithType: CameraStillSettings.CaptureDisplayPreviewAtResolution
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureEncoding
@@ -1259,6 +1322,7 @@ references:
   name: CaptureEncoding
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_CaptureEncoding_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureEncoding
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureEncoding
   nameWithType: CameraStillSettings.CaptureEncoding
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegExtendedInfo
@@ -1271,6 +1335,7 @@ references:
   name: CaptureJpegExtendedInfo
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_CaptureJpegExtendedInfo_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegExtendedInfo
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegExtendedInfo
   nameWithType: CameraStillSettings.CaptureJpegExtendedInfo
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegIncludeRawBayerMetadata
@@ -1283,6 +1348,7 @@ references:
   name: CaptureJpegIncludeRawBayerMetadata
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_CaptureJpegIncludeRawBayerMetadata_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegIncludeRawBayerMetadata
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegIncludeRawBayerMetadata
   nameWithType: CameraStillSettings.CaptureJpegIncludeRawBayerMetadata
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegQuality
@@ -1295,6 +1361,7 @@ references:
   name: CaptureJpegQuality
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_CaptureJpegQuality_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegQuality
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.CaptureJpegQuality
   nameWithType: CameraStillSettings.CaptureJpegQuality
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.CommandName
@@ -1307,6 +1374,7 @@ references:
   name: CommandName
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_CommandName_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.CommandName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.CommandName
   nameWithType: CameraStillSettings.CommandName
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.CreateProcessArguments
@@ -1319,6 +1387,7 @@ references:
   name: CreateProcessArguments
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_CreateProcessArguments_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.CreateProcessArguments
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.CreateProcessArguments
   nameWithType: CameraStillSettings.CreateProcessArguments
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
@@ -1331,6 +1400,7 @@ references:
   name: HorizontalFlip
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_HorizontalFlip_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.HorizontalFlip
   nameWithType: CameraStillSettings.HorizontalFlip
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation
@@ -1343,6 +1413,7 @@ references:
   name: Rotation
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_Rotation_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.Rotation
   nameWithType: CameraStillSettings.Rotation
 - uid: Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip
@@ -1355,6 +1426,7 @@ references:
   name: VerticalFlip
   href: api/Unosquare.RaspberryIO.Camera.CameraStillSettings.html#Unosquare_RaspberryIO_Camera_CameraStillSettings_VerticalFlip_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraStillSettings.VerticalFlip
   nameWithType: CameraStillSettings.VerticalFlip
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings
@@ -1373,6 +1445,7 @@ references:
   name: CaptureBitrate
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_CaptureBitrate_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureBitrate
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureBitrate
   nameWithType: CameraVideoSettings.CaptureBitrate
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureDisplayPreviewEncoded
@@ -1385,6 +1458,7 @@ references:
   name: CaptureDisplayPreviewEncoded
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_CaptureDisplayPreviewEncoded_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureDisplayPreviewEncoded
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureDisplayPreviewEncoded
   nameWithType: CameraVideoSettings.CaptureDisplayPreviewEncoded
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureFramerate
@@ -1397,6 +1471,7 @@ references:
   name: CaptureFramerate
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_CaptureFramerate_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureFramerate
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureFramerate
   nameWithType: CameraVideoSettings.CaptureFramerate
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureInterleaveHeaders
@@ -1409,6 +1484,7 @@ references:
   name: CaptureInterleaveHeaders
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_CaptureInterleaveHeaders_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureInterleaveHeaders
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureInterleaveHeaders
   nameWithType: CameraVideoSettings.CaptureInterleaveHeaders
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureKeyframeRate
@@ -1421,6 +1497,7 @@ references:
   name: CaptureKeyframeRate
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_CaptureKeyframeRate_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureKeyframeRate
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureKeyframeRate
   nameWithType: CameraVideoSettings.CaptureKeyframeRate
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureProfile
@@ -1433,6 +1510,7 @@ references:
   name: CaptureProfile
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_CaptureProfile_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureProfile
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureProfile
   nameWithType: CameraVideoSettings.CaptureProfile
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureQuantisation
@@ -1445,6 +1523,7 @@ references:
   name: CaptureQuantisation
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_CaptureQuantisation_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureQuantisation
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CaptureQuantisation
   nameWithType: CameraVideoSettings.CaptureQuantisation
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CommandName
@@ -1457,6 +1536,7 @@ references:
   name: CommandName
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_CommandName_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CommandName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CommandName
   nameWithType: CameraVideoSettings.CommandName
 - uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CreateProcessArguments
@@ -1469,6 +1549,7 @@ references:
   name: CreateProcessArguments
   href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_CreateProcessArguments_
   commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.CreateProcessArguments
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CreateProcessArguments
   nameWithType: CameraVideoSettings.CreateProcessArguments
 - uid: Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode
@@ -1559,6 +1640,7 @@ references:
   name: Brightness
   href: api/Unosquare.RaspberryIO.Computer.DsiDisplay.html#Unosquare_RaspberryIO_Computer_DsiDisplay_Brightness_
   commentId: Overload:Unosquare.RaspberryIO.Computer.DsiDisplay.Brightness
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.DsiDisplay.Brightness
   nameWithType: DsiDisplay.Brightness
 - uid: Unosquare.RaspberryIO.Computer.DsiDisplay.IsBacklightOn
@@ -1571,6 +1653,7 @@ references:
   name: IsBacklightOn
   href: api/Unosquare.RaspberryIO.Computer.DsiDisplay.html#Unosquare_RaspberryIO_Computer_DsiDisplay_IsBacklightOn_
   commentId: Overload:Unosquare.RaspberryIO.Computer.DsiDisplay.IsBacklightOn
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.DsiDisplay.IsBacklightOn
   nameWithType: DsiDisplay.IsBacklightOn
 - uid: Unosquare.RaspberryIO.Computer.DsiDisplay.IsPresent
@@ -1583,6 +1666,7 @@ references:
   name: IsPresent
   href: api/Unosquare.RaspberryIO.Computer.DsiDisplay.html#Unosquare_RaspberryIO_Computer_DsiDisplay_IsPresent_
   commentId: Overload:Unosquare.RaspberryIO.Computer.DsiDisplay.IsPresent
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.DsiDisplay.IsPresent
   nameWithType: DsiDisplay.IsPresent
 - uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo
@@ -1601,6 +1685,7 @@ references:
   name: AccessPointName
   href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_AccessPointName_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.AccessPointName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.AccessPointName
   nameWithType: NetworkAdapterInfo.AccessPointName
 - uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4
@@ -1613,6 +1698,7 @@ references:
   name: IPv4
   href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_IPv4_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv4
   nameWithType: NetworkAdapterInfo.IPv4
 - uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6
@@ -1625,6 +1711,7 @@ references:
   name: IPv6
   href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_IPv6_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IPv6
   nameWithType: NetworkAdapterInfo.IPv6
 - uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless
@@ -1637,6 +1724,7 @@ references:
   name: IsWireless
   href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_IsWireless_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.IsWireless
   nameWithType: NetworkAdapterInfo.IsWireless
 - uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress
@@ -1649,6 +1737,7 @@ references:
   name: MacAddress
   href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_MacAddress_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.MacAddress
   nameWithType: NetworkAdapterInfo.MacAddress
 - uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name
@@ -1661,6 +1750,7 @@ references:
   name: Name
   href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html#Unosquare_RaspberryIO_Computer_NetworkAdapterInfo_Name_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.Name
   nameWithType: NetworkAdapterInfo.Name
 - uid: Unosquare.RaspberryIO.Computer.NetworkSettings
@@ -1679,6 +1769,7 @@ references:
   name: GetWirelessNetworkName
   href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_GetWirelessNetworkName_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkSettings.GetWirelessNetworkName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.GetWirelessNetworkName
   nameWithType: NetworkSettings.GetWirelessNetworkName
 - uid: Unosquare.RaspberryIO.Computer.NetworkSettings.HostName
@@ -1691,6 +1782,7 @@ references:
   name: HostName
   href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_HostName_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkSettings.HostName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.HostName
   nameWithType: NetworkSettings.HostName
 - uid: Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveAdapters
@@ -1703,6 +1795,7 @@ references:
   name: RetrieveAdapters
   href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_RetrieveAdapters_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveAdapters
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveAdapters
   nameWithType: NetworkSettings.RetrieveAdapters
 - uid: Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveWirelessNetworks(System.String)
@@ -1724,6 +1817,7 @@ references:
   name: RetrieveWirelessNetworks
   href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_RetrieveWirelessNetworks_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveWirelessNetworks
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.RetrieveWirelessNetworks
   nameWithType: NetworkSettings.RetrieveWirelessNetworks
 - uid: Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork(System.String,System.String,System.String,System.String)
@@ -1736,6 +1830,7 @@ references:
   name: SetupWirelessNetwork
   href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_SetupWirelessNetwork_
   commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.SetupWirelessNetwork
   nameWithType: NetworkSettings.SetupWirelessNetwork
 - uid: Unosquare.RaspberryIO.Computer.OsInfo
@@ -1754,6 +1849,7 @@ references:
   name: DomainName
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_DomainName_
   commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.DomainName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.DomainName
   nameWithType: OsInfo.DomainName
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.Machine
@@ -1766,6 +1862,7 @@ references:
   name: Machine
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_Machine_
   commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.Machine
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.Machine
   nameWithType: OsInfo.Machine
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.NodeName
@@ -1778,6 +1875,7 @@ references:
   name: NodeName
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_NodeName_
   commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.NodeName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.NodeName
   nameWithType: OsInfo.NodeName
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.Release
@@ -1790,6 +1888,7 @@ references:
   name: Release
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_Release_
   commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.Release
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.Release
   nameWithType: OsInfo.Release
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.SysName
@@ -1802,6 +1901,7 @@ references:
   name: SysName
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_SysName_
   commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.SysName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.SysName
   nameWithType: OsInfo.SysName
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.ToString
@@ -1814,6 +1914,7 @@ references:
   name: ToString
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_ToString_
   commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.ToString
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.ToString
   nameWithType: OsInfo.ToString
 - uid: Unosquare.RaspberryIO.Computer.OsInfo.Version
@@ -1826,6 +1927,7 @@ references:
   name: Version
   href: api/Unosquare.RaspberryIO.Computer.OsInfo.html#Unosquare_RaspberryIO_Computer_OsInfo_Version_
   commentId: Overload:Unosquare.RaspberryIO.Computer.OsInfo.Version
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.OsInfo.Version
   nameWithType: OsInfo.Version
 - uid: Unosquare.RaspberryIO.Computer.PiVersion
@@ -2000,6 +2102,7 @@ references:
   name: CpuArchitecture
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_CpuArchitecture_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.CpuArchitecture
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.CpuArchitecture
   nameWithType: SystemInfo.CpuArchitecture
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.CpuImplementer
@@ -2012,6 +2115,7 @@ references:
   name: CpuImplementer
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_CpuImplementer_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.CpuImplementer
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.CpuImplementer
   nameWithType: SystemInfo.CpuImplementer
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.CpuPart
@@ -2024,6 +2128,7 @@ references:
   name: CpuPart
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_CpuPart_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.CpuPart
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.CpuPart
   nameWithType: SystemInfo.CpuPart
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.CpuRevision
@@ -2036,6 +2141,7 @@ references:
   name: CpuRevision
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_CpuRevision_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.CpuRevision
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.CpuRevision
   nameWithType: SystemInfo.CpuRevision
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.CpuVariant
@@ -2048,6 +2154,7 @@ references:
   name: CpuVariant
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_CpuVariant_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.CpuVariant
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.CpuVariant
   nameWithType: SystemInfo.CpuVariant
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.Features
@@ -2060,6 +2167,7 @@ references:
   name: Features
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Features_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.Features
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Features
   nameWithType: SystemInfo.Features
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.Hardware
@@ -2072,6 +2180,7 @@ references:
   name: Hardware
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Hardware_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.Hardware
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Hardware
   nameWithType: SystemInfo.Hardware
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.InstalledRam
@@ -2084,6 +2193,7 @@ references:
   name: InstalledRam
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_InstalledRam_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.InstalledRam
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.InstalledRam
   nameWithType: SystemInfo.InstalledRam
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.IsLittleEndian
@@ -2096,6 +2206,7 @@ references:
   name: IsLittleEndian
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_IsLittleEndian_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.IsLittleEndian
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.IsLittleEndian
   nameWithType: SystemInfo.IsLittleEndian
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.IsRunningAsRoot
@@ -2108,6 +2219,7 @@ references:
   name: IsRunningAsRoot
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_IsRunningAsRoot_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.IsRunningAsRoot
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.IsRunningAsRoot
   nameWithType: SystemInfo.IsRunningAsRoot
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.ModelName
@@ -2120,6 +2232,7 @@ references:
   name: ModelName
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_ModelName_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.ModelName
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.ModelName
   nameWithType: SystemInfo.ModelName
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.OperatingSystem
@@ -2132,6 +2245,7 @@ references:
   name: OperatingSystem
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_OperatingSystem_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.OperatingSystem
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.OperatingSystem
   nameWithType: SystemInfo.OperatingSystem
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorCount
@@ -2144,6 +2258,7 @@ references:
   name: ProcessorCount
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_ProcessorCount_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorCount
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorCount
   nameWithType: SystemInfo.ProcessorCount
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.RaspberryPiVersion
@@ -2156,6 +2271,7 @@ references:
   name: RaspberryPiVersion
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_RaspberryPiVersion_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.RaspberryPiVersion
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.RaspberryPiVersion
   nameWithType: SystemInfo.RaspberryPiVersion
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.Revision
@@ -2168,6 +2284,7 @@ references:
   name: Revision
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Revision_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.Revision
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Revision
   nameWithType: SystemInfo.Revision
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.Serial
@@ -2180,6 +2297,7 @@ references:
   name: Serial
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Serial_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.Serial
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Serial
   nameWithType: SystemInfo.Serial
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.ToString
@@ -2192,6 +2310,7 @@ references:
   name: ToString
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_ToString_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.ToString
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.ToString
   nameWithType: SystemInfo.ToString
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.Uptime
@@ -2204,6 +2323,7 @@ references:
   name: Uptime
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Uptime_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.Uptime
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Uptime
   nameWithType: SystemInfo.Uptime
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.UptimeTimeSpan
@@ -2216,6 +2336,7 @@ references:
   name: UptimeTimeSpan
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_UptimeTimeSpan_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.UptimeTimeSpan
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.UptimeTimeSpan
   nameWithType: SystemInfo.UptimeTimeSpan
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.WiringPiBoardRevision
@@ -2228,6 +2349,7 @@ references:
   name: WiringPiBoardRevision
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_WiringPiBoardRevision_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.WiringPiBoardRevision
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.WiringPiBoardRevision
   nameWithType: SystemInfo.WiringPiBoardRevision
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.WiringPiVersion
@@ -2240,6 +2362,7 @@ references:
   name: WiringPiVersion
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_WiringPiVersion_
   commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.WiringPiVersion
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.WiringPiVersion
   nameWithType: SystemInfo.WiringPiVersion
 - uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo
@@ -2258,6 +2381,7 @@ references:
   name: IsEncrypted
   href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Computer_WirelessNetworkInfo_IsEncrypted_
   commentId: Overload:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.IsEncrypted
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.IsEncrypted
   nameWithType: WirelessNetworkInfo.IsEncrypted
 - uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name
@@ -2270,6 +2394,7 @@ references:
   name: Name
   href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Computer_WirelessNetworkInfo_Name_
   commentId: Overload:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Name
   nameWithType: WirelessNetworkInfo.Name
 - uid: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality
@@ -2282,6 +2407,7 @@ references:
   name: Quality
   href: api/Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.html#Unosquare_RaspberryIO_Computer_WirelessNetworkInfo_Quality_
   commentId: Overload:Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality
   nameWithType: WirelessNetworkInfo.Quality
 - uid: Unosquare.RaspberryIO.Gpio
@@ -2336,6 +2462,7 @@ references:
   name: Count
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Count_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Count
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Count
   nameWithType: GpioController.Count
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.GetEnumerator
@@ -2348,6 +2475,7 @@ references:
   name: GetEnumerator
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_GetEnumerator_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.GetEnumerator
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.GetEnumerator
   nameWithType: GpioController.GetEnumerator
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
@@ -2360,6 +2488,7 @@ references:
   name: HeaderP1
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_HeaderP1_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
   nameWithType: GpioController.HeaderP1
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5
@@ -2372,6 +2501,7 @@ references:
   name: HeaderP5
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_HeaderP5_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP5
   nameWithType: GpioController.HeaderP5
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.IsInitialized
@@ -2384,6 +2514,7 @@ references:
   name: IsInitialized
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_IsInitialized_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.IsInitialized
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.IsInitialized
   nameWithType: GpioController.IsInitialized
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Item(System.Int32)
@@ -2395,6 +2526,24 @@ references:
   fullName.vb: Unosquare.RaspberryIO.Gpio.GpioController.Item(System.Int32)
   nameWithType: GpioController.Item[Int32]
   nameWithType.vb: GpioController.Item(Int32)
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P1)
+  name: Item[P1]
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Item_Unosquare_RaspberryIO_Gpio_P1_
+  commentId: P:Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P1)
+  name.vb: Item(P1)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.Item[Unosquare.RaspberryIO.Gpio.P1]
+  fullName.vb: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P1)
+  nameWithType: GpioController.Item[P1]
+  nameWithType.vb: GpioController.Item(P1)
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P5)
+  name: Item[P5]
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Item_Unosquare_RaspberryIO_Gpio_P5_
+  commentId: P:Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P5)
+  name.vb: Item(P5)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.Item[Unosquare.RaspberryIO.Gpio.P5]
+  fullName.vb: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P5)
+  nameWithType: GpioController.Item[P5]
+  nameWithType.vb: GpioController.Item(P5)
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.WiringPiPin)
   name: Item[WiringPiPin]
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Item_Unosquare_RaspberryIO_Gpio_WiringPiPin_
@@ -2408,6 +2557,7 @@ references:
   name: Item
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Item_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Item
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Item
   nameWithType: GpioController.Item
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin00
@@ -2420,6 +2570,7 @@ references:
   name: Pin00
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin00_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin00
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin00
   nameWithType: GpioController.Pin00
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin01
@@ -2432,6 +2583,7 @@ references:
   name: Pin01
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin01_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin01
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin01
   nameWithType: GpioController.Pin01
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin02
@@ -2444,6 +2596,7 @@ references:
   name: Pin02
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin02_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin02
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin02
   nameWithType: GpioController.Pin02
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin03
@@ -2456,6 +2609,7 @@ references:
   name: Pin03
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin03_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin03
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin03
   nameWithType: GpioController.Pin03
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin04
@@ -2468,6 +2622,7 @@ references:
   name: Pin04
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin04_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin04
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin04
   nameWithType: GpioController.Pin04
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin05
@@ -2480,6 +2635,7 @@ references:
   name: Pin05
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin05_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin05
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin05
   nameWithType: GpioController.Pin05
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin06
@@ -2492,6 +2648,7 @@ references:
   name: Pin06
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin06_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin06
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin06
   nameWithType: GpioController.Pin06
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin07
@@ -2504,6 +2661,7 @@ references:
   name: Pin07
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin07_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin07
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin07
   nameWithType: GpioController.Pin07
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin08
@@ -2516,6 +2674,7 @@ references:
   name: Pin08
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin08_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin08
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin08
   nameWithType: GpioController.Pin08
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin09
@@ -2528,6 +2687,7 @@ references:
   name: Pin09
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin09_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin09
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin09
   nameWithType: GpioController.Pin09
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin10
@@ -2540,6 +2700,7 @@ references:
   name: Pin10
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin10_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin10
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin10
   nameWithType: GpioController.Pin10
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin11
@@ -2552,6 +2713,7 @@ references:
   name: Pin11
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin11_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin11
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin11
   nameWithType: GpioController.Pin11
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin12
@@ -2564,6 +2726,7 @@ references:
   name: Pin12
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin12_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin12
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin12
   nameWithType: GpioController.Pin12
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin13
@@ -2576,6 +2739,7 @@ references:
   name: Pin13
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin13_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin13
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin13
   nameWithType: GpioController.Pin13
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin14
@@ -2588,6 +2752,7 @@ references:
   name: Pin14
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin14_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin14
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin14
   nameWithType: GpioController.Pin14
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin15
@@ -2600,6 +2765,7 @@ references:
   name: Pin15
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin15_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin15
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin15
   nameWithType: GpioController.Pin15
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin16
@@ -2612,6 +2778,7 @@ references:
   name: Pin16
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin16_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin16
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin16
   nameWithType: GpioController.Pin16
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin17
@@ -2624,6 +2791,7 @@ references:
   name: Pin17
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin17_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin17
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin17
   nameWithType: GpioController.Pin17
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin18
@@ -2636,6 +2804,7 @@ references:
   name: Pin18
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin18_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin18
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin18
   nameWithType: GpioController.Pin18
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin19
@@ -2648,6 +2817,7 @@ references:
   name: Pin19
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin19_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin19
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin19
   nameWithType: GpioController.Pin19
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin20
@@ -2660,6 +2830,7 @@ references:
   name: Pin20
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin20_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin20
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin20
   nameWithType: GpioController.Pin20
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin21
@@ -2672,6 +2843,7 @@ references:
   name: Pin21
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin21_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin21
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin21
   nameWithType: GpioController.Pin21
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin22
@@ -2684,6 +2856,7 @@ references:
   name: Pin22
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin22_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin22
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin22
   nameWithType: GpioController.Pin22
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin23
@@ -2696,6 +2869,7 @@ references:
   name: Pin23
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin23_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin23
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin23
   nameWithType: GpioController.Pin23
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin24
@@ -2708,6 +2882,7 @@ references:
   name: Pin24
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin24_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin24
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin24
   nameWithType: GpioController.Pin24
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin25
@@ -2720,6 +2895,7 @@ references:
   name: Pin25
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin25_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin25
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin25
   nameWithType: GpioController.Pin25
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin26
@@ -2732,6 +2908,7 @@ references:
   name: Pin26
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin26_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin26
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin26
   nameWithType: GpioController.Pin26
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin27
@@ -2744,6 +2921,7 @@ references:
   name: Pin27
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin27_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin27
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin27
   nameWithType: GpioController.Pin27
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin28
@@ -2756,6 +2934,7 @@ references:
   name: Pin28
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin28_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin28
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin28
   nameWithType: GpioController.Pin28
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin29
@@ -2768,6 +2947,7 @@ references:
   name: Pin29
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin29_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin29
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin29
   nameWithType: GpioController.Pin29
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin30
@@ -2780,6 +2960,7 @@ references:
   name: Pin30
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin30_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin30
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin30
   nameWithType: GpioController.Pin30
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pin31
@@ -2792,6 +2973,7 @@ references:
   name: Pin31
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pin31_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pin31
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pin31
   nameWithType: GpioController.Pin31
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Pins
@@ -2804,8 +2986,22 @@ references:
   name: Pins
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Pins_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.Pins
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pins
   nameWithType: GpioController.Pins
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
+  name: PwmBaseFrequency
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_PwmBaseFrequency
+  commentId: P:Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
+  nameWithType: GpioController.PwmBaseFrequency
+- uid: Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency*
+  name: PwmBaseFrequency
+  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_PwmBaseFrequency_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
+  nameWithType: GpioController.PwmBaseFrequency
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.ReadByte
   name: ReadByte()
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_ReadByte
@@ -2816,6 +3012,7 @@ references:
   name: ReadByte
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_ReadByte_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.ReadByte
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.ReadByte
   nameWithType: GpioController.ReadByte
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync
@@ -2828,6 +3025,7 @@ references:
   name: ReadByteAsync
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_ReadByteAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.ReadByteAsync
   nameWithType: GpioController.ReadByteAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive(System.Int32,System.Int32)
@@ -2840,6 +3038,7 @@ references:
   name: SetPadDrive
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_SetPadDrive_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDrive
   nameWithType: GpioController.SetPadDrive
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync(System.Int32,System.Int32)
@@ -2852,6 +3051,7 @@ references:
   name: SetPadDriveAsync
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_SetPadDriveAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.SetPadDriveAsync
   nameWithType: GpioController.SetPadDriveAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.System#Collections#IEnumerable#GetEnumerator
@@ -2866,6 +3066,7 @@ references:
   name: IEnumerable.GetEnumerator
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_System_Collections_IEnumerable_GetEnumerator_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.System#Collections#IEnumerable#GetEnumerator
+  isSpec: "True"
   name.vb: System.Collections.IEnumerable.GetEnumerator
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.System.Collections.IEnumerable.GetEnumerator
   nameWithType: GpioController.IEnumerable.GetEnumerator
@@ -2880,6 +3081,7 @@ references:
   name: WriteByte
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_WriteByte_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.WriteByte
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.WriteByte
   nameWithType: GpioController.WriteByte
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync(System.Byte)
@@ -2892,6 +3094,7 @@ references:
   name: WriteByteAsync
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_WriteByteAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.WriteByteAsync
   nameWithType: GpioController.WriteByteAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioHeader
@@ -2934,6 +3137,7 @@ references:
   name: BcmPinNumber
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_BcmPinNumber_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.BcmPinNumber
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.BcmPinNumber
   nameWithType: GpioPin.BcmPinNumber
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.Capabilities
@@ -2946,6 +3150,7 @@ references:
   name: Capabilities
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_Capabilities_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.Capabilities
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.Capabilities
   nameWithType: GpioPin.Capabilities
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.Header
@@ -2958,6 +3163,7 @@ references:
   name: Header
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_Header_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.Header
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.Header
   nameWithType: GpioPin.Header
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.HeaderPinNumber
@@ -2970,6 +3176,7 @@ references:
   name: HeaderPinNumber
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_HeaderPinNumber_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.HeaderPinNumber
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.HeaderPinNumber
   nameWithType: GpioPin.HeaderPinNumber
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.InputPullMode
@@ -2982,6 +3189,7 @@ references:
   name: InputPullMode
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_InputPullMode_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.InputPullMode
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.InputPullMode
   nameWithType: GpioPin.InputPullMode
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.InterruptCallback
@@ -2994,6 +3202,7 @@ references:
   name: InterruptCallback
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_InterruptCallback_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.InterruptCallback
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.InterruptCallback
   nameWithType: GpioPin.InterruptCallback
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.InterruptEdgeDetection
@@ -3006,6 +3215,7 @@ references:
   name: InterruptEdgeDetection
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_InterruptEdgeDetection_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.InterruptEdgeDetection
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.InterruptEdgeDetection
   nameWithType: GpioPin.InterruptEdgeDetection
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.IsInSoftPwmMode
@@ -3018,6 +3228,7 @@ references:
   name: IsInSoftPwmMode
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_IsInSoftPwmMode_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.IsInSoftPwmMode
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.IsInSoftPwmMode
   nameWithType: GpioPin.IsInSoftPwmMode
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.IsInSoftToneMode
@@ -3030,6 +3241,7 @@ references:
   name: IsInSoftToneMode
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_IsInSoftToneMode_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.IsInSoftToneMode
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.IsInSoftToneMode
   nameWithType: GpioPin.IsInSoftToneMode
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.Name
@@ -3042,6 +3254,7 @@ references:
   name: Name
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_Name_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.Name
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.Name
   nameWithType: GpioPin.Name
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.PinMode
@@ -3054,6 +3267,7 @@ references:
   name: PinMode
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_PinMode_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.PinMode
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.PinMode
   nameWithType: GpioPin.PinMode
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.PinNumber
@@ -3066,6 +3280,7 @@ references:
   name: PinNumber
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_PinNumber_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.PinNumber
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.PinNumber
   nameWithType: GpioPin.PinNumber
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.PwmClockDivisor
@@ -3078,6 +3293,7 @@ references:
   name: PwmClockDivisor
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_PwmClockDivisor_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.PwmClockDivisor
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.PwmClockDivisor
   nameWithType: GpioPin.PwmClockDivisor
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.PwmMode
@@ -3090,6 +3306,7 @@ references:
   name: PwmMode
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_PwmMode_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.PwmMode
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.PwmMode
   nameWithType: GpioPin.PwmMode
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.PwmRange
@@ -3102,6 +3319,7 @@ references:
   name: PwmRange
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_PwmRange_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.PwmRange
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.PwmRange
   nameWithType: GpioPin.PwmRange
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.PwmRegister
@@ -3114,6 +3332,7 @@ references:
   name: PwmRegister
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_PwmRegister_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.PwmRegister
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.PwmRegister
   nameWithType: GpioPin.PwmRegister
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.Read
@@ -3126,6 +3345,7 @@ references:
   name: Read
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_Read_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.Read
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.Read
   nameWithType: GpioPin.Read
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync
@@ -3138,6 +3358,7 @@ references:
   name: ReadAsync
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadAsync
   nameWithType: GpioPin.ReadAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevel
@@ -3150,6 +3371,7 @@ references:
   name: ReadLevel
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevel_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevel
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevel
   nameWithType: GpioPin.ReadLevel
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync
@@ -3162,6 +3384,7 @@ references:
   name: ReadLevelAsync
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadLevelAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadLevelAsync
   nameWithType: GpioPin.ReadLevelAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValue
@@ -3174,6 +3397,7 @@ references:
   name: ReadValue
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadValue_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadValue
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValue
   nameWithType: GpioPin.ReadValue
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync
@@ -3186,6 +3410,7 @@ references:
   name: ReadValueAsync
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_ReadValueAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync
   nameWithType: GpioPin.ReadValueAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Gpio.EdgeDetection,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
@@ -3198,6 +3423,7 @@ references:
   name: RegisterInterruptCallback
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_RegisterInterruptCallback_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback
   nameWithType: GpioPin.RegisterInterruptCallback
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.SoftPwmRange
@@ -3210,6 +3436,7 @@ references:
   name: SoftPwmRange
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_SoftPwmRange_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.SoftPwmRange
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.SoftPwmRange
   nameWithType: GpioPin.SoftPwmRange
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.SoftPwmValue
@@ -3222,6 +3449,7 @@ references:
   name: SoftPwmValue
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_SoftPwmValue_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.SoftPwmValue
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.SoftPwmValue
   nameWithType: GpioPin.SoftPwmValue
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.SoftToneFrequency
@@ -3234,6 +3462,7 @@ references:
   name: SoftToneFrequency
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_SoftToneFrequency_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.SoftToneFrequency
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.SoftToneFrequency
   nameWithType: GpioPin.SoftToneFrequency
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.StartSoftPwm(System.Int32,System.Int32)
@@ -3246,6 +3475,7 @@ references:
   name: StartSoftPwm
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_StartSoftPwm_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.StartSoftPwm
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.StartSoftPwm
   nameWithType: GpioPin.StartSoftPwm
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue(Unosquare.RaspberryIO.Gpio.GpioPinValue,System.Int32)
@@ -3258,6 +3488,7 @@ references:
   name: WaitForValue
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WaitForValue_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WaitForValue
   nameWithType: GpioPin.WaitForValue
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.WiringPiPinNumber
@@ -3270,6 +3501,7 @@ references:
   name: WiringPiPinNumber
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WiringPiPinNumber_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.WiringPiPinNumber
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WiringPiPinNumber
   nameWithType: GpioPin.WiringPiPinNumber
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.Write(System.Boolean)
@@ -3294,6 +3526,7 @@ references:
   name: Write
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_Write_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.Write
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.Write
   nameWithType: GpioPin.Write
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync(System.Boolean)
@@ -3318,6 +3551,7 @@ references:
   name: WriteAsync
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteAsync
   nameWithType: GpioPin.WriteAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevel(System.Int32)
@@ -3330,6 +3564,7 @@ references:
   name: WriteLevel
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteLevel_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevel
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevel
   nameWithType: GpioPin.WriteLevel
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync(System.Int32)
@@ -3342,6 +3577,7 @@ references:
   name: WriteLevelAsync
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_WriteLevelAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.WriteLevelAsync
   nameWithType: GpioPin.WriteLevelAsync
 - uid: Unosquare.RaspberryIO.Gpio.GpioPinDriveMode
@@ -3432,6 +3668,7 @@ references:
   name: AddDevice
   href: api/Unosquare.RaspberryIO.Gpio.I2CBus.html#Unosquare_RaspberryIO_Gpio_I2CBus_AddDevice_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CBus.AddDevice
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CBus.AddDevice
   nameWithType: I2CBus.AddDevice
 - uid: Unosquare.RaspberryIO.Gpio.I2CBus.Devices
@@ -3444,6 +3681,7 @@ references:
   name: Devices
   href: api/Unosquare.RaspberryIO.Gpio.I2CBus.html#Unosquare_RaspberryIO_Gpio_I2CBus_Devices_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CBus.Devices
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CBus.Devices
   nameWithType: I2CBus.Devices
 - uid: Unosquare.RaspberryIO.Gpio.I2CBus.GetDeviceById(System.Int32)
@@ -3456,6 +3694,7 @@ references:
   name: GetDeviceById
   href: api/Unosquare.RaspberryIO.Gpio.I2CBus.html#Unosquare_RaspberryIO_Gpio_I2CBus_GetDeviceById_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CBus.GetDeviceById
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CBus.GetDeviceById
   nameWithType: I2CBus.GetDeviceById
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice
@@ -3474,6 +3713,7 @@ references:
   name: DeviceId
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_DeviceId_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.DeviceId
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.DeviceId
   nameWithType: I2CDevice.DeviceId
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.FileDescriptor
@@ -3486,6 +3726,7 @@ references:
   name: FileDescriptor
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_FileDescriptor_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.FileDescriptor
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.FileDescriptor
   nameWithType: I2CDevice.FileDescriptor
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.Read
@@ -3504,6 +3745,7 @@ references:
   name: Read
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_Read_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.Read
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.Read
   nameWithType: I2CDevice.Read
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAddressByte(System.Int32)
@@ -3516,6 +3758,7 @@ references:
   name: ReadAddressByte
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAddressByte_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAddressByte
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAddressByte
   nameWithType: I2CDevice.ReadAddressByte
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAddressWord(System.Int32)
@@ -3528,6 +3771,7 @@ references:
   name: ReadAddressWord
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAddressWord_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAddressWord
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAddressWord
   nameWithType: I2CDevice.ReadAddressWord
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync
@@ -3546,6 +3790,7 @@ references:
   name: ReadAsync
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_ReadAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.ReadAsync
   nameWithType: I2CDevice.ReadAsync
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.Write(System.Byte)
@@ -3567,6 +3812,7 @@ references:
   name: Write
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_Write_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.Write
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.Write
   nameWithType: I2CDevice.Write
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAddressByte(System.Int32,System.Byte)
@@ -3579,6 +3825,7 @@ references:
   name: WriteAddressByte
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAddressByte_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAddressByte
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAddressByte
   nameWithType: I2CDevice.WriteAddressByte
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAddressWord(System.Int32,System.UInt16)
@@ -3591,6 +3838,7 @@ references:
   name: WriteAddressWord
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAddressWord_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAddressWord
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAddressWord
   nameWithType: I2CDevice.WriteAddressWord
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync(System.Byte)
@@ -3612,8 +3860,201 @@ references:
   name: WriteAsync
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html#Unosquare_RaspberryIO_Gpio_I2CDevice_WriteAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync
   nameWithType: I2CDevice.WriteAsync
+- uid: Unosquare.RaspberryIO.Gpio.P1
+  name: P1
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html
+  commentId: T:Unosquare.RaspberryIO.Gpio.P1
+  fullName: Unosquare.RaspberryIO.Gpio.P1
+  nameWithType: P1
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio02
+  name: Gpio02
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio02
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio02
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio02
+  nameWithType: P1.Gpio02
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio03
+  name: Gpio03
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio03
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio03
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio03
+  nameWithType: P1.Gpio03
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio04
+  name: Gpio04
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio04
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio04
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio04
+  nameWithType: P1.Gpio04
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio05
+  name: Gpio05
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio05
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio05
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio05
+  nameWithType: P1.Gpio05
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio06
+  name: Gpio06
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio06
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio06
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio06
+  nameWithType: P1.Gpio06
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio07
+  name: Gpio07
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio07
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio07
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio07
+  nameWithType: P1.Gpio07
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio08
+  name: Gpio08
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio08
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio08
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio08
+  nameWithType: P1.Gpio08
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio09
+  name: Gpio09
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio09
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio09
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio09
+  nameWithType: P1.Gpio09
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio10
+  name: Gpio10
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio10
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio10
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio10
+  nameWithType: P1.Gpio10
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio11
+  name: Gpio11
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio11
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio11
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio11
+  nameWithType: P1.Gpio11
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio12
+  name: Gpio12
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio12
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio12
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio12
+  nameWithType: P1.Gpio12
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio13
+  name: Gpio13
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio13
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio13
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio13
+  nameWithType: P1.Gpio13
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio14
+  name: Gpio14
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio14
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio14
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio14
+  nameWithType: P1.Gpio14
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio15
+  name: Gpio15
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio15
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio15
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio15
+  nameWithType: P1.Gpio15
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio16
+  name: Gpio16
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio16
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio16
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio16
+  nameWithType: P1.Gpio16
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio17
+  name: Gpio17
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio17
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio17
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio17
+  nameWithType: P1.Gpio17
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio18
+  name: Gpio18
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio18
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio18
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio18
+  nameWithType: P1.Gpio18
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio19
+  name: Gpio19
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio19
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio19
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio19
+  nameWithType: P1.Gpio19
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio20
+  name: Gpio20
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio20
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio20
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio20
+  nameWithType: P1.Gpio20
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio21
+  name: Gpio21
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio21
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio21
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio21
+  nameWithType: P1.Gpio21
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio22
+  name: Gpio22
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio22
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio22
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio22
+  nameWithType: P1.Gpio22
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio23
+  name: Gpio23
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio23
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio23
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio23
+  nameWithType: P1.Gpio23
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio24
+  name: Gpio24
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio24
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio24
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio24
+  nameWithType: P1.Gpio24
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio25
+  name: Gpio25
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio25
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio25
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio25
+  nameWithType: P1.Gpio25
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio26
+  name: Gpio26
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio26
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio26
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio26
+  nameWithType: P1.Gpio26
+- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio27
+  name: Gpio27
+  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio27
+  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio27
+  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio27
+  nameWithType: P1.Gpio27
+- uid: Unosquare.RaspberryIO.Gpio.P5
+  name: P5
+  href: api/Unosquare.RaspberryIO.Gpio.P5.html
+  commentId: T:Unosquare.RaspberryIO.Gpio.P5
+  fullName: Unosquare.RaspberryIO.Gpio.P5
+  nameWithType: P5
+- uid: Unosquare.RaspberryIO.Gpio.P5.Gpio28
+  name: Gpio28
+  href: api/Unosquare.RaspberryIO.Gpio.P5.html#Unosquare_RaspberryIO_Gpio_P5_Gpio28
+  commentId: F:Unosquare.RaspberryIO.Gpio.P5.Gpio28
+  fullName: Unosquare.RaspberryIO.Gpio.P5.Gpio28
+  nameWithType: P5.Gpio28
+- uid: Unosquare.RaspberryIO.Gpio.P5.Gpio29
+  name: Gpio29
+  href: api/Unosquare.RaspberryIO.Gpio.P5.html#Unosquare_RaspberryIO_Gpio_P5_Gpio29
+  commentId: F:Unosquare.RaspberryIO.Gpio.P5.Gpio29
+  fullName: Unosquare.RaspberryIO.Gpio.P5.Gpio29
+  nameWithType: P5.Gpio29
+- uid: Unosquare.RaspberryIO.Gpio.P5.Gpio30
+  name: Gpio30
+  href: api/Unosquare.RaspberryIO.Gpio.P5.html#Unosquare_RaspberryIO_Gpio_P5_Gpio30
+  commentId: F:Unosquare.RaspberryIO.Gpio.P5.Gpio30
+  fullName: Unosquare.RaspberryIO.Gpio.P5.Gpio30
+  nameWithType: P5.Gpio30
+- uid: Unosquare.RaspberryIO.Gpio.P5.Gpio31
+  name: Gpio31
+  href: api/Unosquare.RaspberryIO.Gpio.P5.html#Unosquare_RaspberryIO_Gpio_P5_Gpio31
+  commentId: F:Unosquare.RaspberryIO.Gpio.P5.Gpio31
+  fullName: Unosquare.RaspberryIO.Gpio.P5.Gpio31
+  nameWithType: P5.Gpio31
 - uid: Unosquare.RaspberryIO.Gpio.PinCapability
   name: PinCapability
   href: api/Unosquare.RaspberryIO.Gpio.PinCapability.html
@@ -3726,6 +4167,7 @@ references:
   name: Channel0
   href: api/Unosquare.RaspberryIO.Gpio.SpiBus.html#Unosquare_RaspberryIO_Gpio_SpiBus_Channel0_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiBus.Channel0
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiBus.Channel0
   nameWithType: SpiBus.Channel0
 - uid: Unosquare.RaspberryIO.Gpio.SpiBus.Channel0Frequency
@@ -3738,6 +4180,7 @@ references:
   name: Channel0Frequency
   href: api/Unosquare.RaspberryIO.Gpio.SpiBus.html#Unosquare_RaspberryIO_Gpio_SpiBus_Channel0Frequency_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiBus.Channel0Frequency
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiBus.Channel0Frequency
   nameWithType: SpiBus.Channel0Frequency
 - uid: Unosquare.RaspberryIO.Gpio.SpiBus.Channel1
@@ -3750,6 +4193,7 @@ references:
   name: Channel1
   href: api/Unosquare.RaspberryIO.Gpio.SpiBus.html#Unosquare_RaspberryIO_Gpio_SpiBus_Channel1_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiBus.Channel1
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiBus.Channel1
   nameWithType: SpiBus.Channel1
 - uid: Unosquare.RaspberryIO.Gpio.SpiBus.Channel1Frequency
@@ -3762,6 +4206,7 @@ references:
   name: Channel1Frequency
   href: api/Unosquare.RaspberryIO.Gpio.SpiBus.html#Unosquare_RaspberryIO_Gpio_SpiBus_Channel1Frequency_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiBus.Channel1Frequency
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiBus.Channel1Frequency
   nameWithType: SpiBus.Channel1Frequency
 - uid: Unosquare.RaspberryIO.Gpio.SpiChannel
@@ -3780,6 +4225,7 @@ references:
   name: Channel
   href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_Channel_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.Channel
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.Channel
   nameWithType: SpiChannel.Channel
 - uid: Unosquare.RaspberryIO.Gpio.SpiChannel.DefaultFrequency
@@ -3798,6 +4244,7 @@ references:
   name: FileDescriptor
   href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_FileDescriptor_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.FileDescriptor
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.FileDescriptor
   nameWithType: SpiChannel.FileDescriptor
 - uid: Unosquare.RaspberryIO.Gpio.SpiChannel.Frequency
@@ -3810,6 +4257,7 @@ references:
   name: Frequency
   href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_Frequency_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.Frequency
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.Frequency
   nameWithType: SpiChannel.Frequency
 - uid: Unosquare.RaspberryIO.Gpio.SpiChannel.MaxFrequency
@@ -3837,6 +4285,7 @@ references:
   name: SendReceive
   href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_SendReceive_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceive
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceive
   nameWithType: SpiChannel.SendReceive
 - uid: Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync(System.Byte[])
@@ -3852,6 +4301,7 @@ references:
   name: SendReceiveAsync
   href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_SendReceiveAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.SendReceiveAsync
   nameWithType: SpiChannel.SendReceiveAsync
 - uid: Unosquare.RaspberryIO.Gpio.SpiChannel.Write(System.Byte[])
@@ -3867,6 +4317,7 @@ references:
   name: Write
   href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_Write_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.Write
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.Write
   nameWithType: SpiChannel.Write
 - uid: Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync(System.Byte[])
@@ -3882,6 +4333,7 @@ references:
   name: WriteAsync
   href: api/Unosquare.RaspberryIO.Gpio.SpiChannel.html#Unosquare_RaspberryIO_Gpio_SpiChannel_WriteAsync_
   commentId: Overload:Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.SpiChannel.WriteAsync
   nameWithType: SpiChannel.WriteAsync
 - uid: Unosquare.RaspberryIO.Gpio.WiringPiPin
@@ -4110,6 +4562,7 @@ references:
   name: HardwareException
   href: api/Unosquare.RaspberryIO.Native.HardwareException.html#Unosquare_RaspberryIO_Native_HardwareException__ctor_
   commentId: Overload:Unosquare.RaspberryIO.Native.HardwareException.#ctor
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HardwareException.HardwareException
   nameWithType: HardwareException.HardwareException
 - uid: Unosquare.RaspberryIO.Native.HardwareException.Component
@@ -4122,6 +4575,7 @@ references:
   name: Component
   href: api/Unosquare.RaspberryIO.Native.HardwareException.html#Unosquare_RaspberryIO_Native_HardwareException_Component_
   commentId: Overload:Unosquare.RaspberryIO.Native.HardwareException.Component
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HardwareException.Component
   nameWithType: HardwareException.Component
 - uid: Unosquare.RaspberryIO.Native.HardwareException.ErrorCode
@@ -4134,6 +4588,7 @@ references:
   name: ErrorCode
   href: api/Unosquare.RaspberryIO.Native.HardwareException.html#Unosquare_RaspberryIO_Native_HardwareException_ErrorCode_
   commentId: Overload:Unosquare.RaspberryIO.Native.HardwareException.ErrorCode
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HardwareException.ErrorCode
   nameWithType: HardwareException.ErrorCode
 - uid: Unosquare.RaspberryIO.Native.HardwareException.ExtendedMessage
@@ -4146,6 +4601,7 @@ references:
   name: ExtendedMessage
   href: api/Unosquare.RaspberryIO.Native.HardwareException.html#Unosquare_RaspberryIO_Native_HardwareException_ExtendedMessage_
   commentId: Overload:Unosquare.RaspberryIO.Native.HardwareException.ExtendedMessage
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HardwareException.ExtendedMessage
   nameWithType: HardwareException.ExtendedMessage
 - uid: Unosquare.RaspberryIO.Native.HardwareException.Throw(System.String,System.String)
@@ -4158,6 +4614,7 @@ references:
   name: Throw
   href: api/Unosquare.RaspberryIO.Native.HardwareException.html#Unosquare_RaspberryIO_Native_HardwareException_Throw_
   commentId: Overload:Unosquare.RaspberryIO.Native.HardwareException.Throw
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HardwareException.Throw
   nameWithType: HardwareException.Throw
 - uid: Unosquare.RaspberryIO.Native.HardwareException.ToString
@@ -4170,6 +4627,7 @@ references:
   name: ToString
   href: api/Unosquare.RaspberryIO.Native.HardwareException.html#Unosquare_RaspberryIO_Native_HardwareException_ToString_
   commentId: Overload:Unosquare.RaspberryIO.Native.HardwareException.ToString
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HardwareException.ToString
   nameWithType: HardwareException.ToString
 - uid: Unosquare.RaspberryIO.Native.HighResolutionTimer
@@ -4188,6 +4646,7 @@ references:
   name: HighResolutionTimer
   href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html#Unosquare_RaspberryIO_Native_HighResolutionTimer__ctor_
   commentId: Overload:Unosquare.RaspberryIO.Native.HighResolutionTimer.#ctor
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.HighResolutionTimer
   nameWithType: HighResolutionTimer.HighResolutionTimer
 - uid: Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds
@@ -4200,6 +4659,7 @@ references:
   name: ElapsedMicroseconds
   href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html#Unosquare_RaspberryIO_Native_HighResolutionTimer_ElapsedMicroseconds_
   commentId: Overload:Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.ElapsedMicroseconds
   nameWithType: HighResolutionTimer.ElapsedMicroseconds
 - uid: Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick
@@ -4212,6 +4672,7 @@ references:
   name: MicrosecondsPerTick
   href: api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html#Unosquare_RaspberryIO_Native_HighResolutionTimer_MicrosecondsPerTick_
   commentId: Overload:Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick
   nameWithType: HighResolutionTimer.MicrosecondsPerTick
 - uid: Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback
@@ -4272,6 +4733,7 @@ references:
   name: CreateThread
   href: api/Unosquare.RaspberryIO.Native.Timing.html#Unosquare_RaspberryIO_Native_Timing_CreateThread_
   commentId: Overload:Unosquare.RaspberryIO.Native.Timing.CreateThread
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.Timing.CreateThread
   nameWithType: Timing.CreateThread
 - uid: Unosquare.RaspberryIO.Native.Timing.Lock(Unosquare.RaspberryIO.Native.ThreadLockKey)
@@ -4284,6 +4746,7 @@ references:
   name: Lock
   href: api/Unosquare.RaspberryIO.Native.Timing.html#Unosquare_RaspberryIO_Native_Timing_Lock_
   commentId: Overload:Unosquare.RaspberryIO.Native.Timing.Lock
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.Timing.Lock
   nameWithType: Timing.Lock
 - uid: Unosquare.RaspberryIO.Native.Timing.MicrosecondsSinceSetup
@@ -4296,6 +4759,7 @@ references:
   name: MicrosecondsSinceSetup
   href: api/Unosquare.RaspberryIO.Native.Timing.html#Unosquare_RaspberryIO_Native_Timing_MicrosecondsSinceSetup_
   commentId: Overload:Unosquare.RaspberryIO.Native.Timing.MicrosecondsSinceSetup
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.Timing.MicrosecondsSinceSetup
   nameWithType: Timing.MicrosecondsSinceSetup
 - uid: Unosquare.RaspberryIO.Native.Timing.MillisecondsSinceSetup
@@ -4308,6 +4772,7 @@ references:
   name: MillisecondsSinceSetup
   href: api/Unosquare.RaspberryIO.Native.Timing.html#Unosquare_RaspberryIO_Native_Timing_MillisecondsSinceSetup_
   commentId: Overload:Unosquare.RaspberryIO.Native.Timing.MillisecondsSinceSetup
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.Timing.MillisecondsSinceSetup
   nameWithType: Timing.MillisecondsSinceSetup
 - uid: Unosquare.RaspberryIO.Native.Timing.SetThreadPriority(System.Int32)
@@ -4320,6 +4785,7 @@ references:
   name: SetThreadPriority
   href: api/Unosquare.RaspberryIO.Native.Timing.html#Unosquare_RaspberryIO_Native_Timing_SetThreadPriority_
   commentId: Overload:Unosquare.RaspberryIO.Native.Timing.SetThreadPriority
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.Timing.SetThreadPriority
   nameWithType: Timing.SetThreadPriority
 - uid: Unosquare.RaspberryIO.Native.Timing.SleepMicroseconds(System.UInt32)
@@ -4332,6 +4798,7 @@ references:
   name: SleepMicroseconds
   href: api/Unosquare.RaspberryIO.Native.Timing.html#Unosquare_RaspberryIO_Native_Timing_SleepMicroseconds_
   commentId: Overload:Unosquare.RaspberryIO.Native.Timing.SleepMicroseconds
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.Timing.SleepMicroseconds
   nameWithType: Timing.SleepMicroseconds
 - uid: Unosquare.RaspberryIO.Native.Timing.SleepMilliseconds(System.UInt32)
@@ -4344,6 +4811,7 @@ references:
   name: SleepMilliseconds
   href: api/Unosquare.RaspberryIO.Native.Timing.html#Unosquare_RaspberryIO_Native_Timing_SleepMilliseconds_
   commentId: Overload:Unosquare.RaspberryIO.Native.Timing.SleepMilliseconds
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.Timing.SleepMilliseconds
   nameWithType: Timing.SleepMilliseconds
 - uid: Unosquare.RaspberryIO.Native.Timing.Unlock(Unosquare.RaspberryIO.Native.ThreadLockKey)
@@ -4356,6 +4824,7 @@ references:
   name: Unlock
   href: api/Unosquare.RaspberryIO.Native.Timing.html#Unosquare_RaspberryIO_Native_Timing_Unlock_
   commentId: Overload:Unosquare.RaspberryIO.Native.Timing.Unlock
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.Timing.Unlock
   nameWithType: Timing.Unlock
 - uid: Unosquare.RaspberryIO.Native.WiringPi
@@ -5142,6 +5611,7 @@ references:
   name: Camera
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Camera_
   commentId: Overload:Unosquare.RaspberryIO.Pi.Camera
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.Camera
   nameWithType: Pi.Camera
 - uid: Unosquare.RaspberryIO.Pi.Gpio
@@ -5154,6 +5624,7 @@ references:
   name: Gpio
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Gpio_
   commentId: Overload:Unosquare.RaspberryIO.Pi.Gpio
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.Gpio
   nameWithType: Pi.Gpio
 - uid: Unosquare.RaspberryIO.Pi.I2C
@@ -5166,6 +5637,7 @@ references:
   name: I2C
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_I2C_
   commentId: Overload:Unosquare.RaspberryIO.Pi.I2C
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.I2C
   nameWithType: Pi.I2C
 - uid: Unosquare.RaspberryIO.Pi.Info
@@ -5178,6 +5650,7 @@ references:
   name: Info
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Info_
   commentId: Overload:Unosquare.RaspberryIO.Pi.Info
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.Info
   nameWithType: Pi.Info
 - uid: Unosquare.RaspberryIO.Pi.PiDisplay
@@ -5190,6 +5663,7 @@ references:
   name: PiDisplay
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_PiDisplay_
   commentId: Overload:Unosquare.RaspberryIO.Pi.PiDisplay
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.PiDisplay
   nameWithType: Pi.PiDisplay
 - uid: Unosquare.RaspberryIO.Pi.Restart
@@ -5202,6 +5676,7 @@ references:
   name: Restart
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Restart_
   commentId: Overload:Unosquare.RaspberryIO.Pi.Restart
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.Restart
   nameWithType: Pi.Restart
 - uid: Unosquare.RaspberryIO.Pi.RestartAsync
@@ -5214,6 +5689,7 @@ references:
   name: RestartAsync
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_RestartAsync_
   commentId: Overload:Unosquare.RaspberryIO.Pi.RestartAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.RestartAsync
   nameWithType: Pi.RestartAsync
 - uid: Unosquare.RaspberryIO.Pi.Shutdown
@@ -5226,6 +5702,7 @@ references:
   name: Shutdown
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Shutdown_
   commentId: Overload:Unosquare.RaspberryIO.Pi.Shutdown
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.Shutdown
   nameWithType: Pi.Shutdown
 - uid: Unosquare.RaspberryIO.Pi.ShutdownAsync
@@ -5238,6 +5715,7 @@ references:
   name: ShutdownAsync
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_ShutdownAsync_
   commentId: Overload:Unosquare.RaspberryIO.Pi.ShutdownAsync
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.ShutdownAsync
   nameWithType: Pi.ShutdownAsync
 - uid: Unosquare.RaspberryIO.Pi.Spi
@@ -5250,6 +5728,7 @@ references:
   name: Spi
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Spi_
   commentId: Overload:Unosquare.RaspberryIO.Pi.Spi
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.Spi
   nameWithType: Pi.Spi
 - uid: Unosquare.RaspberryIO.Pi.Timing
@@ -5262,5 +5741,6 @@ references:
   name: Timing
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Timing_
   commentId: Overload:Unosquare.RaspberryIO.Pi.Timing
+  isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.Timing
   nameWithType: Pi.Timing
