@@ -29,6 +29,16 @@
         public ReadOnlyCollection<I2CDevice> Devices => new ReadOnlyCollection<I2CDevice>(_devices.Values.ToArray());
 
         /// <summary>
+        /// Gets the <see cref="I2CDevice"/> with the specified device identifier.
+        /// </summary>
+        /// <value>
+        /// The <see cref="I2CDevice"/>.
+        /// </value>
+        /// <param name="deviceId">The device identifier.</param>
+        /// <returns>A reference to an I2C device</returns>
+        public I2CDevice this[int deviceId] => GetDeviceById(deviceId);
+
+        /// <summary>
         /// Gets the device by identifier.
         /// </summary>
         /// <param name="deviceId">The device identifier.</param>

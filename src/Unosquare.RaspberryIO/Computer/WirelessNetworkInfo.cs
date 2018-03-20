@@ -6,7 +6,7 @@
     public class WirelessNetworkInfo
     {
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets the ESSID of the Wireless network.
         /// </summary>
         public string Name { get; internal set; }
 

@@ -20,7 +20,7 @@
         private static readonly StringComparer StringComparer = StringComparer.InvariantCultureIgnoreCase;
 
         private static readonly object SyncRoot = new object();
-        private static bool? m_IsRunningAsRoot = default;
+        private static bool? _isRunningAsRoot = default;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
@@ -330,7 +330,7 @@
         /// Placeholder for processor index
         /// </summary>
         private string Processor { get; set; }
-        
+
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>

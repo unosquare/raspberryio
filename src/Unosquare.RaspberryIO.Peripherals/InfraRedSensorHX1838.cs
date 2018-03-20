@@ -4,29 +4,21 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Threading;
     using Unosquare.Swan;
 
     /// <summary>
     /// Implements a digital infrared sensor using the HX1838 38kHz digital receiver.
-    /// It registers an interrupt on the pin and fires data events asynchronously.
-    /// Ideas taken from https://github.com/adafruit/IR-Commander/blob/master/ircommander.pde
+    /// It registers an interrupt on the pin and fires data events asynchronously to keep CPU usage low.
+    /// Some primitive ideas taken from https://github.com/adafruit/IR-Commander/blob/master/ircommander.pde
     /// and https://github.com/z3t0/Arduino-IRremote/blob/master/IRremote.cpp
     /// </summary>
     public sealed class InfraRedSensorHX1838 : IDisposable
     {
-        private const bool Mark = false;
-        private const bool Space = true;
-        private const long UsecsPerTimeUnit = 50;
-        private const double GapUsecs = 5000;
-        private const double GapTimeUnits = GapUsecs / UsecsPerTimeUnit;
-        private const int SensorBufferLength = 128;
-
-        private readonly Thread ReadThread;
-        private ManualResetEvent ReadThreadLockStopped = new ManualResetEvent(true);
         private bool IsDisposed = false; // To detect redundant calls
-        private bool IsStopRequested = false;
+        private volatile bool IsInReadInterrupt = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InfraRedSensorHX1838"/> class.
@@ -35,17 +27,7 @@
         public InfraRedSensorHX1838(GpioPin inputPin)
         {
             InputPin = inputPin;
-            InputPin.PinMode = GpioPinDriveMode.Input;
-            InputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
-
-            ReadThread = new Thread(ReadThreadDoWork)
-            {
-                Priority = ThreadPriority.AboveNormal,
-                IsBackground = true,
-                Name = nameof(InfraRedSensorHX1838)
-            };
-
-            ReadThread.Start();
+            ReadInterruptDoWork();
         }
 
         /// <summary>
@@ -59,45 +41,25 @@
         public event EventHandler<InfraRedSensorDataEventArgs> DataAvailable;
 
         /// <summary>
-        /// Enumerates the different receiver state machine states
+        /// Enumerates the different reasons why the reaciver flushed the buffer.
         /// </summary>
-        public enum ReceiverStates
+        public enum ReceiverFlushReason
         {
             /// <summary>
             /// The idle state
             /// </summary>
-            Idle = 2,
-
-            /// <summary>
-            /// The mark state
-            /// </summary>
-            Mark = 3,
-
-            /// <summary>
-            /// The space state
-            /// </summary>
-            Space = 4,
-
-            /// <summary>
-            /// The stop state
-            /// </summary>
-            Stop = 5,
+            Idle,
 
             /// <summary>
             /// The overflow state
             /// </summary>
-            Overflow = 6,
+            Overflow,
         }
 
         /// <summary>
         /// Gets the input pin.
         /// </summary>
         public GpioPin InputPin { get; }
-
-        /// <summary>
-        /// Gets the state of the receiver state machine.
-        /// </summary>
-        public ReceiverStates ReceiverState { get; private set; } = ReceiverStates.Idle;
 
         /// <summary>
         /// Creates a string representing all the pulses passed to this method.
@@ -119,7 +81,7 @@
                         continue;
 
                     p = pulses[i + offset];
-                    builder.Append($" {(p.Value ? "S" : "M")} {p.DurationUsecs,7} | ");
+                    builder.Append($" {(p.Value ? "T" : "F")} {p.DurationUsecs,7} | ");
                 }
 
                 builder.AppendLine();
@@ -146,152 +108,90 @@
             {
                 if (disposing)
                 {
-                    IsStopRequested = true;
-                    ReadThreadLockStopped?.WaitOne();
-                    IsStopRequested = false;
-                    ReadThreadLockStopped?.Dispose();
+                    // Dispose of Managed objects
                 }
 
-                ReadThreadLockStopped = null;
                 IsDisposed = true;
             }
         }
 
         /// <summary>
-        /// State machine to handle continuous reads of data
+        /// Reads the interrupt do work.
         /// </summary>
-        private void ReadThreadDoWork()
+        private void ReadInterruptDoWork()
         {
-            // Signal that the worker is in the running state
-            ReadThreadLockStopped.Reset();
+            // Define some constants
+            const long GapUsecs = 5000;
+            const long MaxElapsedMicroseconds = 250000;
+            const long MinElapsedMicroseconds = 50;
+            const int IdleCheckIntervalMilliSecs = 32;
+            const int MaxPulseCount = 128;
 
-            // Setup state variables
-            var delayUsecs = 0L;
-            var timeUnitsCount = default(uint);
-            var currentSensorValue = false;
-            var pulseBuffer = new List<InfraRedPulse>(SensorBufferLength);
+            // Setup the input pin
+            InputPin.PinMode = GpioPinDriveMode.Input;
+            InputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
+
+            // Get the timers started!
             var pulseTimer = new Native.HighResolutionTimer();
-            var trainTimer = new Native.HighResolutionTimer();
+            var idleTimer = new Native.HighResolutionTimer();
 
-            // Get the timer started!
-            pulseTimer.Start();
-            trainTimer.Start();
+            var pulseBuffer = new List<InfraRedPulse>(MaxPulseCount);
+            var syncLock = new object();
 
-            while (IsStopRequested == false)
+            var idleChecker = default(Timer);
+            idleChecker = new Timer((s) =>
             {
-                pulseTimer.Restart();
-                currentSensorValue = InputPin.Read();
-                timeUnitsCount += 1; // One more 50 uS tick
-                if (pulseBuffer.Count >= SensorBufferLength)
-                    ReceiverState = ReceiverStates.Overflow;
+                if (IsInReadInterrupt)
+                    return;
 
-                switch (ReceiverState)
+                lock (syncLock)
                 {
-                    // In the middle of a gap
-                    case ReceiverStates.Idle:
-                        {
-                            if (currentSensorValue != Mark) break;
+                    if (idleTimer.ElapsedMicroseconds < GapUsecs || idleTimer.IsRunning == false || pulseBuffer.Count <= 0)
+                        return;
 
-                            if (timeUnitsCount < GapTimeUnits)
-                            {
-                                // Not big enough to be a gap.
-                                timeUnitsCount = 0;
-                            }
-                            else
-                            {
-                                // Gap just ended; Record duration; Start recording transmission
-                                trainTimer.Restart();
-                                pulseBuffer.Clear();
+                    OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverFlushReason.Idle);
+                    pulseBuffer.Clear();
+                    idleTimer.Reset();
+                }
+            });
 
-                                // The first pulse will be a gap
-                                var pulse = new InfraRedPulse(Mark, timeUnitsCount);
-                                pulseBuffer.Add(pulse);
-                                OnInfraredSensorPulseAvailable(pulse);
-                                timeUnitsCount = 0;
-                                ReceiverState = ReceiverStates.Mark;
-                            }
+            InputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
+            {
+                IsInReadInterrupt = true;
 
-                            break;
-                        }
+                lock (syncLock)
+                {
+                    idleTimer.Restart();
+                    idleChecker.Change(IdleCheckIntervalMilliSecs, IdleCheckIntervalMilliSecs);
 
-                    // Timing Mark
-                    case ReceiverStates.Mark:
-                        {
-                            // Mark ended; Record time
-                            if (currentSensorValue == Space)
-                            {
-                                var pulse = new InfraRedPulse(Space, timeUnitsCount);
-                                pulseBuffer.Add(pulse);
-                                OnInfraredSensorPulseAvailable(pulse);
+                    var currentLength = pulseTimer.ElapsedMicroseconds;
+                    var currentValue = InputPin.Read();
+                    var pulse = new InfraRedPulse(currentValue, currentLength.Clamp(MinElapsedMicroseconds, MaxElapsedMicroseconds));
 
-                                // Reset for next pulse
-                                timeUnitsCount = 0;
-                                ReceiverState = ReceiverStates.Space;
-                            }
+                    // Restart for the next bit coming in
+                    pulseTimer.Restart();
 
-                            break;
-                        }
+                    // Do not add an idling pulse
+                    if (pulse.DurationUsecs < MaxElapsedMicroseconds)
+                    {
+                        pulseBuffer.Add(pulse);
+                        OnInfraredSensorPulseAvailable(pulse);
+                    }
 
-                    // Timing Space
-                    case ReceiverStates.Space:
-                        {
-                            // Space just ended; Record time
-                            if (currentSensorValue == Mark)
-                            {
-                                var pulse = new InfraRedPulse(Mark, timeUnitsCount);
-                                pulseBuffer.Add(pulse);
-                                OnInfraredSensorPulseAvailable(pulse);
-
-                                // Reset for next pulse
-                                timeUnitsCount = 0;
-                                ReceiverState = ReceiverStates.Mark;
-                            }
-                            else if (timeUnitsCount > GapTimeUnits)
-                            {
-                                // A long Space, indicates gap between codes
-                                // Flag the current code as ready for processing
-                                // Switch to STOP
-                                // Don't reset timer; keep counting Space width
-                                ReceiverState = ReceiverStates.Stop;
-                            }
-
-                            break;
-                        }
-
-                    // Waiting; Measuring Gap
-                    case ReceiverStates.Stop:
-                        {
-                            // Reset gap timer if we have a Mark
-                            if (currentSensorValue == Mark)
-                                timeUnitsCount = 0;
-
-                            OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverStates.Stop, trainTimer.ElapsedMicroseconds);
-                            pulseBuffer.Clear();
-                            ReceiverState = ReceiverStates.Idle;
-                            break;
-                        }
-
-                    // Flag up a read overflow; Stop the State Machine
-                    case ReceiverStates.Overflow:
-                        {
-                            OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverStates.Overflow, trainTimer.ElapsedMicroseconds);
-                            pulseBuffer.Clear();
-                            ReceiverState = ReceiverStates.Idle;
-                            break;
-                        }
+                    if (pulseBuffer.Count >= MaxPulseCount)
+                    {
+                        OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverFlushReason.Overflow);
+                        pulseBuffer.Clear();
+                    }
                 }
 
-                if (IsStopRequested)
-                    break;
+                IsInReadInterrupt = false;
+            });
 
-                // Compute the amount of microseconds to pause execution
-                delayUsecs = (UsecsPerTimeUnit - pulseTimer.ElapsedMicroseconds).Clamp(0, UsecsPerTimeUnit);
-                if (delayUsecs > 0)
-                    Pi.Timing.SleepMicroseconds(Convert.ToUInt32(delayUsecs));
-            }
-
-            pulseTimer.Stop();
-            ReadThreadLockStopped.Set();
+            // Get the timers started
+            pulseTimer.Start();
+            idleTimer.Start();
+            idleChecker.Change(0, IdleCheckIntervalMilliSecs);
         }
 
         /// <summary>
@@ -308,95 +208,70 @@
         /// </summary>
         /// <param name="pulses">The pulses.</param>
         /// <param name="state">The state.</param>
-        /// <param name="trainDurationUsecs">The train duration in microseconds.</param>
-        private void OnInfraredSensorRawDataAvailable(InfraRedPulse[] pulses, ReceiverStates state, long trainDurationUsecs)
+        private void OnInfraredSensorRawDataAvailable(InfraRedPulse[] pulses, ReceiverFlushReason state)
         {
-            DataAvailable?.Invoke(this, new InfraRedSensorDataEventArgs(pulses, state, trainDurationUsecs));
+            DataAvailable?.Invoke(this, new InfraRedSensorDataEventArgs(pulses, state));
         }
 
         /// <summary>
-        /// Represents data of an infrared pulse
-        /// </summary>
-        public struct InfraRedPulse
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="InfraRedPulse" /> struct.
-            /// </summary>
-            /// <param name="value">if set to <c>true</c> [value].</param>
-            /// <param name="timeUnits">The time units.</param>
-            internal InfraRedPulse(bool value, long timeUnits)
-            {
-                Value = value;
-                DurationUsecs = timeUnits * UsecsPerTimeUnit;
-                TimeUnits = timeUnits;
-            }
-
-            /// <summary>
-            /// Gets the signal value
-            /// </summary>
-            public bool Value { get; }
-
-            /// <summary>
-            /// Gets the duration microseconds.
-            /// </summary>
-            public long DurationUsecs { get; }
-
-            /// <summary>
-            /// Gets the time units.
-            /// </summary>
-            public long TimeUnits { get; }
-        }
-
-        /// <summary>
-        /// Provides decoding Methods for the NEC IR Protocol
+        /// Provides decoding Methods for the NEC IR Protocol.
+        /// Idea taken from here: https://www.sbprojects.net/knowledge/ir/nec.php
         /// </summary>
         public static class NecDecoder
         {
+            private const long ShortPulseLengthMin = 560 - 160;
+            private const long ShortPulseLengthMax = 560 + 140;
+
+            private const long BurstSpaceLengthMin = 9000 - 1800;
+            private const long BurstSpaceLengthMax = 9000 + 1800;
+
+            private const long BurstMarkLengthMin = 4500 - 600;
+            private const long BurstMarkLengthMax = 4500 + 600;
+
+            private const long RepeatPulseLengthMin = 2500 - 500;
+            private const long RepeatPulseLengthMax = 2500 + 500;
+
+            private const int MaxBitLength = 32;
+
             /// <summary>
             /// Decodes the IR pulses according to the NEC protocol.
             /// If the train of pulses does not match the protocol, then it returns a null byte array.
+            /// If the train of pulses is a repeat code, then it returns a 4-byte array with all bits set.
             /// </summary>
             /// <param name="pulses">The pulses.</param>
             /// <returns>The decoded bytes</returns>
             public static byte[] DecodePulses(InfraRedPulse[] pulses)
             {
-                const long ShortPulseLengthMin = 560 - 160;
-                const long ShortPulseLengthMax = 560 + 140;
-
-                const long BurstSpaceLengthMin = 9000 - 1800;
-                const long BurstSpaceLengthMax = 9000 + 1800;
-
-                const long BurstMarkLengthMin = 4500 - 600;
-                const long BurstMarkLengthMax = 4500 + 600;
-
-                const int MaxBitLength = 32;
+                // check if we have a repeat code
+                if (IsRepeatCode(pulses))
+                    return new byte[] { 0xFF, 0xFF, 0xFF, 0xFF };
 
                 // from here: https://www.sbprojects.net/knowledge/ir/nec.php
                 var startPulseIndex = -1;
 
-                // The first thing we look for is the ACG Space (1) which should be around 9ms
+                // The first thing we look for is the ACG (1) which should be around 9ms
                 for (var pulseIndex = 0; pulseIndex < pulses.Length; pulseIndex++)
                 {
                     var p = pulses[pulseIndex];
-                    if (p.Value == Space && p.DurationUsecs >= BurstSpaceLengthMin && p.DurationUsecs <= BurstSpaceLengthMax)
+                    if (p.Value == true && p.DurationUsecs >= BurstSpaceLengthMin && p.DurationUsecs <= BurstSpaceLengthMax)
                     {
                         startPulseIndex = pulseIndex;
                         break;
                     }
                 }
 
-                // Return a null result if we could not find ACG Space (1)
+                // Return a null result if we could not find ACG (1)
                 if (startPulseIndex == -1)
                     return null;
                 else
                     startPulseIndex += 1;
 
-                // Find the first 3900 to 5000 Mark (0 value, 4.5 Millisecond)
+                // Find the first 0 value, 4.5 Millisecond
                 for (var pulseIndex = startPulseIndex; pulseIndex < pulses.Length; pulseIndex++)
                 {
                     var p = pulses[pulseIndex];
                     startPulseIndex = -1;
-                    if (p.Value == Mark && p.DurationUsecs >= BurstMarkLengthMin && p.DurationUsecs <= BurstMarkLengthMax)
+                    if (p.Value == false && p.DurationUsecs >= BurstMarkLengthMin && p.DurationUsecs <= BurstMarkLengthMax)
                     {
                         startPulseIndex = pulseIndex;
                         break;
@@ -446,6 +321,88 @@
                 bits.CopyTo(result, 0);
                 return result;
             }
+
+            /// <summary>
+            /// Determines whether the set of pulses represent a repeat code
+            /// </summary>
+            /// <param name="pulses">The pulses.</param>
+            /// <returns>
+            ///   <c>true</c> if the train of pulses represents an NEC repeat code.
+            /// </returns>
+            public static bool IsRepeatCode(InfraRedPulse[] pulses)
+            {
+                if (pulses.Length != 4) return false;
+                var trainLength = pulses.Sum(s => s.DurationUsecs);
+                if (trainLength.IsBetween(12000, 120000) == false)
+                    return false;
+
+                var startPulseIndex = -1;
+
+                // The first thing we look for is the ACG (1) which should be around 9ms
+                for (var pulseIndex = 0; pulseIndex < pulses.Length; pulseIndex++)
+                {
+                    var p = pulses[pulseIndex];
+                    if (p.Value == true && p.DurationUsecs >= BurstSpaceLengthMin && p.DurationUsecs <= BurstSpaceLengthMax)
+                    {
+                        startPulseIndex = pulseIndex;
+                        break;
+                    }
+                }
+
+                if (startPulseIndex == -1)
+                    return false;
+
+                if (startPulseIndex + 2 >= pulses.Length)
+                    return false;
+
+                // Check the next pulse is a 2.5ms low value
+                var p1 = pulses[startPulseIndex + 1];
+                if (p1.Value == true || p1.DurationUsecs.IsBetween(RepeatPulseLengthMin, RepeatPulseLengthMax) == false)
+                    return false;
+
+                // Check the next pulse is a 560 microsecond high value
+                var p2 = pulses[startPulseIndex + 2];
+                if (p2.Value == false || p2.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax) == false)
+                    return false;
+
+                // All checks passed. Looks like it really is a repeat code
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Represents data of an infrared pulse
+        /// </summary>
+        public class InfraRedPulse
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="InfraRedPulse"/> class.
+            /// </summary>
+            /// <param name="value">if set to <c>true</c> [value].</param>
+            /// <param name="durationUsecs">The duration usecs.</param>
+            internal InfraRedPulse(bool value, long durationUsecs)
+            {
+                Value = value;
+                DurationUsecs = durationUsecs;
+            }
+
+            /// <summary>
+            /// Prevents a default instance of the <see cref="InfraRedPulse"/> class from being created.
+            /// </summary>
+            private InfraRedPulse()
+            {
+                // placeholder
+            }
+
+            /// <summary>
+            /// Gets the signal value
+            /// </summary>
+            public bool Value { get; }
+
+            /// <summary>
+            /// Gets the duration microseconds.
+            /// </summary>
+            public long DurationUsecs { get; }
         }
 
         /// <summary>
@@ -454,11 +411,16 @@
         /// <seealso cref="EventArgs" />
         public class InfraRedSensorDataEventArgs : EventArgs
         {
-            internal InfraRedSensorDataEventArgs(InfraRedPulse[] pulses, ReceiverStates state, long trainDurationUsecs)
+            /// <summary>
+            /// Initializes a new instance of the <see cref="InfraRedSensorDataEventArgs" /> class.
+            /// </summary>
+            /// <param name="pulses">The pulses.</param>
+            /// <param name="flushReason">The state.</param>
+            internal InfraRedSensorDataEventArgs(InfraRedPulse[] pulses, ReceiverFlushReason flushReason)
             {
                 Pulses = pulses;
-                State = state;
-                TrainDurationUsecs = trainDurationUsecs;
+                FlushReason = flushReason;
+                TrainDurationUsecs = pulses.Sum(s => s.DurationUsecs);
             }
 
             /// <summary>
@@ -469,7 +431,7 @@
             /// <summary>
             /// Gets the state of the receiver that triggered the event.
             /// </summary>
-            public ReceiverStates State { get; }
+            public ReceiverFlushReason FlushReason { get; }
 
             /// <summary>
             /// Gets the pulse train duration in microseconds.
@@ -492,7 +454,6 @@
             {
                 Value = pulse.Value;
                 DurationUsecs = pulse.DurationUsecs;
-                TimeUnits = pulse.TimeUnits;
             }
 
             /// <summary>
@@ -513,11 +474,6 @@
             /// Gets the duration microseconds.
             /// </summary>
             public long DurationUsecs { get; }
-
-            /// <summary>
-            /// Gets the time units.
-            /// </summary>
-            public long TimeUnits { get; }
         }
     }
 }

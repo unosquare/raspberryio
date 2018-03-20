@@ -7,8 +7,9 @@
     using Swan;
     using System;
     using System.IO;
-
-    using System.Text;    using System.Linq;    using System.Threading;
+    using System.Linq;
+    using System.Text;
+    using System.Threading;
 
     /// <summary>
     /// Main entry point class
@@ -28,12 +29,15 @@
             try
             {
                 // A set of very simple tests:
+                TestSystemInfo();
+
                 // TestCaptureImage();
                 // TestCaptureVideo();
                 // TestLedStripGraphics();
                 // TestLedStrip();
                 // TestTag();
-                TestSystemInfo();
+                // TestLedBlinking();
+                TestHardwarePwm();
                 TestInfraredSensor();
             }
             catch (Exception ex)
@@ -56,22 +60,28 @@
         {
             var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
             var sensor = new InfraRedSensorHX1838(inputPin);
+
             sensor.DataAvailable += (s, e) =>
             {
-                if (e.TrainDurationUsecs < 50000)
-                {
-                    // $"Spurious Signal of {e.TrainDurationMicroseconds} micro seconds.".Error("IR");
-                    return;
-                }
-
                 var necData = InfraRedSensorHX1838.NecDecoder.DecodePulses(e.Pulses);
                 var debugData = InfraRedSensorHX1838.DebugPulses(e.Pulses);
 
-                $"Pulses Length: {e.Pulses.Length}; Duration: {e.TrainDurationUsecs}; Reason: {e.State}".Warn("IR");
                 if (necData != null)
-                    ("NEC Raw Data: " + BitConverter.ToString(necData).Replace("-", " ")).Warn("IR");
-
-                debugData.Info("IR");
+                {
+                    $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
+                }
+                else
+                {
+                    if (e.Pulses.Length >= 4)
+                    {
+                        $"Pulses  Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
+                        debugData.Info("IR");
+                    }
+                    else
+                    {
+                        $"Garbage Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
+                    }
+                }
             };
 
             Console.ReadLine();
@@ -138,10 +148,12 @@
         public static void TestLedBlinking()
         {
             // Get a reference to the pin you need to use.
-            // All 3 methods below are exactly equivalent
+            // All methods below are exactly equivalent and reference the same pin
             var blinkingPin = Pi.Gpio[0];
             blinkingPin = Pi.Gpio[WiringPiPin.Pin00];
             blinkingPin = Pi.Gpio.Pin00;
+            blinkingPin = Pi.Gpio.HeaderP1[11];
+            blinkingPin = Pi.Gpio[P1.Gpio17];
 
             // Configure the pin as an output
             blinkingPin.PinMode = GpioPinDriveMode.Output;
@@ -154,6 +166,94 @@
                 blinkingPin.Write(isOn);
                 Thread.Sleep(500);
             }
+        }
+
+        /// <summary>
+        /// Tests the hardware PWM.
+        /// </summary>
+        public static void TestHardwarePwm()
+        {
+            // TODO: Check out:
+            // https://raspberrypi.stackexchange.com/questions/4906/control-hardware-pwm-frequency
+            // https://stackoverflow.com/questions/20081286/controlling-a-servo-with-raspberry-pi-using-the-hardware-pwm-with-wiringpi
+            var pin = Pi.Gpio[P1.Gpio18];
+            pin.PinMode = GpioPinDriveMode.PwmOutput;
+            pin.PwmMode = PwmMode.MarkSign;
+            pin.PwmRegister = 0;
+            pin.PwmClockDivisor = 1; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
+            pin.PwmRange = 8000; // Range valid values I still need to investigate
+            pin.PwmRegister = 10; // (int)(pin.PwmRange * 0.95); // This goes from 0 to 1024
+
+            while (true)
+            {
+                var range = $"Range: (0 to exit)".ReadNumber(0);
+                if (range <= 0) break;
+                var value = $"Value: (1 to 1024; 0 to exit)".ReadNumber(0);
+                if (value <= 0) break;
+
+                pin.PwmRange = (uint)range;
+                pin.PwmRegister = value;
+
+                var divider = pin.PwmClockDivisor == 1 ? 4096 : pin.PwmClockDivisor;
+                var frequency = (double)Pi.Gpio.PwmBaseFrequency / divider / pin.PwmRange;
+                var dutyCycle = (double)pin.PwmRegister / pin.PwmRange;
+                var period = 1d / frequency;
+                var pulseLength = dutyCycle * period;
+
+                $"Divider: {divider,6:0} | Frequency: {frequency,9:0.000} Hz | Period: {period,8:0.000} s | Pulse: {pulseLength,7:0.000000} s | Duty Cycle: {dutyCycle:p}".Info("PWM");
+            }
+
+            const int MinValue = 53;
+            const int MaxValue = 250;
+
+            while (true)
+            {
+                var userPwm = $"Enter values {MinValue} to {MaxValue}".ReadNumber(0);
+                if (userPwm <= 0)
+                    break;
+
+                pin.PwmRegister = userPwm;
+            }
+
+            var currentValue = MinValue;
+            var increment = 1;
+            var exitRequested = false;
+            var workerExited = new ManualResetEventSlim(false);
+
+            ThreadPool.QueueUserWorkItem((s) =>
+            {
+                while (exitRequested == false)
+                {
+                    pin.PwmRegister = currentValue;
+                    var range = (double)(MaxValue - MinValue);
+                    var angle = 180d * (currentValue - MinValue) / range;
+                    $"Pulse Value: {currentValue,4}; Angle: {angle,6:0.00}".Info("PWM");
+
+                    if (currentValue == MinValue || currentValue == MaxValue)
+                        Pi.Timing.SleepMicroseconds(1000000);
+
+                    currentValue += increment;
+                    if (currentValue >= MaxValue)
+                    {
+                        currentValue = MaxValue;
+                        increment = -1;
+                    }
+                    else if (currentValue <= MinValue)
+                    {
+                        currentValue = MinValue;
+                        increment = 1;
+                    }
+
+                    Pi.Timing.SleepMicroseconds(10000);
+                }
+
+                workerExited.Set();
+            });
+
+            Console.ReadKey(true);
+            exitRequested = true;
+            workerExited.Wait();
+            pin.PwmRegister = MaxValue;
         }
 
         private static void TestSystemInfo()
@@ -251,56 +351,6 @@
             foreach (var color in colors)
             {
                 $"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}".Info();
-            }
-        }
-
-        private static void Tag()
-        {
-            var mfrc522 = new Mfrc522Controller();
-
-            while (true)
-            {
-                // Scan for cards
-                var result = mfrc522.Request(Mfrc522Controller.PICC_REQIDL);
-                var status = result.Item1;
-
-                // If a card is found
-                if (status == Mfrc522Controller.MI_OK)
-                {
-                    "Card detected".Info();
-                }
-
-                // Get the UID of the card
-                var resultAnticoll = mfrc522.Anticoll();
-                var status2 = resultAnticoll.status;
-                var uid = resultAnticoll.data;
-
-                // If we have the UID, continue
-                if (status2 == Mfrc522Controller.MI_OK)
-                {
-                    // Print UID
-                    $"Card read UID: {uid[0]},{uid[1]},{uid[2]},{uid[3]}".Info();
-
-                    // This is the default key for authentication
-                    var key = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-
-                    // Select the scanned tag
-                    mfrc522.SelectTag(uid);
-
-                    // Authenticate
-                    var status3 = mfrc522.Auth(Mfrc522Controller.PICC_AUTHENT1A, 8, key, uid);
-
-                    // Check if authenticated
-                    if (status3 == Mfrc522Controller.MI_OK)
-                    {
-                        mfrc522.ReadSpi(8);
-                        mfrc522.StopCrypto1();
-                    }
-                    else
-                    {
-                        "Authentication error".Error();
-                    }
-                }
             }
         }
     }

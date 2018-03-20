@@ -8,27 +8,27 @@
     public class NetworkAdapterInfo
     {
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets the name.
         /// </summary>
         public string Name { get; internal set; }
 
         /// <summary>
-        /// Gets or sets the i PV4.
+        /// Gets the IP V4 address.
         /// </summary>
         public IPAddress IPv4 { get; internal set; }
 
         /// <summary>
-        /// Gets or sets the i PV6.
+        /// Gets the IP V6 address.
         /// </summary>
         public IPAddress IPv6 { get; internal set; }
 
         /// <summary>
-        /// Gets or sets the name of the access point.
+        /// Gets the name of the access point.
         /// </summary>
         public string AccessPointName { get; internal set; }
 
         /// <summary>
-        /// Gets or sets the mac address.
+        /// Gets the MAC (Physical) address.
         /// </summary>
         public string MacAddress { get; internal set; }
 
