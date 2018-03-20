@@ -7,7 +7,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading;
-    using Unosquare.Swan;
+    using Swan;
 
     /// <summary>
     /// Implements a digital infrared sensor using the HX1838 38kHz digital receiver.
@@ -17,8 +17,8 @@
     /// </summary>
     public sealed class InfraRedSensorHX1838 : IDisposable
     {
-        private bool IsDisposed = false; // To detect redundant calls
-        private volatile bool IsInReadInterrupt = false;
+        private bool _isDisposed; // To detect redundant calls
+        private volatile bool _isInReadInterrupt;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InfraRedSensorHX1838"/> class.
@@ -95,23 +95,9 @@
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
-        }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        private void Dispose(bool disposing)
-        {
-            if (!IsDisposed)
+            if (!_isDisposed)
             {
-                if (disposing)
-                {
-                    // Dispose of Managed objects
-                }
-
-                IsDisposed = true;
+                _isDisposed = true;
             }
         }
 
@@ -121,11 +107,11 @@
         private void ReadInterruptDoWork()
         {
             // Define some constants
-            const long GapUsecs = 5000;
-            const long MaxElapsedMicroseconds = 250000;
-            const long MinElapsedMicroseconds = 50;
-            const int IdleCheckIntervalMilliSecs = 32;
-            const int MaxPulseCount = 128;
+            const long gapUsecs = 5000;
+            const long maxElapsedMicroseconds = 250000;
+            const long minElapsedMicroseconds = 50;
+            const int idleCheckIntervalMilliSecs = 32;
+            const int maxPulseCount = 128;
 
             // Setup the input pin
             InputPin.PinMode = GpioPinDriveMode.Input;
@@ -135,18 +121,18 @@
             var pulseTimer = new Native.HighResolutionTimer();
             var idleTimer = new Native.HighResolutionTimer();
 
-            var pulseBuffer = new List<InfraRedPulse>(MaxPulseCount);
+            var pulseBuffer = new List<InfraRedPulse>(maxPulseCount);
             var syncLock = new object();
 
             var idleChecker = default(Timer);
             idleChecker = new Timer((s) =>
             {
-                if (IsInReadInterrupt)
+                if (_isInReadInterrupt)
                     return;
 
                 lock (syncLock)
                 {
-                    if (idleTimer.ElapsedMicroseconds < GapUsecs || idleTimer.IsRunning == false || pulseBuffer.Count <= 0)
+                    if (idleTimer.ElapsedMicroseconds < gapUsecs || idleTimer.IsRunning == false || pulseBuffer.Count <= 0)
                         return;
 
                     OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverFlushReason.Idle);
@@ -157,41 +143,41 @@
 
             InputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
             {
-                IsInReadInterrupt = true;
+                _isInReadInterrupt = true;
 
                 lock (syncLock)
                 {
                     idleTimer.Restart();
-                    idleChecker.Change(IdleCheckIntervalMilliSecs, IdleCheckIntervalMilliSecs);
+                    idleChecker.Change(idleCheckIntervalMilliSecs, idleCheckIntervalMilliSecs);
 
                     var currentLength = pulseTimer.ElapsedMicroseconds;
                     var currentValue = InputPin.Read();
-                    var pulse = new InfraRedPulse(currentValue, currentLength.Clamp(MinElapsedMicroseconds, MaxElapsedMicroseconds));
+                    var pulse = new InfraRedPulse(currentValue, currentLength.Clamp(minElapsedMicroseconds, maxElapsedMicroseconds));
 
                     // Restart for the next bit coming in
                     pulseTimer.Restart();
 
                     // Do not add an idling pulse
-                    if (pulse.DurationUsecs < MaxElapsedMicroseconds)
+                    if (pulse.DurationUsecs < maxElapsedMicroseconds)
                     {
                         pulseBuffer.Add(pulse);
                         OnInfraredSensorPulseAvailable(pulse);
                     }
 
-                    if (pulseBuffer.Count >= MaxPulseCount)
+                    if (pulseBuffer.Count >= maxPulseCount)
                     {
                         OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverFlushReason.Overflow);
                         pulseBuffer.Clear();
                     }
                 }
 
-                IsInReadInterrupt = false;
+                _isInReadInterrupt = false;
             });
 
             // Get the timers started
             pulseTimer.Start();
             idleTimer.Start();
-            idleChecker.Change(0, IdleCheckIntervalMilliSecs);
+            idleChecker.Change(0, idleCheckIntervalMilliSecs);
         }
 
         /// <summary>

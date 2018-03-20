@@ -186,9 +186,9 @@
 
             while (true)
             {
-                var range = $"Range: (0 to exit)".ReadNumber(0);
+                var range = "Range: (0 to exit)".ReadNumber(0);
                 if (range <= 0) break;
-                var value = $"Value: (1 to 1024; 0 to exit)".ReadNumber(0);
+                var value = "Value: (1 to 1024; 0 to exit)".ReadNumber(0);
                 if (value <= 0) break;
 
                 pin.PwmRange = (uint)range;
