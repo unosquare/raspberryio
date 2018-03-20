@@ -180,10 +180,28 @@
             pin.PinMode = GpioPinDriveMode.PwmOutput;
             pin.PwmMode = PwmMode.MarkSign;
             pin.PwmRegister = 0;
-            pin.PwmClockDivisor = 192;
-            pin.PwmRange = 2000;
+            pin.PwmClockDivisor = 1; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
+            pin.PwmRange = 8000; // Range valid values I still need to investigate
+            pin.PwmRegister = 10; // (int)(pin.PwmRange * 0.95); // This goes from 0 to 1024
 
-            var frequency = Pi.Gpio.PwmBaseFrequency / pin.PwmClockDivisor / pin.PwmRange;
+            while (true)
+            {
+                var range = $"Range: (0 to exit)".ReadNumber(0);
+                if (range <= 0) break;
+                var value = $"Value: (1 to 1024; 0 to exit)".ReadNumber(0);
+                if (value <= 0) break;
+
+                pin.PwmRange = (uint)range;
+                pin.PwmRegister = value;
+
+                var divider = pin.PwmClockDivisor == 1 ? 4096 : pin.PwmClockDivisor;
+                var frequency = (double)Pi.Gpio.PwmBaseFrequency / divider / pin.PwmRange;
+                var dutyCycle = (double)pin.PwmRegister / pin.PwmRange;
+                var period = 1d / frequency;
+                var pulseLength = dutyCycle * period;
+
+                $"Divider: {divider,6:0} | Frequency: {frequency,9:0.000} Hz | Period: {period,8:0.000} s | Pulse: {pulseLength,7:0.000000} s | Duty Cycle: {dutyCycle:p}".Info("PWM");
+            }
 
             const int MinValue = 53;
             const int MaxValue = 250;
