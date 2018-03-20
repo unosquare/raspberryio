@@ -3697,6 +3697,22 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CBus.GetDeviceById
   nameWithType: I2CBus.GetDeviceById
+- uid: Unosquare.RaspberryIO.Gpio.I2CBus.Item(System.Int32)
+  name: Item[Int32]
+  href: api/Unosquare.RaspberryIO.Gpio.I2CBus.html#Unosquare_RaspberryIO_Gpio_I2CBus_Item_System_Int32_
+  commentId: P:Unosquare.RaspberryIO.Gpio.I2CBus.Item(System.Int32)
+  name.vb: Item(Int32)
+  fullName: Unosquare.RaspberryIO.Gpio.I2CBus.Item[System.Int32]
+  fullName.vb: Unosquare.RaspberryIO.Gpio.I2CBus.Item(System.Int32)
+  nameWithType: I2CBus.Item[Int32]
+  nameWithType.vb: I2CBus.Item(Int32)
+- uid: Unosquare.RaspberryIO.Gpio.I2CBus.Item*
+  name: Item
+  href: api/Unosquare.RaspberryIO.Gpio.I2CBus.html#Unosquare_RaspberryIO_Gpio_I2CBus_Item_
+  commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CBus.Item
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Gpio.I2CBus.Item
+  nameWithType: I2CBus.Item
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice
   name: I2CDevice
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html
