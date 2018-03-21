@@ -9,7 +9,7 @@
     /// </summary>
     public class Button
     {
-        public const ulong InterruptTime = 500;
+        internal const ulong InterruptTime = 500;
 
         private readonly GpioPin _gpioPin;
         private ulong _pressedLastInterrupt;

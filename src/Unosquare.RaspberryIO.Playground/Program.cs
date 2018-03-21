@@ -37,8 +37,8 @@
                 // TestLedStrip();
                 // TestTag();
                 // TestLedBlinking();
-                TestHardwarePwm();
-                TestInfraredSensor();
+                // TestHardwarePwm();
+                // TestInfraredSensor();
             }
             catch (Exception ex)
             {
@@ -203,19 +203,19 @@
                 $"Divider: {divider,6:0} | Frequency: {frequency,9:0.000} Hz | Period: {period,8:0.000} s | Pulse: {pulseLength,7:0.000000} s | Duty Cycle: {dutyCycle:p}".Info("PWM");
             }
 
-            const int MinValue = 53;
-            const int MaxValue = 250;
+            const int minValue = 53;
+            const int maxValue = 250;
 
             while (true)
             {
-                var userPwm = $"Enter values {MinValue} to {MaxValue}".ReadNumber(0);
+                var userPwm = $"Enter values {minValue} to {maxValue}".ReadNumber(0);
                 if (userPwm <= 0)
                     break;
 
                 pin.PwmRegister = userPwm;
             }
 
-            var currentValue = MinValue;
+            var currentValue = minValue;
             var increment = 1;
             var exitRequested = false;
             var workerExited = new ManualResetEventSlim(false);
@@ -225,22 +225,22 @@
                 while (exitRequested == false)
                 {
                     pin.PwmRegister = currentValue;
-                    var range = (double)(MaxValue - MinValue);
-                    var angle = 180d * (currentValue - MinValue) / range;
+                    var range = (double)(maxValue - minValue);
+                    var angle = 180d * (currentValue - minValue) / range;
                     $"Pulse Value: {currentValue,4}; Angle: {angle,6:0.00}".Info("PWM");
 
-                    if (currentValue == MinValue || currentValue == MaxValue)
+                    if (currentValue == minValue || currentValue == maxValue)
                         Pi.Timing.SleepMicroseconds(1000000);
 
                     currentValue += increment;
-                    if (currentValue >= MaxValue)
+                    if (currentValue >= maxValue)
                     {
-                        currentValue = MaxValue;
+                        currentValue = maxValue;
                         increment = -1;
                     }
-                    else if (currentValue <= MinValue)
+                    else if (currentValue <= minValue)
                     {
-                        currentValue = MinValue;
+                        currentValue = minValue;
                         increment = 1;
                     }
 
@@ -253,7 +253,7 @@
             Console.ReadKey(true);
             exitRequested = true;
             workerExited.Wait();
-            pin.PwmRegister = MaxValue;
+            pin.PwmRegister = maxValue;
         }
 
         private static void TestSystemInfo()
