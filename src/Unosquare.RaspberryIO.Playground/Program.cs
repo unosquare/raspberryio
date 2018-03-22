@@ -6,6 +6,7 @@
     using Peripherals;
     using Swan;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -37,8 +38,8 @@
                 // TestLedStrip();
                 // TestTag();
                 // TestLedBlinking();
+                // TestInfraredSensor();
                 TestHardwarePwm();
-                TestInfraredSensor();
             }
             catch (Exception ex)
             {
@@ -179,81 +180,32 @@
             var pin = Pi.Gpio[P1.Gpio18];
             pin.PinMode = GpioPinDriveMode.PwmOutput;
             pin.PwmMode = PwmMode.MarkSign;
-            pin.PwmRegister = 0;
-            pin.PwmClockDivisor = 1; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
-            pin.PwmRange = 8000; // Range valid values I still need to investigate
-            pin.PwmRegister = 10; // (int)(pin.PwmRange * 0.95); // This goes from 0 to 1024
+            pin.PwmClockDivisor = 3; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
+            pin.PwmRange = 800; // Range valid values I still need to investigate
+            pin.PwmRegister = 600; // (int)(pin.PwmRange * 0.95); // This goes from 0 to 1024
 
-            while (true)
+            var probe = new LogicProbe(Pi.Gpio[P1.Gpio17]);
+            var probeBuffer = new List<LogicProbe.ProbeDataEventArgs>(1024);
+            probe.ProbeDataAvailable += (s, e) =>
             {
-                var range = $"Range: (0 to exit)".ReadNumber(0);
-                if (range <= 0) break;
-                var value = $"Value: (1 to 1024; 0 to exit)".ReadNumber(0);
-                if (value <= 0) break;
-
-                pin.PwmRange = (uint)range;
-                pin.PwmRegister = value;
-
-                var divider = pin.PwmClockDivisor == 1 ? 4096 : pin.PwmClockDivisor;
-                var frequency = (double)Pi.Gpio.PwmBaseFrequency / divider / pin.PwmRange;
-                var dutyCycle = (double)pin.PwmRegister / pin.PwmRange;
-                var period = 1d / frequency;
-                var pulseLength = dutyCycle * period;
-
-                $"Divider: {divider,6:0} | Frequency: {frequency,9:0.000} Hz | Period: {period,8:0.000} s | Pulse: {pulseLength,7:0.000000} s | Duty Cycle: {dutyCycle:p}".Info("PWM");
-            }
-
-            const int MinValue = 53;
-            const int MaxValue = 250;
-
-            while (true)
-            {
-                var userPwm = $"Enter values {MinValue} to {MaxValue}".ReadNumber(0);
-                if (userPwm <= 0)
-                    break;
-
-                pin.PwmRegister = userPwm;
-            }
-
-            var currentValue = MinValue;
-            var increment = 1;
-            var exitRequested = false;
-            var workerExited = new ManualResetEventSlim(false);
-
-            ThreadPool.QueueUserWorkItem((s) =>
-            {
-                while (exitRequested == false)
+                probeBuffer.Add(e);
+                if (probeBuffer.Count >= 64)
                 {
-                    pin.PwmRegister = currentValue;
-                    var range = (double)(MaxValue - MinValue);
-                    var angle = 180d * (currentValue - MinValue) / range;
-                    $"Pulse Value: {currentValue,4}; Angle: {angle,6:0.00}".Info("PWM");
-
-                    if (currentValue == MinValue || currentValue == MaxValue)
-                        Pi.Timing.SleepMicroseconds(1000000);
-
-                    currentValue += increment;
-                    if (currentValue >= MaxValue)
-                    {
-                        currentValue = MaxValue;
-                        increment = -1;
-                    }
-                    else if (currentValue <= MinValue)
-                    {
-                        currentValue = MinValue;
-                        increment = 1;
-                    }
-
-                    Pi.Timing.SleepMicroseconds(10000);
+                    probe.Stop();
                 }
+            };
 
-                workerExited.Set();
-            });
+            probe.Start();
+            while (probe.IsRunning)
+                Thread.Sleep(15);
 
-            Console.ReadKey(true);
-            exitRequested = true;
-            workerExited.Wait();
-            pin.PwmRegister = MaxValue;
+            Thread.Sleep(1000);
+            foreach (var entry in probeBuffer)
+            {
+                Console.WriteLine(entry.ToString());
+            }
+
+            Console.WriteLine("finished");
         }
 
         private static void TestSystemInfo()
