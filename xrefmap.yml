@@ -2478,19 +2478,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.GetEnumerator
   nameWithType: GpioController.GetEnumerator
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber(System.Int32)
-  name: GetGpioPinByBcmPinNumber(Int32)
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_GetGpioPinByBcmPinNumber_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber(System.Int32)
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber(System.Int32)
-  nameWithType: GpioController.GetGpioPinByBcmPinNumber(Int32)
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber*
-  name: GetGpioPinByBcmPinNumber
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_GetGpioPinByBcmPinNumber_
-  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber
-  nameWithType: GpioController.GetGpioPinByBcmPinNumber
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
   name: HeaderP1
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_HeaderP1
