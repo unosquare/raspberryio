@@ -180,7 +180,7 @@
             pin.PinMode = GpioPinDriveMode.PwmOutput;
             pin.PwmMode = PwmMode.MarkSign;
             pin.PwmRegister = 0;
-            pin.PwmClockDivisor = 1; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
+            pin.PwmClockDivisor = 1920; // 1; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
             pin.PwmRange = 8000; // Range valid values I still need to investigate
             pin.PwmRegister = 10; // (int)(pin.PwmRange * 0.95); // This goes from 0 to 1024
 
@@ -188,7 +188,7 @@
             {
                 var range = $"Range: (0 to exit)".ReadNumber(0);
                 if (range <= 0) break;
-                var value = $"Value: (1 to 1024; 0 to exit)".ReadNumber(0);
+                var value = $"Value: (1 to 1024)".ReadNumber((int)(range * .1).Clamp(1, 1024));
                 if (value <= 0) break;
 
                 pin.PwmRange = (uint)range;
