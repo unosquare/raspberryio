@@ -38,8 +38,8 @@
                 // TestLedStrip();
                 // TestTag();
                 // TestLedBlinking();
-                // TestInfraredSensor();
-                TestHardwarePwm();
+                // TestHardwarePwm();
+                TestInfraredSensor();
             }
             catch (Exception ex)
             {
@@ -59,28 +59,36 @@
         /// </summary>
         public static void TestInfraredSensor()
         {
-            var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
-            var sensor = new InfraRedSensorHX1838(inputPin);
+            var inputPin = Pi.Gpio[P1.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
+            var sensor = new InfraredSensor(inputPin, true);
+            var emitter = new InfraredEmitter(Pi.Gpio[P1.Gpio18]);
+            var pulseLengths = new long[] { 9000, 4500, 2250, 1687, 675, 225 };
 
             sensor.DataAvailable += (s, e) =>
             {
-                var necData = InfraRedSensorHX1838.NecDecoder.DecodePulses(e.Pulses);
-                var debugData = InfraRedSensorHX1838.DebugPulses(e.Pulses);
-
+                var necData = InfraredSensor.NecDecoder.DecodePulses(e.Pulses);
                 if (necData != null)
                 {
                     $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
+
+                    // Test repeater signal
+                    var outputPulses = InfraredEmitter.SnapPulseLengths(e.Pulses, pulseLengths);
+                    emitter.Send(outputPulses);
+                    var debugData = InfraredSensor.DebugPulses(outputPulses);
+                    $"TX       Length: {outputPulses.Length,5}".Warn("IR");
+                    debugData.Info("IR");
                 }
                 else
                 {
                     if (e.Pulses.Length >= 4)
                     {
-                        $"Pulses  Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
+                        var debugData = InfraredSensor.DebugPulses(e.Pulses);
+                        $"RX    Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
                         debugData.Info("IR");
                     }
                     else
                     {
-                        $"Garbage Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
+                        $"RX (Garbage): {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
                     }
                 }
             };

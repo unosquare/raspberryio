@@ -10,22 +10,25 @@
     using Unosquare.Swan;
 
     /// <summary>
-    /// Implements a digital infrared sensor using the HX1838 38kHz digital receiver.
+    /// Implements a digital infrared sensor using the HX1838/VS1838 or the TSOP38238 38kHz digital receiver.
     /// It registers an interrupt on the pin and fires data events asynchronously to keep CPU usage low.
     /// Some primitive ideas taken from https://github.com/adafruit/IR-Commander/blob/master/ircommander.pde
     /// and https://github.com/z3t0/Arduino-IRremote/blob/master/IRremote.cpp
     /// </summary>
-    public sealed class InfraRedSensorHX1838 : IDisposable
+    public sealed class InfraredSensor : IDisposable
     {
         private bool IsDisposed = false; // To detect redundant calls
         private volatile bool IsInReadInterrupt = false;
+        private volatile bool CurrentValue = false;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InfraRedSensorHX1838"/> class.
+        /// Initializes a new instance of the <see cref="InfraredSensor" /> class.
         /// </summary>
         /// <param name="inputPin">The input pin.</param>
-        public InfraRedSensorHX1838(GpioPin inputPin)
+        /// <param name="isActiveLow">if set to <c>true</c> [is active low].</param>
+        public InfraredSensor(GpioPin inputPin, bool isActiveLow)
         {
+            IsActiveLow = isActiveLow;
             InputPin = inputPin;
             ReadInterruptDoWork();
         }
@@ -33,12 +36,12 @@
         /// <summary>
         /// Occurs when a single sensor pulse is available.
         /// </summary>
-        public event EventHandler<InfraRedSensorPulseEventArgs> PulseAvailable;
+        public event EventHandler<InfraredSensorPulseEventArgs> PulseAvailable;
 
         /// <summary>
         /// Occurs when a data buffer is available.
         /// </summary>
-        public event EventHandler<InfraRedSensorDataEventArgs> DataAvailable;
+        public event EventHandler<InfraredSensorDataEventArgs> DataAvailable;
 
         /// <summary>
         /// Enumerates the different reasons why the reaciver flushed the buffer.
@@ -62,12 +65,17 @@
         public GpioPin InputPin { get; }
 
         /// <summary>
+        /// Gets a value indicating whether the sensor is active low.
+        /// </summary>
+        public bool IsActiveLow { get; }
+
+        /// <summary>
         /// Creates a string representing all the pulses passed to this method.
         /// </summary>
         /// <param name="pulses">The pulses.</param>
         /// <param name="groupSize">Number of pulse data to output per line.</param>
         /// <returns>A string representing the pulses</returns>
-        public static string DebugPulses(InfraRedPulse[] pulses, int groupSize = 4)
+        public static string DebugPulses(InfraredPulse[] pulses, int groupSize = 4)
         {
             var builder = new StringBuilder(pulses.Length * 24);
             builder.AppendLine();
@@ -135,7 +143,7 @@
             var pulseTimer = new Native.HighResolutionTimer();
             var idleTimer = new Native.HighResolutionTimer();
 
-            var pulseBuffer = new List<InfraRedPulse>(MaxPulseCount);
+            var pulseBuffer = new List<InfraredPulse>(MaxPulseCount);
             var syncLock = new object();
 
             var idleChecker = default(Timer);
@@ -165,11 +173,15 @@
                     idleChecker.Change(IdleCheckIntervalMilliSecs, IdleCheckIntervalMilliSecs);
 
                     var currentLength = pulseTimer.ElapsedMicroseconds;
-                    var currentValue = InputPin.Read();
-                    var pulse = new InfraRedPulse(currentValue, currentLength.Clamp(MinElapsedMicroseconds, MaxElapsedMicroseconds));
+                    var pulse = new InfraredPulse(
+                        IsActiveLow ? !CurrentValue : CurrentValue,
+                        currentLength.Clamp(MinElapsedMicroseconds, MaxElapsedMicroseconds));
 
                     // Restart for the next bit coming in
                     pulseTimer.Restart();
+
+                    // For the next value
+                    CurrentValue = InputPin.Read();
 
                     // Do not add an idling pulse
                     if (pulse.DurationUsecs < MaxElapsedMicroseconds)
@@ -198,9 +210,16 @@
         /// Called when a single infrared sensor pulse becomes available.
         /// </summary>
         /// <param name="pulse">The pulse.</param>
-        private void OnInfraredSensorPulseAvailable(InfraRedPulse pulse)
+        private void OnInfraredSensorPulseAvailable(InfraredPulse pulse)
         {
-            PulseAvailable?.Invoke(this, new InfraRedSensorPulseEventArgs(pulse));
+            if (PulseAvailable == null) return;
+
+            var args = new InfraredSensorPulseEventArgs(pulse);
+            ThreadPool.QueueUserWorkItem((a) =>
+            {
+                PulseAvailable?.Invoke(this, a as InfraredSensorPulseEventArgs);
+            },
+            args);
         }
 
         /// <summary>
@@ -208,9 +227,16 @@
         /// </summary>
         /// <param name="pulses">The pulses.</param>
         /// <param name="state">The state.</param>
-        private void OnInfraredSensorRawDataAvailable(InfraRedPulse[] pulses, ReceiverFlushReason state)
+        private void OnInfraredSensorRawDataAvailable(InfraredPulse[] pulses, ReceiverFlushReason state)
         {
-            DataAvailable?.Invoke(this, new InfraRedSensorDataEventArgs(pulses, state));
+            if (DataAvailable == null) return;
+
+            var args = new InfraredSensorDataEventArgs(pulses, state);
+            ThreadPool.QueueUserWorkItem((a) =>
+            {
+                DataAvailable?.Invoke(this, a as InfraredSensorDataEventArgs);
+            },
+            args);
         }
 
         /// <summary>
@@ -240,7 +266,7 @@
             /// </summary>
             /// <param name="pulses">The pulses.</param>
             /// <returns>The decoded bytes</returns>
-            public static byte[] DecodePulses(InfraRedPulse[] pulses)
+            public static byte[] DecodePulses(InfraredPulse[] pulses)
             {
                 // check if we have a repeat code
                 if (IsRepeatCode(pulses))
@@ -293,8 +319,8 @@
                     return null;
 
                 // preallocate the pulse references
-                var p1 = default(InfraRedPulse);
-                var p2 = default(InfraRedPulse);
+                var p1 = default(InfraredPulse);
+                var p2 = default(InfraredPulse);
 
                 // parse the bits
                 for (var pulseIndex = startPulseIndex; pulseIndex < pulses.Length - 1; pulseIndex += 2)
@@ -329,7 +355,7 @@
             /// <returns>
             ///   <c>true</c> if the train of pulses represents an NEC repeat code.
             /// </returns>
-            public static bool IsRepeatCode(InfraRedPulse[] pulses)
+            public static bool IsRepeatCode(InfraredPulse[] pulses)
             {
                 if (pulses.Length != 4) return false;
                 var trainLength = pulses.Sum(s => s.DurationUsecs);
@@ -373,23 +399,23 @@
         /// <summary>
         /// Represents data of an infrared pulse
         /// </summary>
-        public class InfraRedPulse
+        public class InfraredPulse
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="InfraRedPulse"/> class.
+            /// Initializes a new instance of the <see cref="InfraredPulse"/> class.
             /// </summary>
             /// <param name="value">if set to <c>true</c> [value].</param>
             /// <param name="durationUsecs">The duration usecs.</param>
-            internal InfraRedPulse(bool value, long durationUsecs)
+            internal InfraredPulse(bool value, long durationUsecs)
             {
                 Value = value;
                 DurationUsecs = durationUsecs;
             }
 
             /// <summary>
-            /// Prevents a default instance of the <see cref="InfraRedPulse"/> class from being created.
+            /// Prevents a default instance of the <see cref="InfraredPulse"/> class from being created.
             /// </summary>
-            private InfraRedPulse()
+            private InfraredPulse()
             {
                 // placeholder
             }
@@ -409,14 +435,14 @@
         /// Represents event arguments for when a receiver buffer is ready to be decoded.
         /// </summary>
         /// <seealso cref="EventArgs" />
-        public class InfraRedSensorDataEventArgs : EventArgs
+        public class InfraredSensorDataEventArgs : EventArgs
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="InfraRedSensorDataEventArgs" /> class.
+            /// Initializes a new instance of the <see cref="InfraredSensorDataEventArgs" /> class.
             /// </summary>
             /// <param name="pulses">The pulses.</param>
             /// <param name="flushReason">The state.</param>
-            internal InfraRedSensorDataEventArgs(InfraRedPulse[] pulses, ReceiverFlushReason flushReason)
+            internal InfraredSensorDataEventArgs(InfraredPulse[] pulses, ReceiverFlushReason flushReason)
             {
                 Pulses = pulses;
                 FlushReason = flushReason;
@@ -426,7 +452,7 @@
             /// <summary>
             /// Gets the array fo IR pulses.
             /// </summary>
-            public InfraRedPulse[] Pulses { get; }
+            public InfraredPulse[] Pulses { get; }
 
             /// <summary>
             /// Gets the state of the receiver that triggered the event.
@@ -443,13 +469,13 @@
         /// Contains the raw sensor data event arguments
         /// </summary>
         /// <seealso cref="EventArgs" />
-        public class InfraRedSensorPulseEventArgs : EventArgs
+        public class InfraredSensorPulseEventArgs : EventArgs
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="InfraRedSensorPulseEventArgs" /> class.
+            /// Initializes a new instance of the <see cref="InfraredSensorPulseEventArgs" /> class.
             /// </summary>
             /// <param name="pulse">The pulse.</param>
-            internal InfraRedSensorPulseEventArgs(InfraRedPulse pulse)
+            internal InfraredSensorPulseEventArgs(InfraredPulse pulse)
                 : base()
             {
                 Value = pulse.Value;
@@ -457,9 +483,9 @@
             }
 
             /// <summary>
-            /// Prevents a default instance of the <see cref="InfraRedSensorPulseEventArgs"/> class from being created.
+            /// Prevents a default instance of the <see cref="InfraredSensorPulseEventArgs"/> class from being created.
             /// </summary>
-            private InfraRedSensorPulseEventArgs()
+            private InfraredSensorPulseEventArgs()
                 : base()
             {
                 // placeholder

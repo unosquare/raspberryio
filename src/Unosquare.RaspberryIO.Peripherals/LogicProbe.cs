@@ -69,7 +69,7 @@
         /// <summary>
         /// Event arguments representing probe data
         /// </summary>
-        /// <seealso cref="System.EventArgs" />
+        /// <seealso cref="EventArgs" />
         public sealed class ProbeDataEventArgs : EventArgs
         {
             /// <summary>
