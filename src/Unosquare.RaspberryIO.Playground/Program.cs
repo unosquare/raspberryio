@@ -39,7 +39,9 @@
                 // TestTag();
                 // TestLedBlinking();
                 // TestHardwarePwm();
-                TestInfraredSensor();
+                // TestInfraredSensor();
+                // TestServo();
+                TestTempSensor();
             }
             catch (Exception ex)
             {
@@ -55,6 +57,73 @@
         }
 
         /// <summary>
+        /// Tests the temperature sensor.
+        /// </summary>
+        public static void TestTempSensor()
+        {
+            var sensor = new TemperatureSensorAM2302(Pi.Gpio[P1.Gpio17]);
+            sensor.OnDataAvailable += (s, e) =>
+            {
+                $"Temperature: {e.TemperatureCelsius} | Humidity: {e.HumidityPercentage}".Info("AM2302");
+            };
+
+            sensor.Start();
+            Console.ReadKey(intercept: true);
+        }
+
+        /// <summary>
+        /// Tests the servo.
+        /// </summary>
+        public static void TestServo()
+        {
+            var servo = new HardwareServo(Pi.Gpio[P1.Gpio18]);
+            const double MinPulse = 0.565;
+            const double MaxPulse = 2.620;
+            var deltaPulse = 0.005;
+
+            while (true)
+            {
+                if (servo.PulseLengthMs >= MaxPulse || servo.PulseLengthMs <= MinPulse)
+                {
+                    var stopPulseLength = servo.PulseLengthMs;
+                    while (true)
+                    {
+                        var k = $"Q (increment), W (decrement) or E (scroll back)".ReadKey();
+                        if (k.Key == ConsoleKey.Q)
+                        {
+                            servo.PulseLengthMs += Math.Abs(deltaPulse);
+                            $"{servo}".Info("Servo");
+                            var angle = servo.ComputeAngle(MinPulse, MaxPulse);
+                            var pulseLength = servo.ComputePulseLength(angle, MinPulse, MaxPulse);
+                            $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
+                        }
+                        else if (k.Key == ConsoleKey.W)
+                        {
+                            servo.PulseLengthMs -= Math.Abs(deltaPulse);
+                            $"{servo}".Info("Servo");
+                            var angle = servo.ComputeAngle(MinPulse, MaxPulse);
+                            var pulseLength = servo.ComputePulseLength(angle, MinPulse, MaxPulse);
+                            $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
+                        }
+                        else if (k.Key == ConsoleKey.E)
+                        {
+                            servo.PulseLengthMs = stopPulseLength;
+                            $"{servo}".Info("Servo");
+                            break;
+                        }
+                    }
+
+                    deltaPulse *= -1;
+                    Thread.Sleep(100);
+                }
+
+                servo.PulseLengthMs += deltaPulse;
+                $"{servo} | Angle {servo.ComputeAngle(MinPulse, MaxPulse),7:0.00}".Info("Servo");
+                Pi.Timing.SleepMicroseconds(1500);
+            }
+        }
+
+        /// <summary>
         /// Tests the infrared sensor HX1838.
         /// </summary>
         public static void TestInfraredSensor()
@@ -62,7 +131,6 @@
             var inputPin = Pi.Gpio[P1.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
             var sensor = new InfraredSensor(inputPin, true);
             var emitter = new InfraredEmitter(Pi.Gpio[P1.Gpio18]);
-            var pulseLengths = new long[] { 9000, 4500, 2250, 1687, 675, 225 };
 
             sensor.DataAvailable += (s, e) =>
             {
@@ -71,8 +139,12 @@
                 {
                     $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
 
+                    if (InfraredSensor.NecDecoder.IsRepeatCode(e.Pulses))
+                        return;
+
                     // Test repeater signal
-                    var outputPulses = InfraredEmitter.SnapPulseLengths(e.Pulses, pulseLengths);
+                    var outputPulses = InfraredEmitter.NecEncoder.Encode(necData);
+
                     emitter.Send(outputPulses);
                     var debugData = InfraredSensor.DebugPulses(outputPulses);
                     $"TX       Length: {outputPulses.Length,5}".Warn("IR");
@@ -94,6 +166,7 @@
             };
 
             Console.ReadLine();
+            sensor.Dispose();
         }
 
         /// <summary>

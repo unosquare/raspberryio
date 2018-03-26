@@ -535,6 +535,8 @@
             {
                 if (ReadValue() == status)
                     return true;
+
+                // Pi.Timing.SleepMicroseconds(500);
             }
             while (hrt.ElapsedMilliseconds <= timeOutMillisecond);
 

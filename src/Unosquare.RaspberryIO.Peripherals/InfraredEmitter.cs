@@ -2,6 +2,7 @@
 {
     using Gpio;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -23,6 +24,9 @@
             OutputPin = outputPin;
             OutputPin.PinMode = GpioPinDriveMode.PwmOutput;
             OutputPin.PwmMode = PwmMode.MarkSign;
+
+            // Parameters taken from:
+            // https://mariodivece.com/blog/2018/03/21/rpi-pwm-demystified
             OutputPin.PwmClockDivisor = 5;
             OutputPin.PwmRange = 101;
             OutputPin.PwmRegister = 0;
@@ -65,6 +69,69 @@
             }
 
             OutputPin.PwmRegister = 0;
+        }
+
+        /// <summary>
+        /// Provides a NEC IR protocol data encoder.
+        /// </summary>
+        public static class NecEncoder
+        {
+            private static readonly InfraredSensor.InfraredPulse PreambleMark = new InfraredSensor.InfraredPulse(true, 9000);
+            private static readonly InfraredSensor.InfraredPulse DataSpace = new InfraredSensor.InfraredPulse(false, 4500);
+            private static readonly InfraredSensor.InfraredPulse RepeatSpace = new InfraredSensor.InfraredPulse(false, 2250);
+            private static readonly InfraredSensor.InfraredPulse ShortMark = new InfraredSensor.InfraredPulse(true, 562);
+            private static readonly InfraredSensor.InfraredPulse ShortSpace = new InfraredSensor.InfraredPulse(false, 562);
+            private static readonly InfraredSensor.InfraredPulse LongSpace = new InfraredSensor.InfraredPulse(false, 1687);
+
+            private static readonly InfraredSensor.InfraredPulse[] RepeatPulses = new InfraredSensor.InfraredPulse[]
+            {
+                PreambleMark,
+                RepeatSpace,
+                ShortMark
+            };
+
+            private static readonly InfraredSensor.InfraredPulse[] PreambleData = new InfraredSensor.InfraredPulse[]
+            {
+                PreambleMark,
+                DataSpace,
+            };
+
+            private static readonly InfraredSensor.InfraredPulse[] V0 = new InfraredSensor.InfraredPulse[]
+            {
+                ShortMark,
+                ShortSpace,
+            };
+
+            private static readonly InfraredSensor.InfraredPulse[] V1 = new InfraredSensor.InfraredPulse[]
+            {
+                ShortMark,
+                LongSpace,
+            };
+
+            /// <summary>
+            /// Encodes the specified 4-byte data into IR pulses.
+            /// </summary>
+            /// <param name="data">The data.</param>
+            /// <returns>The data ebncoded as IR pulses</returns>
+            /// <exception cref="ArgumentException">The data has to be 4 bytes long. - data</exception>
+            public static InfraredSensor.InfraredPulse[] Encode(byte[] data)
+            {
+                if (data == null || data.Length != 4)
+                    throw new ArgumentException("The data has to be 4 bytes long.", nameof(data));
+
+                var result = new List<InfraredSensor.InfraredPulse>(67);
+                result.AddRange(PreambleData);
+
+                var bits = new BitArray(data);
+                for (var bitIndex = 0; bitIndex < bits.Length; bitIndex++)
+                {
+                    var v = bits[bitIndex] ? V1 : V0;
+                    result.AddRange(v);
+                }
+
+                result.Add(ShortMark);
+                return result.ToArray();
+            }
         }
     }
 }

@@ -17,9 +17,10 @@
     /// </summary>
     public sealed class InfraredSensor : IDisposable
     {
-        private bool IsDisposed = false; // To detect redundant calls
+        private volatile bool IsDisposed = false; // To detect redundant calls
         private volatile bool IsInReadInterrupt = false;
         private volatile bool CurrentValue = false;
+        private Timer IdleChecker = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InfraredSensor" /> class.
@@ -82,14 +83,21 @@
 
             for (var i = 0; i < pulses.Length; i += groupSize)
             {
-                var p = pulses[i];
+                var p = default(InfraredPulse);
                 for (var offset = 0; offset < groupSize; offset++)
                 {
                     if (i + offset >= pulses.Length)
-                        continue;
+                        break;
 
                     p = pulses[i + offset];
-                    builder.Append($" {(p.Value ? "T" : "F")} {p.DurationUsecs,7} | ");
+                    if (p == null)
+                    {
+                        builder.Append($" ? {-1,7} | ");
+                    }
+                    else
+                    {
+                        builder.Append($" {(p.Value ? "T" : "F")} {p.DurationUsecs,7} | ");
+                    }
                 }
 
                 builder.AppendLine();
@@ -109,17 +117,16 @@
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        private void Dispose(bool disposing)
+        /// <param name="alsoManaged"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        private void Dispose(bool alsoManaged)
         {
-            if (!IsDisposed)
-            {
-                if (disposing)
-                {
-                    // Dispose of Managed objects
-                }
+            if (IsDisposed) return;
 
-                IsDisposed = true;
+            IsDisposed = true;
+            if (alsoManaged)
+            {
+                // Dispose of Managed objects
+                IdleChecker.Dispose();
             }
         }
 
@@ -146,10 +153,9 @@
             var pulseBuffer = new List<InfraredPulse>(MaxPulseCount);
             var syncLock = new object();
 
-            var idleChecker = default(Timer);
-            idleChecker = new Timer((s) =>
+            IdleChecker = new Timer((s) =>
             {
-                if (IsInReadInterrupt)
+                if (IsDisposed || IsInReadInterrupt)
                     return;
 
                 lock (syncLock)
@@ -165,12 +171,14 @@
 
             InputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
             {
+                if (IsDisposed) return;
+
                 IsInReadInterrupt = true;
 
                 lock (syncLock)
                 {
                     idleTimer.Restart();
-                    idleChecker.Change(IdleCheckIntervalMilliSecs, IdleCheckIntervalMilliSecs);
+                    IdleChecker.Change(IdleCheckIntervalMilliSecs, IdleCheckIntervalMilliSecs);
 
                     var currentLength = pulseTimer.ElapsedMicroseconds;
                     var pulse = new InfraredPulse(
@@ -203,7 +211,7 @@
             // Get the timers started
             pulseTimer.Start();
             idleTimer.Start();
-            idleChecker.Change(0, IdleCheckIntervalMilliSecs);
+            IdleChecker.Change(0, IdleCheckIntervalMilliSecs);
         }
 
         /// <summary>
@@ -212,7 +220,7 @@
         /// <param name="pulse">The pulse.</param>
         private void OnInfraredSensorPulseAvailable(InfraredPulse pulse)
         {
-            if (PulseAvailable == null) return;
+            if (IsDisposed || PulseAvailable == null) return;
 
             var args = new InfraredSensorPulseEventArgs(pulse);
             ThreadPool.QueueUserWorkItem((a) =>
@@ -229,7 +237,7 @@
         /// <param name="state">The state.</param>
         private void OnInfraredSensorRawDataAvailable(InfraredPulse[] pulses, ReceiverFlushReason state)
         {
-            if (DataAvailable == null) return;
+            if (IsDisposed || DataAvailable == null) return;
 
             var args = new InfraredSensorDataEventArgs(pulses, state);
             ThreadPool.QueueUserWorkItem((a) =>
