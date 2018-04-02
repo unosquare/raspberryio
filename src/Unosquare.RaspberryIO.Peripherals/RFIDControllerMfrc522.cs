@@ -18,8 +18,8 @@
 
         #region Private Members
 
-        private readonly SpiChannel SpiPort = null;
-        private readonly GpioPin OutputPort = null;
+        private readonly SpiChannel _spiPort;
+        private readonly GpioPin _outputPort;
 
         #endregion
 
@@ -43,8 +43,8 @@
         public RFIDControllerMfrc522(SpiChannel spiPort, int spiFrquency, GpioPin outputPort)
         {
             Pi.Spi.Channel0Frequency = spiFrquency;
-            SpiPort = spiPort;
-            OutputPort = outputPort;
+            _spiPort = spiPort;
+            _outputPort = outputPort;
             InitializeComponent();
         }
 
@@ -551,7 +551,7 @@
         {
             var address = (byte)register;
             var addressPayload = (byte)(((address << 1) & 0x7E) | 0x80);
-            var readValue = SpiPort.SendReceive(new byte[] { addressPayload, 0 });
+            var readValue = _spiPort.SendReceive(new byte[] { addressPayload, 0 });
             return readValue[1];
         }
 
@@ -563,7 +563,7 @@
         /// <returns>A standard controller response</returns>
         public RfidResponse CardSendData(Command command, byte[] sendData)
         {
-            const byte MaximumLength = 16;
+            const byte maximumLength = 16;
 
             var backData = new List<byte>();
             byte receivedBitCount = 0;
@@ -640,8 +640,8 @@
                     if (currentRegisterValue == 0)
                         currentRegisterValue = 1;
 
-                    if (currentRegisterValue > MaximumLength)
-                        currentRegisterValue = MaximumLength;
+                    if (currentRegisterValue > maximumLength)
+                        currentRegisterValue = maximumLength;
 
                     i = 0;
                     while (i < currentRegisterValue)
@@ -875,8 +875,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            OutputPort.PinMode = GpioPinDriveMode.Output;
-            OutputPort.Write(true);
+            _outputPort.PinMode = GpioPinDriveMode.Output;
+            _outputPort.Write(true);
 
             Reset();
 
@@ -897,7 +897,7 @@
         /// <param name="value">The value.</param>
         private void WriteRegister(byte register, byte value)
         {
-            SpiPort.Write(new byte[]
+            _spiPort.Write(new byte[]
             {
                 (byte)((register << 1) & 0x7E),
                 value

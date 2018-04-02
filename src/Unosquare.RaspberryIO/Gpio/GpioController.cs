@@ -500,6 +500,13 @@
         #region Helper and Init Methods
 
         /// <summary>
+        /// Gets the GPIO pin by BCM pin number.
+        /// </summary>
+        /// <param name="bcmPinNumber">The BCM pin number.</param>
+        /// <returns>The GPIO pin</returns>
+        public GpioPin GetGpioPinByBcmPinNumber(int bcmPinNumber) => this.First(pin => pin.BcmPinNumber == bcmPinNumber);
+
+        /// <summary>
         /// Converts the Wirings Pi pin number to the BCM pin number.
         /// </summary>
         /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>

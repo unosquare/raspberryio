@@ -6,21 +6,17 @@
     <OutputType>Exe</OutputType>
     <PackageId>Unosquare.RaspberryIO.Playground</PackageId>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <RuntimeIdentifiers>linux-arm;win10-x64;ubuntu.14.04-arm;ubuntu.16.04-arm</RuntimeIdentifiers>
-	  <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <SshDeployHost>172.16.17.138</SshDeployHost>
+    <SshDeployClean />
+    <SshDeployTargetPath>/home/pi/rpio-playgound</SshDeployTargetPath>
+    <SshDeployUsername>pi</SshDeployUsername>
+    <SshDeployPassword>raspberry</SshDeployPassword>
+    <SshDeployPostCommand>sudo dotnet /home/pi/rpio-playgound/Unosquare.RaspberryIO.Playground.dll</SshDeployPostCommand>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
-  
-  <PropertyGroup>
-    <SshDeployHost>10.168.1.112</SshDeployHost>
-    <SshDeployTargetPath>/home/pi/rpio-playgound</SshDeployTargetPath>
-    <SshDeployUsername>pi</SshDeployUsername>
-    <SshDeployPassword>raspberry</SshDeployPassword>
-  </PropertyGroup>
-
   <ItemGroup>
     <None Update="fractal.jpg;spectrum.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -38,13 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="dotnet-sshdeploy" Version="0.1.6-r1" />
+    <DotNetCliToolReference Include="dotnet-sshdeploy" Version="0.2.0" />
   </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
-    <PackageReference Include="dotnet-sshdeploy">
-      <Version>0.2.0</Version>
-    </PackageReference>
-  </ItemGroup>
-
 </Project>
