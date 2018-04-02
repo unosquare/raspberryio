@@ -160,6 +160,8 @@ namespace Unosquare.RaspberryIO.Playground
                 strip.Render();
             });
 
+            thread.IsBackground = true;
+            thread.Name = nameof(LedStripAPA102C);
             thread.Start();
             Console.Write("Press any key to stop and clear");
             Console.ReadKey(true);

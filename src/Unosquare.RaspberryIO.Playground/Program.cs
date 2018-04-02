@@ -6,6 +6,7 @@
     using Peripherals;
     using Swan;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -39,6 +40,8 @@
                 // TestLedBlinking();
                 // TestHardwarePwm();
                 // TestInfraredSensor();
+                // TestServo();
+                TestTempSensor();
             }
             catch (Exception ex)
             {
@@ -54,37 +57,116 @@
         }
 
         /// <summary>
+        /// Tests the temperature sensor.
+        /// </summary>
+        public static void TestTempSensor()
+        {
+            var sensor = new TemperatureSensorAM2302(Pi.Gpio[P1.Gpio17]);
+            sensor.OnDataAvailable += (s, e) =>
+            {
+                $"Temperature: {e.TemperatureCelsius} | Humidity: {e.HumidityPercentage}".Info("AM2302");
+            };
+
+            sensor.Start();
+            Console.ReadKey(intercept: true);
+        }
+
+        /// <summary>
+        /// Tests the servo.
+        /// </summary>
+        public static void TestServo()
+        {
+            var servo = new HardwareServo(Pi.Gpio[P1.Gpio18]);
+            const double MinPulse = 0.565;
+            const double MaxPulse = 2.620;
+            var deltaPulse = 0.005;
+
+            while (true)
+            {
+                if (servo.PulseLengthMs >= MaxPulse || servo.PulseLengthMs <= MinPulse)
+                {
+                    var stopPulseLength = servo.PulseLengthMs;
+                    while (true)
+                    {
+                        var k = $"Q (increment), W (decrement) or E (scroll back)".ReadKey();
+                        if (k.Key == ConsoleKey.Q)
+                        {
+                            servo.PulseLengthMs += Math.Abs(deltaPulse);
+                            $"{servo}".Info("Servo");
+                            var angle = servo.ComputeAngle(MinPulse, MaxPulse);
+                            var pulseLength = servo.ComputePulseLength(angle, MinPulse, MaxPulse);
+                            $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
+                        }
+                        else if (k.Key == ConsoleKey.W)
+                        {
+                            servo.PulseLengthMs -= Math.Abs(deltaPulse);
+                            $"{servo}".Info("Servo");
+                            var angle = servo.ComputeAngle(MinPulse, MaxPulse);
+                            var pulseLength = servo.ComputePulseLength(angle, MinPulse, MaxPulse);
+                            $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
+                        }
+                        else if (k.Key == ConsoleKey.E)
+                        {
+                            servo.PulseLengthMs = stopPulseLength;
+                            $"{servo}".Info("Servo");
+                            break;
+                        }
+                    }
+
+                    deltaPulse *= -1;
+                    Thread.Sleep(100);
+                }
+
+                servo.PulseLengthMs += deltaPulse;
+                $"{servo} | Angle {servo.ComputeAngle(MinPulse, MaxPulse),7:0.00}".Info("Servo");
+                Pi.Timing.SleepMicroseconds(1500);
+            }
+        }
+
+        /// <summary>
         /// Tests the infrared sensor HX1838.
         /// </summary>
         public static void TestInfraredSensor()
         {
-            var inputPin = Pi.Gpio.Pin04; // BCM Pin 23 or Physical pin 16 on the right side of the header.
-            var sensor = new InfraRedSensorHX1838(inputPin);
+            var inputPin = Pi.Gpio[P1.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
+            var sensor = new InfraredSensor(inputPin, true);
+            var emitter = new InfraredEmitter(Pi.Gpio[P1.Gpio18]);
 
             sensor.DataAvailable += (s, e) =>
             {
-                var necData = InfraRedSensorHX1838.NecDecoder.DecodePulses(e.Pulses);
-                var debugData = InfraRedSensorHX1838.DebugPulses(e.Pulses);
-
+                var necData = InfraredSensor.NecDecoder.DecodePulses(e.Pulses);
                 if (necData != null)
                 {
                     $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
+
+                    if (InfraredSensor.NecDecoder.IsRepeatCode(e.Pulses))
+                        return;
+
+                    // Test repeater signal
+                    var outputPulses = InfraredEmitter.NecEncoder.Encode(necData);
+
+                    emitter.Send(outputPulses);
+                    var debugData = InfraredSensor.DebugPulses(outputPulses);
+                    $"TX       Length: {outputPulses.Length,5}".Warn("IR");
+                    debugData.Info("IR");
                 }
                 else
                 {
                     if (e.Pulses.Length >= 4)
                     {
-                        $"Pulses  Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
+                        var debugData = InfraredSensor.DebugPulses(e.Pulses);
+                        $"RX    Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
                         debugData.Info("IR");
                     }
                     else
                     {
-                        $"Garbage Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
+                        $"RX (Garbage): {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
                     }
                 }
             };
 
             Console.ReadLine();
+            sensor.Dispose();
         }
 
         /// <summary>
@@ -179,81 +261,32 @@
             var pin = Pi.Gpio[P1.Gpio18];
             pin.PinMode = GpioPinDriveMode.PwmOutput;
             pin.PwmMode = PwmMode.MarkSign;
-            pin.PwmRegister = 0;
-            pin.PwmClockDivisor = 1; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
-            pin.PwmRange = 8000; // Range valid values I still need to investigate
-            pin.PwmRegister = 10; // (int)(pin.PwmRange * 0.95); // This goes from 0 to 1024
+            pin.PwmClockDivisor = 3; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
+            pin.PwmRange = 800; // Range valid values I still need to investigate
+            pin.PwmRegister = 600; // (int)(pin.PwmRange * 0.95); // This goes from 0 to 1024
 
-            while (true)
+            var probe = new LogicProbe(Pi.Gpio[P1.Gpio17]);
+            var probeBuffer = new List<LogicProbe.ProbeDataEventArgs>(1024);
+            probe.ProbeDataAvailable += (s, e) =>
             {
-                var range = "Range: (0 to exit)".ReadNumber(0);
-                if (range <= 0) break;
-                var value = "Value: (1 to 1024; 0 to exit)".ReadNumber(0);
-                if (value <= 0) break;
-
-                pin.PwmRange = (uint)range;
-                pin.PwmRegister = value;
-
-                var divider = pin.PwmClockDivisor == 1 ? 4096 : pin.PwmClockDivisor;
-                var frequency = (double)Pi.Gpio.PwmBaseFrequency / divider / pin.PwmRange;
-                var dutyCycle = (double)pin.PwmRegister / pin.PwmRange;
-                var period = 1d / frequency;
-                var pulseLength = dutyCycle * period;
-
-                $"Divider: {divider,6:0} | Frequency: {frequency,9:0.000} Hz | Period: {period,8:0.000} s | Pulse: {pulseLength,7:0.000000} s | Duty Cycle: {dutyCycle:p}".Info("PWM");
-            }
-
-            const int minValue = 53;
-            const int maxValue = 250;
-
-            while (true)
-            {
-                var userPwm = $"Enter values {minValue} to {maxValue}".ReadNumber(0);
-                if (userPwm <= 0)
-                    break;
-
-                pin.PwmRegister = userPwm;
-            }
-
-            var currentValue = minValue;
-            var increment = 1;
-            var exitRequested = false;
-            var workerExited = new ManualResetEventSlim(false);
-
-            ThreadPool.QueueUserWorkItem((s) =>
-            {
-                while (exitRequested == false)
+                probeBuffer.Add(e);
+                if (probeBuffer.Count >= 64)
                 {
-                    pin.PwmRegister = currentValue;
-                    var range = (double)(maxValue - minValue);
-                    var angle = 180d * (currentValue - minValue) / range;
-                    $"Pulse Value: {currentValue,4}; Angle: {angle,6:0.00}".Info("PWM");
-
-                    if (currentValue == minValue || currentValue == maxValue)
-                        Pi.Timing.SleepMicroseconds(1000000);
-
-                    currentValue += increment;
-                    if (currentValue >= maxValue)
-                    {
-                        currentValue = maxValue;
-                        increment = -1;
-                    }
-                    else if (currentValue <= minValue)
-                    {
-                        currentValue = minValue;
-                        increment = 1;
-                    }
-
-                    Pi.Timing.SleepMicroseconds(10000);
+                    probe.Stop();
                 }
+            };
 
-                workerExited.Set();
-            });
+            probe.Start();
+            while (probe.IsRunning)
+                Thread.Sleep(15);
 
-            Console.ReadKey(true);
-            exitRequested = true;
-            workerExited.Wait();
-            pin.PwmRegister = maxValue;
+            Thread.Sleep(1000);
+            foreach (var entry in probeBuffer)
+            {
+                Console.WriteLine(entry.ToString());
+            }
+
+            Console.WriteLine("finished");
         }
 
         private static void TestSystemInfo()
