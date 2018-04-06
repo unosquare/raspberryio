@@ -61,6 +61,7 @@ We offer an additional package with helpful classes to use peripherals, many of 
 * Led Strip APA-102C
 * NFC/RFID Controller MFRC-522
 * Temperature Sensor AM-2302
+* Generic Button
 
 ## Installation
 
