@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "CONnwgmPK0nC+ULMeRp9Rg=="
+          "hash": "KxTaQjjOJZ09MqrBtdivyw=="
         }
       },
       "is_incremental": false,
@@ -374,7 +374,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioController.html",
-          "hash": "lPspvHoVPEB6l5C0exoUCA=="
+          "hash": "UHASfiXiV8h7gXfjYgVr2g=="
         }
       },
       "is_incremental": false,
@@ -446,7 +446,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.I2CBus.html",
-          "hash": "QzjUSF/4Q59W3sLHWnQEFQ=="
+          "hash": "hOSNikUb6bJGePtPrl+IMg=="
         }
       },
       "is_incremental": false,
@@ -459,6 +459,30 @@
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.I2CDevice.html",
           "hash": "vAlLzz1Yqr0FL+WNGK11lQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.P1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.P1.html",
+          "hash": "nz8G24nkD8z1pckf0uWp8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Gpio.P5.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Gpio.P5.html",
+          "hash": "cUqmc0/tZxNy/Rj4dB4ZVg=="
         }
       },
       "is_incremental": false,
@@ -530,7 +554,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.html",
-          "hash": "OqatLdcJjXJLEAS4mpafDA=="
+          "hash": "T699IjqZ29F9eEfzJb5mKA=="
         }
       },
       "is_incremental": false,
@@ -662,7 +686,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "ZoHc0mFYtBizO7jCc5kvOQ=="
+          "hash": "o3Mx9VfnlshDEivhpuRHIA=="
         }
       },
       "is_incremental": false,
@@ -689,22 +713,22 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ResourceDocumentProcessor": {
+        "TocDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }
