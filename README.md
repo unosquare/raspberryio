@@ -73,9 +73,9 @@ PM> Install-Package Unosquare.Raspberry.IO
 ```
 
 Install Raspberry.IO Peripherals package:
-[![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.Peripherals.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO.Peripherals)
+[![NuGet version](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals.svg)](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals)
 ```
-PM> Install-Package Unosquare.Raspberry.IO.Peripherals
+PM> Install-Package Unosquare.RaspberryIO.Peripherals
 ```
 
 
