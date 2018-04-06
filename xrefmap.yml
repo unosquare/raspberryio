@@ -2478,19 +2478,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.GetEnumerator
   nameWithType: GpioController.GetEnumerator
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber(System.Int32)
-  name: GetGpioPinByBcmPinNumber(Int32)
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_GetGpioPinByBcmPinNumber_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber(System.Int32)
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber(System.Int32)
-  nameWithType: GpioController.GetGpioPinByBcmPinNumber(Int32)
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber*
-  name: GetGpioPinByBcmPinNumber
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_GetGpioPinByBcmPinNumber_
-  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.GetGpioPinByBcmPinNumber
-  nameWithType: GpioController.GetGpioPinByBcmPinNumber
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.HeaderP1
   name: HeaderP1
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_HeaderP1
@@ -2539,24 +2526,6 @@ references:
   fullName.vb: Unosquare.RaspberryIO.Gpio.GpioController.Item(System.Int32)
   nameWithType: GpioController.Item[Int32]
   nameWithType.vb: GpioController.Item(Int32)
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P1)
-  name: Item[P1]
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Item_Unosquare_RaspberryIO_Gpio_P1_
-  commentId: P:Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P1)
-  name.vb: Item(P1)
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.Item[Unosquare.RaspberryIO.Gpio.P1]
-  fullName.vb: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P1)
-  nameWithType: GpioController.Item[P1]
-  nameWithType.vb: GpioController.Item(P1)
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P5)
-  name: Item[P5]
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Item_Unosquare_RaspberryIO_Gpio_P5_
-  commentId: P:Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P5)
-  name.vb: Item(P5)
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.Item[Unosquare.RaspberryIO.Gpio.P5]
-  fullName.vb: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.P5)
-  nameWithType: GpioController.Item[P5]
-  nameWithType.vb: GpioController.Item(P5)
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.Item(Unosquare.RaspberryIO.Gpio.WiringPiPin)
   name: Item[WiringPiPin]
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_Item_Unosquare_RaspberryIO_Gpio_WiringPiPin_
@@ -3002,19 +2971,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioController.Pins
   nameWithType: GpioController.Pins
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
-  name: PwmBaseFrequency
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_PwmBaseFrequency
-  commentId: P:Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
-  nameWithType: GpioController.PwmBaseFrequency
-- uid: Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency*
-  name: PwmBaseFrequency
-  href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_PwmBaseFrequency_
-  commentId: Overload:Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Gpio.GpioController.PwmBaseFrequency
-  nameWithType: GpioController.PwmBaseFrequency
 - uid: Unosquare.RaspberryIO.Gpio.GpioController.ReadByte
   name: ReadByte()
   href: api/Unosquare.RaspberryIO.Gpio.GpioController.html#Unosquare_RaspberryIO_Gpio_GpioController_ReadByte
@@ -3710,22 +3666,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CBus.GetDeviceById
   nameWithType: I2CBus.GetDeviceById
-- uid: Unosquare.RaspberryIO.Gpio.I2CBus.Item(System.Int32)
-  name: Item[Int32]
-  href: api/Unosquare.RaspberryIO.Gpio.I2CBus.html#Unosquare_RaspberryIO_Gpio_I2CBus_Item_System_Int32_
-  commentId: P:Unosquare.RaspberryIO.Gpio.I2CBus.Item(System.Int32)
-  name.vb: Item(Int32)
-  fullName: Unosquare.RaspberryIO.Gpio.I2CBus.Item[System.Int32]
-  fullName.vb: Unosquare.RaspberryIO.Gpio.I2CBus.Item(System.Int32)
-  nameWithType: I2CBus.Item[Int32]
-  nameWithType.vb: I2CBus.Item(Int32)
-- uid: Unosquare.RaspberryIO.Gpio.I2CBus.Item*
-  name: Item
-  href: api/Unosquare.RaspberryIO.Gpio.I2CBus.html#Unosquare_RaspberryIO_Gpio_I2CBus_Item_
-  commentId: Overload:Unosquare.RaspberryIO.Gpio.I2CBus.Item
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Gpio.I2CBus.Item
-  nameWithType: I2CBus.Item
 - uid: Unosquare.RaspberryIO.Gpio.I2CDevice
   name: I2CDevice
   href: api/Unosquare.RaspberryIO.Gpio.I2CDevice.html
@@ -3892,198 +3832,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.I2CDevice.WriteAsync
   nameWithType: I2CDevice.WriteAsync
-- uid: Unosquare.RaspberryIO.Gpio.P1
-  name: P1
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html
-  commentId: T:Unosquare.RaspberryIO.Gpio.P1
-  fullName: Unosquare.RaspberryIO.Gpio.P1
-  nameWithType: P1
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio02
-  name: Gpio02
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio02
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio02
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio02
-  nameWithType: P1.Gpio02
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio03
-  name: Gpio03
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio03
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio03
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio03
-  nameWithType: P1.Gpio03
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio04
-  name: Gpio04
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio04
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio04
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio04
-  nameWithType: P1.Gpio04
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio05
-  name: Gpio05
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio05
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio05
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio05
-  nameWithType: P1.Gpio05
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio06
-  name: Gpio06
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio06
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio06
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio06
-  nameWithType: P1.Gpio06
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio07
-  name: Gpio07
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio07
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio07
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio07
-  nameWithType: P1.Gpio07
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio08
-  name: Gpio08
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio08
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio08
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio08
-  nameWithType: P1.Gpio08
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio09
-  name: Gpio09
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio09
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio09
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio09
-  nameWithType: P1.Gpio09
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio10
-  name: Gpio10
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio10
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio10
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio10
-  nameWithType: P1.Gpio10
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio11
-  name: Gpio11
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio11
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio11
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio11
-  nameWithType: P1.Gpio11
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio12
-  name: Gpio12
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio12
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio12
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio12
-  nameWithType: P1.Gpio12
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio13
-  name: Gpio13
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio13
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio13
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio13
-  nameWithType: P1.Gpio13
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio14
-  name: Gpio14
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio14
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio14
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio14
-  nameWithType: P1.Gpio14
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio15
-  name: Gpio15
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio15
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio15
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio15
-  nameWithType: P1.Gpio15
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio16
-  name: Gpio16
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio16
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio16
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio16
-  nameWithType: P1.Gpio16
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio17
-  name: Gpio17
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio17
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio17
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio17
-  nameWithType: P1.Gpio17
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio18
-  name: Gpio18
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio18
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio18
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio18
-  nameWithType: P1.Gpio18
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio19
-  name: Gpio19
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio19
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio19
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio19
-  nameWithType: P1.Gpio19
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio20
-  name: Gpio20
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio20
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio20
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio20
-  nameWithType: P1.Gpio20
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio21
-  name: Gpio21
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio21
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio21
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio21
-  nameWithType: P1.Gpio21
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio22
-  name: Gpio22
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio22
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio22
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio22
-  nameWithType: P1.Gpio22
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio23
-  name: Gpio23
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio23
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio23
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio23
-  nameWithType: P1.Gpio23
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio24
-  name: Gpio24
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio24
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio24
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio24
-  nameWithType: P1.Gpio24
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio25
-  name: Gpio25
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio25
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio25
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio25
-  nameWithType: P1.Gpio25
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio26
-  name: Gpio26
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio26
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio26
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio26
-  nameWithType: P1.Gpio26
-- uid: Unosquare.RaspberryIO.Gpio.P1.Gpio27
-  name: Gpio27
-  href: api/Unosquare.RaspberryIO.Gpio.P1.html#Unosquare_RaspberryIO_Gpio_P1_Gpio27
-  commentId: F:Unosquare.RaspberryIO.Gpio.P1.Gpio27
-  fullName: Unosquare.RaspberryIO.Gpio.P1.Gpio27
-  nameWithType: P1.Gpio27
-- uid: Unosquare.RaspberryIO.Gpio.P5
-  name: P5
-  href: api/Unosquare.RaspberryIO.Gpio.P5.html
-  commentId: T:Unosquare.RaspberryIO.Gpio.P5
-  fullName: Unosquare.RaspberryIO.Gpio.P5
-  nameWithType: P5
-- uid: Unosquare.RaspberryIO.Gpio.P5.Gpio28
-  name: Gpio28
-  href: api/Unosquare.RaspberryIO.Gpio.P5.html#Unosquare_RaspberryIO_Gpio_P5_Gpio28
-  commentId: F:Unosquare.RaspberryIO.Gpio.P5.Gpio28
-  fullName: Unosquare.RaspberryIO.Gpio.P5.Gpio28
-  nameWithType: P5.Gpio28
-- uid: Unosquare.RaspberryIO.Gpio.P5.Gpio29
-  name: Gpio29
-  href: api/Unosquare.RaspberryIO.Gpio.P5.html#Unosquare_RaspberryIO_Gpio_P5_Gpio29
-  commentId: F:Unosquare.RaspberryIO.Gpio.P5.Gpio29
-  fullName: Unosquare.RaspberryIO.Gpio.P5.Gpio29
-  nameWithType: P5.Gpio29
-- uid: Unosquare.RaspberryIO.Gpio.P5.Gpio30
-  name: Gpio30
-  href: api/Unosquare.RaspberryIO.Gpio.P5.html#Unosquare_RaspberryIO_Gpio_P5_Gpio30
-  commentId: F:Unosquare.RaspberryIO.Gpio.P5.Gpio30
-  fullName: Unosquare.RaspberryIO.Gpio.P5.Gpio30
-  nameWithType: P5.Gpio30
-- uid: Unosquare.RaspberryIO.Gpio.P5.Gpio31
-  name: Gpio31
-  href: api/Unosquare.RaspberryIO.Gpio.P5.html#Unosquare_RaspberryIO_Gpio_P5_Gpio31
-  commentId: F:Unosquare.RaspberryIO.Gpio.P5.Gpio31
-  fullName: Unosquare.RaspberryIO.Gpio.P5.Gpio31
-  nameWithType: P5.Gpio31
 - uid: Unosquare.RaspberryIO.Gpio.PinCapability
   name: PinCapability
   href: api/Unosquare.RaspberryIO.Gpio.PinCapability.html

@@ -8,7 +8,7 @@
     <title> RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.33.1.0">
+    <meta name="generator" content="docfx 2.34.0.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -70,12 +70,52 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
 
-<p><a href="https://badge.fury.io/nu/Unosquare.Raspberry.IO"><img src="https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg" alt="NuGet version"></a>
-<a href="https://www.nuget.org/packages/Unosquare.Raspberry.IO"><img src="https://img.shields.io/nuget/dt/Unosquare.Raspberry.IO.svg" alt="NuGet"></a>
-<a href="https://github.com/igrigorik/ga-beacon"><img src="https://ga-beacon.appspot.com/UA-8535255-2/unosquare/raspberryio/" alt="Analytics"></a></p>
+<p><a href="https://www.nuget.org/packages/Unosquare.Raspberry.IO"><img src="https://img.shields.io/nuget/dt/Unosquare.Raspberry.IO.svg" alt="NuGet"></a>
+<a href="https://github.com/igrigorik/ga-beacon"><img src="https://ga-beacon.appspot.com/UA-8535255-2/unosquare/raspberryio/" alt="Analytics"></a>
+<a href="https://ci.appveyor.com/project/geoperez/raspberryio/branch/master"><img src="https://ci.appveyor.com/api/projects/status/ufr4k5y96phtafqj/branch/master?svg=true" alt="Build status"></a>
+<a href="https://travis-ci.org/unosquare/raspberryio"><img src="https://travis-ci.org/unosquare/raspberryio.svg?branch=master" alt="Build Status"></a></p>
 <h1 id="img-srchttpsgithubcomunosquareraspberryiorawmasterlogosraspberryio-logo-32pngimg-raspberryio---pis-hardware-access-from-net"><img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png"> RaspberryIO - <em>Pi&#39;s hardware access from .NET</em></h1>
-<p>The Raspberry Pi&#39;s IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.</p>
 <p><span class="emoji" shortcode="star">⭐</span> <em>Please star this project if you find it useful!</em></p>
+<p>The Raspberry Pi&#39;s IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.</p>
+<h1 id="-table-of-contents"> Table of contents</h1>
+<ul>
+<li><a href="#features">Features</a><ul>
+<li><a href="#peripherals">Peripherals</a></li>
+</ul>
+</li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#running-the-latest-version-of-mono">Running the latest version of Mono</a><ul>
+<li><a href="#for-debian-wheezy">For Debian Wheezy</a></li>
+<li><a href="#for-debian-stretch">For Debian Stretch</a></li>
+<li><a href="#handy-notes">Handy Notes</a></li>
+</ul>
+</li>
+<li><a href="#running-net-core-2">Running .NET Core 2</a><ul>
+<li><a href="#run-the-app-on-the-raspberry">Run the app on the raspberry</a></li>
+</ul>
+</li>
+<li><a href="#the-camera-module">The Camera Module</a><ul>
+<li><a href="#capturing-images">Capturing Images</a></li>
+<li><a href="#capturing-video">Capturing Video</a></li>
+</ul>
+</li>
+<li><a href="#obtaining-board-and-system-information">Obtaining Board and System Information</a></li>
+<li><a href="#using-the-gpio-pins">Using the GPIO Pins</a><ul>
+<li><a href="#pin-information">Pin Information</a></li>
+<li><a href="#digital-read-and-write">Digital Read and Write</a></li>
+<li><a href="#analog-level-read-and-write">Analog (Level) Read and Write</a></li>
+<li><a href="#hardware-pwm">Hardware PWM</a></li>
+<li><a href="#software-pwm">Software PWM</a></li>
+<li><a href="#tone-generation">Tone Generation</a></li>
+<li><a href="#interrupts-and-callbacks">Interrupts and Callbacks</a></li>
+</ul>
+</li>
+<li><a href="#using-the-spi-bus">Using the SPI Bus</a></li>
+<li><a href="#i2c-to-connect-ics">I2C to connect ICs</a></li>
+<li><a href="#timing-and-threading">Timing and Threading</a></li>
+<li><a href="#serial-ports-uart">Serial Ports (UART)</a></li>
+<li><a href="#similar-projects">Similar Projects</a></li>
+</ul>
 <h2 id="features">Features</h2>
 <p>This library enables developers to use the various Raspberry Pi&#39;s hardware modules:</p>
 <ul>
@@ -88,8 +128,22 @@
 </ul>
 <p><em>Please note you program needs to be run with <code>sudo</code>. Example <code>sudo mono myprogram.exe</code> in order to work correctly.</em></p>
 <p>This library depends on the wonderful <code>WiringPi</code> library available <a href="http://wiringpi.com/">here</a>. You do not need to install this library yourself. The <code>RaspberryIO</code> assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.</p>
-<h2 id="nuget-installation">NuGet Installation:</h2>
+<h3 id="peripherals">Peripherals</h3>
+<p>We offer an additional package with helpful classes to use peripherals, many of them are from pull requests from our contributors. The current set of peripherals supported are:</p>
+<ul>
+<li>Infrared Sensor HX-1838</li>
+<li>Led Strip APA-102C</li>
+<li>NFC/RFID Controller MFRC-522</li>
+<li>Temperature Sensor AM-2302</li>
+<li>Generic Button</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Install basic Raspberry.IO package:
+<a href="https://badge.fury.io/nu/Unosquare.Raspberry.IO"><img src="https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.Raspberry.IO
+</code></pre><p>Install Raspberry.IO Peripherals package:
+<a href="https://badge.fury.io/nu/Unosquare.Raspberry.IO.Peripherals"><img src="https://badge.fury.io/nu/Unosquare.Raspberry.IO.Peripherals.svg" alt="NuGet version"></a></p>
+<pre><code>PM&gt; Install-Package Unosquare.Raspberry.IO.Peripherals
 </code></pre><h2 id="running-the-latest-version-of-mono">Running the latest version of Mono</h2>
 <p>It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:</p>
 <pre><code>Mono JIT compiler version 5.4.1.6 (tarball Wed Nov  8 21:42:16 UTC 2017)
@@ -704,7 +758,7 @@ foreach (var device in Pi.I2C.Devices)
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/DocumentPeriphera/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
