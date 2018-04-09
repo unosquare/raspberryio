@@ -1,12 +1,43 @@
-[![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO)
 [![NuGet](https://img.shields.io/nuget/dt/Unosquare.Raspberry.IO.svg)](https://www.nuget.org/packages/Unosquare.Raspberry.IO)
 [![Analytics](https://ga-beacon.appspot.com/UA-8535255-2/unosquare/raspberryio/)](https://github.com/igrigorik/ga-beacon)
+[![Build status](https://ci.appveyor.com/api/projects/status/ufr4k5y96phtafqj/branch/master?svg=true)](https://ci.appveyor.com/project/geoperez/raspberryio/branch/master)
+[![Build Status](https://travis-ci.org/unosquare/raspberryio.svg?branch=master)](https://travis-ci.org/unosquare/raspberryio)
 
 # <img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png"></img> RaspberryIO - *Pi's hardware access from .NET*
-The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.
 
 :star: *Please star this project if you find it useful!*
 
+The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.
+
+ Table of contents
+=================
+  * [Features](#features)
+    * [Peripherals](#peripherals)
+  * [Installation](#installation)
+  * [Running the latest version of Mono](#running-the-latest-version-of-mono)
+    * [For Debian Wheezy](#for-debian-wheezy)
+    * [For Debian Stretch](#for-debian-stretch)
+    * [Handy Notes](#handy-notes)
+  * [Running .NET Core 2](#running-net-core-2)
+    * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
+  * [The Camera Module](#the-camera-module)
+    * [Capturing Images](#capturing-images)
+    * [Capturing Video](#capturing-video)
+  * [Obtaining Board and System Information](#obtaining-board-and-system-information)
+  * [Using the GPIO Pins](#using-the-gpio-pins)
+    * [Pin Information](#pin-information)
+    * [Digital Read and Write](#digital-read-and-write)
+    * [Analog (Level) Read and Write](#analog-level-read-and-write)
+    * [Hardware PWM](#hardware-pwm)
+    * [Software PWM](#software-pwm)
+    * [Tone Generation](#tone-generation)
+    * [Interrupts and Callbacks](#interrupts-and-callbacks)
+  * [Using the SPI Bus](#using-the-spi-bus)
+  * [I2C to connect ICs](#i2c-to-connect-ics)
+  * [Timing and Threading](#timing-and-threading)
+  * [Serial Ports (UART)](#serial-ports-uart)
+  * [Similar Projects](#similar-projects)
+  
 ## Features
 
 This library enables developers to use the various Raspberry Pi's hardware modules:
@@ -22,10 +53,31 @@ _Please note you program needs to be run with ```sudo```. Example ```sudo mono m
 
 This library depends on the wonderful ```WiringPi``` library available [here](http://wiringpi.com/). You do not need to install this library yourself. The ```RaspberryIO``` assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.
 
-## NuGet Installation:
+### Peripherals
+
+We offer an additional package with helpful classes to use peripherals, many of them are from pull requests from our contributors. The current set of peripherals supported are:
+
+* Infrared Sensor HX-1838
+* Led Strip APA-102C
+* NFC/RFID Controller MFRC-522
+* Temperature Sensor AM-2302
+* Generic Button
+
+## Installation
+
+Install basic Raspberry.IO package:
+[![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.IO)
+
 ```
 PM> Install-Package Unosquare.Raspberry.IO
 ```
+
+Install Raspberry.IO Peripherals package:
+[![NuGet version](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals.svg)](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals)
+```
+PM> Install-Package Unosquare.RaspberryIO.Peripherals
+```
+
 
 ## Running the latest version of Mono
 It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:
