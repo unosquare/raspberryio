@@ -352,7 +352,7 @@
                 // Wait for user interaction
                 startTime = DateTime.UtcNow;
                 "Press any key to stop reading the video stream . . .".Info();
-                Console.WriteLine();
+                Console.ReadLine();
             }
             catch (Exception ex)
             {
