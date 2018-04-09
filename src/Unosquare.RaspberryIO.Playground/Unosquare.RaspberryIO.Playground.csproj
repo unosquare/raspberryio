@@ -8,7 +8,7 @@
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
     <SshDeployHost>172.16.17.138</SshDeployHost>
     <SshDeployClean />
-    <SshDeployTargetPath>/home/pi/rpio-playgound</SshDeployTargetPath>
+    <SshDeployTargetPath>/home/pi/rpio-playground</SshDeployTargetPath>
     <SshDeployUsername>pi</SshDeployUsername>
     <SshDeployPassword>raspberry</SshDeployPassword>
     <SshDeployPostCommand>sudo dotnet /home/pi/rpio-playgound/Unosquare.RaspberryIO.Playground.dll</SshDeployPostCommand>
