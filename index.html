@@ -215,7 +215,8 @@ sudo nano /etc/sudoers
 # and append to the secure_path option:
 :/home/pi/dotnet
 # this will allow you to run dotnet in su mode
-</code></pre><p>After that, you can reboot the raspberry. To check if dotnet is installed just run &quot;dotnet&quot; and a message should show.</p>
+</code></pre><p>After that, you can reboot the raspberry. To check if dotnet is installed just run &quot;dotnet&quot; and a message should show.
+If you run into issues with error messages such as framework not found &#39;2.0.0&#39;, it must be because the latest version might not be a stable version and the runtime is not rolled forward utomatically in this case. A simple solution is to create a 2.0.0 runtime symlink based on the current version. See the following link for detailed info: <a href="https://github.com/dotnet/cli/issues/7543">https://github.com/dotnet/cli/issues/7543</a></p>
 <pre><code>pi@localhost~$ dotnet
 
 Usage: dotnet [options]
