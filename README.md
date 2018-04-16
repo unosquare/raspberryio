@@ -179,6 +179,7 @@ sudo nano /etc/sudoers
 ```
 
 After that, you can reboot the raspberry. To check if dotnet is installed just run "dotnet" and a message should show.
+If you run into issues with error messages such as framework not found '2.0.0', it must be because the latest version might not be a stable version and the runtime is not rolled forward utomatically in this case. A simple solution is to create a 2.0.0 runtime symlink based on the current version. See the following link for detailed info: https://github.com/dotnet/cli/issues/7543
 
 ```
 pi@localhost~$ dotnet
