@@ -170,6 +170,12 @@ sudo mv dotnetcore.sh /etc/profile.d
 
 # Then run the command below to add the path to the dotnet executable to the current session
 PATH=$PATH:/home/ubuntu/dotnet
+
+# finally, you can:
+sudo nano /etc/sudoers
+# and append to the secure_path option:
+:/home/pi/dotnet
+# this will allow you to run dotnet in su mode
 ```
 
 After that, you can reboot the raspberry. To check if dotnet is installed just run "dotnet" and a message should show.
