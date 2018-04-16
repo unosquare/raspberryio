@@ -356,7 +356,7 @@ Here is an example of addressing the pins in all the various ways:
 public static void TestLedBlinking()
 {
     // Get a reference to the pin you need to use.
-    // All 3 methods below are exactly equivalente
+    // All 3 methods below are exactly equivalent
     var blinkingPin = Pi.Gpio[0];
     blinkingPin = Pi.Gpio[WiringPiPin.Pin00];
     blinkingPin = Pi.Gpio.Pin00;
