@@ -196,20 +196,27 @@ sudo apt-get -y install libunwind8 libunwind8-dev gettext libicu-dev liblttng-us
 wget https://dotnetcli.blob.core.windows.net/dotnet/Runtime/release/2.0.0/dotnet-runtime-latest-linux-arm.tar.gz
 
 # Make a directory for .NET Core to live in
-mkdir /home/ubuntu/dotnet
+mkdir ~/dotnet
 
 # Unzip the binaries into the directory you just created
-tar -xvf dotnet-runtime-latest-linux-arm.tar.gz -C /home/ubuntu/dotnet
+tar -xvf dotnet-runtime-latest-linux-arm.tar.gz -C ~/dotnet
 
 # Now add the path to the dotnet executable to the environment path
 # This ensures the next time you log in, the dotnet exe is on your path
-echo &quot;PATH=\$PATH:/home/ubuntu/dotnet&quot; &gt;&gt; dotnetcore.sh
+cd /home/pi/dotnet
+echo &quot;PATH=\$PATH:/home/pi/dotnet&quot; &gt;&gt; dotnetcore.sh
 sudo mv dotnetcore.sh /etc/profile.d
 
 # Then run the command below to add the path to the dotnet executable to the current session
 PATH=$PATH:/home/ubuntu/dotnet
+
+# finally, you can:
+sudo nano /etc/sudoers
+# and append to the secure_path option:
+:/home/pi/dotnet
+# this will allow you to run dotnet in su mode
 </code></pre><p>After that, you can reboot the raspberry. To check if dotnet is installed just run &quot;dotnet&quot; and a message should show.</p>
-<pre><code>ubuntu@ubuntu:~$ dotnet
+<pre><code>pi@localhost~$ dotnet
 
 Usage: dotnet [options]
 Usage: dotnet [path-to-application]
