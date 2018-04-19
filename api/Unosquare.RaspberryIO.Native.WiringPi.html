@@ -2308,7 +2308,7 @@ E.g. the popular MCP23017 GPIO expander is usually device Id 0x20, so this is th
   
   
   <a id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR*"></a>
-  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_System_Int32_System_Int32_Unosquare_RaspberryIO_Native_InterrputServiceRoutineCallback_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)">WiringPiISR(Int32, Int32, InterrputServiceRoutineCallback)</h4>
+  <h4 id="Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_System_Int32_System_Int32_Unosquare_RaspberryIO_Native_InterruptServiceRoutineCallback_" data-uid="Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback)">WiringPiISR(Int32, Int32, InterruptServiceRoutineCallback)</h4>
   <div class="markdown level1 summary"><p>This function registers a function to received interrupts on the specified pin.
 The edgeType parameter is either INT_EDGE_FALLING, INT_EDGE_RISING, INT_EDGE_BOTH or INT_EDGE_SETUP.
 If it is INT_EDGE_SETUP then no initialisation of the pin will happen – it’s assumed that you have already setup the pin elsewhere
@@ -2325,7 +2325,7 @@ It has full access to all the global variables, open file handles and so on.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int WiringPiISR(int pin, int mode, InterrputServiceRoutineCallback method)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int WiringPiISR(int pin, int mode, InterruptServiceRoutineCallback method)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2350,7 +2350,7 @@ It has full access to all the global variables, open file handles and so on.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback.html">InterrputServiceRoutineCallback</a></td>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback.html">InterruptServiceRoutineCallback</a></td>
         <td><span class="parametername">method</span></td>
         <td><p>The method.</p>
 </td>

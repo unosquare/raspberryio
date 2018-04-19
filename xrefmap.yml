@@ -3426,12 +3426,12 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Gpio.GpioPin.ReadValueAsync
   nameWithType: GpioPin.ReadValueAsync
-- uid: Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Gpio.EdgeDetection,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
-  name: RegisterInterruptCallback(EdgeDetection, InterrputServiceRoutineCallback)
-  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_RegisterInterruptCallback_Unosquare_RaspberryIO_Gpio_EdgeDetection_Unosquare_RaspberryIO_Native_InterrputServiceRoutineCallback_
-  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Gpio.EdgeDetection,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
-  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Gpio.EdgeDetection, Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
-  nameWithType: GpioPin.RegisterInterruptCallback(EdgeDetection, InterrputServiceRoutineCallback)
+- uid: Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Gpio.EdgeDetection,Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback)
+  name: RegisterInterruptCallback(EdgeDetection, InterruptServiceRoutineCallback)
+  href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_RegisterInterruptCallback_Unosquare_RaspberryIO_Gpio_EdgeDetection_Unosquare_RaspberryIO_Native_InterruptServiceRoutineCallback_
+  commentId: M:Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Gpio.EdgeDetection,Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback)
+  fullName: Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback(Unosquare.RaspberryIO.Gpio.EdgeDetection, Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback)
+  nameWithType: GpioPin.RegisterInterruptCallback(EdgeDetection, InterruptServiceRoutineCallback)
 - uid: Unosquare.RaspberryIO.Gpio.GpioPin.RegisterInterruptCallback*
   name: RegisterInterruptCallback
   href: api/Unosquare.RaspberryIO.Gpio.GpioPin.html#Unosquare_RaspberryIO_Gpio_GpioPin_RegisterInterruptCallback_
@@ -4704,12 +4704,12 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Native.HighResolutionTimer.MicrosecondsPerTick
   nameWithType: HighResolutionTimer.MicrosecondsPerTick
-- uid: Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback
-  name: InterrputServiceRoutineCallback
-  href: api/Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback.html
-  commentId: T:Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback
-  fullName: Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback
-  nameWithType: InterrputServiceRoutineCallback
+- uid: Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback
+  name: InterruptServiceRoutineCallback
+  href: api/Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback.html
+  commentId: T:Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback
+  fullName: Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback
+  nameWithType: InterruptServiceRoutineCallback
 - uid: Unosquare.RaspberryIO.Native.ThreadLockKey
   name: ThreadLockKey
   href: api/Unosquare.RaspberryIO.Native.ThreadLockKey.html
@@ -5501,12 +5501,12 @@ references:
   commentId: Overload:Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8
   fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiI2CWriteReg8
   nameWithType: WiringPi.WiringPiI2CWriteReg8
-- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
-  name: WiringPiISR(Int32, Int32, InterrputServiceRoutineCallback)
-  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_System_Int32_System_Int32_Unosquare_RaspberryIO_Native_InterrputServiceRoutineCallback_
-  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
-  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32, System.Int32, Unosquare.RaspberryIO.Native.InterrputServiceRoutineCallback)
-  nameWithType: WiringPi.WiringPiISR(Int32, Int32, InterrputServiceRoutineCallback)
+- uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback)
+  name: WiringPiISR(Int32, Int32, InterruptServiceRoutineCallback)
+  href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_System_Int32_System_Int32_Unosquare_RaspberryIO_Native_InterruptServiceRoutineCallback_
+  commentId: M:Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32,System.Int32,Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback)
+  fullName: Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR(System.Int32, System.Int32, Unosquare.RaspberryIO.Native.InterruptServiceRoutineCallback)
+  nameWithType: WiringPi.WiringPiISR(Int32, Int32, InterruptServiceRoutineCallback)
 - uid: Unosquare.RaspberryIO.Native.WiringPi.WiringPiISR*
   name: WiringPiISR
   href: api/Unosquare.RaspberryIO.Native.WiringPi.html#Unosquare_RaspberryIO_Native_WiringPi_WiringPiISR_
