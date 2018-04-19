@@ -122,7 +122,7 @@
         /// Gets the interrupt callback. Returns null if no interrupt
         /// has been registered.
         /// </summary>
-        public InterrputServiceRoutineCallback InterruptCallback { get; private set; }
+        public InterruptServiceRoutineCallback InterruptCallback { get; private set; }
 
         /// <summary>
         /// Gets the interrupt edge detection mode.
@@ -637,7 +637,7 @@
         /// or
         /// RegisterInterruptCallback
         /// </exception>
-        public void RegisterInterruptCallback(EdgeDetection edgeDetection, InterrputServiceRoutineCallback callback)
+        public void RegisterInterruptCallback(EdgeDetection edgeDetection, InterruptServiceRoutineCallback callback)
         {
             if (callback == null)
                 throw new ArgumentException($"{nameof(callback)} cannot be null");
