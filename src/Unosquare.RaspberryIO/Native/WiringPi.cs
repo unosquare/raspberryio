@@ -302,7 +302,7 @@
         /// <param name="method">The method.</param>
         /// <returns>The result code</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiISR", SetLastError = true)]
-        public static extern int WiringPiISR(int pin, int mode, InterrputServiceRoutineCallback method);
+        public static extern int WiringPiISR(int pin, int mode, InterruptServiceRoutineCallback method);
 
         /// <summary>
         /// This function creates a thread which is another function in your program previously declared using the PI_THREAD declaration.
