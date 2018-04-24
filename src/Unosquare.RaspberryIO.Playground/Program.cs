@@ -17,6 +17,8 @@
     /// </summary>
     public partial class Program
     {
+        private static readonly CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
+
         /// <summary>
         /// Defines the entry point of the application.
         /// </summary>
@@ -30,10 +32,10 @@
             try
             {
                 // A set of very simple tests:
-                TestSystemInfo();
+                //TestSystemInfo();
 
                 // TestCaptureImage();
-                // TestCaptureVideo();
+                TestCaptureVideo();
                 // TestLedStripGraphics();
                 // TestLedStrip();
                 // TestTag();
@@ -340,6 +342,7 @@
 
             try
             {
+                "OpenVideo Stream".Info();
                 // Start the video recording
                 Pi.Camera.OpenVideoStream(videoSettings,
                     onDataCallback: (data) =>
@@ -347,7 +350,8 @@
                         videoByteCount += data.Length;
                         videoEventCount++;
                     },
-                    onExitCallback: null);
+                    onExitCallback: null,
+                    ct: VideoTokenSource.Token);
 
                 // Wait for user interaction
                 startTime = DateTime.UtcNow;
@@ -361,6 +365,8 @@
             finally
             {
                 // Always close the video stream to ensure raspivid quits
+                "Cancel Stream".Info();
+                VideoTokenSource.Cancel();
                 Pi.Camera.CloseVideoStream();
 
                 // Output the stats
