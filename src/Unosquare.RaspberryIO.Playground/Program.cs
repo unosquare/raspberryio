@@ -17,8 +17,6 @@
     /// </summary>
     public partial class Program
     {
-        private static readonly CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
-
         /// <summary>
         /// Defines the entry point of the application.
         /// </summary>
@@ -350,8 +348,7 @@
                         videoByteCount += data.Length;
                         videoEventCount++;
                     },
-                    onExitCallback: null,
-                    ct: VideoTokenSource.Token);
+                    onExitCallback: null);
 
                 // Wait for user interaction
                 startTime = DateTime.UtcNow;
@@ -366,7 +363,6 @@
             {
                 // Always close the video stream to ensure raspivid quits
                 "Cancel Stream".Info();
-                VideoTokenSource.Cancel();
                 Pi.Camera.CloseVideoStream();
 
                 // Output the stats

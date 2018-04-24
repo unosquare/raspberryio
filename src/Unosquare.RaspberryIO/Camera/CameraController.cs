@@ -146,7 +146,7 @@
         /// <param name="onExitCallback">The on exit callback.</param>
         /// <exception cref="InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
         /// <exception cref="ArgumentException">CaptureTimeoutMilliseconds</exception>
-        public void OpenVideoStream(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback, CancellationToken ct = default)
+        public void OpenVideoStream(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback)
         {
             if (Instance.IsBusy)
                 throw new InvalidOperationException("Cannot use camera module because it is currently busy.");
@@ -157,7 +157,7 @@
             try
             {
                 OperationDone.Reset();
-                Task.Factory.StartNew(() => VideoWorkerDoWork(settings, onDataCallback, onExitCallback, ct));
+                Task.Factory.StartNew(() => VideoWorkerDoWork(settings, onDataCallback, onExitCallback), VideoTokenSource.Token);
             }
             catch
             {
@@ -184,8 +184,7 @@
         private static async Task VideoWorkerDoWork(
             CameraVideoSettings settings,
             Action<byte[]> onDataCallback,
-            Action onExitCallback,
-            CancellationToken ct)
+            Action onExitCallback)
         {
             try
             {
@@ -195,7 +194,7 @@
                     (data, proc) => onDataCallback?.Invoke(data),
                     null,
                     true,
-                    ct);
+                    VideoTokenSource.Token);
 
                 onExitCallback?.Invoke();
             }
