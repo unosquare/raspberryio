@@ -397,13 +397,13 @@ No preview is shown</p>
   
   
   <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
-  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_Unosquare_RaspberryIO_Camera_CameraVideoSettings_System_Action_System_Byte____System_Action_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Action,System.Threading.CancellationToken)">OpenVideoStream(CameraVideoSettings, Action&lt;Byte[]&gt;, Action, CancellationToken)</h4>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_Unosquare_RaspberryIO_Camera_CameraVideoSettings_System_Action_System_Byte____System_Action_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Action)">OpenVideoStream(CameraVideoSettings, Action&lt;Byte[]&gt;, Action)</h4>
   <div class="markdown level1 summary"><p>Opens the video stream with the supplied settings. Capture Timeout Milliseconds has to be 0 or greater</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void OpenVideoStream(CameraVideoSettings settings, Action&lt;byte[]&gt; onDataCallback, Action onExitCallback, CancellationToken ct = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">public void OpenVideoStream(CameraVideoSettings settings, Action&lt;byte[]&gt; onDataCallback, Action onExitCallback)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -432,11 +432,6 @@ No preview is shown</p>
         <td><span class="parametername">onExitCallback</span></td>
         <td><p>The on exit callback.</p>
 </td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
-        <td><span class="parametername">ct</span></td>
-        <td></td>
       </tr>
     </tbody>
   </table>
