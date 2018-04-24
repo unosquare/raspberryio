@@ -340,7 +340,6 @@
 
             try
             {
-                "OpenVideo Stream".Info();
                 // Start the video recording
                 Pi.Camera.OpenVideoStream(videoSettings,
                     onDataCallback: (data) =>
@@ -362,7 +361,6 @@
             finally
             {
                 // Always close the video stream to ensure raspivid quits
-                "Cancel Stream".Info();
                 Pi.Camera.CloseVideoStream();
 
                 // Output the stats
