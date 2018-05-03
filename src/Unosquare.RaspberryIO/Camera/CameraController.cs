@@ -16,8 +16,8 @@
         #region Private Declarations
 
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
-        private static readonly CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
         private static readonly object SyncRoot = new object();
+        private static CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
 
         #endregion
 
@@ -179,6 +179,8 @@
 
             if (VideoTokenSource.IsCancellationRequested == false)
                 VideoTokenSource.Cancel();
+
+            VideoTokenSource = new CancellationTokenSource();
         }
 
         private static async Task VideoWorkerDoWork(
