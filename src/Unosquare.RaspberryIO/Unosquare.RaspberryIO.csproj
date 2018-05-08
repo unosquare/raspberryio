@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>The Raspberry Pi's IO Functionality in an easy-to use API for Mono/.NET/C#
@@ -28,7 +28,8 @@ This library enables developers to use the various Raspberry Pi's hardware modul
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-    <PackageReference Include="Unosquare.Swan" Version="0.30.0" />  </ItemGroup>
+    <PackageReference Include="Unosquare.Swan" Version="0.30.0" />
+  </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <Reference Include="System" />
