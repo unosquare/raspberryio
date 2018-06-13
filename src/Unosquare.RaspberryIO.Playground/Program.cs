@@ -36,7 +36,7 @@
                 // TestCaptureVideo();
                 // TestLedStripGraphics();
                 // TestLedStrip();
-                // TestTag();
+                 TestRfidController();
                 // TestLedBlinking();
                 // TestHardwarePwm();
                 // TestInfraredSensor();

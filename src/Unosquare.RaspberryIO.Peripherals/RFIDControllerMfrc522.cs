@@ -609,9 +609,11 @@
             {
                 currentRegisterValue = ReadRegister(Register.CommIrqReg);
                 i -= 1;
-                if (Convert.ToBoolean(
-                    ~Convert.ToInt32((i != 0) && Convert.ToBoolean(~(currentRegisterValue & 0x01)) &&
-                    Convert.ToBoolean(~(currentRegisterValue & waitInterruptFlags)))))
+
+                // Python code:
+                // if ~((i!=0) and ~(n&0x01) and ~(n&waitIRq))
+                // TODO: Review second condition behavior (n&0x01). This condition seem to have no effect even in python.
+                if (i == 0 || (currentRegisterValue & waitInterruptFlags) != 0)
                 {
                     break;
                 }
@@ -719,7 +721,7 @@
 
             var result = CardSendData(Command.Transcieve, tagType.ToArray());
             var status = Status.AllOk;
-            if ((result.Status != Status.AllOk) | (result.DataBitLength != 0x10))
+            if ((result.Status != Status.AllOk) || (result.DataBitLength != 0x10))
             {
                 status = Status.Error;
             }
