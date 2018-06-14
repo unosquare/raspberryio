@@ -2,6 +2,7 @@
 {
     using Peripherals;
     using Swan;
+    using System.Linq;
 
     public partial class Program
     {
@@ -31,16 +32,34 @@
                         // Select the scanned tag
                         device.SelectCardUniqueId(cardUid);
 
-                        // Check if authenticated
-                        if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid) == RFIDControllerMfrc522.Status.AllOk)
+                        // Reading data
+                        var continueReading = true;
+                        for (int s = 0; s < 16; s++)
                         {
-                            device.ReadRegister(RFIDControllerMfrc522.Register.Status2Reg);
-                            device.ClearCardSelection();
+                            // Authenticate sector
+                            if (continueReading && device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, (byte)((4 * s) + 3)) == RFIDControllerMfrc522.Status.AllOk)
+                            {
+                                $"Sector {s}".Info();
+                                for (int b = 0; b < 3; b++)
+                                {
+                                    var data = device.CardReadData((byte)((4 * s) + b));
+                                    if (data.Status != RFIDControllerMfrc522.Status.AllOk)
+                                    {
+                                        continueReading = false;
+                                        break;
+                                    }
+
+                                    $"  Block {b} ({data.Data.Length} bytes): {string.Join(" ", data.Data.Select(x => x.ToString("X2")))}".Info();
+                                }
+                            }
+                            else
+                            {
+                                "Authentication error".Error();
+                                break;
+                            }
                         }
-                        else
-                        {
-                            "Authentication error".Error();
-                        }
+
+                        device.ClearCardSelection();
                     }
                 }
             }
