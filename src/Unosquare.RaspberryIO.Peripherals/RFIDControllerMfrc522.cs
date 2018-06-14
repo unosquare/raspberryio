@@ -605,17 +605,11 @@
             }
 
             i = 2000;
-            while (true)
+            do
             {
                 currentRegisterValue = ReadRegister(Register.CommIrqReg);
-                i -= 1;
-                if (Convert.ToBoolean(
-                    ~Convert.ToInt32((i != 0) && Convert.ToBoolean(~(currentRegisterValue & 0x01)) &&
-                    Convert.ToBoolean(~(currentRegisterValue & waitInterruptFlags)))))
-                {
-                    break;
-                }
             }
+            while (--i != 0 && (currentRegisterValue & 0x01) == 0 && (currentRegisterValue & waitInterruptFlags) == 0);
 
             ClearRegisterBits(Register.BitFramingReg, 0x80);
 
@@ -708,6 +702,29 @@
         }
 
         /// <summary>
+        /// Reads the specified data block from an RFID card
+        /// </summary>
+        /// <param name="blockAddress">The block address.</param>
+        /// <returns>A standar response</returns>
+        public RfidResponse CardReadData(byte blockAddress)
+        {
+            var buff = new List<byte> { (byte)RequestMode.Read, blockAddress };
+            var crc = CalulateCRC(buff.ToArray());
+            buff.Add(crc[0]);
+            buff.Add(crc[1]);
+
+            var status = Status.AllOk;
+            var result = CardSendData(Command.Transcieve, buff.ToArray());
+
+            if (result.Status != Status.AllOk || result.Data.Length != 0x10)
+            {
+                status = Status.Error;
+            }
+
+            return new RfidResponse(status, result.Data, result.DataBitLength);
+        }
+
+        /// <summary>
         /// Sends a request to the RFID controller
         /// </summary>
         /// <param name="requestMode">The request mode.</param>
@@ -719,7 +736,7 @@
 
             var result = CardSendData(Command.Transcieve, tagType.ToArray());
             var status = Status.AllOk;
-            if ((result.Status != Status.AllOk) | (result.DataBitLength != 0x10))
+            if ((result.Status != Status.AllOk) || (result.DataBitLength != 0x10))
             {
                 status = Status.Error;
             }
@@ -815,9 +832,9 @@
         /// <param name="cardUid">The card uid.</param>
         /// <param name="blockAddress">The block address.</param>
         /// <returns>The status code</returns>
-        public Status AuthenticateCard1A(byte[] sectorkey, byte[] cardUid, Register blockAddress = Register.Status2Reg)
+        public Status AuthenticateCard1A(byte[] sectorkey, byte[] cardUid, byte blockAddress = (byte)Register.Status2Reg)
         {
-            return Authenticate(RequestMode.Authenticate1A, (byte)blockAddress, sectorkey, cardUid);
+            return Authenticate(RequestMode.Authenticate1A, blockAddress, sectorkey, cardUid);
         }
 
         /// <summary>
@@ -827,9 +844,9 @@
         /// <param name="cardUid">The card uid.</param>
         /// <param name="blockAddress">The block address.</param>
         /// <returns>The status code</returns>
-        public Status AuthenticateCard1B(byte[] sectorkey, byte[] cardUid, Register blockAddress = Register.Status2Reg)
+        public Status AuthenticateCard1B(byte[] sectorkey, byte[] cardUid, byte blockAddress = (byte)Register.Status2Reg)
         {
-            return Authenticate(RequestMode.Authenticate1B, (byte)blockAddress, sectorkey, cardUid);
+            return Authenticate(RequestMode.Authenticate1B, blockAddress, sectorkey, cardUid);
         }
 
         /// <summary>
