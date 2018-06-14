@@ -50,13 +50,13 @@
 
                         // Reading data
                         var continueReading = true;
-                        for (int s = 0; s < 16; s++)
+                        for (int s = 0; s < 16 && continueReading; s++)
                         {
                             // Authenticate sector
-                            if (continueReading && device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, (byte)((4 * s) + 3)) == RFIDControllerMfrc522.Status.AllOk)
+                            if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, (byte)((4 * s) + 3)) == RFIDControllerMfrc522.Status.AllOk)
                             {
                                 $"Sector {s}".Info();
-                                for (int b = 0; b < 3; b++)
+                                for (int b = 0; b < 3 && continueReading; b++)
                                 {
                                     var data = device.CardReadData((byte)((4 * s) + b));
                                     if (data.Status != RFIDControllerMfrc522.Status.AllOk)
