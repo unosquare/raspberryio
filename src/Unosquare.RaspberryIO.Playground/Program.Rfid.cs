@@ -32,6 +32,22 @@
                         // Select the scanned tag
                         device.SelectCardUniqueId(cardUid);
 
+                        // Writing data to sector 1 blocks
+                        // Authenticate sector
+                        if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 7) == RFIDControllerMfrc522.Status.AllOk)
+                        {
+                            var data = new byte[16 * 3];
+                            for (var x = 0; x < data.Length; x++)
+                            {
+                                data[x] = (byte)(x + 65);
+                            }
+
+                            for(int b = 0; b < 3; b++)
+                            {
+                                device.CardWriteData((byte)(4 + b), data.Skip(b * 16).Take(16).ToArray());
+                            }
+                        }
+
                         // Reading data
                         var continueReading = true;
                         for (int s = 0; s < 16; s++)
