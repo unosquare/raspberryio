@@ -230,13 +230,16 @@ path-to-application:
   The path to an application .dll file to execute.
 </code></pre><h3 id="run-the-app-on-the-raspberry">Run the app on the raspberry</h3>
 <ul>
-<li>You need to publish the project and you can accomplish this by using dotnet-sshdeploy but first, you must edit these properties inside the Playground&#39;s csproj file in order to establish an ssh connection with your raspberry
-<code>xml
-&lt;SshDeployHost&gt;172.16.17.54&lt;/SshDeployHost&gt;
+<li><p>You need to publish the project and you can accomplish this by using dotnet-sshdeploy but first, you must edit these properties inside the Playground&#39;s csproj file in order to establish an ssh connection with your raspberry</p>
+<pre><code class="lang-xml">&lt;SshDeployHost&gt;172.16.17.54&lt;/SshDeployHost&gt;
 &lt;SshDeployTargetPath&gt;/home/pi/Playground&lt;/SshDeployTargetPath&gt;
 &lt;SshDeployUsername&gt;pi&lt;/SshDeployUsername&gt;
-&lt;SshDeployPassword&gt;raspberry&lt;/SshDeployPassword&gt;</code></li>
-<li><p>Execute <code>dotnet sshdeploy push</code> in the same folder where Unosquare.RaspberryIO.Playground.csproj resides and if everything executes correctly you should see an output like this:</p>
+&lt;SshDeployPassword&gt;raspberry&lt;/SshDeployPassword&gt;
+</code></pre></li>
+<li><p>Install dotnet-sshdeploy as a global tool by running </p>
+<pre><code>$ dotnet tool install -g dotnet-sshdeploy
+</code></pre></li>
+<li><p>Execute <code>dotnet-sshdeploy push</code> in the same folder where Unosquare.RaspberryIO.Playground.csproj resides and if everything executes correctly you should see an output like this:</p>
 <pre><code>SSH Deployment Tool [Version 0.1.6.0]
 (c)2015 - 2017 Unosquare SA de CV. All Rights Reserved.
 For additional help, please visit https://github.com/unosquare/sshdeploy
@@ -258,7 +261,7 @@ Connecting to host 192.16.17.54:22 via SFTP.
   Finished deployment in 1.25 seconds.
 Completed.
 </code></pre></li>
-<li><strong>The default TargetFramework is</strong> <code>netcoreapp2.0</code> <strong>but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this</strong><code>dotnet sshdeploy -f net452</code>. <strong>More information about dotnet-sshdeploy see <a href="https://github.com/unosquare/sshdeploy">this</a></strong></li>
+<li><strong>The default TargetFramework is</strong> <code>netcoreapp2.0</code> <strong>but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this</strong><code>dotnet-sshdeploy -f net452</code>. <strong>More information about dotnet-sshdeploy see <a href="https://github.com/unosquare/sshdeploy">this</a></strong></li>
 <li>Give permissions to run the project</li>
 </ul>
 <pre><code>ubuntu@ubuntu:~/publish$ sudo chmod u+x *
@@ -766,7 +769,7 @@ foreach (var device in Pi.I2C.Devices)
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/Israel-94-patch-1/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
