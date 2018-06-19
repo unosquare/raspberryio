@@ -240,13 +240,13 @@ path-to-application:
 <pre><code>$ dotnet tool install -g dotnet-sshdeploy
 </code></pre></li>
 <li><p>Execute <code>dotnet-sshdeploy push</code> in the same folder where Unosquare.RaspberryIO.Playground.csproj resides and if everything executes correctly you should see an output like this:</p>
-<pre><code>SSH Deployment Tool [Version 0.1.6.0]
+<pre><code>SSH Deployment Tool [Version 0.3.1.0]
 (c)2015 - 2017 Unosquare SA de CV. All Rights Reserved.
 For additional help, please visit https://github.com/unosquare/sshdeploy
 Deploying...
   Configuration   Debug
-  Framework       netcoreapp2.0
-  Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\netcoreapp2.0\publish
+  Framework       net452
+  Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\net452\publish
   Excluded Files  .ready|.vshost.exe|.vshost.exe.config
   Target Address  192.16.17.54:22
   Username        pi
@@ -257,11 +257,15 @@ Deploying...
 Connecting to host 192.16.17.54:22 via SSH.
 Connecting to host 192.16.17.54:22 via SFTP.
 
+  Target Path &#39;/home/pi/Playground&#39; does not exist. -- Will attempt to create.
+  Target Path &#39;/home/pi/Playground&#39; created successfully.
+  Cleaning Target Path &#39;/home/pi/Playground&#39;
+
   Deploying 8 files.
   Finished deployment in 1.25 seconds.
 Completed.
 </code></pre></li>
-<li><strong>The default TargetFramework is</strong> <code>netcoreapp2.0</code> <strong>but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this</strong><code>dotnet-sshdeploy -f net452</code>. <strong>More information about dotnet-sshdeploy see <a href="https://github.com/unosquare/sshdeploy">this</a></strong></li>
+<li><strong>The default TargetFramework is</strong> <code>net452</code> <strong>but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this</strong><code>dotnet-sshdeploy push -f netcoreapp2.0</code>. <strong>More information about dotnet-sshdeploy see <a href="https://github.com/unosquare/sshdeploy">this</a></strong></li>
 <li>Give permissions to run the project</li>
 </ul>
 <pre><code>ubuntu@ubuntu:~/publish$ sudo chmod u+x *
