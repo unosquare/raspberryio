@@ -16,8 +16,9 @@
         #region Private Declarations
 
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
-        private static readonly CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
         private static readonly object SyncRoot = new object();
+        private static CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
+        private static Task<Task> VideoStreamTask;
 
         #endregion
 
@@ -157,7 +158,7 @@
             try
             {
                 OperationDone.Reset();
-                Task.Factory.StartNew(() => VideoWorkerDoWork(settings, onDataCallback, onExitCallback));
+                VideoStreamTask = Task.Factory.StartNew(() => VideoWorkerDoWork(settings, onDataCallback, onExitCallback), VideoTokenSource.Token);
             }
             catch
             {
@@ -178,7 +179,12 @@
             }
 
             if (VideoTokenSource.IsCancellationRequested == false)
+            {
                 VideoTokenSource.Cancel();
+                VideoStreamTask.Wait();
+            }
+
+            VideoTokenSource = new CancellationTokenSource();
         }
 
         private static async Task VideoWorkerDoWork(

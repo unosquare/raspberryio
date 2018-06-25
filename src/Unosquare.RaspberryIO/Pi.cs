@@ -85,7 +85,7 @@
         /// Restarts the Pi. Must be running as SU
         /// </summary>
         /// <returns>The process result</returns>
-        public static async Task<ProcessResult> RestartAsync() => await ProcessRunner.GetProcessResultAsync("reboot");
+        public static async Task<ProcessResult> RestartAsync() => await ProcessRunner.GetProcessResultAsync("reboot", null, null);
 
         /// <summary>
         /// Restarts the Pi. Must be running as SU
@@ -97,7 +97,7 @@
         /// Halts the Pi. Must be running as SU
         /// </summary>
         /// <returns>The process result</returns>
-        public static async Task<ProcessResult> ShutdownAsync() => await ProcessRunner.GetProcessResultAsync("halt");
+        public static async Task<ProcessResult> ShutdownAsync() => await ProcessRunner.GetProcessResultAsync("halt", null, null);
 
         /// <summary>
         /// Halts the Pi. Must be running as SU

@@ -30,10 +30,11 @@
             try
             {
                 // A set of very simple tests:
-                TestSystemInfo();
+                // TestSystemInfo();
 
                 // TestCaptureImage();
-                // TestCaptureVideo();
+                TestCaptureVideo();
+
                 // TestLedStripGraphics();
                 // TestLedStrip();
                  TestRfidController();
@@ -41,7 +42,7 @@
                 // TestHardwarePwm();
                 // TestInfraredSensor();
                 // TestServo();
-                TestTempSensor();
+                // TestTempSensor();
             }
             catch (Exception ex)
             {
@@ -340,6 +341,8 @@
 
             try
             {
+                "Press any key to START reading the video stream . . .".Info();
+                Console.ReadLine();
                 // Start the video recording
                 Pi.Camera.OpenVideoStream(videoSettings,
                     onDataCallback: (data) =>
@@ -351,7 +354,7 @@
 
                 // Wait for user interaction
                 startTime = DateTime.UtcNow;
-                "Press any key to stop reading the video stream . . .".Info();
+                "Press any key to STOP reading the video stream . . .".Info();
                 Console.ReadLine();
             }
             catch (Exception ex)
