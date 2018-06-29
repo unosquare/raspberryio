@@ -23,7 +23,12 @@ This library enables developers to use the various Raspberry Pi's hardware modul
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\libwiringPi.so.2.44;Resources\gpio.2.44" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+    <None Remove="Resources\libwiringPi.so.2.46" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\gpio.2.44" />
+    <EmbeddedResource Include="Resources\libwiringPi.so.2.46" />
   </ItemGroup>
 
   <ItemGroup>
