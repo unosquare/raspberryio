@@ -2209,19 +2209,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.IsLittleEndian
   nameWithType: SystemInfo.IsLittleEndian
-- uid: Unosquare.RaspberryIO.Computer.SystemInfo.IsRunningAsRoot
-  name: IsRunningAsRoot
-  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_IsRunningAsRoot
-  commentId: P:Unosquare.RaspberryIO.Computer.SystemInfo.IsRunningAsRoot
-  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.IsRunningAsRoot
-  nameWithType: SystemInfo.IsRunningAsRoot
-- uid: Unosquare.RaspberryIO.Computer.SystemInfo.IsRunningAsRoot*
-  name: IsRunningAsRoot
-  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_IsRunningAsRoot_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.IsRunningAsRoot
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.IsRunningAsRoot
-  nameWithType: SystemInfo.IsRunningAsRoot
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.ModelName
   name: ModelName
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_ModelName
