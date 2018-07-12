@@ -49,7 +49,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
 * ```Pi.I2c``` Provides access to the functionality of the i2c bus.
 * ```Pi.Timing``` Provides access to The PI's Timing and threading API.
 
-_Please note you program needs to be run with ```sudo```. Example ```sudo mono myprogram.exe``` in order to work correctly._
+To run the program ```mono myprogram.exe``` in order to work correctly. You no longer require running as root.
 
 This library depends on the wonderful ```WiringPi``` library available [here](http://wiringpi.com/). You do not need to install this library yourself. The ```RaspberryIO``` assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.
 
@@ -140,64 +140,26 @@ sudo systemctl restart dhcpcd
 
 You can also configure most boot options by running: `sudo raspi-config`
 
-## Running .NET Core 2
+## Running .NET Core 2.1
 
-This project can also run in .NET Core 2.
-
-Run the following commands to install .NET Core 2.
+This project can also run in .NET Core 2.1. To install please execute the following commands:
 
 ```
-# Update Ubuntu 16.04
-sudo apt-get -y update
-
-# Install the packages necessary for .NET Core
-sudo apt-get -y install libunwind8 libunwind8-dev gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev
-
-# Download the latest binaries for .NET Core 2 
-wget https://dotnetcli.blob.core.windows.net/dotnet/Runtime/release/2.0.0/dotnet-runtime-latest-linux-arm.tar.gz
-
-# Make a directory for .NET Core to live in
-mkdir ~/dotnet
-
-# Unzip the binaries into the directory you just created
-tar -xvf dotnet-runtime-latest-linux-arm.tar.gz -C ~/dotnet
-
-# Now add the path to the dotnet executable to the environment path
-# This ensures the next time you log in, the dotnet exe is on your path
-cd /home/pi/dotnet
-echo "PATH=\$PATH:/home/pi/dotnet" >> dotnetcore.sh
-sudo mv dotnetcore.sh /etc/profile.d
-
-# Then run the command below to add the path to the dotnet executable to the current session
-PATH=$PATH:/home/ubuntu/dotnet
-
-# finally, you can:
-sudo nano /etc/sudoers
-# and append to the secure_path option:
-:/home/pi/dotnet
-# this will allow you to run dotnet in su mode
+$ sudo apt-get -y update
+$ sudo apt-get -y install libunwind8 gettext
+$ wget https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.300-rc1-008673/dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz
+$ wget https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/2.1.0-rc1-final/aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz
+$ sudo mkdir /opt/dotnet
+$ sudo tar -xvf dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo tar -xvf aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
+$ dotnet --info
 ```
 
-After that, you can reboot the raspberry. To check if dotnet is installed just run "dotnet" and a message should show.
-If you run into issues with error messages such as framework not found '2.0.0', it must be because the latest version might not be a stable version and the runtime is not rolled forward utomatically in this case. A simple solution is to create a 2.0.0 runtime symlink based on the current version. See the following link for detailed info: https://github.com/dotnet/cli/issues/7543
-
-```
-pi@localhost~$ dotnet
-
-Usage: dotnet [options]
-Usage: dotnet [path-to-application]
-
-Options:
-  -h|--help            Display help.
-  --version         Display version.
-
-path-to-application:
-  The path to an application .dll file to execute.
-```
 ### Run the app on the raspberry
 
 
-- You need to publish the project and you can accomplish this by using dotnet-sshdeploy but first, you must edit these properties inside the Playground's csproj file in order to establish an ssh connection with your raspberry
+- You need to publish the project and you can accomplish this by using [dotnet-sshdeploy](https://github.com/unosquare/sshdeploy) but first, you must edit these properties inside the Playground's csproj file in order to establish an ssh connection with your raspberry
 ``` xml
 <SshDeployHost>172.16.17.54</SshDeployHost>
 <SshDeployTargetPath>/home/pi/Playground</SshDeployTargetPath>

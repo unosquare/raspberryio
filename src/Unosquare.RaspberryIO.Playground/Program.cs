@@ -30,14 +30,14 @@
             try
             {
                 // A set of very simple tests:
-                // TestSystemInfo();
+                TestSystemInfo();
 
                 // TestCaptureImage();
-                TestCaptureVideo();
+                // TestCaptureVideo();
 
                 // TestLedStripGraphics();
                 // TestLedStrip();
-                 TestRfidController();
+                TestRfidController();
                 // TestLedBlinking();
                 // TestHardwarePwm();
                 // TestInfraredSensor();

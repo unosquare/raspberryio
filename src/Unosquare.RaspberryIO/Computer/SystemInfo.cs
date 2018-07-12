@@ -20,7 +20,6 @@
         private static readonly StringComparer StringComparer = StringComparer.InvariantCultureIgnoreCase;
 
         private static readonly object SyncRoot = new object();
-        private static bool? _isRunningAsRoot = default;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
@@ -296,35 +295,6 @@
         /// Gets the uptime in TimeSpan.
         /// </summary>
         public TimeSpan UptimeTimeSpan => TimeSpan.FromSeconds(Uptime);
-
-        /// <summary>
-        /// Gets a value indicating whether this program is running as Root
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this instance is running as root; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsRunningAsRoot
-        {
-            get
-            {
-                lock (SyncRoot)
-                {
-                    if (_isRunningAsRoot.HasValue == false)
-                    {
-                        try
-                        {
-                            _isRunningAsRoot = Standard.GetUid() == 0;
-                        }
-                        catch
-                        {
-                            _isRunningAsRoot = false;
-                        }
-                    }
-
-                    return _isRunningAsRoot.Value;
-                }
-            }
-        }
 
         /// <summary>
         /// Placeholder for processor index

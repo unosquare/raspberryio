@@ -1,25 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>The Raspberry Pi's IO Functionality in an easy-to use API for Mono/.NET/C#
+    <Description>The Raspberry Pi's IO Functionality in an easy-to use API for Mono/.NET Core
 
 This library enables developers to use the various Raspberry Pi's hardware modules including the Camera to capture images and video, the GPIO pins, and both, the SPI and I2C buses.</Description>
     <Copyright>Unosquare (c) 2016-2018</Copyright>
     <AssemblyTitle>Unosquare Raspberry IO</AssemblyTitle>
-    <VersionPrefix>0.15.0</VersionPrefix>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.RaspberryIO</AssemblyName>
     <PackageId>Unosquare.Raspberry.IO</PackageId>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.14.0</Version>
+    <Version>0.16.0</Version>
     <Authors>Unosquare</Authors>
     <PackageIconUrl>https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/unosquare/raspberryio</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/unosquare/raspberryio/master/LICENSE</PackageLicenseUrl>
     <PackageTags>Raspberry Pi GPIO Camera SPI I2C Embedded IoT Mono C# .NET</PackageTags>
     <LangVersion>7.1</LangVersion>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +27,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-    <PackageReference Include="Unosquare.Swan" Version="0.30.0" />
+    <PackageReference Include="Unosquare.Swan" Version="0.32.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">

@@ -571,36 +571,18 @@
                 {
                     case ControllerMode.DirectWithWiringPiPins:
                         {
-                            if (SystemInfo.Instance.IsRunningAsRoot == false)
-                            {
-                                throw new PlatformNotSupportedException(
-                                    $"This program must be started with root privileges for mode '{mode}'");
-                            }
-
                             setpuResult = WiringPi.WiringPiSetup();
                             break;
                         }
 
                     case ControllerMode.DirectWithBcmPins:
                         {
-                            if (SystemInfo.Instance.IsRunningAsRoot == false)
-                            {
-                                throw new PlatformNotSupportedException(
-                                    $"This program must be started with root privileges for mode '{mode}'");
-                            }
-
                             setpuResult = WiringPi.WiringPiSetupGpio();
                             break;
                         }
 
                     case ControllerMode.DirectWithHeaderPins:
                         {
-                            if (SystemInfo.Instance.IsRunningAsRoot == false)
-                            {
-                                throw new PlatformNotSupportedException(
-                                    $"This program must be started with root privileges for mode '{mode}'");
-                            }
-
                             setpuResult = WiringPi.WiringPiSetupPhys();
                             break;
                         }
