@@ -13,13 +13,6 @@
         #region LibC Calls
 
         /// <summary>
-        /// Gets the User ID - a user ID of 0 represents the root user
-        /// </summary>
-        /// <returns>The result</returns>
-        [DllImport(LibCLibrary, EntryPoint = "getuid", SetLastError = true)]
-        public static extern uint GetUid();
-
-        /// <summary>
         /// Gets a string describing the error number.
         /// </summary>
         /// <param name="errnum">The errnum.</param>
