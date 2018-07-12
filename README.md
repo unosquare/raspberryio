@@ -49,7 +49,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
 * ```Pi.I2c``` Provides access to the functionality of the i2c bus.
 * ```Pi.Timing``` Provides access to The PI's Timing and threading API.
 
-_Please note you program needs to be run with ```sudo```. Example ```sudo mono myprogram.exe``` in order to work correctly._
+To run the program ```mono myprogram.exe``` in order to work correctly.
 
 This library depends on the wonderful ```WiringPi``` library available [here](http://wiringpi.com/). You do not need to install this library yourself. The ```RaspberryIO``` assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.
 
