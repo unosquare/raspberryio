@@ -27,10 +27,7 @@
         /// </summary>
         /// <param name="adapter">The adapter.</param>
         /// <returns>A list of WiFi networks</returns>
-        public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string adapter)
-        {
-            return RetrieveWirelessNetworks(new[] { adapter });
-        }
+        public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string adapter) => RetrieveWirelessNetworks(new[] { adapter });
 
         /// <summary>
         /// Retrieves the wireless networks.
@@ -221,7 +218,7 @@
                 if (wlanInfo != null)
                 {
                     adapter.IsWireless = true;
-                    var essidParts = wlanInfo.Split(new string[] { EssidTag }, StringSplitOptions.RemoveEmptyEntries);
+                    var essidParts = wlanInfo.Split(new[] { EssidTag }, StringSplitOptions.RemoveEmptyEntries);
                     if (essidParts.Length >= 2)
                     {
                         adapter.AccessPointName = essidParts[1].Replace("\"", string.Empty).Trim();
@@ -257,10 +254,10 @@
             for (var c = startIndex; c < indentedLine.Length; c++)
             {
                 var currentChar = indentedLine[c];
-                if (char.IsPunctuation(currentChar) || char.IsLetterOrDigit(currentChar))
-                    builder.Append(currentChar);
-                else
+                if (!char.IsPunctuation(currentChar) && !char.IsLetterOrDigit(currentChar))
                     break;
+                
+                builder.Append(currentChar);
             }
 
             return builder.ToString();

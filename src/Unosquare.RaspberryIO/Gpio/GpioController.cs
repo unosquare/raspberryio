@@ -1,6 +1,5 @@
 ﻿namespace Unosquare.RaspberryIO.Gpio
 {
-    using Computer;
     using Native;
     using Swan;
     using Swan.Abstractions;
@@ -23,10 +22,10 @@
 
         private const string WiringPiCodesEnvironmentVariable = "WIRINGPI_CODES";
         private static readonly object SyncRoot = new object();
-        private readonly ReadOnlyCollection<GpioPin> PinCollection;
-        private readonly ReadOnlyDictionary<int, GpioPin> HeaderP1Pins;
-        private readonly ReadOnlyDictionary<int, GpioPin> HeaderP5Pins;
-        private readonly Dictionary<WiringPiPin, GpioPin> PinsByWiringPiPinNumber = new Dictionary<WiringPiPin, GpioPin>();
+        private readonly ReadOnlyCollection<GpioPin> _pinCollection;
+        private readonly ReadOnlyDictionary<int, GpioPin> _headerP1Pins;
+        private readonly ReadOnlyDictionary<int, GpioPin> _headerP5Pins;
+        private readonly Dictionary<WiringPiPin, GpioPin> _pinsByWiringPiPinNumber = new Dictionary<WiringPiPin, GpioPin>();
 
         #endregion
 
@@ -39,7 +38,7 @@
         /// <exception cref="Exception">Unable to initialize the GPIO controller.</exception>
         private GpioController()
         {
-            if (PinCollection != null)
+            if (_pinCollection != null)
                 return;
 
             if (IsInitialized == false)
@@ -86,17 +85,17 @@
 
             #endregion
 
-            PinCollection = new ReadOnlyCollection<GpioPin>(PinsByWiringPiPinNumber.Values.ToArray());
-            var headerP1 = new Dictionary<int, GpioPin>(PinCollection.Count);
-            var headerP5 = new Dictionary<int, GpioPin>(PinCollection.Count);
-            foreach (var pin in PinCollection)
+            _pinCollection = new ReadOnlyCollection<GpioPin>(_pinsByWiringPiPinNumber.Values.ToArray());
+            var headerP1 = new Dictionary<int, GpioPin>(_pinCollection.Count);
+            var headerP5 = new Dictionary<int, GpioPin>(_pinCollection.Count);
+            foreach (var pin in _pinCollection)
             {
                 var target = pin.Header == GpioHeader.P1 ? headerP1 : headerP5;
                 target[pin.HeaderPinNumber] = pin;
             }
 
-            HeaderP1Pins = new ReadOnlyDictionary<int, GpioPin>(headerP1);
-            HeaderP5Pins = new ReadOnlyDictionary<int, GpioPin>(headerP5);
+            _headerP1Pins = new ReadOnlyDictionary<int, GpioPin>(headerP1);
+            _headerP5Pins = new ReadOnlyDictionary<int, GpioPin>(headerP5);
         }
 
         /// <summary>
@@ -119,7 +118,7 @@
         /// <summary>
         /// Gets the number of registered pins in the controller.
         /// </summary>
-        public int Count => PinCollection.Count;
+        public int Count => _pinCollection.Count;
 
         #endregion
 
@@ -133,19 +132,19 @@
         /// <summary>
         /// Gets a red-only collection of all registered pins.
         /// </summary>
-        public ReadOnlyCollection<GpioPin> Pins => PinCollection;
+        public ReadOnlyCollection<GpioPin> Pins => _pinCollection;
 
         /// <summary>
         /// Provides all the pins on Header P1 of the Pi as a lookup by physical header pin number.
         /// This header is the main header and it is the one commonly used.
         /// </summary>
-        public ReadOnlyDictionary<int, GpioPin> HeaderP1 => HeaderP1Pins;
+        public ReadOnlyDictionary<int, GpioPin> HeaderP1 => _headerP1Pins;
 
         /// <summary>
         /// Provides all the pins on Header P5 of the Pi as a lookup by physical header pin number.
         /// This header is the secondary header and it is rarely used.
         /// </summary>
-        public ReadOnlyDictionary<int, GpioPin> HeaderP5 => HeaderP5Pins;
+        public ReadOnlyDictionary<int, GpioPin> HeaderP5 => _headerP5Pins;
 
         #endregion
 
@@ -328,7 +327,7 @@
         /// </value>
         /// <param name="pinNumber">The pin number.</param>
         /// <returns>A reference to the GPIO pin</returns>
-        public GpioPin this[WiringPiPin pinNumber] => PinsByWiringPiPinNumber[pinNumber];
+        public GpioPin this[WiringPiPin pinNumber] => _pinsByWiringPiPinNumber[pinNumber];
 
         /// <summary>
         /// Gets the <see cref="GpioPin"/> with the specified pin number.
@@ -367,7 +366,7 @@
                 if (Enum.IsDefined(typeof(WiringPiPin), wiringPiPinNumber) == false)
                     throw new IndexOutOfRangeException($"Pin {wiringPiPinNumber} is not registered in the GPIO controller.");
 
-                return PinsByWiringPiPinNumber[(WiringPiPin)wiringPiPinNumber];
+                return _pinsByWiringPiPinNumber[(WiringPiPin)wiringPiPinNumber];
             }
         }
 
@@ -398,10 +397,7 @@
         /// <param name="group">The group.</param>
         /// <param name="value">The value.</param>
         /// <returns>The awaitable task</returns>
-        public Task SetPadDriveAsync(int group, int value)
-        {
-            return Task.Run(() => { SetPadDrive(group, value); });
-        }
+        public Task SetPadDriveAsync(int group, int value) => Task.Run(() => { SetPadDrive(@group, value); });
 
         /// <summary>
         /// This writes the 8-bit byte supplied to the first 8 GPIO pins.
@@ -431,10 +427,7 @@
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The awaitable task</returns>
-        public Task WriteByteAsync(byte value)
-        {
-            return Task.Run(() => { WriteByte(value); });
-        }
+        public Task WriteByteAsync(byte value) => Task.Run(() => { WriteByte(value); });
 
         /// <summary>
         /// This reads the 8-bit byte supplied to the first 8 GPIO pins.
@@ -479,10 +472,7 @@
         /// <returns>
         /// A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.
         /// </returns>
-        public IEnumerator<GpioPin> GetEnumerator()
-        {
-            return PinCollection.GetEnumerator();
-        }
+        public IEnumerator<GpioPin> GetEnumerator() => _pinCollection.GetEnumerator();
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -490,10 +480,7 @@
         /// <returns>
         /// An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
         /// </returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return PinCollection.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _pinCollection.GetEnumerator();
 
         #endregion
 
@@ -538,8 +525,8 @@
         /// <param name="pin">The pin.</param>
         private void RegisterPin(GpioPin pin)
         {
-            if (PinsByWiringPiPinNumber.ContainsKey(pin.WiringPiPinNumber) == false)
-                PinsByWiringPiPinNumber[pin.WiringPiPinNumber] = pin;
+            if (_pinsByWiringPiPinNumber.ContainsKey(pin.WiringPiPinNumber) == false)
+                _pinsByWiringPiPinNumber[pin.WiringPiPinNumber] = pin;
             else
                 throw new InvalidOperationException($"Pin {pin.WiringPiPinNumber} has been registered");
         }

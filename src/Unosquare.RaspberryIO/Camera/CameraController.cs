@@ -17,8 +17,8 @@
 
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         private static readonly object SyncRoot = new object();
-        private static CancellationTokenSource VideoTokenSource = new CancellationTokenSource();
-        private static Task<Task> VideoStreamTask;
+        private static CancellationTokenSource _videoTokenSource = new CancellationTokenSource();
+        private static Task<Task> _videoStreamTask;
 
         #endregion
 
@@ -111,10 +111,7 @@
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <returns>The image bytes</returns>
-        public byte[] CaptureImageJpeg(int width, int height)
-        {
-            return CaptureImageJpegAsync(width, height).GetAwaiter().GetResult();
-        }
+        public byte[] CaptureImageJpeg(int width, int height) => CaptureImageJpegAsync(width, height).GetAwaiter().GetResult();
 
         #endregion
 
@@ -158,7 +155,7 @@
             try
             {
                 OperationDone.Reset();
-                VideoStreamTask = Task.Factory.StartNew(() => VideoWorkerDoWork(settings, onDataCallback, onExitCallback), VideoTokenSource.Token);
+                _videoStreamTask = Task.Factory.StartNew(() => VideoWorkerDoWork(settings, onDataCallback, onExitCallback), _videoTokenSource.Token);
             }
             catch
             {
@@ -178,13 +175,13 @@
                     return;
             }
 
-            if (VideoTokenSource.IsCancellationRequested == false)
+            if (_videoTokenSource.IsCancellationRequested == false)
             {
-                VideoTokenSource.Cancel();
-                VideoStreamTask.Wait();
+                _videoTokenSource.Cancel();
+                _videoStreamTask.Wait();
             }
 
-            VideoTokenSource = new CancellationTokenSource();
+            _videoTokenSource = new CancellationTokenSource();
         }
 
         private static async Task VideoWorkerDoWork(
@@ -200,7 +197,7 @@
                     (data, proc) => onDataCallback?.Invoke(data),
                     null,
                     true,
-                    VideoTokenSource.Token);
+                    _videoTokenSource.Token);
 
                 onExitCallback?.Invoke();
             }

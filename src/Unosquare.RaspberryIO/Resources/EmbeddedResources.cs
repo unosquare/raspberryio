@@ -31,11 +31,10 @@
         /// <summary>
         /// Extracts all the file resources to the specified base path.
         /// </summary>
-        /// <param name="basePath">The base path.</param>
-        public static void ExtractAll(string basePath = null)
+        public static void ExtractAll()
         {
-            if (string.IsNullOrWhiteSpace(basePath))
-                basePath = Runtime.EntryAssemblyDirectory;
+            var basePath = Runtime.EntryAssemblyDirectory;
+            var executablePermissions = Standard.StringToInteger("0777", IntPtr.Zero, 8);
 
             foreach (var resourceName in ResourceNames)
             {
@@ -53,7 +52,6 @@
 
                     try
                     {
-                        var executablePermissions = Standard.StringToInteger("0777", IntPtr.Zero, 8);
                         Standard.Chmod(targetPath, (uint)executablePermissions);
                     }
                     catch
