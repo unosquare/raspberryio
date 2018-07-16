@@ -3,7 +3,7 @@ image:
 - Visual Studio 2017
 - Ubuntu
 build:
-  project: Unosquare.AccessCore.sln
+  project: Unosquare.RaspberryIO.sln
   verbosity: quiet
 configuration:
 - Release
