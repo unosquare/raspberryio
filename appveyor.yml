@@ -1,4 +1,10 @@
 version: '1.0.{build}'
+image: 
+- Visual Studio 2017
+- Ubuntu
+build:
+  project: Unosquare.AccessCore.sln
+  verbosity: quiet
 configuration:
 - Release
 platform: Any CPU
@@ -8,7 +14,6 @@ notifications:
     secure: Q+xg4/yU5OR9BVF14cw4yZ+3qlhMeYDsAhUQyOIszmF1mHvq44tIvQpWByBJCd/cgUIZk3SwBpk4hh1MrkQIk6rnaOZ2LNBTev4zrq36oXk=
   channel: '#builds'
 environment:
-  # Don't report back to the mothership
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   COVERALLS_REPO_TOKEN:  
        secure: dVpAqavd3jP7LMW+oswLBPfihwiGDZUtWDQWJadMO1Gj61SYegxNsGTZOT2BYN6+
@@ -16,21 +21,17 @@ environment:
   op_build_user_email: "geovanni.perez@gmail.com"
   access_token:
        secure: HzWdswNyfQbQ0vLk9IQyO+Ei9mxoPYp9rvv6HPhtC9J/Fm7EHRzyV953pbPRXI9I
-init:
-- ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 before_build:
 - ps: |
-        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
         {
             git checkout $env:APPVEYOR_REPO_BRANCH -q
             cinst docfx -y
         }
-- appveyor-retry dotnet restore -v Minimal
-build_script:
-- dotnet build "src\Unosquare.RaspberryIO" -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
+- dotnet restore -v Minimal
 after_build:
 - ps: |
-        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE -And $isWindows)
         {
             git config --global credential.helper store
             Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
