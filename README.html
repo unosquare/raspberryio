@@ -126,7 +126,7 @@
 <li><code>Pi.I2c</code> Provides access to the functionality of the i2c bus.</li>
 <li><code>Pi.Timing</code> Provides access to The PI&#39;s Timing and threading API.</li>
 </ul>
-<p>To run the program <code>mono myprogram.exe</code> in order to work correctly. You no longer require running as root.</p>
+<p><em>Please note you program needs to be run with <code>sudo</code>. Example <code>sudo mono myprogram.exe</code> in order to work correctly.</em></p>
 <p>This library depends on the wonderful <code>WiringPi</code> library available <a href="http://wiringpi.com/">here</a>. You do not need to install this library yourself. The <code>RaspberryIO</code> assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.</p>
 <h3 id="peripherals">Peripherals</h3>
 <p>We offer an additional package with helpful classes to use peripherals, many of them are from pull requests from our contributors. The current set of peripherals supported are:</p>
@@ -183,20 +183,54 @@ network={
 <pre><code>sudo systemctl daemon-reload
 sudo systemctl restart dhcpcd
 </code></pre><p>You can also configure most boot options by running: <code>sudo raspi-config</code></p>
-<h2 id="running-net-core-21">Running .NET Core 2.1</h2>
-<p>This project can also run in .NET Core 2.1. To install please execute the following commands:</p>
-<pre><code>$ sudo apt-get -y update
-$ sudo apt-get -y install libunwind8 gettext
-$ wget https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.300-rc1-008673/dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz
-$ wget https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/2.1.0-rc1-final/aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz
-$ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo tar -xvf aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
-$ dotnet --info
+<h2 id="running-net-core-2">Running .NET Core 2</h2>
+<p>This project can also run in .NET Core 2.</p>
+<p>Run the following commands to install .NET Core 2.</p>
+<pre><code># Update Ubuntu 16.04
+sudo apt-get -y update
+
+# Install the packages necessary for .NET Core
+sudo apt-get -y install libunwind8 libunwind8-dev gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev
+
+# Download the latest binaries for .NET Core 2 
+wget https://dotnetcli.blob.core.windows.net/dotnet/Runtime/release/2.0.0/dotnet-runtime-latest-linux-arm.tar.gz
+
+# Make a directory for .NET Core to live in
+mkdir ~/dotnet
+
+# Unzip the binaries into the directory you just created
+tar -xvf dotnet-runtime-latest-linux-arm.tar.gz -C ~/dotnet
+
+# Now add the path to the dotnet executable to the environment path
+# This ensures the next time you log in, the dotnet exe is on your path
+cd /home/pi/dotnet
+echo &quot;PATH=\$PATH:/home/pi/dotnet&quot; &gt;&gt; dotnetcore.sh
+sudo mv dotnetcore.sh /etc/profile.d
+
+# Then run the command below to add the path to the dotnet executable to the current session
+PATH=$PATH:/home/ubuntu/dotnet
+
+# finally, you can:
+sudo nano /etc/sudoers
+# and append to the secure_path option:
+:/home/pi/dotnet
+# this will allow you to run dotnet in su mode
+</code></pre><p>After that, you can reboot the raspberry. To check if dotnet is installed just run &quot;dotnet&quot; and a message should show.
+If you run into issues with error messages such as framework not found &#39;2.0.0&#39;, it must be because the latest version might not be a stable version and the runtime is not rolled forward utomatically in this case. A simple solution is to create a 2.0.0 runtime symlink based on the current version. See the following link for detailed info: <a href="https://github.com/dotnet/cli/issues/7543">https://github.com/dotnet/cli/issues/7543</a></p>
+<pre><code>pi@localhost~$ dotnet
+
+Usage: dotnet [options]
+Usage: dotnet [path-to-application]
+
+Options:
+  -h|--help            Display help.
+  --version         Display version.
+
+path-to-application:
+  The path to an application .dll file to execute.
 </code></pre><h3 id="run-the-app-on-the-raspberry">Run the app on the raspberry</h3>
 <ul>
-<li><p>You need to publish the project and you can accomplish this by using <a href="https://github.com/unosquare/sshdeploy">dotnet-sshdeploy</a> but first, you must edit these properties inside the Playground&#39;s csproj file in order to establish an ssh connection with your raspberry</p>
+<li><p>You need to publish the project and you can accomplish this by using dotnet-sshdeploy but first, you must edit these properties inside the Playground&#39;s csproj file in order to establish an ssh connection with your raspberry</p>
 <pre><code class="lang-xml">&lt;SshDeployHost&gt;172.16.17.54&lt;/SshDeployHost&gt;
 &lt;SshDeployTargetPath&gt;/home/pi/Playground&lt;/SshDeployTargetPath&gt;
 &lt;SshDeployUsername&gt;pi&lt;/SshDeployUsername&gt;
@@ -739,7 +773,7 @@ foreach (var device in Pi.I2C.Devices)
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/HardwareException/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/CustomWiringPi/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
