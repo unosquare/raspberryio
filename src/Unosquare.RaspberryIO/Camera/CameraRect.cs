@@ -11,7 +11,7 @@
         /// <summary>
         /// The default ROI which is the entire area.
         /// </summary>
-        public static readonly CameraRect Default = new CameraRect() { X = 0M, Y = 0M, W = 1.0M, H = 1.0M };
+        public static readonly CameraRect Default = new CameraRect { X = 0M, Y = 0M, W = 1.0M, H = 1.0M };
 
         /// <summary>
         /// Gets or sets the x in relative coordinates. (0.0 to 1.0)
@@ -77,9 +77,6 @@
         /// <returns>
         /// A <see cref="string" /> that represents this instance.
         /// </returns>
-        public override string ToString()
-        {
-            return $"{X.ToString(CultureInfo.InvariantCulture)},{Y.ToString(CultureInfo.InvariantCulture)},{W.ToString(CultureInfo.InvariantCulture)},{H.ToString(CultureInfo.InvariantCulture)}";
-        }
+        public override string ToString() => $"{X.ToString(CultureInfo.InvariantCulture)},{Y.ToString(CultureInfo.InvariantCulture)},{W.ToString(CultureInfo.InvariantCulture)},{H.ToString(CultureInfo.InvariantCulture)}";
     }
 }

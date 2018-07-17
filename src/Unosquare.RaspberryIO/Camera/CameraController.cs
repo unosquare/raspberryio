@@ -94,7 +94,7 @@
         /// <returns>The image bytes</returns>
         public Task<byte[]> CaptureImageJpegAsync(int width, int height, CancellationToken ct = default)
         {
-            var settings = new CameraStillSettings()
+            var settings = new CameraStillSettings
             {
                 CaptureWidth = width,
                 CaptureHeight = height,
@@ -125,7 +125,7 @@
         /// <param name="onExitCallback">The on exit callback.</param>
         public void OpenVideoStream(Action<byte[]> onDataCallback, Action onExitCallback = null)
         {
-            var settings = new CameraVideoSettings()
+            var settings = new CameraVideoSettings
             {
                 CaptureTimeoutMilliseconds = 0,
                 CaptureDisplayPreview = false,

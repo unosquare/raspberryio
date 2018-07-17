@@ -1,7 +1,9 @@
 ﻿namespace Unosquare.RaspberryIO.Native
 {
+    using Swan;
     using System;
     using System.Runtime.InteropServices;
+    using System.Text;
 
     /// <summary>
     /// Provides standard libc calls using platform-invoke
@@ -18,7 +20,26 @@
         /// <param name="errnum">The errnum.</param>
         /// <returns>The result</returns>
         [DllImport(LibCLibrary, EntryPoint = "strerror", SetLastError = true)]
-        public static extern string StrError(int errnum);
+        internal static extern string StrError(int errnum);
+
+        internal static string Strerror(int error)
+        {
+            if (!Runtime.IsUsingMonoRuntime) return StrError(error);
+
+            try
+            {
+                var buffer = new StringBuilder(256);
+                var result = Strerror(error, buffer, (ulong)buffer.Capacity);
+                return (result != -1) ? buffer.ToString() : null;
+            }
+            catch (EntryPointNotFoundException)
+            {
+                return null;
+            }
+        }
+
+        [DllImport("MonoPosixHelper", EntryPoint = "Mono_Posix_Syscall_strerror_r", SetLastError = true)]
+        private static extern int Strerror(int error, [Out] StringBuilder buffer, ulong length);
 
         /// <summary>
         /// Changes file permissions on a Unix file system

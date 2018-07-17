@@ -14,7 +14,7 @@
         /// <summary>
         /// The default authentication key
         /// </summary>
-        public static readonly byte[] DefaultAuthKey = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+        public static readonly byte[] DefaultAuthKey = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
         #region Private Members
 
@@ -518,17 +518,14 @@
         /// <summary>
         /// Sends the reset phase command to the RFID Controller.
         /// </summary>
-        public void Reset()
-        {
-            WriteCommand(Command.ResetPhase);
-        }
+        public void Reset() => WriteCommand(Command.ResetPhase);
 
         /// <summary>
         /// Turns the RFID antenna on.
         /// </summary>
         public void TurnAntennaOn()
         {
-            var temp = ReadRegister(Register.TxControlReg);
+            ReadRegister(Register.TxControlReg);
 
             // if (~(temp & 0x03) == 1)
             SetRegisterBits(Register.TxControlReg, 0x03);
@@ -537,10 +534,7 @@
         /// <summary>
         /// Turns the RFID antenna off.
         /// </summary>
-        public void TurnAntennaOff()
-        {
-            ClearRegisterBits(Register.TxControlReg, 0x03);
-        }
+        public void TurnAntennaOff() => ClearRegisterBits(Register.TxControlReg, 0x03);
 
         /// <summary>
         /// Reads the register.
@@ -550,8 +544,7 @@
         public byte ReadRegister(Register register)
         {
             var address = (byte)register;
-            var addressPayload = (byte)(((address << 1) & 0x7E) | 0x80);
-            var readValue = _spiPort.SendReceive(new byte[] { addressPayload, 0 });
+            var readValue = _spiPort.SendReceive(new byte[] { (byte)(((address << 1) & 0x7E) | 0x80), 0 });
             return readValue[1];
         }
 
@@ -567,22 +560,21 @@
 
             var backData = new List<byte>();
             byte receivedBitCount = 0;
-            var status = Status.Error;
             byte interruptEnableFlags = 0x00;
             byte waitInterruptFlags = 0x00;
-            byte currentRegisterValue = 0;
+            byte currentRegisterValue;
             var i = 0;
 
-            if (command == Command.Authenticate)
+            switch (command)
             {
-                interruptEnableFlags = 0x12;
-                waitInterruptFlags = 0x10;
-            }
-
-            if (command == Command.Transcieve)
-            {
-                interruptEnableFlags = 0x77;
-                waitInterruptFlags = 0x30;
+                case Command.Authenticate:
+                    interruptEnableFlags = 0x12;
+                    waitInterruptFlags = 0x10;
+                    break;
+                case Command.Transcieve:
+                    interruptEnableFlags = 0x77;
+                    waitInterruptFlags = 0x30;
+                    break;
             }
 
             WriteRegister(Register.CommIEnReg, (byte)(interruptEnableFlags | 0x80));
@@ -608,46 +600,36 @@
             do
             {
                 currentRegisterValue = ReadRegister(Register.CommIrqReg);
-            }
-            while (--i != 0 && (currentRegisterValue & 0x01) == 0 && (currentRegisterValue & waitInterruptFlags) == 0);
+            } while (--i != 0 && (currentRegisterValue & 0x01) == 0 &&
+                     (currentRegisterValue & waitInterruptFlags) == 0);
 
             ClearRegisterBits(Register.BitFramingReg, 0x80);
 
-            if (i == 0)
-                return new RfidResponse(status, backData.ToArray(), receivedBitCount);
+            if (i == 0 || (ReadRegister(Register.ErrorReg) & 0x1B) != 0x00)
+                return new RfidResponse(Status.Error, backData.ToArray(), receivedBitCount);
 
-            if ((ReadRegister(Register.ErrorReg) & 0x1B) == 0x00)
+            var status = Convert.ToBoolean(currentRegisterValue & interruptEnableFlags & 0x01) ? Status.NoTagError : Status.AllOk;
+
+            if (command == Command.Transcieve)
             {
-                status = Status.AllOk;
+                currentRegisterValue = ReadRegister(Register.FIFOLevelReg);
+                var lastBits = ReadRegister(Register.ControlReg) & 0x07;
+                receivedBitCount = (lastBits != 0)
+                    ? (byte)(((currentRegisterValue - 1) * 8) + (byte)lastBits)
+                    : (byte)(currentRegisterValue * 8);
 
-                if (Convert.ToBoolean(currentRegisterValue & interruptEnableFlags & 0x01))
+                if (currentRegisterValue == 0)
+                    currentRegisterValue = 1;
+
+                if (currentRegisterValue > maximumLength)
+                    currentRegisterValue = maximumLength;
+
+                i = 0;
+                while (i < currentRegisterValue)
                 {
-                    status = Status.NoTagError;
+                    backData.Add(ReadRegister(Register.FIFODataReg));
+                    i++;
                 }
-
-                if (command == Command.Transcieve)
-                {
-                    currentRegisterValue = ReadRegister(Register.FIFOLevelReg);
-                    byte? lastBits = (byte)(ReadRegister(Register.ControlReg) & 0x07);
-                    receivedBitCount = (lastBits != 0) ? (byte)(((currentRegisterValue - 1) * 8) + (byte)lastBits) : (byte)(currentRegisterValue * 8);
-
-                    if (currentRegisterValue == 0)
-                        currentRegisterValue = 1;
-
-                    if (currentRegisterValue > maximumLength)
-                        currentRegisterValue = maximumLength;
-
-                    i = 0;
-                    while (i < currentRegisterValue)
-                    {
-                        backData.Add(ReadRegister(Register.FIFODataReg));
-                        i++;
-                    }
-                }
-            }
-            else
-            {
-                status = Status.Error;
             }
 
             return new RfidResponse(status, backData.ToArray(), receivedBitCount);
@@ -662,14 +644,15 @@
         public Status CardWriteData(byte blockAddress, byte[] writeData)
         {
             var buff = new List<byte> { (byte)RequestMode.Write, blockAddress };
-            var crc = CalulateCRC(buff.ToArray());
+            var crc = CalulateCrc(buff.ToArray());
             buff.Add(crc[0]);
             buff.Add(crc[1]);
 
             var status = Status.AllOk;
             var transcieve = CardSendData(Command.Transcieve, buff.ToArray());
 
-            if (transcieve.Status != Status.AllOk || transcieve.DataBitLength != 4 || (transcieve.Data[0] & 0x0F) != 0x0A)
+            if (transcieve.Status != Status.AllOk || transcieve.DataBitLength != 4 ||
+                (transcieve.Data[0] & 0x0F) != 0x0A)
             {
                 status = Status.Error;
             }
@@ -687,18 +670,15 @@
                 i++;
             }
 
-            crc = CalulateCRC(buf.ToArray());
+            crc = CalulateCrc(buf.ToArray());
             buf.Add(crc[0]);
             buf.Add(crc[1]);
 
             var verify = CardSendData(Command.Transcieve, buf.ToArray());
 
-            if (verify.Status != Status.AllOk || verify.DataBitLength != 4 || (verify.Data[0] & 0x0F) != 0x0A)
-            {
-                status = Status.Error;
-            }
-
-            return status;
+            return verify.Status != Status.AllOk || verify.DataBitLength != 4 || (verify.Data[0] & 0x0F) != 0x0A
+                ? Status.Error
+                : status;
         }
 
         /// <summary>
@@ -709,19 +689,13 @@
         public RfidResponse CardReadData(byte blockAddress)
         {
             var buff = new List<byte> { (byte)RequestMode.Read, blockAddress };
-            var crc = CalulateCRC(buff.ToArray());
+            var crc = CalulateCrc(buff.ToArray());
             buff.Add(crc[0]);
             buff.Add(crc[1]);
 
-            var status = Status.AllOk;
             var result = CardSendData(Command.Transcieve, buff.ToArray());
 
-            if (result.Status != Status.AllOk || result.Data.Length != 0x10)
-            {
-                status = Status.Error;
-            }
-
-            return new RfidResponse(status, result.Data, result.DataBitLength);
+            return new RfidResponse(result.Status != Status.AllOk || result.Data.Length != 0x10 ? Status.Error : Status.AllOk, result);
         }
 
         /// <summary>
@@ -735,13 +709,8 @@
             WriteRegister(Register.BitFramingReg, 0x07);
 
             var result = CardSendData(Command.Transcieve, tagType.ToArray());
-            var status = Status.AllOk;
-            if ((result.Status != Status.AllOk) || (result.DataBitLength != 0x10))
-            {
-                status = Status.Error;
-            }
 
-            return new RfidResponse(status, result.Data, result.DataBitLength);
+            return new RfidResponse(result.Status != Status.AllOk || result.DataBitLength != 0x10 ? Status.Error : Status.AllOk, result);
         }
 
         /// <summary>
@@ -749,10 +718,7 @@
         /// Resturns an OK status if a card was detected.
         /// </summary>
         /// <returns>The status code</returns>
-        public Status DetectCard()
-        {
-            return SendControllerRequest(RequestMode.RequestIdle).Status;
-        }
+        public Status DetectCard() => SendControllerRequest(RequestMode.RequestIdle).Status;
 
         /// <summary>
         /// Reads the card unique identifier.
@@ -760,24 +726,18 @@
         /// <returns>A standard response. The UID is in the Data</returns>
         public RfidResponse ReadCardUniqueId()
         {
-            byte serNumCheck = 0;
-            var serNum = new List<byte>();
-
             WriteRegister(Register.BitFramingReg, 0x00);
-            serNum.Add((byte)RequestMode.AntiCollision);
-            serNum.Add(0x20);
+
+            var serNum = new List<byte> { (byte)RequestMode.AntiCollision, 0x20 };
 
             var response = CardSendData(Command.Transcieve, serNum.ToArray());
-            var status = Status.AllOk;
+            var status = response.Data.Length == 5 ? Status.AllOk : Status.Error;
 
-            var i = 0;
-            if (response.Status == Status.AllOk)
+            if (status == Status.AllOk)
             {
-                i = 0;
-            }
+                byte serNumCheck = 0;
+                var i = 0;
 
-            if (response.Data.Length == 5)
-            {
                 while (i < 4)
                 {
                     serNumCheck = (byte)(serNumCheck ^ response.Data[i]);
@@ -789,12 +749,8 @@
                     status = Status.Error;
                 }
             }
-            else
-            {
-                status = Status.Error;
-            }
 
-            return new RfidResponse(status, response.Data, response.DataBitLength);
+            return new RfidResponse(status, response);
         }
 
         /// <summary>
@@ -813,17 +769,22 @@
                 i++;
             }
 
-            var crcHashCode = CalulateCRC(payloadBuffer.ToArray());
+            var crcHashCode = CalulateCrc(payloadBuffer.ToArray());
             payloadBuffer.Add(crcHashCode[0]);
             payloadBuffer.Add(crcHashCode[1]);
             var response = CardSendData(Command.Transcieve, payloadBuffer.ToArray());
 
-            if (response.Status != Status.AllOk || response.DataBitLength != 0x18)
-                return 0;
-
-            $"Size: {response.Data[0]}".Debug();
-            return response.Data[0];
+            return response.Status != Status.AllOk || response.DataBitLength != 0x18 ? (byte)0 : response.Data[0];
         }
+
+        /// <summary>
+        /// Authenticates the previosuly selected card UID in 1A mode with default AuthKey
+        /// </summary>
+        /// <param name="cardUid">The card uid.</param>
+        /// <param name="blockAddress">The block address.</param>
+        /// <returns>The status code</returns>
+        public Status AuthenticateCard1A(byte[] cardUid, byte blockAddress = (byte)Register.Status2Reg)
+            => AuthenticateCard1A(DefaultAuthKey, cardUid, blockAddress);
 
         /// <summary>
         /// Authenticates the previosuly selected card UID in 1A mode.
@@ -832,10 +793,10 @@
         /// <param name="cardUid">The card uid.</param>
         /// <param name="blockAddress">The block address.</param>
         /// <returns>The status code</returns>
-        public Status AuthenticateCard1A(byte[] sectorkey, byte[] cardUid, byte blockAddress = (byte)Register.Status2Reg)
-        {
-            return Authenticate(RequestMode.Authenticate1A, blockAddress, sectorkey, cardUid);
-        }
+        public Status AuthenticateCard1A(
+            byte[] sectorkey,
+            byte[] cardUid,
+            byte blockAddress = (byte)Register.Status2Reg) => Authenticate(RequestMode.Authenticate1A, blockAddress, sectorkey, cardUid);
 
         /// <summary>
         /// Authenticates the previosuly selected card UID in 1B mode.
@@ -844,18 +805,16 @@
         /// <param name="cardUid">The card uid.</param>
         /// <param name="blockAddress">The block address.</param>
         /// <returns>The status code</returns>
-        public Status AuthenticateCard1B(byte[] sectorkey, byte[] cardUid, byte blockAddress = (byte)Register.Status2Reg)
-        {
-            return Authenticate(RequestMode.Authenticate1B, blockAddress, sectorkey, cardUid);
-        }
+        public Status AuthenticateCard1B(
+            byte[] sectorkey,
+            byte[] cardUid,
+            byte blockAddress = (byte)Register.Status2Reg) =>
+            Authenticate(RequestMode.Authenticate1B, blockAddress, sectorkey, cardUid);
 
         /// <summary>
         /// Clears the card selection for authentication purposes.
         /// </summary>
-        public void ClearCardSelection()
-        {
-            ClearRegisterBits(Register.Status2Reg, 0x08);
-        }
+        public void ClearCardSelection() => ClearRegisterBits(Register.Status2Reg, 0x08);
 
         /// <summary>
         /// Reads the authenticated registers.
@@ -865,11 +824,11 @@
         /// <returns>A byte array with the contents of the authenticated registers</returns>
         public byte[] DumpRegisters(byte[] authKey, byte[] cardUniqueId)
         {
-            const byte RegisterCount = 64;
-            var result = new byte[RegisterCount];
+            const byte registerCount = 64;
+            var result = new byte[registerCount];
             byte i = 0;
 
-            while (i < RegisterCount)
+            while (i < registerCount)
             {
                 // Check if authenticated
                 if (Authenticate(RequestMode.Authenticate1A, i, authKey, cardUniqueId) == Status.AllOk)
@@ -914,9 +873,9 @@
         /// <param name="value">The value.</param>
         private void WriteRegister(byte register, byte value)
         {
-            _spiPort.Write(new byte[]
+            _spiPort.Write(new[]
             {
-                (byte)((register << 1) & 0x7E),
+                (byte) ((register << 1) & 0x7E),
                 value
             });
         }
@@ -926,41 +885,27 @@
         /// </summary>
         /// <param name="register">The register.</param>
         /// <param name="value">The value.</param>
-        private void WriteRegister(Register register, byte value)
-        {
-            WriteRegister((byte)register, value);
-        }
+        private void WriteRegister(Register register, byte value) => WriteRegister((byte)register, value);
 
         /// <summary>
         /// Writes the command.
         /// </summary>
         /// <param name="value">The value.</param>
-        private void WriteCommand(Command value)
-        {
-            WriteRegister(Register.CommandReg, (byte)value);
-        }
+        private void WriteCommand(Command value) => WriteRegister(Register.CommandReg, (byte)value);
 
         /// <summary>
         /// Sets the register bits.
         /// </summary>
         /// <param name="register">The register.</param>
         /// <param name="bitMask">The bit mask.</param>
-        private void SetRegisterBits(Register register, byte bitMask)
-        {
-            var readValue = ReadRegister(register);
-            WriteRegister(register, (byte)(readValue | bitMask));
-        }
+        private void SetRegisterBits(Register register, byte bitMask) => WriteRegister(register, (byte)(ReadRegister(register) | bitMask));
 
         /// <summary>
         /// Clears the register bits.
         /// </summary>
         /// <param name="register">The register.</param>
         /// <param name="bitMask">The bit mask.</param>
-        private void ClearRegisterBits(Register register, byte bitMask)
-        {
-            var readValue = ReadRegister(register);
-            WriteRegister(register, (byte)(readValue & (~bitMask)));
-        }
+        private void ClearRegisterBits(Register register, byte bitMask) => WriteRegister(register, (byte)(ReadRegister(register) & (~bitMask)));
 
         /// <summary>
         /// Calulates the CRC Hash as an array of bytes.
@@ -968,7 +913,7 @@
         /// </summary>
         /// <param name="pIndata">The p indata.</param>
         /// <returns>a 2-byte array with the CRC</returns>
-        private byte[] CalulateCRC(byte[] pIndata)
+        private byte[] CalulateCrc(byte[] pIndata)
         {
             ClearRegisterBits(Register.DivIrqReg, 0x04);
             SetRegisterBits(Register.FIFOLevelReg, 0x80);
@@ -991,8 +936,7 @@
                 }
             }
 
-            var outputData = new byte[] { ReadRegister(Register.CRCResultRegL), ReadRegister(Register.CRCResultRegM) };
-            return outputData;
+            return new[] { ReadRegister(Register.CRCResultRegL), ReadRegister(Register.CRCResultRegM) };
         }
 
         /// <summary>
@@ -1027,19 +971,11 @@
 
             // Now we start the authentication itself
             var response = CardSendData(Command.Authenticate, buff.ToArray());
-            var status = response.Status;
-
-            // Check if an error occurred
-            if (status != Status.AllOk)
-                status = Status.Error;
-
-            if ((ReadRegister(Register.Status2Reg) & 0x08) == 0)
-                status = Status.Error;
-
-            status = Status.AllOk;
 
             // Return the status
-            return status;
+            return response.Status != Status.AllOk || (ReadRegister(Register.Status2Reg) & 0x08) == 0
+                ? Status.Error
+                : Status.AllOk;
         }
 
         #endregion
@@ -1065,11 +1001,15 @@
             }
 
             /// <summary>
-            /// Prevents a default instance of the <see cref="RfidResponse"/> class from being created.
+            /// Initializes a new instance of the <see cref="RfidResponse"/> class.
             /// </summary>
-            private RfidResponse()
+            /// <param name="status">The status.</param>
+            /// <param name="previousResponse">The previous response.</param>
+            internal RfidResponse(Status status, RfidResponse previousResponse)
             {
-                // placeholder
+                Status = status;
+                Data = previousResponse.Data;
+                DataBitLength = previousResponse.DataBitLength;
             }
 
             /// <summary>

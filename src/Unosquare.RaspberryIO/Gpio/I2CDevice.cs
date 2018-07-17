@@ -56,10 +56,7 @@
         /// Reads a byte from the specified file descriptor
         /// </summary>
         /// <returns>The byte from device</returns>
-        public Task<byte> ReadAsync()
-        {
-            return Task.Run(() => Read());
-        }
+        public Task<byte> ReadAsync() => Task.Run(() => Read());
 
         /// <summary>
         /// Reads a buffer of the specified length, one byte at a time
@@ -87,10 +84,7 @@
         /// </summary>
         /// <param name="length">The length.</param>
         /// <returns>The byte array from device</returns>
-        public Task<byte[]> ReadAsync(int length)
-        {
-            return Task.Run(() => Read(length));
-        }
+        public Task<byte[]> ReadAsync(int length) => Task.Run(() => Read(length));
 
         /// <summary>
         /// Writes a byte of data the specified file descriptor.
@@ -110,10 +104,7 @@
         /// </summary>
         /// <param name="data">The data.</param>
         /// <returns>The awaitable task</returns>
-        public Task WriteAsync(byte data)
-        {
-            return Task.Run(() => { Write(data); });
-        }
+        public Task WriteAsync(byte data) => Task.Run(() => { Write(data); });
 
         /// <summary>
         /// Writes a set of bytes to the specified file descriptor.

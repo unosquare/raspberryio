@@ -241,7 +241,9 @@
             // Display Preview
             if (CaptureDisplayPreview)
             {
-                if (CaptureDisplayPreviewInFullScreen) sb.Append(" -f");
+                if (CaptureDisplayPreviewInFullScreen) 
+                    sb.Append(" -f");
+
                 if (CaptureDisplayPreviewOpacity != byte.MaxValue)
                     sb.Append($" -op {CaptureDisplayPreviewOpacity.ToString(Ci)}");
             }
@@ -330,8 +332,7 @@
             if (string.IsNullOrWhiteSpace(ImageAnnotationsText) == false)
                 sb.Append($" -a \"{ImageAnnotationsText.Replace("\"", "'")}\"");
 
-            var result = sb.ToString();
-            return result;
+            return sb.ToString();
         }
 
         #endregion

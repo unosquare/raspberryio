@@ -63,13 +63,10 @@
         public static void TestTempSensor()
         {
             var sensor = new TemperatureSensorAM2302(Pi.Gpio[P1.Gpio17]);
-            sensor.OnDataAvailable += (s, e) =>
-            {
-                $"Temperature: {e.TemperatureCelsius} | Humidity: {e.HumidityPercentage}".Info("AM2302");
-            };
+            sensor.OnDataAvailable += (s, e) => $"Temperature: {e.TemperatureCelsius} | Humidity: {e.HumidityPercentage}".Info("AM2302");
 
             sensor.Start();
-            Console.ReadKey(intercept: true);
+            Console.ReadKey(true);
         }
 
         /// <summary>
@@ -78,32 +75,32 @@
         public static void TestServo()
         {
             var servo = new HardwareServo(Pi.Gpio[P1.Gpio18]);
-            const double MinPulse = 0.565;
-            const double MaxPulse = 2.620;
+            const double minPulse = 0.565;
+            const double maxPulse = 2.620;
             var deltaPulse = 0.005;
 
             while (true)
             {
-                if (servo.PulseLengthMs >= MaxPulse || servo.PulseLengthMs <= MinPulse)
+                if (servo.PulseLengthMs >= maxPulse || servo.PulseLengthMs <= minPulse)
                 {
                     var stopPulseLength = servo.PulseLengthMs;
                     while (true)
                     {
-                        var k = $"Q (increment), W (decrement) or E (scroll back)".ReadKey();
+                        var k = "Q (increment), W (decrement) or E (scroll back)".ReadKey();
                         if (k.Key == ConsoleKey.Q)
                         {
                             servo.PulseLengthMs += Math.Abs(deltaPulse);
                             $"{servo}".Info("Servo");
-                            var angle = servo.ComputeAngle(MinPulse, MaxPulse);
-                            var pulseLength = servo.ComputePulseLength(angle, MinPulse, MaxPulse);
+                            var angle = servo.ComputeAngle(minPulse, maxPulse);
+                            var pulseLength = servo.ComputePulseLength(angle, minPulse, maxPulse);
                             $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
                         }
                         else if (k.Key == ConsoleKey.W)
                         {
                             servo.PulseLengthMs -= Math.Abs(deltaPulse);
                             $"{servo}".Info("Servo");
-                            var angle = servo.ComputeAngle(MinPulse, MaxPulse);
-                            var pulseLength = servo.ComputePulseLength(angle, MinPulse, MaxPulse);
+                            var angle = servo.ComputeAngle(minPulse, maxPulse);
+                            var pulseLength = servo.ComputePulseLength(angle, minPulse, maxPulse);
                             $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
                         }
                         else if (k.Key == ConsoleKey.E)
@@ -119,7 +116,7 @@
                 }
 
                 servo.PulseLengthMs += deltaPulse;
-                $"{servo} | Angle {servo.ComputeAngle(MinPulse, MaxPulse),7:0.00}".Info("Servo");
+                $"{servo} | Angle {servo.ComputeAngle(minPulse, maxPulse),7:0.00}".Info("Servo");
                 Pi.Timing.SleepMicroseconds(1500);
             }
         }
@@ -204,16 +201,10 @@
                 {
                     Pi.PiDisplay.IsBacklightOn = !Pi.PiDisplay.IsBacklightOn;
                 }
-                else
+                else if (byte.TryParse(input, out var value) && value != Pi.PiDisplay.Brightness)
                 {
-                    if (byte.TryParse(input, out var value))
-                    {
-                        if (value != Pi.PiDisplay.Brightness)
-                        {
-                            $"Current Value: {Pi.PiDisplay.Brightness}, New Value: {value}".Info();
-                            Pi.PiDisplay.Brightness = value;
-                        }
-                    }
+                    $"Current Value: {Pi.PiDisplay.Brightness}, New Value: {value}".Info();
+                    Pi.PiDisplay.Brightness = value;
                 }
 
                 $"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}"
@@ -343,6 +334,7 @@
             {
                 "Press any key to START reading the video stream . . .".Info();
                 Console.ReadLine();
+
                 // Start the video recording
                 Pi.Camera.OpenVideoStream(videoSettings,
                     onDataCallback: (data) =>
@@ -371,23 +363,6 @@
                 var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000");
                 $"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds"
                     .Info();
-            }
-        }
-
-        private static void TestColors()
-        {
-            var colors = new CameraColor[]
-            {
-                CameraColor.Black,
-                CameraColor.White,
-                CameraColor.Red,
-                CameraColor.Green,
-                CameraColor.Blue
-            };
-
-            foreach (var color in colors)
-            {
-                $"{color.Name,-15}: RGB Hex: {color.ToRgbHex(false)}    YUV Hex: {color.ToYuvHex(true)}".Info();
             }
         }
     }

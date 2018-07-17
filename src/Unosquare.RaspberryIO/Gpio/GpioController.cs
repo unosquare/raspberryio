@@ -397,7 +397,7 @@
         /// <param name="group">The group.</param>
         /// <param name="value">The value.</param>
         /// <returns>The awaitable task</returns>
-        public Task SetPadDriveAsync(int group, int value) => Task.Run(() => { SetPadDrive(@group, value); });
+        public Task SetPadDriveAsync(int group, int value) => Task.Run(() => { SetPadDrive(group, value); });
 
         /// <summary>
         /// This writes the 8-bit byte supplied to the first 8 GPIO pins.
@@ -457,10 +457,7 @@
         /// Please note this function is undocumented and unsopported
         /// </summary>
         /// <returns>A byte from the GPIO</returns>
-        public Task<byte> ReadByteAsync()
-        {
-            return Task.Run(() => ReadByte());
-        }
+        public Task<byte> ReadByteAsync() => Task.Run(() => ReadByte());
 
         #endregion
 

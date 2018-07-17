@@ -131,8 +131,8 @@
         /// <returns>A list of network adapters.</returns>
         public List<NetworkAdapterInfo> RetrieveAdapters()
         {
-            const string HWaddr = "HWaddr ";
-            const string Ether = "ether ";
+            const string hWaddr = "HWaddr ";
+            const string ether = "ether ";
 
             var result = new List<NetworkAdapterInfo>();
             var interfacesOutput = ProcessRunner.GetProcessOutputAsync("ifconfig").Result;
@@ -159,9 +159,9 @@
                 };
 
                 // Parse the MAC address in old version of ifconfig; it comes in the first line
-                if (line.IndexOf(HWaddr) >= 0)
+                if (line.IndexOf(hWaddr) >= 0)
                 {
-                    var startIndexHwd = line.IndexOf(HWaddr) + HWaddr.Length;
+                    var startIndexHwd = line.IndexOf(hWaddr) + hWaddr.Length;
                     adapter.MacAddress = line.Substring(startIndexHwd, 17).Trim();
                 }
 
@@ -179,9 +179,9 @@
                     }
 
                     // Parse the MAC address in new versions of ifconfig; it no longer comes in the first line
-                    if (indentedLine.IndexOf(Ether) >= 0 && string.IsNullOrWhiteSpace(adapter.MacAddress))
+                    if (indentedLine.IndexOf(ether) >= 0 && string.IsNullOrWhiteSpace(adapter.MacAddress))
                     {
-                        var startIndexHwd = indentedLine.IndexOf(Ether) + Ether.Length;
+                        var startIndexHwd = indentedLine.IndexOf(ether) + ether.Length;
                         adapter.MacAddress = indentedLine.Substring(startIndexHwd, 17).Trim();
                     }
 

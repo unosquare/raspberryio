@@ -42,13 +42,11 @@
         {
             lock (SyncRoot)
             {
-                frequency = frequency.Clamp(MinFrequency, MaxFrequency);
-                var busResult = WiringPi.WiringPiSPISetup((int)channel, frequency);
+                Frequency = frequency.Clamp(MinFrequency, MaxFrequency);
                 Channel = (int)channel;
-                Frequency = frequency;
-                FileDescriptor = busResult;
+                FileDescriptor = WiringPi.WiringPiSPISetup((int)channel, Frequency);
 
-                if (busResult < 0)
+                if (FileDescriptor < 0)
                 {
                     HardwareException.Throw(nameof(SpiChannel), channel.ToString());
                 }
@@ -103,10 +101,7 @@
         /// <returns>
         /// The read bytes from the ring-style bus
         /// </returns>
-        public Task<byte[]> SendReceiveAsync(byte[] buffer)
-        {
-            return Task.Run(() => SendReceive(buffer));
-        }
+        public Task<byte[]> SendReceiveAsync(byte[] buffer) => Task.Run(() => SendReceive(buffer));
 
         /// <summary>
         /// Writes the specified buffer the the underlying FileDescriptor.
@@ -134,10 +129,7 @@
         /// </summary>
         /// <param name="buffer">The buffer.</param>
         /// <returns>The awaitable task</returns>
-        public Task WriteAsync(byte[] buffer)
-        {
-            return Task.Run(() => { Write(buffer); });
-        }
+        public Task WriteAsync(byte[] buffer) => Task.Run(() => { Write(buffer); });
 
         /// <summary>
         /// Retrieves the spi bus. If the bus channel is not registered it sets it up automatically.

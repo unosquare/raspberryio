@@ -11,8 +11,8 @@
     /// </summary>
     public sealed class LogicProbe
     {
-        private readonly GpioPin InputPin = null;
-        private readonly HighResolutionTimer Timer = new HighResolutionTimer();
+        private readonly GpioPin _inputPin;
+        private readonly HighResolutionTimer _timer = new HighResolutionTimer();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogicProbe"/> class.
@@ -20,17 +20,17 @@
         /// <param name="inputPin">The input pin.</param>
         public LogicProbe(GpioPin inputPin)
         {
-            InputPin = inputPin;
-            InputPin.PinMode = GpioPinDriveMode.Input;
-            InputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
+            _inputPin = inputPin;
+            _inputPin.PinMode = GpioPinDriveMode.Input;
+            _inputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
 
-            InputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
+            _inputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
             {
-                if (Timer.IsRunning == false)
+                if (_timer.IsRunning == false)
                     return;
 
-                var value = InputPin.Read();
-                var elapsed = Timer.ElapsedMicroseconds;
+                var value = _inputPin.Read();
+                var elapsed = _timer.ElapsedMicroseconds;
                 var data = new ProbeDataEventArgs(elapsed, value);
                 ProbeDataAvailable?.Invoke(this, data);
             });
@@ -44,27 +44,27 @@
         /// <summary>
         /// Gets a value indicating whether the probe is running.
         /// </summary>
-        public bool IsRunning => Timer.IsRunning;
+        public bool IsRunning => _timer.IsRunning;
 
         /// <summary>
         /// Starts probing.
         /// </summary>
-        public void Start() => Timer.Start();
+        public void Start() => _timer.Start();
 
         /// <summary>
         /// Pauses probing.
         /// </summary>
-        public void Pause() => Timer.Stop();
+        public void Pause() => _timer.Stop();
 
         /// <summary>
         /// Stops measurement and resets the timer to zero.
         /// </summary>
-        public void Stop() => Timer.Reset();
+        public void Stop() => _timer.Reset();
 
         /// <summary>
         /// Restarts probing at the 0 timestamp
         /// </summary>
-        public void Restart() => Timer.Restart();
+        public void Restart() => _timer.Restart();
 
         /// <summary>
         /// Event arguments representing probe data
@@ -88,7 +88,6 @@
             /// Prevents a default instance of the <see cref="ProbeDataEventArgs"/> class from being created.
             /// </summary>
             private ProbeDataEventArgs()
-                : base()
             {
                 // placeholder
             }
@@ -109,10 +108,7 @@
             /// <returns>
             /// A <see cref="string" /> that represents this instance.
             /// </returns>
-            public override string ToString()
-            {
-                return $"{Timestamp}, {(Value ? "1" : "0")}";
-            }
+            public override string ToString() => $"{Timestamp}, {(Value ? "1" : "0")}";
         }
     }
 }
