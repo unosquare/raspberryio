@@ -23,12 +23,12 @@
 
             try
             {
-                ExtendedMessage = Standard.StrError(errorCode);
+                ExtendedMessage = Standard.Strerror(errorCode);
             }
             catch
             {
                 // TODO: strerror not working great...
-                $"Could not retrieve native error description using {nameof(Standard.StrError)}".Error(Pi.LoggerSource);
+                $"Could not retrieve native error description using {nameof(Standard.Strerror)}".Error(Pi.LoggerSource);
             }
 
             ErrorCode = errorCode;

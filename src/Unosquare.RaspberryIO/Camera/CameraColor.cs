@@ -129,9 +129,6 @@
         /// </summary>
         /// <param name="data">The data.</param>
         /// <returns>A string</returns>
-        private static string ToHex(byte[] data)
-        {
-            return $"0x{BitConverter.ToString(data).Replace("-", string.Empty).ToLowerInvariant()}";
-        }
+        private static string ToHex(byte[] data) => $"0x{BitConverter.ToString(data).Replace("-", string.Empty).ToLowerInvariant()}";
     }
 }

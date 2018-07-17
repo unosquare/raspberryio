@@ -44,10 +44,7 @@
         /// Note that the maximum delay is an unsigned 32-bit integer or approximately 49 days.
         /// </summary>
         /// <param name="value">The value.</param>
-        public static void SleepMilliseconds(uint value)
-        {
-            WiringPi.Delay(value);
-        }
+        public static void SleepMilliseconds(uint value) => WiringPi.Delay(value);
 
         /// <summary>
         /// This causes program execution to pause for at least howLong microseconds.
@@ -59,10 +56,7 @@
         /// especially if using threads.
         /// </summary>
         /// <param name="value">The value.</param>
-        public void SleepMicroseconds(uint value)
-        {
-            WiringPi.DelayMicroseconds(value);
-        }
+        public void SleepMicroseconds(uint value) => WiringPi.DelayMicroseconds(value);
 
         /// <summary>
         /// This attempts to shift your program (or thread in a multi-threaded program) to a higher priority and
@@ -101,10 +95,7 @@
         /// it will be stalled until the first process has unlocked the same key.
         /// </summary>
         /// <param name="key">The key.</param>
-        public void Lock(ThreadLockKey key)
-        {
-            WiringPi.PiLock((int)key);
-        }
+        public void Lock(ThreadLockKey key) => WiringPi.PiLock((int)key);
 
         /// <summary>
         /// These allow you to synchronize variable updates from your main program to any threads running in your program.
@@ -112,9 +103,6 @@
         /// it will be stalled until the first process has unlocked the same key.
         /// </summary>
         /// <param name="key">The key.</param>
-        public void Unlock(ThreadLockKey key)
-        {
-            WiringPi.PiUnlock((int)key);
-        }
+        public void Unlock(ThreadLockKey key) => WiringPi.PiUnlock((int)key);
     }
 }

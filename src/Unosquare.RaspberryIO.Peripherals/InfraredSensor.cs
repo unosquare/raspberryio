@@ -7,7 +7,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading;
-    using Unosquare.Swan;
+    using Swan;
 
     /// <summary>
     /// Implements a digital infrared sensor using the HX1838/VS1838 or the TSOP38238 38kHz digital receiver.
@@ -17,10 +17,10 @@
     /// </summary>
     public sealed class InfraredSensor : IDisposable
     {
-        private volatile bool IsDisposed = false; // To detect redundant calls
-        private volatile bool IsInReadInterrupt = false;
-        private volatile bool CurrentValue = false;
-        private Timer IdleChecker = null;
+        private volatile bool _isDisposed; // To detect redundant calls
+        private volatile bool _isInReadInterrupt;
+        private volatile bool _currentValue;
+        private Timer _idleChecker;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InfraredSensor" /> class.
@@ -83,21 +83,13 @@
 
             for (var i = 0; i < pulses.Length; i += groupSize)
             {
-                var p = default(InfraredPulse);
                 for (var offset = 0; offset < groupSize; offset++)
                 {
                     if (i + offset >= pulses.Length)
                         break;
 
-                    p = pulses[i + offset];
-                    if (p == null)
-                    {
-                        builder.Append($" ? {-1,7} | ");
-                    }
-                    else
-                    {
-                        builder.Append($" {(p.Value ? "T" : "F")} {p.DurationUsecs,7} | ");
-                    }
+                    var p = pulses[i + offset];
+                    builder.Append(p == null ? $" ? {-1,7} | " : $" {(p.Value ? "T" : "F")} {p.DurationUsecs,7} | ");
                 }
 
                 builder.AppendLine();
@@ -106,9 +98,7 @@
             return builder.ToString();
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -120,13 +110,13 @@
         /// <param name="alsoManaged"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         private void Dispose(bool alsoManaged)
         {
-            if (IsDisposed) return;
+            if (_isDisposed) return;
 
-            IsDisposed = true;
+            _isDisposed = true;
             if (alsoManaged)
             {
                 // Dispose of Managed objects
-                IdleChecker.Dispose();
+                _idleChecker.Dispose();
             }
         }
 
@@ -136,11 +126,11 @@
         private void ReadInterruptDoWork()
         {
             // Define some constants
-            const long GapUsecs = 5000;
-            const long MaxElapsedMicroseconds = 250000;
-            const long MinElapsedMicroseconds = 50;
-            const int IdleCheckIntervalMilliSecs = 32;
-            const int MaxPulseCount = 128;
+            const long gapUsecs = 5000;
+            const long maxElapsedMicroseconds = 250000;
+            const long minElapsedMicroseconds = 50;
+            const int idleCheckIntervalMilliSecs = 32;
+            const int maxPulseCount = 128;
 
             // Setup the input pin
             InputPin.PinMode = GpioPinDriveMode.Input;
@@ -150,17 +140,17 @@
             var pulseTimer = new Native.HighResolutionTimer();
             var idleTimer = new Native.HighResolutionTimer();
 
-            var pulseBuffer = new List<InfraredPulse>(MaxPulseCount);
+            var pulseBuffer = new List<InfraredPulse>(maxPulseCount);
             var syncLock = new object();
 
-            IdleChecker = new Timer((s) =>
+            _idleChecker = new Timer(s =>
             {
-                if (IsDisposed || IsInReadInterrupt)
+                if (_isDisposed || _isInReadInterrupt)
                     return;
 
                 lock (syncLock)
                 {
-                    if (idleTimer.ElapsedMicroseconds < GapUsecs || idleTimer.IsRunning == false || pulseBuffer.Count <= 0)
+                    if (idleTimer.ElapsedMicroseconds < gapUsecs || idleTimer.IsRunning == false || pulseBuffer.Count <= 0)
                         return;
 
                     OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverFlushReason.Idle);
@@ -171,47 +161,47 @@
 
             InputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
             {
-                if (IsDisposed) return;
+                if (_isDisposed) return;
 
-                IsInReadInterrupt = true;
+                _isInReadInterrupt = true;
 
                 lock (syncLock)
                 {
                     idleTimer.Restart();
-                    IdleChecker.Change(IdleCheckIntervalMilliSecs, IdleCheckIntervalMilliSecs);
+                    _idleChecker.Change(idleCheckIntervalMilliSecs, idleCheckIntervalMilliSecs);
 
                     var currentLength = pulseTimer.ElapsedMicroseconds;
                     var pulse = new InfraredPulse(
-                        IsActiveLow ? !CurrentValue : CurrentValue,
-                        currentLength.Clamp(MinElapsedMicroseconds, MaxElapsedMicroseconds));
+                        IsActiveLow ? !_currentValue : _currentValue,
+                        currentLength.Clamp(minElapsedMicroseconds, maxElapsedMicroseconds));
 
                     // Restart for the next bit coming in
                     pulseTimer.Restart();
 
                     // For the next value
-                    CurrentValue = InputPin.Read();
+                    _currentValue = InputPin.Read();
 
                     // Do not add an idling pulse
-                    if (pulse.DurationUsecs < MaxElapsedMicroseconds)
+                    if (pulse.DurationUsecs < maxElapsedMicroseconds)
                     {
                         pulseBuffer.Add(pulse);
                         OnInfraredSensorPulseAvailable(pulse);
                     }
 
-                    if (pulseBuffer.Count >= MaxPulseCount)
+                    if (pulseBuffer.Count >= maxPulseCount)
                     {
                         OnInfraredSensorRawDataAvailable(pulseBuffer.ToArray(), ReceiverFlushReason.Overflow);
                         pulseBuffer.Clear();
                     }
                 }
 
-                IsInReadInterrupt = false;
+                _isInReadInterrupt = false;
             });
 
             // Get the timers started
             pulseTimer.Start();
             idleTimer.Start();
-            IdleChecker.Change(0, IdleCheckIntervalMilliSecs);
+            _idleChecker.Change(0, idleCheckIntervalMilliSecs);
         }
 
         /// <summary>
@@ -220,10 +210,10 @@
         /// <param name="pulse">The pulse.</param>
         private void OnInfraredSensorPulseAvailable(InfraredPulse pulse)
         {
-            if (IsDisposed || PulseAvailable == null) return;
+            if (_isDisposed || PulseAvailable == null) return;
 
             var args = new InfraredSensorPulseEventArgs(pulse);
-            ThreadPool.QueueUserWorkItem((a) =>
+            ThreadPool.QueueUserWorkItem(a =>
             {
                 PulseAvailable?.Invoke(this, a as InfraredSensorPulseEventArgs);
             },
@@ -237,10 +227,10 @@
         /// <param name="state">The state.</param>
         private void OnInfraredSensorRawDataAvailable(InfraredPulse[] pulses, ReceiverFlushReason state)
         {
-            if (IsDisposed || DataAvailable == null) return;
+            if (_isDisposed || DataAvailable == null) return;
 
             var args = new InfraredSensorDataEventArgs(pulses, state);
-            ThreadPool.QueueUserWorkItem((a) =>
+            ThreadPool.QueueUserWorkItem(a =>
             {
                 DataAvailable?.Invoke(this, a as InfraredSensorDataEventArgs);
             },
@@ -287,7 +277,8 @@
                 for (var pulseIndex = 0; pulseIndex < pulses.Length; pulseIndex++)
                 {
                     var p = pulses[pulseIndex];
-                    if (p.Value == true && p.DurationUsecs >= BurstSpaceLengthMin && p.DurationUsecs <= BurstSpaceLengthMax)
+
+                    if (p.Value && p.DurationUsecs >= BurstSpaceLengthMin && p.DurationUsecs <= BurstSpaceLengthMax)
                     {
                         startPulseIndex = pulseIndex;
                         break;
@@ -297,14 +288,15 @@
                 // Return a null result if we could not find ACG (1)
                 if (startPulseIndex == -1)
                     return null;
-                else
-                    startPulseIndex += 1;
+                
+                startPulseIndex += 1;
 
                 // Find the first 0 value, 4.5 Millisecond
                 for (var pulseIndex = startPulseIndex; pulseIndex < pulses.Length; pulseIndex++)
                 {
                     var p = pulses[pulseIndex];
                     startPulseIndex = -1;
+
                     if (p.Value == false && p.DurationUsecs >= BurstMarkLengthMin && p.DurationUsecs <= BurstMarkLengthMax)
                     {
                         startPulseIndex = pulseIndex;
@@ -315,8 +307,8 @@
                 // Return a null result if we could not find the start of the train of pulses
                 if (startPulseIndex == -1)
                     return null;
-                else
-                    startPulseIndex += 1;
+                
+                startPulseIndex += 1;
 
                 // Verify that the last pulse is a space (1) and and it is a short pulse
                 var bits = new BitArray(MaxBitLength);
@@ -327,8 +319,8 @@
                     return null;
 
                 // preallocate the pulse references
-                var p1 = default(InfraredPulse);
-                var p2 = default(InfraredPulse);
+                InfraredPulse p1;
+                InfraredPulse p2;
 
                 // parse the bits
                 for (var pulseIndex = startPulseIndex; pulseIndex < pulses.Length - 1; pulseIndex += 2)
@@ -339,8 +331,8 @@
                     p2 = pulses[pulseIndex + 1];
 
                     // Expect a short Space pulse followed by a Mark pulse of variable length
-                    if (p1.Value == true && p2.Value == false && p1.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax))
-                        bits[bitCount++] = p2.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax) ? true : false;
+                    if (p1.Value && p2.Value == false && p1.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax))
+                        bits[bitCount++] = p2.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax);
 
                     if (bitCount >= MaxBitLength)
                         break;
@@ -376,7 +368,7 @@
                 for (var pulseIndex = 0; pulseIndex < pulses.Length; pulseIndex++)
                 {
                     var p = pulses[pulseIndex];
-                    if (p.Value == true && p.DurationUsecs >= BurstSpaceLengthMin && p.DurationUsecs <= BurstSpaceLengthMax)
+                    if (p.Value && p.DurationUsecs >= BurstSpaceLengthMin && p.DurationUsecs <= BurstSpaceLengthMax)
                     {
                         startPulseIndex = pulseIndex;
                         break;
@@ -391,16 +383,14 @@
 
                 // Check the next pulse is a 2.5ms low value
                 var p1 = pulses[startPulseIndex + 1];
-                if (p1.Value == true || p1.DurationUsecs.IsBetween(RepeatPulseLengthMin, RepeatPulseLengthMax) == false)
+                if (p1.Value || p1.DurationUsecs.IsBetween(RepeatPulseLengthMin, RepeatPulseLengthMax) == false)
                     return false;
 
                 // Check the next pulse is a 560 microsecond high value
                 var p2 = pulses[startPulseIndex + 2];
-                if (p2.Value == false || p2.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax) == false)
-                    return false;
 
                 // All checks passed. Looks like it really is a repeat code
-                return true;
+                return p2.Value && p2.DurationUsecs.IsBetween(ShortPulseLengthMin, ShortPulseLengthMax);
             }
         }
 
@@ -484,7 +474,6 @@
             /// </summary>
             /// <param name="pulse">The pulse.</param>
             internal InfraredSensorPulseEventArgs(InfraredPulse pulse)
-                : base()
             {
                 Value = pulse.Value;
                 DurationUsecs = pulse.DurationUsecs;
@@ -494,7 +483,6 @@
             /// Prevents a default instance of the <see cref="InfraredSensorPulseEventArgs"/> class from being created.
             /// </summary>
             private InfraredSensorPulseEventArgs()
-                : base()
             {
                 // placeholder
             }

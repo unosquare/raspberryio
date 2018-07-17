@@ -188,7 +188,7 @@
             {
                 var p0 = pulses[pulseIndex + 0];
                 var p1 = pulses[pulseIndex + 1];
-                dataBits[dataBitIndex] = p1.Item2 < 32 ? false : true;
+                dataBits[dataBitIndex] = p1.Item2 >= 32;
                 $"{(dataBits[dataBitIndex] ? "1" : "0")} = {(p0.Item1 ? "H" : "L")}: {p0.Item2,4} | {(p1.Item1 ? "H" : "L")}: {p1.Item2,4}".Warn(nameof(TemperatureSensorAM2302));
                 dataBitIndex++;
                 if (dataBitIndex >= dataBits.Length)

@@ -114,9 +114,7 @@
 
             if (VerticalFlip) sb.Append(" -vf");
 
-            var commandArgs = sb.ToString();
-            $"{CommandName} {commandArgs}".Trace(Pi.LoggerSource);
-            return commandArgs;
+            return sb.ToString();
         }
     }
 }

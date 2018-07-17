@@ -23,7 +23,6 @@
         private uint m_PwmRange = 1024;
         private int m_PwmClockDivisor = 1;
         private int m_SoftPwmValue = -1;
-        private int m_SoftPwmRange = -1;
         private int m_SoftToneFrequency = -1;
 
         #endregion
@@ -369,7 +368,7 @@
         /// <summary>
         /// Gets the software PWM range used upon starting the PWM.
         /// </summary>
-        public int SoftPwmRange => m_SoftPwmRange;
+        public int SoftPwmRange { get; private set; } = -1;
 
         /// <summary>
         /// Starts the software based PWM on this pin.
@@ -390,10 +389,11 @@
                     throw new InvalidOperationException($"{nameof(StartSoftPwm)} has already been called.");
 
                 var startResult = WiringPi.SoftPwmCreate(PinNumber, value, range);
+
                 if (startResult == 0)
                 {
                     m_SoftPwmValue = value;
-                    m_SoftPwmRange = range;
+                    SoftPwmRange = range;
                 }
                 else
                 {
@@ -432,10 +432,7 @@
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The awaitable task</returns>
-        public async Task WriteAsync(GpioPinValue value)
-        {
-            await Task.Run(() => { Write(value); });
-        }
+        public Task WriteAsync(GpioPinValue value) => Task.Run(() => { Write(value); });
 
         /// <summary>
         /// Writes the specified bit value.
@@ -453,20 +450,14 @@
         /// <returns>
         /// The awaitable task
         /// </returns>
-        public async Task WriteAsync(bool value)
-        {
-            await Task.Run(() => { Write(value); });
-        }
+        public Task WriteAsync(bool value) => Task.Run(() => { Write(value); });
 
         /// <summary>
         /// Writes the specified value. 0 for low, any other value for high
         /// This method performs a digital write
         /// </summary>
         /// <param name="value">The value.</param>
-        public void Write(int value)
-        {
-            Write(value != 0 ? GpioPinValue.High : GpioPinValue.Low);
-        }
+        public void Write(int value) => Write(value != 0 ? GpioPinValue.High : GpioPinValue.Low);
 
         /// <summary>
         /// Writes the specified value. 0 for low, any other value for high
@@ -474,10 +465,7 @@
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The awaitable task</returns>
-        public async Task WriteAsync(int value)
-        {
-            await Task.Run(() => { Write(value); });
-        }
+        public Task WriteAsync(int value) => Task.Run(() => { Write(value); });
 
         /// <summary>
         /// Writes the specified value as an analog level.
@@ -505,10 +493,7 @@
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The awaitable task</returns>
-        public async Task WriteLevelAsync(int value)
-        {
-            await Task.Run(() => { WriteLevel(value); });
-        }
+        public Task WriteLevelAsync(int value) => Task.Run(() => { WriteLevel(value); });
 
         #endregion
 
@@ -566,10 +551,7 @@
         /// Reads the digital value on the pin as a boolean value.
         /// </summary>
         /// <returns>The state of the pin</returns>
-        public Task<bool> ReadAsync()
-        {
-            return Task.Run(() => Read());
-        }
+        public Task<bool> ReadAsync() => Task.Run(() => Read());
 
         /// <summary>
         /// Reads the digital value on the pin as a High or Low value.
@@ -582,10 +564,7 @@
         /// Reads the digital value on the pin as a High or Low value.
         /// </summary>
         /// <returns>The state of the pin</returns>
-        public Task<GpioPinValue> ReadValueAsync()
-        {
-            return Task.Run(() => ReadValue());
-        }
+        public Task<GpioPinValue> ReadValueAsync() => Task.Run(() => ReadValue());
 
         /// <summary>
         /// Reads the analog value on the pin.
@@ -617,10 +596,7 @@
         /// quick2Wire analog board, etc.
         /// </summary>
         /// <returns>The analog level</returns>
-        public Task<int> ReadLevelAsync()
-        {
-            return Task.Run(() => ReadLevel());
-        }
+        public Task<int> ReadLevelAsync() => Task.Run(() => ReadLevel());
 
         #endregion
 

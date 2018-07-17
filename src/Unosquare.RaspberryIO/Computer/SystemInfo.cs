@@ -113,7 +113,7 @@
                         Revision.ToUpperInvariant(),
                         NumberStyles.HexNumber,
                         CultureInfo.InvariantCulture,
-                        out int boardVersion))
+                        out var boardVersion))
                 {
                     RaspberryPiVersion = PiVersion.Unknown;
                     if (Enum.GetValues(typeof(PiVersion)).Cast<int>().Contains(boardVersion))
