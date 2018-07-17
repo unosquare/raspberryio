@@ -15,14 +15,11 @@
         #region LibC Calls
 
         /// <summary>
-        /// Gets a string describing the error number.
+        /// Strerrors the specified error.
         /// </summary>
-        /// <param name="errnum">The errnum.</param>
-        /// <returns>The result</returns>
-        [DllImport(LibCLibrary, EntryPoint = "strerror", SetLastError = true)]
-        internal static extern string StrError(int errnum);
-
-        internal static string Strerror(int error)
+        /// <param name="error">The error.</param>
+        /// <returns></returns>
+        public static string Strerror(int error)
         {
             if (!Runtime.IsUsingMonoRuntime) return StrError(error);
 
@@ -37,10 +34,7 @@
                 return null;
             }
         }
-
-        [DllImport("MonoPosixHelper", EntryPoint = "Mono_Posix_Syscall_strerror_r", SetLastError = true)]
-        private static extern int Strerror(int error, [Out] StringBuilder buffer, ulong length);
-
+        
         /// <summary>
         /// Changes file permissions on a Unix file system
         /// </summary>
@@ -78,6 +72,12 @@
         /// <returns>The result</returns>
         [DllImport(LibCLibrary, EntryPoint = "uname", SetLastError = true)]
         public static extern int Uname(out SystemName name);
+        
+        [DllImport(LibCLibrary, EntryPoint = "strerror", SetLastError = true)]
+        private static extern string StrError(int errnum);
+
+        [DllImport("MonoPosixHelper", EntryPoint = "Mono_Posix_Syscall_strerror_r", SetLastError = true)]
+        private static extern int Strerror(int error, [Out] StringBuilder buffer, ulong length);
 
         #endregion
     }
