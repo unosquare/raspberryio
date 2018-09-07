@@ -3,7 +3,7 @@
     using System.Net;
 
     /// <summary>
-    /// Represents a Network Adapter
+    /// Represents a Network Adapter.
     /// </summary>
     public class NetworkAdapterInfo
     {

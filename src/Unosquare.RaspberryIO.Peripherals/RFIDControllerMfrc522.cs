@@ -12,7 +12,7 @@
     public class RFIDControllerMfrc522
     {
         /// <summary>
-        /// The default authentication key
+        /// The default authentication key.
         /// </summary>
         public static readonly byte[] DefaultAuthKey = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
@@ -53,7 +53,7 @@
         #region Enumerations
 
         /// <summary>
-        /// Contains constants for well-known commands
+        /// Contains constants for well-known commands.
         /// </summary>
         public enum Command : byte
         {
@@ -491,7 +491,7 @@
         }
 
         /// <summary>
-        /// Enumerates the different statuses
+        /// Enumerates the different statuses.
         /// </summary>
         public enum Status : byte
         {
@@ -540,7 +540,7 @@
         /// Reads the register.
         /// </summary>
         /// <param name="register">The register.</param>
-        /// <returns>The contents of the register</returns>
+        /// <returns>The contents of the register.</returns>
         public byte ReadRegister(Register register)
         {
             var address = (byte)register;
@@ -549,11 +549,11 @@
         }
 
         /// <summary>
-        /// Sends data to the RFID card
+        /// Sends data to the RFID card.
         /// </summary>
         /// <param name="command">The command.</param>
         /// <param name="sendData">The send data.</param>
-        /// <returns>A standard controller response</returns>
+        /// <returns>A standard controller response.</returns>
         public RfidResponse CardSendData(Command command, byte[] sendData)
         {
             const byte maximumLength = 16;
@@ -636,11 +636,11 @@
         }
 
         /// <summary>
-        /// Writes the specified data buffer to an RFID card
+        /// Writes the specified data buffer to an RFID card.
         /// </summary>
         /// <param name="blockAddress">The block address.</param>
         /// <param name="writeData">The write data.</param>
-        /// <returns>The resulting status</returns>
+        /// <returns>The resulting status.</returns>
         public Status CardWriteData(byte blockAddress, byte[] writeData)
         {
             var buff = new List<byte> { (byte)RequestMode.Write, blockAddress };
@@ -682,10 +682,10 @@
         }
 
         /// <summary>
-        /// Reads the specified data block from an RFID card
+        /// Reads the specified data block from an RFID card.
         /// </summary>
         /// <param name="blockAddress">The block address.</param>
-        /// <returns>A standar response</returns>
+        /// <returns>A standar response.</returns>
         public RfidResponse CardReadData(byte blockAddress)
         {
             var buff = new List<byte> { (byte)RequestMode.Read, blockAddress };
@@ -699,10 +699,10 @@
         }
 
         /// <summary>
-        /// Sends a request to the RFID controller
+        /// Sends a request to the RFID controller.
         /// </summary>
         /// <param name="requestMode">The request mode.</param>
-        /// <returns>A standard response</returns>
+        /// <returns>A standard response.</returns>
         public RfidResponse SendControllerRequest(RequestMode requestMode)
         {
             var tagType = new List<byte> { (byte)requestMode };
@@ -717,13 +717,13 @@
         /// Prepares the controller for card reading.
         /// Resturns an OK status if a card was detected.
         /// </summary>
-        /// <returns>The status code</returns>
+        /// <returns>The status code.</returns>
         public Status DetectCard() => SendControllerRequest(RequestMode.RequestIdle).Status;
 
         /// <summary>
         /// Reads the card unique identifier.
         /// </summary>
-        /// <returns>A standard response. The UID is in the Data</returns>
+        /// <returns>A standard response. The UID is in the Data.</returns>
         public RfidResponse ReadCardUniqueId()
         {
             WriteRegister(Register.BitFramingReg, 0x00);
@@ -778,11 +778,11 @@
         }
 
         /// <summary>
-        /// Authenticates the previosuly selected card UID in 1A mode with default AuthKey
+        /// Authenticates the previosuly selected card UID in 1A mode with default AuthKey.
         /// </summary>
         /// <param name="cardUid">The card uid.</param>
         /// <param name="blockAddress">The block address.</param>
-        /// <returns>The status code</returns>
+        /// <returns>The status code.</returns>
         public Status AuthenticateCard1A(byte[] cardUid, byte blockAddress = (byte)Register.Status2Reg)
             => AuthenticateCard1A(DefaultAuthKey, cardUid, blockAddress);
 
@@ -792,7 +792,7 @@
         /// <param name="sectorkey">The sectorkey.</param>
         /// <param name="cardUid">The card uid.</param>
         /// <param name="blockAddress">The block address.</param>
-        /// <returns>The status code</returns>
+        /// <returns>The status code.</returns>
         public Status AuthenticateCard1A(
             byte[] sectorkey,
             byte[] cardUid,
@@ -804,7 +804,7 @@
         /// <param name="sectorkey">The sectorkey.</param>
         /// <param name="cardUid">The card uid.</param>
         /// <param name="blockAddress">The block address.</param>
-        /// <returns>The status code</returns>
+        /// <returns>The status code.</returns>
         public Status AuthenticateCard1B(
             byte[] sectorkey,
             byte[] cardUid,
@@ -821,7 +821,7 @@
         /// </summary>
         /// <param name="authKey">The authentication key.</param>
         /// <param name="cardUniqueId">The card unique identifier.</param>
-        /// <returns>A byte array with the contents of the authenticated registers</returns>
+        /// <returns>A byte array with the contents of the authenticated registers.</returns>
         public byte[] DumpRegisters(byte[] authKey, byte[] cardUniqueId)
         {
             const byte registerCount = 64;
@@ -909,10 +909,10 @@
 
         /// <summary>
         /// Calulates the CRC Hash as an array of bytes.
-        /// Returns a 2-byte array
+        /// Returns a 2-byte array.
         /// </summary>
         /// <param name="pIndata">The p indata.</param>
-        /// <returns>a 2-byte array with the CRC</returns>
+        /// <returns>a 2-byte array with the CRC.</returns>
         private byte[] CalulateCrc(byte[] pIndata)
         {
             ClearRegisterBits(Register.DivIrqReg, 0x04);
@@ -946,7 +946,7 @@
         /// <param name="blockAddress">The block address.</param>
         /// <param name="sectorkey">The sectorkey.</param>
         /// <param name="cardUid">The card uid.</param>
-        /// <returns>A status code</returns>
+        /// <returns>A status code.</returns>
         private Status Authenticate(RequestMode authMode, byte blockAddress, byte[] sectorkey, byte[] cardUid)
         {
             // First byte should be the authMode (A or B) Second byte is the trailerBlock (usually 7)
@@ -983,7 +983,7 @@
         #region Support Classes
 
         /// <summary>
-        /// Holds the status and data of a controller response
+        /// Holds the status and data of a controller response.
         /// </summary>
         public class RfidResponse
         {

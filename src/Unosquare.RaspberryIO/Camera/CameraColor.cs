@@ -100,10 +100,10 @@
 
         /// <summary>
         /// Returns a hexadecimal representation of the RGB byte array.
-        /// Preceded by 0x and all in lowercase
+        /// Preceded by 0x and all in lowercase.
         /// </summary>
         /// <param name="reverse">if set to <c>true</c> [reverse].</param>
-        /// <returns>A string</returns>
+        /// <returns>A string.</returns>
         public string ToRgbHex(bool reverse)
         {
             var data = RGB.ToArray();
@@ -113,10 +113,10 @@
 
         /// <summary>
         /// Returns a hexadecimal representation of the YUV byte array.
-        /// Preceded by 0x and all in lowercase
+        /// Preceded by 0x and all in lowercase.
         /// </summary>
         /// <param name="reverse">if set to <c>true</c> [reverse].</param>
-        /// <returns>A string</returns>
+        /// <returns>A string.</returns>
         public string ToYuvHex(bool reverse)
         {
             var data = YUV.ToArray();
@@ -125,10 +125,10 @@
         }
 
         /// <summary>
-        /// Returns a hexadecimal representation of the data byte array
+        /// Returns a hexadecimal representation of the data byte array.
         /// </summary>
         /// <param name="data">The data.</param>
-        /// <returns>A string</returns>
+        /// <returns>A string.</returns>
         private static string ToHex(byte[] data) => $"0x{BitConverter.ToString(data).Replace("-", string.Empty).ToLowerInvariant()}";
     }
 }

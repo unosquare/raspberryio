@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
     /// <summary>
-    /// Represents a wireless network information
+    /// Represents a wireless network information.
     /// </summary>
     public class WirelessNetworkInfo
     {

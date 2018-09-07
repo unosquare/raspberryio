@@ -7,7 +7,7 @@
     using System.Linq;
 
     /// <summary>
-    /// A simple wrapper for the I2c bus on the Raspberry Pi
+    /// A simple wrapper for the I2c bus on the Raspberry Pi.
     /// </summary>
     public class I2CBus : SingletonBase<I2CBus>
     {
@@ -35,14 +35,14 @@
         /// The <see cref="I2CDevice"/>.
         /// </value>
         /// <param name="deviceId">The device identifier.</param>
-        /// <returns>A reference to an I2C device</returns>
+        /// <returns>A reference to an I2C device.</returns>
         public I2CDevice this[int deviceId] => GetDeviceById(deviceId);
 
         /// <summary>
         /// Gets the device by identifier.
         /// </summary>
         /// <param name="deviceId">The device identifier.</param>
-        /// <returns>The device reference</returns>
+        /// <returns>The device reference.</returns>
         public I2CDevice GetDeviceById(int deviceId)
         {
             lock (SyncRoot)
@@ -55,8 +55,8 @@
         /// Adds a device to the bus by its Id. If the device is already registered it simply returns the existing device.
         /// </summary>
         /// <param name="deviceId">The device identifier.</param>
-        /// <returns>The device reference</returns>
-        /// <exception cref="KeyNotFoundException">When the device file descriptor is not found</exception>
+        /// <returns>The device reference.</returns>
+        /// <exception cref="KeyNotFoundException">When the device file descriptor is not found.</exception>
         public I2CDevice AddDevice(int deviceId)
         {
             lock (SyncRoot)
@@ -81,7 +81,7 @@
         /// The return value is the standard Linux filehandle, or -1 if any error – in which case, you can consult errno as usual.
         /// </summary>
         /// <param name="deviceId">The device identifier.</param>
-        /// <returns>The Linux file handle</returns>
+        /// <returns>The Linux file handle.</returns>
         private static int SetupFileDescriptor(int deviceId)
         {
             lock (SyncRoot)

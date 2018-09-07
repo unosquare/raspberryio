@@ -14,7 +14,7 @@
         /// <param name="dPin">The d pin.</param>
         /// <param name="cPin">The c pin.</param>
         /// <param name="order">The order.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "shiftIn", SetLastError = true)]
         public static extern byte ShiftIn(byte dPin, byte cPin, byte order);
 

@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Defines the board revision codes of the different versions of the Raspberry Pi
-    /// http://www.raspberrypi-spy.co.uk/2012/09/checking-your-raspberry-pi-board-version/
+    /// http://www.raspberrypi-spy.co.uk/2012/09/checking-your-raspberry-pi-board-version/.
     /// </summary>
     public enum PiVersion
     {

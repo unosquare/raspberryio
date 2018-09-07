@@ -3,43 +3,43 @@
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// OS uname structure
+    /// OS uname structure.
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     internal struct SystemName
     {
         /// <summary>
-        /// System name
+        /// System name.
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
         public string SysName;
 
         /// <summary>
-        /// Node name
+        /// Node name.
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
         public string NodeName;
 
         /// <summary>
-        /// Release level
+        /// Release level.
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
         public string Release;
 
         /// <summary>
-        /// Version level
+        /// Version level.
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
         public string Version;
 
         /// <summary>
-        /// Hardware level
+        /// Hardware level.
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
         public string Machine;
 
         /// <summary>
-        /// Domain name
+        /// Domain name.
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 65)]
         public string DomainName;

@@ -9,7 +9,7 @@
     /// <summary>
     /// Represents a GPIO Pin, its location and its capabilities.
     /// Full pin reference available here:
-    /// http://pinout.xyz/pinout/pin31_gpio6 and  http://wiringpi.com/pins/
+    /// http://pinout.xyz/pinout/pin31_gpio6 and  http://wiringpi.com/pins/.
     /// </summary>
     public sealed partial class GpioPin
     {
@@ -53,7 +53,7 @@
         public int PinNumber { get; }
 
         /// <summary>
-        /// Gets the WiringPi Pin number
+        /// Gets the WiringPi Pin number.
         /// </summary>
         public WiringPiPin WiringPiPinNumber { get; }
 
@@ -161,7 +161,7 @@
         }
 
         /// <summary>
-        /// Gets or sets the PWM register. Values should be between 0 and 1024
+        /// Gets or sets the PWM register. Values should be between 0 and 1024.
         /// </summary>
         /// <value>
         /// The PWM register.
@@ -198,7 +198,7 @@
         /// <value>
         /// The PWM mode.
         /// </value>
-        /// <exception cref="InvalidOperationException">When pin mode is not set a Pwn output</exception>
+        /// <exception cref="InvalidOperationException">When pin mode is not set a Pwn output.</exception>
         public PwmMode PwmMode
         {
             get => PinMode == GpioPinDriveMode.PwmOutput ? m_PwmMode : PwmMode.Balanced;
@@ -228,7 +228,7 @@
         /// <value>
         /// The PWM range.
         /// </value>
-        /// <exception cref="InvalidOperationException">When pin mode is not set to PWM output</exception>
+        /// <exception cref="InvalidOperationException">When pin mode is not set to PWM output.</exception>
         public uint PwmRange
         {
             get => PinMode == GpioPinDriveMode.PwmOutput ? m_PwmRange : 0;
@@ -258,7 +258,7 @@
         /// <value>
         /// The PWM clock divisor.
         /// </value>
-        /// <exception cref="InvalidOperationException">When pin mode is not set to PWM output</exception>
+        /// <exception cref="InvalidOperationException">When pin mode is not set to PWM output.</exception>
         public int PwmClockDivisor
         {
             get => PinMode == GpioPinDriveMode.PwmOutput ? m_PwmClockDivisor : 0;
@@ -295,12 +295,12 @@
         public bool IsInSoftToneMode => m_SoftToneFrequency >= 0;
 
         /// <summary>
-        /// Gets or sets the soft tone frequency. 0 to 5000 Hz is typical
+        /// Gets or sets the soft tone frequency. 0 to 5000 Hz is typical.
         /// </summary>
         /// <value>
         /// The soft tone frequency.
         /// </value>
-        /// <exception cref="InvalidOperationException">When soft tones cannot be initialized on the pin</exception>
+        /// <exception cref="InvalidOperationException">When soft tones cannot be initialized on the pin.</exception>
         public int SoftToneFrequency
         {
             get => m_SoftToneFrequency;
@@ -343,7 +343,7 @@
         /// <value>
         /// The soft PWM value.
         /// </value>
-        /// <exception cref="InvalidOperationException">StartSoftPwm</exception>
+        /// <exception cref="InvalidOperationException">StartSoftPwm.</exception>
         public int SoftPwmValue
         {
             get => m_SoftPwmValue;
@@ -375,9 +375,9 @@
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="range">The range.</param>
-        /// <exception cref="NotSupportedException">When the pin does not suppoert PWM</exception>
+        /// <exception cref="NotSupportedException">When the pin does not suppoert PWM.</exception>
         /// <exception cref="InvalidOperationException">StartSoftPwm
-        /// or</exception>
+        /// or.</exception>
         public void StartSoftPwm(int value, int range)
         {
             lock (_syncLock)
@@ -409,7 +409,7 @@
 
         /// <summary>
         /// Writes the specified pin value.
-        /// This method performs a digital write
+        /// This method performs a digital write.
         /// </summary>
         /// <param name="value">The value.</param>
         public void Write(GpioPinValue value)
@@ -431,12 +431,12 @@
         /// Writes the value asynchronously.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>The awaitable task</returns>
+        /// <returns>The awaitable task.</returns>
         public Task WriteAsync(GpioPinValue value) => Task.Run(() => { Write(value); });
 
         /// <summary>
         /// Writes the specified bit value.
-        /// This method performs a digital write
+        /// This method performs a digital write.
         /// </summary>
         /// <param name="value">if set to <c>true</c> [value].</param>
         public void Write(bool value)
@@ -444,27 +444,27 @@
 
         /// <summary>
         /// Writes the specified bit value.
-        /// This method performs a digital write
+        /// This method performs a digital write.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
-        /// The awaitable task
+        /// The awaitable task.
         /// </returns>
         public Task WriteAsync(bool value) => Task.Run(() => { Write(value); });
 
         /// <summary>
         /// Writes the specified value. 0 for low, any other value for high
-        /// This method performs a digital write
+        /// This method performs a digital write.
         /// </summary>
         /// <param name="value">The value.</param>
         public void Write(int value) => Write(value != 0 ? GpioPinValue.High : GpioPinValue.Low);
 
         /// <summary>
         /// Writes the specified value. 0 for low, any other value for high
-        /// This method performs a digital write
+        /// This method performs a digital write.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>The awaitable task</returns>
+        /// <returns>The awaitable task.</returns>
         public Task WriteAsync(int value) => Task.Run(() => { Write(value); });
 
         /// <summary>
@@ -492,7 +492,7 @@
         /// You will need to register additional analog modules to enable this function for devices such as the Gertboard.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>The awaitable task</returns>
+        /// <returns>The awaitable task.</returns>
         public Task WriteLevelAsync(int value) => Task.Run(() => { WriteLevel(value); });
 
         #endregion
@@ -500,11 +500,11 @@
         #region Input Mode (Read) Members
 
         /// <summary>
-        /// Wait for specific pin status
+        /// Wait for specific pin status.
         /// </summary>
-        /// <param name="status">status to check</param>
-        /// <param name="timeOutMillisecond">timeout to reach status</param>
-        /// <returns>true/false</returns>
+        /// <param name="status">status to check.</param>
+        /// <param name="timeOutMillisecond">timeout to reach status.</param>
+        /// <returns>true/false.</returns>
         public bool WaitForValue(GpioPinValue status, int timeOutMillisecond)
         {
             if (PinMode != GpioPinDriveMode.Input)
@@ -529,7 +529,7 @@
         /// <summary>
         /// Reads the digital value on the pin as a boolean value.
         /// </summary>
-        /// <returns>The state of the pin</returns>
+        /// <returns>The state of the pin.</returns>
         public bool Read()
         {
             lock (_syncLock)
@@ -548,20 +548,20 @@
         /// <summary>
         /// Reads the digital value on the pin as a boolean value.
         /// </summary>
-        /// <returns>The state of the pin</returns>
+        /// <returns>The state of the pin.</returns>
         public Task<bool> ReadAsync() => Task.Run(() => Read());
 
         /// <summary>
         /// Reads the digital value on the pin as a High or Low value.
         /// </summary>
-        /// <returns>The state of the pin</returns>
+        /// <returns>The state of the pin.</returns>
         public GpioPinValue ReadValue()
             => Read() ? GpioPinValue.High : GpioPinValue.Low;
 
         /// <summary>
         /// Reads the digital value on the pin as a High or Low value.
         /// </summary>
-        /// <returns>The state of the pin</returns>
+        /// <returns>The state of the pin.</returns>
         public Task<GpioPinValue> ReadValueAsync() => Task.Run(() => ReadValue());
 
         /// <summary>
@@ -570,7 +570,7 @@
         /// additional analog modules to enable this function for devices such as the Gertboard,
         /// quick2Wire analog board, etc.
         /// </summary>
-        /// <returns>The analog level</returns>
+        /// <returns>The analog level.</returns>
         /// <exception cref="InvalidOperationException">When the pin mode is not configured as an input.</exception>
         public int ReadLevel()
         {
@@ -593,7 +593,7 @@
         /// additional analog modules to enable this function for devices such as the Gertboard,
         /// quick2Wire analog board, etc.
         /// </summary>
-        /// <returns>The analog level</returns>
+        /// <returns>The analog level.</returns>
         public Task<int> ReadLevelAsync() => Task.Run(() => ReadLevel());
 
         #endregion
@@ -605,11 +605,11 @@
         /// </summary>
         /// <param name="edgeDetection">The edge detection.</param>
         /// <param name="callback">The callback.</param>
-        /// <exception cref="ArgumentException">callback</exception>
+        /// <exception cref="ArgumentException">callback.</exception>
         /// <exception cref="InvalidOperationException">
         /// An interrupt callback was already registered.
         /// or
-        /// RegisterInterruptCallback
+        /// RegisterInterruptCallback.
         /// </exception>
         public void RegisterInterruptCallback(EdgeDetection edgeDetection, InterruptServiceRoutineCallback callback)
         {

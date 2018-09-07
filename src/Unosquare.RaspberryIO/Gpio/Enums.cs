@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Gpio
 {
     /// <summary>
-    /// Defines the different drive modes of a GPIO pin
+    /// Defines the different drive modes of a GPIO pin.
     /// </summary>
     public enum GpioPinDriveMode
     {
@@ -28,7 +28,7 @@
 
     /// <summary>
     /// The GPIO pin resistor mode. This is used on input pins so that their
-    /// lines are not floating
+    /// lines are not floating.
     /// </summary>
     public enum GpioPinResistorPullMode
     {
@@ -65,7 +65,7 @@
     }
 
     /// <summary>
-    /// Defines the different edge detection modes  for pin interrupts
+    /// Defines the different edge detection modes  for pin interrupts.
     /// </summary>
     public enum EdgeDetection
     {
@@ -91,7 +91,7 @@
     }
 
     /// <summary>
-    /// Defines the GPIO Pin values 0 for low, 1 for High
+    /// Defines the GPIO Pin values 0 for low, 1 for High.
     /// </summary>
     public enum GpioPinValue
     {
@@ -107,7 +107,7 @@
     }
 
     /// <summary>
-    /// Defines the Header connectors available
+    /// Defines the Header connectors available.
     /// </summary>
     public enum GpioHeader
     {
@@ -128,7 +128,7 @@
     }
 
     /// <summary>
-    /// Defines all the available Wiring Pi Pin Numbers
+    /// Defines all the available Wiring Pi Pin Numbers.
     /// </summary>
     public enum WiringPiPin
     {
@@ -465,7 +465,7 @@
     }
 
     /// <summary>
-    /// Defines the different pin capabilities
+    /// Defines the different pin capabilities.
     /// </summary>
     public enum PinCapability
     {
@@ -531,7 +531,7 @@
     }
 
     /// <summary>
-    /// Defines the SPI channel numbers
+    /// Defines the SPI channel numbers.
     /// </summary>
     internal enum SpiChannelNumber
     {
@@ -547,7 +547,7 @@
     }
 
     /// <summary>
-    /// Defines GPIO controller initialization modes
+    /// Defines GPIO controller initialization modes.
     /// </summary>
     internal enum ControllerMode
     {

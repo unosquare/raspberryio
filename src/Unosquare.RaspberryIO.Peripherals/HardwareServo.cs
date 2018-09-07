@@ -15,7 +15,7 @@
         /// Initializes a new instance of the <see cref="HardwareServo"/> class.
         /// </summary>
         /// <param name="outputPin">The output pin.</param>
-        /// <exception cref="ArgumentException">Pin does not support PWM - outputPin</exception>
+        /// <exception cref="ArgumentException">Pin does not support PWM - outputPin.</exception>
         public HardwareServo(GpioPin outputPin)
         {
             if (outputPin == null || outputPin.Capabilities.Contains(PinCapability.PWM) == false)
@@ -76,7 +76,7 @@
         /// </summary>
         /// <param name="pulseLengthMin">The pulse length minimum.</param>
         /// <param name="pulseLengthMax">The pulse length maximum.</param>
-        /// <returns>The angle in degrees</returns>
+        /// <returns>The angle in degrees.</returns>
         public double ComputeAngle(double pulseLengthMin, double pulseLengthMax)
         {
             var currentPulse = PulseLengthMs.Clamp(pulseLengthMin, pulseLengthMax) - pulseLengthMin;
@@ -85,12 +85,12 @@
         }
 
         /// <summary>
-        /// Computes the pulse length in milliseconds for the given angle (from 0 to 180)
+        /// Computes the pulse length in milliseconds for the given angle (from 0 to 180).
         /// </summary>
         /// <param name="angle">The angle.</param>
         /// <param name="pulseLengthMin">The pulse length minimum.</param>
         /// <param name="pulseLengthMax">The pulse length maximum.</param>
-        /// <returns>The pulse length in milliseconds for the given angle (from 0 to 180)</returns>
+        /// <returns>The pulse length in milliseconds for the given angle (from 0 to 180).</returns>
         public double ComputePulseLength(double angle, double pulseLengthMin, double pulseLengthMax) =>
             (angle.Clamp(0, 180) / 180 * (pulseLengthMax - pulseLengthMin)) + pulseLengthMin;
 

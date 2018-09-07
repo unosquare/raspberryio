@@ -4,7 +4,7 @@
     using System.Text;
 
     /// <summary>
-    /// Represents the raspivid camera settings for video capture functionality
+    /// Represents the raspivid camera settings for video capture functionality.
     /// </summary>
     /// <seealso cref="CameraSettingsBase" />
     public class CameraVideoSettings : CameraSettingsBase
@@ -15,13 +15,13 @@
         /// <summary>
         /// Use bits per second, so 10Mbits/s would be -b 10000000. For H264, 1080p30 a high quality bitrate would be 15Mbits/s or more. 
         /// Maximum bitrate is 25Mbits/s (-b 25000000), but much over 17Mbits/s won't show noticeable improvement at 1080p30.
-        /// Default -1
+        /// Default -1.
         /// </summary>
         public int CaptureBitrate { get; set; } = -1;
 
         /// <summary>
         /// Gets or sets the framerate.
-        /// Default 25, range 2 to 30
+        /// Default 25, range 2 to 30.
         /// </summary>
         public int CaptureFramerate { get; set; } = 25;
 
@@ -42,7 +42,7 @@
         /// <summary>
         /// Gets or sets the profile.
         /// Sets the H264 profile to be used for the encoding.
-        /// Default is Main mode
+        /// Default is Main mode.
         /// </summary>
         public CameraH264Profile CaptureProfile { get; set; } = CameraH264Profile.Main;
 

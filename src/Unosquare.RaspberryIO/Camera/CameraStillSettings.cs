@@ -6,7 +6,7 @@
     using System.Text;
 
     /// <summary>
-    /// Defines a wrapper for the raspistill program and its settings (command-line arguments)
+    /// Defines a wrapper for the raspistill program and its settings (command-line arguments).
     /// </summary>
     /// <seealso cref="CameraSettingsBase" />
     public class CameraStillSettings : CameraSettingsBase
@@ -18,7 +18,7 @@
 
         /// <summary>
         /// Gets or sets a value indicating whether the preview window (if enabled) uses native capture resolution
-        /// This may slow down preview FPS
+        /// This may slow down preview FPS.
         /// </summary>
         public bool CaptureDisplayPreviewAtResolution { get; set; } = false;
 
@@ -29,7 +29,7 @@
 
         /// <summary>
         /// Gets or sets the quality for JPEG only encoding mode.
-        /// Value ranges from 0 to 100
+        /// Value ranges from 0 to 100.
         /// </summary>
         public int CaptureJpegQuality { get; set; } = 90;
 
@@ -63,7 +63,7 @@
         /// <summary>
         /// Gets or sets the rotation.
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">Valid range 0-359</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Valid range 0-359.</exception>
         public int Rotation
         {
             get => _rotate;

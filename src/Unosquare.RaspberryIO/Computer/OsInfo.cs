@@ -1,37 +1,37 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
     /// <summary>
-    /// Represents the OS Information
+    /// Represents the OS Information.
     /// </summary>
     public class OsInfo
     {
         /// <summary>
-        /// System name
+        /// System name.
         /// </summary>
         public string SysName { get; set; }
 
         /// <summary>
-        /// Node name
+        /// Node name.
         /// </summary>
         public string NodeName { get; set; }
 
         /// <summary>
-        /// Release level
+        /// Release level.
         /// </summary>
         public string Release { get; set; }
 
         /// <summary>
-        /// Version level
+        /// Version level.
         /// </summary>
         public string Version { get; set; }
 
         /// <summary>
-        /// Hardware level
+        /// Hardware level.
         /// </summary>
         public string Machine { get; set; }
 
         /// <summary>
-        /// Domain name
+        /// Domain name.
         /// </summary>
         public string DomainName { get; set; }
 

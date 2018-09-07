@@ -3,7 +3,7 @@
     using Swan.Abstractions;
 
     /// <summary>
-    /// The SPI Bus containing the 2 SPI channels
+    /// The SPI Bus containing the 2 SPI channels.
     /// </summary>
     public class SpiBus : SingletonBase<SpiBus>
     {
@@ -43,7 +43,7 @@
         }
 
         /// <summary>
-        /// Gets or sets the channel 1 frequency in Hz
+        /// Gets or sets the channel 1 frequency in Hz.
         /// </summary>
         /// <value>
         /// The channel1 frequency.

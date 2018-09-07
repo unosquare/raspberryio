@@ -10,7 +10,7 @@
     using System.Reflection;
 
     /// <summary>
-    /// http://raspberry-pi-guide.readthedocs.io/en/latest/system.html
+    /// http://raspberry-pi-guide.readthedocs.io/en/latest/system.html.
     /// </summary>
     public sealed class SystemInfo : SingletonBase<SystemInfo>
     {
@@ -24,7 +24,7 @@
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
         /// </summary>
-        /// <exception cref="NotSupportedException">Could not initialize the GPIO controller</exception>
+        /// <exception cref="NotSupportedException">Could not initialize the GPIO controller.</exception>
         private SystemInfo()
         {
             #region Obtain and format a property dictionary
@@ -297,7 +297,7 @@
         public TimeSpan UptimeTimeSpan => TimeSpan.FromSeconds(Uptime);
 
         /// <summary>
-        /// Placeholder for processor index
+        /// Placeholder for processor index.
         /// </summary>
         private string Processor { get; set; }
 

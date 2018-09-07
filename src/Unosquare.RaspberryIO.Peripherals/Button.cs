@@ -5,7 +5,7 @@
     using Native;
 
     /// <summary>
-    /// Implements a generic button attached to the GPIO
+    /// Implements a generic button attached to the GPIO.
     /// </summary>
     public class Button
     {

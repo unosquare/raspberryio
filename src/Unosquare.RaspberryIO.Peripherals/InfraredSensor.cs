@@ -13,7 +13,7 @@
     /// Implements a digital infrared sensor using the HX1838/VS1838 or the TSOP38238 38kHz digital receiver.
     /// It registers an interrupt on the pin and fires data events asynchronously to keep CPU usage low.
     /// Some primitive ideas taken from https://github.com/adafruit/IR-Commander/blob/master/ircommander.pde
-    /// and https://github.com/z3t0/Arduino-IRremote/blob/master/IRremote.cpp
+    /// and https://github.com/z3t0/Arduino-IRremote/blob/master/IRremote.cpp.
     /// </summary>
     public sealed class InfraredSensor : IDisposable
     {
@@ -75,7 +75,7 @@
         /// </summary>
         /// <param name="pulses">The pulses.</param>
         /// <param name="groupSize">Number of pulse data to output per line.</param>
-        /// <returns>A string representing the pulses</returns>
+        /// <returns>A string representing the pulses.</returns>
         public static string DebugPulses(InfraredPulse[] pulses, int groupSize = 4)
         {
             var builder = new StringBuilder(pulses.Length * 24);
@@ -239,7 +239,7 @@
 
         /// <summary>
         /// Provides decoding Methods for the NEC IR Protocol.
-        /// Idea taken from here: https://www.sbprojects.net/knowledge/ir/nec.php
+        /// Idea taken from here: https://www.sbprojects.net/knowledge/ir/nec.php.
         /// </summary>
         public static class NecDecoder
         {
@@ -263,7 +263,7 @@
             /// If the train of pulses is a repeat code, then it returns a 4-byte array with all bits set.
             /// </summary>
             /// <param name="pulses">The pulses.</param>
-            /// <returns>The decoded bytes</returns>
+            /// <returns>The decoded bytes.</returns>
             public static byte[] DecodePulses(InfraredPulse[] pulses)
             {
                 // check if we have a repeat code
@@ -349,7 +349,7 @@
             }
 
             /// <summary>
-            /// Determines whether the set of pulses represent a repeat code
+            /// Determines whether the set of pulses represent a repeat code.
             /// </summary>
             /// <param name="pulses">The pulses.</param>
             /// <returns>
@@ -395,7 +395,7 @@
         }
 
         /// <summary>
-        /// Represents data of an infrared pulse
+        /// Represents data of an infrared pulse.
         /// </summary>
         public class InfraredPulse
         {
@@ -419,7 +419,7 @@
             }
 
             /// <summary>
-            /// Gets the signal value
+            /// Gets the signal value.
             /// </summary>
             public bool Value { get; }
 
@@ -464,7 +464,7 @@
         }
 
         /// <summary>
-        /// Contains the raw sensor data event arguments
+        /// Contains the raw sensor data event arguments.
         /// </summary>
         /// <seealso cref="EventArgs" />
         public class InfraredSensorPulseEventArgs : EventArgs
@@ -488,7 +488,7 @@
             }
 
             /// <summary>
-            /// Gets the signal value
+            /// Gets the signal value.
             /// </summary>
             public bool Value { get; }
 

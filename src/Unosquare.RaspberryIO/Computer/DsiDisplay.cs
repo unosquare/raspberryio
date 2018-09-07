@@ -7,7 +7,7 @@
     /// <summary>
     /// The Official Raspberry Pi 7-inch touch display from the foundation
     /// Some docs available here:
-    /// http://forums.pimoroni.com/t/official-7-raspberry-pi-touch-screen-faq/959
+    /// http://forums.pimoroni.com/t/official-7-raspberry-pi-touch-screen-faq/959.
     /// </summary>
     public class DsiDisplay : SingletonBase<DsiDisplay>
     {
@@ -53,7 +53,7 @@
 
         /// <summary>
         /// Gets or sets a value indicating whether the backlight of the DSI display on.
-        /// This operation is performed via the file system
+        /// This operation is performed via the file system.
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance is backlight on; otherwise, <c>false</c>.

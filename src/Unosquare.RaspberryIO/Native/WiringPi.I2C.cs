@@ -10,7 +10,7 @@
         /// Simple device read. Some devices present data when you read them without having to do any register transactions.
         /// </summary>
         /// <param name="fd">The fd.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiI2CRead", SetLastError = true)]
         public static extern int WiringPiI2CRead(int fd);
 
@@ -19,7 +19,7 @@
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <param name="reg">The reg.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiI2CReadReg8", SetLastError = true)]
         public static extern int WiringPiI2CReadReg8(int fd, int reg);
 
@@ -28,7 +28,7 @@
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <param name="reg">The reg.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiI2CReadReg16", SetLastError = true)]
         public static extern int WiringPiI2CReadReg16(int fd, int reg);
 
@@ -37,7 +37,7 @@
         /// </summary>
         /// <param name="fd">The fd.</param>
         /// <param name="data">The data.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiI2CWrite", SetLastError = true)]
         public static extern int WiringPiI2CWrite(int fd, int data);
 
@@ -47,7 +47,7 @@
         /// <param name="fd">The fd.</param>
         /// <param name="reg">The reg.</param>
         /// <param name="data">The data.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiI2CWriteReg8", SetLastError = true)]
         public static extern int WiringPiI2CWriteReg8(int fd, int reg, int data);
 
@@ -57,7 +57,7 @@
         /// <param name="fd">The fd.</param>
         /// <param name="reg">The reg.</param>
         /// <param name="data">The data.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiI2CWriteReg16", SetLastError = true)]
         public static extern int WiringPiI2CWriteReg16(int fd, int reg, int data);
 
@@ -69,7 +69,7 @@
         /// E.g. the popular MCP23017 GPIO expander is usually device Id 0x20, so this is the number you would pass into wiringPiI2CSetup().
         /// </summary>
         /// <param name="devId">The dev identifier.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiI2CSetup", SetLastError = true)]
         public static extern int WiringPiI2CSetup(int devId);
 

@@ -64,7 +64,7 @@
         /// </summary>
         /// <param name="className">Name of the class.</param>
         /// <param name="methodName">Name of the method.</param>
-        /// <exception cref="HardwareException">When an error thrown by an API call occurs</exception>
+        /// <exception cref="HardwareException">When an error thrown by an API call occurs.</exception>
         public static void Throw(string className, string methodName) => throw new HardwareException(Marshal.GetLastWin32Error(), $"{className}.{methodName}");
 
         /// <inheritdoc />

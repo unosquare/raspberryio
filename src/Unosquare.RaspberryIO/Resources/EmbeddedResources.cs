@@ -7,7 +7,7 @@
     using System.IO;
 
     /// <summary>
-    /// Provides access to embedded assembly files
+    /// Provides access to embedded assembly files.
     /// </summary>
     internal static class EmbeddedResources
     {

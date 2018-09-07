@@ -14,7 +14,7 @@
     /// Represents a singleton of the Raspberry Pi GPIO controller
     /// as an IReadOnlyCollection of GpioPins
     /// Low level operations are accomplished by using the Wiring Pi library.
-    /// Use the Instance property to access the singleton's instance
+    /// Use the Instance property to access the singleton's instance.
     /// </summary>
     public sealed class GpioController : SingletonBase<GpioController>, IReadOnlyCollection<GpioPin>
     {
@@ -326,7 +326,7 @@
         /// The <see cref="GpioPin"/>.
         /// </value>
         /// <param name="pinNumber">The pin number.</param>
-        /// <returns>A reference to the GPIO pin</returns>
+        /// <returns>A reference to the GPIO pin.</returns>
         public GpioPin this[WiringPiPin pinNumber] => _pinsByWiringPiPinNumber[pinNumber];
 
         /// <summary>
@@ -336,7 +336,7 @@
         /// The <see cref="GpioPin"/>.
         /// </value>
         /// <param name="pinNumber">The pin number.</param>
-        /// <returns>A reference to the GPIO pin</returns>
+        /// <returns>A reference to the GPIO pin.</returns>
         public GpioPin this[P1 pinNumber] => HeaderP1[(int)pinNumber];
 
         /// <summary>
@@ -346,7 +346,7 @@
         /// The <see cref="GpioPin"/>.
         /// </value>
         /// <param name="pinNumber">The pin number.</param>
-        /// <returns>A reference to the GPIO pin</returns>
+        /// <returns>A reference to the GPIO pin.</returns>
         public GpioPin this[P5 pinNumber] => HeaderP5[(int)pinNumber];
 
         /// <summary>
@@ -357,8 +357,8 @@
         /// The <see cref="GpioPin"/>.
         /// </value>
         /// <param name="wiringPiPinNumber">The pin number as defined by Wiring Pi. This is not the header pin number as pin number in headers are obvoisly repeating.</param>
-        /// <returns>A reference to the GPIO pin</returns>
-        /// <exception cref="IndexOutOfRangeException">When the pin index is not found</exception>
+        /// <returns>A reference to the GPIO pin.</returns>
+        /// <exception cref="IndexOutOfRangeException">When the pin index is not found.</exception>
         public GpioPin this[int wiringPiPinNumber]
         {
             get
@@ -396,7 +396,7 @@
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="value">The value.</param>
-        /// <returns>The awaitable task</returns>
+        /// <returns>The awaitable task.</returns>
         public Task SetPadDriveAsync(int group, int value) => Task.Run(() => { SetPadDrive(group, value); });
 
         /// <summary>
@@ -405,7 +405,7 @@
         /// although it still takes two write operations to the Pi’s GPIO hardware.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <exception cref="InvalidOperationException">PinMode</exception>
+        /// <exception cref="InvalidOperationException">PinMode.</exception>
         public void WriteByte(byte value)
         {
             lock (SyncRoot)
@@ -426,16 +426,16 @@
         /// although it still takes two write operations to the Pi’s GPIO hardware.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>The awaitable task</returns>
+        /// <returns>The awaitable task.</returns>
         public Task WriteByteAsync(byte value) => Task.Run(() => { WriteByte(value); });
 
         /// <summary>
         /// This reads the 8-bit byte supplied to the first 8 GPIO pins.
         /// It’s the fastest way to get all 8 bits at once to a particular value.
-        /// Please note this function is undocumented and unsopported
+        /// Please note this function is undocumented and unsopported.
         /// </summary>
-        /// <returns>A byte from the GPIO</returns>
-        /// <exception cref="InvalidOperationException">PinMode</exception>
+        /// <returns>A byte from the GPIO.</returns>
+        /// <exception cref="InvalidOperationException">PinMode.</exception>
         public byte ReadByte()
         {
             lock (SyncRoot)
@@ -454,9 +454,9 @@
         /// <summary>
         /// This reads the 8-bit byte supplied to the first 8 GPIO pins.
         /// It’s the fastest way to get all 8 bits at once to a particular value.
-        /// Please note this function is undocumented and unsopported
+        /// Please note this function is undocumented and unsopported.
         /// </summary>
-        /// <returns>A byte from the GPIO</returns>
+        /// <returns>A byte from the GPIO.</returns>
         public Task<byte> ReadByteAsync() => Task.Run(() => ReadByte());
 
         #endregion
@@ -487,14 +487,14 @@
         /// Gets the GPIO pin by BCM pin number.
         /// </summary>
         /// <param name="bcmPinNumber">The BCM pin number.</param>
-        /// <returns>The GPIO pin</returns>
+        /// <returns>The GPIO pin.</returns>
         public GpioPin GetGpioPinByBcmPinNumber(int bcmPinNumber) => this.First(pin => pin.BcmPinNumber == bcmPinNumber);
 
         /// <summary>
         /// Converts the Wirings Pi pin number to the BCM pin number.
         /// </summary>
         /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>
-        /// <returns>The converted pin</returns>
+        /// <returns>The converted pin.</returns>
         internal static int WiringPiToBcmPinNumber(int wiringPiPinNumber)
         {
             lock (SyncRoot)
@@ -507,7 +507,7 @@
         /// Converts the Physical (Header) pin number to BCM pin number.
         /// </summary>
         /// <param name="headerPinNumber">The header pin number.</param>
-        /// <returns>The converted pin</returns>
+        /// <returns>The converted pin.</returns>
         internal static int HaderToBcmPinNumber(int headerPinNumber)
         {
             lock (SyncRoot)
@@ -517,27 +517,27 @@
         }
 
         /// <summary>
-        /// Short-hand method of registering pins
+        /// Short-hand method of registering pins.
         /// </summary>
         /// <param name="pin">The pin.</param>
         private void RegisterPin(GpioPin pin)
         {
-            if (_pinsByWiringPiPinNumber.ContainsKey(pin.WiringPiPinNumber) == false)
-                _pinsByWiringPiPinNumber[pin.WiringPiPinNumber] = pin;
-            else
+            if (_pinsByWiringPiPinNumber.ContainsKey(pin.WiringPiPinNumber))
                 throw new InvalidOperationException($"Pin {pin.WiringPiPinNumber} has been registered");
+            
+            _pinsByWiringPiPinNumber[pin.WiringPiPinNumber] = pin;
         }
 
         /// <summary>
-        /// Initializes the controller given the initialization mode and pin numbering scheme
+        /// Initializes the controller given the initialization mode and pin numbering scheme.
         /// </summary>
         /// <param name="mode">The mode.</param>
         /// <returns>True when successful.</returns>
         /// <exception cref="PlatformNotSupportedException">
-        /// This library does not support the platform
+        /// This library does not support the platform.
         /// </exception>
-        /// <exception cref="InvalidOperationException">Library was already Initialized</exception>
-        /// <exception cref="ArgumentException">The init mode is invalid</exception>
+        /// <exception cref="InvalidOperationException">Library was already Initialized.</exception>
+        /// <exception cref="ArgumentException">The init mode is invalid.</exception>
         private bool Initialize(ControllerMode mode)
         {
             if (Runtime.OS != Swan.OperatingSystem.Unix)

@@ -12,7 +12,7 @@ namespace Unosquare.RaspberryIO.Peripherals
     /// Model number APA102C
     /// This strip is also known as Adafruit DotStar LED strip (just a new name for an existing item)
     /// You can get it here: https://www.adafruit.com/products/2239
-    /// or here: https://www.aliexpress.com/wholesale?SearchText=APA102C
+    /// or here: https://www.aliexpress.com/wholesale?SearchText=APA102C.
     /// </summary>
     public class LedStripAPA102C
     {
@@ -88,7 +88,7 @@ namespace Unosquare.RaspberryIO.Peripherals
 
         /// <summary>
         /// Gets a value indicating whether RGB values are sent as GBR
-        /// This is typically true
+        /// This is typically true.
         /// </summary>
         public bool ReverseRgb { get; }
 
@@ -104,7 +104,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// The <see cref="LedStripPixel"/>.
         /// </value>
         /// <param name="index">The index.</param>
-        /// <returns>A reference to the strip pixel</returns>
+        /// <returns>A reference to the strip pixel.</returns>
         public LedStripPixel this[int index] => GetPixel(index);
 
         #endregion
@@ -126,7 +126,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// Gets the pixel.
         /// </summary>
         /// <param name="index">The index.</param>
-        /// <returns>A refrence to the stip pixel</returns>
+        /// <returns>A refrence to the stip pixel.</returns>
         public LedStripPixel GetPixel(int index)
         {
             if (index < 0 || index > LedCount - 1)
@@ -143,7 +143,7 @@ namespace Unosquare.RaspberryIO.Peripherals
 
         /// <summary>
         /// Sets the pixel brightness, R, G and B at the given index.
-        /// And invalid index has no effect
+        /// And invalid index has no effect.
         /// </summary>
         /// <param name="index">The index.</param>
         /// <param name="brightness">The brightness.</param>
@@ -168,18 +168,18 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <summary>
         /// Sets a number of pixels from loaded pixel data directly into the frame buffer
         /// This is the fastest method to set a number of pixels.
-        /// Call the Render Method to apply!
+        /// Call the Render Method to apply!.
         /// </summary>
         /// <param name="pixels">The pixel data of a previously loaded bitmap.</param>
-        /// <param name="sourceOffsetX">The x offset in the bitmap to start copying pixels from</param>
-        /// <param name="sourceOffsetY">The row index (y) from which to take the pixel data</param>
-        /// <param name="brightness">The brightness from 0.0 to 1.0. The underlying precision is from 0 to 31</param>
+        /// <param name="sourceOffsetX">The x offset in the bitmap to start copying pixels from.</param>
+        /// <param name="sourceOffsetY">The row index (y) from which to take the pixel data.</param>
+        /// <param name="brightness">The brightness from 0.0 to 1.0. The underlying precision is from 0 to 31.</param>
         /// <param name="targetOffset">The target offset where to start setting the pixels.</param>
-        /// <param name="targetLength">The number of pixels to set. 0 or less means the entire LedCount</param>
+        /// <param name="targetLength">The number of pixels to set. 0 or less means the entire LedCount.</param>
         /// <exception cref="ArgumentOutOfRangeException">startX
         /// or
-        /// y</exception>
-        /// <exception cref="ArgumentNullException">bitmap</exception>
+        /// y.</exception>
+        /// <exception cref="ArgumentNullException">bitmap.</exception>
         public void SetPixels(BitmapBuffer pixels, int sourceOffsetX, int sourceOffsetY, float brightness = 1f, int targetOffset = 0, int targetLength = 0)
         {
             // Parameter validation
@@ -242,7 +242,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         }
 
         /// <summary>
-        /// Renders all the pixels in the FrameBuffer
+        /// Renders all the pixels in the FrameBuffer.
         /// </summary>
         public void Render()
         {
@@ -296,7 +296,7 @@ namespace Unosquare.RaspberryIO.Peripherals
             }
 
             /// <summary>
-            /// The Red Buye
+            /// The Red Buye.
             /// </summary>
             public byte R
             {
@@ -311,7 +311,7 @@ namespace Unosquare.RaspberryIO.Peripherals
             }
 
             /// <summary>
-            /// The green
+            /// The green.
             /// </summary>
             public byte G
             {
@@ -320,7 +320,7 @@ namespace Unosquare.RaspberryIO.Peripherals
             }
 
             /// <summary>
-            /// The blue
+            /// The blue.
             /// </summary>
             public byte B
             {

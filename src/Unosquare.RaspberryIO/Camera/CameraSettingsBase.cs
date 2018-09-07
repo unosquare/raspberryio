@@ -7,12 +7,12 @@
     /// <summary>
     /// A base class to implement raspistill and raspivid wrappers
     /// Full documentation available at
-    /// https://www.raspberrypi.org/documentation/raspbian/applications/camera.md
+    /// https://www.raspberrypi.org/documentation/raspbian/applications/camera.md.
     /// </summary>
     public abstract class CameraSettingsBase
     {
         /// <summary>
-        /// The Invariant Culture shorthand
+        /// The Invariant Culture shorthand.
         /// </summary>
         protected static readonly CultureInfo Ci = CultureInfo.InvariantCulture;
 
@@ -21,17 +21,17 @@
         /// <summary>
         /// Gets or sets the timeout milliseconds.
         /// Default value is 5000
-        /// Recommended value is at least 300 in order to let the light collectors open
+        /// Recommended value is at least 300 in order to let the light collectors open.
         /// </summary>
         public int CaptureTimeoutMilliseconds { get; set; } = 5000;
 
         /// <summary>
-        /// Gets or sets a value indicating whether or not to show a preview window on the screen
+        /// Gets or sets a value indicating whether or not to show a preview window on the screen.
         /// </summary>
         public bool CaptureDisplayPreview { get; set; } = false;
 
         /// <summary>
-        /// Gets or sets a value indicating whether a preview window is shown in full screen  mode if enabled
+        /// Gets or sets a value indicating whether a preview window is shown in full screen  mode if enabled.
         /// </summary>
         public bool CaptureDisplayPreviewInFullScreen { get; set; } = true;
 
@@ -52,7 +52,7 @@
 
         /// <summary>
         /// Gets or sets the capture shutter speed in microseconds.
-        /// Default -1, Range 0 to 6000000 (equivalent to 6 seconds)
+        /// Default -1, Range 0 to 6000000 (equivalent to 6 seconds).
         /// </summary>
         public int CaptureShutterSpeedMicroseconds { get; set; } = -1;
 
@@ -76,21 +76,21 @@
         public CameraMeteringMode CaptureMeteringMode { get; set; } = CameraMeteringMode.Average;
 
         /// <summary>
-        /// Gets or sets the automatic white balance mode. By default it is set to Auto
+        /// Gets or sets the automatic white balance mode. By default it is set to Auto.
         /// </summary>
         public CameraWhiteBalanceMode CaptureWhiteBalanceControl { get; set; } = CameraWhiteBalanceMode.Auto;
 
         /// <summary>
         /// Gets or sets the capture white balance gain on the blue channel. Example: 1.25
         /// Only takes effect if White balance control is set to off.
-        /// Default is 0
+        /// Default is 0.
         /// </summary>
         public decimal CaptureWhiteBalanceGainBlue { get; set; } = 0M;
 
         /// <summary>
         /// Gets or sets the capture white balance gain on the red channel. Example: 1.75
         /// Only takes effect if White balance control is set to off.
-        /// Default is 0
+        /// Default is 0.
         /// </summary>
         public decimal CaptureWhiteBalanceGainRed { get; set; } = 0M;
 
@@ -118,28 +118,28 @@
         public int CaptureHeight { get; set; } = 480;
 
         /// <summary>
-        /// Gets or sets the picture sharpness. Default is 0, Range form -100 to 100
+        /// Gets or sets the picture sharpness. Default is 0, Range form -100 to 100.
         /// </summary>
         public int ImageSharpness { get; set; } = 0;
 
         /// <summary>
-        /// Gets or sets the picture contrast. Default is 0, Range form -100 to 100
+        /// Gets or sets the picture contrast. Default is 0, Range form -100 to 100.
         /// </summary>
         public int ImageContrast { get; set; } = 0;
 
         /// <summary>
-        /// Gets or sets the picture brightness. Default is 50, Range form 0 to 100
+        /// Gets or sets the picture brightness. Default is 50, Range form 0 to 100.
         /// </summary>
         public int ImageBrightness { get; set; } = 50; // from 0 to 100
 
         /// <summary>
-        /// Gets or sets the picture saturation. Default is 0, Range form -100 to 100
+        /// Gets or sets the picture saturation. Default is 0, Range form -100 to 100.
         /// </summary>
         public int ImageSaturation { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets the picture ISO. Default is -1 Range is 100 to 800
-        /// The higher the value, the more light the sensor absorbs
+        /// The higher the value, the more light the sensor absorbs.
         /// </summary>
         public int ImageIso { get; set; } = -1;
 
@@ -163,7 +163,7 @@
         public int ImageColorEffectV { get; set; } = -1; // 0 to 255
 
         /// <summary>
-        /// Gets or sets the image rotation. Default is no rotation
+        /// Gets or sets the image rotation. Default is no rotation.
         /// </summary>
         public CameraImageRotation ImageRotation { get; set; } = CameraImageRotation.None;
 
@@ -179,20 +179,20 @@
 
         /// <summary>
         /// Gets or sets the image annotations using a bitmask (or flags) notation.
-        /// Apply a bitwise OR to the enumeration to include multiple annotations
+        /// Apply a bitwise OR to the enumeration to include multiple annotations.
         /// </summary>
         public CameraAnnotation ImageAnnotations { get; set; } = CameraAnnotation.None;
 
         /// <summary>
         /// Gets or sets the image annotations text.
         /// Text may include date/time placeholders by using the '%' character, as used by strftime.
-        /// Example: ABC %Y-%m-%d %X will output ABC 2015-10-28 20:09:33
+        /// Example: ABC %Y-%m-%d %X will output ABC 2015-10-28 20:09:33.
         /// </summary>
         public string ImageAnnotationsText { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the font size of the text annotations
-        /// Default is -1, range is 6 to 160
+        /// Default is -1, range is 6 to 160.
         /// </summary>
         public int ImageAnnotationFontSize { get; set; } = -1;
 
@@ -224,7 +224,7 @@
         /// <summary>
         /// Creates the process arguments.
         /// </summary>
-        /// <returns>The string that represents the process arguments</returns>
+        /// <returns>The string that represents the process arguments.</returns>
         public virtual string CreateProcessArguments()
         {
             var sb = new StringBuilder();

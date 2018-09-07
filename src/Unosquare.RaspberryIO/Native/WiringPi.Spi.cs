@@ -7,10 +7,10 @@
         #region WiringPi - SPI Library Calls
 
         /// <summary>
-        /// This function is undocumented
+        /// This function is undocumented.
         /// </summary>
         /// <param name="channel">The channel.</param>
-        /// <returns>Unknown</returns>
+        /// <returns>Unknown.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiSPIGetFd", SetLastError = true)]
         public static extern int WiringPiSPIGetFd(int channel);
 
@@ -23,17 +23,17 @@
         /// <param name="channel">The channel.</param>
         /// <param name="data">The data.</param>
         /// <param name="len">The length.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiSPIDataRW", SetLastError = true)]
         public static extern int WiringPiSPIDataRW(int channel, byte[] data, int len);
 
         /// <summary>
-        /// This function is undocumented
+        /// This function is undocumented.
         /// </summary>
         /// <param name="channel">The channel.</param>
         /// <param name="speed">The speed.</param>
         /// <param name="mode">The mode.</param>
-        /// <returns>Unkown</returns>
+        /// <returns>Unkown.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiSPISetupMode", SetLastError = true)]
         public static extern int WiringPiSPISetupMode(int channel, int speed, int mode);
 
@@ -44,7 +44,7 @@
         /// </summary>
         /// <param name="channel">The channel.</param>
         /// <param name="speed">The speed.</param>
-        /// <returns>The Linux file descriptor for the device or -1 for error</returns>
+        /// <returns>The Linux file descriptor for the device or -1 for error.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiSPISetup", SetLastError = true)]
         public static extern int WiringPiSPISetup(int channel, int speed);
 

@@ -14,7 +14,7 @@
         /// <param name="pin">The pin.</param>
         /// <param name="initialValue">The initial value.</param>
         /// <param name="pwmRange">The PWM range.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "softPwmCreate", SetLastError = true)]
         public static extern int SoftPwmCreate(int pin, int initialValue, int pwmRange);
 
@@ -28,7 +28,7 @@
         public static extern void SoftPwmWrite(int pin, int value);
 
         /// <summary>
-        /// This function is undocumented
+        /// This function is undocumented.
         /// </summary>
         /// <param name="pin">The pin.</param>
         [DllImport(WiringPiLibrary, EntryPoint = "softPwmStop", SetLastError = true)]
@@ -39,12 +39,12 @@
         /// The return value is 0 for success. Anything else and you should check the global errno variable to see what went wrong.
         /// </summary>
         /// <param name="pin">The pin.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "softToneCreate", SetLastError = true)]
         public static extern int SoftToneCreate(int pin);
 
         /// <summary>
-        /// This function is undocumented
+        /// This function is undocumented.
         /// </summary>
         /// <param name="pin">The pin.</param>
         [DllImport(WiringPiLibrary, EntryPoint = "softToneStop", SetLastError = true)]

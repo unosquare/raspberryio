@@ -13,7 +13,7 @@
     using System.Threading;
 
     /// <summary>
-    /// Main entry point class
+    /// Main entry point class.
     /// </summary>
     public partial class Program
     {

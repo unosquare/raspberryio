@@ -6,7 +6,7 @@
     /// <summary>
     /// Provides native C WiringPi Library function call wrappers
     /// All credit for the native library goes to the author of http://wiringpi.com/
-    /// The wrappers were written based on https://github.com/WiringPi/WiringPi/blob/master/wiringPi/wiringPi.h
+    /// The wrappers were written based on https://github.com/WiringPi/WiringPi/blob/master/wiringPi/wiringPi.h.
     /// </summary>
     public partial class WiringPi
     {
@@ -20,7 +20,7 @@
         /// See the pins page for a table which maps the wiringPi pin number to the Broadcom GPIO pin number to the physical location on the edge connector.
         /// This function needs to be called with root privileges.
         /// </summary>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiSetup", SetLastError = true)]
         public static extern int WiringPiSetup();
 
@@ -33,9 +33,9 @@
         /// Note: In this mode you can only use the pins which have been exported via the /sys/class/gpio interface before you run your program.
         /// You can do this in a separate shell-script, or by using the system() function from inside your program to call the gpio program.
         /// Also note that some functions have no effect when using this mode as they’re not currently possible to action unless called with root privileges.
-        /// (although you can use system() to call gpio to set/change modes if needed)
+        /// (although you can use system() to call gpio to set/change modes if needed).
         /// </summary>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiSetupSys", SetLastError = true)]
         public static extern int WiringPiSetupSys();
 
@@ -45,7 +45,7 @@
         /// As above, this function needs to be called with root privileges, and note that some pins are different
         /// from revision 1 to revision 2 boards.
         /// </summary>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiSetupGpio", SetLastError = true)]
         public static extern int WiringPiSetupGpio();
 
@@ -53,12 +53,12 @@
         /// Identical to wiringPiSetup, however it allows the calling programs to use the physical pin numbers on the P1 connector only.
         /// This function needs to be called with root privileges.
         /// </summary>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiSetupPhys", SetLastError = true)]
         public static extern int WiringPiSetupPhys();
 
         /// <summary>
-        /// This function is undocumented
+        /// This function is undocumented.
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="mode">The mode.</param>
@@ -96,7 +96,7 @@
         /// This function returns the value read at the given pin. It will be HIGH or LOW (1 or 0) depending on the logic level at the pin.
         /// </summary>
         /// <param name="pin">The pin.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "digitalRead", SetLastError = true)]
         public static extern int DigitalRead(int pin);
 
@@ -125,7 +125,7 @@
         /// register additional analog modules to enable this function for devices such as the Gertboard, quick2Wire analog board, etc.
         /// </summary>
         /// <param name="pin">The pin.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "analogRead", SetLastError = true)]
         public static extern int AnalogRead(int pin);
 
@@ -142,18 +142,18 @@
         /// This returns the board revision of the Raspberry Pi. It will be either 1 or 2. Some of the BCM_GPIO pins changed number and
         /// function when moving from board revision 1 to 2, so if you are using BCM_GPIO pin numbers, then you need to be aware of the differences.
         /// </summary>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "piBoardRev", SetLastError = true)]
         public static extern int PiBoardRev();
 
         /// <summary>
-        /// This function is undocumented
+        /// This function is undocumented.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="mem">The memory.</param>
         /// <param name="maker">The maker.</param>
         /// <param name="overVolted">The over volted.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "piBoardId", SetLastError = true)]
         public static extern int PiBoardId(ref int model, ref int mem, ref int maker, ref int overVolted);
 
@@ -161,7 +161,7 @@
         /// This returns the BCM_GPIO pin number of the supplied wiringPi pin. It takes the board revision into account.
         /// </summary>
         /// <param name="wPiPin">The w pi pin.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wpiPinToGpio", SetLastError = true)]
         public static extern int WpiPinToGpio(int wPiPin);
 
@@ -169,7 +169,7 @@
         /// This returns the BCM_GPIO pin number of the supplied physical pin on the P1 connector.
         /// </summary>
         /// <param name="physPin">The physical pin.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "physPinToGpio", SetLastError = true)]
         public static extern int PhysPinToGpio(int physPin);
 
@@ -179,24 +179,24 @@
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="value">The value.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "setPadDrive", SetLastError = true)]
         public static extern int SetPadDrive(int group, int value);
 
         /// <summary>
-        /// Undocumented function
+        /// Undocumented function.
         /// </summary>
         /// <param name="pin">The pin.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "getAlt", SetLastError = true)]
         public static extern int GetAlt(int pin);
 
         /// <summary>
-        /// Undocumented function
+        /// Undocumented function.
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="freq">The freq.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "pwmToneWrite", SetLastError = true)]
         public static extern int PwmToneWrite(int pin, int freq);
 
@@ -221,7 +221,7 @@
         /// This reads the 8-bit byte supplied to the first 8 GPIO pins.
         /// It’s the fastest way to get all 8 bits at once to a particular value.
         /// </summary>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "digitalReadByte", SetLastError = true)]
         public static extern uint DigitalReadByte();
 
@@ -230,7 +230,7 @@
         /// This reads the 8-bit byte supplied to the first 8 GPIO pins.
         /// It’s the fastest way to get all 8 bits at once to a particular value.
         /// </summary>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "digitalReadByte2", SetLastError = true)]
         public static extern uint DigitalReadByte2();
 
@@ -259,7 +259,7 @@
         public static extern void PwmSetClock(int divisor);
 
         /// <summary>
-        /// Undocumented function
+        /// Undocumented function.
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="freq">The freq.</param>
@@ -278,7 +278,7 @@
         /// </summary>
         /// <param name="pin">The pin.</param>
         /// <param name="timeout">The timeout.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [Obsolete]
         [DllImport(WiringPiLibrary, EntryPoint = "waitForInterrupt", SetLastError = true)]
         public static extern int WaitForInterrupt(int pin, int timeout);
@@ -300,7 +300,7 @@
         /// <param name="pin">The pin.</param>
         /// <param name="mode">The mode.</param>
         /// <param name="method">The method.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "wiringPiISR", SetLastError = true)]
         public static extern int WiringPiISR(int pin, int mode, InterruptServiceRoutineCallback method);
 
@@ -311,7 +311,7 @@
         /// communicate back to the main program, or other threads.
         /// </summary>
         /// <param name="method">The method.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "piThreadCreate", SetLastError = true)]
         public static extern int PiThreadCreate(ThreadWorker method);
 
@@ -348,7 +348,7 @@
         /// Note: Only programs running as root can change their priority. If called from a non-root program then nothing happens.
         /// </summary>
         /// <param name="priority">The priority.</param>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "piHiPri", SetLastError = true)]
         public static extern int PiHiPri(int priority);
 
@@ -377,7 +377,7 @@
         /// This returns a number representing the number of milliseconds since your program called one of the wiringPiSetup functions.
         /// It returns an unsigned 32-bit number which wraps after 49 days.
         /// </summary>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "millis", SetLastError = true)]
         public static extern uint Millis();
 
@@ -385,7 +385,7 @@
         /// This returns a number representing the number of microseconds since your program called one of
         /// the wiringPiSetup functions. It returns an unsigned 32-bit number which wraps after approximately 71 minutes.
         /// </summary>
-        /// <returns>The result code</returns>
+        /// <returns>The result code.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "micros", SetLastError = true)]
         public static extern uint Micros();
 

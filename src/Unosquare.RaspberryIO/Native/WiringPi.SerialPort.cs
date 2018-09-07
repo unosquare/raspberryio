@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="device">The device.</param>
         /// <param name="baud">The baud.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "serialOpen", SetLastError = true)]
         public static extern int SerialOpen(string device, int baud);
 
@@ -23,7 +23,7 @@
         /// Closes the device identified by the file descriptor given.
         /// </summary>
         /// <param name="fd">The fd.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "serialClose", SetLastError = true)]
         public static extern int SerialClose(int fd);
 
@@ -48,16 +48,16 @@
         /// in which case errno will be set appropriately.
         /// </summary>
         /// <param name="fd">The fd.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "serialDataAvail", SetLastError = true)]
         public static extern int SerialDataAvail(int fd);
 
         /// <summary>
         /// Returns the next character available on the serial device.
-        /// This call will block for up to 10 seconds if no data is available (when it will return -1)
+        /// This call will block for up to 10 seconds if no data is available (when it will return -1).
         /// </summary>
         /// <param name="fd">The fd.</param>
-        /// <returns>The result</returns>
+        /// <returns>The result.</returns>
         [DllImport(WiringPiLibrary, EntryPoint = "serialGetchar", SetLastError = true)]
         public static extern int SerialGetchar(int fd);
 

@@ -62,12 +62,12 @@
         public void Stop() => _timer.Reset();
 
         /// <summary>
-        /// Restarts probing at the 0 timestamp
+        /// Restarts probing at the 0 timestamp.
         /// </summary>
         public void Restart() => _timer.Restart();
 
         /// <summary>
-        /// Event arguments representing probe data
+        /// Event arguments representing probe data.
         /// </summary>
         /// <seealso cref="EventArgs" />
         public sealed class ProbeDataEventArgs : EventArgs
@@ -98,7 +98,7 @@
             public long Timestamp { get; }
 
             /// <summary>
-            /// Gets the read value at the given timestamp
+            /// Gets the read value at the given timestamp.
             /// </summary>
             public bool Value { get; }
 

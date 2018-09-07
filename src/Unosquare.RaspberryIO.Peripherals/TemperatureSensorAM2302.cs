@@ -9,7 +9,7 @@
 
     /// <summary>
     /// Provides logic to read from the AM2302 sensor, also known as the DHT22 sensor.
-    /// This is an inexpensive sensor that reads temperature and humidity constantly
+    /// This is an inexpensive sensor that reads temperature and humidity constantly.
     /// </summary>
     public class TemperatureSensorAM2302 : IDisposable
     {
@@ -37,8 +37,8 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="TemperatureSensorAM2302" /> class.
         /// </summary>
-        /// <param name="dataPin">The data pin. Must be a GPIO-only pin on the P1 Header of the Pi</param>
-        /// <exception cref="ArgumentException">dataPin When it is invalid</exception>
+        /// <param name="dataPin">The data pin. Must be a GPIO-only pin on the P1 Header of the Pi.</param>
+        /// <exception cref="ArgumentException">dataPin When it is invalid.</exception>
         public TemperatureSensorAM2302(GpioPin dataPin)
         {
             if (AllowedPins.Contains(dataPin) == false)
@@ -135,7 +135,7 @@
         /// <summary>
         /// Retrieves the sensor data.
         /// </summary>
-        /// <returns>The event arguments that will be read from the sensor</returns>
+        /// <returns>The event arguments that will be read from the sensor.</returns>
         private AM2302DataReadEventArgs RetrieveSensorData()
         {
             // Prepare buffer to store measure and checksum

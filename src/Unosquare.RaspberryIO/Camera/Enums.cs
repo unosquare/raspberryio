@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Defines the available encoding formats for the Raspberry Pi camera module
+    /// Defines the available encoding formats for the Raspberry Pi camera module.
     /// </summary>
     public enum CameraImageEncodingFormat
     {
@@ -29,7 +29,7 @@
     }
 
     /// <summary>
-    /// Defines the different exposure modes for the Raspberry Pi's camera module
+    /// Defines the different exposure modes for the Raspberry Pi's camera module.
     /// </summary>
     public enum CameraExposureMode
     {
@@ -91,11 +91,11 @@
         /// <summary>
         /// The fireworks
         /// </summary>
-        Fireworks
+        Fireworks,
     }
 
     /// <summary>
-    /// Defines the different AWB (Auto White Balance) modes for the Raspberry Pi's camera module
+    /// Defines the different AWB (Auto White Balance) modes for the Raspberry Pi's camera module.
     /// </summary>
     public enum CameraWhiteBalanceMode
     {
@@ -147,11 +147,11 @@
         /// <summary>
         /// The horizon
         /// </summary>
-        Horizon
+        Horizon,
     }
 
     /// <summary>
-    /// Defines the available image effects for the Raspberry Pi's camera module
+    /// Defines the available image effects for the Raspberry Pi's camera module.
     /// </summary>
     public enum CameraImageEffect
     {
@@ -258,11 +258,11 @@
         /// <summary>
         /// The cartoon
         /// </summary>
-        Cartoon
+        Cartoon,
     }
 
     /// <summary>
-    /// Defines the different metering modes for the Raspberry Pi's camera module
+    /// Defines the different metering modes for the Raspberry Pi's camera module.
     /// </summary>
     public enum CameraMeteringMode
     {
@@ -288,7 +288,7 @@
     }
 
     /// <summary>
-    /// Defines the different image rotation modes for the Raspberry Pi's camera module
+    /// Defines the different image rotation modes for the Raspberry Pi's camera module.
     /// </summary>
     public enum CameraImageRotation
     {
@@ -310,12 +310,12 @@
         /// <summary>
         /// 270 degrees
         /// </summary>
-        Degrees270 = 270
+        Degrees270 = 270,
     }
 
     /// <summary>
     /// Defines the different DRC (Dynamic Range Compensation)  modes for the Raspberry Pi's camera module
-    /// Helpful for low light photos
+    /// Helpful for low light photos.
     /// </summary>
     public enum CameraDynamicRangeCompensation
     {
@@ -337,11 +337,11 @@
         /// <summary>
         /// The high
         /// </summary>
-        High
+        High,
     }
 
     /// <summary>
-    /// Defines the bit-wise mask flags for the available annotation elements for the Raspberry Pi's camera module
+    /// Defines the bit-wise mask flags for the available annotation elements for the Raspberry Pi's camera module.
     /// </summary>
     [Flags]
     public enum CameraAnnotation
@@ -418,6 +418,6 @@
         /// HiP: The primary profile for broadcast and disc storage applications, particularly 
         /// for high-definition television applications (this is the profile adopted into HD DVD and Blu-ray Disc, for example).
         /// </summary>
-        High
+        High,
     }
 }

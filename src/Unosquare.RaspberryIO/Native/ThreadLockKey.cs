@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Native
 {
     /// <summary>
-    /// Defines the different threading locking keys
+    /// Defines the different threading locking keys.
     /// </summary>
     public enum ThreadLockKey
     {

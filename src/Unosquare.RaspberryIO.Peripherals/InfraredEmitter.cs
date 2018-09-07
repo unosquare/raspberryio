@@ -8,7 +8,7 @@
 
     /// <summary>
     /// A class to send infrared signals using an IR LED.
-    /// It uses a carrier frequency of ~38kHz
+    /// It uses a carrier frequency of ~38kHz.
     /// </summary>
     public sealed class InfraredEmitter
     {
@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="pulses">The pulses.</param>
         /// <param name="validPulseLengths">The valid pulse lengths.</param>
-        /// <returns>An aray of pulses with exact lengths</returns>
+        /// <returns>An aray of pulses with exact lengths.</returns>
         public static InfraredSensor.InfraredPulse[] SnapPulseLengths(
             IEnumerable<InfraredSensor.InfraredPulse> pulses, IEnumerable<long> validPulseLengths)
         {
@@ -112,8 +112,8 @@
             /// Encodes the specified 4-byte data into IR pulses.
             /// </summary>
             /// <param name="data">The data.</param>
-            /// <returns>The data ebncoded as IR pulses</returns>
-            /// <exception cref="ArgumentException">The data has to be 4 bytes long. - data</exception>
+            /// <returns>The data ebncoded as IR pulses.</returns>
+            /// <exception cref="ArgumentException">The data has to be 4 bytes long. - data.</exception>
             public static InfraredSensor.InfraredPulse[] Encode(byte[] data)
             {
                 if (data == null || data.Length != 4)

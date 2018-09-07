@@ -12,7 +12,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="HighResolutionTimer"/> class.
         /// </summary>
-        /// <exception cref="NotSupportedException">High-resolution timer not available</exception>
+        /// <exception cref="NotSupportedException">High-resolution timer not available.</exception>
         public HighResolutionTimer()
         {
             if (!IsHighResolution)

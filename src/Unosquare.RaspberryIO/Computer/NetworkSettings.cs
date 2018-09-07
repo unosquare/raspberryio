@@ -11,7 +11,7 @@
     using System.Text;
 
     /// <summary>
-    /// Represents the network information
+    /// Represents the network information.
     /// </summary>
     public class NetworkSettings : SingletonBase<NetworkSettings>
     {
@@ -26,14 +26,14 @@
         /// Retrieves the wireless networks.
         /// </summary>
         /// <param name="adapter">The adapter.</param>
-        /// <returns>A list of WiFi networks</returns>
+        /// <returns>A list of WiFi networks.</returns>
         public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string adapter) => RetrieveWirelessNetworks(new[] { adapter });
 
         /// <summary>
         /// Retrieves the wireless networks.
         /// </summary>
         /// <param name="adapters">The adapters.</param>
-        /// <returns>A list of WiFi networks</returns>
+        /// <returns>A list of WiFi networks.</returns>
         public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string[] adapters = null)
         {
             var result = new List<WirelessNetworkInfo>();
@@ -155,7 +155,7 @@
                 // Read the line as an adatper
                 var adapter = new NetworkAdapterInfo
                 {
-                    Name = line.Substring(0, line.IndexOf(' ')).TrimEnd(':')
+                    Name = line.Substring(0, line.IndexOf(' ')).TrimEnd(':'),
                 };
 
                 // Parse the MAC address in old version of ifconfig; it comes in the first line
@@ -243,7 +243,7 @@
         /// </summary>
         /// <param name="indentedLine">The indented line.</param>
         /// <param name="tagName">Name of the tag.</param>
-        /// <returns>The value after the tag identifier</returns>
+        /// <returns>The value after the tag identifier.</returns>
         private static string ParseOutputTagFromLine(string indentedLine, string tagName)
         {
             if (indentedLine.IndexOf(tagName) < 0)
