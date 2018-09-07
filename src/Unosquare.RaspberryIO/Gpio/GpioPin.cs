@@ -520,8 +520,6 @@
             {
                 if (ReadValue() == status)
                     return true;
-
-                Pi.Timing.SleepMicroseconds(101); // 101 uses nanosleep as opposed to a loop.
             }
             while (hrt.ElapsedMilliseconds <= timeOutMillisecond);
 
