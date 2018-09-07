@@ -3,12 +3,9 @@
     using Gpio;
     using Native;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading;
-    using Unosquare.Swan;
 
     /// <summary>
     /// Provides logic to read from the AM2302 sensor, also known as the DHT22 sensor.
@@ -17,7 +14,8 @@
     public class TemperatureSensorAM2302 : IDisposable
     {
         private static readonly int[] AllowedPinNumbers = new int[] { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
-        private static readonly TimeSpan ReadInterval = TimeSpan.FromSeconds(5);
+        private static readonly TimeSpan ReadInterval = TimeSpan.FromSeconds(2);
+        private static readonly long BitPulseMidMicroseconds = 50; // (26 ... 50)µs for false; (51 ... 76)µs for true
         private readonly Timing _systemTiming;
 
         private readonly GpioPin DataPin;
@@ -48,12 +46,7 @@
 
             _systemTiming = Timing.Instance;
             DataPin = dataPin;
-            ReadWorker = new Thread(PerformContinuousReads)
-            {
-                IsBackground = true,
-                Name = nameof(TemperatureSensorAM2302),
-                Priority = ThreadPriority.AboveNormal
-            };
+            ReadWorker = new Thread(PerformContinuousReads);
         }
 
         /// <summary>
@@ -97,6 +90,8 @@
         /// </summary>
         private void PerformContinuousReads()
         {
+            var stopwatch = new HighResolutionTimer();
+            var lastElapsedTime = TimeSpan.FromSeconds(0);
             while (_isRunning)
             {
                 try
@@ -105,28 +100,35 @@
                     // Inform sensor that must finish last execution and put it's state in idle
                     DataPin.PinMode = GpioPinDriveMode.Output;
 
+                    // Waiting for sensor init
+                    DataPin.Write(GpioPinValue.High);
+                    if (lastElapsedTime < ReadInterval)
+                        Thread.Sleep(ReadInterval - lastElapsedTime);
+
+                    // Start to counter measure time
+                    stopwatch.Start();
+
                     // Send request to trasmission from board to sensor
                     DataPin.Write(GpioPinValue.Low);
-                    _systemTiming.SleepMicroseconds(5000);
+                    _systemTiming.SleepMicroseconds(1000);
                     DataPin.Write(GpioPinValue.High);
-                    _systemTiming.SleepMicroseconds(30);
+                    _systemTiming.SleepMicroseconds(20);
                     DataPin.Write(GpioPinValue.Low);
 
                     // Acquire measure
                     var sensorData = RetrieveSensorData();
-                    if (sensorData != null)
-                        OnDataAvailable?.Invoke(this, sensorData);
-
-                    DataPin.PinMode = GpioPinDriveMode.Output;
-                    DataPin.Write(GpioPinValue.High);
+                    OnDataAvailable?.Invoke(this, sensorData);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    ex.Error(nameof(TemperatureSensorAM2302), ex.Message);
+                    // swallow
                 }
 
-                // Waiting for sensor init
-                Thread.Sleep(ReadInterval);
+                lastElapsedTime = stopwatch.Elapsed;
+                if (stopwatch.IsRunning)
+                    stopwatch.Stop();
+
+                stopwatch.Reset();
             }
         }
 
@@ -136,90 +138,71 @@
         /// <returns>The event arguments that will be read from the sensor</returns>
         private AM2302DataReadEventArgs RetrieveSensorData()
         {
+            // Prepare buffer to store measure and checksum
+            var data = new byte[5];
+            for (var i = 0; i < 5; i++)
+                data[i] = 0;
+
             // Wait for sensor response
             DataPin.PinMode = GpioPinDriveMode.Input;
-            DataPin.InputPullMode = GpioPinResistorPullMode.PullUp;
 
-            var changeElapsed = new HighResolutionTimer();
-            var lastValue = DataPin.Read();
-            var currentValue = lastValue;
-            var lastElapsed = 0L;
-            var pulses = new List<Tuple<bool, long>>(128);
+            // Read acknowledgement from sensor
+            DataPin.WaitForValue(GpioPinValue.High, 100);
+            DataPin.WaitForValue(GpioPinValue.Low, 100);
 
-            changeElapsed.Start();
-            while (true)
+            // Read 40 bits to acquire:
+            //   16 bit -> Humidity
+            //   16 bit -> Temperature
+            //   8 bit -> Checksum
+            var remainingBitCount = 7;
+            var currentByteIndex = 0;
+
+            var stopwatch = new HighResolutionTimer();
+            for (var i = 0; i < 40; i++)
             {
-                lastElapsed = changeElapsed.ElapsedMicroseconds;
-                currentValue = DataPin.Read();
+                stopwatch.Reset();
+                DataPin.WaitForValue(GpioPinValue.High, 100);
 
-                if (lastElapsed >= 5000)
-                    break;
+                stopwatch.Start();
+                DataPin.WaitForValue(GpioPinValue.Low, 100);
 
-                if (currentValue == lastValue)
-                    continue;
-                else
-                    changeElapsed.Restart();
+                stopwatch.Stop();
 
-                var pulse = new Tuple<bool, long>(lastValue, lastElapsed);
-                pulses.Add(pulse);
-                lastValue = currentValue;
-            }
+                // Check if signal is 1 or 0
+                if (stopwatch.ElapsedMicroseconds > BitPulseMidMicroseconds)
+                    data[currentByteIndex] |= (byte)(1 << remainingBitCount);
 
-            var startPulseIndex = -1;
-            for (var pulseIndex = 0; pulseIndex < pulses.Count - 80 - 1; pulseIndex++)
-            {
-                var p0 = pulses[pulseIndex + 0];
-                var p1 = pulses[pulseIndex + 1];
-
-                if (p0.Item1 == true && p0.Item2.IsBetween(70, 90) && p1.Item1 == false && p1.Item2.IsBetween(40, 60))
+                if (remainingBitCount == 0)
                 {
-                    startPulseIndex = pulseIndex + 1;
-                    break;
+                    currentByteIndex++;
+
+                    // restart the remaining count
+                    // for the next incoming byte
+                    remainingBitCount = 7;
+                }
+                else
+                {
+                    remainingBitCount--;
                 }
             }
 
-            if (startPulseIndex < 0 || pulses.Count - startPulseIndex < 80)
+            // Compute the checksum
+            var checkSum = data[0] + data[1] + data[2] + data[3];
+            if ((checkSum & 0xff) != data[4])
                 return null;
 
-            var dataBits = new BitArray(5 * 8); // 40 bit is 8 bytes
-            var dataBitIndex = 0;
-            $"Start Pulse Index: {startPulseIndex}".Info();
-            for (var pulseIndex = startPulseIndex; pulseIndex < pulses.Count; pulseIndex += 2)
-            {
-                var p0 = pulses[pulseIndex + 0];
-                var p1 = pulses[pulseIndex + 1];
-                dataBits[dataBitIndex] = p1.Item2 >= 32;
-                $"{(dataBits[dataBitIndex] ? "1" : "0")} = {(p0.Item1 ? "H" : "L")}: {p0.Item2,4} | {(p1.Item1 ? "H" : "L")}: {p1.Item2,4}".Warn(nameof(TemperatureSensorAM2302));
-                dataBitIndex++;
-                if (dataBitIndex >= dataBits.Length)
-                    break;
-            }
-
-            // Compute the checksum
-            var data = new byte[dataBits.Length / 8];
-            dataBits.CopyTo(data, 0);
-            var checkSum = BitConverter.GetBytes(data[0] + data[1] + data[2] + data[3]);
-
-            $"Checksum: {BitConverter.ToString(checkSum, 0)}; Data: {BitConverter.ToString(data)}".Warn(nameof(TemperatureSensorAM2302));
-            if (checkSum[0] != data[4])
-                $"BAD CHECKSUM: Expected {checkSum[0]:X}; Was: {data[4]:X}".Error(nameof(TemperatureSensorAM2302)); // return null;
-
-            var sign = 0.1M;
+            var sign = 1;
 
             // Check negative temperature
             if ((data[2] & 0x80) != 0)
             {
                 data[2] = (byte)(data[2] & 0x7F);
-                sign *= -1;
+                sign = -1;
             }
 
             return new AM2302DataReadEventArgs(
-                temperatureCelsius: sign * (BitConverter.IsLittleEndian ?
-                    BitConverter.ToUInt16(new byte[] { data[3], data[2] }, 0) :
-                    BitConverter.ToUInt16(new byte[] { data[2], data[3] }, 0)),
-                humidityPercentage: 0.1M * (BitConverter.IsLittleEndian ?
-                    BitConverter.ToUInt16(new byte[] { data[1], data[0] }, 0) :
-                    BitConverter.ToUInt16(new byte[] { data[0], data[1] }, 0)));
+                temperatureCelsius: (sign * ((data[2] << 8) + data[3])) / 10,
+                humidityPercentage: ((data[0] << 8) + data[1]) / 10);
         }
 
         /// <summary>
