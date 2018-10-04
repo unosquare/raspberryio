@@ -375,7 +375,42 @@ Pi.Gpio.Pin02.Write(GpioPinValue.High); // Writes a pin value
 TODO
 
 ### Hardware PWM
-TODO
+Simple code for led dimming:
+
+```csharp
+   var pin = Pi.Gpio[P1.Gpio18];
+   pin.PinMode = GpioPinDriveMode.PwmOutput;
+   pin.PwmMode = PwmMode.Balanced;
+   pin.PwmClockDivisor = 2; 
+   while (true)
+   {
+      for (int x = 0; x <= 100; x++)
+      {
+         pin.PwmRegister = (int)pin.PwmRange / 100 * x;
+         Thread.Sleep(10);
+      }
+
+      for (int x = 0; x <= 100; x++)
+      {
+         pin.PwmRegister = (int)pin.PwmRange - ((int)pin.PwmRange / 100 * x);
+         Thread.Sleep(10);
+      }
+   }
+```
+
+**PwmRange** is the maximun value of the pulse width, than means 100% of pulse width. Changing this value allows you to have a more fine or coarse control of the pulse width (default 1024).
+
+**PwmRegister** is the current pulse width. Changing this value allows you to change the current pulse width and thus the duty cycle.
+
+**Duty Cycle** is equals to **PwmRegister** divide by **PwmRange**. Assuming a **PwmRange** value of 1024 (default), we have:
+
+| PwmRegister | Duty Cycle | 
+| :---: | :---: |
+| 0 | 0% |
+| 256 | 25% |
+| 512 | 50% |
+| 768 | 75% |
+| 1024 | 100% |
 
 ### Software PWM
 TODO
