@@ -8,7 +8,7 @@
     <title> RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.39.1.0">
+    <meta name="generator" content="docfx 2.39.2.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -653,7 +653,58 @@ Pi.Gpio.Pin02.Write(GpioPinValue.High); // Writes a pin value
 </code></pre><h3 id="analog-level-read-and-write">Analog (Level) Read and Write</h3>
 <p>TODO</p>
 <h3 id="hardware-pwm">Hardware PWM</h3>
-<p>TODO</p>
+<p>Simple code for led dimming:</p>
+<pre><code class="lang-csharp">   var pin = Pi.Gpio[P1.Gpio18];
+   pin.PinMode = GpioPinDriveMode.PwmOutput;
+   pin.PwmMode = PwmMode.Balanced;
+   pin.PwmClockDivisor = 2; 
+   while (true)
+   {
+      for (int x = 0; x &lt;= 100; x++)
+      {
+         pin.PwmRegister = (int)pin.PwmRange / 100 * x;
+         Thread.Sleep(10);
+      }
+
+      for (int x = 0; x &lt;= 100; x++)
+      {
+         pin.PwmRegister = (int)pin.PwmRange - ((int)pin.PwmRange / 100 * x);
+         Thread.Sleep(10);
+      }
+   }
+</code></pre><p><strong>PwmRange</strong> is the maximun value of the pulse width, than means 100% of pulse width. Changing this value allows you to have a more fine or coarse control of the pulse width (default 1024).</p>
+<p><strong>PwmRegister</strong> is the current pulse width. Changing this value allows you to change the current pulse width and thus the duty cycle.</p>
+<p><strong>Duty Cycle</strong> is equals to <strong>PwmRegister</strong> divide by <strong>PwmRange</strong>. Assuming a <strong>PwmRange</strong> value of 1024 (default), we have:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">PwmRegister</th>
+<th style="text-align:center">Duty Cycle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0%</td>
+</tr>
+<tr>
+<td style="text-align:center">256</td>
+<td style="text-align:center">25%</td>
+</tr>
+<tr>
+<td style="text-align:center">512</td>
+<td style="text-align:center">50%</td>
+</tr>
+<tr>
+<td style="text-align:center">768</td>
+<td style="text-align:center">75%</td>
+</tr>
+<tr>
+<td style="text-align:center">1024</td>
+<td style="text-align:center">100%</td>
+</tr>
+</tbody>
+</table>
 <h3 id="software-pwm">Software PWM</h3>
 <p>TODO</p>
 <h3 id="tone-generation">Tone Generation</h3>
@@ -739,7 +790,7 @@ foreach (var device in Pi.I2C.Devices)
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/Issue67-Pwm/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
