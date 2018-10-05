@@ -384,13 +384,13 @@ Simple code for led dimming:
    pin.PwmClockDivisor = 2; 
    while (true)
    {
-      for (int x = 0; x <= 100; x++)
+      for (var x = 0; x <= 100; x++)
       {
          pin.PwmRegister = (int)pin.PwmRange / 100 * x;
          Thread.Sleep(10);
       }
 
-      for (int x = 0; x <= 100; x++)
+      for (var x = 0; x <= 100; x++)
       {
          pin.PwmRegister = (int)pin.PwmRange - ((int)pin.PwmRange / 100 * x);
          Thread.Sleep(10);
@@ -412,8 +412,38 @@ Simple code for led dimming:
 | 768 | 75% |
 | 1024 | 100% |
 
+**_Note:_** Hardware PWM can be used only in GPIO13 and GPIO18.
+
 ### Software PWM
-TODO
+Simple code for led dimming:
+
+```csharp
+   var range = 100;
+   var pin = Pi.Gpio[P1.Gpio18];
+   pin.PinMode = GpioPinDriveMode.Output;
+   pin.StartSoftPwm(0, range);
+   
+   while (true)
+   {
+      for (var x = 0; x <= 100; x++)
+      {
+         pin.SoftPwmValue = range / 100 * x;
+         Thread.Sleep(10);
+      }
+
+      for (var x = 0; x <= 100; x++)
+      {
+         pin.SoftPwmValue = range - (range / 100 * x);
+         Thread.Sleep(10);
+      }
+   }
+```
+
+**SoftPwmRange** is the range of the pulse width, than means 100% of pulse width (We notice better performance using a range value of 100).
+
+**SoftPwmValue** is the current pulse width. Changing this value allows you to change the current pulse width and thus the duty cycle.
+
+**_Note:_** Software PWM can be used in any GPIO.
 
 ### Tone Generation
 You can emit tones by using SoftToneFrequency. Example:
