@@ -18,13 +18,13 @@
         /// Strerrors the specified error.
         /// </summary>
         /// <param name="error">The error.</param>
-        /// <returns></returns>
+        /// <returns>The error string.</returns>
         public static string Strerror(int error)
         {
-            if (!Runtime.IsUsingMonoRuntime) return StrError(error);
-
+            if (!Runtime.IsUsingMonoRuntime) return Marshal.PtrToStringAnsi(StrError(error));
+            
             try
-            {
+                {
                 var buffer = new StringBuilder(256);
                 var result = Strerror(error, buffer, (ulong)buffer.Capacity);
                 return (result != -1) ? buffer.ToString() : null;
@@ -72,9 +72,14 @@
         /// <returns>The result.</returns>
         [DllImport(LibCLibrary, EntryPoint = "uname", SetLastError = true)]
         public static extern int Uname(out SystemName name);
-        
+
+        /// <summary>
+        /// Returns a pointer to a string that describes the error code passed in the argument.
+        /// </summary>
+        /// <param name="errnum">The error code.</param>
+        /// <returns>A pointer to a string that describes the error code.</returns>
         [DllImport(LibCLibrary, EntryPoint = "strerror", SetLastError = true)]
-        private static extern string StrError(int errnum);
+        private static extern IntPtr StrError(int errnum);
 
         [DllImport("MonoPosixHelper", EntryPoint = "Mono_Posix_Syscall_strerror_r", SetLastError = true)]
         private static extern int Strerror(int error, [Out] StringBuilder buffer, ulong length);
