@@ -6,7 +6,7 @@
     using System.Text;
 
     /// <summary>
-    /// Provides standard libc calls using platform-invoke.
+    /// Provides standard 'libc' calls using platform-invoke.
     /// </summary>
     internal static class Standard
     {
@@ -22,9 +22,9 @@
         public static string Strerror(int error)
         {
             if (!Runtime.IsUsingMonoRuntime) return Marshal.PtrToStringAnsi(StrError(error));
-            
+
             try
-                {
+            {
                 var buffer = new StringBuilder(256);
                 var result = Strerror(error, buffer, (ulong)buffer.Capacity);
                 return (result != -1) ? buffer.ToString() : null;
@@ -34,7 +34,7 @@
                 return null;
             }
         }
-        
+
         /// <summary>
         /// Changes file permissions on a Unix file system.
         /// </summary>
@@ -45,7 +45,7 @@
         public static extern int Chmod(string filename, uint mode);
 
         /// <summary>
-        /// Converts a string to a 32 bit integer. Use endpointer as IntPtr.Zero.
+        /// Converts a string to a 32 bit integer. Use end pointer as IntPtr.Zero.
         /// </summary>
         /// <param name="numberString">The number string.</param>
         /// <param name="endPointer">The end pointer.</param>

@@ -269,7 +269,7 @@
         public string Serial { get; private set; }
 
         /// <summary>
-        /// Gets the system uptime (in seconds).
+        /// Gets the system up-time (in seconds).
         /// </summary>
         public double Uptime
         {
@@ -318,7 +318,7 @@
                                 p.PropertyType == typeof(TimeSpan)))
                 .ToArray();
 
-            var properyValues = new List<string>
+            var propertyValues2 = new List<string>
             {
                 "System Information",
                 $"\t{nameof(WiringPiVersion),-22}: {WiringPiVersion}",
@@ -329,16 +329,16 @@
             {
                 if (property.PropertyType != typeof(string[]))
                 {
-                    properyValues.Add($"\t{property.Name,-22}: {property.GetValue(this)}");
+                    propertyValues2.Add($"\t{property.Name,-22}: {property.GetValue(this)}");
                 }
                 else if (property.GetValue(this) is string[] allValues)
                 {
                     var concatValues = string.Join(" ", allValues);
-                    properyValues.Add($"\t{property.Name,-22}: {concatValues}");
+                    propertyValues2.Add($"\t{property.Name,-22}: {concatValues}");
                 }
             }
 
-            return string.Join(Environment.NewLine, properyValues.ToArray());
+            return string.Join(Environment.NewLine, propertyValues2.ToArray());
         }
     }
 }
