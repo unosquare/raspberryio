@@ -326,7 +326,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.SystemInfo.html",
-          "hash": "ph/dej3wxhZIA68yHqW78g=="
+          "hash": "72C10LI97Jq+GVgB0Oe/Gg=="
         }
       },
       "is_incremental": false,
@@ -374,7 +374,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Gpio.GpioController.html",
-          "hash": "jMs1BEsOL9uvZN0rDnN6Cw=="
+          "hash": "qq9sZsjJPEIpaKZqKVIifw=="
         }
       },
       "is_incremental": false,
@@ -578,7 +578,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.HighResolutionTimer.html",
-          "hash": "5X1N8UYdjuDT9bA0yy4MUQ=="
+          "hash": "hNN1xryPIyr56EQ4ytbgMw=="
         }
       },
       "is_incremental": false,
@@ -650,7 +650,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Native.html",
-          "hash": "jZg/0tvGpqW81aI4jNemow=="
+          "hash": "MN0mOHiSd25CkS5R1zK1bw=="
         }
       },
       "is_incremental": false,
