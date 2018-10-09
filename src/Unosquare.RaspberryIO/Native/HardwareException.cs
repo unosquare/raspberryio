@@ -11,8 +11,9 @@
     /// <seealso cref="Exception" />
     public class HardwareException : Exception
     {
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="HardwareException" /> class.
+        /// Initializes a new instance of the <see cref="T:Unosquare.RaspberryIO.Native.HardwareException" /> class.
         /// </summary>
         /// <param name="errorCode">The error code.</param>
         /// <param name="component">The component.</param>
@@ -27,7 +28,6 @@
             }
             catch
             {
-                // TODO: strerror not working great...
                 $"Could not retrieve native error description using {nameof(Standard.Strerror)}".Error(Pi.LoggerSource);
             }
 

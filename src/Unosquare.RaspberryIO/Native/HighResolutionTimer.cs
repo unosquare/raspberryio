@@ -4,7 +4,7 @@
     using System.Diagnostics;
 
     /// <summary>
-    /// Provides access to a high- esolution, time measuring device.
+    /// Provides access to a high-resolution, time measuring device.
     /// </summary>
     /// <seealso cref="Stopwatch" />
     public class HighResolutionTimer : Stopwatch

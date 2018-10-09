@@ -152,7 +152,7 @@
                 if (char.IsLetterOrDigit(line[0]) == false)
                     continue;
 
-                // Read the line as an adatper
+                // Read the line as an adapter
                 var adapter = new NetworkAdapterInfo
                 {
                     Name = line.Substring(0, line.IndexOf(' ')).TrimEnd(':'),
