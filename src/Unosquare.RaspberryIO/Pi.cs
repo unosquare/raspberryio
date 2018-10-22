@@ -92,7 +92,7 @@
 
         /// <summary>
         /// Restarts the Pi. Must be running as SU.
-        /// </summary>
+        /// </summary
         /// <returns>The process result.</returns>
         public static ProcessResult Restart() => RestartAsync().GetAwaiter().GetResult();
 

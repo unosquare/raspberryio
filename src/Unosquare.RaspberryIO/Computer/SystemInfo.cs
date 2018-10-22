@@ -1,7 +1,9 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
+    using Abstractions;
     using Abstractions.Native;
     using Swan.Abstractions;
+    using Swan.Components;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -17,10 +19,6 @@
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
         private const string UptimeFilePath = "/proc/uptime";
-
-        private static readonly StringComparer StringComparer = StringComparer.InvariantCultureIgnoreCase;
-
-        private static readonly object SyncRoot = new object();
 
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
@@ -38,7 +36,7 @@
                             p.CanWrite && p.CanRead &&
                             (p.PropertyType == typeof(string) || p.PropertyType == typeof(string[])))
                     .ToArray();
-            var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer);
+            var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer.InvariantCultureIgnoreCase);
 
             foreach (var prop in properties)
             {
@@ -107,6 +105,7 @@
 
             #region Board Version and Form Factor
 
+            var hasSysInfo = DependencyContainer.Current.CanResolve<ISystemInfo>();
             try
             {
                 if (string.IsNullOrWhiteSpace(Revision) == false &&
@@ -123,7 +122,8 @@
                     }
                 }
 
-                WiringPiBoardRevision = WiringPi.PiBoardRev();
+                if (hasSysInfo)
+                    BoardRevision = DependencyContainer.Current.Resolve<ISystemInfo>().BoardRevision;
             }
             catch
             {
@@ -134,13 +134,8 @@
 
             #region Version Information
 
-            {
-                var libParts = WiringPi.WiringPiLibrary.Split('.');
-                var major = int.Parse(libParts[libParts.Length - 2]);
-                var minor = int.Parse(libParts[libParts.Length - 1]);
-                var version = new Version(major, minor);
-                WiringPiVersion = version;
-            }
+            if (hasSysInfo)
+                LibraryVersion = DependencyContainer.Current.Resolve<ISystemInfo>().LibraryVersion;
 
             #endregion
 
@@ -149,6 +144,7 @@
             try
             {
                 Standard.Uname(out var unameInfo);
+
                 OperatingSystem = new OsInfo
                 {
                     DomainName = unameInfo.DomainName,
@@ -168,9 +164,9 @@
         }
 
         /// <summary>
-        /// Gets the wiring pi library version.
+        /// Gets the library version.
         /// </summary>
-        public Version WiringPiVersion { get; }
+        public Version LibraryVersion { get; }
 
         /// <summary>
         /// Gets the OS information.
@@ -186,28 +182,17 @@
         public PiVersion RaspberryPiVersion { get; }
 
         /// <summary>
-        /// Gets the Wiring Pi board revision (1 or 2).
+        /// Gets the board revision (1 or 2).
         /// </summary>
         /// <value>
         /// The wiring pi board revision.
         /// </value>
-        public int WiringPiBoardRevision { get; }
+        public int BoardRevision { get; }
 
         /// <summary>
         /// Gets the number of processor cores.
         /// </summary>
-        public int ProcessorCount
-        {
-            get
-            {
-                if (int.TryParse(Processor, out var outIndex))
-                {
-                    return outIndex + 1;
-                }
-
-                return 0;
-            }
-        }
+        public int ProcessorCount => int.TryParse(Processor, out var outIndex) ? outIndex + 1 : 0;
 
         /// <summary>
         /// Gets the installed ram in bytes.
@@ -280,6 +265,7 @@
                 {
                     if (File.Exists(UptimeFilePath) == false) return 0;
                     var parts = File.ReadAllText(UptimeFilePath).Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
                     if (parts.Length >= 1 && float.TryParse(parts[0], out var result))
                         return result;
                 }
@@ -322,8 +308,8 @@
             var propertyValues2 = new List<string>
             {
                 "System Information",
-                $"\t{nameof(WiringPiVersion),-22}: {WiringPiVersion}",
-                $"\t{nameof(RaspberryPiVersion),-22}: {RaspberryPiVersion}"
+                $"\t{nameof(LibraryVersion),-22}: {LibraryVersion}",
+                $"\t{nameof(RaspberryPiVersion),-22}: {RaspberryPiVersion}",
             };
 
             foreach (var property in properties)

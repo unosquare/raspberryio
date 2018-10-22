@@ -4,8 +4,6 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading;
-    using Gpio;
-    using Native;
     using Unosquare.RaspberryIO.Abstractions;
     using Unosquare.RaspberryIO.Abstractions.Native;
 
@@ -15,14 +13,13 @@
     /// </summary>
     public class TemperatureSensorAM2302 : IDisposable
     {
-        private static readonly int[] AllowedPinNumbers = new int[] { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
+        private static readonly int[] AllowedPinNumbers = new[] { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
         private static readonly TimeSpan ReadInterval = TimeSpan.FromSeconds(2);
         private static readonly long BitPulseMidMicroseconds = 50; // (26 ... 50)µs for false; (51 ... 76)µs for true
         private readonly Timing _systemTiming;
 
         private readonly IGpioPin DataPin;
         private readonly Thread ReadWorker;
-        private bool _isRunning;
 
         /// <summary>
         /// Initializes static members of the <see cref="TemperatureSensorAM2302"/> class.
@@ -64,14 +61,14 @@
         /// <summary>
         /// Gets a value indicating whether the sensor is running.
         /// </summary>
-        public bool IsRunning => _isRunning;
+        public bool IsRunning { get; private set; }
 
         /// <summary>
         /// Starts the listener.
         /// </summary>
         public void Start()
         {
-            _isRunning = true;
+            IsRunning = true;
             ReadWorker.Start();
         }
 
@@ -79,7 +76,7 @@
         public void Dispose()
         {
             // Avoid calling this multiple times
-            if (_isRunning == false)
+            if (IsRunning == false)
                 return;
 
             // Abort
@@ -94,13 +91,13 @@
         {
             var stopwatch = new HighResolutionTimer();
             var lastElapsedTime = TimeSpan.FromSeconds(0);
-            while (_isRunning)
+            while (IsRunning)
             {
                 try
                 {
                     // Start to comunicate with sensor
                     // Inform sensor that must finish last execution and put it's state in idle
-                    DataPin.PinDriveMode = GpioPinDriveMode.Output;
+                    DataPin.PinMode = GpioPinDriveMode.Output;
 
                     // Waiting for sensor init
                     DataPin.Write(GpioPinValue.High);
@@ -146,7 +143,7 @@
                 data[i] = 0;
 
             // Wait for sensor response
-            DataPin.PinDriveMode = GpioPinDriveMode.Input;
+            DataPin.PinMode = GpioPinDriveMode.Input;
 
             // Read acknowledgement from sensor
             DataPin.WaitForValue(GpioPinValue.High, 100);
@@ -212,7 +209,7 @@
         /// </summary>
         private void StopContinuousReads()
         {
-            _isRunning = false;
+            IsRunning = false;
             ReadWorker.Abort();
         }
 

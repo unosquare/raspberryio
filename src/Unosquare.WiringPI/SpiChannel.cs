@@ -25,12 +25,6 @@
         /// </summary>
         public const int MaxFrequency = 32000000;
 
-        /// <summary>
-        /// The default frequency of SPI channels
-        /// This is set to 8 Mhz which is typical in modern hardware.
-        /// </summary>
-        public const int DefaultFrequency = 8000000;
-
         private static readonly object SyncRoot = new object();
         private static readonly Dictionary<SpiChannelNumber, SpiChannel> Buses = new Dictionary<SpiChannelNumber, SpiChannel>();
         private readonly object _syncLock = new object();

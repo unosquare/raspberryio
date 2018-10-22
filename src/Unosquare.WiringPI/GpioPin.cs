@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using RaspberryIO.Abstractions;
-    using Unosquare.RaspberryIO.Abstractions.Native;
-    using Unosquare.Swan;
+    using RaspberryIO.Abstractions.Native;
+    using Swan;
     using Unosquare.WiringPI.Native;
 
     /// <summary>
@@ -96,13 +96,8 @@
 
         #region Hardware-Specific Properties
 
-        /// <summary>
-        /// Gets or sets the pin operating mode.
-        /// </summary>
-        /// <value>
-        /// The pin mode.
-        /// </value>
-        /// <exception cref="NotSupportedException">Thrown when a pin does not support the given operation mode.</exception>
+        /// <inheritdoc />
+        /// <exception cref="T:System.NotSupportedException">Thrown when a pin does not support the given operation mode.</exception>
         public GpioPinDriveMode PinMode
         {
             get => m_PinMode;
@@ -142,12 +137,7 @@
 
         #region Hardware PWM Members
 
-        /// <summary>
-        /// This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input.
-        /// Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors.
-        /// The parameter pud should be; PUD_OFF, (no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v)
-        /// The internal pull up/down resistors have a value of approximately 50KΩ on the Raspberry Pi.
-        /// </summary>
+        /// <inheritdoc />
         public GpioPinResistorPullMode InputPullMode
         {
             get => PinMode == GpioPinDriveMode.Input ? m_ResistorPullMode : GpioPinResistorPullMode.Off;
@@ -417,11 +407,7 @@
 
         #region Output Mode (Write) Members
 
-        /// <summary>
-        /// Writes the specified pin value.
-        /// This method performs a digital write.
-        /// </summary>
-        /// <param name="value">The value.</param>
+        /// <inheritdoc />
         public void Write(GpioPinValue value)
         {
             lock (_syncLock)

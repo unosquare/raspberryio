@@ -6,7 +6,7 @@
     public interface IGpioPin
     {
         /// <summary>
-        /// Gets the pin number.
+        /// Gets the BCM pin number.
         /// </summary>
         /// <value>
         /// The pin number.
@@ -14,12 +14,20 @@
         int PinNumber { get; }
 
         /// <summary>
-        /// Gets the pin mode.
+        /// Gets or sets the pin operating mode.
         /// </summary>
         /// <value>
         /// The pin mode.
         /// </value>
-        GpioPinDriveMode PinMode { get; }
+        GpioPinDriveMode PinMode { get; set; }
+
+        /// <summary>
+        /// This sets or gets the pull-up or pull-down resistor mode on the pin, which should be set as an input.
+        /// Unlike the Arduino, the BCM2835 has both pull-up an down internal resistors.
+        /// The parameter pud should be; PUD_OFF, (no pull up/down), PUD_DOWN (pull to ground) or PUD_UP (pull to 3.3v)
+        /// The internal pull up/down resistors have a value of approximately 50KΩ on the Raspberry Pi.
+        /// </summary>
+        GpioPinResistorPullMode InputPullMode { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="IGpioPin"/> is value.
@@ -41,6 +49,13 @@
         /// </summary>
         /// <param name="value">if set to <c>true</c> [value].</param>
         void Write(bool value);
+        
+        /// <summary>
+        /// Writes the specified pin value.
+        /// This method performs a digital write.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        void Write(GpioPinValue value);
 
         /// <summary>
         /// Wait for specific pin status.

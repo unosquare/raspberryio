@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.0</TargetFrameworks>
     <RuntimeIdentifier>linux-arm</RuntimeIdentifier>
     <AssemblyName>Unosquare.RaspberryIO.Playground</AssemblyName>
@@ -32,10 +32,5 @@
     <ProjectReference Include="..\Unosquare.RaspberryIO.Peripherals\Unosquare.RaspberryIO.Peripherals.csproj" />
     <ProjectReference Include="..\Unosquare.RaspberryIO\Unosquare.RaspberryIO.csproj" />
     <ProjectReference Include="..\Unosquare.WiringPI\Unosquare.WiringPI.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
-    using Gpio;
-    using Native;
+    using Unosquare.RaspberryIO.Abstractions;
 
     /// <summary>
     /// Implements a generic button attached to the GPIO.
@@ -11,7 +10,7 @@
     {
         internal const ulong InterruptTime = 500;
 
-        private readonly GpioPin _gpioPin;
+        private readonly IGpioPin _gpioPin;
         private ulong _pressedLastInterrupt;
         private ulong _releasedLastInterrupt;
         
@@ -19,12 +18,12 @@
         /// Initializes a new instance of the <see cref="Button"/> class.
         /// </summary>
         /// <param name="gpioPin">The gpio pin.</param>
-        public Button(GpioPin gpioPin)
+        public Button(IGpioPin gpioPin)
         {
             _gpioPin = gpioPin;
 
             _gpioPin.InputPullMode = GpioPinResistorPullMode.PullDown;
-            _gpioPin.PinDriveMode = GpioPinDriveMode.Input;
+            _gpioPin.PinMode = GpioPinDriveMode.Input;
             _gpioPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, HandleInterrupt);
         }
 

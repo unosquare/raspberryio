@@ -64,10 +64,7 @@
             {
                 if (IsPresent == false) return false;
 
-                if (int.TryParse(File.ReadAllText(BacklightFilename).Trim(), out var backlight))
-                    return backlight == 0;
-
-                return false;
+                return int.TryParse(File.ReadAllText(BacklightFilename).Trim(), out var value) && value == 0;
             }
             set
             {

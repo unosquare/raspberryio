@@ -170,7 +170,7 @@
         /// </summary>
         Pin31 = 31,
     }
-    
+
     /// <summary>
     /// Defines the Header connectors available.
     /// </summary>
@@ -290,28 +290,6 @@
     }
 
     /// <summary>
-    /// The GPIO pin resistor mode. This is used on input pins so that their
-    /// lines are not floating.
-    /// </summary>
-    public enum GpioPinResistorPullMode
-    {
-        /// <summary>
-        /// Pull resistor not active. Line floating
-        /// </summary>
-        Off = 0,
-
-        /// <summary>
-        /// Pull resistor sets a default value of 0 on no-connects
-        /// </summary>
-        PullDown = 1,
-
-        /// <summary>
-        /// Pull resistor sets a default value of 1 on no-connects
-        /// </summary>
-        PullUp = 2,
-    }
-
-    /// <summary>
     /// The PWM mode.
     /// </summary>
     public enum PwmMode
@@ -326,7 +304,8 @@
         /// </summary>
         Balanced = 1,
     }
-     /// <summary>
+
+    /// <summary>
     /// Defines the different edge detection modes  for pin interrupts.
     /// </summary>
     public enum EdgeDetection

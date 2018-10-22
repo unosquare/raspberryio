@@ -28,10 +28,6 @@ This library enables developers to use the various Raspberry Pi's hardware modul
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Unosquare.RaspberryIO.Abstractions\Unosquare.RaspberryIO.Abstractions.csproj" />
   </ItemGroup>

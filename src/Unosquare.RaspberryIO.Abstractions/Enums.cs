@@ -31,6 +31,28 @@
         /// </summary>
         Low = 0,
     }
+    
+    /// <summary>
+    /// The GPIO pin resistor mode. This is used on input pins so that their
+    /// lines are not floating.
+    /// </summary>
+    public enum GpioPinResistorPullMode
+    {
+        /// <summary>
+        /// Pull resistor not active. Line floating
+        /// </summary>
+        Off = 0,
+
+        /// <summary>
+        /// Pull resistor sets a default value of 0 on no-connects
+        /// </summary>
+        PullDown = 1,
+
+        /// <summary>
+        /// Pull resistor sets a default value of 1 on no-connects
+        /// </summary>
+        PullUp = 2,
+    }
 
     /// <summary>
     /// Defines the different drive modes of a GPIO pin.

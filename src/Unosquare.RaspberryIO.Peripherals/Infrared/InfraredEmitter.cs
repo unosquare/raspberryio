@@ -1,10 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
-    using Gpio;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using Unosquare.RaspberryIO.Abstractions;
 
     /// <summary>
     /// A class to send infrared signals using an IR LED.
@@ -16,13 +16,13 @@
         /// Initializes a new instance of the <see cref="InfraredEmitter"/> class.
         /// </summary>
         /// <param name="outputPin">The output pin.</param>
-        public InfraredEmitter(GpioPin outputPin)
+        public InfraredEmitter(IGpioPin outputPin)
         {
             if (outputPin == null || outputPin.Capabilities.Contains(PinCapability.PWM) == false)
                 throw new ArgumentException("Pin does not support PWM", nameof(outputPin));
 
             OutputPin = outputPin;
-            OutputPin.PinDriveMode = GpioPinDriveMode.PwmOutput;
+            OutputPin.PinMode = GpioPinDriveMode.PwmOutput;
             OutputPin.PwmMode = PwmMode.MarkSign;
 
             // Parameters taken from:
@@ -35,7 +35,7 @@
         /// <summary>
         /// Gets the output pin.
         /// </summary>
-        public GpioPin OutputPin { get; }
+        public IGpioPin OutputPin { get; }
 
         /// <summary>
         /// Snaps the pulse lengths to their valid equivalents.
@@ -87,7 +87,7 @@
             {
                 PreambleMark,
                 RepeatSpace,
-                ShortMark
+                ShortMark,
             };
 
             private static readonly InfraredSensor.InfraredPulse[] PreambleData = new InfraredSensor.InfraredPulse[]

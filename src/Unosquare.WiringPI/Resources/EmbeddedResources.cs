@@ -4,6 +4,7 @@
     using System.Collections.ObjectModel;
     using System.IO;
     using Swan;
+    using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// Provides access to embedded assembly files.

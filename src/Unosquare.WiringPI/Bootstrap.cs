@@ -2,7 +2,6 @@
 {
     using RaspberryIO.Abstractions;
     using Swan.Components;
-    using Native;
 
     internal static class Bootstrap
     {
@@ -15,7 +14,7 @@
                 DependencyContainer.Current.Register<IGpioController>(new GpioController());
                 DependencyContainer.Current.Register<ISpiBus>(new SpiBus());
                 DependencyContainer.Current.Register<II2CBus>(new I2CBus());
-                DependencyContainer.Current.Register<ITiming>(new Timing());
+                DependencyContainer.Current.Register<ISystemInfo>(new SystemInfo());
 
                 Resources.EmbeddedResources.ExtractAll();
             }

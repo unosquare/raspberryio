@@ -11,6 +11,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading;
+    using Unosquare.RaspberryIO.Abstractions;
 
     /// <summary>
     /// Main entry point class.
@@ -230,7 +231,7 @@
             blinkingPin = Pi.Gpio[P1.Gpio17];
 
             // Configure the pin as an output
-            blinkingPin.PinDriveMode = GpioPinDriveMode.Output;
+            blinkingPin.PinMode = GpioPinDriveMode.Output;
 
             // perform writes to the pin by toggling the isOn variable
             var isOn = false;
@@ -251,7 +252,7 @@
             // https://raspberrypi.stackexchange.com/questions/4906/control-hardware-pwm-frequency
             // https://stackoverflow.com/questions/20081286/controlling-a-servo-with-raspberry-pi-using-the-hardware-pwm-with-wiringpi
             var pin = Pi.Gpio[P1.Gpio18];
-            pin.PinDriveMode = GpioPinDriveMode.PwmOutput;
+            pin.PinMode = GpioPinDriveMode.PwmOutput;
             pin.PwmMode = PwmMode.MarkSign;
             pin.PwmClockDivisor = 3; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
             pin.PwmRange = 800; // Range valid values I still need to investigate
@@ -285,7 +286,6 @@
         {
             $"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins".Info();
             $"{Pi.Info}".Info();
-            $"Microseconds Since GPIO Setup: {Pi.Timing.MicrosecondsSinceSetup}".Info();
             $"Uname {Pi.Info.OperatingSystem}".Info();
             $"HostName {NetworkSettings.Instance.HostName}".Info();
             $"Uptime (seconds) {Pi.Info.Uptime}".Info();
@@ -327,7 +327,7 @@
                 ImageFlipVertically = true,
                 CaptureExposure = CameraExposureMode.Night,
                 CaptureWidth = 1920,
-                CaptureHeight = 1080
+                CaptureHeight = 1080,
             };
 
             try

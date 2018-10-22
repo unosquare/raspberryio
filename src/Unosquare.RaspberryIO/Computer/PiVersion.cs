@@ -129,6 +129,6 @@
         /// <summary>
         /// The pi3 model b embest
         /// </summary>
-        Pi3ModelBEmbest = 0xa22082
+        Pi3ModelBEmbest = 0xa22082,
     }
 }

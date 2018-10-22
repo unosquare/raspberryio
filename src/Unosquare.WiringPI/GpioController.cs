@@ -7,14 +7,13 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
-    using Unosquare.Swan;
+    using Swan;
     using Unosquare.WiringPI.Native;
 
     /// <summary>
-    /// Represents a singleton of the Raspberry Pi GPIO controller
+    /// Represents the Raspberry Pi GPIO controller
     /// as an IReadOnlyCollection of GpioPins
     /// Low level operations are accomplished by using the Wiring Pi library.
-    /// Use the Instance property to access the singleton's instance.
     /// </summary>
     public sealed class GpioController : IGpioController
     {
@@ -346,26 +345,8 @@
         /// <returns>A reference to the GPIO pin.</returns>
         public GpioPin this[P5 pinNumber] => HeaderP5[(int)pinNumber];
 
-        /// <summary>
-        /// Gets the <see cref="GpioPin"/> with the specified Wiring Pi pin number.
-        /// Use the HeaderP1 and HeaderP5 lookups if you would like to retrieve pins by physical pin number.
-        /// </summary>
-        /// <value>
-        /// The <see cref="GpioPin"/>.
-        /// </value>
-        /// <param name="wiringPiPinNumber">The pin number as defined by Wiring Pi. This is not the header pin number as pin number in headers are obvoisly repeating.</param>
-        /// <returns>A reference to the GPIO pin.</returns>
-        /// <exception cref="IndexOutOfRangeException">When the pin index is not found.</exception>
-        public GpioPin this[int wiringPiPinNumber]
-        {
-            get
-            {
-                if (Enum.IsDefined(typeof(WiringPiPin), wiringPiPinNumber) == false)
-                    throw new IndexOutOfRangeException($"Pin {wiringPiPinNumber} is not registered in the GPIO controller.");
-
-                return _pinsByWiringPiPinNumber[(WiringPiPin)wiringPiPinNumber];
-            }
-        }
+        /// <inheritdoc />
+        public IGpioPin this[int bcmPinNumber] => Pins[bcmPinNumber];
 
         #endregion
 
@@ -410,7 +391,7 @@
                 if (this.Skip(0).Take(8).Any(p => p.PinMode != GpioPinDriveMode.Output))
                 {
                     throw new InvalidOperationException(
-                        $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Output}");
+                        $"All first 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Output}");
                 }
 
                 WiringPi.DigitalWriteByte(value);
@@ -441,7 +422,7 @@
                     p.PinMode != GpioPinDriveMode.Input && p.PinMode != GpioPinDriveMode.Output))
                 {
                     throw new InvalidOperationException(
-                        $"All firts 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input} or {GpioPinDriveMode.Output}");
+                        $"All first 8 pins (0 to 7) need their {nameof(GpioPin.PinMode)} to be set to {GpioPinDriveMode.Input} or {GpioPinDriveMode.Output}");
                 }
 
                 return (byte)WiringPi.DigitalReadByte();
@@ -475,7 +456,7 @@
         /// An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
         /// </returns>
         IEnumerator<IGpioPin> IEnumerable<IGpioPin>.GetEnumerator() => Pins.GetEnumerator();
-        
+
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
@@ -545,7 +526,7 @@
         /// <exception cref="ArgumentException">The init mode is invalid.</exception>
         private bool Initialize(ControllerMode mode)
         {
-            if (Runtime.OS != OperatingSystem.Unix)
+            if (Runtime.OS != Swan.OperatingSystem.Unix)
                 throw new PlatformNotSupportedException("This library does not support the platform");
 
             lock (SyncRoot)
