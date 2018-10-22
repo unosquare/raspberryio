@@ -1,13 +1,15 @@
-﻿namespace Unosquare.RaspberryIO.Gpio
+﻿namespace Unosquare.WiringPI
 {
     using System;
     using System.Threading.Tasks;
     using Native;
+    using RaspberryIO.Abstractions;
+    using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// Represents a device on the I2C Bus.
     /// </summary>
-    public class I2CDevice
+    public class I2CDevice : II2CDevice
     {
         private readonly object _syncLock = new object();
 

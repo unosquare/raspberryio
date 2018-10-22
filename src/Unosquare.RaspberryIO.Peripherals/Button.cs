@@ -24,7 +24,7 @@
             _gpioPin = gpioPin;
 
             _gpioPin.InputPullMode = GpioPinResistorPullMode.PullDown;
-            _gpioPin.PinMode = GpioPinDriveMode.Input;
+            _gpioPin.PinDriveMode = GpioPinDriveMode.Input;
             _gpioPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, HandleInterrupt);
         }
 

@@ -1,4 +1,4 @@
-﻿#if NET452
+﻿#if NET46
 namespace Unosquare.RaspberryIO.Peripherals
 {
     using Gpio;

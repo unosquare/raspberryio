@@ -1,17 +1,19 @@
-﻿namespace Unosquare.RaspberryIO.Gpio
+﻿namespace Unosquare.WiringPI
 {
-    using Native;
-    using Swan;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using RaspberryIO.Abstractions;
+    using Unosquare.RaspberryIO.Abstractions.Native;
+    using Unosquare.Swan;
+    using Unosquare.WiringPI.Native;
 
     /// <summary>
     /// Represents a GPIO Pin, its location and its capabilities.
     /// Full pin reference available here:
     /// http://pinout.xyz/pinout/pin31_gpio6 and  http://wiringpi.com/pins/.
     /// </summary>
-    public sealed partial class GpioPin
+    public sealed partial class GpioPin : IGpioPin
     {
         #region Property Backing
 
@@ -47,6 +49,7 @@
 
         #region Pin Properties
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets or sets the Wiring Pi pin number as an integer.
         /// </summary>
@@ -81,6 +84,13 @@
         /// Gets the hardware mode capabilities of this pin.
         /// </summary>
         public PinCapability[] Capabilities { get; private set; }
+
+        /// <inheritdoc />
+        public bool Value
+        {
+            get => Read();
+            set => Write(value);
+        }
 
         #endregion
 

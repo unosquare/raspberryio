@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Gpio
+﻿namespace Unosquare.WiringPI
 {
     using System;
 

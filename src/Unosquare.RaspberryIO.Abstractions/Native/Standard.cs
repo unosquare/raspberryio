@@ -1,14 +1,14 @@
-﻿namespace Unosquare.RaspberryIO.Native
+﻿namespace Unosquare.RaspberryIO.Abstractions.Native
 {
-    using Swan;
     using System;
+    using Swan;
     using System.Runtime.InteropServices;
     using System.Text;
 
     /// <summary>
     /// Provides standard 'libc' calls using platform-invoke.
     /// </summary>
-    internal static class Standard
+    public static class Standard
     {
         internal const string LibCLibrary = "libc";
 
@@ -29,7 +29,7 @@
                 var result = Strerror(error, buffer, (ulong)buffer.Capacity);
                 return (result != -1) ? buffer.ToString() : null;
             }
-            catch (EntryPointNotFoundException)
+            catch (Exception)
             {
                 return null;
             }

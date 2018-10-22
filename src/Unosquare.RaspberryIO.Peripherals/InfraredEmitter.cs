@@ -22,7 +22,7 @@
                 throw new ArgumentException("Pin does not support PWM", nameof(outputPin));
 
             OutputPin = outputPin;
-            OutputPin.PinMode = GpioPinDriveMode.PwmOutput;
+            OutputPin.PinDriveMode = GpioPinDriveMode.PwmOutput;
             OutputPin.PwmMode = PwmMode.MarkSign;
 
             // Parameters taken from:

@@ -179,8 +179,8 @@ SSH Deployment Tool [Version 0.3.1.0]
 For additional help, please visit https://github.com/unosquare/sshdeploy
 Deploying...
     Configuration   Debug
-    Framework       net452
-    Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\net452\publish
+    Framework       net46
+    Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\net46\publish
     Excluded Files  .ready|.vshost.exe|.vshost.exe.config
     Target Address  192.16.17.54:22
     Username        pi
@@ -199,7 +199,7 @@ Connecting to host 192.16.17.54:22 via SFTP.
     Finished deployment in 1.25 seconds.
 Completed.
 ```
-* **The default TargetFramework is** `net452` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this**`dotnet-sshdeploy push -f netcoreapp2.0`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
+* **The default TargetFramework is** `net46` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this**`dotnet-sshdeploy push -f netcoreapp2.0`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
 - Give permissions to run the project
 
 ```

@@ -1,49 +1,29 @@
-﻿namespace Unosquare.RaspberryIO.Gpio
+﻿namespace Unosquare.WiringPI
 {
     using Native;
-    using Swan.Abstractions;
+    using RaspberryIO.Abstractions;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
 
+    /// <inheritdoc />
     /// <summary>
     /// A simple wrapper for the I2c bus on the Raspberry Pi.
     /// </summary>
-    public class I2CBus : SingletonBase<I2CBus>
+    public class I2CBus : II2CBus
     {
         // TODO: It would be nice to integrate i2c device detection.
         private static readonly object SyncRoot = new object();
-        private readonly Dictionary<int, I2CDevice> _devices = new Dictionary<int, I2CDevice>();
+        private readonly Dictionary<int, II2CDevice> _devices = new Dictionary<int, II2CDevice>();
 
-        /// <summary>
-        /// Prevents a default instance of the <see cref="I2CBus"/> class from being created.
-        /// </summary>
-        private I2CBus()
-        {
-            // placeholder
-        }
+        /// <inheritdoc />
+        public ReadOnlyCollection<II2CDevice> Devices => new ReadOnlyCollection<II2CDevice>(_devices.Values.ToArray());
 
-        /// <summary>
-        /// Gets the registered devices as a read only collection.
-        /// </summary>
-        public ReadOnlyCollection<I2CDevice> Devices => new ReadOnlyCollection<I2CDevice>(_devices.Values.ToArray());
+        /// <inheritdoc />
+        public II2CDevice this[int deviceId] => GetDeviceById(deviceId);
 
-        /// <summary>
-        /// Gets the <see cref="I2CDevice"/> with the specified device identifier.
-        /// </summary>
-        /// <value>
-        /// The <see cref="I2CDevice"/>.
-        /// </value>
-        /// <param name="deviceId">The device identifier.</param>
-        /// <returns>A reference to an I2C device.</returns>
-        public I2CDevice this[int deviceId] => GetDeviceById(deviceId);
-
-        /// <summary>
-        /// Gets the device by identifier.
-        /// </summary>
-        /// <param name="deviceId">The device identifier.</param>
-        /// <returns>The device reference.</returns>
-        public I2CDevice GetDeviceById(int deviceId)
+        /// <inheritdoc />
+        public II2CDevice GetDeviceById(int deviceId)
         {
             lock (SyncRoot)
             {
@@ -51,13 +31,9 @@
             }
         }
 
-        /// <summary>
-        /// Adds a device to the bus by its Id. If the device is already registered it simply returns the existing device.
-        /// </summary>
-        /// <param name="deviceId">The device identifier.</param>
-        /// <returns>The device reference.</returns>
+        /// <inheritdoc />
         /// <exception cref="KeyNotFoundException">When the device file descriptor is not found.</exception>
-        public I2CDevice AddDevice(int deviceId)
+        public II2CDevice AddDevice(int deviceId)
         {
             lock (SyncRoot)
             {

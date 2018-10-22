@@ -1,13 +1,14 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
-    using Gpio;
+    using Swan;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading;
-    using Swan;
+    using Abstractions;
+    using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// Implements a digital infrared sensor using the HX1838/VS1838 or the TSOP38238 38kHz digital receiver.
@@ -27,7 +28,7 @@
         /// </summary>
         /// <param name="inputPin">The input pin.</param>
         /// <param name="isActiveLow">if set to <c>true</c> [is active low].</param>
-        public InfraredSensor(GpioPin inputPin, bool isActiveLow)
+        public InfraredSensor(IGpioPin inputPin, bool isActiveLow)
         {
             IsActiveLow = isActiveLow;
             InputPin = inputPin;
@@ -63,7 +64,7 @@
         /// <summary>
         /// Gets the input pin.
         /// </summary>
-        public GpioPin InputPin { get; }
+        public IGpioPin InputPin { get; }
 
         /// <summary>
         /// Gets a value indicating whether the sensor is active low.
@@ -133,12 +134,12 @@
             const int maxPulseCount = 128;
 
             // Setup the input pin
-            InputPin.PinMode = GpioPinDriveMode.Input;
+            InputPin.PinDriveMode = GpioPinDriveMode.Input;
             InputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
 
             // Get the timers started!
-            var pulseTimer = new Native.HighResolutionTimer();
-            var idleTimer = new Native.HighResolutionTimer();
+            var pulseTimer = new HighResolutionTimer();
+            var idleTimer = new HighResolutionTimer();
 
             var pulseBuffer = new List<InfraredPulse>(maxPulseCount);
             var syncLock = new object();

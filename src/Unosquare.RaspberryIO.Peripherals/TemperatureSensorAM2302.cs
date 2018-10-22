@@ -1,11 +1,13 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
-    using Gpio;
-    using Native;
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading;
+    using Gpio;
+    using Native;
+    using Unosquare.RaspberryIO.Abstractions;
+    using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// Provides logic to read from the AM2302 sensor, also known as the DHT22 sensor.
@@ -18,7 +20,7 @@
         private static readonly long BitPulseMidMicroseconds = 50; // (26 ... 50)µs for false; (51 ... 76)µs for true
         private readonly Timing _systemTiming;
 
-        private readonly GpioPin DataPin;
+        private readonly IGpioPin DataPin;
         private readonly Thread ReadWorker;
         private bool _isRunning;
 
@@ -27,7 +29,7 @@
         /// </summary>
         static TemperatureSensorAM2302()
         {
-            AllowedPins = new ReadOnlyCollection<GpioPin>(
+            AllowedPins = new ReadOnlyCollection<IGpioPin>(
                 Pi.Gpio.HeaderP1
                     .Where(kvp => AllowedPinNumbers.Contains(kvp.Key))
                     .Select(kvp => kvp.Value)
@@ -39,7 +41,7 @@
         /// </summary>
         /// <param name="dataPin">The data pin. Must be a GPIO-only pin on the P1 Header of the Pi.</param>
         /// <exception cref="ArgumentException">dataPin When it is invalid.</exception>
-        public TemperatureSensorAM2302(GpioPin dataPin)
+        public TemperatureSensorAM2302(IGpioPin dataPin)
         {
             if (AllowedPins.Contains(dataPin) == false)
                 throw new ArgumentException($"{nameof(dataPin)}, {dataPin} is not available to service this driver.");
@@ -57,7 +59,7 @@
         /// <summary>
         /// Gets a collection of pins that are allowed to run this sensor.
         /// </summary>
-        public static ReadOnlyCollection<GpioPin> AllowedPins { get; }
+        public static ReadOnlyCollection<IGpioPin> AllowedPins { get; }
 
         /// <summary>
         /// Gets a value indicating whether the sensor is running.
@@ -98,7 +100,7 @@
                 {
                     // Start to comunicate with sensor
                     // Inform sensor that must finish last execution and put it's state in idle
-                    DataPin.PinMode = GpioPinDriveMode.Output;
+                    DataPin.PinDriveMode = GpioPinDriveMode.Output;
 
                     // Waiting for sensor init
                     DataPin.Write(GpioPinValue.High);
@@ -144,7 +146,7 @@
                 data[i] = 0;
 
             // Wait for sensor response
-            DataPin.PinMode = GpioPinDriveMode.Input;
+            DataPin.PinDriveMode = GpioPinDriveMode.Input;
 
             // Read acknowledgement from sensor
             DataPin.WaitForValue(GpioPinValue.High, 100);

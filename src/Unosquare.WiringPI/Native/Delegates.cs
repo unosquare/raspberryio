@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Native
+﻿namespace Unosquare.WiringPI.Native
 {
     /// <summary>
     /// A delegate defining a callback for an Interrupt Service Routine.

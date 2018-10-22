@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Native
+﻿namespace Unosquare.RaspberryIO.Abstractions.Native
 {
     using System;
     using System.Diagnostics;

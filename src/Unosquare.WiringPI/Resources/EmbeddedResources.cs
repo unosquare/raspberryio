@@ -1,10 +1,9 @@
-﻿namespace Unosquare.RaspberryIO.Resources
+﻿namespace Unosquare.WiringPI.Resources
 {
-    using Native;
-    using Swan;
     using System;
     using System.Collections.ObjectModel;
     using System.IO;
+    using Swan;
 
     /// <summary>
     /// Provides access to embedded assembly files.

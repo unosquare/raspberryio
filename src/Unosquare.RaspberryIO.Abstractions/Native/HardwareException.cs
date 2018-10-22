@@ -1,8 +1,8 @@
-﻿namespace Unosquare.RaspberryIO.Native
+﻿namespace Unosquare.RaspberryIO.Abstractions.Native
 {
-    using Swan;
     using System;
     using System.Runtime.InteropServices;
+    using Swan;
 
     /// <summary>
     /// Represents a low-level exception, typically thrown when return codes from a
@@ -13,7 +13,7 @@
     {
         /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Unosquare.RaspberryIO.Native.HardwareException" /> class.
+        /// Initializes a new instance of the <see cref="T:Unosquare.RaspberryIO.Abstractions.Native.HardwareException" /> class.
         /// </summary>
         /// <param name="errorCode">The error code.</param>
         /// <param name="component">The component.</param>
@@ -28,7 +28,7 @@
             }
             catch
             {
-                $"Could not retrieve native error description using {nameof(Standard.Strerror)}".Error(Pi.LoggerSource);
+                $"Could not retrieve native error description using {nameof(Standard.Strerror)}".Error(nameof(HardwareException));
             }
 
             ErrorCode = errorCode;

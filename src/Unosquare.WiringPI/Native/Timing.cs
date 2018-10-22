@@ -1,23 +1,15 @@
-﻿namespace Unosquare.RaspberryIO.Native
+﻿namespace Unosquare.WiringPI.Native
 {
-    using Swan;
-    using Swan.Abstractions;
     using System;
+    using RaspberryIO.Abstractions;
+    using Unosquare.RaspberryIO.Abstractions.Native;
+    using Swan;
 
     /// <summary>
     /// Provides access to timing and threading properties and methods.
     /// </summary>
-    public class Timing : SingletonBase<Timing>
+    public class Timing
     {
-        /// <summary>
-        /// Prevents a default instance of the <see cref="Timing"/> class from being created.
-        /// </summary>
-        /// <exception cref="NotSupportedException">Could not initialize the GPIO controller.</exception>
-        private Timing()
-        {
-            // placeholder
-        }
-
         /// <summary>
         /// This returns a number representing the number of milliseconds since your program
         /// initialized the GPIO controller.

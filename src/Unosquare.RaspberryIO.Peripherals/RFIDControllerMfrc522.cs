@@ -851,7 +851,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            _outputPort.PinMode = GpioPinDriveMode.Output;
+            _outputPort.PinDriveMode = GpioPinDriveMode.Output;
             _outputPort.Write(true);
 
             Reset();

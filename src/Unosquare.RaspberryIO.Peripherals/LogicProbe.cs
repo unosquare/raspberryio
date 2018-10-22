@@ -1,4 +1,6 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+﻿using Unosquare.RaspberryIO.Abstractions.Native;
+
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
     using Gpio;
@@ -21,7 +23,7 @@
         public LogicProbe(GpioPin inputPin)
         {
             _inputPin = inputPin;
-            _inputPin.PinMode = GpioPinDriveMode.Input;
+            _inputPin.PinDriveMode = GpioPinDriveMode.Input;
             _inputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
 
             _inputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>

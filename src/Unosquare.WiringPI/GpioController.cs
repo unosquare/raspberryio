@@ -1,14 +1,14 @@
-﻿namespace Unosquare.RaspberryIO.Gpio
+﻿namespace Unosquare.WiringPI
 {
-    using Native;
-    using Swan;
-    using Swan.Abstractions;
+    using RaspberryIO.Abstractions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using Unosquare.Swan;
+    using Unosquare.WiringPI.Native;
 
     /// <summary>
     /// Represents a singleton of the Raspberry Pi GPIO controller
@@ -16,7 +16,7 @@
     /// Low level operations are accomplished by using the Wiring Pi library.
     /// Use the Instance property to access the singleton's instance.
     /// </summary>
-    public sealed class GpioController : SingletonBase<GpioController>, IReadOnlyCollection<GpioPin>
+    public sealed class GpioController : IGpioController
     {
         #region Private Declarations
 
@@ -29,11 +29,10 @@
         #region Constructors and Initialization
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="GpioController" /> class from being created.
-        /// It in turn initializes the controller and registers the pin -- in that order.
+        /// Initializes a new instance of the <see cref="GpioController"/> class.
         /// </summary>
-        /// <exception cref="Exception">Unable to initialize the GPIO controller.</exception>
-        private GpioController()
+        /// <exception cref="System.Exception">Unable to initialize the GPIO controller.</exception>
+        internal GpioController()
         {
             if (Pins != null)
                 return;
@@ -475,6 +474,14 @@
         /// <returns>
         /// An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
         /// </returns>
+        IEnumerator<IGpioPin> IEnumerable<IGpioPin>.GetEnumerator() => Pins.GetEnumerator();
+        
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+        /// </returns>
         IEnumerator IEnumerable.GetEnumerator() => Pins.GetEnumerator();
 
         #endregion
@@ -486,7 +493,7 @@
         /// </summary>
         /// <param name="bcmPinNumber">The BCM pin number.</param>
         /// <returns>The GPIO pin.</returns>
-        public GpioPin GetGpioPinByBcmPinNumber(int bcmPinNumber) => this.First(pin => pin.BcmPinNumber == bcmPinNumber);
+        public GpioPin GetGpioPinByBcmPinNumber(int bcmPinNumber) => Pins.First(pin => pin.BcmPinNumber == bcmPinNumber);
 
         /// <summary>
         /// Converts the Wirings Pi pin number to the BCM pin number.
@@ -522,7 +529,7 @@
         {
             if (_pinsByWiringPiPinNumber.ContainsKey(pin.WiringPiPinNumber))
                 throw new InvalidOperationException($"Pin {pin.WiringPiPinNumber} has been registered");
-            
+
             _pinsByWiringPiPinNumber[pin.WiringPiPinNumber] = pin;
         }
 
@@ -538,7 +545,7 @@
         /// <exception cref="ArgumentException">The init mode is invalid.</exception>
         private bool Initialize(ControllerMode mode)
         {
-            if (Runtime.OS != Swan.OperatingSystem.Unix)
+            if (Runtime.OS != OperatingSystem.Unix)
                 throw new PlatformNotSupportedException("This library does not support the platform");
 
             lock (SyncRoot)
@@ -546,7 +553,7 @@
                 if (IsInitialized)
                     throw new InvalidOperationException($"Cannot call {nameof(Initialize)} more than once.");
 
-                Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1", EnvironmentVariableTarget.Process);
+                Environment.SetEnvironmentVariable(WiringPiCodesEnvironmentVariable, "1"); //TODO: EnvironmentVariableTarget.Process);
                 int setupResult;
 
                 switch (mode)
@@ -585,7 +592,6 @@
                 return IsInitialized;
             }
         }
-
         #endregion
 
     }

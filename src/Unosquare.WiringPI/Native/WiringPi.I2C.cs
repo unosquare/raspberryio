@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Native
+﻿namespace Unosquare.WiringPI.Native
 {
     using System.Runtime.InteropServices;
 

@@ -1,17 +1,19 @@
-﻿namespace Unosquare.RaspberryIO.Gpio
+﻿namespace Unosquare.WiringPI
 {
     using Native;
+    using RaspberryIO.Abstractions;
     using Swan;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// Provides access to using the SPI buses on the GPIO.
     /// SPI is a bus that works like a ring shift register
     /// The number of bytes pushed is equal to the number of bytes received.
     /// </summary>
-    public sealed class SpiChannel
+    public sealed class SpiChannel : ISpiChannel
     {
         /// <summary>
         /// The minimum frequency of an SPI Channel.
@@ -25,7 +27,7 @@
 
         /// <summary>
         /// The default frequency of SPI channels
-        /// This is set to 8 Mhz wich is typical in modern hardware.
+        /// This is set to 8 Mhz which is typical in modern hardware.
         /// </summary>
         public const int DefaultFrequency = 8000000;
 
@@ -53,30 +55,16 @@
             }
         }
 
-        /// <summary>
-        /// Gets the standard initialization file descriptor.
-        /// anything negative means error.
-        /// </summary>
-        /// <value>
-        /// The file descriptor.
-        /// </value>
+        /// <inheritdoc />
         public int FileDescriptor { get; }
 
-        /// <summary>
-        /// Gets the channel.
-        /// </summary>
+        /// <inheritdoc />
         public int Channel { get; }
 
-        /// <summary>
-        /// Gets the frequency.
-        /// </summary>
+        /// <inheritdoc />
         public int Frequency { get; }
 
-        /// <summary>
-        /// Sends data and simultaneously receives the data in the return buffer.
-        /// </summary>
-        /// <param name="buffer">The buffer.</param>
-        /// <returns>The read bytes from the ring-style bus.</returns>
+        /// <inheritdoc />
         public byte[] SendReceive(byte[] buffer)
         {
             if (buffer == null || buffer.Length == 0)
@@ -103,13 +91,7 @@
         /// </returns>
         public Task<byte[]> SendReceiveAsync(byte[] buffer) => Task.Run(() => SendReceive(buffer));
 
-        /// <summary>
-        /// Writes the specified buffer the the underlying FileDescriptor.
-        /// Do not use this method if you expect data back.
-        /// This method is efficient if used in a fire-and-forget scenario
-        /// like sending data over to those long RGB LED strips.
-        /// </summary>
-        /// <param name="buffer">The buffer.</param>
+        /// <inheritdoc />
         public void Write(byte[] buffer)
         {
             lock (_syncLock)
@@ -138,7 +120,7 @@
         /// <param name="channel">The channel.</param>
         /// <param name="frequency">The frequency.</param>
         /// <returns>The usable SPI channel.</returns>
-        internal static SpiChannel Retrieve(SpiChannelNumber channel, int frequency)
+        internal static ISpiChannel Retrieve(SpiChannelNumber channel, int frequency)
         {
             lock (SyncRoot)
             {

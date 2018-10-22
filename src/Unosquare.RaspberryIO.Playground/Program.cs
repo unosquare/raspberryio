@@ -2,9 +2,9 @@
 {
     using Camera;
     using Computer;
-    using Gpio;
     using Peripherals;
     using Swan;
+    using Unosquare.WiringPI;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -230,7 +230,7 @@
             blinkingPin = Pi.Gpio[P1.Gpio17];
 
             // Configure the pin as an output
-            blinkingPin.PinMode = GpioPinDriveMode.Output;
+            blinkingPin.PinDriveMode = GpioPinDriveMode.Output;
 
             // perform writes to the pin by toggling the isOn variable
             var isOn = false;
@@ -251,7 +251,7 @@
             // https://raspberrypi.stackexchange.com/questions/4906/control-hardware-pwm-frequency
             // https://stackoverflow.com/questions/20081286/controlling-a-servo-with-raspberry-pi-using-the-hardware-pwm-with-wiringpi
             var pin = Pi.Gpio[P1.Gpio18];
-            pin.PinMode = GpioPinDriveMode.PwmOutput;
+            pin.PinDriveMode = GpioPinDriveMode.PwmOutput;
             pin.PwmMode = PwmMode.MarkSign;
             pin.PwmClockDivisor = 3; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
             pin.PwmRange = 800; // Range valid values I still need to investigate

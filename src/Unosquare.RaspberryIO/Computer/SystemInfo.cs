@@ -1,6 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Native;
+    using Abstractions.Native;
     using Swan.Abstractions;
     using System;
     using System.Collections.Generic;
@@ -17,6 +17,7 @@
         private const string CpuInfoFilePath = "/proc/cpuinfo";
         private const string MemInfoFilePath = "/proc/meminfo";
         private const string UptimeFilePath = "/proc/uptime";
+
         private static readonly StringComparer StringComparer = StringComparer.InvariantCultureIgnoreCase;
 
         private static readonly object SyncRoot = new object();
@@ -155,7 +156,7 @@
                     NodeName = unameInfo.NodeName,
                     Release = unameInfo.Release,
                     SysName = unameInfo.SysName,
-                    Version = unameInfo.Version
+                    Version = unameInfo.Version,
                 };
             }
             catch

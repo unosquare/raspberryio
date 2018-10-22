@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Native
+﻿namespace Unosquare.RaspberryIO.Abstractions.Native
 {
     using System.Runtime.InteropServices;
 
@@ -6,7 +6,7 @@
     /// OS uname structure.
     /// </summary>
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal struct SystemName
+    public struct SystemName
     {
         /// <summary>
         /// System name.

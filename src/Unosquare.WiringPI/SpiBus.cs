@@ -1,29 +1,17 @@
-﻿namespace Unosquare.RaspberryIO.Gpio
+﻿namespace Unosquare.WiringPI
 {
-    using Swan.Abstractions;
+    using RaspberryIO.Abstractions;
 
     /// <summary>
     /// The SPI Bus containing the 2 SPI channels.
     /// </summary>
-    public class SpiBus : SingletonBase<SpiBus>
+    public class SpiBus : ISpiBus
     {
-        /// <summary>
-        /// Prevents a default instance of the <see cref="SpiBus"/> class from being created.
-        /// </summary>
-        private SpiBus()
-        {
-            // placeholder
-        }
-
-        #region SPI Access
-
-        /// <summary>
-        /// Gets or sets the channel 0 frequency in Hz.
-        /// </summary>
-        /// <value>
-        /// The channel0 frequency.
-        /// </value>
+        /// <inheritdoc />
         public int Channel0Frequency { get; set; }
+        
+        /// <inheritdoc />
+        public int Channel1Frequency { get; set; }
 
         /// <summary>
         /// Gets the SPI bus on channel 1.
@@ -31,7 +19,7 @@
         /// <value>
         /// The channel0.
         /// </value>
-        public SpiChannel Channel0
+        public ISpiChannel Channel0
         {
             get
             {
@@ -43,20 +31,12 @@
         }
 
         /// <summary>
-        /// Gets or sets the channel 1 frequency in Hz.
-        /// </summary>
-        /// <value>
-        /// The channel1 frequency.
-        /// </value>
-        public int Channel1Frequency { get; set; }
-
-        /// <summary>
         /// Gets the SPI bus on channel 1.
         /// </summary>
         /// <value>
         /// The channel1.
         /// </value>
-        public SpiChannel Channel1
+        public ISpiChannel Channel1
         {
             get
             {
@@ -66,7 +46,5 @@
                 return SpiChannel.Retrieve(SpiChannelNumber.Channel1, Channel1Frequency);
             }
         }
-
-        #endregion
     }
 }

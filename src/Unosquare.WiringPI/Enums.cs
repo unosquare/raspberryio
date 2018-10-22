@@ -1,132 +1,5 @@
-﻿namespace Unosquare.RaspberryIO.Gpio
+﻿namespace Unosquare.WiringPI
 {
-    /// <summary>
-    /// Defines the different drive modes of a GPIO pin.
-    /// </summary>
-    public enum GpioPinDriveMode
-    {
-        /// <summary>
-        /// Input drive mode (perform reads)
-        /// </summary>
-        Input = 0,
-
-        /// <summary>
-        /// Output drive mode (perform writes)
-        /// </summary>
-        Output = 1,
-
-        /// <summary>
-        /// PWM output mode (only certain pins support this -- 2 of them at the moment)
-        /// </summary>
-        PwmOutput = 2,
-
-        /// <summary>
-        /// GPIO Clock output mode (only a pin supports this at this time)
-        /// </summary>
-        GpioClock = 3
-    }
-
-    /// <summary>
-    /// The GPIO pin resistor mode. This is used on input pins so that their
-    /// lines are not floating.
-    /// </summary>
-    public enum GpioPinResistorPullMode
-    {
-        /// <summary>
-        /// Pull resistor not active. Line floating
-        /// </summary>
-        Off = 0,
-
-        /// <summary>
-        /// Pull resistor sets a default value of 0 on no-connects
-        /// </summary>
-        PullDown = 1,
-
-        /// <summary>
-        /// Pull resistor sets a default value of 1 on no-connects
-        /// </summary>
-        PullUp = 2,
-    }
-
-    /// <summary>
-    /// The PWM mode.
-    /// </summary>
-    public enum PwmMode
-    {
-        /// <summary>
-        /// PWM pulses are sent using mark-sign patterns (old school)
-        /// </summary>
-        MarkSign = 0,
-
-        /// <summary>
-        /// PWM pulses are sent as a balanced signal (default, newer mode)
-        /// </summary>
-        Balanced = 1,
-    }
-
-    /// <summary>
-    /// Defines the different edge detection modes  for pin interrupts.
-    /// </summary>
-    public enum EdgeDetection
-    {
-        /// <summary>
-        /// Assumes edge detection was already setup externally
-        /// </summary>
-        ExternalSetup = 0,
-
-        /// <summary>
-        /// Falling Edge
-        /// </summary>
-        FallingEdge = 1,
-
-        /// <summary>
-        /// Rising edge
-        /// </summary>
-        RisingEdge = 2,
-
-        /// <summary>
-        /// Both, rising and falling edges
-        /// </summary>
-        RisingAndFallingEdges = 3
-    }
-
-    /// <summary>
-    /// Defines the GPIO Pin values 0 for low, 1 for High.
-    /// </summary>
-    public enum GpioPinValue
-    {
-        /// <summary>
-        /// Digital high
-        /// </summary>
-        High = 1,
-
-        /// <summary>
-        /// Digital low
-        /// </summary>
-        Low = 0
-    }
-
-    /// <summary>
-    /// Defines the Header connectors available.
-    /// </summary>
-    public enum GpioHeader
-    {
-        /// <summary>
-        /// Not defined
-        /// </summary>
-        None,
-
-        /// <summary>
-        /// The P1 connector (main connector)
-        /// </summary>
-        P1,
-
-        /// <summary>
-        /// The P5 connector (auxiliary, not commonly used)
-        /// </summary>
-        P5,
-    }
-
     /// <summary>
     /// Defines all the available Wiring Pi Pin Numbers.
     /// </summary>
@@ -297,6 +170,187 @@
         /// </summary>
         Pin31 = 31,
     }
+    
+    /// <summary>
+    /// Defines the Header connectors available.
+    /// </summary>
+    public enum GpioHeader
+    {
+        /// <summary>
+        /// Not defined
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// The P1 connector (main connector)
+        /// </summary>
+        P1,
+
+        /// <summary>
+        /// The P5 connector (auxiliary, not commonly used)
+        /// </summary>
+        P5,
+    }
+
+    /// <summary>
+    /// Defines the different pin capabilities.
+    /// </summary>
+    public enum PinCapability
+    {
+        /// <summary>
+        /// General Purpose capability: Digital and Analog Read/Write
+        /// </summary>
+        GP,
+
+        /// <summary>
+        /// General Purpose Clock (not PWM)
+        /// </summary>
+        GPCLK,
+
+        /// <summary>
+        /// i2c data channel
+        /// </summary>
+        I2CSDA,
+
+        /// <summary>
+        /// i2c clock channel
+        /// </summary>
+        I2CSCL,
+
+        /// <summary>
+        /// SPI Master Out, Slave In channel
+        /// </summary>
+        SPIMOSI,
+
+        /// <summary>
+        /// SPI Master In, Slave Out channel
+        /// </summary>
+        SPIMISO,
+
+        /// <summary>
+        /// SPI Clock channel
+        /// </summary>
+        SPICLK,
+
+        /// <summary>
+        /// SPI Chip Select Channel
+        /// </summary>
+        SPICS,
+
+        /// <summary>
+        /// UART Request to Send Channel
+        /// </summary>
+        UARTRTS,
+
+        /// <summary>
+        /// UART Transmit Channel
+        /// </summary>
+        UARTTXD,
+
+        /// <summary>
+        /// UART Receive Channel
+        /// </summary>
+        UARTRXD,
+
+        /// <summary>
+        /// Hardware Pule Width Modulation
+        /// </summary>
+        PWM,
+    }
+
+    /// <summary>
+    /// Defines GPIO controller initialization modes.
+    /// </summary>
+    internal enum ControllerMode
+    {
+        /// <summary>
+        /// The not initialized
+        /// </summary>
+        NotInitialized,
+
+        /// <summary>
+        /// The direct with wiring pi pins
+        /// </summary>
+        DirectWithWiringPiPins,
+
+        /// <summary>
+        /// The direct with BCM pins
+        /// </summary>
+        DirectWithBcmPins,
+
+        /// <summary>
+        /// The direct with header pins
+        /// </summary>
+        DirectWithHeaderPins,
+
+        /// <summary>
+        /// The file stream with hardware pins
+        /// </summary>
+        FileStreamWithHardwarePins,
+    }
+
+    /// <summary>
+    /// The GPIO pin resistor mode. This is used on input pins so that their
+    /// lines are not floating.
+    /// </summary>
+    public enum GpioPinResistorPullMode
+    {
+        /// <summary>
+        /// Pull resistor not active. Line floating
+        /// </summary>
+        Off = 0,
+
+        /// <summary>
+        /// Pull resistor sets a default value of 0 on no-connects
+        /// </summary>
+        PullDown = 1,
+
+        /// <summary>
+        /// Pull resistor sets a default value of 1 on no-connects
+        /// </summary>
+        PullUp = 2,
+    }
+
+    /// <summary>
+    /// The PWM mode.
+    /// </summary>
+    public enum PwmMode
+    {
+        /// <summary>
+        /// PWM pulses are sent using mark-sign patterns (old school)
+        /// </summary>
+        MarkSign = 0,
+
+        /// <summary>
+        /// PWM pulses are sent as a balanced signal (default, newer mode)
+        /// </summary>
+        Balanced = 1,
+    }
+     /// <summary>
+    /// Defines the different edge detection modes  for pin interrupts.
+    /// </summary>
+    public enum EdgeDetection
+    {
+        /// <summary>
+        /// Assumes edge detection was already setup externally
+        /// </summary>
+        ExternalSetup = 0,
+
+        /// <summary>
+        /// Falling Edge
+        /// </summary>
+        FallingEdge = 1,
+
+        /// <summary>
+        /// Rising edge
+        /// </summary>
+        RisingEdge = 2,
+
+        /// <summary>
+        /// Both, rising and falling edges
+        /// </summary>
+        RisingAndFallingEdges = 3,
+    }
 
     /// <summary>
     /// Enumerates the different pins on the P1 Header
@@ -462,118 +516,5 @@
         /// Header P5, GPIO Pin 31
         /// </summary>
         Gpio31 = 6
-    }
-
-    /// <summary>
-    /// Defines the different pin capabilities.
-    /// </summary>
-    public enum PinCapability
-    {
-        /// <summary>
-        /// General Purpose capability: Digital and Analog Read/Write
-        /// </summary>
-        GP,
-
-        /// <summary>
-        /// General Purpose Clock (not PWM)
-        /// </summary>
-        GPCLK,
-
-        /// <summary>
-        /// i2c data channel
-        /// </summary>
-        I2CSDA,
-
-        /// <summary>
-        /// i2c clock channel
-        /// </summary>
-        I2CSCL,
-
-        /// <summary>
-        /// SPI Master Out, Slave In channel
-        /// </summary>
-        SPIMOSI,
-
-        /// <summary>
-        /// SPI Master In, Slave Out channel
-        /// </summary>
-        SPIMISO,
-
-        /// <summary>
-        /// SPI Clock channel
-        /// </summary>
-        SPICLK,
-
-        /// <summary>
-        /// SPI Chip Select Channel
-        /// </summary>
-        SPICS,
-
-        /// <summary>
-        /// UART Request to Send Channel
-        /// </summary>
-        UARTRTS,
-
-        /// <summary>
-        /// UART Transmit Channel
-        /// </summary>
-        UARTTXD,
-
-        /// <summary>
-        /// UART Receive Channel
-        /// </summary>
-        UARTRXD,
-
-        /// <summary>
-        /// Hardware Pule Width Modulation
-        /// </summary>
-        PWM
-    }
-
-    /// <summary>
-    /// Defines the SPI channel numbers.
-    /// </summary>
-    internal enum SpiChannelNumber
-    {
-        /// <summary>
-        /// The channel 0
-        /// </summary>
-        Channel0 = 0,
-
-        /// <summary>
-        /// The channel 1
-        /// </summary>
-        Channel1 = 1,
-    }
-
-    /// <summary>
-    /// Defines GPIO controller initialization modes.
-    /// </summary>
-    internal enum ControllerMode
-    {
-        /// <summary>
-        /// The not initialized
-        /// </summary>
-        NotInitialized,
-
-        /// <summary>
-        /// The direct with wiring pi pins
-        /// </summary>
-        DirectWithWiringPiPins,
-
-        /// <summary>
-        /// The direct with BCM pins
-        /// </summary>
-        DirectWithBcmPins,
-
-        /// <summary>
-        /// The direct with header pins
-        /// </summary>
-        DirectWithHeaderPins,
-
-        /// <summary>
-        /// The file stream with hardware pins
-        /// </summary>
-        FileStreamWithHardwarePins,
     }
 }
