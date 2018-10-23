@@ -15,6 +15,7 @@
                 DependencyContainer.Current.Register<ISpiBus>(new SpiBus());
                 DependencyContainer.Current.Register<II2CBus>(new I2CBus());
                 DependencyContainer.Current.Register<ISystemInfo>(new SystemInfo());
+                DependencyContainer.Current.Register<ITiming>(new Timing());
 
                 Resources.EmbeddedResources.ExtractAll();
             }

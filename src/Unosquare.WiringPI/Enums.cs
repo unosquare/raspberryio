@@ -259,37 +259,6 @@
     }
 
     /// <summary>
-    /// Defines GPIO controller initialization modes.
-    /// </summary>
-    internal enum ControllerMode
-    {
-        /// <summary>
-        /// The not initialized
-        /// </summary>
-        NotInitialized,
-
-        /// <summary>
-        /// The direct with wiring pi pins
-        /// </summary>
-        DirectWithWiringPiPins,
-
-        /// <summary>
-        /// The direct with BCM pins
-        /// </summary>
-        DirectWithBcmPins,
-
-        /// <summary>
-        /// The direct with header pins
-        /// </summary>
-        DirectWithHeaderPins,
-
-        /// <summary>
-        /// The file stream with hardware pins
-        /// </summary>
-        FileStreamWithHardwarePins,
-    }
-
-    /// <summary>
     /// The PWM mode.
     /// </summary>
     public enum PwmMode
@@ -466,7 +435,7 @@
         /// <summary>
         /// Header P1, GPIO Pin 21
         /// </summary>
-        Gpio21 = 40
+        Gpio21 = 40,
     }
 
     /// <summary>
@@ -494,6 +463,37 @@
         /// <summary>
         /// Header P5, GPIO Pin 31
         /// </summary>
-        Gpio31 = 6
+        Gpio31 = 6,
+    }
+
+    /// <summary>
+    /// Defines GPIO controller initialization modes.
+    /// </summary>
+    internal enum ControllerMode
+    {
+        /// <summary>
+        /// The not initialized
+        /// </summary>
+        NotInitialized,
+
+        /// <summary>
+        /// The direct with wiring pi pins
+        /// </summary>
+        DirectWithWiringPiPins,
+
+        /// <summary>
+        /// The direct with BCM pins
+        /// </summary>
+        DirectWithBcmPins,
+
+        /// <summary>
+        /// The direct with header pins
+        /// </summary>
+        DirectWithHeaderPins,
+
+        /// <summary>
+        /// The file stream with hardware pins
+        /// </summary>
+        FileStreamWithHardwarePins,
     }
 }

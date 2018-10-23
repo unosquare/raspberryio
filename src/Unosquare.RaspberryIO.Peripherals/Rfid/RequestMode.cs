@@ -72,7 +72,5 @@
             /// </summary>
             Halt = 0x50,
         }
-
-        #endregion
     }
 }

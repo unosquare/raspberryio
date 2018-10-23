@@ -327,7 +327,5 @@
             /// </summary>
             Reserved34 = 0x3F,
         }
-
-        #endregion
     }
 }

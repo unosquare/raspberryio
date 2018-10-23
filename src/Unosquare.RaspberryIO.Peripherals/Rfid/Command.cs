@@ -2,10 +2,6 @@
 {
     public partial class RFIDControllerMfrc522
     {
-        #endregion
-
-        #region Enumerations
-
         /// <summary>
         /// Contains constants for well-known commands.
         /// </summary>
@@ -46,7 +42,5 @@
             /// </summary>
             ComputeCrc = 0x03,
         }
-
-        #endregion
     }
 }

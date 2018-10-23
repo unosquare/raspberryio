@@ -1,55 +1,13 @@
-﻿namespace Unosquare.WiringPI.Native
+﻿namespace Unosquare.WiringPI
 {
     using System;
+    using Native;
     using RaspberryIO.Abstractions;
-    using Unosquare.RaspberryIO.Abstractions.Native;
+    using RaspberryIO.Abstractions.Native;
     using Swan;
 
-    /// <summary>
-    /// Provides access to timing and threading properties and methods.
-    /// </summary>
-    public class Timing
+    public class Threading
     {
-        /// <summary>
-        /// This returns a number representing the number of milliseconds since your program
-        /// initialized the GPIO controller.
-        /// It returns an unsigned 32-bit number which wraps after 49 days.
-        /// </summary>
-        /// <value>
-        /// The milliseconds since setup.
-        /// </value>
-        public uint MillisecondsSinceSetup => WiringPi.Millis();
-
-        /// <summary>
-        /// This returns a number representing the number of microseconds since your
-        /// program initialized the GPIO controller
-        /// It returns an unsigned 32-bit number which wraps after approximately 71 minutes.
-        /// </summary>
-        /// <value>
-        /// The microseconds since setup.
-        /// </value>
-        public uint MicrosecondsSinceSetup => WiringPi.Micros();
-
-        /// <summary>
-        /// This causes program execution to pause for at least howLong milliseconds.
-        /// Due to the multi-tasking nature of Linux it could be longer.
-        /// Note that the maximum delay is an unsigned 32-bit integer or approximately 49 days.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        public static void SleepMilliseconds(uint value) => WiringPi.Delay(value);
-
-        /// <summary>
-        /// This causes program execution to pause for at least howLong microseconds.
-        /// Due to the multi-tasking nature of Linux it could be longer.
-        /// Note that the maximum delay is an unsigned 32-bit integer microseconds or approximately 71 minutes.
-        /// Delays under 100 microseconds are timed using a hard-coded loop continually polling the system time,
-        /// Delays over 100 microseconds are done using the system nanosleep() function –
-        /// You may need to consider the implications of very short delays on the overall performance of the system,
-        /// especially if using threads.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        public void SleepMicroseconds(uint value) => WiringPi.DelayMicroseconds(value);
-
         /// <summary>
         /// This attempts to shift your program (or thread in a multi-threaded program) to a higher priority and
         /// enables a real-time scheduling. The priority parameter should be from 0 (the default) to 99 (the maximum).

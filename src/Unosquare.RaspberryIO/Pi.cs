@@ -75,6 +75,20 @@
         }
 
         /// <summary>
+        /// Provides access to timing functionallity.
+        /// </summary>
+        public static ITiming Timing
+        {
+            get
+            {
+                if (!DependencyContainer.Current.CanResolve<ITiming>())
+                    throw new InvalidOperationException("You need load a valid assembly (WiringPi or PiGPIO)");
+
+                return DependencyContainer.Current.Resolve<ITiming>();
+            }
+        }
+
+        /// <summary>
         /// Provides access to the official Raspberry Pi Camera.
         /// </summary>
         public static CameraController Camera { get; }
@@ -92,7 +106,7 @@
 
         /// <summary>
         /// Restarts the Pi. Must be running as SU.
-        /// </summary
+        /// </summary>
         /// <returns>The process result.</returns>
         public static ProcessResult Restart() => RestartAsync().GetAwaiter().GetResult();
 

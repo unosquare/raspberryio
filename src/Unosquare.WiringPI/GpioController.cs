@@ -1,14 +1,14 @@
 ﻿namespace Unosquare.WiringPI
 {
-    using RaspberryIO.Abstractions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using Native;
+    using RaspberryIO.Abstractions;
     using Swan;
-    using Unosquare.WiringPI.Native;
 
     /// <summary>
     /// Represents the Raspberry Pi GPIO controller

@@ -22,7 +22,5 @@
             /// </summary>
             Error = 2,
         }
-
-        #endregion
     }
 }

@@ -1,17 +1,17 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using Camera;
-    using Computer;
-    using Peripherals;
-    using Swan;
-    using Unosquare.WiringPI;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading;
+    using Camera;
+    using Computer;
+    using Peripherals;
+    using Swan;
     using Unosquare.RaspberryIO.Abstractions;
+    using Unosquare.WiringPI;
 
     /// <summary>
     /// Main entry point class.
