@@ -131,7 +131,7 @@
         /// <summary>
         /// Gets the interrupt edge detection mode.
         /// </summary>
-        public EdgeDetection InterruptEdgeDetection { get; private set; } = EdgeDetection.ExternalSetup;
+        public EdgeDetection InterruptEdgeDetection { get; private set; }
 
         #endregion
 
@@ -596,21 +596,15 @@
 
         #region Interrupts
 
-        /// <summary>
-        /// Registers the interrupt callback on the pin. Pin mode has to be set to Input.
-        /// </summary>
-        /// <param name="edgeDetection">The edge detection.</param>
-        /// <param name="callback">The callback.</param>
-        /// <exception cref="ArgumentException">callback.</exception>
+        /// <inheritdoc />
+        /// <exception cref="ArgumentNullException">callback.</exception>
         /// <exception cref="InvalidOperationException">
-        /// An interrupt callback was already registered.
-        /// or
-        /// RegisterInterruptCallback.
+        /// An interrupt callback was already registered or GPIO operating mode is not valid..
         /// </exception>
-        public void RegisterInterruptCallback(EdgeDetection edgeDetection, InterruptServiceRoutineCallback callback)
+        public void RegisterInterruptCallback(EdgeDetection edgeDetection, Action callback)
         {
             if (callback == null)
-                throw new ArgumentException($"{nameof(callback)} cannot be null");
+                throw new ArgumentNullException($"{nameof(callback)} cannot be null");
 
             if (InterruptCallback != null)
                 throw new InvalidOperationException("An interrupt callback was already registered.");
@@ -624,11 +618,12 @@
 
             lock (_syncLock)
             {
-                var registerResult = WiringPi.WiringPiISR(PinNumber, (int)edgeDetection, callback);
+                var isrCallback = new InterruptServiceRoutineCallback(callback);
+                var registerResult = WiringPi.WiringPiISR(PinNumber, GetWiringPiEdgeDetection(edgeDetection), isrCallback);
                 if (registerResult == 0)
                 {
                     InterruptEdgeDetection = edgeDetection;
-                    InterruptCallback = callback;
+                    InterruptCallback = isrCallback;
                 }
                 else
                 {
@@ -636,6 +631,13 @@
                 }
             }
         }
+
+        /// <inheritdoc />
+        public void RegisterInterruptCallback(EdgeDetection edgeDetection, Action<int, int, uint> callback) =>
+            throw new NotSupportedException("WiringPi does only support a simple interrupt callback that has no parameters.");
+
+        private int GetWiringPiEdgeDetection(EdgeDetection edgeDetection) =>
+            GpioController.WiringPiEdgeDetectionMapping[edgeDetection];
 
         #endregion
     }

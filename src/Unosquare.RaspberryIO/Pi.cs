@@ -12,6 +12,7 @@
     /// </summary>
     public static class Pi
     {
+        private const string MissingDependenciesMessage = "You need to load a valid assembly (WiringPi or PiGPIO)";
         private static readonly object SyncLock = new object();
 
         /// <summary>
@@ -35,7 +36,7 @@
             get
             {
                 if (!DependencyContainer.Current.CanResolve<IGpioController>())
-                    throw new InvalidOperationException("You need load a valid assembly (WiringPi or PiGPIO)");
+                    throw new InvalidOperationException(MissingDependenciesMessage);
 
                 return DependencyContainer.Current.Resolve<IGpioController>();
             }
@@ -54,7 +55,7 @@
             get
             {
                 if (!DependencyContainer.Current.CanResolve<ISpiBus>())
-                    throw new InvalidOperationException("You need load a valid assembly (WiringPi or PiGPIO)");
+                    throw new InvalidOperationException(MissingDependenciesMessage);
 
                 return DependencyContainer.Current.Resolve<ISpiBus>();
             }
@@ -68,7 +69,7 @@
             get
             {
                 if (!DependencyContainer.Current.CanResolve<II2CBus>())
-                    throw new InvalidOperationException("You need load a valid assembly (WiringPi or PiGPIO)");
+                    throw new InvalidOperationException(MissingDependenciesMessage);
 
                 return DependencyContainer.Current.Resolve<II2CBus>();
             }
@@ -82,7 +83,7 @@
             get
             {
                 if (!DependencyContainer.Current.CanResolve<ITiming>())
-                    throw new InvalidOperationException("You need load a valid assembly (WiringPi or PiGPIO)");
+                    throw new InvalidOperationException(MissingDependenciesMessage);
 
                 return DependencyContainer.Current.Resolve<ITiming>();
             }

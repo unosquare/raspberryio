@@ -13,7 +13,7 @@
         private readonly IGpioPin _gpioPin;
         private ulong _pressedLastInterrupt;
         private ulong _releasedLastInterrupt;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Button"/> class.
         /// </summary>
@@ -24,7 +24,7 @@
 
             _gpioPin.InputPullMode = GpioPinResistorPullMode.PullDown;
             _gpioPin.PinMode = GpioPinDriveMode.Input;
-            _gpioPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, HandleInterrupt);
+            _gpioPin.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, HandleInterrupt);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@
 
         private void HandleButtonPressed()
         {
-            ulong interruptTime = WiringPi.Millis();
+            ulong interruptTime = Pi.Timing.Milliseconds;
 
             if (interruptTime - _pressedLastInterrupt <= InterruptTime) return;
             _pressedLastInterrupt = interruptTime;
@@ -60,7 +60,7 @@
 
         private void HandleButtonReleased()
         {
-            ulong interruptTime = WiringPi.Millis();
+            ulong interruptTime = Pi.Timing.Milliseconds;
 
             if (interruptTime - _releasedLastInterrupt <= InterruptTime) return;
             _releasedLastInterrupt = interruptTime;

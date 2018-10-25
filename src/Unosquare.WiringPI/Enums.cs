@@ -275,32 +275,6 @@
     }
 
     /// <summary>
-    /// Defines the different edge detection modes  for pin interrupts.
-    /// </summary>
-    public enum EdgeDetection
-    {
-        /// <summary>
-        /// Assumes edge detection was already setup externally
-        /// </summary>
-        ExternalSetup = 0,
-
-        /// <summary>
-        /// Falling Edge
-        /// </summary>
-        FallingEdge = 1,
-
-        /// <summary>
-        /// Rising edge
-        /// </summary>
-        RisingEdge = 2,
-
-        /// <summary>
-        /// Both, rising and falling edges
-        /// </summary>
-        RisingAndFallingEdges = 3,
-    }
-
-    /// <summary>
     /// Enumerates the different pins on the P1 Header
     /// as commonly referenced by Raspberry Pi Documentation.
     /// Enumeration values correspond to the physical pin number.

@@ -31,7 +31,7 @@
         /// </summary>
         Low = 0,
     }
-    
+
     /// <summary>
     /// The GPIO pin resistor mode. This is used on input pins so that their
     /// lines are not floating.
@@ -99,7 +99,7 @@
         /// </summary>
         Alt3 = 7,
     }
-    
+
     /// <summary>
     /// Defines the different threading locking keys.
     /// </summary>
@@ -109,20 +109,41 @@
         /// The lock 0
         /// </summary>
         Lock0 = 0,
-        
+
         /// <summary>
         /// The lock 1
         /// </summary>
         Lock1 = 1,
-        
+
         /// <summary>
         /// The lock 2
         /// </summary>
         Lock2 = 2,
-        
+
         /// <summary>
         /// The lock 3
         /// </summary>
         Lock3 = 3,
+    }
+
+    /// <summary>
+    /// Defines the different edge detection modes  for pin interrupts.
+    /// </summary>
+    public enum EdgeDetection
+    {
+        /// <summary>
+        /// Falling Edge
+        /// </summary>
+        FallingEdge,
+
+        /// <summary>
+        /// Rising edge
+        /// </summary>
+        RisingEdge,
+
+        /// <summary>
+        /// Both, falling and rising edges
+        /// </summary>
+        FallingAndRisingEdge,
     }
 }

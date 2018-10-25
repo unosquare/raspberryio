@@ -28,6 +28,18 @@
         #region Constructors and Initialization
 
         /// <summary>
+        /// Initializes static members of the <see cref="GpioController"/> class.
+        /// </summary>
+        static GpioController()
+        {
+            var wiringPiEdgeDetection = new Dictionary<EdgeDetection, int>();
+            wiringPiEdgeDetection.Add(EdgeDetection.FallingEdge, 21);
+            wiringPiEdgeDetection.Add(EdgeDetection.RisingEdge, 1);
+            wiringPiEdgeDetection.Add(EdgeDetection.FallingAndRisingEdge, 3);
+            WiringPiEdgeDetectionMapping = new ReadOnlyDictionary<EdgeDetection, int>(wiringPiEdgeDetection);
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="GpioController"/> class.
         /// </summary>
         /// <exception cref="System.Exception">Unable to initialize the GPIO controller.</exception>
@@ -109,6 +121,11 @@
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the wiring pi edge detection mapping.
+        /// </summary>
+        public static ReadOnlyDictionary<EdgeDetection, int> WiringPiEdgeDetectionMapping { get; }
 
         /// <inheritdoc />
         /// <summary>
