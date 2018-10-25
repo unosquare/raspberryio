@@ -155,7 +155,7 @@
                 }
             });
 
-            InputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
+            InputPin.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, () =>
             {
                 if (_isDisposed) return;
 

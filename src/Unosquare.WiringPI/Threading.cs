@@ -6,7 +6,7 @@
     using RaspberryIO.Abstractions.Native;
     using Swan;
 
-    public class Threading
+    public class Threading : IThreading
     {
         /// <summary>
         /// This attempts to shift your program (or thread in a multi-threaded program) to a higher priority and
@@ -25,21 +25,6 @@
         }
 
         /// <summary>
-        /// This is really nothing more than a simplified interface to the Posix threads mechanism that Linux supports.
-        /// See the manual pages on Posix threads (man pthread) if you need more control over them.
-        /// </summary>
-        /// <param name="worker">The worker.</param>
-        /// <exception cref="ArgumentNullException">worker.</exception>
-        public void CreateThread(ThreadWorker worker)
-        {
-            if (worker == null)
-                throw new ArgumentNullException(nameof(worker));
-
-            var result = WiringPi.PiThreadCreate(worker);
-            if (result != 0) HardwareException.Throw(nameof(Timing), nameof(CreateThread));
-        }
-
-        /// <summary>
         /// These allow you to synchronize variable updates from your main program to any threads running in your program.
         /// keyNum is a number from 0 to 3 and represents a “key”. When another process tries to lock the same key,
         /// it will be stalled until the first process has unlocked the same key.
@@ -54,5 +39,30 @@
         /// </summary>
         /// <param name="key">The key.</param>
         public void Unlock(ThreadLockKey key) => WiringPi.PiUnlock((int)key);
+
+        /// <inheritdoc />
+        /// <summary>
+        /// This is really nothing more than a simplified interface to the Posix threads mechanism that Linux supports.
+        /// See the manual pages on Posix threads (man pthread) if you need more control over them.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">worker.</exception>
+        public void StartThread(Action worker)
+        {
+            if (worker == null)
+                throw new ArgumentNullException(nameof(worker));
+
+            var result = WiringPi.PiThreadCreate(new ThreadWorker(worker));
+
+            if (result != 0)
+                HardwareException.Throw(nameof(Timing), nameof(StartThread));
+        }
+
+        /// <inheritdoc />
+        public UIntPtr StartThreadEx(Action<UIntPtr> worker, UIntPtr userData) =>
+            throw new NotSupportedException("WiringPi does only support a simple thread callback that has no parameters.");
+
+        /// <inheritdoc />
+        public void StopThreadEx(UIntPtr handle) =>
+            throw new NotSupportedException("WiringPi does not support stopping threads.");
     }
 }

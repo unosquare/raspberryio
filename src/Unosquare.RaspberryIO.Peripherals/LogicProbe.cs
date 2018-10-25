@@ -21,10 +21,10 @@
         public LogicProbe(IGpioPin inputPin)
         {
             _inputPin = inputPin;
-            _inputPin.PinDriveMode = GpioPinDriveMode.Input;
+            _inputPin.PinMode = GpioPinDriveMode.Input;
             _inputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
 
-            _inputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
+            _inputPin.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, () =>
             {
                 if (_timer.IsRunning == false)
                     return;

@@ -125,7 +125,7 @@
         /// <summary>
         /// Gets the wiring pi edge detection mapping.
         /// </summary>
-        public static ReadOnlyDictionary<EdgeDetection, int> WiringPiEdgeDetectionMapping { get; }
+        internal static ReadOnlyDictionary<EdgeDetection, int> WiringPiEdgeDetectionMapping { get; }
 
         /// <inheritdoc />
         /// <summary>

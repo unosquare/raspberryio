@@ -29,65 +29,39 @@
         }
 
         /// <summary>
-        /// Provides access to the Raspberry Pi's GPIO as a collection of GPIO Pins.
-        /// </summary>
-        public static IGpioController Gpio
-        {
-            get
-            {
-                if (!DependencyContainer.Current.CanResolve<IGpioController>())
-                    throw new InvalidOperationException(MissingDependenciesMessage);
-
-                return DependencyContainer.Current.Resolve<IGpioController>();
-            }
-        }
-
-        /// <summary>
         /// Provides information on this Raspberry Pi's CPU and form factor.
         /// </summary>
         public static SystemInfo Info { get; }
 
         /// <summary>
+        /// Provides access to the Raspberry Pi's GPIO as a collection of GPIO Pins.
+        /// </summary>
+        public static IGpioController Gpio =>
+            ResolveDependency<IGpioController>();
+
+        /// <summary>
         /// Provides access to the 2-channel SPI bus.
         /// </summary>
-        public static ISpiBus Spi
-        {
-            get
-            {
-                if (!DependencyContainer.Current.CanResolve<ISpiBus>())
-                    throw new InvalidOperationException(MissingDependenciesMessage);
-
-                return DependencyContainer.Current.Resolve<ISpiBus>();
-            }
-        }
+        public static ISpiBus Spi =>
+            ResolveDependency<ISpiBus>();
 
         /// <summary>
         /// Provides access to the functionality of the i2c bus.
         /// </summary>
-        public static II2CBus I2C
-        {
-            get
-            {
-                if (!DependencyContainer.Current.CanResolve<II2CBus>())
-                    throw new InvalidOperationException(MissingDependenciesMessage);
-
-                return DependencyContainer.Current.Resolve<II2CBus>();
-            }
-        }
+        public static II2CBus I2C =>
+            ResolveDependency<II2CBus>();
 
         /// <summary>
         /// Provides access to timing functionallity.
         /// </summary>
-        public static ITiming Timing
-        {
-            get
-            {
-                if (!DependencyContainer.Current.CanResolve<ITiming>())
-                    throw new InvalidOperationException(MissingDependenciesMessage);
+        public static ITiming Timing =>
+            ResolveDependency<ITiming>();
 
-                return DependencyContainer.Current.Resolve<ITiming>();
-            }
-        }
+        /// <summary>
+        /// Provides access to threading functionallity.
+        /// </summary>
+        public static IThreading Threading =>
+            ResolveDependency<IThreading>();
 
         /// <summary>
         /// Provides access to the official Raspberry Pi Camera.
@@ -122,5 +96,20 @@
         /// </summary>
         /// <returns>The process result.</returns>
         public static ProcessResult Shutdown() => ShutdownAsync().GetAwaiter().GetResult();
+
+        /// <summary>
+        /// Attempts to resolve a dependency.
+        /// </summary>
+        /// <typeparam name="T">Type to resolve.</typeparam>
+        /// <returns>Instance of type.</returns>
+        /// <exception cref="InvalidOperationException">Dependency not found. Load a valid assembly.</exception>
+        private static T ResolveDependency<T>()
+            where T : class
+        {
+            if (!DependencyContainer.Current.CanResolve<T>())
+                throw new InvalidOperationException(MissingDependenciesMessage);
+
+            return DependencyContainer.Current.Resolve<T>();
+        }
     }
 }
