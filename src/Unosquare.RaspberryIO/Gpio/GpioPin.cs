@@ -607,17 +607,12 @@
         /// <param name="callback">The callback.</param>
         /// <exception cref="ArgumentException">callback.</exception>
         /// <exception cref="InvalidOperationException">
-        /// An interrupt callback was already registered.
-        /// or
         /// RegisterInterruptCallback.
         /// </exception>
         public void RegisterInterruptCallback(EdgeDetection edgeDetection, InterruptServiceRoutineCallback callback)
         {
             if (callback == null)
                 throw new ArgumentException($"{nameof(callback)} cannot be null");
-
-            if (InterruptCallback != null)
-                throw new InvalidOperationException("An interrupt callback was already registered.");
 
             if (PinMode != GpioPinDriveMode.Input)
             {
