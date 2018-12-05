@@ -146,4 +146,167 @@
         /// </summary>
         FallingAndRisingEdge,
     }
+
+    public enum BcmPin
+    {
+        /// <summary>
+        /// The Gpio00
+        /// </summary>
+        Gpio00 = 0,
+
+        /// <summary>
+        /// The Gpio01
+        /// </summary>
+        Gpio01 = 1,
+
+        /// <summary>
+        /// The Gpio02
+        /// </summary>
+        Gpio02 = 2,
+
+        /// <summary>
+        /// The Gpio03
+        /// </summary>
+        Gpio03 = 3,
+
+        /// <summary>
+        /// The Gpio04
+        /// </summary>
+        Gpio04 = 4,
+
+        /// <summary>
+        /// The Gpio05
+        /// </summary>
+        Gpio05 = 5,
+
+        /// <summary>
+        /// The Gpio06
+        /// </summary>
+        Gpio06 = 6,
+
+        /// <summary>
+        /// The Gpio07
+        /// </summary>
+        Gpio07 = 7,
+
+        /// <summary>
+        /// The Gpio08
+        /// </summary>
+        Gpio08 = 8,
+
+        /// <summary>
+        /// The Gpio09
+        /// </summary>
+        Gpio09 = 9,
+
+        /// <summary>
+        /// The Gpio10
+        /// </summary>
+        Gpio10 = 10,
+
+        /// <summary>
+        /// The Gpio11
+        /// </summary>
+        Gpio11 = 11,
+
+        /// <summary>
+        /// The Gpio12
+        /// </summary>
+        Gpio12 = 12,
+
+        /// <summary>
+        /// The Gpio13
+        /// </summary>
+        Gpio13 = 13,
+
+        /// <summary>
+        /// The Gpio14
+        /// </summary>
+        Gpio14 = 14,
+
+        /// <summary>
+        /// The Gpio15
+        /// </summary>
+        Gpio15 = 15,
+
+        /// <summary>
+        /// The Gpio16
+        /// </summary>
+        Gpio16 = 16,
+
+        /// <summary>
+        /// The Gpio17
+        /// </summary>
+        Gpio17 = 17,
+
+        /// <summary>
+        /// The Gpio18
+        /// </summary>
+        Gpio18 = 18,
+
+        /// <summary>
+        /// The Gpio19
+        /// </summary>
+        Gpio19 = 19,
+
+        /// <summary>
+        /// The Gpio20
+        /// </summary>
+        Gpio20 = 20,
+
+        /// <summary>
+        /// The Gpio21
+        /// </summary>
+        Gpio21 = 21,
+
+        /// <summary>
+        /// The Gpio22
+        /// </summary>
+        Gpio22 = 22,
+
+        /// <summary>
+        /// The Gpio23
+        /// </summary>
+        Gpio23 = 23,
+
+        /// <summary>
+        /// The Gpio24
+        /// </summary>
+        Gpio24 = 24,
+
+        /// <summary>
+        /// The Gpio25
+        /// </summary>
+        Gpio25 = 25,
+
+        /// <summary>
+        /// The Gpio26
+        /// </summary>
+        Gpio26 = 26,
+
+        /// <summary>
+        /// The Gpio27
+        /// </summary>
+        Gpio27 = 27,
+
+        /// <summary>
+        /// The Gpio28
+        /// </summary>
+        Gpio28 = 28,
+
+        /// <summary>
+        /// The Gpio29
+        /// </summary>
+        Gpio29 = 29,
+
+        /// <summary>
+        /// The Gpio30
+        /// </summary>
+        Gpio30 = 30,
+
+        /// <summary>
+        /// The Gpio31
+        /// </summary>
+        Gpio31 = 31,
+    }
 }

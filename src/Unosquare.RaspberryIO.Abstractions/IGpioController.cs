@@ -17,5 +17,15 @@
         /// <param name="bcmPinNumber">The BCM pin number.</param>
         /// <returns>A reference to the GPIO pin.</returns>
         IGpioPin this[int bcmPinNumber] { get; }
+
+        /// <summary>
+        /// Gets the <see cref="IGpioPin"/> with the specified BCM pin.
+        /// </summary>
+        /// <value>
+        /// The <see cref="IGpioPin"/>.
+        /// </value>
+        /// <param name="bcmPin">The BCM pin.</param>
+        /// <returns>A reference to the GPIO pin.</returns>
+        IGpioPin this[BcmPin bcmPin] { get; }
     }
 }

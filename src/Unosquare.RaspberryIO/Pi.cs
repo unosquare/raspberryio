@@ -97,12 +97,6 @@
         /// <returns>The process result.</returns>
         public static ProcessResult Shutdown() => ShutdownAsync().GetAwaiter().GetResult();
 
-        /// <summary>
-        /// Attempts to resolve a dependency.
-        /// </summary>
-        /// <typeparam name="T">Type to resolve.</typeparam>
-        /// <returns>Instance of type.</returns>
-        /// <exception cref="InvalidOperationException">Dependency not found. Load a valid assembly.</exception>
         private static T ResolveDependency<T>()
             where T : class
         {

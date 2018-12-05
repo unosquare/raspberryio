@@ -50,7 +50,7 @@
 
             if (IsInitialized == false)
             {
-                var initResult = Initialize(ControllerMode.DirectWithWiringPiPins);
+                var initResult = Initialize(ControllerMode.DirectWithBcmPins);
                 if (initResult == false)
                     throw new Exception("Unable to initialize the GPIO controller.");
             }

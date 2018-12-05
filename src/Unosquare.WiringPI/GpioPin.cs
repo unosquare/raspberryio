@@ -1,7 +1,6 @@
 ﻿namespace Unosquare.WiringPI
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using RaspberryIO.Abstractions;
     using RaspberryIO.Abstractions.Native;
@@ -17,6 +16,30 @@
     {
         #region Property Backing
 
+        private static int[] Gpio2WiringPi;
+        private static int[] Gpio2Phys;
+
+        private static int[] Gpio2WiringPiR1 =
+        {
+            8, 9, -1, -1, 7, -1, -1, 11, 10, 13, 12, 14, -1, -1, 15, 16, -1, 0, 1, -1, -1, 2, 3, 4, 5, 6, -1, -1, -1, -1, -1, -1,
+        };
+
+        private static int[] Gpio2WiringPiR2 =
+        {
+            30, 31, 8, 9, 7, 21, 22, 11, 10, 13, 12, 14, 26, 23, 15, 16, 27, 0, 1, 24, 28, 29, 3, 4, 5, 6, 25, 2, 17, 18, 19, 20,
+        };
+
+        private static int[] Gpio2PhysR1 =
+        {
+            3, 5, -1, -1, 7, -1, -1, 26, 24, 21, 19, 23, -1, -1, 8, 10, -1, 11, 12, -1, -1, 13, 15, 16, 18, 22, -1, -1, -1, -1, -1, -1,
+        };
+
+        private static int[] Gpio2PhysR2 =
+        {
+            27, 28, 3, 5, 7, 29, 31, 26, 24, 21, 19, 23, 32, 33, 8, 10, 36, 11, 12, 35, 38, 40, 15, 16, 18, 22, 37, 13, // P1
+            3, 4, 5, 6, // P5
+        };
+
         private readonly object _syncLock = new object();
         private GpioPinDriveMode m_PinMode;
         private GpioPinResistorPullMode m_ResistorPullMode;
@@ -31,18 +54,31 @@
 
         #region Constructor
 
+        static GpioPin()
+        {
+            if(SystemInfo.GetBoardRevision() == 1)
+            {
+                Gpio2WiringPi = Gpio2WiringPiR1;
+                Gpio2Phys = Gpio2PhysR1;
+            }
+            else
+            {
+                Gpio2WiringPi = Gpio2WiringPiR2;
+                Gpio2Phys = Gpio2PhysR2;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GpioPin"/> class.
         /// </summary>
-        /// <param name="wiringPiPinNumber">The wiring pi pin number.</param>
-        /// <param name="headerPinNumber">The header pin number.</param>
-        private GpioPin(WiringPiPin wiringPiPinNumber, int headerPinNumber)
+        /// <param name="bcmPinNumber">The BCM pin number.</param>
+        private GpioPin(BcmPin bcmPinNumber)
         {
-            PinNumber = (int)wiringPiPinNumber;
-            WiringPiPinNumber = wiringPiPinNumber;
-            BcmPinNumber = GpioController.WiringPiToBcmPinNumber((int)wiringPiPinNumber);
-            HeaderPinNumber = headerPinNumber;
-            Header = (PinNumber >= 17 && PinNumber <= 20) ? GpioHeader.P5 : GpioHeader.P1;
+            PinNumber = (int)bcmPinNumber;
+
+            WiringPiPinNumber = (WiringPiPin)Gpio2WiringPi[PinNumber];
+            HeaderPinNumber = Gpio2Phys[PinNumber];
+            Header = (PinNumber >= 28 && PinNumber <= 31) ? GpioHeader.P5 : GpioHeader.P1;
         }
 
         #endregion
@@ -50,20 +86,12 @@
         #region Pin Properties
 
         /// <inheritdoc />
-        /// <summary>
-        /// Gets or sets the Wiring Pi pin number as an integer.
-        /// </summary>
         public int PinNumber { get; }
 
         /// <summary>
         /// Gets the WiringPi Pin number.
         /// </summary>
         public WiringPiPin WiringPiPinNumber { get; }
-
-        /// <summary>
-        /// Gets the BCM chip (hardware) pin number.
-        /// </summary>
-        public int BcmPinNumber { get; }
 
         /// <summary>
         /// Gets or the physical header (physical board) pin number.
@@ -83,7 +111,7 @@
         /// <summary>
         /// Gets the hardware mode capabilities of this pin.
         /// </summary>
-        public PinCapability[] Capabilities { get; private set; }
+        public PinCapability Capabilities { get; private set; }
 
         /// <inheritdoc />
         public bool Value
@@ -107,13 +135,13 @@
                 lock (_syncLock)
                 {
                     var mode = value;
-                    if ((mode == GpioPinDriveMode.GpioClock && Capabilities.Contains(PinCapability.GPCLK) == false) ||
-                        (mode == GpioPinDriveMode.PwmOutput && Capabilities.Contains(PinCapability.PWM) == false) ||
-                        (mode == GpioPinDriveMode.Input && Capabilities.Contains(PinCapability.GP) == false) ||
-                        (mode == GpioPinDriveMode.Output && Capabilities.Contains(PinCapability.GP) == false))
+                    if ((mode == GpioPinDriveMode.GpioClock && HasCapability(PinCapability.GPCLK)) ||
+                        (mode == GpioPinDriveMode.PwmOutput && HasCapability(PinCapability.PWM)) ||
+                        (mode == GpioPinDriveMode.Input && HasCapability(PinCapability.GP)) ||
+                        (mode == GpioPinDriveMode.Output && HasCapability(PinCapability.GP)))
                     {
                         throw new NotSupportedException(
-                            $"Pin {WiringPiPinNumber} '{Name}' does not support mode '{mode}'. Pin capabilities are limited to: {string.Join(", ", Capabilities)}");
+                            $"Pin {PinNumber} '{Name}' does not support mode '{mode}'. Pin capabilities are limited to: {Capabilities}");
                     }
 
                     WiringPi.PinMode(PinNumber, (int)mode);
@@ -132,6 +160,9 @@
         /// Gets the interrupt edge detection mode.
         /// </summary>
         public EdgeDetection InterruptEdgeDetection { get; private set; }
+
+        public bool HasCapability(PinCapability capability) =>
+            (Capabilities & capability) == capability;
 
         #endregion
 
@@ -382,7 +413,7 @@
         {
             lock (_syncLock)
             {
-                if (Capabilities.Contains(PinCapability.GP) == false)
+                if (HasCapability(PinCapability.GP))
                     throw new NotSupportedException($"Pin {PinNumber} does not support software PWM");
 
                 if (IsInSoftPwmMode)

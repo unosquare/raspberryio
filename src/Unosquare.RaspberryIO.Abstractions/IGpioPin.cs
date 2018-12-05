@@ -8,7 +8,7 @@
     public interface IGpioPin
     {
         /// <summary>
-        /// Gets the BCM pin number.
+        /// Gets the BCM chip (hardware) pin number.
         /// </summary>
         /// <value>
         /// The pin number.
