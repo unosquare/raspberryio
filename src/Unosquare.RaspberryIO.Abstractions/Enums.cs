@@ -147,6 +147,22 @@
         FallingAndRisingEdge,
     }
 
+    /// <summary>
+    /// The hardware revision of the board.
+    /// </summary>
+    public enum BoardRevision
+    {
+        /// <summary>
+        /// Revision 1 (the early Model A and B's).
+        /// </summary>
+        Rev1,
+
+        /// <summary>
+        /// Revision 2 (everything else - it covers the B, B+ and CM).
+        /// </summary>
+        Rev2,
+    }
+
     public enum BcmPin
     {
         /// <summary>

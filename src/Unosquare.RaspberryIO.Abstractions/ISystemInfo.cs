@@ -11,9 +11,9 @@
         /// Gets the board revision (1 or 2).
         /// </summary>
         /// <value>
-        /// The wiring pi board revision.
+        /// The board revision.
         /// </value
-        int BoardRevision { get;  }
+        BoardRevision BoardRevision { get; }
 
         /// <summary>
         /// Gets the library version.

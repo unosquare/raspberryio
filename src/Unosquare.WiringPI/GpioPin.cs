@@ -6,6 +6,7 @@
     using RaspberryIO.Abstractions.Native;
     using Swan;
     using Unosquare.WiringPI.Native;
+    using Definitions = RaspberryIO.Abstractions.Definitions;
 
     /// <summary>
     /// Represents a GPIO Pin, its location and its capabilities.
@@ -17,7 +18,6 @@
         #region Property Backing
 
         private static int[] Gpio2WiringPi;
-        private static int[] Gpio2Phys;
 
         private static int[] Gpio2WiringPiR1 =
         {
@@ -27,17 +27,6 @@
         private static int[] Gpio2WiringPiR2 =
         {
             30, 31, 8, 9, 7, 21, 22, 11, 10, 13, 12, 14, 26, 23, 15, 16, 27, 0, 1, 24, 28, 29, 3, 4, 5, 6, 25, 2, 17, 18, 19, 20,
-        };
-
-        private static int[] Gpio2PhysR1 =
-        {
-            3, 5, -1, -1, 7, -1, -1, 26, 24, 21, 19, 23, -1, -1, 8, 10, -1, 11, 12, -1, -1, 13, 15, 16, 18, 22, -1, -1, -1, -1, -1, -1,
-        };
-
-        private static int[] Gpio2PhysR2 =
-        {
-            27, 28, 3, 5, 7, 29, 31, 26, 24, 21, 19, 23, 32, 33, 8, 10, 36, 11, 12, 35, 38, 40, 15, 16, 18, 22, 37, 13, // P1
-            3, 4, 5, 6, // P5
         };
 
         private readonly object _syncLock = new object();
@@ -56,16 +45,8 @@
 
         static GpioPin()
         {
-            if(SystemInfo.GetBoardRevision() == 1)
-            {
-                Gpio2WiringPi = Gpio2WiringPiR1;
-                Gpio2Phys = Gpio2PhysR1;
-            }
-            else
-            {
-                Gpio2WiringPi = Gpio2WiringPiR2;
-                Gpio2Phys = Gpio2PhysR2;
-            }
+            Gpio2WiringPi = SystemInfo.GetBoardRevision() ==
+                BoardRevision.Rev1 ? Gpio2WiringPiR1 : Gpio2WiringPiR2;
         }
 
         /// <summary>
@@ -77,7 +58,7 @@
             PinNumber = (int)bcmPinNumber;
 
             WiringPiPinNumber = (WiringPiPin)Gpio2WiringPi[PinNumber];
-            HeaderPinNumber = Gpio2Phys[PinNumber];
+            HeaderPinNumber = Definitions.GetPhysicalPin(SystemInfo.GetBoardRevision(), bcmPinNumber);
             Header = (PinNumber >= 28 && PinNumber <= 31) ? GpioHeader.P5 : GpioHeader.P1;
         }
 

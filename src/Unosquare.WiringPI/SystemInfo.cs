@@ -10,11 +10,12 @@
     /// <seealso cref="ISystemInfo" />
     public class SystemInfo : ISystemInfo
     {
-        private static int _boardRevision = -1;
-        private static object _lock = new object();
+        private static readonly object _lock = new object();
+        private static bool _revGetted = false;
+        private static BoardRevision _boardRevision = BoardRevision.Rev2;
 
         /// <inheritdoc />
-        public int BoardRevision => GetBoardRevision();
+        public BoardRevision BoardRevision => GetBoardRevision();
 
         /// <inheritdoc />
         public Version LibraryVersion
@@ -28,14 +29,18 @@
             }
         }
 
-        internal static int GetBoardRevision()
+        internal static BoardRevision GetBoardRevision()
         {
-            if (_boardRevision < 0)
+            if (!_revGetted)
             {
                 lock (_lock)
                 {
-                    if (_boardRevision < 0)
-                        _boardRevision = WiringPi.PiBoardRev();
+                    if (!_revGetted)
+                    {
+                        var val = WiringPi.PiBoardRev();
+                        _boardRevision = val == 1 ? BoardRevision.Rev1 : BoardRevision.Rev2;
+                        _revGetted = true;
+                    }
                 }
             }
 
