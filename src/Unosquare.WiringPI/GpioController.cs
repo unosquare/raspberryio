@@ -96,11 +96,11 @@
             var headerP5 = new Dictionary<int, GpioPin>(_pins.Count);
             foreach (var pin in _pins)
             {
-                if (pin.HeaderPinNumber < 0)
+                if (pin.PhysicalPinNumber < 0)
                     continue;
 
-                var target = pin.Header == GpioHeader.P1 ? headerP1 : headerP5;
-                target[pin.HeaderPinNumber] = pin;
+                var header = pin.Header == GpioHeader.P1 ? headerP1 : headerP5;
+                header[pin.PhysicalPinNumber] = pin;
             }
 
             HeaderP1 = new ReadOnlyDictionary<int, GpioPin>(headerP1);
@@ -135,6 +135,11 @@
         /// </summary>
         public int Count => Pins.Count;
 
+        /// <summary>
+        /// Gets or sets the initialization mode.
+        /// </summary>
+        private static ControllerMode Mode { get; set; } = ControllerMode.NotInitialized;
+
         #endregion
 
         #region Pin Addressing
@@ -147,8 +152,7 @@
         /// <summary>
         /// Gets a red-only collection of all pins.
         /// </summary>
-        public ReadOnlyCollection<GpioPin> Pins =>
-            _pins;
+        public ReadOnlyCollection<GpioPin> Pins => _pins;
 
         /// <summary>
         /// Provides all the pins on Header P1 of the Pi as a lookup by physical header pin number.
@@ -330,10 +334,26 @@
 
         #region Indexers
 
-        /// <summary>
-        /// Gets or sets the initialization mode.
-        /// </summary>
-        private static ControllerMode Mode { get; set; } = ControllerMode.NotInitialized;
+        /// <inheritdoc />
+        public IGpioPin this[BcmPin bcmPin] => Pins[(int)bcmPin];
+
+        /// <inheritdoc />
+        public IGpioPin this[int bcmPinNumber]
+        {
+            get
+            {
+                if (!Enum.IsDefined(typeof(BcmPin), bcmPinNumber))
+                    throw new IndexOutOfRangeException($"Pin {bcmPinNumber} is not registered in the GPIO controller.");
+
+                return Pins[bcmPinNumber];
+            }
+        }
+
+        /// <inheritdoc />
+        public IGpioPin this[P1 pinNumber] => HeaderP1[(int)pinNumber];
+
+        /// <inheritdoc />
+        public IGpioPin this[P5 pinNumber] => HeaderP5[(int)pinNumber];
 
         /// <summary>
         /// Gets the <see cref="GpioPin"/> with the specified Wiring Pi pin number.
@@ -350,32 +370,9 @@
                 if (pinNumber == WiringPiPin.Unknown)
                     throw new InvalidOperationException("You can not get an unknow WiringPi pin.");
 
-                return _pins.First(p => p.WiringPiPinNumber == pinNumber);
+                return Pins.First(p => p.WiringPiPinNumber == pinNumber);
             }
         }
-
-        /// <summary>
-        /// Gets the <see cref="GpioPin"/> with the specified pin number.
-        /// </summary>
-        /// <value>
-        /// The <see cref="GpioPin"/>.
-        /// </value>
-        /// <param name="pinNumber">The pin number.</param>
-        /// <returns>A reference to the GPIO pin.</returns>
-        public GpioPin this[P1 pinNumber] => HeaderP1[(int)pinNumber];
-
-        /// <summary>
-        /// Gets the <see cref="GpioPin"/> with the specified pin number.
-        /// </summary>
-        /// <value>
-        /// The <see cref="GpioPin"/>.
-        /// </value>
-        /// <param name="pinNumber">The pin number.</param>
-        /// <returns>A reference to the GPIO pin.</returns>
-        public GpioPin this[P5 pinNumber] => HeaderP5[(int)pinNumber];
-
-        /// <inheritdoc />
-        public IGpioPin this[BcmPin bcmPinNumber] => Pins[(int)bcmPinNumber];
 
         #endregion
 

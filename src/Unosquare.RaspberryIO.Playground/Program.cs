@@ -38,7 +38,7 @@
 
                 // TestLedStripGraphics();
                 // TestLedStrip();
-                TestRfidController();
+                // TestRfidController();
                 // TestLedBlinking();
                 // TestHardwarePwm();
                 // TestInfraredSensor();
@@ -63,7 +63,7 @@
         /// </summary>
         public static void TestTempSensor()
         {
-            var sensor = new TemperatureSensorAM2302(Pi.Gpio[P1.Gpio17]);
+            var sensor = new TemperatureSensorAM2302(Pi.Gpio[BcmPin.Gpio17]);
             sensor.OnDataAvailable += (s, e) => $"Temperature: {e.TemperatureCelsius} | Humidity: {e.HumidityPercentage}".Info("AM2302");
 
             sensor.Start();
@@ -75,7 +75,7 @@
         /// </summary>
         public static void TestServo()
         {
-            var servo = new HardwareServo(Pi.Gpio[P1.Gpio18]);
+            var servo = new HardwareServo(Pi.Gpio[BcmPin.Gpio18]);
             const double minPulse = 0.565;
             const double maxPulse = 2.620;
             var deltaPulse = 0.005;
@@ -127,9 +127,9 @@
         /// </summary>
         public static void TestInfraredSensor()
         {
-            var inputPin = Pi.Gpio[P1.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
+            var inputPin = Pi.Gpio[BcmPin.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
             var sensor = new InfraredSensor(inputPin, true);
-            var emitter = new InfraredEmitter(Pi.Gpio[P1.Gpio18]);
+            var emitter = new InfraredEmitter(Pi.Gpio[BcmPin.Gpio18]);
 
             sensor.DataAvailable += (s, e) =>
             {
@@ -224,11 +224,12 @@
         {
             // Get a reference to the pin you need to use.
             // All methods below are exactly equivalent and reference the same pin
-            var blinkingPin = Pi.Gpio[0];
-            blinkingPin = Pi.Gpio[WiringPiPin.Pin00];
-            blinkingPin = Pi.Gpio.Pin00;
-            blinkingPin = Pi.Gpio.HeaderP1[11];
-            blinkingPin = Pi.Gpio[P1.Gpio17];
+            var blinkingPin = Pi.Gpio[17];
+            blinkingPin = Pi.Gpio[BcmPin.Gpio17];
+            blinkingPin = Pi.Gpio[P1.Pin11];
+            blinkingPin = ((GpioController)Pi.Gpio)[WiringPiPin.Pin00];
+            blinkingPin = ((GpioController)Pi.Gpio).Pin17;
+            blinkingPin = ((GpioController)Pi.Gpio).HeaderP1[11];
 
             // Configure the pin as an output
             blinkingPin.PinMode = GpioPinDriveMode.Output;
@@ -251,7 +252,7 @@
             // TODO: Check out:
             // https://raspberrypi.stackexchange.com/questions/4906/control-hardware-pwm-frequency
             // https://stackoverflow.com/questions/20081286/controlling-a-servo-with-raspberry-pi-using-the-hardware-pwm-with-wiringpi
-            var pin = Pi.Gpio[P1.Gpio18];
+            var pin = Pi.Gpio[BcmPin.Gpio18];
             pin.PinMode = GpioPinDriveMode.PwmOutput;
             pin.PwmMode = PwmMode.MarkSign;
             pin.PwmClockDivisor = 3; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048

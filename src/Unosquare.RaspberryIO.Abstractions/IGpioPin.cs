@@ -8,12 +8,12 @@
     public interface IGpioPin
     {
         /// <summary>
-        /// Gets the <see cref="BcmPin"/>.
+        /// Gets the <see cref="Abstractions.BcmPin"/>.
         /// </summary>
         /// <value>
         /// The pin number.
         /// </value>
-        BcmPin BcmPinNumber { get; }
+        BcmPin BcmPin { get; }
 
         /// <summary>
         /// Gets the BCM chip (hardware) pin number.
@@ -21,7 +21,17 @@
         /// <value>
         /// The pin number.
         /// </value>
-        int PinNumber { get; }
+        int BcmPinNumber { get; }
+
+        /// <summary>
+        /// Gets the physical (header) pin number.
+        /// </summary>
+        int PhysicalPinNumber { get; }
+
+        /// <summary>
+        /// Gets the pin's header (physical board) location.
+        /// </summary>
+        GpioHeader Header { get; }
 
         /// <summary>
         /// Gets or sets the pin operating mode.

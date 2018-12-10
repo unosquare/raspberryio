@@ -55,44 +55,33 @@
         /// <param name="bcmPinNumber">The BCM pin number.</param>
         private GpioPin(BcmPin bcmPinNumber)
         {
-            BcmPinNumber = bcmPinNumber;
-            PinNumber = (int)bcmPinNumber;
+            BcmPin = bcmPinNumber;
+            BcmPinNumber = (int)bcmPinNumber;
 
             WiringPiPinNumber = BcmToWiringPiPinNumber(bcmPinNumber);
-            HeaderPinNumber = Definitions.BcmToPhysicalPinNumber(SystemInfo.GetBoardRevision(), bcmPinNumber);
-            Header = (PinNumber >= 28 && PinNumber <= 31) ? GpioHeader.P5 : GpioHeader.P1;
+            PhysicalPinNumber = Definitions.BcmToPhysicalPinNumber(SystemInfo.GetBoardRevision(), bcmPinNumber);
+            Header = (BcmPinNumber >= 28 && BcmPinNumber <= 31) ? GpioHeader.P5 : GpioHeader.P1;
         }
-
-        #endregion
-
-        #region Helper Methods
-
-        internal static WiringPiPin BcmToWiringPiPinNumber(BcmPin pin) =>
-            (WiringPiPin)GpioToWiringPi[(int)pin];
 
         #endregion
 
         #region Pin Properties
 
         /// <inheritdoc />
-        public BcmPin BcmPinNumber { get; }
+        public BcmPin BcmPin { get; }
 
         /// <inheritdoc />
-        public int PinNumber { get; }
+        public int BcmPinNumber { get; }
+
+        /// <inheritdoc />
+        public int PhysicalPinNumber { get; }
 
         /// <summary>
         /// Gets the WiringPi Pin number.
         /// </summary>
         public WiringPiPin WiringPiPinNumber { get; }
 
-        /// <summary>
-        /// Gets or the physical header (physical board) pin number.
-        /// </summary>
-        public int HeaderPinNumber { get; }
-
-        /// <summary>
-        /// Gets the pin's header (physical board) location.
-        /// </summary>
+        /// <inheritdoc />
         public GpioHeader Header { get; }
 
         /// <summary>
@@ -133,10 +122,10 @@
                         (mode == GpioPinDriveMode.Output && HasCapability(PinCapability.GP)))
                     {
                         throw new NotSupportedException(
-                            $"Pin {PinNumber} '{Name}' does not support mode '{mode}'. Pin capabilities are limited to: {Capabilities}");
+                            $"Pin {BcmPinNumber} '{Name}' does not support mode '{mode}'. Pin capabilities are limited to: {Capabilities}");
                     }
 
-                    WiringPi.PinMode(PinNumber, (int)mode);
+                    WiringPi.PinMode(BcmPinNumber, (int)mode);
                     m_PinMode = mode;
                 }
             }
@@ -173,11 +162,11 @@
                     {
                         m_ResistorPullMode = GpioPinResistorPullMode.Off;
                         throw new InvalidOperationException(
-                            $"Unable to set the {nameof(InputPullMode)} for pin {PinNumber} because operating mode is {PinMode}."
+                            $"Unable to set the {nameof(InputPullMode)} for pin {BcmPinNumber} because operating mode is {PinMode}."
                             + $" Setting the {nameof(InputPullMode)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
                     }
 
-                    WiringPi.PullUpDnControl(PinNumber, (int)value);
+                    WiringPi.PullUpDnControl(BcmPinNumber, (int)value);
                     m_ResistorPullMode = value;
                 }
             }
@@ -202,13 +191,13 @@
                         m_PwmRegister = 0;
 
                         throw new InvalidOperationException(
-                            $"Unable to write PWM register for pin {PinNumber} because operating mode is {PinMode}."
+                            $"Unable to write PWM register for pin {BcmPinNumber} because operating mode is {PinMode}."
                             + $" Writing the PWM register is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
                     var val = value.Clamp(0, 1024);
 
-                    WiringPi.PwmWrite(PinNumber, val);
+                    WiringPi.PwmWrite(BcmPinNumber, val);
                     m_PwmRegister = val;
                 }
             }
@@ -235,7 +224,7 @@
                         m_PwmMode = PwmMode.Balanced;
 
                         throw new InvalidOperationException(
-                            $"Unable to set PWM mode for pin {PinNumber} because operating mode is {PinMode}."
+                            $"Unable to set PWM mode for pin {BcmPinNumber} because operating mode is {PinMode}."
                             + $" Setting the PWM mode is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
@@ -265,7 +254,7 @@
                         m_PwmRange = 1024;
 
                         throw new InvalidOperationException(
-                            $"Unable to set PWM range for pin {PinNumber} because operating mode is {PinMode}."
+                            $"Unable to set PWM range for pin {BcmPinNumber} because operating mode is {PinMode}."
                             + $" Setting the PWM range is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
@@ -295,7 +284,7 @@
                         m_PwmClockDivisor = 1;
 
                         throw new InvalidOperationException(
-                            $"Unable to set PWM range for pin {PinNumber} because operating mode is {PinMode}."
+                            $"Unable to set PWM range for pin {BcmPinNumber} because operating mode is {PinMode}."
                             + $" Setting the PWM range is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.PwmOutput}");
                     }
 
@@ -334,15 +323,15 @@
                 {
                     if (IsInSoftToneMode == false)
                     {
-                        var setupResult = WiringPi.SoftToneCreate(PinNumber);
+                        var setupResult = WiringPi.SoftToneCreate(BcmPinNumber);
                         if (setupResult != 0)
                         {
                             throw new InvalidOperationException(
-                                $"Unable to initialize soft tone on pin {PinNumber}. Error Code: {setupResult}");
+                                $"Unable to initialize soft tone on pin {BcmPinNumber}. Error Code: {setupResult}");
                         }
                     }
 
-                    WiringPi.SoftToneWrite(PinNumber, value);
+                    WiringPi.SoftToneWrite(BcmPinNumber, value);
                     m_SoftToneFrequency = value;
                 }
             }
@@ -377,7 +366,7 @@
                 {
                     if (IsInSoftPwmMode && value >= 0)
                     {
-                        WiringPi.SoftPwmWrite(PinNumber, value);
+                        WiringPi.SoftPwmWrite(BcmPinNumber, value);
                         m_SoftPwmValue = value;
                     }
                     else
@@ -406,12 +395,12 @@
             lock (_syncLock)
             {
                 if (HasCapability(PinCapability.GP))
-                    throw new NotSupportedException($"Pin {PinNumber} does not support software PWM");
+                    throw new NotSupportedException($"Pin {BcmPinNumber} does not support software PWM");
 
                 if (IsInSoftPwmMode)
                     throw new InvalidOperationException($"{nameof(StartSoftPwm)} has already been called.");
 
-                var startResult = WiringPi.SoftPwmCreate(PinNumber, value, range);
+                var startResult = WiringPi.SoftPwmCreate(BcmPinNumber, value, range);
 
                 if (startResult == 0)
                 {
@@ -421,7 +410,7 @@
                 else
                 {
                     throw new InvalidOperationException(
-                        $"Could not start software based PWM on pin {PinNumber}. Error code: {startResult}");
+                        $"Could not start software based PWM on pin {BcmPinNumber}. Error code: {startResult}");
                 }
             }
         }
@@ -438,11 +427,11 @@
                 if (PinMode != GpioPinDriveMode.Output)
                 {
                     throw new InvalidOperationException(
-                        $"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
+                        $"Unable to write to pin {BcmPinNumber} because operating mode is {PinMode}."
                         + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
                 }
 
-                WiringPi.DigitalWrite(PinNumber, (int)value);
+                WiringPi.DigitalWrite(BcmPinNumber, (int)value);
             }
         }
 
@@ -498,11 +487,11 @@
                 if (PinMode != GpioPinDriveMode.Output)
                 {
                     throw new InvalidOperationException(
-                        $"Unable to write to pin {PinNumber} because operating mode is {PinMode}."
+                        $"Unable to write to pin {BcmPinNumber} because operating mode is {PinMode}."
                         + $" Writes are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Output}");
                 }
 
-                WiringPi.AnalogWrite(PinNumber, value);
+                WiringPi.AnalogWrite(BcmPinNumber, value);
             }
         }
 
@@ -529,7 +518,7 @@
             if (PinMode != GpioPinDriveMode.Input)
             {
                 throw new InvalidOperationException(
-                    $"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
+                    $"Unable to read from pin {BcmPinNumber} because operating mode is {PinMode}."
                     + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
             }
 
@@ -556,11 +545,11 @@
                 if (PinMode != GpioPinDriveMode.Input && PinMode != GpioPinDriveMode.Output)
                 {
                     throw new InvalidOperationException(
-                        $"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
+                        $"Unable to read from pin {BcmPinNumber} because operating mode is {PinMode}."
                         + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input} or {GpioPinDriveMode.Output}");
                 }
 
-                return WiringPi.DigitalRead(PinNumber) != 0;
+                return WiringPi.DigitalRead(BcmPinNumber) != 0;
             }
         }
 
@@ -598,11 +587,11 @@
                 if (PinMode != GpioPinDriveMode.Input)
                 {
                     throw new InvalidOperationException(
-                        $"Unable to read from pin {PinNumber} because operating mode is {PinMode}."
+                        $"Unable to read from pin {BcmPinNumber} because operating mode is {PinMode}."
                         + $" Reads are only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
                 }
 
-                return WiringPi.AnalogRead(PinNumber);
+                return WiringPi.AnalogRead(BcmPinNumber);
             }
         }
 
@@ -635,14 +624,14 @@
             if (PinMode != GpioPinDriveMode.Input)
             {
                 throw new InvalidOperationException(
-                    $"Unable to {nameof(RegisterInterruptCallback)} for pin {PinNumber} because operating mode is {PinMode}."
+                    $"Unable to {nameof(RegisterInterruptCallback)} for pin {BcmPinNumber} because operating mode is {PinMode}."
                     + $" Calling {nameof(RegisterInterruptCallback)} is only allowed if {nameof(PinMode)} is set to {GpioPinDriveMode.Input}");
             }
 
             lock (_syncLock)
             {
                 var isrCallback = new InterruptServiceRoutineCallback(callback);
-                var registerResult = WiringPi.WiringPiISR(PinNumber, GetWiringPiEdgeDetection(edgeDetection), isrCallback);
+                var registerResult = WiringPi.WiringPiISR(BcmPinNumber, GetWiringPiEdgeDetection(edgeDetection), isrCallback);
                 if (registerResult == 0)
                 {
                     InterruptEdgeDetection = edgeDetection;
@@ -661,6 +650,13 @@
 
         private int GetWiringPiEdgeDetection(EdgeDetection edgeDetection) =>
             GpioController.WiringPiEdgeDetectionMapping[edgeDetection];
+
+        #endregion
+
+        #region Helper Methods
+
+        internal static WiringPiPin BcmToWiringPiPinNumber(BcmPin pin) =>
+            (WiringPiPin)GpioToWiringPi[(int)pin];
 
         #endregion
     }

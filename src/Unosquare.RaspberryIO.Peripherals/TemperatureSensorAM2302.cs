@@ -26,9 +26,9 @@
         static TemperatureSensorAM2302()
         {
             AllowedPins = new ReadOnlyCollection<IGpioPin>(
-                Pi.Gpio.HeaderP1
-                    .Where(kvp => AllowedPinNumbers.Contains(kvp.Key))
-                    .Select(kvp => kvp.Value)
+                Pi.Gpio
+                    .Where(g => g.Header == GpioHeader.P1 &&
+                                AllowedPinNumbers.Contains(g.PhysicalPinNumber))
                     .ToArray());
         }
 
