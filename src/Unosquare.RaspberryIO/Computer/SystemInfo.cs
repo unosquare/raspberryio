@@ -123,7 +123,7 @@
                 }
 
                 if (hasSysInfo)
-                    BoardRevision = DependencyContainer.Current.Resolve<ISystemInfo>().BoardRevision;
+                    BoardRevision = (int)DependencyContainer.Current.Resolve<ISystemInfo>().BoardRevision;
             }
             catch
             {

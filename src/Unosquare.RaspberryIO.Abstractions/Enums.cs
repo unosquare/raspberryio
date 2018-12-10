@@ -155,12 +155,12 @@
         /// <summary>
         /// Revision 1 (the early Model A and B's).
         /// </summary>
-        Rev1,
+        Rev1 = 1,
 
         /// <summary>
         /// Revision 2 (everything else - it covers the B, B+ and CM).
         /// </summary>
-        Rev2,
+        Rev2 = 2,
     }
 
     /// <summary>
