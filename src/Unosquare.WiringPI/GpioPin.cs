@@ -17,14 +17,14 @@
     {
         #region Property Backing
 
-        private static int[] Gpio2WiringPi;
+        private static int[] GpioToWiringPi;
 
-        private static int[] Gpio2WiringPiR1 =
+        private static int[] GpioToWiringPiR1 =
         {
             8, 9, -1, -1, 7, -1, -1, 11, 10, 13, 12, 14, -1, -1, 15, 16, -1, 0, 1, -1, -1, 2, 3, 4, 5, 6, -1, -1, -1, -1, -1, -1,
         };
 
-        private static int[] Gpio2WiringPiR2 =
+        private static int[] GpioToWiringPiR2 =
         {
             30, 31, 8, 9, 7, 21, 22, 11, 10, 13, 12, 14, 26, 23, 15, 16, 27, 0, 1, 24, 28, 29, 3, 4, 5, 6, 25, 2, 17, 18, 19, 20,
         };
@@ -45,8 +45,8 @@
 
         static GpioPin()
         {
-            Gpio2WiringPi = SystemInfo.GetBoardRevision() ==
-                BoardRevision.Rev1 ? Gpio2WiringPiR1 : Gpio2WiringPiR2;
+            GpioToWiringPi = SystemInfo.GetBoardRevision() ==
+                BoardRevision.Rev1 ? GpioToWiringPiR1 : GpioToWiringPiR2;
         }
 
         /// <summary>
@@ -55,16 +55,27 @@
         /// <param name="bcmPinNumber">The BCM pin number.</param>
         private GpioPin(BcmPin bcmPinNumber)
         {
+            BcmPinNumber = bcmPinNumber;
             PinNumber = (int)bcmPinNumber;
 
-            WiringPiPinNumber = (WiringPiPin)Gpio2WiringPi[PinNumber];
-            HeaderPinNumber = Definitions.GetPhysicalPin(SystemInfo.GetBoardRevision(), bcmPinNumber);
+            WiringPiPinNumber = BcmToWiringPiPinNumber(bcmPinNumber);
+            HeaderPinNumber = Definitions.BcmToPhysicalPinNumber(SystemInfo.GetBoardRevision(), bcmPinNumber);
             Header = (PinNumber >= 28 && PinNumber <= 31) ? GpioHeader.P5 : GpioHeader.P1;
         }
 
         #endregion
 
+        #region Helper Methods
+
+        internal static WiringPiPin BcmToWiringPiPinNumber(BcmPin pin) =>
+            (WiringPiPin)GpioToWiringPi[(int)pin];
+
+        #endregion
+
         #region Pin Properties
+
+        /// <inheritdoc />
+        public BcmPin BcmPinNumber { get; }
 
         /// <inheritdoc />
         public int PinNumber { get; }

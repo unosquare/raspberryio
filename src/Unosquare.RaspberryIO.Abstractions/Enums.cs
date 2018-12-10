@@ -163,6 +163,9 @@
         Rev2,
     }
 
+    /// <summary>
+    /// Defines all the BCM Pin numbers available for the user.
+    /// </summary>
     public enum BcmPin
     {
         /// <summary>

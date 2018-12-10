@@ -8,6 +8,14 @@
     public interface IGpioPin
     {
         /// <summary>
+        /// Gets the <see cref="BcmPin"/>.
+        /// </summary>
+        /// <value>
+        /// The pin number.
+        /// </value>
+        BcmPin BcmPinNumber { get; }
+
+        /// <summary>
         /// Gets the BCM chip (hardware) pin number.
         /// </summary>
         /// <value>

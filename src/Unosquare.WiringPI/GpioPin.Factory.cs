@@ -7,13 +7,13 @@
     {
         #region Static Pin Definitions
 
-        internal static readonly Lazy<GpioPin> Pin0 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio00)
+        internal static readonly Lazy<GpioPin> Pin00 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio00)
         {
             Capabilities = PinCapability.I2CSDA,
             Name = $"BCM 0 {(SystemInfo.GetBoardRevision() == BoardRevision.Rev1 ? "(SDA)" : "(ID_SD)")}",
         });
 
-        internal static readonly Lazy<GpioPin> Pin1 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio01)
+        internal static readonly Lazy<GpioPin> Pin01 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio01)
         {
             Capabilities = PinCapability.I2CSCL,
             Name = $"BCM 1  {(SystemInfo.GetBoardRevision() == BoardRevision.Rev1 ? "(SCL)" : "(ID_SC)")}",
@@ -37,31 +37,31 @@
             Name = "BCM 4 (GPCLK0)",
         });
 
-        internal static readonly Lazy<GpioPin> Pin5 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio05)
+        internal static readonly Lazy<GpioPin> Pin05 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio05)
         {
             Capabilities = PinCapability.GP,
             Name = "BCM 5",
         });
 
-        internal static readonly Lazy<GpioPin> Pin6 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio06)
+        internal static readonly Lazy<GpioPin> Pin06 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio06)
         {
             Capabilities = PinCapability.GP,
             Name = "BCM 6",
         });
 
-        internal static readonly Lazy<GpioPin> Pin7 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio07)
+        internal static readonly Lazy<GpioPin> Pin07 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio07)
         {
             Capabilities = PinCapability.GP | PinCapability.SPICS,
             Name = "BCM 7 (CE1)",
         });
 
-        internal static readonly Lazy<GpioPin> Pin8 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio08)
+        internal static readonly Lazy<GpioPin> Pin08 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio08)
         {
             Capabilities = PinCapability.GP | PinCapability.SPICS,
             Name = "BCM 8 (CE0)",
         });
 
-        internal static readonly Lazy<GpioPin> Pin9 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio09)
+        internal static readonly Lazy<GpioPin> Pin09 = new Lazy<GpioPin>(() => new GpioPin(BcmPin.Gpio09)
         {
             Capabilities = PinCapability.GP | PinCapability.SPIMISO,
             Name = "BCM 9 (MISO)",

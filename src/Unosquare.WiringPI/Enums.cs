@@ -278,141 +278,150 @@
     }
 
     /// <summary>
-    /// Enumerates the different pins on the P1 Header
-    /// as commonly referenced by Raspberry Pi Documentation.
+    /// Enumerates the different pins on the P1 Header.
     /// Enumeration values correspond to the physical pin number.
     /// </summary>
     public enum P1
     {
         /// <summary>
-        /// Header P1, GPIO Pin 02
+        /// Header P1 Pin 3. GPIO 0 for rev1 or GPIO 2 for rev2.
         /// </summary>
-        Gpio02 = 3,
+        Pin03 = 3,
 
         /// <summary>
-        /// Header P1, GPIO Pin 03
+        /// Header P1 Pin 5. GPIO 1 for rev1 or GPIO 3 for rev2.
         /// </summary>
-        Gpio03 = 5,
+        Pin05 = 5,
 
         /// <summary>
-        /// Header P1, GPIO Pin 04
+        /// Header P1 Pin 7. GPIO 04.
         /// </summary>
-        Gpio04 = 7,
+        Pin07 = 7,
 
         /// <summary>
-        /// Header P1, GPIO Pin 17
+        /// Header P1 Pin 11. GPIO 17.
         /// </summary>
-        Gpio17 = 11,
+        Pin11 = 11,
 
         /// <summary>
-        /// Header P1, GPIO Pin 27
+        /// Header P1 Pin 13. GPIO 21 for rev1 or GPIO 27 for rev2.
         /// </summary>
-        Gpio27 = 13,
+        Pin13 = 13,
 
         /// <summary>
-        /// Header P1, GPIO Pin 22
+        /// Header P1 Pin 15. GPIO 22.
         /// </summary>
-        Gpio22 = 15,
+        Pin15 = 15,
 
         /// <summary>
-        /// Header P1, GPIO Pin 10
+        /// Header P1 Pin 19. GPIO 10.
         /// </summary>
-        Gpio10 = 19,
+        Pin19 = 19,
 
         /// <summary>
-        /// Header P1, GPIO Pin 09
+        /// Header P1 Pin 21. GPIO 9.
         /// </summary>
-        Gpio09 = 21,
+        Pin21 = 21,
 
         /// <summary>
-        /// Header P1, GPIO Pin 11
+        /// Header P1 Pin 23. GPIO 11.
         /// </summary>
-        Gpio11 = 23,
+        Pin23 = 23,
 
         /// <summary>
-        /// Header P1, GPIO Pin 05
+        /// Header P1 Pin 27. GPIO 0.
         /// </summary>
-        Gpio05 = 29,
+        Pin27 = 27,
 
         /// <summary>
-        /// Header P1, GPIO Pin 06
+        /// Header P1 Pin 29. GPIO 5.
         /// </summary>
-        Gpio06 = 31,
+        Pin29 = 29,
 
         /// <summary>
-        /// Header P1, GPIO Pin 13
+        /// Header P1 Pin 31. GPIO 6.
         /// </summary>
-        Gpio13 = 33,
+        Pin31 = 31,
 
         /// <summary>
-        /// Header P1, GPIO Pin 19
+        /// Header P1 Pin 33. GPIO 13.
         /// </summary>
-        Gpio19 = 35,
+        Pin33 = 33,
 
         /// <summary>
-        /// Header P1, GPIO Pin 26
+        /// Header P1 Pin 35. GPIO 19.
         /// </summary>
-        Gpio26 = 37,
+        Pin35 = 35,
 
         /// <summary>
-        /// Header P1, GPIO Pin 14
+        /// Header P1 Pin 37. GPIO 26.
         /// </summary>
-        Gpio14 = 8,
+        Pin37 = 37,
 
         /// <summary>
-        /// Header P1, GPIO Pin 15
+        /// Header P1 Pin 8. GPIO 14.
         /// </summary>
-        Gpio15 = 10,
+        Pin08 = 8,
 
         /// <summary>
-        /// Header P1, GPIO Pin 18
+        /// Header P1 Pin 10. GPIO 15.
         /// </summary>
-        Gpio18 = 12,
+        Pin10 = 10,
 
         /// <summary>
-        /// Header P1, GPIO Pin 23
+        /// Header P1 Pin 12. GPIO 18.
         /// </summary>
-        Gpio23 = 16,
+        Pin12 = 12,
 
         /// <summary>
-        /// Header P1, GPIO Pin 24
+        /// Header P1 Pin 16. GPIO 23.
         /// </summary>
-        Gpio24 = 18,
+        Pin16 = 16,
 
         /// <summary>
-        /// Header P1, GPIO Pin 25
+        /// Header P1 Pin 18. GPIO 24.
         /// </summary>
-        Gpio25 = 22,
+        Pin18 = 18,
 
         /// <summary>
-        /// Header P1, GPIO Pin 08
+        /// Header P1 Pin 22. GPIO 25.
         /// </summary>
-        Gpio08 = 24,
+        Pin22 = 22,
 
         /// <summary>
-        /// Header P1, GPIO Pin 07
+        /// Header P1 Pin 24. GPIO 8.
         /// </summary>
-        Gpio07 = 26,
+        Pin24 = 24,
 
         /// <summary>
-        /// Header P1, GPIO Pin 12
+        /// Header P1 Pin 26. GPIO 7.
         /// </summary>
-        Gpio12 = 32,
+        Pin26 = 26,
 
         /// <summary>
-        /// Header P1, GPIO Pin 16
+        /// Header P1 Pin 28. GPIO 1.
         /// </summary>
-        Gpio16 = 36,
+        Pin28 = 28,
 
         /// <summary>
-        /// Header P1, GPIO Pin 20
+        /// Header P1 Pin 32. GPIO 12.
         /// </summary>
-        Gpio20 = 38,
+        Pin32 = 32,
 
         /// <summary>
-        /// Header P1, GPIO Pin 21
+        /// Header P1 Pin 36. GPIO 16.
         /// </summary>
-        Gpio21 = 40,
+        Pin36 = 36,
+
+        /// <summary>
+        /// Header P1 Pin 38. GPIO 20.
+        /// </summary>
+        Pin38 = 38,
+
+        /// <summary>
+        /// Header P1 Pin 40. GPIO 21.
+        /// </summary>
+        Pin40 = 40,
     }
 
     /// <summary>
@@ -423,24 +432,24 @@
     public enum P5
     {
         /// <summary>
-        /// Header P5, GPIO Pin 28
+        /// Header P5 Pin 3, GPIO 28
         /// </summary>
-        Gpio28 = 3,
+        Pin03 = 3,
 
         /// <summary>
-        /// Header P5, GPIO Pin 29
+        /// Header P5 Pin 4, GPIO 29
         /// </summary>
-        Gpio29 = 4,
+        Pin04 = 4,
 
         /// <summary>
-        /// Header P5, GPIO Pin 30
+        /// Header P5 Pin 5, GPIO 30
         /// </summary>
-        Gpio30 = 5,
+        Pin05 = 5,
 
         /// <summary>
-        /// Header P5, GPIO Pin 31
+        /// Header P5 Pin 6, GPIO 31
         /// </summary>
-        Gpio31 = 6,
+        Pin06 = 6,
     }
 
     /// <summary>
