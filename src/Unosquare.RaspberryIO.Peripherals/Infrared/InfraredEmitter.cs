@@ -4,7 +4,8 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using Unosquare.RaspberryIO.Abstractions;
+    using Abstractions;
+    using WiringPI;
 
     /// <summary>
     /// A class to send infrared signals using an IR LED.
@@ -83,26 +84,26 @@
             private static readonly InfraredSensor.InfraredPulse ShortSpace = new InfraredSensor.InfraredPulse(false, 562);
             private static readonly InfraredSensor.InfraredPulse LongSpace = new InfraredSensor.InfraredPulse(false, 1687);
 
-            private static readonly InfraredSensor.InfraredPulse[] RepeatPulses = new InfraredSensor.InfraredPulse[]
+            private static readonly InfraredSensor.InfraredPulse[] RepeatPulses = new[]
             {
                 PreambleMark,
                 RepeatSpace,
                 ShortMark,
             };
 
-            private static readonly InfraredSensor.InfraredPulse[] PreambleData = new InfraredSensor.InfraredPulse[]
+            private static readonly InfraredSensor.InfraredPulse[] PreambleData = new[]
             {
                 PreambleMark,
                 DataSpace,
             };
 
-            private static readonly InfraredSensor.InfraredPulse[] V0 = new InfraredSensor.InfraredPulse[]
+            private static readonly InfraredSensor.InfraredPulse[] V0 = new[]
             {
                 ShortMark,
                 ShortSpace,
             };
 
-            private static readonly InfraredSensor.InfraredPulse[] V1 = new InfraredSensor.InfraredPulse[]
+            private static readonly InfraredSensor.InfraredPulse[] V1 = new[]
             {
                 ShortMark,
                 LongSpace,
@@ -112,7 +113,7 @@
             /// Encodes the specified 4-byte data into IR pulses.
             /// </summary>
             /// <param name="data">The data.</param>
-            /// <returns>The data ebncoded as IR pulses.</returns>
+            /// <returns>The data encoded as IR pulses.</returns>
             /// <exception cref="ArgumentException">The data has to be 4 bytes long. - data.</exception>
             public static InfraredSensor.InfraredPulse[] Encode(byte[] data)
             {

@@ -1,9 +1,9 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
-    using System.Linq;
+    using WiringPI;
     using Swan;
-    using Unosquare.RaspberryIO.Abstractions;
+    using Abstractions;
 
     /// <summary>
     /// Represents a standard 50hz pulse-controlled servo using Hardware-assited PWM.

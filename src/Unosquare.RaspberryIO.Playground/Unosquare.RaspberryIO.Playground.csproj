@@ -30,6 +30,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Unosquare.RaspberryIO.Peripherals\Unosquare.RaspberryIO.Peripherals.csproj" />
-    <ProjectReference Include="..\Unosquare.RaspberryIO\Unosquare.RaspberryIO.csproj" />
   </ItemGroup>
 </Project>
