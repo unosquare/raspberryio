@@ -36,6 +36,7 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [I2C to connect ICs](#i2c-to-connect-ics)
   * [Timing and Threading](#timing-and-threading)
   * [Serial Ports (UART)](#serial-ports-uart)
+  * [Abstraction Package](#abstraction-package)
   * [Similar Projects](#similar-projects)
   
 ## Features
@@ -511,7 +512,8 @@ i2cdetect -y 0 # Rev 1
 i2cdetect -y 1 # Rev 2
 ```
 
-Example of using the I2C Bus
+Example of using the I2C Bus:
+
 ```csharp
 // Register a device on the bus
 var myDevice = Pi.I2C.AddDevice(0x20);
@@ -532,6 +534,17 @@ TODO
 
 ## Serial Ports (UART)
 Where is the serial port API? Well, it is something we will most likely add in the future. For now, you can simply use the built-in ```SerialPort``` class the .NET framework provides.
+
+## Abstraction Package
+
+If you want to implement your own provider for RaspberryIO, you must use the following package to implement all the `Pi` providers.
+
+Install basic Raspberry.IO package:
+[![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions)
+
+```
+PM> Install-Package Unosquare.Raspberry.Abstractions
+```
 
 ## Similar Projects
 - <a href="https://github.com/raspberry-sharp/raspberry-sharp-io">Raspberry# IO</a>
