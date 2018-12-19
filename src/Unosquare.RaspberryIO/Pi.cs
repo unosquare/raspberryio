@@ -28,7 +28,6 @@
                 Info = SystemInfo.Instance;
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
-
             }
         }
 
