@@ -13,7 +13,7 @@
     <SshDeployTargetPath>/home/pi/playground</SshDeployTargetPath>
     <SshDeployUsername>pi</SshDeployUsername>
     <SshDeployPassword>raspberry</SshDeployPassword>
-    <SshDeployPostCommand>mono /home/pi/playground/Unosquare.RaspberryIO.Playground.exe</SshDeployPostCommand>
+    <SshDeployPostCommand>dotnet /home/pi/playground/Unosquare.RaspberryIO.Playground.dll</SshDeployPostCommand>
   </PropertyGroup>
 
   <ItemGroup>
