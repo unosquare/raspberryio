@@ -75,7 +75,7 @@
         /// </summary>
         public static void TestServo()
         {
-            var servo = new HardwareServo(Pi.Gpio[BcmPin.Gpio18]);
+            var servo = new HardwareServo((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
             const double minPulse = 0.565;
             const double maxPulse = 2.620;
             var deltaPulse = 0.005;
@@ -129,7 +129,7 @@
         {
             var inputPin = Pi.Gpio[BcmPin.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
             var sensor = new InfraredSensor(inputPin, true);
-            var emitter = new InfraredEmitter(Pi.Gpio[BcmPin.Gpio18]);
+            var emitter = new InfraredEmitter((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
 
             sensor.DataAvailable += (s, e) =>
             {
@@ -252,14 +252,14 @@
             // TODO: Check out:
             // https://raspberrypi.stackexchange.com/questions/4906/control-hardware-pwm-frequency
             // https://stackoverflow.com/questions/20081286/controlling-a-servo-with-raspberry-pi-using-the-hardware-pwm-with-wiringpi
-            var pin = Pi.Gpio[BcmPin.Gpio18];
+            var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio18];
             pin.PinMode = GpioPinDriveMode.PwmOutput;
             pin.PwmMode = PwmMode.MarkSign;
             pin.PwmClockDivisor = 3; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
             pin.PwmRange = 800; // Range valid values I still need to investigate
             pin.PwmRegister = 600; // (int)(pin.PwmRange * 0.95); // This goes from 0 to 1024
 
-            var probe = new LogicProbe(Pi.Gpio[P1.Gpio17]);
+            var probe = new LogicProbe(Pi.Gpio[P1.Pin11]);
             var probeBuffer = new List<LogicProbe.ProbeDataEventArgs>(1024);
             probe.ProbeDataAvailable += (s, e) =>
             {

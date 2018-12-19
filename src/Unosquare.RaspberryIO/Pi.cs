@@ -22,9 +22,13 @@
         {
             lock (SyncLock)
             {
+                DependencyContainer.Current.AutoRegister(DependencyContainerDuplicateImplementationActions.RegisterSingle);
+                ResolveDependency<IBootstrap>().Bootstrap();
+
                 Info = SystemInfo.Instance;
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
+
             }
         }
 

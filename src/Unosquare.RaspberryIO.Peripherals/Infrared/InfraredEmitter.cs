@@ -17,9 +17,9 @@
         /// Initializes a new instance of the <see cref="InfraredEmitter"/> class.
         /// </summary>
         /// <param name="outputPin">The output pin.</param>
-        public InfraredEmitter(IGpioPin outputPin)
+        public InfraredEmitter(GpioPin outputPin)
         {
-            if (outputPin == null || outputPin.Capabilities.Contains(PinCapability.PWM) == false)
+            if (outputPin == null || outputPin.HasCapability(PinCapability.PWM) == false)
                 throw new ArgumentException("Pin does not support PWM", nameof(outputPin));
 
             OutputPin = outputPin;
@@ -36,7 +36,7 @@
         /// <summary>
         /// Gets the output pin.
         /// </summary>
-        public IGpioPin OutputPin { get; }
+        public GpioPin OutputPin { get; }
 
         /// <summary>
         /// Snaps the pulse lengths to their valid equivalents.
