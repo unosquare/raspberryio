@@ -539,7 +539,7 @@ Where is the serial port API? Well, it is something we will most likely add in t
 
 If you want to implement your own provider for RaspberryIO, you must use the following package to implement all the `Pi` providers.
 
-Install basic Raspberry.IO package:
+Install Unosquare.Raspberry.Abstractions package:
 [![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions)
 
 ```
