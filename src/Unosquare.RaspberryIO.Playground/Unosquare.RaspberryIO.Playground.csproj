@@ -21,7 +21,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-  <PackageReference Include="Unosquare.WiringPi" Version="0.1.0" />
   </ItemGroup>
   <ItemGroup>
     <None Update="fractal.jpg;spectrum.png">

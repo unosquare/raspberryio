@@ -16,12 +16,8 @@
         /// </summary>
         public static readonly byte[] DefaultAuthKey = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
-        #region Private Members
-
         private readonly ISpiChannel _spiPort;
         private readonly IGpioPin _outputPort;
-
-        #endregion
 
         #region Constructors
 
@@ -181,7 +177,7 @@
         public Status CardWriteData(byte blockAddress, byte[] writeData)
         {
             var buff = new List<byte> { (byte)RequestMode.Write, blockAddress };
-            var crc = CalulateCrc(buff.ToArray());
+            var crc = CalculateCrc(buff.ToArray());
             buff.Add(crc[0]);
             buff.Add(crc[1]);
 
@@ -207,7 +203,7 @@
                 i++;
             }
 
-            crc = CalulateCrc(buf.ToArray());
+            crc = CalculateCrc(buf.ToArray());
             buf.Add(crc[0]);
             buf.Add(crc[1]);
 
@@ -226,7 +222,7 @@
         public RfidResponse CardReadData(byte blockAddress)
         {
             var buff = new List<byte> { (byte)RequestMode.Read, blockAddress };
-            var crc = CalulateCrc(buff.ToArray());
+            var crc = CalculateCrc(buff.ToArray());
             buff.Add(crc[0]);
             buff.Add(crc[1]);
 
@@ -306,7 +302,7 @@
                 i++;
             }
 
-            var crcHashCode = CalulateCrc(payloadBuffer.ToArray());
+            var crcHashCode = CalculateCrc(payloadBuffer.ToArray());
             payloadBuffer.Add(crcHashCode[0]);
             payloadBuffer.Add(crcHashCode[1]);
             var response = CardSendData(Command.Transcieve, payloadBuffer.ToArray());
@@ -445,19 +441,19 @@
         private void ClearRegisterBits(Register register, byte bitMask) => WriteRegister(register, (byte)(ReadRegister(register) & (~bitMask)));
 
         /// <summary>
-        /// Calulates the CRC Hash as an array of bytes.
+        /// Calculates the CRC Hash as an array of bytes.
         /// Returns a 2-byte array.
         /// </summary>
-        /// <param name="pIndata">The p indata.</param>
+        /// <param name="data">The data.</param>
         /// <returns>a 2-byte array with the CRC.</returns>
-        private byte[] CalulateCrc(byte[] pIndata)
+        private byte[] CalculateCrc(byte[] data)
         {
             ClearRegisterBits(Register.DivIrqReg, 0x04);
             SetRegisterBits(Register.FIFOLevelReg, 0x80);
             byte i = 0;
-            while (i < pIndata.Length)
+            while (i < data.Length)
             {
-                WriteRegister(Register.FIFODataReg, pIndata[i]);
+                WriteRegister(Register.FIFODataReg, data[i]);
                 i++;
             }
 
