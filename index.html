@@ -8,7 +8,7 @@
     <title> RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.40.1.0">
+    <meta name="generator" content="docfx 2.40.6.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -34,9 +34,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
               <a class="navbar-brand" href="index.html">
-                <img id="logo" class="logo" src="best-practices/resources/images/logo.png" alt="">
+                <img id="logo" class="logo" src="best-practices/resources/images/unosquare_logo.svg" alt="Unosquare">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -114,6 +113,7 @@
 <li><a href="#i2c-to-connect-ics">I2C to connect ICs</a></li>
 <li><a href="#timing-and-threading">Timing and Threading</a></li>
 <li><a href="#serial-ports-uart">Serial Ports (UART)</a></li>
+<li><a href="#abstraction-package">Abstraction Package</a></li>
 <li><a href="#similar-projects">Similar Projects</a></li>
 </ul>
 <h2 id="features">Features</h2>
@@ -211,8 +211,8 @@ $ dotnet --info
 For additional help, please visit https://github.com/unosquare/sshdeploy
 Deploying...
   Configuration   Debug
-  Framework       net452
-  Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\net452\publish
+  Framework       net46
+  Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\net46\publish
   Excluded Files  .ready|.vshost.exe|.vshost.exe.config
   Target Address  192.16.17.54:22
   Username        pi
@@ -231,7 +231,7 @@ Connecting to host 192.16.17.54:22 via SFTP.
   Finished deployment in 1.25 seconds.
 Completed.
 </code></pre></li>
-<li><strong>The default TargetFramework is</strong> <code>net452</code> <strong>but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this</strong><code>dotnet-sshdeploy push -f netcoreapp2.0</code>. <strong>More information about dotnet-sshdeploy see <a href="https://github.com/unosquare/sshdeploy">this</a></strong></li>
+<li><strong>The default TargetFramework is</strong> <code>net46</code> <strong>but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this</strong><code>dotnet-sshdeploy push -f netcoreapp2.0</code>. <strong>More information about dotnet-sshdeploy see <a href="https://github.com/unosquare/sshdeploy">this</a></strong></li>
 <li>Give permissions to run the project</li>
 </ul>
 <pre><code>ubuntu@ubuntu:~/publish$ sudo chmod u+x *
@@ -777,7 +777,7 @@ var response = Pi.Spi.Channel0.SendReceive(request);
 <p>In order to detect I2C devices, you could use the <code>i2cdetect</code> system command. Just remember that on a Rev 1 Raspberry Pi it&#39;s device 0, and on a Rev. 2 it&#39;s device 1. e.g.</p>
 <pre><code>i2cdetect -y 0 # Rev 1
 i2cdetect -y 1 # Rev 2
-</code></pre><p>Example of using the I2C Bus</p>
+</code></pre><p>Example of using the I2C Bus:</p>
 <pre><code class="lang-csharp">// Register a device on the bus
 var myDevice = Pi.I2C.AddDevice(0x20);
 
@@ -794,7 +794,12 @@ foreach (var device in Pi.I2C.Devices)
 <p>TODO</p>
 <h2 id="serial-ports-uart">Serial Ports (UART)</h2>
 <p>Where is the serial port API? Well, it is something we will most likely add in the future. For now, you can simply use the built-in <code>SerialPort</code> class the .NET framework provides.</p>
-<h2 id="similar-projects">Similar Projects</h2>
+<h2 id="abstraction-package">Abstraction Package</h2>
+<p>If you want to implement your own provider for RaspberryIO, you must use the following package to implement all the <code>Pi</code> providers.</p>
+<p>Install Unosquare.Raspberry.Abstractions package:
+<a href="https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions"><img src="https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions.svg" alt="NuGet version"></a></p>
+<pre><code>PM&gt; Install-Package Unosquare.Raspberry.Abstractions
+</code></pre><h2 id="similar-projects">Similar Projects</h2>
 <ul>
 <li><a href="https://github.com/raspberry-sharp/raspberry-sharp-io">Raspberry# IO</a></li>
 <li><a href="https://github.com/danriches/WiringPi.Net">WiringPi.Net</a></li>
@@ -813,7 +818,7 @@ foreach (var device in Pi.I2C.Devices)
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/Issue58-Abstraction/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
