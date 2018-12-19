@@ -3,21 +3,27 @@
   <PropertyGroup>
     <AssemblyName>Unosquare.RaspberryIO.Peripherals</AssemblyName>
     <Copyright>Unosquare (c) 2016-2018</Copyright>
-    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.0</TargetFrameworks>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>7.3</LangVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>0.2.3</Version>
+    <Version>0.4.0</Version>
     <Company>Unosquare</Company>
     <Description>A set of classes for peripherals working with RaspberryIO.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
+    <EmbeddedResource Include="Resources\AsciiFontPng" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Unosquare.WiringPi" Version="0.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
   </ItemGroup>
 
   <ItemGroup>

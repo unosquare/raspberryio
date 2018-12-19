@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
-    using Gpio;
-    using Native;
+    using Unosquare.RaspberryIO.Abstractions;
+    using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// A class representing a logic probe that reads high or low digital values when
@@ -11,20 +11,20 @@
     /// </summary>
     public sealed class LogicProbe
     {
-        private readonly GpioPin _inputPin;
+        private readonly IGpioPin _inputPin;
         private readonly HighResolutionTimer _timer = new HighResolutionTimer();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogicProbe"/> class.
         /// </summary>
         /// <param name="inputPin">The input pin.</param>
-        public LogicProbe(GpioPin inputPin)
+        public LogicProbe(IGpioPin inputPin)
         {
             _inputPin = inputPin;
             _inputPin.PinMode = GpioPinDriveMode.Input;
             _inputPin.InputPullMode = GpioPinResistorPullMode.PullUp;
 
-            _inputPin.RegisterInterruptCallback(EdgeDetection.RisingAndFallingEdges, () =>
+            _inputPin.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, () =>
             {
                 if (_timer.IsRunning == false)
                     return;

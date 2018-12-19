@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net452;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.0</TargetFrameworks>
     <RuntimeIdentifier>linux-arm</RuntimeIdentifier>
     <AssemblyName>Unosquare.RaspberryIO.Playground</AssemblyName>
@@ -13,14 +13,15 @@
     <SshDeployTargetPath>/home/pi/playground</SshDeployTargetPath>
     <SshDeployUsername>pi</SshDeployUsername>
     <SshDeployPassword>raspberry</SshDeployPassword>
-    <SshDeployPostCommand>mono /home/pi/playground/Unosquare.RaspberryIO.Playground.exe</SshDeployPostCommand>
+    <SshDeployPostCommand>dotnet /home/pi/playground/Unosquare.RaspberryIO.Playground.dll</SshDeployPostCommand>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Unosquare.Swan.Lite" Version="0.38.0" />
   </ItemGroup>
   <ItemGroup>
     <None Update="fractal.jpg;spectrum.png">
@@ -30,11 +31,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Unosquare.RaspberryIO.Peripherals\Unosquare.RaspberryIO.Peripherals.csproj" />
-    <ProjectReference Include="..\Unosquare.RaspberryIO\Unosquare.RaspberryIO.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

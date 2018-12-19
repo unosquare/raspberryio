@@ -1,4 +1,4 @@
-﻿#if NET452
+﻿#if NET461
 namespace Unosquare.RaspberryIO.Playground
 {
     using Peripherals;

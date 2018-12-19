@@ -1,11 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
-    using Gpio;
-    using Native;
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading;
+    using Unosquare.RaspberryIO.Abstractions;
+    using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// Provides logic to read from the AM2302 sensor, also known as the DHT22 sensor.
@@ -13,24 +13,22 @@
     /// </summary>
     public class TemperatureSensorAM2302 : IDisposable
     {
-        private static readonly int[] AllowedPinNumbers = new int[] { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
+        private static readonly int[] AllowedPinNumbers = new[] { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
         private static readonly TimeSpan ReadInterval = TimeSpan.FromSeconds(2);
         private static readonly long BitPulseMidMicroseconds = 50; // (26 ... 50)µs for false; (51 ... 76)µs for true
-        private readonly Timing _systemTiming;
 
-        private readonly GpioPin DataPin;
+        private readonly IGpioPin DataPin;
         private readonly Thread ReadWorker;
-        private bool _isRunning;
 
         /// <summary>
         /// Initializes static members of the <see cref="TemperatureSensorAM2302"/> class.
         /// </summary>
         static TemperatureSensorAM2302()
         {
-            AllowedPins = new ReadOnlyCollection<GpioPin>(
-                Pi.Gpio.HeaderP1
-                    .Where(kvp => AllowedPinNumbers.Contains(kvp.Key))
-                    .Select(kvp => kvp.Value)
+            AllowedPins = new ReadOnlyCollection<IGpioPin>(
+                Pi.Gpio
+                    .Where(g => g.Header == GpioHeader.P1 &&
+                                AllowedPinNumbers.Contains(g.PhysicalPinNumber))
                     .ToArray());
         }
 
@@ -39,12 +37,11 @@
         /// </summary>
         /// <param name="dataPin">The data pin. Must be a GPIO-only pin on the P1 Header of the Pi.</param>
         /// <exception cref="ArgumentException">dataPin When it is invalid.</exception>
-        public TemperatureSensorAM2302(GpioPin dataPin)
+        public TemperatureSensorAM2302(IGpioPin dataPin)
         {
             if (AllowedPins.Contains(dataPin) == false)
                 throw new ArgumentException($"{nameof(dataPin)}, {dataPin} is not available to service this driver.");
 
-            _systemTiming = Timing.Instance;
             DataPin = dataPin;
             ReadWorker = new Thread(PerformContinuousReads);
         }
@@ -57,19 +54,19 @@
         /// <summary>
         /// Gets a collection of pins that are allowed to run this sensor.
         /// </summary>
-        public static ReadOnlyCollection<GpioPin> AllowedPins { get; }
+        public static ReadOnlyCollection<IGpioPin> AllowedPins { get; }
 
         /// <summary>
         /// Gets a value indicating whether the sensor is running.
         /// </summary>
-        public bool IsRunning => _isRunning;
+        public bool IsRunning { get; private set; }
 
         /// <summary>
         /// Starts the listener.
         /// </summary>
         public void Start()
         {
-            _isRunning = true;
+            IsRunning = true;
             ReadWorker.Start();
         }
 
@@ -77,7 +74,7 @@
         public void Dispose()
         {
             // Avoid calling this multiple times
-            if (_isRunning == false)
+            if (IsRunning == false)
                 return;
 
             // Abort
@@ -92,7 +89,7 @@
         {
             var stopwatch = new HighResolutionTimer();
             var lastElapsedTime = TimeSpan.FromSeconds(0);
-            while (_isRunning)
+            while (IsRunning)
             {
                 try
                 {
@@ -110,9 +107,9 @@
 
                     // Send request to trasmission from board to sensor
                     DataPin.Write(GpioPinValue.Low);
-                    _systemTiming.SleepMicroseconds(1000);
+                    Pi.Timing.SleepMicroseconds(1000);
                     DataPin.Write(GpioPinValue.High);
-                    _systemTiming.SleepMicroseconds(20);
+                    Pi.Timing.SleepMicroseconds(20);
                     DataPin.Write(GpioPinValue.Low);
 
                     // Acquire measure
@@ -210,7 +207,7 @@
         /// </summary>
         private void StopContinuousReads()
         {
-            _isRunning = false;
+            IsRunning = false;
             ReadWorker.Abort();
         }
 

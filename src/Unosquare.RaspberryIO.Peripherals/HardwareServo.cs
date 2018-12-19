@@ -1,9 +1,9 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
-    using Gpio;
-    using System;
-    using System.Linq;
+    using Abstractions;
     using Swan;
+    using System;
+    using WiringPI;
 
     /// <summary>
     /// Represents a standard 50hz pulse-controlled servo using Hardware-assited PWM.
@@ -18,7 +18,7 @@
         /// <exception cref="ArgumentException">Pin does not support PWM - outputPin.</exception>
         public HardwareServo(GpioPin outputPin)
         {
-            if (outputPin == null || outputPin.Capabilities.Contains(PinCapability.PWM) == false)
+            if (outputPin == null || outputPin.HasCapability(PinCapability.PWM) == false)
                 throw new ArgumentException("Pin does not support PWM", nameof(outputPin));
 
             OutputPin = outputPin;
@@ -31,7 +31,7 @@
             OutputPin.PwmRange = 4000;
             OutputPin.PwmRegister = 0;
 
-            Frequency = (double) Pi.Gpio.PwmBaseFrequency / OutputPin.PwmClockDivisor / OutputPin.PwmRange;
+            Frequency = (double)((GpioController)Pi.Gpio).PwmBaseFrequency / OutputPin.PwmClockDivisor / OutputPin.PwmRange;
             PeriodMs = 1d / Frequency * 1000;
             MaxPulseLengthMs = PeriodMs * 1024d / OutputPin.PwmRange;
             PulseLengthMs = 1.0d; // default is 1ms pulses

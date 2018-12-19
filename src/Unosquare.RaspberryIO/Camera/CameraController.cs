@@ -130,7 +130,7 @@
                 CaptureTimeoutMilliseconds = 0,
                 CaptureDisplayPreview = false,
                 CaptureWidth = 1920,
-                CaptureHeight = 1080
+                CaptureHeight = 1080,
             };
 
             OpenVideoStream(settings, onDataCallback, onExitCallback);

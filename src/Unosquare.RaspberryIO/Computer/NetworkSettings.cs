@@ -55,7 +55,7 @@
 
                     var network = new WirelessNetworkInfo()
                     {
-                        Name = line.Replace(EssidTag, string.Empty).Replace("\"", string.Empty)
+                        Name = line.Replace(EssidTag, string.Empty).Replace("\"", string.Empty),
                     };
 
                     while (true)

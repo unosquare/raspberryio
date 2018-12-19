@@ -1,11 +1,11 @@
-﻿#if NET452
+﻿#if NET461
 namespace Unosquare.RaspberryIO.Peripherals
 {
-    using Gpio;
     using Swan;
     using Swan.Formatters;
     using System;
     using System.Collections.Generic;
+    using Unosquare.RaspberryIO.Abstractions;
 
     /// <summary>
     /// Represents an SPI addressable strip of RGB LEDs
@@ -29,7 +29,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         #region State Variables
 
         private readonly object _syncLock = new object(); // for thread safety
-        private readonly SpiChannel _channel; // will be set in the constructor
+        private readonly ISpiChannel _channel; // will be set in the constructor
         private readonly byte[] _clearBuffer; // Contains clear pixel data which is a set of 0xE0 bytes
         private readonly byte[] _frameBuffer; // Contains what needs to be written over the SPI channel
         private readonly byte[] _pixelHolder = new byte[4]; // used heavily to manipulate pixels
@@ -46,7 +46,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <param name="spiChannel">The SPI channel.</param>
         /// <param name="spiFrequency">The SPI frequency.</param>
         /// <param name="reverseRgb">if set to <c>true</c> colors will be sent to the strip as BGR, otherwise as RGB.</param>
-        public LedStripAPA102C(int ledCount = 60, int spiChannel = 1, int spiFrequency = SpiChannel.DefaultFrequency, bool reverseRgb = true)
+        public LedStripAPA102C(int ledCount = 60, int spiChannel = 1, int spiFrequency = 0, bool reverseRgb = true)
         {
             // Basic properties
             LedCount = ledCount;
@@ -66,6 +66,9 @@ namespace Unosquare.RaspberryIO.Peripherals
 
             // Set all the pixels to no value
             ClearPixels();
+
+            if (spiFrequency == 0)
+                spiFrequency = Pi.Spi.DefaultFrequency;
 
             // Select the SPI channel
             if (spiChannel == 0)
