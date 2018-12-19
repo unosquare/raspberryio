@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// Interface to represent threading methods using interop.
+    /// </summary>
     public interface IThreading
     {
         /// <summary>

@@ -12,7 +12,7 @@
         /// </summary>
         /// <value>
         /// The board revision.
-        /// </value
+        /// </value>
         BoardRevision BoardRevision { get; }
 
         /// <summary>

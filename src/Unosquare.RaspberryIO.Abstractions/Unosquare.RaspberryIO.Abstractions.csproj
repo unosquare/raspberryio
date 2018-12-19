@@ -1,15 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Description>The Raspberry Pi's IO Functionality in an easy-to use API for Mono/.NET Core
+
+This library enables developers to use the various Raspberry Pi's hardware modules including the Camera to capture images and video, the GPIO pins, and both, the SPI and I2C buses.</Description>
+    <Copyright>Unosquare (c) 2016-2018</Copyright>
+    <AssemblyTitle>Unosquare Raspberry Abstractions</AssemblyTitle>
     <TargetFramework>netstandard1.3</TargetFramework>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>Unosquare.Raspberry.Abstractions</AssemblyName>
+    <PackageId>Unosquare.Raspberry.Abstractions</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Unosquare</Authors>
+    <PackageIconUrl>https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/unosquare/raspberryio</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/unosquare/raspberryio/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>Raspberry Pi GPIO Camera SPI I2C Embedded IoT Mono C# .NET</PackageTags>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Unosquare.Swan" Version="0.34.3" />
+    <PackageReference Include="Unosquare.Swan" Version="0.36.1" />
   </ItemGroup>
 </Project>

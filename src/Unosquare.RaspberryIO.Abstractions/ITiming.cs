@@ -1,5 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Abstractions
 {
+    /// <summary>
+    /// Interface for timing methods using interop.
+    /// </summary>
     public interface ITiming
     {
         /// <summary>

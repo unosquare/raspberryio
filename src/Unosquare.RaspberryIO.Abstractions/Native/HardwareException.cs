@@ -11,9 +11,8 @@
     /// <seealso cref="Exception" />
     public class HardwareException : Exception
     {
-        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Unosquare.RaspberryIO.Abstractions.Native.HardwareException" /> class.
+        /// Initializes a new instance of the <see cref="HardwareException"/> class.
         /// </summary>
         /// <param name="errorCode">The error code.</param>
         /// <param name="component">The component.</param>

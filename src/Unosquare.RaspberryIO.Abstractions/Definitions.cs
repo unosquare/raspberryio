@@ -1,5 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Abstractions
 {
+    /// <summary>
+    /// Represents Definitions for GPIO information.
+    /// </summary>
     public static class Definitions
     {
         private static readonly int[] GpioToPhysR1 =
@@ -13,6 +16,12 @@
             3, 4, 5, 6, // P5
         };
 
+        /// <summary>
+        /// BCMs to physical pin number.
+        /// </summary>
+        /// <param name="rev">The rev.</param>
+        /// <param name="bcmPin">The BCM pin.</param>
+        /// <returns>The physical pin number.</returns>
         public static int BcmToPhysicalPinNumber(BoardRevision rev, BcmPin bcmPin) =>
             rev == BoardRevision.Rev1 ? GpioToPhysR1[(int)bcmPin] : GpioToPhysR2[(int)bcmPin];
     }
