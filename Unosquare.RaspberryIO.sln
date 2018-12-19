@@ -47,8 +47,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unosquare.RaspberryIO.Perip
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unosquare.RaspberryIO.Abstractions", "src\Unosquare.RaspberryIO.Abstractions\Unosquare.RaspberryIO.Abstractions.csproj", "{01319087-49C3-4BC6-BA85-80A52005A9E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unosquare.WiringPI", "src\Unosquare.WiringPI\Unosquare.WiringPI.csproj", "{42A9FD33-56C7-479C-9AF2-24E2D6782391}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,10 +69,6 @@ Global
 		{01319087-49C3-4BC6-BA85-80A52005A9E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01319087-49C3-4BC6-BA85-80A52005A9E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01319087-49C3-4BC6-BA85-80A52005A9E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42A9FD33-56C7-479C-9AF2-24E2D6782391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42A9FD33-56C7-479C-9AF2-24E2D6782391}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42A9FD33-56C7-479C-9AF2-24E2D6782391}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42A9FD33-56C7-479C-9AF2-24E2D6782391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,7 +80,6 @@ Global
 		{87BDC267-91D2-4CD1-B088-0F0791948C0E} = {AD40570E-5084-4507-AFB7-647230B007E0}
 		{2E1822A8-C08F-4379-B29A-F476B1CD2EE0} = {AD40570E-5084-4507-AFB7-647230B007E0}
 		{01319087-49C3-4BC6-BA85-80A52005A9E8} = {AD40570E-5084-4507-AFB7-647230B007E0}
-		{42A9FD33-56C7-479C-9AF2-24E2D6782391} = {AD40570E-5084-4507-AFB7-647230B007E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {284182C7-6434-490D-BFC0-4DB344A38C2A}
