@@ -22,9 +22,6 @@
         {
             lock (SyncLock)
             {
-                DependencyContainer.Current.AutoRegister(DependencyContainerDuplicateImplementationActions.RegisterSingle);
-                ResolveDependency<IBootstrap>().Bootstrap();
-
                 Info = SystemInfo.Instance;
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
@@ -99,6 +96,13 @@
         /// </summary>
         /// <returns>The process result.</returns>
         public static ProcessResult Shutdown() => ShutdownAsync().GetAwaiter().GetResult();
+
+        /// <summary>
+        /// Initializes an Abstractions implementation.
+        /// </summary>
+        /// <typeparam name="T">An implementation of <see cref="IBootstrap"/>.</typeparam>
+        public static void Init<T>()
+            where T : IBootstrap => Activator.CreateInstance<T>().Bootstrap();
 
         private static T ResolveDependency<T>()
             where T : class

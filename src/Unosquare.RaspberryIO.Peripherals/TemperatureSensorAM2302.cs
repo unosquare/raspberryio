@@ -198,8 +198,8 @@
             }
 
             return new AM2302DataReadEventArgs(
-                temperatureCelsius: (sign * ((data[2] << 8) + data[3])) / 10,
-                humidityPercentage: ((data[0] << 8) + data[1]) / 10);
+                temperatureCelsius: (sign * ((data[2] << 8) + data[3])) / 10m,
+                humidityPercentage: ((data[0] << 8) + data[1]) / 10m);
         }
 
         /// <summary>

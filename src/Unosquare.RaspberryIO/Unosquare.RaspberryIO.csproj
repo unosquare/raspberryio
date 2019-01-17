@@ -6,8 +6,7 @@
 This library enables developers to use the various Raspberry Pi's hardware modules including the Camera to capture images and video, the GPIO pins, and both, the SPI and I2C buses.</Description>
     <Copyright>Unosquare (c) 2016-2018</Copyright>
     <AssemblyTitle>Unosquare Raspberry IO</AssemblyTitle>
-    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.RaspberryIO</AssemblyName>
     <PackageId>Unosquare.Raspberry.IO</PackageId>

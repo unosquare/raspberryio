@@ -25,6 +25,6 @@ This library enables developers to use the various Raspberry Pi's hardware modul
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Unosquare.Swan" Version="0.36.1" />
+    <PackageReference Include="Unosquare.Swan" Version="0.36.4" />
   </ItemGroup>
 </Project>
