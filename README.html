@@ -87,7 +87,6 @@
 <li><a href="#running-the-latest-version-of-mono">Running the latest version of Mono</a><ul>
 <li><a href="#for-debian-wheezy">For Debian Wheezy</a></li>
 <li><a href="#for-debian-stretch">For Debian Stretch</a></li>
-<li><a href="#handy-notes">Handy Notes</a></li>
 </ul>
 </li>
 <li><a href="#running-net-core-2">Running .NET Core 2</a><ul>
@@ -115,6 +114,7 @@
 <li><a href="#timing-and-threading">Timing and Threading</a></li>
 <li><a href="#serial-ports-uart">Serial Ports (UART)</a></li>
 <li><a href="#abstraction-package">Abstraction Package</a></li>
+<li><a href="#handy-notes">Handy Notes</a></li>
 <li><a href="#similar-projects">Similar Projects</a></li>
 </ul>
 <h2 id="features">Features</h2>
@@ -127,8 +127,7 @@
 <li><code>Pi.I2c</code> Provides access to the functionality of the i2c bus.</li>
 <li><code>Pi.Timing</code> Provides access to The PI&#39;s Timing and threading API.</li>
 </ul>
-<p>To run the program <code>mono myprogram.exe</code> in order to work correctly. You no longer require running as root.</p>
-<p>This library depends on the wonderful <code>WiringPi</code> library available <a href="http://wiringpi.com/">here</a>. You do not need to install this library yourself. The <code>RaspberryIO</code> assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.</p>
+<p>The default low-level provider is the wonderful <code>WiringPi</code> library available <a href="http://wiringpi.com/">here</a>. You do not need to install this library yourself. The <code>Unosquare.WiringPi</code> assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.</p>
 <h3 id="peripherals">Peripherals</h3>
 <p>We offer an additional package with helpful classes to use peripherals, many of them are from pull requests from our contributors. The current set of peripherals supported are:</p>
 <ul>
@@ -146,7 +145,7 @@
 <a href="https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals"><img src="https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.RaspberryIO.Peripherals
 </code></pre><h2 id="usage">Usage</h2>
-<p>Before using <strong>Pi</strong> class it is necessary to initialize it with the specific bootstrapping class implementation.</p>
+<p>Before using <strong>Pi</strong> class it is necessary to initialize it with the specific bootstrapping class implementation (for WiringPi).</p>
 <pre><code class="lang-csharp">Pi.Init&lt;BootstrapWiringPi&gt;();
 </code></pre><h2 id="running-the-latest-version-of-mono">Running the latest version of Mono</h2>
 <p>It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:</p>
@@ -171,22 +170,6 @@ echo &quot;deb http://download.mono-project.com/repo/debian stretch main&quot; |
 sudo apt-get update
 sudo apt-get dist-upgrade
 </code></pre><p>Now, verify your version of Mono by running <code>mono --version</code>. Version 4.6 and above should be good enough.</p>
-<h3 id="handy-notes">Handy Notes</h3>
-<p>In order to setup Wi-Fi, run: <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></p>
-<p>A good file should look like this:</p>
-<pre><code>country=US
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-
-network={
-    ssid=&quot;your_real_wifi_ssid&quot;
-    scan_ssid=1
-    psk=&quot;your_real_password&quot;
-}
-</code></pre><p>And then restart the services as follows:</p>
-<pre><code>sudo systemctl daemon-reload
-sudo systemctl restart dhcpcd
-</code></pre><p>You can also configure most boot options by running: <code>sudo raspi-config</code></p>
 <h2 id="running-net-core-22">Running .NET Core 2.2</h2>
 <p>This project can also run in .NET Core 2.2. To install please execute the following commands:</p>
 <pre><code>$ sudo apt-get -y update
@@ -801,7 +784,23 @@ foreach (var device in Pi.I2C.Devices)
 <p>Install Unosquare.Raspberry.Abstractions package:
 <a href="https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions"><img src="https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.Raspberry.Abstractions
-</code></pre><h2 id="similar-projects">Similar Projects</h2>
+</code></pre><h2 id="handy-notes">Handy Notes</h2>
+<p>In order to setup Wi-Fi, run: <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></p>
+<p>A good file should look like this:</p>
+<pre><code>country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid=&quot;your_real_wifi_ssid&quot;
+    scan_ssid=1
+    psk=&quot;your_real_password&quot;
+}
+</code></pre><p>And then restart the services as follows:</p>
+<pre><code>sudo systemctl daemon-reload
+sudo systemctl restart dhcpcd
+</code></pre><p>You can also configure most boot options by running: <code>sudo raspi-config</code></p>
+<h2 id="similar-projects">Similar Projects</h2>
 <ul>
 <li><a href="https://github.com/raspberry-sharp/raspberry-sharp-io">Raspberry# IO</a></li>
 <li><a href="https://github.com/danriches/WiringPi.Net">WiringPi.Net</a></li>
