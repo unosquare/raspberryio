@@ -133,7 +133,8 @@
             do
             {
                 currentRegisterValue = ReadRegister(Register.CommIrqReg);
-            } while (--i != 0 && (currentRegisterValue & 0x01) == 0 &&
+            }
+            while (--i != 0 && (currentRegisterValue & 0x01) == 0 &&
                      (currentRegisterValue & waitInterruptFlags) == 0);
 
             ClearRegisterBits(Register.BitFramingReg, 0x80);
@@ -408,7 +409,7 @@
         {
             _spiPort.Write(new[]
             {
-                (byte) ((register << 1) & 0x7E),
+                (byte)((register << 1) & 0x7E),
                 value,
             });
         }

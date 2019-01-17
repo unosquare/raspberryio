@@ -184,7 +184,7 @@
             }
 
             // Compute the checksum
-            var checkSum = data[0] + data[1] + data[2] + data[3];
+            var checkSum = data[0] | data[1] | data[2] | data[3];
             if ((checkSum & 0xff) != data[4])
                 return null;
 
@@ -198,18 +198,15 @@
             }
 
             return new AM2302DataReadEventArgs(
-                temperatureCelsius: (sign * ((data[2] << 8) + data[3])) / 10,
-                humidityPercentage: ((data[0] << 8) + data[1]) / 10);
+                temperatureCelsius: (sign * ((data[2] << 8) + data[3])) / 10m,
+                humidityPercentage: ((data[0] << 8) + data[1]) / 10m);
         }
 
         /// <summary>
         /// Aborts the read thread.
         /// </summary>
-        private void StopContinuousReads()
-        {
+        private void StopContinuousReads() =>
             IsRunning = false;
-            ReadWorker.Abort();
-        }
 
         /// <summary>
         /// Represents the sensor data that was read.

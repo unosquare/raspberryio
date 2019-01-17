@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Abstractions;
-    using WiringPI;
+    using WiringPi;
 
     /// <summary>
     /// A class to send infrared signals using an IR LED.

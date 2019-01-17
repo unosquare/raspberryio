@@ -11,7 +11,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Raspberry.Abstractions</AssemblyName>
     <PackageId>Unosquare.Raspberry.Abstractions</PackageId>
-    <Version>0.2.0</Version>
+    <Version>0.2.1</Version>
     <Authors>Unosquare</Authors>
     <PackageIconUrl>https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/unosquare/raspberryio</PackageProjectUrl>
@@ -25,6 +25,6 @@ This library enables developers to use the various Raspberry Pi's hardware modul
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Unosquare.Swan" Version="0.36.1" />
+    <PackageReference Include="Unosquare.Swan" Version="0.36.4" />
   </ItemGroup>
 </Project>

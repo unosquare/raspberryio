@@ -12,8 +12,9 @@
     /// </summary>
     public static class Pi
     {
-        private const string MissingDependenciesMessage = "You need to load a valid assembly (WiringPi or PiGPIO)";
+        private const string MissingDependenciesMessage = "You need to load a valid assembly (WiringPi or PiGPIO).";
         private static readonly object SyncLock = new object();
+        private static bool _isInit;
 
         /// <summary>
         /// Initializes static members of the <see cref="Pi" /> class.
@@ -22,9 +23,6 @@
         {
             lock (SyncLock)
             {
-                DependencyContainer.Current.AutoRegister(DependencyContainerDuplicateImplementationActions.RegisterSingle);
-                ResolveDependency<IBootstrap>().Bootstrap();
-
                 Info = SystemInfo.Instance;
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
@@ -100,9 +98,32 @@
         /// <returns>The process result.</returns>
         public static ProcessResult Shutdown() => ShutdownAsync().GetAwaiter().GetResult();
 
+        /// <summary>
+        /// Initializes an Abstractions implementation.
+        /// </summary>
+        /// <typeparam name="T">An implementation of <see cref="IBootstrap"/>.</typeparam>
+        public static void Init<T>()
+            where T : IBootstrap
+        {
+            if (_isInit)
+                return;
+
+            lock(SyncLock)
+            {
+                if (!_isInit)
+                {
+                    Activator.CreateInstance<T>().Bootstrap();
+                    _isInit = true;
+                }
+            }
+        }
+
         private static T ResolveDependency<T>()
             where T : class
         {
+            if (!_isInit)
+                throw new InvalidOperationException($"You must first initialize {nameof(Pi)} referencing a valid {nameof(IBootstrap)} implementation.");
+
             if (!DependencyContainer.Current.CanResolve<T>())
                 throw new InvalidOperationException(MissingDependenciesMessage);
 

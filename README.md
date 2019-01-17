@@ -14,6 +14,7 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Features](#features)
     * [Peripherals](#peripherals)
   * [Installation](#installation)
+  * [Usage](#usage)
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
     * [For Debian Wheezy](#for-debian-wheezy)
     * [For Debian Stretch](#for-debian-stretch)
@@ -79,6 +80,13 @@ Install Raspberry.IO Peripherals package:
 PM> Install-Package Unosquare.RaspberryIO.Peripherals
 ```
 
+## Usage
+
+Before using **Pi** class it is necessary to initialize it with the specific bootstrapping class implementation.
+
+```csharp
+Pi.Init<BootstrapWiringPi>();
+```
 
 ## Running the latest version of Mono
 It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:
@@ -141,18 +149,16 @@ sudo systemctl restart dhcpcd
 
 You can also configure most boot options by running: `sudo raspi-config`
 
-## Running .NET Core 2.1
+## Running .NET Core 2.2
 
-This project can also run in .NET Core 2.1. To install please execute the following commands:
+This project can also run in .NET Core 2.2. To install please execute the following commands:
 
 ```
 $ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.300-rc1-008673/dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz
-$ wget https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/2.1.0-rc1-final/aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz
+$ wget https://download.visualstudio.microsoft.com/download/pr/e64d0771-52f3-444c-b174-8be5923ca6da/e0d7f36a0017162f5ff7a81b919ef434/dotnet-runtime-2.2.1-linux-arm.tar.gz
 $ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo tar -xvf aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo tar -xvf dotnet-runtime-2.2.1-linux-arm.tar.gz -C /opt/dotnet/
 $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
 $ dotnet --info
 ```
