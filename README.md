@@ -14,13 +14,13 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Features](#features)
     * [Peripherals](#peripherals)
   * [Installation](#installation)
+  * [Usage](#usage)
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
     * [For Debian Wheezy](#for-debian-wheezy)
     * [For Debian Stretch](#for-debian-stretch)
     * [Handy Notes](#handy-notes)
   * [Running .NET Core 2](#running-net-core-2)
     * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
-  * [Bootstrap](#bootstrap)
   * [The Camera Module](#the-camera-module)
     * [Capturing Images](#capturing-images)
     * [Capturing Video](#capturing-video)
@@ -80,6 +80,13 @@ Install Raspberry.IO Peripherals package:
 PM> Install-Package Unosquare.RaspberryIO.Peripherals
 ```
 
+## Usage
+
+Before using **Pi** class it is necessary to initialize it with the specific bootstrapping class implementation.
+
+```csharp
+Pi.Init<BootstrapWiringPi>();
+```
 
 ## Running the latest version of Mono
 It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:
@@ -210,16 +217,6 @@ ubuntu@ubuntu:~/publish$ sudo chmod u+x *
 
 ```
 ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
-```
-
-## Bootstrap
-
-In order to use a custom implementations of some APIs (like GPIO, SPI, I2C and others) you need to load a valid implementation of [Unosquare.RaspberryIO.Abstractions](/src/Unosquare.RaspberryIO.Abstractions). Currently we have an implementation that fully supports [WiringPi](https://github.com/unosquare/wiringpi-dotnet) and we are working in the implementation for [PiGpio](https://github.com/unosquare/pigpio-dotnet/).
-
-For example, to initialize **Pi** with the WiringPi implementation: add the [WiringPi nuget](https://www.nuget.org/packages/Unosquare.WiringPi/) to your project and call Pi.Init referencing the WiringPi bootstrapping class (BootstrapWiringPi):
-
-```csharp
-Pi.Init<BootstrapWiringPi>();
 ```
 
 ## The Camera Module
