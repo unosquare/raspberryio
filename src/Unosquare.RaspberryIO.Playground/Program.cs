@@ -33,7 +33,7 @@
                 Pi.Init<BootstrapWiringPi>();
 
                 // A set of very simple tests:
-                TestSystemInfo();
+                // TestSystemInfo();
 
                 // TestCaptureImage();
                 // TestCaptureVideo();
@@ -45,7 +45,7 @@
                 // TestHardwarePwm();
                 // TestInfraredSensor();
                 // TestServo();
-                // TestTempSensor();
+                TestTempSensor();
             }
             catch (Exception ex)
             {
@@ -65,11 +65,12 @@
         /// </summary>
         public static void TestTempSensor()
         {
-            var sensor = new TemperatureSensorAM2302(Pi.Gpio[BcmPin.Gpio17]);
-            sensor.OnDataAvailable += (s, e) => $"Temperature: {e.TemperatureCelsius} | Humidity: {e.HumidityPercentage}".Info("AM2302");
+            var sensor = new TemperatureSensorAM2302(Pi.Gpio[BcmPin.Gpio18]);
+            sensor.OnDataAvailable += (s, e) => $"Temperature: {e?.TemperatureCelsius ?? 0} | Humidity: {e?.HumidityPercentage ?? 0}".Info("AM2302");
 
             sensor.Start();
             Console.ReadKey(true);
+            sensor.Dispose();
         }
 
         /// <summary>
