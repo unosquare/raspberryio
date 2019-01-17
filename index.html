@@ -83,6 +83,7 @@
 </ul>
 </li>
 <li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
 <li><a href="#running-the-latest-version-of-mono">Running the latest version of Mono</a><ul>
 <li><a href="#for-debian-wheezy">For Debian Wheezy</a></li>
 <li><a href="#for-debian-stretch">For Debian Stretch</a></li>
@@ -93,7 +94,6 @@
 <li><a href="#run-the-app-on-the-raspberry">Run the app on the raspberry</a></li>
 </ul>
 </li>
-<li><a href="#bootstrap">Bootstrap</a></li>
 <li><a href="#the-camera-module">The Camera Module</a><ul>
 <li><a href="#capturing-images">Capturing Images</a></li>
 <li><a href="#capturing-video">Capturing Video</a></li>
@@ -145,6 +145,9 @@
 </code></pre><p>Install Raspberry.IO Peripherals package:
 <a href="https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals"><img src="https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.RaspberryIO.Peripherals
+</code></pre><h2 id="usage">Usage</h2>
+<p>Before using <strong>Pi</strong> class it is necessary to initialize it with the specific bootstrapping class implementation.</p>
+<pre><code class="lang-csharp">Pi.Init&lt;BootstrapWiringPi&gt;();
 </code></pre><h2 id="running-the-latest-version-of-mono">Running the latest version of Mono</h2>
 <p>It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:</p>
 <pre><code>Mono JIT compiler version 5.4.1.6 (tarball Wed Nov  8 21:42:16 UTC 2017)
@@ -238,10 +241,6 @@ Completed.
 <li>Run the project</li>
 </ul>
 <pre><code>ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
-</code></pre><h2 id="bootstrap">Bootstrap</h2>
-<p>In order to use a custom implementations of some APIs (like GPIO, SPI, I2C and others) you need to load a valid implementation of <a href="/src/Unosquare.RaspberryIO.Abstractions">Unosquare.RaspberryIO.Abstractions</a>. Currently we have an implementation that fully supports <a href="https://github.com/unosquare/wiringpi-dotnet">WiringPi</a> and we are working in the implementation for <a href="https://github.com/unosquare/pigpio-dotnet/">PiGpio</a>.</p>
-<p>For example, to initialize <strong>Pi</strong> with the WiringPi implementation: add the <a href="https://www.nuget.org/packages/Unosquare.WiringPi/">WiringPi nuget</a> to your project and call Pi.Init referencing the WiringPi bootstrapping class (BootstrapWiringPi):</p>
-<pre><code class="lang-csharp">Pi.Init&lt;BootstrapWiringPi&gt;();
 </code></pre><h2 id="the-camera-module">The Camera Module</h2>
 <p>The <code>Pi.Camera</code> module uses <code>raspivid</code> and <code>raspistill</code> to access the camera so they must be installed in order for your program to work properly. <code>raspistill</code> arguments are specified in an instance of the <code>CameraStillSettings</code> class, while the <code>raspivid</code> arguments are specified in an instance of the <code>CameraVideoSettings</code> class. </p>
 <h3 id="capturing-images">Capturing Images</h3>
