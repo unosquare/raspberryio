@@ -18,7 +18,6 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
     * [For Debian Wheezy](#for-debian-wheezy)
     * [For Debian Stretch](#for-debian-stretch)
-    * [Handy Notes](#handy-notes)
   * [Running .NET Core 2](#running-net-core-2)
     * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
   * [The Camera Module](#the-camera-module)
@@ -38,6 +37,7 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Timing and Threading](#timing-and-threading)
   * [Serial Ports (UART)](#serial-ports-uart)
   * [Abstraction Package](#abstraction-package)
+  * [Handy Notes](#handy-notes)
   * [Similar Projects](#similar-projects)
   
 ## Features
@@ -51,9 +51,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
 * ```Pi.I2c``` Provides access to the functionality of the i2c bus.
 * ```Pi.Timing``` Provides access to The PI's Timing and threading API.
 
-To run the program ```mono myprogram.exe``` in order to work correctly. You no longer require running as root.
-
-This library depends on the wonderful ```WiringPi``` library available [here](http://wiringpi.com/). You do not need to install this library yourself. The ```RaspberryIO``` assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.
+The default low-level provider is the wonderful ```WiringPi``` library available [here](http://wiringpi.com/). You do not need to install this library yourself. The ```Unosquare.WiringPi``` assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.
 
 ### Peripherals
 
@@ -82,7 +80,7 @@ PM> Install-Package Unosquare.RaspberryIO.Peripherals
 
 ## Usage
 
-Before using **Pi** class it is necessary to initialize it with the specific bootstrapping class implementation.
+Before using **Pi** class it is necessary to initialize it with the specific bootstrapping class implementation (for WiringPi).
 
 ```csharp
 Pi.Init<BootstrapWiringPi>();
@@ -123,31 +121,6 @@ sudo apt-get dist-upgrade
 ```
 
 Now, verify your version of Mono by running ```mono --version```. Version 4.6 and above should be good enough.
-
-### Handy Notes
-
-In order to setup Wi-Fi, run: `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
-
-A good file should look like this:
-```
-country=US
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-
-network={
-    ssid="your_real_wifi_ssid"
-    scan_ssid=1
-    psk="your_real_password"
-}
-```
-
-And then restart the services as follows:
-```
-sudo systemctl daemon-reload
-sudo systemctl restart dhcpcd
-```
-
-You can also configure most boot options by running: `sudo raspi-config`
 
 ## Running .NET Core 2.2
 
@@ -551,6 +524,31 @@ Install Unosquare.Raspberry.Abstractions package:
 ```
 PM> Install-Package Unosquare.Raspberry.Abstractions
 ```
+
+## Handy Notes
+
+In order to setup Wi-Fi, run: `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
+
+A good file should look like this:
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="your_real_wifi_ssid"
+    scan_ssid=1
+    psk="your_real_password"
+}
+```
+
+And then restart the services as follows:
+```
+sudo systemctl daemon-reload
+sudo systemctl restart dhcpcd
+```
+
+You can also configure most boot options by running: `sudo raspi-config`
 
 ## Similar Projects
 - <a href="https://github.com/raspberry-sharp/raspberry-sharp-io">Raspberry# IO</a>
