@@ -2455,6 +2455,22 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.Info
   nameWithType: Pi.Info
+- uid: Unosquare.RaspberryIO.Pi.Init*
+  name: Init
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Init_
+  commentId: Overload:Unosquare.RaspberryIO.Pi.Init
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Pi.Init
+  nameWithType: Pi.Init
+- uid: Unosquare.RaspberryIO.Pi.Init``1
+  name: Init<T>()
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Init__1
+  commentId: M:Unosquare.RaspberryIO.Pi.Init``1
+  name.vb: Init(Of T)()
+  fullName: Unosquare.RaspberryIO.Pi.Init<T>()
+  fullName.vb: Unosquare.RaspberryIO.Pi.Init(Of T)()
+  nameWithType: Pi.Init<T>()
+  nameWithType.vb: Pi.Init(Of T)()
 - uid: Unosquare.RaspberryIO.Pi.PiDisplay
   name: PiDisplay
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_PiDisplay
