@@ -93,6 +93,7 @@
 <li><a href="#run-the-app-on-the-raspberry">Run the app on the raspberry</a></li>
 </ul>
 </li>
+<li><a href="#bootstrap">Bootstrap</a></li>
 <li><a href="#the-camera-module">The Camera Module</a><ul>
 <li><a href="#capturing-images">Capturing Images</a></li>
 <li><a href="#capturing-video">Capturing Video</a></li>
@@ -183,15 +184,13 @@ network={
 <pre><code>sudo systemctl daemon-reload
 sudo systemctl restart dhcpcd
 </code></pre><p>You can also configure most boot options by running: <code>sudo raspi-config</code></p>
-<h2 id="running-net-core-21">Running .NET Core 2.1</h2>
-<p>This project can also run in .NET Core 2.1. To install please execute the following commands:</p>
+<h2 id="running-net-core-22">Running .NET Core 2.2</h2>
+<p>This project can also run in .NET Core 2.2. To install please execute the following commands:</p>
 <pre><code>$ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.300-rc1-008673/dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz
-$ wget https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/2.1.0-rc1-final/aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz
+$ wget https://download.visualstudio.microsoft.com/download/pr/e64d0771-52f3-444c-b174-8be5923ca6da/e0d7f36a0017162f5ff7a81b919ef434/dotnet-runtime-2.2.1-linux-arm.tar.gz
 $ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo tar -xvf aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo tar -xvf dotnet-runtime-2.2.1-linux-arm.tar.gz -C /opt/dotnet/
 $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
 $ dotnet --info
 </code></pre><h3 id="run-the-app-on-the-raspberry">Run the app on the raspberry</h3>
@@ -239,6 +238,10 @@ Completed.
 <li>Run the project</li>
 </ul>
 <pre><code>ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
+</code></pre><h2 id="bootstrap">Bootstrap</h2>
+<p>In order to use a custom implementations of some APIs (like GPIO, SPI, I2C and others) you need to load a valid implementation of <a href="/src/Unosquare.RaspberryIO.Abstractions">Unosquare.RaspberryIO.Abstractions</a>. Currently we have an implementation that fully supports <a href="https://github.com/unosquare/wiringpi-dotnet">WiringPi</a> and we are working in the implementation for <a href="https://github.com/unosquare/pigpio-dotnet/">PiGpio</a>.</p>
+<p>For example, to initialize <strong>Pi</strong> with the WiringPi implementation: add the <a href="https://www.nuget.org/packages/Unosquare.WiringPi/">WiringPi nuget</a> to your project and call Pi.Init referencing the WiringPi bootstrapping class (BootstrapWiringPi):</p>
+<pre><code class="lang-csharp">Pi.Init&lt;BootstrapWiringPi&gt;();
 </code></pre><h2 id="the-camera-module">The Camera Module</h2>
 <p>The <code>Pi.Camera</code> module uses <code>raspivid</code> and <code>raspistill</code> to access the camera so they must be installed in order for your program to work properly. <code>raspistill</code> arguments are specified in an instance of the <code>CameraStillSettings</code> class, while the <code>raspivid</code> arguments are specified in an instance of the <code>CameraVideoSettings</code> class. </p>
 <h3 id="capturing-images">Capturing Images</h3>
