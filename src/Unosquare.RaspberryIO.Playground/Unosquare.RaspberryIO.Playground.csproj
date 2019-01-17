@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netcoreapp2.2</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.0</TargetFrameworks>
     <RuntimeIdentifier>linux-arm</RuntimeIdentifier>
     <AssemblyName>Unosquare.RaspberryIO.Playground</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>Unosquare.RaspberryIO.Playground</PackageId>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <SshDeployHost>172.16.17.192</SshDeployHost>
+    <SshDeployHost>172.16.17.191</SshDeployHost>
     <SshDeployClean />
     <SshDeployTargetPath>/home/pi/playground</SshDeployTargetPath>
     <SshDeployUsername>pi</SshDeployUsername>
     <SshDeployPassword>raspberry</SshDeployPassword>
-    <SshDeployPostCommand>dotnet /home/pi/playground/Unosquare.RaspberryIO.Playground.dll</SshDeployPostCommand>
+    <!--<SshDeployPostCommand>dotnet /home/pi/playground/Unosquare.RaspberryIO.Playground.dll</SshDeployPostCommand>-->
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Unosquare.Swan.Lite" Version="0.38.0" />
+    <PackageReference Include="Unosquare.Swan.Lite" Version="0.38.1" />
   </ItemGroup>
   <ItemGroup>
     <None Update="fractal.jpg;spectrum.png">

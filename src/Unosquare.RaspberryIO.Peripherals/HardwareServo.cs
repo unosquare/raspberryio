@@ -3,7 +3,7 @@
     using Abstractions;
     using Swan;
     using System;
-    using WiringPI;
+    using WiringPi;
 
     /// <summary>
     /// Represents a standard 50hz pulse-controlled servo using Hardware-assited PWM.

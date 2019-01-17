@@ -11,7 +11,7 @@
     using Peripherals;
     using Swan;
     using Unosquare.RaspberryIO.Abstractions;
-    using Unosquare.WiringPI;
+    using Unosquare.WiringPi;
 
     /// <summary>
     /// Main entry point class.
@@ -30,6 +30,8 @@
 
             try
             {
+                Pi.Init<BootstrapWiringPi>();
+
                 // A set of very simple tests:
                 TestSystemInfo();
 
