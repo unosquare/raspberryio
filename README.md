@@ -20,6 +20,7 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
     * [Handy Notes](#handy-notes)
   * [Running .NET Core 2](#running-net-core-2)
     * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
+  * [Bootstrap](#bootstrap)
   * [The Camera Module](#the-camera-module)
     * [Capturing Images](#capturing-images)
     * [Capturing Video](#capturing-video)
@@ -141,18 +142,16 @@ sudo systemctl restart dhcpcd
 
 You can also configure most boot options by running: `sudo raspi-config`
 
-## Running .NET Core 2.1
+## Running .NET Core 2.2
 
-This project can also run in .NET Core 2.1. To install please execute the following commands:
+This project can also run in .NET Core 2.2. To install please execute the following commands:
 
 ```
 $ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.300-rc1-008673/dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz
-$ wget https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/2.1.0-rc1-final/aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz
+$ wget https://download.visualstudio.microsoft.com/download/pr/e64d0771-52f3-444c-b174-8be5923ca6da/e0d7f36a0017162f5ff7a81b919ef434/dotnet-runtime-2.2.1-linux-arm.tar.gz
 $ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo tar -xvf aspnetcore-runtime-2.1.0-rc1-final-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo tar -xvf dotnet-runtime-2.2.1-linux-arm.tar.gz -C /opt/dotnet/
 $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
 $ dotnet --info
 ```
@@ -211,6 +210,16 @@ ubuntu@ubuntu:~/publish$ sudo chmod u+x *
 
 ```
 ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
+```
+
+## Bootstrap
+
+In order to use a custom implementations of some APIs (like GPIO, SPI, I2C and others) you need to load a valid implementation of [Unosquare.RaspberryIO.Abstractions](/src/Unosquare.RaspberryIO.Abstractions). Currently we have an implementation that fully supports [WiringPi](https://github.com/unosquare/wiringpi-dotnet) and we are working in the implementation for [PiGpio](https://github.com/unosquare/pigpio-dotnet/).
+
+For example, to initialize **Pi** with the WiringPi implementation: add the [WiringPi nuget](https://www.nuget.org/packages/Unosquare.WiringPi/) to your project and call Pi.Init referencing the WiringPi bootstrapping class (BootstrapWiringPi):
+
+```csharp
+Pi.Init<BootstrapWiringPi>();
 ```
 
 ## The Camera Module
