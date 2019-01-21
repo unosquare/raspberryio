@@ -184,7 +184,7 @@
             }
 
             // Compute the checksum
-            var checkSum = data[0] | data[1] | data[2] | data[3];
+            var checkSum = data[0] + data[1] + data[2] + data[3];
             if ((checkSum & 0xff) != data[4])
                 return null;
 
