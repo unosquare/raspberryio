@@ -1948,6 +1948,24 @@ references:
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule0x14
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule0x14
   nameWithType: PiVersion.ComputeModule0x14
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3Embest
+  name: ComputeModule3Embest
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_ComputeModule3Embest
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3Embest
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3Embest
+  nameWithType: PiVersion.ComputeModule3Embest
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3PlusSony
+  name: ComputeModule3PlusSony
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_ComputeModule3PlusSony
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3PlusSony
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3PlusSony
+  nameWithType: PiVersion.ComputeModule3PlusSony
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3Sony
+  name: ComputeModule3Sony
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_ComputeModule3Sony
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3Sony
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.ComputeModule3Sony
+  nameWithType: PiVersion.ComputeModule3Sony
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.ModelAPlus0x12
   name: ModelAPlus0x12
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_ModelAPlus0x12
@@ -1960,6 +1978,12 @@ references:
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.ModelAPlus0x15
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.ModelAPlus0x15
   nameWithType: PiVersion.ModelAPlus0x15
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.ModelAPlus1v1Sony
+  name: ModelAPlus1v1Sony
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_ModelAPlus1v1Sony
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.ModelAPlus1v1Sony
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.ModelAPlus1v1Sony
+  nameWithType: PiVersion.ModelAPlus1v1Sony
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.ModelAx07
   name: ModelAx07
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_ModelAx07
@@ -1990,6 +2014,12 @@ references:
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBPlus0x13
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.ModelBPlus0x13
   nameWithType: PiVersion.ModelBPlus0x13
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.ModelBPlus1v2Sony
+  name: ModelBPlus1v2Sony
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_ModelBPlus1v2Sony
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBPlus1v2Sony
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.ModelBPlus1v2Sony
+  nameWithType: PiVersion.ModelBPlus1v2Sony
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev1
   name: ModelBRev1
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_ModelBRev1
@@ -2038,6 +2068,12 @@ references:
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev2x0f
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.ModelBRev2x0f
   nameWithType: PiVersion.ModelBRev2x0f
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v0Sony
+  name: Pi2ModelB1v0Sony
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi2ModelB1v0Sony
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v0Sony
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v0Sony
+  nameWithType: PiVersion.Pi2ModelB1v0Sony
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v1Embest
   name: Pi2ModelB1v1Embest
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi2ModelB1v1Embest
@@ -2056,30 +2092,72 @@ references:
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v2
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi2ModelB1v2
   nameWithType: PiVersion.Pi2ModelB1v2
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelAPlus
+  name: Pi3ModelAPlus
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi3ModelAPlus
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelAPlus
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelAPlus
+  nameWithType: PiVersion.Pi3ModelAPlus
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBEmbest
   name: Pi3ModelBEmbest
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi3ModelBEmbest
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBEmbest
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBEmbest
   nameWithType: PiVersion.Pi3ModelBEmbest
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBPlusSony
+  name: Pi3ModelBPlusSony
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi3ModelBPlusSony
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBPlusSony
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBPlusSony
+  nameWithType: PiVersion.Pi3ModelBPlusSony
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBSony
   name: Pi3ModelBSony
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi3ModelBSony
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBSony
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBSony
   nameWithType: PiVersion.Pi3ModelBSony
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBSonyJapan
+  name: Pi3ModelBSonyJapan
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi3ModelBSonyJapan
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBSonyJapan
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBSonyJapan
+  nameWithType: PiVersion.Pi3ModelBSonyJapan
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBStadium
+  name: Pi3ModelBStadium
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi3ModelBStadium
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBStadium
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBStadium
+  nameWithType: PiVersion.Pi3ModelBStadium
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v2
   name: PiZero1v2
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_PiZero1v2
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v2
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v2
   nameWithType: PiVersion.PiZero1v2
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v2Embest
+  name: PiZero1v2Embest
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_PiZero1v2Embest
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v2Embest
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v2Embest
+  nameWithType: PiVersion.PiZero1v2Embest
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v3
   name: PiZero1v3
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_PiZero1v3
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v3
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v3
   nameWithType: PiVersion.PiZero1v3
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v3Embest
+  name: PiZero1v3Embest
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_PiZero1v3Embest
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v3Embest
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v3Embest
+  nameWithType: PiVersion.PiZero1v3Embest
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.PiZeroW
+  name: PiZeroW
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_PiZeroW
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.PiZeroW
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.PiZeroW
+  nameWithType: PiVersion.PiZeroW
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.Unknown
   name: Unknown
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Unknown
