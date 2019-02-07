@@ -480,6 +480,8 @@ var request = System.Text.Encoding.ASCII.GetBytes("HELLO!");
 var response = Pi.Spi.Channel0.SendReceive(request);
 ```
 
+**_Note_**: In order to enable the second SPI channel (SPI1) you need to add `dtoverlay=spi1-1cs` to the config file.
+
 ## I2C to connect ICs
 The Inter IC Bus (I2C) is a cousin of the SPI bus but it is somewhat more complex and it does not work as a ring buffer like the SPI bus. It also connects all of its slave devices in series and depends on 2 lines only. There is a nice tutorial on setting up and using the I2C bus at [Robot Electronics](http://www.robot-electronics.co.uk/i2c-tutorial). From their site: _The physical bus is just two wires, called SCL and SDA. SCL is the clock line. It is used to synchronize all data transfers over the I2C bus. SDA is the data line. The SCL & SDA lines are connected to all devices on the I2C bus. There needs to be a third wire which is just the ground or 0 volts. There may also be a 5volt wire is power is being distributed to the devices. Both SCL and SDA lines are "open drain" drivers. What this means is that the chip can drive its output low, but it cannot drive it high. For the line to be able to go high you must provide pull-up resistors to the 5v supply. There should be a resistor from the SCL line to the 5v line and another from the SDA line to the 5v line. You only need one set of pull-up resistors for the whole I2C bus, not for each device._
 
