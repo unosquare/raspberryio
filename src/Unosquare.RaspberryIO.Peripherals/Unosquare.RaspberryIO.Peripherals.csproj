@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <AssemblyName>Unosquare.RaspberryIO.Peripherals</AssemblyName>
-    <Copyright>Unosquare (c) 2016-2018</Copyright>
-    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <Copyright>Unosquare (c) 2016-2019</Copyright>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.0</TargetFrameworks>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
     <LangVersion>7.3</LangVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>0.4.0</Version>
+    <Version>0.2.4</Version>
     <Company>Unosquare</Company>
     <Description>A set of classes for peripherals working with RaspberryIO.</Description>
   </PropertyGroup>
@@ -22,7 +22,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Unosquare.WiringPi" Version="0.2.3" />
+    <PackageReference Include="Unosquare.WiringPi" Version="0.2.4" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
   </ItemGroup>
 

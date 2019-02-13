@@ -1,11 +1,11 @@
-﻿#if NET461
+﻿#if NET462
 namespace Unosquare.RaspberryIO.Peripherals
 {
     using Swan;
     using Swan.Formatters;
     using System;
     using System.Collections.Generic;
-    using Unosquare.RaspberryIO.Abstractions;
+    using Abstractions;
 
     /// <summary>
     /// Represents an SPI addressable strip of RGB LEDs
