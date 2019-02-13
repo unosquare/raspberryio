@@ -1,28 +1,29 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
+    using Abstractions;
+    using Camera;
+    using Computer;
+    using Peripherals;
+    using Swan;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading;
-    using Camera;
-    using Computer;
-    using Peripherals;
-    using Swan;
-    using Unosquare.RaspberryIO.Abstractions;
-    using Unosquare.WiringPi;
+    using System.Threading.Tasks;
+    using WiringPi;
 
     /// <summary>
     /// Main entry point class.
     /// </summary>
-    public partial class Program
+    public static partial class Program
     {
         /// <summary>
         /// Defines the entry point of the application.
         /// </summary>
-        /// <param name="args">The CLI arguments.</param>
-        public static void Main(string[] args)
+        /// <returns>A task representing the program.</returns>
+        public static async Task Main()
         {
             $"Starting program at {DateTime.Now}".Info();
 
@@ -33,7 +34,7 @@
                 Pi.Init<BootstrapWiringPi>();
 
                 // A set of very simple tests:
-                // TestSystemInfo();
+                await TestSystemInfo();
 
                 // TestCaptureImage();
                 // TestCaptureVideo();
@@ -286,7 +287,7 @@
             Console.WriteLine("finished");
         }
 
-        private static void TestSystemInfo()
+        private static async Task TestSystemInfo()
         {
             $"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins".Info();
             $"{Pi.Info}".Info();
@@ -297,7 +298,7 @@
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}"
                 .Info();
 
-            NetworkSettings.Instance.RetrieveAdapters()
+            (await NetworkSettings.Instance.RetrieveAdapters())
                 .Select(adapter =>
                     $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}")
                 .ToList()

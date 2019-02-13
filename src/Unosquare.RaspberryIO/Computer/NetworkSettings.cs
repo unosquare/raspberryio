@@ -9,6 +9,7 @@
     using System.Linq;
     using System.Net;
     using System.Text;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Represents the network information.
@@ -27,20 +28,20 @@
         /// </summary>
         /// <param name="adapter">The adapter.</param>
         /// <returns>A list of WiFi networks.</returns>
-        public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string adapter) => RetrieveWirelessNetworks(new[] { adapter });
+        public Task<List<WirelessNetworkInfo>> RetrieveWirelessNetworks(string adapter) => RetrieveWirelessNetworks(new[] { adapter });
 
         /// <summary>
         /// Retrieves the wireless networks.
         /// </summary>
         /// <param name="adapters">The adapters.</param>
         /// <returns>A list of WiFi networks.</returns>
-        public List<WirelessNetworkInfo> RetrieveWirelessNetworks(string[] adapters = null)
+        public async Task<List<WirelessNetworkInfo>> RetrieveWirelessNetworks(string[] adapters = null)
         {
             var result = new List<WirelessNetworkInfo>();
 
-            foreach (var networkAdapter in adapters ?? RetrieveAdapters().Where(x => x.IsWireless).Select(x => x.Name))
+            foreach (var networkAdapter in adapters ?? (await RetrieveAdapters()).Where(x => x.IsWireless).Select(x => x.Name))
             {
-                var wirelessOutput = ProcessRunner.GetProcessOutputAsync("iwlist", $"{networkAdapter} scanning").Result;
+                var wirelessOutput = await ProcessRunner.GetProcessOutputAsync("iwlist", $"{networkAdapter} scanning");
                 var outputLines =
                     wirelessOutput.Split('\n')
                         .Select(x => x.Trim())
@@ -53,7 +54,7 @@
 
                     if (line.StartsWith(EssidTag) == false) continue;
 
-                    var network = new WirelessNetworkInfo()
+                    var network = new WirelessNetworkInfo
                     {
                         Name = line.Replace(EssidTag, string.Empty).Replace("\"", string.Empty),
                     };
@@ -65,11 +66,9 @@
                         // should look for two lines before the ESSID acording to the scan
                         line = outputLines[i - 2];
 
-                        if (line.StartsWith("Quality="))
-                        {
-                            network.Quality = line.Replace("Quality=", string.Empty);
-                            break;
-                        }
+                        if (!line.StartsWith("Quality=")) continue;
+                        network.Quality = line.Replace("Quality=", string.Empty);
+                        break;
                     }
 
                     while (true)
@@ -79,11 +78,9 @@
                         // should look for a line before the ESSID  acording to the scan
                         line = outputLines[i - 1];
 
-                        if (line.StartsWith("Encryption key:"))
-                        {
-                            network.IsEncrypted = line.Replace("Encryption key:", string.Empty).Trim() == "on";
-                            break;
-                        }
+                        if (!line.StartsWith("Encryption key:")) continue;
+                        network.IsEncrypted = line.Replace("Encryption key:", string.Empty).Trim() == "on";
+                        break;
                     }
 
                     if (result.Any(x => x.Name == network.Name) == false)
@@ -102,7 +99,7 @@
         /// <param name="password">The password.</param>
         /// <param name="countryCode">The 2-letter country code in uppercase. Default is US.</param>
         /// <returns>True if successful. Otherwise, false.</returns>
-        public bool SetupWirelessNetwork(string adapterName, string networkSsid, string password = null, string countryCode = "US")
+        public async Task<bool> SetupWirelessNetwork(string adapterName, string networkSsid, string password = null, string countryCode = "US")
         {
             // TODO: Get the country where the device is located to set 'country' param in payload var
             var payload = $"country={countryCode}\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
@@ -112,9 +109,9 @@
             try
             {
                 File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
-                ProcessRunner.GetProcessOutputAsync("pkill", "-f wpa_supplicant").Wait();
-                ProcessRunner.GetProcessOutputAsync("ifdown", adapterName).Wait();
-                ProcessRunner.GetProcessOutputAsync("ifup", adapterName).Wait();
+                await ProcessRunner.GetProcessOutputAsync("pkill", "-f wpa_supplicant");
+                await ProcessRunner.GetProcessOutputAsync("ifdown", adapterName);
+                await ProcessRunner.GetProcessOutputAsync("ifup", adapterName);
             }
             catch (Exception ex)
             {
@@ -129,15 +126,15 @@
         /// Retrieves the network adapters.
         /// </summary>
         /// <returns>A list of network adapters.</returns>
-        public List<NetworkAdapterInfo> RetrieveAdapters()
+        public async Task<List<NetworkAdapterInfo>> RetrieveAdapters()
         {
             const string hWaddr = "HWaddr ";
             const string ether = "ether ";
 
             var result = new List<NetworkAdapterInfo>();
-            var interfacesOutput = ProcessRunner.GetProcessOutputAsync("ifconfig").Result;
-            var wlanOutput = ProcessRunner.GetProcessOutputAsync("iwconfig")
-                    .Result.Split('\n')
+            var interfacesOutput = await ProcessRunner.GetProcessOutputAsync("ifconfig");
+            var wlanOutput = (await ProcessRunner.GetProcessOutputAsync("iwconfig"))
+                .Split('\n')
                     .Where(x => x.Contains("no wireless extensions.") == false)
                     .ToArray();
 
@@ -159,9 +156,9 @@
                 };
 
                 // Parse the MAC address in old version of ifconfig; it comes in the first line
-                if (line.IndexOf(hWaddr) >= 0)
+                if (line.IndexOf(hWaddr, StringComparison.Ordinal) >= 0)
                 {
-                    var startIndexHwd = line.IndexOf(hWaddr) + hWaddr.Length;
+                    var startIndexHwd = line.IndexOf(hWaddr, StringComparison.Ordinal) + hWaddr.Length;
                     adapter.MacAddress = line.Substring(startIndexHwd, 17).Trim();
                 }
 
@@ -179,33 +176,17 @@
                     }
 
                     // Parse the MAC address in new versions of ifconfig; it no longer comes in the first line
-                    if (indentedLine.IndexOf(ether) >= 0 && string.IsNullOrWhiteSpace(adapter.MacAddress))
+                    if (indentedLine.IndexOf(ether, StringComparison.Ordinal) >= 0 && string.IsNullOrWhiteSpace(adapter.MacAddress))
                     {
-                        var startIndexHwd = indentedLine.IndexOf(ether) + ether.Length;
+                        var startIndexHwd = indentedLine.IndexOf(ether, StringComparison.Ordinal) + ether.Length;
                         adapter.MacAddress = indentedLine.Substring(startIndexHwd, 17).Trim();
                     }
 
                     // Parse the IPv4 Address
-                    {
-                        var addressText = ParseOutputTagFromLine(indentedLine, "inet addr:") ?? ParseOutputTagFromLine(indentedLine, "inet ");
-
-                        if (addressText != null)
-                        {
-                            if (IPAddress.TryParse(addressText, out var outValue))
-                                adapter.IPv4 = outValue;
-                        }
-                    }
+                    GetIPv4(indentedLine, adapter);
 
                     // Parse the IPv6 Address
-                    {
-                        var addressText = ParseOutputTagFromLine(indentedLine, "inet6 addr:") ?? ParseOutputTagFromLine(indentedLine, "inet6 ");
-
-                        if (addressText != null)
-                        {
-                            if (IPAddress.TryParse(addressText, out var outValue))
-                                adapter.IPv6 = outValue;
-                        }
-                    }
+                    GetIPv6(indentedLine, adapter);
 
                     // we have hit the end of the output in an indented line
                     if (j >= outputLines.Length - 1)
@@ -236,27 +217,42 @@
         /// Retrieves current wireless connected network name.
         /// </summary>
         /// <returns>The connected network name.</returns>
-        public string GetWirelessNetworkName() => ProcessRunner.GetProcessOutputAsync("iwgetid", "-r").Result;
+        public Task<string> GetWirelessNetworkName() => ProcessRunner.GetProcessOutputAsync("iwgetid", "-r");
+        
+        private static void GetIPv4(string indentedLine, NetworkAdapterInfo adapter)
+        {
+            var addressText = ParseOutputTagFromLine(indentedLine, "inet addr:") ??
+                              ParseOutputTagFromLine(indentedLine, "inet ");
 
-        /// <summary>
-        /// Parses the output tag from the given line.
-        /// </summary>
-        /// <param name="indentedLine">The indented line.</param>
-        /// <param name="tagName">Name of the tag.</param>
-        /// <returns>The value after the tag identifier.</returns>
+            if (addressText == null) return;
+            if (IPAddress.TryParse(addressText, out var outValue))
+                adapter.IPv4 = outValue;
+        }
+
+        private static void GetIPv6(string indentedLine, NetworkAdapterInfo adapter)
+        {
+            var addressText = ParseOutputTagFromLine(indentedLine, "inet6 addr:") ??
+                              ParseOutputTagFromLine(indentedLine, "inet6 ");
+
+            if (addressText == null) return;
+
+            if (IPAddress.TryParse(addressText, out var outValue))
+                adapter.IPv6 = outValue;
+        }
+
         private static string ParseOutputTagFromLine(string indentedLine, string tagName)
         {
-            if (indentedLine.IndexOf(tagName) < 0)
+            if (indentedLine.IndexOf(tagName, StringComparison.Ordinal) < 0)
                 return null;
 
-            var startIndex = indentedLine.IndexOf(tagName) + tagName.Length;
+            var startIndex = indentedLine.IndexOf(tagName, StringComparison.Ordinal) + tagName.Length;
             var builder = new StringBuilder(1024);
             for (var c = startIndex; c < indentedLine.Length; c++)
             {
                 var currentChar = indentedLine[c];
                 if (!char.IsPunctuation(currentChar) && !char.IsLetterOrDigit(currentChar))
                     break;
-                
+
                 builder.Append(currentChar);
             }
 

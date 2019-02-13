@@ -12,6 +12,7 @@
     <SshDeployClean />
     <SshDeployTargetPath>/home/pi/playground</SshDeployTargetPath>
     <SshDeployUsername>pi</SshDeployUsername>
+    <LangVersion>7.3</LangVersion>
     <SshDeployPassword>raspberry</SshDeployPassword>
     <!--<SshDeployPostCommand>dotnet /home/pi/playground/Unosquare.RaspberryIO.Playground.dll</SshDeployPostCommand>-->
   </PropertyGroup>
