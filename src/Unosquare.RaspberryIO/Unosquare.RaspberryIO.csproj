@@ -11,7 +11,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
     <AssemblyName>Unosquare.RaspberryIO</AssemblyName>
     <PackageId>Unosquare.Raspberry.IO</PackageId>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.18.0</Version>
+    <Version>0.18.1</Version>
     <Authors>Unosquare</Authors>
     <PackageIconUrl>https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/unosquare/raspberryio</PackageProjectUrl>
@@ -25,6 +25,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Unosquare.Swan" Version="0.37.0" />
   </ItemGroup>
 
   <ItemGroup>
