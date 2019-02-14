@@ -15,7 +15,6 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
     * [Peripherals](#peripherals)
   * [Breaking changes](#breaking-changes)
     * [Version &ge; 0.18.0](#version--0180)
-      * [Pinout numbering system](#pinout-numbering-system)
   * [Installation](#installation)
   * [Usage](#usage)
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
@@ -62,7 +61,8 @@ We offer an additional package with helpful classes to use peripherals, many of 
 * Led Strip APA-102C
 * NFC/RFID Controller MFRC-522
 * Temperature Sensor AM-2302
-* Generic Button
+* OLED Display SSD-1306
+* Generic Button connected to GPIO
 
 ## Breaking changes
 
@@ -87,7 +87,7 @@ Install basic Raspberry.IO package:
 PM> Install-Package Unosquare.Raspberry.IO
 ```
 
-Install an Abstractions implementation:
+If you want to implement your own provider for RaspberryIO, you must use the following package to implement all the `Pi` providers:
 [![NuGet version](https://badge.fury.io/nu/Unosquare.wiringpi.svg)](https://badge.fury.io/nu/Unosquare.wiringpi)
 
 ```
@@ -547,17 +547,6 @@ TODO
 
 ## Serial Ports (UART)
 Where is the serial port API? Well, it is something we will most likely add in the future. For now, you can simply use the built-in ```SerialPort``` class the .NET framework provides.
-
-## Abstraction Package
-
-If you want to implement your own provider for RaspberryIO, you must use the following package to implement all the `Pi` providers.
-
-Install Unosquare.Raspberry.Abstractions package:
-[![NuGet version](https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions.svg)](https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions)
-
-```
-PM> Install-Package Unosquare.Raspberry.Abstractions
-```
 
 ## Handy Notes
 
