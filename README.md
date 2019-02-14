@@ -14,7 +14,7 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Features](#features)
     * [Peripherals](#peripherals)
   * [Breaking changes](#breaking-changes)
-    * [Version 0.18.0](#version-0180)
+    * [Version 0.18.0](#version--0180)
       * [Pinout numbering system](#pinout-numbering-system)
   * [Installation](#installation)
   * [Usage](#usage)
