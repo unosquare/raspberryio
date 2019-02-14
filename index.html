@@ -83,10 +83,7 @@
 </ul>
 </li>
 <li><a href="#breaking-changes">Breaking changes</a><ul>
-<li><a href="#version--0180">Version &ge; 0.18.0</a><ul>
-<li><a href="#pinout-numbering-system">Pinout numbering system</a></li>
-</ul>
-</li>
+<li><a href="#version--0180">Version &ge; 0.18.0</a></li>
 </ul>
 </li>
 <li><a href="#installation">Installation</a></li>
@@ -141,7 +138,8 @@
 <li>Led Strip APA-102C</li>
 <li>NFC/RFID Controller MFRC-522</li>
 <li>Temperature Sensor AM-2302</li>
-<li>Generic Button</li>
+<li>OLED Display SSD-1306</li>
+<li>Generic Button connected to GPIO</li>
 </ul>
 <h2 id="breaking-changes">Breaking changes</h2>
 <h3 id="version-ge-0180">Version &ge; 0.18.0</h3>
@@ -154,7 +152,7 @@
 <p>Install basic Raspberry.IO package:
 <a href="https://badge.fury.io/nu/Unosquare.Raspberry.IO"><img src="https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.Raspberry.IO
-</code></pre><p>Install an Abstractions implementation:
+</code></pre><p>If you want to implement your own provider for RaspberryIO, you must use the following package to implement all the <code>Pi</code> providers:
 <a href="https://badge.fury.io/nu/Unosquare.wiringpi"><img src="https://badge.fury.io/nu/Unosquare.wiringpi.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.WiringPi
 </code></pre><p><em><strong>Note:</strong></em> For now, we have fully implemented the <a href="https://www.nuget.org/packages/Unosquare.wiringpi">WiringPi</a> library and we are working in the <a href="https://github.com/unosquare/pigpio-dotnet/">PiGpio</a> implementation.</p>
@@ -763,12 +761,7 @@ foreach (var device in Pi.I2C.Devices)
 <p>TODO</p>
 <h2 id="serial-ports-uart">Serial Ports (UART)</h2>
 <p>Where is the serial port API? Well, it is something we will most likely add in the future. For now, you can simply use the built-in <code>SerialPort</code> class the .NET framework provides.</p>
-<h2 id="abstraction-package">Abstraction Package</h2>
-<p>If you want to implement your own provider for RaspberryIO, you must use the following package to implement all the <code>Pi</code> providers.</p>
-<p>Install Unosquare.Raspberry.Abstractions package:
-<a href="https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions"><img src="https://badge.fury.io/nu/Unosquare.Raspberry.Abstractions.svg" alt="NuGet version"></a></p>
-<pre><code>PM&gt; Install-Package Unosquare.Raspberry.Abstractions
-</code></pre><h2 id="handy-notes">Handy Notes</h2>
+<h2 id="handy-notes">Handy Notes</h2>
 <p>In order to setup Wi-Fi, run: <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></p>
 <p>A good file should look like this:</p>
 <pre><code>country=US
