@@ -21,7 +21,7 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
     * [For Debian Wheezy](#for-debian-wheezy)
     * [For Debian Stretch](#for-debian-stretch)
-  * [Running .NET Core 2](#running-net-core-2)
+  * [Running .NET Core 2.2](#running-net-core-22)
     * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
   * [The Camera Module](#the-camera-module)
     * [Capturing Images](#capturing-images)
@@ -68,7 +68,7 @@ We offer an additional package with helpful classes to use peripherals, many of 
 
 ## Breaking changes
 
-### Version 0.18.0
+### Version &ge; 0.18.0
 
 In the beginning, RaspberryIO was built around WiringPi library and all our classes, properties, enums, etc. was based on those ones used in WiringPi too.
 
