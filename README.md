@@ -38,9 +38,8 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [I2C to connect ICs](#i2c-to-connect-ics)
   * [Timing and Threading](#timing-and-threading)
   * [Serial Ports (UART)](#serial-ports-uart)
-  * [Abstraction Package](#abstraction-package)
   * [Handy Notes](#handy-notes)
-  * [Similar Projects](#related-projects-and-nugets)
+  * [Related Projects and Nugets](#related-projects-and-nugets)
   
 ## Features
 
