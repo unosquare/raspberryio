@@ -90,6 +90,7 @@ PM> Install-Package Unosquare.Raspberry.IO
 ```
 
 Install an Abstractions implementation:
+[![NuGet version](https://badge.fury.io/nu/Unosquare.wiringpi.svg)](https://badge.fury.io/nu/Unosquare.wiringpi)
 
 ```
 PM> Install-Package Unosquare.WiringPi
