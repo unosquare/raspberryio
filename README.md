@@ -13,6 +13,9 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
 =================
   * [Features](#features)
     * [Peripherals](#peripherals)
+  * [Breaking changes](#breaking-changes)
+    * [Version 0.18.0](#version-0.18.0)
+      * [Pinout numbering system](#pinout-numbering-system)
   * [Installation](#installation)
   * [Usage](#usage)
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
@@ -63,6 +66,20 @@ We offer an additional package with helpful classes to use peripherals, many of 
 * Temperature Sensor AM-2302
 * Generic Button
 
+## Breaking changes
+
+### Version 0.18.0
+
+In the beginning, RaspberryIO was built around WiringPi library and all our classes, properties, enums, etc. was based on those ones used in WiringPi too.
+
+Now, we are working on a more general version of RaspberryIO (Abstractions) that, could use any core library (WiringPi, PiGpio or even new ones). So, it was necessary to change certain properties and enums for more general ones.
+
+#### Pinout numbering system
+
+A breaking change in this new general version is the pinout numbering system. As we already explained above, RaspberryIO was using the WiringPi pinout numbering system, but now it uses the **[BCM pinout numbering system](https://pinout.xyz/#)**. 
+
+_**Note:**_ The pin numbers are totally different in both systems, so we recommend you to double check carefully the physical pins where you connect any device.
+
 ## Installation
 
 Install basic Raspberry.IO package:
@@ -72,7 +89,15 @@ Install basic Raspberry.IO package:
 PM> Install-Package Unosquare.Raspberry.IO
 ```
 
-Install Raspberry.IO Peripherals package:
+Install an Abstractions implementation:
+
+```
+PM> Install-Package Unosquare.WiringPi
+```
+
+_**Note:**_ For now, we have fully implemented the [WiringPi](https://www.nuget.org/packages/Unosquare.wiringpi) library and we are working in the [PiGpio](https://github.com/unosquare/pigpio-dotnet/) implementation.
+
+Install Raspberry.IO Peripherals package (Optional):
 [![NuGet version](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals.svg)](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals)
 ```
 PM> Install-Package Unosquare.RaspberryIO.Peripherals
@@ -80,10 +105,10 @@ PM> Install-Package Unosquare.RaspberryIO.Peripherals
 
 ## Usage
 
-Before using **Pi** class it is necessary to initialize it with the specific bootstrapping class implementation (for WiringPi).
+Before start using RaspberryIO, you must initialize **Pi** class (bootstrapping process) with the valid Abstractions implementation, in order to let **Pi** know what implementation is going to use:
 
 ```csharp
-Pi.Init<BootstrapWiringPi>();
+ Pi.Init<BootstrapWiringPi>();
 ```
 
 ## Running the latest version of Mono
