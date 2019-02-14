@@ -13,12 +13,15 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
 =================
   * [Features](#features)
     * [Peripherals](#peripherals)
+  * [Breaking changes](#breaking-changes)
+    * [Version &ge; 0.18.0](#version--0180)
+      * [Pinout numbering system](#pinout-numbering-system)
   * [Installation](#installation)
   * [Usage](#usage)
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
     * [For Debian Wheezy](#for-debian-wheezy)
     * [For Debian Stretch](#for-debian-stretch)
-  * [Running .NET Core 2](#running-net-core-2)
+  * [Running .NET Core 2.2](#running-net-core-22)
     * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
   * [The Camera Module](#the-camera-module)
     * [Capturing Images](#capturing-images)
@@ -51,8 +54,6 @@ This library enables developers to use the various Raspberry Pi's hardware modul
 * ```Pi.I2c``` Provides access to the functionality of the i2c bus.
 * ```Pi.Timing``` Provides access to The PI's Timing and threading API.
 
-The default low-level provider is the wonderful ```WiringPi``` library available [here](http://wiringpi.com/). You do not need to install this library yourself. The ```Unosquare.WiringPi``` assembly will automatically extract the compiled binary of the library in the same path as the entry assembly.
-
 ### Peripherals
 
 We offer an additional package with helpful classes to use peripherals, many of them are from pull requests from our contributors. The current set of peripherals supported are:
@@ -63,6 +64,20 @@ We offer an additional package with helpful classes to use peripherals, many of 
 * Temperature Sensor AM-2302
 * Generic Button
 
+## Breaking changes
+
+### Version &ge; 0.18.0
+
+In the beginning, RaspberryIO was built around WiringPi library and all our classes, properties, enums, etc. was based on those ones used in WiringPi too.
+
+Now, we are working on a more general version of RaspberryIO (Abstractions) that, could use any core library (WiringPi, PiGpio or even new ones). So, it was necessary to change certain properties and enums for more general ones.
+
+#### Pinout numbering system
+
+A breaking change in this new general version is the pinout numbering system. As we already explained above, RaspberryIO was using the WiringPi pinout numbering system, but now it uses the **[BCM pinout numbering system](https://pinout.xyz/#)**. 
+
+_**Note:**_ The pin numbers are totally different in both systems, so we recommend you to double check carefully the physical pins where you connect any device.
+
 ## Installation
 
 Install basic Raspberry.IO package:
@@ -72,7 +87,16 @@ Install basic Raspberry.IO package:
 PM> Install-Package Unosquare.Raspberry.IO
 ```
 
-Install Raspberry.IO Peripherals package:
+Install an Abstractions implementation:
+[![NuGet version](https://badge.fury.io/nu/Unosquare.wiringpi.svg)](https://badge.fury.io/nu/Unosquare.wiringpi)
+
+```
+PM> Install-Package Unosquare.WiringPi
+```
+
+_**Note:**_ For now, we have fully implemented the [WiringPi](https://www.nuget.org/packages/Unosquare.wiringpi) library and we are working in the [PiGpio](https://github.com/unosquare/pigpio-dotnet/) implementation.
+
+Install Raspberry.IO Peripherals package (Optional):
 [![NuGet version](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals.svg)](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals)
 ```
 PM> Install-Package Unosquare.RaspberryIO.Peripherals
@@ -80,10 +104,10 @@ PM> Install-Package Unosquare.RaspberryIO.Peripherals
 
 ## Usage
 
-Before using **Pi** class it is necessary to initialize it with the specific bootstrapping class implementation (for WiringPi).
+Before start using RaspberryIO, you must initialize **Pi** class (bootstrapping process) with the valid Abstractions implementation, in order to let **Pi** know what implementation is going to use:
 
 ```csharp
-Pi.Init<BootstrapWiringPi>();
+ Pi.Init<BootstrapWiringPi>();
 ```
 
 ## Running the latest version of Mono
@@ -138,8 +162,8 @@ $ dotnet --info
 
 ### Run the app on the raspberry
 
+- You need to publish the project and you can accomplish this by using [dotnet-sshdeploy](https://github.com/unosquare/sshdeploy) but first, you must edit these properties inside the csproj file in order to establish an ssh connection with your raspberry
 
-- You need to publish the project and you can accomplish this by using [dotnet-sshdeploy](https://github.com/unosquare/sshdeploy) but first, you must edit these properties inside the Playground's csproj file in order to establish an ssh connection with your raspberry
 ``` xml
 <SshDeployHost>172.16.17.54</SshDeployHost>
 <SshDeployTargetPath>/home/pi/Playground</SshDeployTargetPath>
@@ -153,23 +177,24 @@ $ dotnet tool install -g dotnet-sshdeploy
 ```
 
 - Execute `dotnet-sshdeploy push` in the same folder where Unosquare.RaspberryIO.Playground.csproj resides and if everything executes correctly you should see an output like this:
+
 ```
 SSH Deployment Tool [Version 0.3.1.0]
 (c)2015 - 2017 Unosquare SA de CV. All Rights Reserved.
 For additional help, please visit https://github.com/unosquare/sshdeploy
 Deploying...
     Configuration   Debug
-    Framework       net46
-    Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\net46\publish
+    Framework       dotnetcore2.2
+    Source Path     C:\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug\dotnetcore2.2\publish
     Excluded Files  .ready|.vshost.exe|.vshost.exe.config
-    Target Address  192.16.17.54:22
+    Target Address  172.16.17.54:22
     Username        pi
     Target Path     /home/pi/Playground
     Clean Target    NO
     Pre Deployment  
     Post Deployment 
-Connecting to host 192.16.17.54:22 via SSH.
-Connecting to host 192.16.17.54:22 via SFTP.
+Connecting to host 172.16.17.54:22 via SSH.
+Connecting to host 172.16.17.54:22 via SFTP.
 
     Target Path '/home/pi/Playground' does not exist. -- Will attempt to create.
     Target Path '/home/pi/Playground' created successfully.
@@ -179,17 +204,24 @@ Connecting to host 192.16.17.54:22 via SFTP.
     Finished deployment in 1.25 seconds.
 Completed.
 ```
-* **The default TargetFramework is** `net46` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this**`dotnet-sshdeploy push -f netcoreapp2.0`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
+
+* **The default TargetFramework is** `net46` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this**`dotnet-sshdeploy push -f netcoreapp2.2`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
+
 - Give permissions to run the project
 
 ```
-ubuntu@ubuntu:~/publish$ sudo chmod u+x *
+ ubuntu@ubuntu:~/publish$ sudo chmod u+x *
 ```
 
 - Run the project
 
 ```
-ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
+ ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
+```
+
+- Run the project (.Net Core)
+```
+  ubuntu@ubuntu:~/publish$ dotnet Unosquare.RaspberryIO.Playground.dll
 ```
 
 ## The Camera Module
@@ -271,47 +303,47 @@ static void TestCaptureVideo()
 
 ## Obtaining Board and System Information
 ```RaspberryIO``` contains useful utilities to obtain information about the board it is running on. You can simply call the ```Pi.Info.ToString()``` method to obtain a dump of all system properties as a single ```string```, or you can use the individual properties such as Installed RAM, Processor Count, Raspberry Pi Version, Serial Number, etc. There's not a lot more to this.
-Please note ```Pi.Info``` depends on ```Wiring Pi```, and the ```/proc/cpuinfo``` and ```/proc/meminfo``` files.
 
 ## Using the GPIO Pins
 Pin reference for the B plus (B+) - Header P1
 
-| BCM | wPi | Name    | Mode | V   | L      | R      | V   | Mode | Name    | wPi | BCM |
-| --- | --- | ------- | ---- | --- | ------ | ------ | --- | ---- | ------- | --- | --- |
-|     |     |    3.3v |      |     | **01** | **02** |     |      | 5v      |     |     |
-|   2 |   8 |   SDA.1 | ALT0 | 1   | **03** | **04** |     |      | 5V      |     |     |
-|   3 |   9 |   SCL.1 | ALT0 | 1   | **05** | **06** |     |      | 0v      |     |     |
-|   4 |   7 | GPIO. 7 |   IN | 1   | **07** | **08** | 1   | ALT0 | TxD     | 15  | 14  |
-|     |     |      0v |      |     | **09** | **10** | 1   | ALT0 | RxD     | 16  | 15  |
-|  17 |   0 | GPIO. 0 |   IN | 0   | **11** | **12** | 0   | IN   | GPIO. 1 | 1   | 18  |
-|  27 |   2 | GPIO. 2 |   IN | 0   | **13** | **14** |     |      | 0v      |     |     |
-|  22 |   3 | GPIO. 3 |   IN | 0   | **15** | **16** | 0   | IN   | GPIO. 4 | 4   | 23  |
-|     |     |    3.3v |      |     | **17** | **18** | 0   | IN   | GPIO. 5 | 5   | 24  |
-|  10 |  12 |    MOSI |   IN | 0   | **19** | **20** |     |      | 0v      |     |     |
-|   9 |  13 |    MISO |   IN | 0   | **21** | **22** | 0   | IN   | GPIO. 6 | 6   | 25  |
-|  11 |  14 |    SCLK |   IN | 0   | **23** | **24** | 1   | IN   | CE0     | 10  | 8   |
-|     |     |      0v |      |     | **25** | **26** | 1   | IN   | CE1     | 11  | 7   |
-|   0 |  30 |   SDA.0 |   IN | 1   | **27** | **28** | 1   | IN   | SCL.0   | 31  | 1   |
-|   5 |  21 | GPIO.21 |   IN | 1   | **29** | **30** |     |      | 0v      |     |     |
-|   6 |  22 | GPIO.22 |   IN | 1   | **31** | **32** | 0   | IN   | GPIO.26 | 26  | 12  |
-|  13 |  23 | GPIO.23 |   IN | 0   | **33** | **34** |     |      | 0v      |     |     |
-|  19 |  24 | GPIO.24 |   IN | 0   | **35** | **36** | 0   | IN   | GPIO.27 | 27  | 16  |
-|  26 |  25 | GPIO.25 |   IN | 0   | **37** | **38** | 0   | IN   | GPIO.28 | 28  | 20  |
-|     |     |      0v |      |     | **39** | **40** | 0   | IN   | GPIO.29 | 29  | 21  |
+| BCM |  Name    | Mode | V   | L      | R      | V   | Mode | Name    |  BCM |
+| --- | -------- | ---- | --- | ------ | ------ | --- | ---- | ------- | ---- |
+|     |     3.3v |      |     | **01** | **02** |     |      | 5v      |      |
+|   2 |    SDA.1 | ALT0 | 1   | **03** | **04** |     |      | 5V      |      |
+|   3 |    SCL.1 | ALT0 | 1   | **05** | **06** |     |      | GND     |      |
+|   4 |  GPIO. 7 |   IN | 1   | **07** | **08** | 1   | ALT0 | TxD     |  14  |
+|     |      GND |      |     | **09** | **10** | 1   | ALT0 | RxD     |  15  |
+|  17 |  GPIO. 0 |   IN | 0   | **11** | **12** | 0   | IN   | GPIO. 1 |  18  |
+|  27 |  GPIO. 2 |   IN | 0   | **13** | **14** |     |      | GND     |      |
+|  22 |  GPIO. 3 |   IN | 0   | **15** | **16** | 0   | IN   | GPIO. 4 |  23  |
+|     |     3.3v |      |     | **17** | **18** | 0   | IN   | GPIO. 5 |  24  |
+|  10 |     MOSI |   IN | 0   | **19** | **20** |     |      | GND     |      |
+|   9 |     MISO |   IN | 0   | **21** | **22** | 0   | IN   | GPIO. 6 |  25  |
+|  11 |     SCLK |   IN | 0   | **23** | **24** | 1   | IN   | CE0     |  8   |
+|     |      GND |      |     | **25** | **26** | 1   | IN   | CE1     |  7   |
+|   0 |    SDA.0 |   IN | 1   | **27** | **28** | 1   | IN   | SCL.0   |  1   |
+|   5 |  GPIO.21 |   IN | 1   | **29** | **30** |     |      | GND     |      |
+|   6 |  GPIO.22 |   IN | 1   | **31** | **32** | 0   | IN   | GPIO.26 |  12  |
+|  13 |  GPIO.23 |   IN | 0   | **33** | **34** |     |      | GND     |      |
+|  19 |  GPIO.24 |   IN | 0   | **35** | **36** | 0   | IN   | GPIO.27 |  16  |
+|  26 |  GPIO.25 |   IN | 0   | **37** | **38** | 0   | IN   | GPIO.28 |  20  |
+|     |      GND |      |     | **39** | **40** | 0   | IN   | GPIO.29 |  21  |
 
-But wait for a second, Where are Wiring Pi (wPi) pins 17 through 20? The above diagram shows the pins of GPIO Header P1. There is an additional GPIO header on the Pi called P5. [More info available here](http://www.raspberrypi-spy.co.uk/2012/09/raspberry-pi-p5-header/)
+The above diagram shows the pins of GPIO Header P1. There is an additional GPIO header on the Pi called P5. [More info available here](http://www.raspberrypi-spy.co.uk/2012/09/raspberry-pi-p5-header/)
 
-In order to access the pins, use ```Pi.Gpio```. The pins can have multiple behaviors and fortunately ```Pi.Gpio``` can be iterated, addressed by index, addressed by Wiring Pi pin number and provides the pins as publicly accessible properties.
+In order to access the pins, use ```Pi.Gpio```. The pins can have multiple behaviors and fortunately ```Pi.Gpio``` can be iterated, addressed by index, addressed by BCM pin number and provides the pins as publicly accessible properties.
 
 Here is an example of addressing the pins in all the various ways:
+
 ```csharp
 public static void TestLedBlinking()
 {
     // Get a reference to the pin you need to use.
     // All 3 methods below are exactly equivalent
-    var blinkingPin = Pi.Gpio[0];
-    blinkingPin = Pi.Gpio[WiringPiPin.Pin00];
-    blinkingPin = Pi.Gpio.Pin00;
+    var blinkingPin = Pi.Gpio[17];
+    blinkingPin = Pi.Gpio[BcmPin.Gpio17];
+    blinkingPin = Pi.Gpio.Pin17;
 
     // Configure the pin as an output
     blinkingPin.PinMode = GpioPinDriveMode.Output;
@@ -337,18 +369,18 @@ It is very easy to read and write values to the pins. In general, it is a 2-step
 
 Reading the value of a pin example:
 ```csharp
-Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Input;
+Pi.Gpio.Pin27.PinMode = GpioPinDriveMode.Input;
 // The below lines are reoughly equivalent
-var isOn = Pi.Gpio.Pin02.Read(); // Reads as a boolean
-var pinValue = Pi.Gpio.Pin02.ReadValue(); // Reads as a GpioPinValue
+var isOn = Pi.Gpio.Pin27.Read(); // Reads as a boolean
+var pinValue = Pi.Gpio.Pin27.ReadValue(); // Reads as a GpioPinValue
 ```
 
 Writing to a pin example
 ```csharp
-Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Output;
+Pi.Gpio.Pin27.PinMode = GpioPinDriveMode.Output;
 // The below lines are reoughly equivalent
-Pi.Gpio.Pin02.Write(true); // Writes a boolean
-Pi.Gpio.Pin02.Write(GpioPinValue.High); // Writes a pin value
+Pi.Gpio.Pin27.Write(true); // Writes a boolean
+Pi.Gpio.Pin27.Write(GpioPinValue.High); // Writes a pin value
 ```
 
 ### Analog (Level) Read and Write
@@ -358,7 +390,7 @@ TODO
 Simple code for led dimming:
 
 ```csharp
-   var pin = Pi.Gpio[P1.Gpio18];
+   var pin = Pi.Gpio[BcmPin.Gpio24];
    pin.PinMode = GpioPinDriveMode.PwmOutput;
    pin.PwmMode = PwmMode.Balanced;
    pin.PwmClockDivisor = 2; 
@@ -399,7 +431,7 @@ Simple code for led dimming:
 
 ```csharp
    var range = 100;
-   var pin = Pi.Gpio[P1.Gpio18];
+   var pin = Pi.Gpio[BcmPin.Gpio24];
    pin.PinMode = GpioPinDriveMode.Output;
    pin.StartSoftPwm(0, range);
    
@@ -430,7 +462,7 @@ You can emit tones by using SoftToneFrequency. Example:
 
 ```csharp
 // Get a reference to the pin
-var passiveBuzzer = Pi.Gpio[WiringPiPin.Pin01];
+var passiveBuzzer = Pi.Gpio[BcmPin.Gpio24];
 // Set the frequency to Alto Do (523Hz)
 passiveBuzzer.SoftToneFrequency = 523
 // Wait 1 second
@@ -458,7 +490,7 @@ class Program
   static void Main(string[] args)
   {
         Console.WriteLine("Gpio Interrupts");
-        var pin = Pi.Gpio.Pin00;
+        var pin = Pi.Gpio.Pin24;
         pin.PinMode = GpioPinDriveMode.Input;
         pin.RegisterInterruptCallback(EdgeDetection.FallingEdge, ISRCallback);
         Console.ReadKey();
@@ -485,7 +517,7 @@ var response = Pi.Spi.Channel0.SendReceive(request);
 ## I2C to connect ICs
 The Inter IC Bus (I2C) is a cousin of the SPI bus but it is somewhat more complex and it does not work as a ring buffer like the SPI bus. It also connects all of its slave devices in series and depends on 2 lines only. There is a nice tutorial on setting up and using the I2C bus at [Robot Electronics](http://www.robot-electronics.co.uk/i2c-tutorial). From their site: _The physical bus is just two wires, called SCL and SDA. SCL is the clock line. It is used to synchronize all data transfers over the I2C bus. SDA is the data line. The SCL & SDA lines are connected to all devices on the I2C bus. There needs to be a third wire which is just the ground or 0 volts. There may also be a 5volt wire is power is being distributed to the devices. Both SCL and SDA lines are "open drain" drivers. What this means is that the chip can drive its output low, but it cannot drive it high. For the line to be able to go high you must provide pull-up resistors to the 5v supply. There should be a resistor from the SCL line to the 5v line and another from the SDA line to the 5v line. You only need one set of pull-up resistors for the whole I2C bus, not for each device._
 
-```RaspberryIO``` provides easy access to the I2C bus available on the Raspberry. The functionality depends on ```Wiring Pi```'s I2C library. Please note that you may need to issue the command ```gpio load i2c``` before starting your application (or as a ```System.Diagnostics.Process``` when your application starts) if the I2C kernel drivers have not been loaded. The default baud rate is 100Kbps. If you wish to initialize the bus at a different baud rate you may issue, for example, ```gpio load i2c 200```. This will load the bus at 200kbps.
+```RaspberryIO``` provides easy access to the I2C bus available on the Raspberry. Please note that you may need to issue the command ```gpio load i2c``` before starting your application (or as a ```System.Diagnostics.Process``` when your application starts) if the I2C kernel drivers have not been loaded. The default baud rate is 100Kbps. If you wish to initialize the bus at a different baud rate you may issue, for example, ```gpio load i2c 200```. This will load the bus at 200kbps.
 
 In order to detect I2C devices, you could use the ```i2cdetect``` system command. Just remember that on a Rev 1 Raspberry Pi it's device 0, and on a Rev. 2 it's device 1. e.g.
 ```
