@@ -82,6 +82,13 @@
 <li><a href="#peripherals">Peripherals</a></li>
 </ul>
 </li>
+<li><a href="#breaking-changes">Breaking changes</a><ul>
+<li><a href="#version-0.18.0">Version 0.18.0</a><ul>
+<li><a href="#pinout-numbering-system">Pinout numbering system</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
 <li><a href="#running-the-latest-version-of-mono">Running the latest version of Mono</a><ul>
@@ -137,16 +144,26 @@
 <li>Temperature Sensor AM-2302</li>
 <li>Generic Button</li>
 </ul>
+<h2 id="breaking-changes">Breaking changes</h2>
+<h3 id="version-0180">Version 0.18.0</h3>
+<p>In the beginning, RaspberryIO was built around WiringPi library and all our classes, properties, enums, etc. was based on those ones used in WiringPi too.</p>
+<p>Now, we are working on a more general version of RaspberryIO (Abstractions) that, could use any core library (WiringPi, PiGpio or even new ones). So, it was necessary to change certain properties and enums for more general ones.</p>
+<h4 id="pinout-numbering-system">Pinout numbering system</h4>
+<p>A breaking change in this new general version is the pinout numbering system. As we already explained above, RaspberryIO was using the WiringPi pinout numbering system, but now it uses the <strong><a href="https://pinout.xyz/#">BCM pinout numbering system</a></strong>. </p>
+<p><em><strong>Note:</strong></em> The pin numbers are totally different in both systems, so we recommend you to double check carefully the physical pins where you connect any device.</p>
 <h2 id="installation">Installation</h2>
 <p>Install basic Raspberry.IO package:
 <a href="https://badge.fury.io/nu/Unosquare.Raspberry.IO"><img src="https://badge.fury.io/nu/Unosquare.Raspberry.IO.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.Raspberry.IO
-</code></pre><p>Install Raspberry.IO Peripherals package:
+</code></pre><p>Install an Abstractions implementation:</p>
+<pre><code>PM&gt; Install-Package Unosquare.WiringPi
+</code></pre><p><em><strong>Note:</strong></em> For now, we have fully implemented the <a href="https://www.nuget.org/packages/Unosquare.wiringpi">WiringPi</a> library and we are working in the <a href="https://github.com/unosquare/pigpio-dotnet/">PiGpio</a> implementation.</p>
+<p>Install Raspberry.IO Peripherals package (Optional):
 <a href="https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals"><img src="https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.RaspberryIO.Peripherals
 </code></pre><h2 id="usage">Usage</h2>
-<p>Before using <strong>Pi</strong> class it is necessary to initialize it with the specific bootstrapping class implementation (for WiringPi).</p>
-<pre><code class="lang-csharp">Pi.Init&lt;BootstrapWiringPi&gt;();
+<p>Before start using RaspberryIO, you must initialize <strong>Pi</strong> class (bootstrapping process) with the valid Abstractions implementation, in order to let <strong>Pi</strong> know what implementation is going to use:</p>
+<pre><code class="lang-csharp"> Pi.Init&lt;BootstrapWiringPi&gt;();
 </code></pre><h2 id="running-the-latest-version-of-mono">Running the latest version of Mono</h2>
 <p>It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:</p>
 <pre><code>Mono JIT compiler version 5.4.1.6 (tarball Wed Nov  8 21:42:16 UTC 2017)
@@ -820,7 +837,7 @@ sudo systemctl restart dhcpcd
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/Readme-BReakingChanges/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
