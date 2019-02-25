@@ -339,10 +339,9 @@ Here is an example of addressing the pins in all the various ways:
 public static void TestLedBlinking()
 {
     // Get a reference to the pin you need to use.
-    // All 3 methods below are exactly equivalent
+    // Both methods below are equivalent
     var blinkingPin = Pi.Gpio[17];
     blinkingPin = Pi.Gpio[BcmPin.Gpio17];
-    blinkingPin = Pi.Gpio.Pin17;
 
     // Configure the pin as an output
     blinkingPin.PinMode = GpioPinDriveMode.Output;
