@@ -2475,6 +2475,54 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.WirelessNetworkInfo.Quality
   nameWithType: WirelessNetworkInfo.Quality
+- uid: Unosquare.RaspberryIO.Native
+  name: Unosquare.RaspberryIO.Native
+  href: api/Unosquare.RaspberryIO.Native.html
+  commentId: N:Unosquare.RaspberryIO.Native
+  fullName: Unosquare.RaspberryIO.Native
+  nameWithType: Unosquare.RaspberryIO.Native
+- uid: Unosquare.RaspberryIO.Native.SystemName
+  name: SystemName
+  href: api/Unosquare.RaspberryIO.Native.SystemName.html
+  commentId: T:Unosquare.RaspberryIO.Native.SystemName
+  fullName: Unosquare.RaspberryIO.Native.SystemName
+  nameWithType: SystemName
+- uid: Unosquare.RaspberryIO.Native.SystemName.DomainName
+  name: DomainName
+  href: api/Unosquare.RaspberryIO.Native.SystemName.html#Unosquare_RaspberryIO_Native_SystemName_DomainName
+  commentId: F:Unosquare.RaspberryIO.Native.SystemName.DomainName
+  fullName: Unosquare.RaspberryIO.Native.SystemName.DomainName
+  nameWithType: SystemName.DomainName
+- uid: Unosquare.RaspberryIO.Native.SystemName.Machine
+  name: Machine
+  href: api/Unosquare.RaspberryIO.Native.SystemName.html#Unosquare_RaspberryIO_Native_SystemName_Machine
+  commentId: F:Unosquare.RaspberryIO.Native.SystemName.Machine
+  fullName: Unosquare.RaspberryIO.Native.SystemName.Machine
+  nameWithType: SystemName.Machine
+- uid: Unosquare.RaspberryIO.Native.SystemName.NodeName
+  name: NodeName
+  href: api/Unosquare.RaspberryIO.Native.SystemName.html#Unosquare_RaspberryIO_Native_SystemName_NodeName
+  commentId: F:Unosquare.RaspberryIO.Native.SystemName.NodeName
+  fullName: Unosquare.RaspberryIO.Native.SystemName.NodeName
+  nameWithType: SystemName.NodeName
+- uid: Unosquare.RaspberryIO.Native.SystemName.Release
+  name: Release
+  href: api/Unosquare.RaspberryIO.Native.SystemName.html#Unosquare_RaspberryIO_Native_SystemName_Release
+  commentId: F:Unosquare.RaspberryIO.Native.SystemName.Release
+  fullName: Unosquare.RaspberryIO.Native.SystemName.Release
+  nameWithType: SystemName.Release
+- uid: Unosquare.RaspberryIO.Native.SystemName.SysName
+  name: SysName
+  href: api/Unosquare.RaspberryIO.Native.SystemName.html#Unosquare_RaspberryIO_Native_SystemName_SysName
+  commentId: F:Unosquare.RaspberryIO.Native.SystemName.SysName
+  fullName: Unosquare.RaspberryIO.Native.SystemName.SysName
+  nameWithType: SystemName.SysName
+- uid: Unosquare.RaspberryIO.Native.SystemName.Version
+  name: Version
+  href: api/Unosquare.RaspberryIO.Native.SystemName.html#Unosquare_RaspberryIO_Native_SystemName_Version
+  commentId: F:Unosquare.RaspberryIO.Native.SystemName.Version
+  fullName: Unosquare.RaspberryIO.Native.SystemName.Version
+  nameWithType: SystemName.Version
 - uid: Unosquare.RaspberryIO.Pi
   name: Pi
   href: api/Unosquare.RaspberryIO.Pi.html
