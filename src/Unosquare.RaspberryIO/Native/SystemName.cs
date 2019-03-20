@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Abstractions.Native
+﻿namespace Unosquare.RaspberryIO.Native
 {
     using System.Runtime.InteropServices;
 

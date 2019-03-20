@@ -65,9 +65,9 @@
                     },
                     null,
                     true,
-                    ct);
+                    ct).ConfigureAwait(false);
 
-                return exitCode != 0 ? new byte[] { } : output.ToArray();
+                return exitCode != 0 ? Array.Empty<byte>() : output.ToArray();
             }
             finally
             {
@@ -197,7 +197,7 @@
                     (data, proc) => onDataCallback?.Invoke(data),
                     null,
                     true,
-                    _videoTokenSource.Token);
+                    _videoTokenSource.Token).ConfigureAwait(false);
 
                 onExitCallback?.Invoke();
             }

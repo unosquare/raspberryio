@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
     using Abstractions;
-    using Abstractions.Native;
+    using Native;
     using Swan.Abstractions;
     using Swan.Components;
     using System;

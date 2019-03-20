@@ -78,7 +78,7 @@
         /// Restarts the Pi. Must be running as SU.
         /// </summary>
         /// <returns>The process result.</returns>
-        public static async Task<ProcessResult> RestartAsync() => await ProcessRunner.GetProcessResultAsync("reboot", null, null);
+        public static Task<ProcessResult> RestartAsync() => ProcessRunner.GetProcessResultAsync("reboot", null, null);
 
         /// <summary>
         /// Restarts the Pi. Must be running as SU.
@@ -90,7 +90,7 @@
         /// Halts the Pi. Must be running as SU.
         /// </summary>
         /// <returns>The process result.</returns>
-        public static async Task<ProcessResult> ShutdownAsync() => await ProcessRunner.GetProcessResultAsync("halt", null, null);
+        public static Task<ProcessResult> ShutdownAsync() => ProcessRunner.GetProcessResultAsync("halt", null, null);
 
         /// <summary>
         /// Halts the Pi. Must be running as SU.
@@ -105,16 +105,12 @@
         public static void Init<T>()
             where T : IBootstrap
         {
-            if (_isInit)
-                return;
-
-            lock(SyncLock)
+            lock (SyncLock)
             {
-                if (!_isInit)
-                {
-                    Activator.CreateInstance<T>().Bootstrap();
-                    _isInit = true;
-                }
+                if (_isInit) return;
+
+                Activator.CreateInstance<T>().Bootstrap();
+                _isInit = true;
             }
         }
 
@@ -124,10 +120,9 @@
             if (!_isInit)
                 throw new InvalidOperationException($"You must first initialize {nameof(Pi)} referencing a valid {nameof(IBootstrap)} implementation.");
 
-            if (!DependencyContainer.Current.CanResolve<T>())
-                throw new InvalidOperationException(MissingDependenciesMessage);
-
-            return DependencyContainer.Current.Resolve<T>();
+            return DependencyContainer.Current.CanResolve<T>()
+                ? DependencyContainer.Current.Resolve<T>()
+                : throw new InvalidOperationException(MissingDependenciesMessage);
         }
     }
 }
