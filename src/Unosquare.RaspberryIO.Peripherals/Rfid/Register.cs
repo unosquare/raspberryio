@@ -325,7 +325,7 @@
             /// <summary>
             /// The reserved34
             /// </summary>
-            Reserved34 = 0x3F,
+            Reserved34 = 0x3F
         }
     }
 }

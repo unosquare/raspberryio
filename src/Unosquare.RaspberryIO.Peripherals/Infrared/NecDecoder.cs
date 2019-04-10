@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
-    using Swan;
     using System.Collections;
     using System.Linq;
+    using Swan;
 
     public sealed partial class InfraredSensor
     {

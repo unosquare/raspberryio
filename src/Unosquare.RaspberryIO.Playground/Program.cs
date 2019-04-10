@@ -7,6 +7,7 @@
     using Swan;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -56,7 +57,7 @@
             {
                 "Program finished.".Info();
                 Terminal.Flush(TimeSpan.FromSeconds(2));
-                if (System.Diagnostics.Debugger.IsAttached)
+                if (Debugger.IsAttached)
                     "Press any key to exit . . .".ReadKey();
             }
         }
@@ -77,100 +78,100 @@
         /// <summary>
         /// Tests the servo.
         /// </summary>
-        public static void TestServo()
-        {
-            var servo = new HardwareServo((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
-            const double minPulse = 0.565;
-            const double maxPulse = 2.620;
-            var deltaPulse = 0.005;
+        //public static void TestServo()
+        //{
+        //    var servo = new HardwareServo((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
+        //    const double minPulse = 0.565;
+        //    const double maxPulse = 2.620;
+        //    var deltaPulse = 0.005;
 
-            while (true)
-            {
-                if (servo.PulseLengthMs >= maxPulse || servo.PulseLengthMs <= minPulse)
-                {
-                    var stopPulseLength = servo.PulseLengthMs;
-                    while (true)
-                    {
-                        var k = "Q (increment), W (decrement) or E (scroll back)".ReadKey();
-                        if (k.Key == ConsoleKey.Q)
-                        {
-                            servo.PulseLengthMs += Math.Abs(deltaPulse);
-                            $"{servo}".Info("Servo");
-                            var angle = servo.ComputeAngle(minPulse, maxPulse);
-                            var pulseLength = servo.ComputePulseLength(angle, minPulse, maxPulse);
-                            $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
-                        }
-                        else if (k.Key == ConsoleKey.W)
-                        {
-                            servo.PulseLengthMs -= Math.Abs(deltaPulse);
-                            $"{servo}".Info("Servo");
-                            var angle = servo.ComputeAngle(minPulse, maxPulse);
-                            var pulseLength = servo.ComputePulseLength(angle, minPulse, maxPulse);
-                            $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
-                        }
-                        else if (k.Key == ConsoleKey.E)
-                        {
-                            servo.PulseLengthMs = stopPulseLength;
-                            $"{servo}".Info("Servo");
-                            break;
-                        }
-                    }
+        //    while (true)
+        //    {
+        //        if (servo.PulseLengthMs >= maxPulse || servo.PulseLengthMs <= minPulse)
+        //        {
+        //            var stopPulseLength = servo.PulseLengthMs;
+        //            while (true)
+        //            {
+        //                var k = "Q (increment), W (decrement) or E (scroll back)".ReadKey();
+        //                if (k.Key == ConsoleKey.Q)
+        //                {
+        //                    servo.PulseLengthMs += Math.Abs(deltaPulse);
+        //                    $"{servo}".Info("Servo");
+        //                    var angle = servo.ComputeAngle(minPulse, maxPulse);
+        //                    var pulseLength = servo.ComputePulseLength(angle, minPulse, maxPulse);
+        //                    $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
+        //                }
+        //                else if (k.Key == ConsoleKey.W)
+        //                {
+        //                    servo.PulseLengthMs -= Math.Abs(deltaPulse);
+        //                    $"{servo}".Info("Servo");
+        //                    var angle = servo.ComputeAngle(minPulse, maxPulse);
+        //                    var pulseLength = servo.ComputePulseLength(angle, minPulse, maxPulse);
+        //                    $"Angle is {angle,7:0.000}. Pulse Length Should be: {pulseLength,7:0.000}".Warn("Servo");
+        //                }
+        //                else if (k.Key == ConsoleKey.E)
+        //                {
+        //                    servo.PulseLengthMs = stopPulseLength;
+        //                    $"{servo}".Info("Servo");
+        //                    break;
+        //                }
+        //            }
 
-                    deltaPulse *= -1;
-                    Thread.Sleep(100);
-                }
+        //            deltaPulse *= -1;
+        //            Thread.Sleep(100);
+        //        }
 
-                servo.PulseLengthMs += deltaPulse;
-                $"{servo} | Angle {servo.ComputeAngle(minPulse, maxPulse),7:0.00}".Info("Servo");
-                Pi.Timing.SleepMicroseconds(1500);
-            }
-        }
+        //        servo.PulseLengthMs += deltaPulse;
+        //        $"{servo} | Angle {servo.ComputeAngle(minPulse, maxPulse),7:0.00}".Info("Servo");
+        //        Pi.Timing.SleepMicroseconds(1500);
+        //    }
+        //}
 
         /// <summary>
         /// Tests the infrared sensor HX1838.
         /// </summary>
-        public static void TestInfraredSensor()
-        {
-            var inputPin = Pi.Gpio[BcmPin.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
-            var sensor = new InfraredSensor(inputPin, true);
-            var emitter = new InfraredEmitter((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
+        //public static void TestInfraredSensor()
+        //{
+        //    var inputPin = Pi.Gpio[BcmPin.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
+        //    var sensor = new InfraredSensor(inputPin, true);
+        //    var emitter = new InfraredEmitter((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
 
-            sensor.DataAvailable += (s, e) =>
-            {
-                var necData = InfraredSensor.NecDecoder.DecodePulses(e.Pulses);
-                if (necData != null)
-                {
-                    $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
+        //    sensor.DataAvailable += (s, e) =>
+        //    {
+        //        var necData = InfraredSensor.NecDecoder.DecodePulses(e.Pulses);
+        //        if (necData != null)
+        //        {
+        //            $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
 
-                    if (InfraredSensor.NecDecoder.IsRepeatCode(e.Pulses))
-                        return;
+        //            if (InfraredSensor.NecDecoder.IsRepeatCode(e.Pulses))
+        //                return;
 
-                    // Test repeater signal
-                    var outputPulses = InfraredEmitter.NecEncoder.Encode(necData);
+        //            // Test repeater signal
+        //            var outputPulses = InfraredEmitter.NecEncoder.Encode(necData);
 
-                    emitter.Send(outputPulses);
-                    var debugData = InfraredSensor.DebugPulses(outputPulses);
-                    $"TX       Length: {outputPulses.Length,5}".Warn("IR");
-                    debugData.Info("IR");
-                }
-                else
-                {
-                    if (e.Pulses.Length >= 4)
-                    {
-                        var debugData = InfraredSensor.DebugPulses(e.Pulses);
-                        $"RX    Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
-                        debugData.Info("IR");
-                    }
-                    else
-                    {
-                        $"RX (Garbage): {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
-                    }
-                }
-            };
+        //            emitter.Send(outputPulses);
+        //            var debugData = InfraredSensor.DebugPulses(outputPulses);
+        //            $"TX       Length: {outputPulses.Length,5}".Warn("IR");
+        //            debugData.Info("IR");
+        //        }
+        //        else
+        //        {
+        //            if (e.Pulses.Length >= 4)
+        //            {
+        //                var debugData = InfraredSensor.DebugPulses(e.Pulses);
+        //                $"RX    Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
+        //                debugData.Info("IR");
+        //            }
+        //            else
+        //            {
+        //                $"RX (Garbage): {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
+        //            }
+        //        }
+        //    };
 
-            Console.ReadLine();
-            sensor.Dispose();
-        }
+        //    Console.ReadLine();
+        //    sensor.Dispose();
+        //}
 
         /// <summary>
         /// Tests the SPI bus functionality.
@@ -325,14 +326,14 @@
             var startTime = DateTime.UtcNow;
 
             // Configure video settings
-            var videoSettings = new CameraVideoSettings()
+            var videoSettings = new CameraVideoSettings
             {
                 CaptureTimeoutMilliseconds = 0,
                 CaptureDisplayPreview = false,
                 ImageFlipVertically = true,
                 CaptureExposure = CameraExposureMode.Night,
                 CaptureWidth = 1920,
-                CaptureHeight = 1080,
+                CaptureHeight = 1080
             };
 
             try
@@ -342,7 +343,7 @@
 
                 // Start the video recording
                 Pi.Camera.OpenVideoStream(videoSettings,
-                    onDataCallback: (data) =>
+                    onDataCallback: data =>
                     {
                         videoByteCount += data.Length;
                         videoEventCount++;

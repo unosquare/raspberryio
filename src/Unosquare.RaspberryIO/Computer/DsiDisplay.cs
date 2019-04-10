@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Swan.Abstractions;
     using System.Globalization;
     using System.IO;
+    using Unosquare.Swan.Abstractions;
 
     /// <summary>
     /// The Official Raspberry Pi 7-inch touch display from the foundation

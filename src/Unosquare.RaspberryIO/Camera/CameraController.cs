@@ -1,11 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
-    using Swan.Abstractions;
     using System;
-    using Swan.Components;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
+    using Unosquare.Swan.Abstractions;
+    using Unosquare.Swan.Components;
 
     /// <summary>
     /// The Raspberry Pi's camera controller wrapping raspistill and raspivid programs.
@@ -99,7 +99,7 @@
                 CaptureWidth = width,
                 CaptureHeight = height,
                 CaptureJpegQuality = 90,
-                CaptureTimeoutMilliseconds = 300,
+                CaptureTimeoutMilliseconds = 300
             };
 
             return CaptureImageAsync(settings, ct);
@@ -130,7 +130,7 @@
                 CaptureTimeoutMilliseconds = 0,
                 CaptureDisplayPreview = false,
                 CaptureWidth = 1920,
-                CaptureHeight = 1080,
+                CaptureHeight = 1080
             };
 
             OpenVideoStream(settings, onDataCallback, onExitCallback);

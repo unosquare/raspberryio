@@ -1,10 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
+    using Abstractions;
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading;
-    using Unosquare.RaspberryIO.Abstractions;
     using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
@@ -13,7 +13,7 @@
     /// </summary>
     public class TemperatureSensorAM2302 : IDisposable
     {
-        private static readonly int[] AllowedPinNumbers = new[] { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
+        private static readonly int[] AllowedPinNumbers = { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
         private static readonly TimeSpan ReadInterval = TimeSpan.FromSeconds(2);
         private static readonly long BitPulseMidMicroseconds = 50; // (26 ... 50)µs for false; (51 ... 76)µs for true
 

@@ -1,11 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO
 {
-    using Abstractions;
-    using Camera;
-    using Computer;
-    using Swan.Components;
     using System;
     using System.Threading.Tasks;
+    using Unosquare.RaspberryIO.Abstractions;
+    using Unosquare.RaspberryIO.Camera;
+    using Unosquare.RaspberryIO.Computer;
+    using Unosquare.Swan.Components;
 
     /// <summary>
     /// Our main character. Provides access to the Raspberry Pi's GPIO, system and board information and Camera.

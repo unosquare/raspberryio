@@ -195,6 +195,6 @@
         /// <summary>
         /// The compute module 3+ Rev 1.0 Sony
         /// </summary>
-        ComputeModule3PlusSony = 0xa02100,
+        ComputeModule3PlusSony = 0xa02100
     }
 }

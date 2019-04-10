@@ -1,8 +1,8 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
-{
-    using System;
-    using Unosquare.RaspberryIO.Abstractions;
+﻿using System;
+using Unosquare.RaspberryIO.Abstractions;
 
+namespace Unosquare.RaspberryIO.Peripherals
+{
     /// <summary>
     /// Implements a generic button attached to the GPIO.
     /// </summary>

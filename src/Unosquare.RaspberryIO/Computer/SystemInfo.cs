@@ -1,15 +1,15 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Abstractions;
-    using Native;
-    using Swan.Abstractions;
-    using Swan.Components;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using Unosquare.RaspberryIO.Abstractions;
+    using Unosquare.RaspberryIO.Native;
+    using Unosquare.Swan.Abstractions;
+    using Unosquare.Swan.Components;
 
     /// <summary>
     /// http://raspberry-pi-guide.readthedocs.io/en/latest/system.html.
@@ -29,14 +29,14 @@
             #region Obtain and format a property dictionary
 
             var properties =
-                typeof(SystemInfo).GetTypeInfo()
+                typeof(SystemInfo)
                     .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                     .Where(
                         p =>
                             p.CanWrite && p.CanRead &&
                             (p.PropertyType == typeof(string) || p.PropertyType == typeof(string[])))
                     .ToArray();
-            var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer.InvariantCultureIgnoreCase);
+            var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
 
             foreach (var prop in properties)
             {
@@ -152,7 +152,7 @@
                     NodeName = unameInfo.NodeName,
                     Release = unameInfo.Release,
                     SysName = unameInfo.SysName,
-                    Version = unameInfo.Version,
+                    Version = unameInfo.Version
                 };
             }
             catch
@@ -296,7 +296,7 @@
         /// </returns>
         public override string ToString()
         {
-            var properties = typeof(SystemInfo).GetTypeInfo().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+            var properties = typeof(SystemInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(p => p.CanRead && (
                                 p.PropertyType == typeof(string) ||
                                 p.PropertyType == typeof(string[]) ||
@@ -309,7 +309,7 @@
             {
                 "System Information",
                 $"\t{nameof(LibraryVersion),-22}: {LibraryVersion}",
-                $"\t{nameof(RaspberryPiVersion),-22}: {RaspberryPiVersion}",
+                $"\t{nameof(RaspberryPiVersion),-22}: {RaspberryPiVersion}"
             };
 
             foreach (var property in properties)

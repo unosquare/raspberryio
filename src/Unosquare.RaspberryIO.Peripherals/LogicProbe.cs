@@ -1,13 +1,13 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
-    using Unosquare.RaspberryIO.Abstractions;
+    using Abstractions;
     using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// A class representing a logic probe that reads high or low digital values when
     /// an edge change is detected. This is not meant for high frequency probing.
-    /// The maximum fairly relibale probing frequency is at most 10kHz (100us periods).
+    /// The maximum fairly reliable probing frequency is at most 10kHz (100us periods).
     /// </summary>
     public sealed class LogicProbe
     {

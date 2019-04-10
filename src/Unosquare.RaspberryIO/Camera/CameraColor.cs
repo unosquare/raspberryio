@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
-    using Swan;
     using System;
     using System.Linq;
+    using Unosquare.Swan;
 
     /// <summary>
     /// A simple RGB color class to represent colors in RGB and YUV colorspaces.
@@ -35,7 +35,7 @@
             var u = (R * -.168736f) + (G * -.331264f) + (B * .500000f) + 128f;
             var v = (R * .500000f) + (G * -.418688f) + (B * -.081312f) + 128f;
 
-            YUV = new byte[] { (byte)y.Clamp(0, 255), (byte)u.Clamp(0, 255), (byte)v.Clamp(0, 255) };
+            YUV = new[] { (byte)y.Clamp(0, 255), (byte)u.Clamp(0, 255), (byte)v.Clamp(0, 255) };
             Name = name;
         }
 

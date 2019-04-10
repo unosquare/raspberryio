@@ -1,8 +1,5 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Swan;
-    using Swan.Abstractions;
-    using Swan.Components;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -10,6 +7,9 @@
     using System.Net;
     using System.Text;
     using System.Threading.Tasks;
+    using Unosquare.Swan;
+    using Unosquare.Swan.Abstractions;
+    using Unosquare.Swan.Components;
 
     /// <summary>
     /// Represents the network information.
@@ -56,7 +56,7 @@
 
                     var network = new WirelessNetworkInfo
                     {
-                        Name = line.Replace(EssidTag, string.Empty).Replace("\"", string.Empty),
+                        Name = line.Replace(EssidTag, string.Empty).Replace("\"", string.Empty)
                     };
 
                     while (true)
@@ -152,7 +152,7 @@
                 // Read the line as an adapter
                 var adapter = new NetworkAdapterInfo
                 {
-                    Name = line.Substring(0, line.IndexOf(' ')).TrimEnd(':'),
+                    Name = line.Substring(0, line.IndexOf(' ')).TrimEnd(':')
                 };
 
                 // Parse the MAC address in old version of ifconfig; it comes in the first line

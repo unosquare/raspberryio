@@ -1,4 +1,4 @@
-﻿#if NET462
+﻿#if NET461
 namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;

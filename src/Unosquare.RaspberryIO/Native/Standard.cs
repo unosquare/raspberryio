@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Native
 {
     using System.Runtime.InteropServices;
-    
+
     internal static class Standard
     {
         internal const string LibCLibrary = "libc";
