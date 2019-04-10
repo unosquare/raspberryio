@@ -2,7 +2,6 @@
 {
     using System;
     using System.Runtime.InteropServices;
-    using Swan;
 
     /// <summary>
     /// Represents a low-level exception, typically thrown when return codes from a
@@ -27,7 +26,7 @@
             }
             catch
             {
-                $"Could not retrieve native error description using {nameof(Standard.Strerror)}".Error(nameof(HardwareException));
+                // Ignore
             }
 
             ErrorCode = errorCode;

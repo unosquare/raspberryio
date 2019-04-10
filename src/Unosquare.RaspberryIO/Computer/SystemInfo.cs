@@ -29,14 +29,14 @@
             #region Obtain and format a property dictionary
 
             var properties =
-                typeof(SystemInfo).GetTypeInfo()
+                typeof(SystemInfo)
                     .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                     .Where(
                         p =>
                             p.CanWrite && p.CanRead &&
                             (p.PropertyType == typeof(string) || p.PropertyType == typeof(string[])))
                     .ToArray();
-            var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer.InvariantCultureIgnoreCase);
+            var propDictionary = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
 
             foreach (var prop in properties)
             {
@@ -296,7 +296,7 @@
         /// </returns>
         public override string ToString()
         {
-            var properties = typeof(SystemInfo).GetTypeInfo().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+            var properties = typeof(SystemInfo).GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(p => p.CanRead && (
                                 p.PropertyType == typeof(string) ||
                                 p.PropertyType == typeof(string[]) ||

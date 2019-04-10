@@ -1,7 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Abstractions.Native
 {
     using System;
-    using Swan;
     using System.Runtime.InteropServices;
     using System.Text;
 
@@ -21,7 +20,7 @@
         /// <returns>The error string.</returns>
         public static string Strerror(int error)
         {
-            if (!Runtime.IsUsingMonoRuntime) return Marshal.PtrToStringAnsi(StrError(error));
+            if (Type.GetType("Mono.Runtime") == null) return Marshal.PtrToStringAnsi(StrError(error));
 
             try
             {
@@ -35,11 +34,6 @@
             }
         }
         
-        /// <summary>
-        /// Returns a pointer to a string that describes the error code passed in the argument.
-        /// </summary>
-        /// <param name="errnum">The error code.</param>
-        /// <returns>A pointer to a string that describes the error code.</returns>
         [DllImport(LibCLibrary, EntryPoint = "strerror", SetLastError = true)]
         private static extern IntPtr StrError(int errnum);
 
