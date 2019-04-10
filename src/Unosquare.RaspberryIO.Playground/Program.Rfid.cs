@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using Peripherals;
-    using Swan;
     using System.Linq;
+    using Unosquare.RaspberryIO.Peripherals;
+    using Unosquare.Swan;
 
     public partial class Program
     {

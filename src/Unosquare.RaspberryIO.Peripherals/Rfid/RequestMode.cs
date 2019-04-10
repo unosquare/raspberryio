@@ -70,7 +70,7 @@
             /// <summary>
             /// The halt mode
             /// </summary>
-            Halt = 0x50,
+            Halt = 0x50
         }
     }
 }

@@ -25,7 +25,7 @@
         /// <summary>
         /// The PNG
         /// </summary>
-        Png,
+        Png
     }
 
     /// <summary>
@@ -91,7 +91,7 @@
         /// <summary>
         /// The fireworks
         /// </summary>
-        Fireworks,
+        Fireworks
     }
 
     /// <summary>
@@ -147,7 +147,7 @@
         /// <summary>
         /// The horizon
         /// </summary>
-        Horizon,
+        Horizon
     }
 
     /// <summary>
@@ -258,7 +258,7 @@
         /// <summary>
         /// The cartoon
         /// </summary>
-        Cartoon,
+        Cartoon
     }
 
     /// <summary>
@@ -284,7 +284,7 @@
         /// <summary>
         /// The matrix
         /// </summary>
-        Matrix,
+        Matrix
     }
 
     /// <summary>
@@ -310,7 +310,7 @@
         /// <summary>
         /// 270 degrees
         /// </summary>
-        Degrees270 = 270,
+        Degrees270 = 270
     }
 
     /// <summary>
@@ -337,7 +337,7 @@
         /// <summary>
         /// The high
         /// </summary>
-        High,
+        High
     }
 
     /// <summary>
@@ -394,7 +394,7 @@
         /// <summary>
         /// The solid background
         /// </summary>
-        SolidBackground = 1024,
+        SolidBackground = 1024
     }
 
     /// <summary>
@@ -418,6 +418,6 @@
         /// HiP: The primary profile for broadcast and disc storage applications, particularly 
         /// for high-definition television applications (this is the profile adopted into HD DVD and Blu-ray Disc, for example).
         /// </summary>
-        High,
+        High
     }
 }

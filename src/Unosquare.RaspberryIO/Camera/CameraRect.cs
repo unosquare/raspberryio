@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
-    using Swan;
     using System.Globalization;
+    using Unosquare.Swan;
 
     /// <summary>
     /// Defines the Raspberry Pi camera's sensor ROI (Region of Interest).

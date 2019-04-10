@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;netcoreapp2.2</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.2</TargetFrameworks>
     <RuntimeIdentifier>linux-arm</RuntimeIdentifier>
     <AssemblyName>Unosquare.RaspberryIO.Playground</AssemblyName>
     <OutputType>Exe</OutputType>
@@ -14,7 +14,6 @@
     <SshDeployUsername>pi</SshDeployUsername>
     <LangVersion>7.3</LangVersion>
     <SshDeployPassword>raspberry</SshDeployPassword>
-    <!--<SshDeployPostCommand>dotnet /home/pi/playground/Unosquare.RaspberryIO.Playground.dll</SshDeployPostCommand>-->
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +26,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Unosquare.Swan.Lite" Version="1.1.2" />
+    <PackageReference Include="Unosquare.WiringPi" Version="0.3.0" />
   </ItemGroup>
   <ItemGroup>
     <None Update="fractal.jpg;spectrum.png">

@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
-    using Swan;
     using System.Globalization;
     using System.Text;
+    using Unosquare.Swan;
 
     /// <summary>
     /// A base class to implement raspistill and raspivid wrappers

@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
-    using Swan;
     using System.Text;
+    using Unosquare.Swan;
 
     /// <summary>
     /// Represents the raspivid camera settings for video capture functionality.

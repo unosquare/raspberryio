@@ -1,12 +1,12 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
-    using Abstractions;
-    using Swan;
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading;
-    using Abstractions.Native;
+    using Abstractions;
+    using Unosquare.RaspberryIO.Abstractions.Native;
+    using Swan;
 
     /// <summary>
     /// Implements a digital infrared sensor using the HX1838/VS1838 or the TSOP38238 38kHz digital receiver.
@@ -56,7 +56,7 @@
             /// <summary>
             /// The overflow state
             /// </summary>
-            Overflow,
+            Overflow
         }
 
         /// <summary>

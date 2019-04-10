@@ -20,7 +20,7 @@
         }
 
         /// <summary>
-        /// Gets the numer of microseconds per timer tick.
+        /// Gets the number of microseconds per timer tick.
         /// </summary>
         public static double MicrosecondsPerTick { get; } = 1000000d / Frequency;
 
