@@ -101,7 +101,7 @@
         /// The model A+ Rev1.1 (512MB) Sony
         /// </summary>
         ModelAPlus1v1Sony = 900021,
-        
+
         /// <summary>
         /// The model B+ Rev1.2 sony
         /// </summary>
@@ -195,6 +195,165 @@
         /// <summary>
         /// The compute module 3+ Rev 1.0 Sony
         /// </summary>
-        ComputeModule3PlusSony = 0xa02100
+        ComputeModule3PlusSony = 0xa02100,
+    }
+
+    /// <summary>
+    /// Defines the board model accordingly to new-style revision codes.
+    /// </summary>
+    public enum BoardModel
+    {
+        /// <summary>
+        /// Model A
+        /// </summary>
+        ModelA = 0,
+
+        /// <summary>
+        /// Model B
+        /// </summary>
+        ModelB = 1,
+
+        /// <summary>
+        /// Model A+
+        /// </summary>
+        ModelAPlus = 2,
+
+        /// <summary>
+        /// Model B+
+        /// </summary>
+        ModelBPlus = 3,
+
+        /// <summary>
+        /// Model 2 B
+        /// </summary>
+        Model2B = 4,
+
+        /// <summary>
+        /// Alpha (early prototype)
+        /// </summary>
+        Alpha = 5,
+
+        /// <summary>
+        /// Compute Module 1
+        /// </summary>
+        CM1 = 6,
+
+        /// <summary>
+        /// Model 3 B
+        /// </summary>
+        Model3B = 8,
+
+        /// <summary>
+        /// Model Zero
+        /// </summary>
+        Zero = 9,
+
+        /// <summary>
+        /// Compute Module 3
+        /// </summary>
+        CM3 = 0xa,
+
+        /// <summary>
+        /// Model Zero W
+        /// </summary>
+        ZeroW = 0xc,
+
+        /// <summary>
+        /// Model 3 B+
+        /// </summary>
+        Model3BPlus = 0xd,
+
+        /// <summary>
+        /// Model 3A+
+        /// </summary>
+        Model3APlus = 0xe,
+
+        /// <summary>
+        /// Reserved (Internal use only)
+        /// </summary>
+        InternalUse = 0xf,
+
+        /// <summary>
+        /// Compute Module 3+
+        /// </summary>
+        CM3Plus = 0x10,
+    }
+
+    /// <summary>
+    /// Defines the processor model accordingly to new-style revision codes.
+    /// </summary>
+    public enum ProcessorModel
+    {
+        /// <summary>
+        /// The BCMM2835 processor.
+        /// </summary>
+        BCM2835,
+
+        /// <summary>
+        /// The BCMM2836 processor.
+        /// </summary>
+        BCM2836,
+
+        /// <summary>
+        /// The BCMM2837 processor.
+        /// </summary>
+        BCM2837,
+    }
+
+    /// <summary>
+    /// Defines the manufacturer accordingly to new-style revision codes.
+    /// </summary>
+    public enum Manufacturer
+    {
+        /// <summary>
+        /// Sony UK
+        /// </summary>
+        SonyUK,
+
+        /// <summary>
+        /// Egoman
+        /// </summary>
+        Egoman,
+
+        /// <summary>
+        /// Embest
+        /// </summary>
+        Embest,
+
+        /// <summary>
+        /// Sony Japan
+        /// </summary>
+        SonyJapan,
+
+        /// <summary>
+        /// Embest
+        /// </summary>
+        Embest2,
+
+        /// <summary>
+        /// Stadium
+        /// </summary>
+        Stadium,
+    }
+
+    /// <summary>
+    /// Defines the memory size accordingly to new-style revision codes.
+    /// </summary>
+    public enum MemorySize
+    {
+        /// <summary>
+        /// 256 MB
+        /// </summary>
+        Memory256,
+
+        /// <summary>
+        /// 512 MB
+        /// </summary>
+        Memory512,
+
+        /// <summary>
+        /// 1 GB
+        /// </summary>
+        Memory1024,
     }
 }

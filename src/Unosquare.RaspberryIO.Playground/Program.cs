@@ -47,7 +47,7 @@
                 // TestHardwarePwm();
                 // TestInfraredSensor();
                 // TestServo();
-                TestTempSensor();
+                // TestTempSensor();
             }
             catch (Exception ex)
             {
@@ -292,6 +292,18 @@
         {
             $"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins".Info();
             $"{Pi.Info}".Info();
+            try
+            {
+                $"BoardModel {Pi.Info.BoardModel}".Info();
+                $"ProcessorModel {Pi.Info.ProcessorModel}".Info();
+                $"Manufacturer {Pi.Info.Manufacturer}".Info();
+                $"MemorySize {Pi.Info.MemorySize}".Info();
+            }
+            catch
+            {
+                // ignore
+            }
+
             $"Uname {Pi.Info.OperatingSystem}".Info();
             $"HostName {NetworkSettings.Instance.HostName}".Info();
             $"Uptime (seconds) {Pi.Info.Uptime}".Info();
