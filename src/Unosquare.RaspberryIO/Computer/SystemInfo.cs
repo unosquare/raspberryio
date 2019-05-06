@@ -20,6 +20,13 @@
         private const string MemInfoFilePath = "/proc/meminfo";
         private const string UptimeFilePath = "/proc/uptime";
 
+        private const int NewStyleCodesMask = 0x800000;
+
+        private BoardModel _boardModel;
+        private ProcessorModel _processorModel;
+        private Manufacturer _manufacturer;
+        private MemorySize _memorySize;
+
         /// <summary>
         /// Prevents a default instance of the <see cref="SystemInfo"/> class from being created.
         /// </summary>
@@ -116,9 +123,17 @@
                         out var boardVersion))
                 {
                     RaspberryPiVersion = PiVersion.Unknown;
-                    if (Enum.GetValues(typeof(PiVersion)).Cast<int>().Contains(boardVersion))
-                    {
+                    if (Enum.IsDefined(typeof(PiVersion), boardVersion))
                         RaspberryPiVersion = (PiVersion)boardVersion;
+
+                    if ((boardVersion & NewStyleCodesMask) == NewStyleCodesMask)
+                    {
+                        NewStyleRevisionCodes = true;
+                        RevisionNumber = boardVersion & 0xF;
+                        _boardModel = (BoardModel)((boardVersion >> 4) & 0xFF);
+                        _processorModel = (ProcessorModel)((boardVersion >> 12) & 0xF);
+                        _manufacturer = (Manufacturer)((boardVersion >> 16) & 0xF);
+                        _memorySize = (MemorySize)((boardVersion >> 20) & 0x7);
                     }
                 }
 
@@ -250,6 +265,47 @@
         public string Revision { get; private set; }
 
         /// <summary>
+        /// Gets the revision number (accordingly to new-style revision codes).
+        /// </summary>
+        public int RevisionNumber { get; }
+
+        /// <summary>
+        /// Gets the board model (accordingly to new-style revision codes).
+        /// </summary>
+        /// /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</exception>
+        public BoardModel BoardModel =>
+            NewStyleRevisionCodes ?
+                _boardModel :
+                throw new InvalidOperationException($"This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)} property instead.");
+
+        /// <summary>
+        /// Gets processor model (accordingly to new-style revision codes).
+        /// </summary>
+        /// /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</exception>
+        public ProcessorModel ProcessorModel =>
+            NewStyleRevisionCodes ?
+                _processorModel :
+                throw new InvalidOperationException($"This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)} property instead.");
+
+        /// <summary>
+        /// Gets the manufacturer of the board (accordingly to new-style revision codes).
+        /// </summary>
+        /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</exception>
+        public Manufacturer Manufacturer =>
+            NewStyleRevisionCodes ?
+                _manufacturer :
+                throw new InvalidOperationException($"This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)} property instead.");
+
+        /// <summary>
+        /// Gets the size of the memory (accordingly to new-style revision codes).
+        /// </summary>
+        /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</exception>
+        public MemorySize MemorySize =>
+            NewStyleRevisionCodes ?
+                _memorySize :
+                throw new InvalidOperationException($"This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)} property instead.");
+
+        /// <summary>
         /// Gets the serial number.
         /// </summary>
         public string Serial { get; private set; }
@@ -282,6 +338,11 @@
         /// Gets the uptime in TimeSpan.
         /// </summary>
         public TimeSpan UptimeTimeSpan => TimeSpan.FromSeconds(Uptime);
+
+        /// <summary>
+        /// Indicates if the board uses the new-style revision codes.
+        /// </summary>
+        private bool NewStyleRevisionCodes { get; set; }
 
         /// <summary>
         /// Placeholder for processor index.

@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <PackageId>Unosquare.RaspberryIO.Playground</PackageId>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <SshDeployHost>172.16.17.191</SshDeployHost>
+    <SshDeployHost>172.16.17.198</SshDeployHost>
     <SshDeployClean />
     <SshDeployTargetPath>/home/pi/playground</SshDeployTargetPath>
     <SshDeployUsername>pi</SshDeployUsername>
