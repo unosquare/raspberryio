@@ -48,6 +48,7 @@
                 // TestInfraredSensor();
                 // TestServo();
                 // TestTempSensor();
+                await TestVolumeControl();
             }
             catch (Exception ex)
             {
@@ -220,6 +221,39 @@
             Pi.PiDisplay.IsBacklightOn = true;
             Pi.PiDisplay.Brightness = 96;
             $"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}".Info();
+        }
+
+        /// <summary>
+        /// Test volume control.
+        /// </summary>
+        public static async Task TestVolumeControl()
+        {
+            Console.WriteLine("Volume control for Pi - Playground");
+            var input = string.Empty;
+            var initialState = new AudioState(80) { IsMute = false };
+
+            while (input.Equals("close", StringComparison.CurrentCulture) == false)
+            {
+                input = Console.ReadLine();
+                if (input.Equals("w", StringComparison.CurrentCulture) == true)
+                {
+                    var currentState = await AudioSettings.GetVolumeState().ConfigureAwait(false);
+                    var newPercent = currentState.Level + 1 <= 100 ? currentState.Level + 1 : 100;
+                    await Pi.PiVolumeControl.SetVolumePercentage(newPercent, 0).ConfigureAwait(false);
+                }
+                else if (input.Equals("s", StringComparison.CurrentCulture) == true)
+                {
+                    var currentState = await AudioSettings.GetVolumeState().ConfigureAwait(false);
+                    var newPercent = currentState.Level - 1 >= 0 ? currentState.Level - 1 : 0;
+                    await Pi.PiVolumeControl.SetVolumePercentage(newPercent, 0).ConfigureAwait(false);
+                }
+                else if (input.Equals("info", StringComparison.CurrentCulture) == true)
+                {
+                    var currentState = await AudioSettings.GetVolumeState().ConfigureAwait(false);
+                    Console.WriteLine($"Volume level: {currentState.Level}");
+                    Console.WriteLine($"Is device muted? : {currentState.IsMute}");
+                }
+            }
         }
 
         /// <summary>
