@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class SystemInfo
    | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.41.0.0">
+    <meta name="generator" content="docfx 2.42.3.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -96,6 +96,48 @@
   </div>
   <h3 id="properties">Properties
   </h3>
+  
+  
+  <a id="Unosquare_RaspberryIO_Computer_SystemInfo_BoardModel_" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.BoardModel*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_SystemInfo_BoardModel" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.BoardModel">BoardModel</h4>
+  <div class="markdown level1 summary"><p>Gets the board model (accordingly to new-style revision codes).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BoardModel BoardModel { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Computer.BoardModel.html">BoardModel</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="Unosquare_RaspberryIO_Computer_SystemInfo_BoardRevision_" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.BoardRevision*"></a>
@@ -385,6 +427,90 @@
   </table>
   
   
+  <a id="Unosquare_RaspberryIO_Computer_SystemInfo_Manufacturer_" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.Manufacturer*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_SystemInfo_Manufacturer" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.Manufacturer">Manufacturer</h4>
+  <div class="markdown level1 summary"><p>Gets the manufacturer of the board (accordingly to new-style revision codes).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Manufacturer Manufacturer { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Computer.Manufacturer.html">Manufacturer</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Computer_SystemInfo_MemorySize_" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.MemorySize*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_SystemInfo_MemorySize" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.MemorySize">MemorySize</h4>
+  <div class="markdown level1 summary"><p>Gets the size of the memory (accordingly to new-style revision codes).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MemorySize MemorySize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Computer.MemorySize.html">MemorySize</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_RaspberryIO_Computer_SystemInfo_ModelName_" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.ModelName*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_SystemInfo_ModelName" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.ModelName">ModelName</h4>
   <div class="markdown level1 summary"><p>Gets the CPU model name.</p>
@@ -464,6 +590,48 @@
   </table>
   
   
+  <a id="Unosquare_RaspberryIO_Computer_SystemInfo_ProcessorModel_" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorModel*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_SystemInfo_ProcessorModel" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorModel">ProcessorModel</h4>
+  <div class="markdown level1 summary"><p>Gets processor model (accordingly to new-style revision codes).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessorModel ProcessorModel { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.Computer.ProcessorModel.html">ProcessorModel</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_RaspberryIO_Computer_SystemInfo_RaspberryPiVersion_" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.RaspberryPiVersion*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_SystemInfo_RaspberryPiVersion" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.RaspberryPiVersion">RaspberryPiVersion</h4>
   <div class="markdown level1 summary"><p>Gets the Raspberry Pi version.</p>
@@ -510,6 +678,32 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Computer_SystemInfo_RevisionNumber_" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.RevisionNumber*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_SystemInfo_RevisionNumber" data-uid="Unosquare.RaspberryIO.Computer.SystemInfo.RevisionNumber">RevisionNumber</h4>
+  <div class="markdown level1 summary"><p>Gets the revision number (accordingly to new-style revision codes).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RevisionNumber { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td></td>
       </tr>
     </tbody>

@@ -1624,6 +1624,270 @@ references:
   commentId: N:Unosquare.RaspberryIO.Computer
   fullName: Unosquare.RaspberryIO.Computer
   nameWithType: Unosquare.RaspberryIO.Computer
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings
+  name: AudioSettings
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html
+  commentId: T:Unosquare.RaspberryIO.Computer.AudioSettings
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings
+  nameWithType: AudioSettings
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.String,System.Int32)
+  name: GetAudioDeviceState(String, Int32)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetAudioDeviceState_System_String_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.String,System.Int32)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.String, System.Int32)
+  nameWithType: AudioSettings.GetAudioDeviceState(String, Int32)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState*
+  name: GetAudioDeviceState
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetAudioDeviceState_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState
+  nameWithType: AudioSettings.GetAudioDeviceState
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList
+  name: GetCommandList()
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetCommandList
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList()
+  nameWithType: AudioSettings.GetCommandList()
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList*
+  name: GetCommandList
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetCommandList_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList
+  nameWithType: AudioSettings.GetCommandList
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo(System.Int32,System.String)
+  name: GetDeviceInfo(Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetDeviceInfo_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo(System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo(System.Int32, System.String)
+  nameWithType: AudioSettings.GetDeviceInfo(Int32, String)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo*
+  name: GetDeviceInfo
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetDeviceInfo_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo
+  nameWithType: AudioSettings.GetDeviceInfo
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage(System.Int32,System.Int32,System.String)
+  name: SetVolumePercentage(Int32, Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumePercentage_System_Int32_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage(System.Int32,System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage(System.Int32, System.Int32, System.String)
+  nameWithType: AudioSettings.SetVolumePercentage(Int32, Int32, String)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage*
+  name: SetVolumePercentage
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumePercentage_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage
+  nameWithType: AudioSettings.SetVolumePercentage
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute(System.Boolean,System.Int32,System.String)
+  name: ToggleMute(Boolean, Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_ToggleMute_System_Boolean_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute(System.Boolean,System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute(System.Boolean, System.Int32, System.String)
+  nameWithType: AudioSettings.ToggleMute(Boolean, Int32, String)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute*
+  name: ToggleMute
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_ToggleMute_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute
+  nameWithType: AudioSettings.ToggleMute
+- uid: Unosquare.RaspberryIO.Computer.AudioState
+  name: AudioState
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html
+  commentId: T:Unosquare.RaspberryIO.Computer.AudioState
+  fullName: Unosquare.RaspberryIO.Computer.AudioState
+  nameWithType: AudioState
+- uid: Unosquare.RaspberryIO.Computer.AudioState.#ctor(System.Int32)
+  name: AudioState(Int32)
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState__ctor_System_Int32_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioState.#ctor(System.Int32)
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.AudioState(System.Int32)
+  nameWithType: AudioState.AudioState(Int32)
+- uid: Unosquare.RaspberryIO.Computer.AudioState.#ctor*
+  name: AudioState
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState__ctor_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioState.#ctor
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.AudioState
+  nameWithType: AudioState.AudioState
+- uid: Unosquare.RaspberryIO.Computer.AudioState.CardNumber
+  name: CardNumber
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_CardNumber
+  commentId: P:Unosquare.RaspberryIO.Computer.AudioState.CardNumber
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.CardNumber
+  nameWithType: AudioState.CardNumber
+- uid: Unosquare.RaspberryIO.Computer.AudioState.CardNumber*
+  name: CardNumber
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_CardNumber_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioState.CardNumber
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.CardNumber
+  nameWithType: AudioState.CardNumber
+- uid: Unosquare.RaspberryIO.Computer.AudioState.Decibels
+  name: Decibels
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_Decibels
+  commentId: P:Unosquare.RaspberryIO.Computer.AudioState.Decibels
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.Decibels
+  nameWithType: AudioState.Decibels
+- uid: Unosquare.RaspberryIO.Computer.AudioState.Decibels*
+  name: Decibels
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_Decibels_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioState.Decibels
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.Decibels
+  nameWithType: AudioState.Decibels
+- uid: Unosquare.RaspberryIO.Computer.AudioState.DeviceName
+  name: DeviceName
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_DeviceName
+  commentId: P:Unosquare.RaspberryIO.Computer.AudioState.DeviceName
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.DeviceName
+  nameWithType: AudioState.DeviceName
+- uid: Unosquare.RaspberryIO.Computer.AudioState.DeviceName*
+  name: DeviceName
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_DeviceName_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioState.DeviceName
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.DeviceName
+  nameWithType: AudioState.DeviceName
+- uid: Unosquare.RaspberryIO.Computer.AudioState.IsMute
+  name: IsMute
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_IsMute
+  commentId: P:Unosquare.RaspberryIO.Computer.AudioState.IsMute
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.IsMute
+  nameWithType: AudioState.IsMute
+- uid: Unosquare.RaspberryIO.Computer.AudioState.IsMute*
+  name: IsMute
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_IsMute_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioState.IsMute
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.IsMute
+  nameWithType: AudioState.IsMute
+- uid: Unosquare.RaspberryIO.Computer.AudioState.Level
+  name: Level
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_Level
+  commentId: P:Unosquare.RaspberryIO.Computer.AudioState.Level
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.Level
+  nameWithType: AudioState.Level
+- uid: Unosquare.RaspberryIO.Computer.AudioState.Level*
+  name: Level
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_Level_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioState.Level
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.Level
+  nameWithType: AudioState.Level
+- uid: Unosquare.RaspberryIO.Computer.AudioState.ToString
+  name: ToString()
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_ToString
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioState.ToString
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.ToString()
+  nameWithType: AudioState.ToString()
+- uid: Unosquare.RaspberryIO.Computer.AudioState.ToString*
+  name: ToString
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_ToString_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioState.ToString
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.ToString
+  nameWithType: AudioState.ToString
+- uid: Unosquare.RaspberryIO.Computer.BoardModel
+  name: BoardModel
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html
+  commentId: T:Unosquare.RaspberryIO.Computer.BoardModel
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel
+  nameWithType: BoardModel
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.Alpha
+  name: Alpha
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_Alpha
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.Alpha
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.Alpha
+  nameWithType: BoardModel.Alpha
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.CM1
+  name: CM1
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_CM1
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.CM1
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.CM1
+  nameWithType: BoardModel.CM1
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.CM3
+  name: CM3
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_CM3
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.CM3
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.CM3
+  nameWithType: BoardModel.CM3
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.CM3Plus
+  name: CM3Plus
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_CM3Plus
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.CM3Plus
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.CM3Plus
+  nameWithType: BoardModel.CM3Plus
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.InternalUse
+  name: InternalUse
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_InternalUse
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.InternalUse
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.InternalUse
+  nameWithType: BoardModel.InternalUse
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.Model2B
+  name: Model2B
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_Model2B
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.Model2B
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.Model2B
+  nameWithType: BoardModel.Model2B
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.Model3APlus
+  name: Model3APlus
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_Model3APlus
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.Model3APlus
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.Model3APlus
+  nameWithType: BoardModel.Model3APlus
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.Model3B
+  name: Model3B
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_Model3B
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.Model3B
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.Model3B
+  nameWithType: BoardModel.Model3B
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.Model3BPlus
+  name: Model3BPlus
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_Model3BPlus
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.Model3BPlus
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.Model3BPlus
+  nameWithType: BoardModel.Model3BPlus
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.ModelA
+  name: ModelA
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_ModelA
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.ModelA
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.ModelA
+  nameWithType: BoardModel.ModelA
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.ModelAPlus
+  name: ModelAPlus
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_ModelAPlus
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.ModelAPlus
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.ModelAPlus
+  nameWithType: BoardModel.ModelAPlus
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.ModelB
+  name: ModelB
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_ModelB
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.ModelB
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.ModelB
+  nameWithType: BoardModel.ModelB
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.ModelBPlus
+  name: ModelBPlus
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_ModelBPlus
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.ModelBPlus
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.ModelBPlus
+  nameWithType: BoardModel.ModelBPlus
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.Zero
+  name: Zero
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_Zero
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.Zero
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.Zero
+  nameWithType: BoardModel.Zero
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.ZeroW
+  name: ZeroW
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_ZeroW
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.ZeroW
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.ZeroW
+  nameWithType: BoardModel.ZeroW
 - uid: Unosquare.RaspberryIO.Computer.DsiDisplay
   name: DsiDisplay
   href: api/Unosquare.RaspberryIO.Computer.DsiDisplay.html
@@ -1669,6 +1933,72 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.DsiDisplay.IsPresent
   nameWithType: DsiDisplay.IsPresent
+- uid: Unosquare.RaspberryIO.Computer.Manufacturer
+  name: Manufacturer
+  href: api/Unosquare.RaspberryIO.Computer.Manufacturer.html
+  commentId: T:Unosquare.RaspberryIO.Computer.Manufacturer
+  fullName: Unosquare.RaspberryIO.Computer.Manufacturer
+  nameWithType: Manufacturer
+- uid: Unosquare.RaspberryIO.Computer.Manufacturer.Egoman
+  name: Egoman
+  href: api/Unosquare.RaspberryIO.Computer.Manufacturer.html#Unosquare_RaspberryIO_Computer_Manufacturer_Egoman
+  commentId: F:Unosquare.RaspberryIO.Computer.Manufacturer.Egoman
+  fullName: Unosquare.RaspberryIO.Computer.Manufacturer.Egoman
+  nameWithType: Manufacturer.Egoman
+- uid: Unosquare.RaspberryIO.Computer.Manufacturer.Embest
+  name: Embest
+  href: api/Unosquare.RaspberryIO.Computer.Manufacturer.html#Unosquare_RaspberryIO_Computer_Manufacturer_Embest
+  commentId: F:Unosquare.RaspberryIO.Computer.Manufacturer.Embest
+  fullName: Unosquare.RaspberryIO.Computer.Manufacturer.Embest
+  nameWithType: Manufacturer.Embest
+- uid: Unosquare.RaspberryIO.Computer.Manufacturer.Embest2
+  name: Embest2
+  href: api/Unosquare.RaspberryIO.Computer.Manufacturer.html#Unosquare_RaspberryIO_Computer_Manufacturer_Embest2
+  commentId: F:Unosquare.RaspberryIO.Computer.Manufacturer.Embest2
+  fullName: Unosquare.RaspberryIO.Computer.Manufacturer.Embest2
+  nameWithType: Manufacturer.Embest2
+- uid: Unosquare.RaspberryIO.Computer.Manufacturer.SonyJapan
+  name: SonyJapan
+  href: api/Unosquare.RaspberryIO.Computer.Manufacturer.html#Unosquare_RaspberryIO_Computer_Manufacturer_SonyJapan
+  commentId: F:Unosquare.RaspberryIO.Computer.Manufacturer.SonyJapan
+  fullName: Unosquare.RaspberryIO.Computer.Manufacturer.SonyJapan
+  nameWithType: Manufacturer.SonyJapan
+- uid: Unosquare.RaspberryIO.Computer.Manufacturer.SonyUK
+  name: SonyUK
+  href: api/Unosquare.RaspberryIO.Computer.Manufacturer.html#Unosquare_RaspberryIO_Computer_Manufacturer_SonyUK
+  commentId: F:Unosquare.RaspberryIO.Computer.Manufacturer.SonyUK
+  fullName: Unosquare.RaspberryIO.Computer.Manufacturer.SonyUK
+  nameWithType: Manufacturer.SonyUK
+- uid: Unosquare.RaspberryIO.Computer.Manufacturer.Stadium
+  name: Stadium
+  href: api/Unosquare.RaspberryIO.Computer.Manufacturer.html#Unosquare_RaspberryIO_Computer_Manufacturer_Stadium
+  commentId: F:Unosquare.RaspberryIO.Computer.Manufacturer.Stadium
+  fullName: Unosquare.RaspberryIO.Computer.Manufacturer.Stadium
+  nameWithType: Manufacturer.Stadium
+- uid: Unosquare.RaspberryIO.Computer.MemorySize
+  name: MemorySize
+  href: api/Unosquare.RaspberryIO.Computer.MemorySize.html
+  commentId: T:Unosquare.RaspberryIO.Computer.MemorySize
+  fullName: Unosquare.RaspberryIO.Computer.MemorySize
+  nameWithType: MemorySize
+- uid: Unosquare.RaspberryIO.Computer.MemorySize.Memory1024
+  name: Memory1024
+  href: api/Unosquare.RaspberryIO.Computer.MemorySize.html#Unosquare_RaspberryIO_Computer_MemorySize_Memory1024
+  commentId: F:Unosquare.RaspberryIO.Computer.MemorySize.Memory1024
+  fullName: Unosquare.RaspberryIO.Computer.MemorySize.Memory1024
+  nameWithType: MemorySize.Memory1024
+- uid: Unosquare.RaspberryIO.Computer.MemorySize.Memory256
+  name: Memory256
+  href: api/Unosquare.RaspberryIO.Computer.MemorySize.html#Unosquare_RaspberryIO_Computer_MemorySize_Memory256
+  commentId: F:Unosquare.RaspberryIO.Computer.MemorySize.Memory256
+  fullName: Unosquare.RaspberryIO.Computer.MemorySize.Memory256
+  nameWithType: MemorySize.Memory256
+- uid: Unosquare.RaspberryIO.Computer.MemorySize.Memory512
+  name: Memory512
+  href: api/Unosquare.RaspberryIO.Computer.MemorySize.html#Unosquare_RaspberryIO_Computer_MemorySize_Memory512
+  commentId: F:Unosquare.RaspberryIO.Computer.MemorySize.Memory512
+  fullName: Unosquare.RaspberryIO.Computer.MemorySize.Memory512
+  nameWithType: MemorySize.Memory512
 - uid: Unosquare.RaspberryIO.Computer.NetworkAdapterInfo
   name: NetworkAdapterInfo
   href: api/Unosquare.RaspberryIO.Computer.NetworkAdapterInfo.html
@@ -2164,12 +2494,49 @@ references:
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Unknown
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.Unknown
   nameWithType: PiVersion.Unknown
+- uid: Unosquare.RaspberryIO.Computer.ProcessorModel
+  name: ProcessorModel
+  href: api/Unosquare.RaspberryIO.Computer.ProcessorModel.html
+  commentId: T:Unosquare.RaspberryIO.Computer.ProcessorModel
+  fullName: Unosquare.RaspberryIO.Computer.ProcessorModel
+  nameWithType: ProcessorModel
+- uid: Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2835
+  name: BCM2835
+  href: api/Unosquare.RaspberryIO.Computer.ProcessorModel.html#Unosquare_RaspberryIO_Computer_ProcessorModel_BCM2835
+  commentId: F:Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2835
+  fullName: Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2835
+  nameWithType: ProcessorModel.BCM2835
+- uid: Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2836
+  name: BCM2836
+  href: api/Unosquare.RaspberryIO.Computer.ProcessorModel.html#Unosquare_RaspberryIO_Computer_ProcessorModel_BCM2836
+  commentId: F:Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2836
+  fullName: Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2836
+  nameWithType: ProcessorModel.BCM2836
+- uid: Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2837
+  name: BCM2837
+  href: api/Unosquare.RaspberryIO.Computer.ProcessorModel.html#Unosquare_RaspberryIO_Computer_ProcessorModel_BCM2837
+  commentId: F:Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2837
+  fullName: Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2837
+  nameWithType: ProcessorModel.BCM2837
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo
   name: SystemInfo
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html
   commentId: T:Unosquare.RaspberryIO.Computer.SystemInfo
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo
   nameWithType: SystemInfo
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.BoardModel
+  name: BoardModel
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_BoardModel
+  commentId: P:Unosquare.RaspberryIO.Computer.SystemInfo.BoardModel
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.BoardModel
+  nameWithType: SystemInfo.BoardModel
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.BoardModel*
+  name: BoardModel
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_BoardModel_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.BoardModel
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.BoardModel
+  nameWithType: SystemInfo.BoardModel
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.BoardRevision
   name: BoardRevision
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_BoardRevision
@@ -2313,6 +2680,32 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.LibraryVersion
   nameWithType: SystemInfo.LibraryVersion
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.Manufacturer
+  name: Manufacturer
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Manufacturer
+  commentId: P:Unosquare.RaspberryIO.Computer.SystemInfo.Manufacturer
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Manufacturer
+  nameWithType: SystemInfo.Manufacturer
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.Manufacturer*
+  name: Manufacturer
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Manufacturer_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.Manufacturer
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Manufacturer
+  nameWithType: SystemInfo.Manufacturer
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.MemorySize
+  name: MemorySize
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_MemorySize
+  commentId: P:Unosquare.RaspberryIO.Computer.SystemInfo.MemorySize
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.MemorySize
+  nameWithType: SystemInfo.MemorySize
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.MemorySize*
+  name: MemorySize
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_MemorySize_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.MemorySize
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.MemorySize
+  nameWithType: SystemInfo.MemorySize
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.ModelName
   name: ModelName
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_ModelName
@@ -2352,6 +2745,19 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorCount
   nameWithType: SystemInfo.ProcessorCount
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorModel
+  name: ProcessorModel
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_ProcessorModel
+  commentId: P:Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorModel
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorModel
+  nameWithType: SystemInfo.ProcessorModel
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorModel*
+  name: ProcessorModel
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_ProcessorModel_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorModel
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.ProcessorModel
+  nameWithType: SystemInfo.ProcessorModel
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.RaspberryPiVersion
   name: RaspberryPiVersion
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_RaspberryPiVersion
@@ -2378,6 +2784,19 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.SystemInfo.Revision
   nameWithType: SystemInfo.Revision
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.RevisionNumber
+  name: RevisionNumber
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_RevisionNumber
+  commentId: P:Unosquare.RaspberryIO.Computer.SystemInfo.RevisionNumber
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.RevisionNumber
+  nameWithType: SystemInfo.RevisionNumber
+- uid: Unosquare.RaspberryIO.Computer.SystemInfo.RevisionNumber*
+  name: RevisionNumber
+  href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_RevisionNumber_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.SystemInfo.RevisionNumber
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.SystemInfo.RevisionNumber
+  nameWithType: SystemInfo.RevisionNumber
 - uid: Unosquare.RaspberryIO.Computer.SystemInfo.Serial
   name: Serial
   href: api/Unosquare.RaspberryIO.Computer.SystemInfo.html#Unosquare_RaspberryIO_Computer_SystemInfo_Serial
@@ -2610,6 +3029,19 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.PiDisplay
   nameWithType: Pi.PiDisplay
+- uid: Unosquare.RaspberryIO.Pi.PiVolumeControl
+  name: PiVolumeControl
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_PiVolumeControl
+  commentId: P:Unosquare.RaspberryIO.Pi.PiVolumeControl
+  fullName: Unosquare.RaspberryIO.Pi.PiVolumeControl
+  nameWithType: Pi.PiVolumeControl
+- uid: Unosquare.RaspberryIO.Pi.PiVolumeControl*
+  name: PiVolumeControl
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_PiVolumeControl_
+  commentId: Overload:Unosquare.RaspberryIO.Pi.PiVolumeControl
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Pi.PiVolumeControl
+  nameWithType: Pi.PiVolumeControl
 - uid: Unosquare.RaspberryIO.Pi.Restart
   name: Restart()
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Restart
