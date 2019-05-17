@@ -248,6 +248,79 @@ Example using a CaptureImage method:
 // TODO: example code here
 ```
 
+### Changing audio settings
+Basic audio settings have been implemented in RaspberryIO:
+- Set a specific volume percentage.
+- Mute an audio device.
+- Consult audio device settings.
+
+Users set an audio card, an audio device and an audio command to perform an audio action.
+Example of audio tasks
+```csharp
+public static async Task TestVolumeControl()
+{
+    Console.WriteLine("Volume control for Pi - Playground");
+    var input = string.Empty;
+    var initialState = new AudioState(80) { IsMute = false };
+    
+    while (input.Equals("close", StringComparison.CurrentCulture) == false)
+    {
+        input = Console.ReadLine();
+        var inputSections = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        var cardNumber = int.Parse(inputSections[0], System.Globalization.NumberFormatInfo.InvariantInfo);
+        var deviceName = inputSections[1];
+    
+        switch (inputSections[2])
+        {
+            case "vol":
+            {
+                var currentState = await AudioSettings.GetAudioDeviceState(deviceName, cardNumber).ConfigureAwait(false);
+                if (string.IsNullOrWhiteSpace(inputSections[3]) == false)
+                {
+                    var percentage = int.Parse(inputSections[3], System.Globalization.NumberFormatInfo.InvariantInfo);
+                    await Pi.PiVolumeControl.SetVolumePercentage(percentage, cardNumber, deviceName).ConfigureAwait(false);
+                }
+    
+                break;
+            }
+    
+            case "mute":
+            {
+                var currentState = await AudioSettings.GetAudioDeviceState(deviceName, cardNumber).ConfigureAwait(false);
+                var toggle = !currentState.IsMute;
+                await Pi.PiVolumeControl.ToggleMute(toggle, cardNumber, deviceName).ConfigureAwait(false);
+                break;
+            }
+    
+            case "info":
+            {
+                var currentState = await AudioSettings.GetAudioDeviceState(deviceName, cardNumber).ConfigureAwait(false);
+                await AudioSettings.GetDeviceInfo(cardNumber, deviceName).ConfigureAwait(false);
+                break;
+            }
+    
+            case "help":
+            {
+                AudioSettings.GetCommandList();
+                break;
+            }
+    
+            case "close":
+            {
+                return;
+            }
+    
+            default:
+            {
+                Console.WriteLine("Invalid audio command. Try these commands: \n");
+                AudioSettings.GetCommandList();
+                break;
+            }
+        }
+    }
+}
+```
+
 ### Capturing Video
 Capturing video streams is somewhat different but it is still very easy to do. The concept behind it is to _Open_ a video stream providing your own callback. When opening the stream ```Raspberry IO``` will spawn a separate thread and will not block the execution of your code, but it will continually call your callback method containing the bytes that are being read from the camera until the _Close_ method is called or until the timeout is reached.
 
