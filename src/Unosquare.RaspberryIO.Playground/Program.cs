@@ -226,6 +226,7 @@
         /// <summary>
         /// Test volume control.
         /// </summary>
+        /// <returns> Performs an audio task. </returns>
         public static async Task TestVolumeControl()
         {
             Console.WriteLine("Volume control for Pi - Playground");
@@ -235,23 +236,58 @@
             while (input.Equals("close", StringComparison.CurrentCulture) == false)
             {
                 input = Console.ReadLine();
-                if (input.Equals("w", StringComparison.CurrentCulture) == true)
+                var inputSections = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                var cardNumber = int.Parse(inputSections[0], System.Globalization.NumberFormatInfo.InvariantInfo);
+                var deviceName = inputSections[1];
+
+                switch (inputSections[2])
                 {
-                    var currentState = await AudioSettings.GetVolumeState().ConfigureAwait(false);
-                    var newPercent = currentState.Level + 1 <= 100 ? currentState.Level + 1 : 100;
-                    await Pi.PiVolumeControl.SetVolumePercentage(newPercent, 0).ConfigureAwait(false);
-                }
-                else if (input.Equals("s", StringComparison.CurrentCulture) == true)
-                {
-                    var currentState = await AudioSettings.GetVolumeState().ConfigureAwait(false);
-                    var newPercent = currentState.Level - 1 >= 0 ? currentState.Level - 1 : 0;
-                    await Pi.PiVolumeControl.SetVolumePercentage(newPercent, 0).ConfigureAwait(false);
-                }
-                else if (input.Equals("info", StringComparison.CurrentCulture) == true)
-                {
-                    var currentState = await AudioSettings.GetVolumeState().ConfigureAwait(false);
-                    Console.WriteLine($"Volume level: {currentState.Level}");
-                    Console.WriteLine($"Is device muted? : {currentState.IsMute}");
+                    case "vol":
+                    {
+                        var currentState = await AudioSettings.GetAudioDeviceState(deviceName, cardNumber).ConfigureAwait(false);
+                        if (string.IsNullOrWhiteSpace(inputSections[3]) == false)
+                        {
+                            var percentage = int.Parse(inputSections[3], System.Globalization.NumberFormatInfo.InvariantInfo);
+                            await Pi.PiVolumeControl.SetVolumePercentage(percentage, cardNumber, deviceName).ConfigureAwait(false);
+                        }
+
+                        break;
+                    }
+
+                    case "mute":
+                    {
+                        var currentState = await AudioSettings.GetAudioDeviceState(deviceName, cardNumber).ConfigureAwait(false);
+                        var toggle = !currentState.IsMute;
+                        await Pi.PiVolumeControl.ToggleMute(toggle, cardNumber, deviceName).ConfigureAwait(false);
+                        break;
+                    }
+
+                    case "info":
+                    {
+                        var currentState = await AudioSettings.GetAudioDeviceState(deviceName, cardNumber).ConfigureAwait(false);
+                        await AudioSettings.GetDeviceInfo(cardNumber, deviceName).ConfigureAwait(false);
+                        break;
+                    }
+
+                    case "help":
+                    {
+                        // Show command list on screen.
+                        AudioSettings.GetCommandList();
+                        break;
+                    }
+
+                    case "close":
+                    {
+                        // Closes the sound playground.
+                        return;
+                    }
+
+                    default:
+                    {
+                        Console.WriteLine("Invalid audio command. Try these commands: \n");
+                        AudioSettings.GetCommandList();
+                        break;
+                    }
                 }
             }
         }

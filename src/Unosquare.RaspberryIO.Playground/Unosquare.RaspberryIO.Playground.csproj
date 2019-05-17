@@ -15,12 +15,6 @@
     <SshDeployUsername>pi</SshDeployUsername>
     <LangVersion>7.3</LangVersion>
     <SshDeployPassword>raspberry</SshDeployPassword>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <RemoteHost>172.16.17.199</RemoteHost>
-    <SourcePath>C:\Users\manuel.santos\Documents\RaspberryIO\raspberryio\src\Unosquare.RaspberryIO.Playground\bin\Debug</SourcePath>
-    <RemoteTargetPath>/home/pi/playground-cs</RemoteTargetPath>
-    <RemoteUsername>pi</RemoteUsername>
-    <RemotePassword>raspberry</RemotePassword>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,12 +38,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Unosquare.RaspberryIO.Peripherals\Unosquare.RaspberryIO.Peripherals.csproj" />
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="echo %DATE% %TIME% &gt;&gt; &quot;$(TargetDir)sshdeploy.ready&quot;" />
-  </Target>
-  <Target Condition="$(BuildingInsideSshDeploy) ==''" Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="cd $(ProjectDir)" />
-    <Exec Command="dotnet-sshdeploy push" />
-  </Target>
 </Project>

@@ -7,8 +7,7 @@
     /// </summary>
     public class AudioState
     {
-        private int level;
-        private float decibels;
+        private int _level;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioState"/> class.
@@ -20,35 +19,49 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AudioState"/> class.
-        /// </summary>
-        /// <param name="db"> Initial Volume level on decibels (dB). </param>
-        public AudioState(float db)
-        {
-            Decibels = db;
-        }
-
-        /// <summary>
         /// Volume level for the audio device, can be converted to decibels (db).
         /// </summary>
         public int Level
         {
-            get => level;
-            set => level = Math.Min(Math.Max(0, value), 100);
-        }
-
-        /// <summary>
-        /// Volume level for the audio device, can be converted to decibels (db).
-        /// </summary>
-        public float Decibels
-        {
-            get => decibels;
-            set => decibels = value;
+            get => _level;
+            set
+            {
+                _level = Math.Min(Math.Max(0, value), 100);
+            }
         }
 
         /// <summary>
         /// Checks for a muted device, or a 0% volume level.
         /// </summary>
+        public string DeviceName { get; set; }
+
+        /// <summary>
+        /// Checks for a muted device, or a 0% volume level.
+        /// </summary>
+        public int CardNumber { get; set; }
+
+        /// <summary>
+        /// Checks for a muted device, or a 0% volume level.
+        /// </summary>
+        public float Decibels { get; set; }
+
+        /// <summary>
+        /// Checks for a muted device, or a 0% volume level.
+        /// </summary>
         public bool IsMute { get; set; }
+
+        /// <summary>
+        /// Prints out the audio state.
+        /// </summary>
+        /// <returns> The data of . </returns>
+        public override string ToString()
+        {
+            return "Device information: \n" +
+                ">> Device name: " + DeviceName + "\n" +
+                ">> Card number: " + CardNumber + "\n" +
+                ">> Volume level (%): " + Level + "%\n" +
+                ">> Volume level (dB): " + Decibels + "dB\n" +
+                ">> Mute: [" + (IsMute ? "On" : "Off") + "]\n\n";
+        }
     }
 }

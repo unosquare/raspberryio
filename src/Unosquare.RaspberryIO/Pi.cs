@@ -78,7 +78,7 @@
         /// <summary>
         /// Provides access to Raspberry Pi ALSA soundcard driver
         /// </summary>
-        public static AudioSettings PiVolumeControl { get; set; }
+        public static AudioSettings PiVolumeControl { get; }
 
         /// <summary>
         /// Restarts the Pi. Must be running as SU.
