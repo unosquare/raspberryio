@@ -271,14 +271,12 @@
 
                     case "help":
                     {
-                        // Show command list on screen.
                         AudioSettings.GetCommandList();
                         break;
                     }
 
                     case "close":
                     {
-                        // Closes the sound playground.
                         return;
                     }
 

@@ -52,8 +52,6 @@
         {
             Console.WriteLine("Audio command list: \n\n");
             Console.WriteLine("vol: Set volume level of an audio device.\n");
-            Console.WriteLine("vol+: Increase volume level of an audio device.\n");
-            Console.WriteLine("vol-: Decrease volume level of an audio device.\n");
             Console.WriteLine("mute - Mute an audio device.\n");
             Console.WriteLine("info - Get audio settings of an audio device.\n");
             Console.WriteLine("help - Get the audio commands list.\n");

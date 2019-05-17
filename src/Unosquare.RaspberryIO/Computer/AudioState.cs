@@ -60,7 +60,7 @@
                 ">> Device name: " + DeviceName + "\n" +
                 ">> Card number: " + CardNumber + "\n" +
                 ">> Volume level (%): " + Level + "%\n" +
-                ">> Volume level (dB): " + Decibels + "dB\n" +
+                ">> Volume level (dB): " + Decibels.ToString("0.00") + "dB\n" +
                 ">> Mute: [" + (IsMute ? "On" : "Off") + "]\n\n";
         }
     }
