@@ -40,7 +40,7 @@
             /// <summary>
             /// The compute CRC Command
             /// </summary>
-            ComputeCrc = 0x03
+            ComputeCrc = 0x03,
         }
     }
 }

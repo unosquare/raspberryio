@@ -23,21 +23,21 @@
         {
             { DisplayModel.Display128X64, 0x80 },
             { DisplayModel.Display128X32, 0x80 },
-            { DisplayModel.Display96X16, 0x60 }
+            { DisplayModel.Display96X16, 0x60 },
         };
 
         private static readonly Dictionary<DisplayModel, byte> MultiplexSetting = new Dictionary<DisplayModel, byte>
         {
             { DisplayModel.Display128X64, 0x3F },
             { DisplayModel.Display128X32, 0x1F },
-            { DisplayModel.Display96X16, 0x0F }
+            { DisplayModel.Display96X16, 0x0F },
         };
 
         private static readonly Dictionary<DisplayModel, byte> ComPins = new Dictionary<DisplayModel, byte>
         {
             { DisplayModel.Display128X64, 0x12 },
             { DisplayModel.Display128X32, 0x02 },
-            { DisplayModel.Display96X16, 0x02 }
+            { DisplayModel.Display96X16, 0x02 },
         };
 
         private static readonly Bitmap FontBitmap;
@@ -169,7 +169,7 @@
             /// <summary>
             /// The display 96x16
             /// </summary>
-            Display96X16 = 2
+            Display96X16 = 2,
         }
 
         /// <summary>
@@ -185,7 +185,7 @@
             /// <summary>
             /// Integrated switching capacitor power supply
             /// </summary>
-            Switching = 0x2
+            Switching = 0x2,
         }
 
         /// <summary>
@@ -216,7 +216,7 @@
             ScanDirectionModeDecrement = 0xC8,
             SegmentRemapModeOff = 0xA0,
             SegmentRemapModeOn = 0xA1,
-            SetChargePumpMode = 0x8D
+            SetChargePumpMode = 0x8D,
         }
 
         #endregion

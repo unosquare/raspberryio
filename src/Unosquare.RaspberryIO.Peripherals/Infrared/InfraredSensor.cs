@@ -56,7 +56,7 @@
             /// <summary>
             /// The overflow state
             /// </summary>
-            Overflow
+            Overflow,
         }
 
         /// <summary>

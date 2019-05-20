@@ -410,7 +410,7 @@ namespace Unosquare.RaspberryIO.Peripherals
             _spiPort.Write(new[]
             {
                 (byte)((register << 1) & 0x7E),
-                value
+                value,
             });
         }
 
