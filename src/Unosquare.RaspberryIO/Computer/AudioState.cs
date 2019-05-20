@@ -3,7 +3,7 @@
     /// <summary>
     /// Manage the volume of any sound device.
     /// </summary>
-    public struct AudioState
+    public readonly struct AudioState
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioState"/> struct.

@@ -84,7 +84,7 @@
         /// <param name="cardNumber"> Audio card to modify parameters. </param>
         /// <param name="controlName"> Control name. </param>
         /// <returns> Performs an async write to amixer. </returns>
-        private async Task<string> SetAudioCommand(string command, int cardNumber = 0, string controlName = DefaultControlName)
+        private async Task<string> SetAudioCommand(string command, int cardNumber, string controlName)
         {
             var taskResult = await ProcessRunner.GetProcessOutputAsync("amixer", $"-q -c {cardNumber} -- set {controlName} {command}").ConfigureAwait(false);
 
