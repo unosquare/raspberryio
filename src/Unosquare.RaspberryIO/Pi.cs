@@ -26,7 +26,7 @@
                 Info = SystemInfo.Instance;
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
-                PiVolumeControl = AudioSettings.Instance;
+                Audio = AudioSettings.Instance;
             }
         }
 
@@ -76,9 +76,9 @@
         public static DsiDisplay PiDisplay { get; }
 
         /// <summary>
-        /// Provides access to Raspberry Pi ALSA soundcard driver
+        /// Provides access to Raspberry Pi ALSA soundcard driver.
         /// </summary>
-        public static AudioSettings PiVolumeControl { get; }
+        public static AudioSettings Audio { get; }
 
         /// <summary>
         /// Restarts the Pi. Must be running as SU.

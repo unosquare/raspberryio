@@ -19,7 +19,7 @@
         /// <param name="cardNumber"> card number to get state from. </param>
         /// <param name="controlName"> controller name. </param>
         /// <returns> Volume state object with current volume control settings info. </returns>
-        public static async Task<AudioState> GetAudioDeviceState(int cardNumber = 0, string controlName = DefaultControlName)
+        public async Task<AudioState> GetState(int cardNumber = 0, string controlName = DefaultControlName)
         {
             var volumeInfo = await ProcessRunner.GetProcessOutputAsync("amixer", $"-c {cardNumber} get {controlName}").ConfigureAwait(false);
             var volumeLine = volumeInfo.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)

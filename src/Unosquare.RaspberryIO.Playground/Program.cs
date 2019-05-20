@@ -230,8 +230,9 @@
         public static async Task TestVolumeControl()
         {
             Console.WriteLine("Volume control for Pi - Playground");
-            await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
-            await Pi.PiVolumeControl.SetVolumePercentage(85, 1, "Master").ConfigureAwait(false);
+            var state = await Pi.Audio.GetState().ConfigureAwait(false);
+            await Pi.Audio.SetVolumePercentage(85).ConfigureAwait(false);
+            await Pi.Audio.SetVolumePercentage(85, 1, "Master").ConfigureAwait(false);
         }
 
         /// <summary>
