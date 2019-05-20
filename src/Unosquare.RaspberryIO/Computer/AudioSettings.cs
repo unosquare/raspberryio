@@ -12,6 +12,7 @@
     public class AudioSettings : SingletonBase<AudioSettings>
     {
         private const string DefaultControlName = "PCM";
+        private const int DefaultCardNumber = 0;
 
         /// <summary>
         /// Get the resultant info of the current volume state.
@@ -19,21 +20,25 @@
         /// <param name="cardNumber"> card number to get state from. </param>
         /// <param name="controlName"> controller name. </param>
         /// <returns> Volume state object with current volume control settings info. </returns>
-        public async Task<AudioState> GetState(int cardNumber = 0, string controlName = DefaultControlName)
+        public async Task<AudioState> GetState(int cardNumber = DefaultCardNumber, string controlName = DefaultControlName)
         {
             var volumeInfo = await ProcessRunner.GetProcessOutputAsync("amixer", $"-c {cardNumber} get {controlName}").ConfigureAwait(false);
             var volumeLine = volumeInfo.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Where(x => x.Trim().StartsWith("Mono:", StringComparison.OrdinalIgnoreCase))
-                    .FirstOrDefault();
+                .Where(x => x.Trim().StartsWith("Mono:", StringComparison.OrdinalIgnoreCase))
+                .FirstOrDefault();
 
-            var sections = volumeLine.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var sections = volumeLine.Split(new[] { ' ' },
+                StringSplitOptions.RemoveEmptyEntries);
 
             var level = int.Parse(sections[3].Substring(1, sections[3].Length - 3),
                                     System.Globalization.NumberFormatInfo.InvariantInfo);
+
             var decibels = float.Parse(sections[4].Substring(1, sections[4].Length - 4),
                                     System.Globalization.NumberFormatInfo.InvariantInfo);
-            var isMute = sections[5].Equals("[off]", StringComparison.CurrentCultureIgnoreCase);
 
+            var isMute = sections[5].Equals("[off]",
+                StringComparison.CurrentCultureIgnoreCase);
+            
             return new AudioState(cardNumber, controlName, level, decibels, isMute);
         }
 
@@ -44,7 +49,7 @@
         /// <param name="cardNumber"> Audio card number. </param>
         /// <param name="controlName"> Control name. </param>
         /// <returns> Linux command line with audio settings. </returns>
-        public Task SetVolumePercentage(int level, int cardNumber = 0, string controlName = DefaultControlName) =>
+        public Task SetVolumePercentage(int level, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand($"{level}%", cardNumber, controlName);
 
         /// <summary>
@@ -52,9 +57,9 @@
         /// </summary>
         /// <param name="decibels"> How many decibels to increment or decrement. </param>
         /// <param name="cardNumber"> Sound card number. </param>
-        /// <param name="controlName"> controller name. </param>
+        /// <param name="controlName"> Control name. </param>
         /// <returns> A task incrementing or decrementing volume</returns>
-        public Task SetVolumeDecibels(float decibels, int cardNumber = 0, string controlName = DefaultControlName) =>
+        public Task SetVolumeByDecibels(float decibels, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand($"{decibels}dB", cardNumber, controlName);
 
         /// <summary>
@@ -63,8 +68,8 @@
         /// <param name="decibels">The decibels.</param>
         /// <param name="cardNumber">The card number.</param>
         /// <param name="controlName">Name of the control.</param>
-        /// <returns></returns>
-        public Task IncrementVolumeDecibels(float decibels, int cardNumber = 0, string controlName = DefaultControlName) =>
+        /// <returns> Performs a volume increment or decrement. </returns>
+        public Task IncrementVolume(float decibels, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand($"{decibels}dB{(decibels < 0 ? "-" : "+")}", cardNumber, controlName);
 
         /// <summary>
@@ -74,7 +79,7 @@
         /// <param name="cardNumber"> Audio card number. </param>
         /// <param name="controlName"> Control name. </param>
         /// <returns> Linux command line with audio settings. </returns>
-        public Task ToggleMute(bool mute, int cardNumber = 0, string controlName = DefaultControlName) =>
+        public Task ToggleMute(bool mute, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand(mute ? "mute" : "unmute", cardNumber, controlName);
 
         /// <summary>
@@ -84,7 +89,7 @@
         /// <param name="cardNumber"> Audio card to modify parameters. </param>
         /// <param name="controlName"> Control name. </param>
         /// <returns> Performs an async write to amixer. </returns>
-        private async Task<string> SetAudioCommand(string command, int cardNumber, string controlName)
+        private async Task<string> SetAudioCommand(string command, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName)
         {
             var taskResult = await ProcessRunner.GetProcessOutputAsync("amixer", $"-q -c {cardNumber} -- set {controlName} {command}").ConfigureAwait(false);
 

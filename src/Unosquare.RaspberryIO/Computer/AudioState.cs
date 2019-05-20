@@ -9,28 +9,28 @@
         /// Initializes a new instance of the <see cref="AudioState"/> struct.
         /// </summary>
         /// <param name="cardNumber"> Card number. </param>
-        /// <param name="deviceName"> Controller name. </param>
+        /// <param name="controlName"> Control name. </param>
         /// <param name="level"> Initial Volume level on percentage (%). </param>
         /// <param name="decibels"> Volume in decibels. </param>
         /// <param name="isMute"> Device is muted or sounding. </param>
-        public AudioState(int cardNumber, string deviceName, int level, float decibels, bool isMute)
+        public AudioState(int cardNumber, string controlName, int level, float decibels, bool isMute)
         {
             CardNumber = cardNumber;
-            DeviceName = deviceName;
+            ControlName = controlName;
             Level = level;
             Decibels = decibels;
             IsMute = isMute;
         }
 
         /// <summary>
-        /// Checks for a muted device, or a 0% volume level.
+        /// Card number.
         /// </summary>
         public int CardNumber { get; }
 
         /// <summary>
-        /// Checks for a muted device, or a 0% volume level.
+        /// Control name.
         /// </summary>
-        public string DeviceName { get; }
+        public string ControlName { get; }
 
         /// <summary>
         /// Volume level for the audio device, can be converted to decibels (db).
@@ -38,7 +38,7 @@
         public int Level { get; }
 
         /// <summary>
-        /// Checks for a muted device, or a 0% volume level.
+        /// Volume level in percentage.
         /// </summary>
         public float Decibels { get; }
 
@@ -46,17 +46,17 @@
         /// Checks for a muted device, or a 0% volume level.
         /// </summary>
         public bool IsMute { get; }
-
+        
         /// <summary>
-        /// Prints out the audio state.
+        /// Presents audio state info in format.
         /// </summary>
-        /// <returns> Audio state info. </returns>
+        /// <returns> String containing audio state info. </returns>
         public override string ToString() => 
             "Device information: \n" +
-                $">> Name: {DeviceName}\n" +
+                $">> Name: {ControlName}\n" +
                 $">> Card number: {CardNumber}\n" +
                 $">> Volume (%): {Level}%\n" +
                 $">> Volume (dB): {Decibels:0.00}dB\n" +
-                $">> [{(IsMute ? "Off" : "On")}]\n\n";
+                $">> Mute: [{(IsMute ? "Off" : "On")}]\n\n";
     }
 }
