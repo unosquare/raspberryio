@@ -321,7 +321,7 @@ Completed.
 <p>Basic audio settings have been implemented in RaspberryIO:</p>
 <ul>
 <li>Set a specific volume level percentage.</li>
-<li>Set a specific volume level on decibels (dB)</li>
+<li>Set a specific volume level in decibels (dB)</li>
 <li>Mute an audio device.</li>
 <li>Consult audio device settings.</li>
 </ul>
@@ -332,8 +332,10 @@ Example of audio tasks</p>
 await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
 </code></pre><p>The code above sets the volume level in two different formats: Percentage or Decibels.
 The first method sets the volume on percentage (0% - 100%) and the second sets the volume level on decibels(dB) (-101.32dB - 4.00dB).</p>
-<p>Users can also mute a specific device, as shown in the example below:</p>
-<pre><code class="lang-csharp">await Pi.PiVolumeControl.ToggleMute().ConfigureAwait(false);
+<p>Users can consult the current audio settings by using the method GetState.
+An example is shown below:</p>
+<pre><code class="lang-csharp">var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
+Console.WriteLine(currentState);
 </code></pre><p>The same result can be achieved by setting the volume level to 0% or -9999.99dB.</p>
 <h2 id="obtaining-board-and-system-information">Obtaining Board and System Information</h2>
 <p><code>RaspberryIO</code> contains useful utilities to obtain information about the board it is running on. You can simply call the <code>Pi.Info.ToString()</code> method to obtain a dump of all system properties as a single <code>string</code>, or you can use the individual properties such as Installed RAM, Processor Count, Raspberry Pi Version, Serial Number, etc. There&#39;s not a lot more to this.</p>
