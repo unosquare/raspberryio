@@ -236,11 +236,27 @@
             await Pi.Audio.IncrementVolume(4.00f).ConfigureAwait(false);
             
             await Pi.Audio.IncrementVolume(4.00f).ConfigureAwait(false);
-            await Pi.Audio.IncrementVolume(4.32f, 1, "PCM").ConfigureAwait(false);
-            await Pi.Audio.IncrementVolume(2.60f, 0, "Master").ConfigureAwait(false);
 
             var currentState = await AudioSettings.GetState().ConfigureAwait(false);
             Console.WriteLine(currentState);
+
+            try
+            {
+                await Pi.Audio.IncrementVolume(4.32f, 1, "PCM").ConfigureAwait(false);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                await Pi.Audio.IncrementVolume(2.06f, 0, "Master").ConfigureAwait(false);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         /// <summary>

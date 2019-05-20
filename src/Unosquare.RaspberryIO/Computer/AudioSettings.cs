@@ -17,10 +17,10 @@
         /// <summary>
         /// Get the resultant info of the current volume state.
         /// </summary>
-        /// <param name="cardNumber"> card number to get state from. </param>
-        /// <param name="controlName"> controller name. </param>
+        /// <param name="cardNumber"> Card number to get state from. </param>
+        /// <param name="controlName"> Control name. </param>
         /// <returns> Volume state object with current volume control settings info. </returns>
-        public async Task<AudioState> GetState(int cardNumber = DefaultCardNumber, string controlName = DefaultControlName)
+        public static async Task<AudioState> GetState(int cardNumber = DefaultCardNumber, string controlName = DefaultControlName)
         {
             var volumeInfo = await ProcessRunner.GetProcessOutputAsync("amixer", $"-c {cardNumber} get {controlName}").ConfigureAwait(false);
             var volumeLine = volumeInfo.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
@@ -65,9 +65,9 @@
         /// <summary>
         /// Increments the volume decibels.
         /// </summary>
-        /// <param name="decibels">The decibels.</param>
-        /// <param name="cardNumber">The card number.</param>
-        /// <param name="controlName">Name of the control.</param>
+        /// <param name="decibels"> The decibels. </param>
+        /// <param name="cardNumber"> The card number. </param>
+        /// <param name="controlName"> Control name. </param>
         /// <returns> Performs a volume increment or decrement. </returns>
         public Task IncrementVolume(float decibels, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand($"{decibels}dB{(decibels < 0 ? "-" : "+")}", cardNumber, controlName);
