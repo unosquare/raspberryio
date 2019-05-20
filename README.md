@@ -265,6 +265,12 @@ await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
 The code above sets the volume level in two different formats: Percentage or Decibels.
 The first method sets the volume on percentage (0% - 100%) and the second sets the volume level on decibels(dB) (-101.32dB - 4.00dB).
 
+Users can also mute a specific device, as shown in the example below:
+```csharp
+await Pi.PiVolumeControl.ToggleMute().ConfigureAwait(false);
+```
+The same result can be achieved by setting the volume level to 0% or -9999.99dB.
+
 ### Capturing Video
 Capturing video streams is somewhat different but it is still very easy to do. The concept behind it is to _Open_ a video stream providing your own callback. When opening the stream ```Raspberry IO``` will spawn a separate thread and will not block the execution of your code, but it will continually call your callback method containing the bytes that are being read from the camera until the _Close_ method is called or until the timeout is reached.
 
