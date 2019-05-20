@@ -230,64 +230,8 @@
         public static async Task TestVolumeControl()
         {
             Console.WriteLine("Volume control for Pi - Playground");
-            var input = string.Empty;
-            var initialState = new AudioState(80) { IsMute = false };
-
-            while (input.Equals("close", StringComparison.CurrentCulture) == false)
-            {
-                input = Console.ReadLine();
-                var inputSections = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                var cardNumber = int.Parse(inputSections[0], System.Globalization.NumberFormatInfo.InvariantInfo);
-                var deviceName = inputSections[1];
-
-                switch (inputSections[2])
-                {
-                    case "vol":
-                    {
-                        var currentState = await AudioSettings.GetAudioDeviceState(deviceName, cardNumber).ConfigureAwait(false);
-                        if (string.IsNullOrWhiteSpace(inputSections[3]) == false)
-                        {
-                            var percentage = int.Parse(inputSections[3], System.Globalization.NumberFormatInfo.InvariantInfo);
-                            await Pi.PiVolumeControl.SetVolumePercentage(percentage, cardNumber, deviceName).ConfigureAwait(false);
-                        }
-
-                        break;
-                    }
-
-                    case "mute":
-                    {
-                        var currentState = await AudioSettings.GetAudioDeviceState(deviceName, cardNumber).ConfigureAwait(false);
-                        var toggle = !currentState.IsMute;
-                        await Pi.PiVolumeControl.ToggleMute(toggle, cardNumber, deviceName).ConfigureAwait(false);
-                        break;
-                    }
-
-                    case "info":
-                    {
-                        var currentState = await AudioSettings.GetAudioDeviceState(deviceName, cardNumber).ConfigureAwait(false);
-                        await AudioSettings.GetDeviceInfo(cardNumber, deviceName).ConfigureAwait(false);
-                        break;
-                    }
-
-                    case "help":
-                    {
-                        AudioSettings.GetCommandList();
-                        break;
-                    }
-
-                    case "close":
-                    {
-                        return;
-                    }
-
-                    default:
-                    {
-                        Console.WriteLine("Invalid audio command. Try these commands: \n");
-                        AudioSettings.GetCommandList();
-                        break;
-                    }
-                }
-            }
+            await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
+            await Pi.PiVolumeControl.SetVolumePercentage(85, 1, "Master").ConfigureAwait(false);
         }
 
         /// <summary>

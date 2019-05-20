@@ -1,66 +1,63 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using System;
-
     /// <summary>
     /// Manage the volume of any sound device.
     /// </summary>
-    public class AudioState
+    public struct AudioState
     {
-        private int _level;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AudioState"/> struct.
+        /// </summary>
+        /// <param name="cardNumber"> Card number. </param>
+        /// <param name="deviceName"> Controller name. </param>
+        /// <param name="level"> Initial Volume level on percentage (%). </param>
+        /// <param name="decibels"> Volume in decibels. </param>
+        /// <param name="isMute"> Device is muted or sounding. </param>
+        public AudioState(int cardNumber, string deviceName, int level, float decibels, bool isMute)
+        {
+            CardNumber = cardNumber;
+            DeviceName = deviceName;
+            Level = level;
+            Decibels = decibels;
+            IsMute = isMute;
+        }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AudioState"/> class.
+        /// Checks for a muted device, or a 0% volume level.
         /// </summary>
-        /// <param name="level"> Initial Volume level on percentage (%). </param>
-        public AudioState(int level)
-        {
-            Level = level;
-        }
+        public int CardNumber { get; }
+
+        /// <summary>
+        /// Checks for a muted device, or a 0% volume level.
+        /// </summary>
+        public string DeviceName { get; }
 
         /// <summary>
         /// Volume level for the audio device, can be converted to decibels (db).
         /// </summary>
-        public int Level
-        {
-            get => _level;
-            set
-            {
-                _level = Math.Min(Math.Max(0, value), 100);
-            }
-        }
+        public int Level { get; }
 
         /// <summary>
         /// Checks for a muted device, or a 0% volume level.
         /// </summary>
-        public string DeviceName { get; set; }
+        public float Decibels { get; }
 
         /// <summary>
         /// Checks for a muted device, or a 0% volume level.
         /// </summary>
-        public int CardNumber { get; set; }
-
-        /// <summary>
-        /// Checks for a muted device, or a 0% volume level.
-        /// </summary>
-        public float Decibels { get; set; }
-
-        /// <summary>
-        /// Checks for a muted device, or a 0% volume level.
-        /// </summary>
-        public bool IsMute { get; set; }
+        public bool IsMute { get; }
 
         /// <summary>
         /// Prints out the audio state.
         /// </summary>
-        /// <returns> The data of . </returns>
+        /// <returns> Audio state info. </returns>
         public override string ToString()
         {
             return "Device information: \n" +
-                ">> Device name: " + DeviceName + "\n" +
+                ">> Name: " + DeviceName + "\n" +
                 ">> Card number: " + CardNumber + "\n" +
-                ">> Volume level (%): " + Level + "%\n" +
-                ">> Volume level (dB): " + Decibels.ToString("0.00") + "dB\n" +
+                ">> Volume (%): " + Level + "%\n" +
+                ">> Volume (dB): " + Decibels.ToString("0.00", System.Globalization.NumberFormatInfo.InvariantInfo) + "dB\n" +
                 ">> Mute: [" + (IsMute ? "On" : "Off") + "]\n\n";
         }
     }
