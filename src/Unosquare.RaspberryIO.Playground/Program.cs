@@ -230,15 +230,16 @@
         public static async Task TestVolumeControl()
         {
             Console.WriteLine("Volume control for Pi - Playground");
-            await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
 
-            await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
+            await Pi.Audio.SetVolumePercentage(85).ConfigureAwait(false);
+            await Pi.Audio.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
+            await Pi.Audio.IncrementVolume(4.00f).ConfigureAwait(false);
+            
+            await Pi.Audio.IncrementVolume(4.00f).ConfigureAwait(false);
+            await Pi.Audio.IncrementVolume(4.32f, 1, "PCM").ConfigureAwait(false);
+            await Pi.Audio.IncrementVolume(2.60f, 0, "Master").ConfigureAwait(false);
 
-            await Pi.PiVolumeControl.IncrementVolume(4.00f).ConfigureAwait(false);
-            await Pi.PiVolumeControl.IncrementVolume(4.32f, 1, "PCM").ConfigureAwait(false);
-            await Pi.PiVolumeControl.IncrementVolume(2.60f, 0, "Master").ConfigureAwait(false);
-
-            var currentState = await AudioSettings.GetAudioDeviceState().ConfigureAwait(false);
+            var currentState = await AudioSettings.GetState().ConfigureAwait(false);
             Console.WriteLine(currentState);
         }
 
