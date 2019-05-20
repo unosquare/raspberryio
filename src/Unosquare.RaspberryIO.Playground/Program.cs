@@ -239,7 +239,17 @@
 
             try
             {
-                var currentState = await Pi.Audio.GetState(1, "Master").ConfigureAwait(false);
+                var currentState = await Pi.Audio.GetState(1, "PCM").ConfigureAwait(false);
+                Console.WriteLine(currentState);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                var currentState = await Pi.Audio.GetState(0, "Master").ConfigureAwait(false);
                 Console.WriteLine(currentState);
             }
             catch (InvalidOperationException ex)
