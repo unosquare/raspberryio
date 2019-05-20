@@ -25,6 +25,8 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [The Camera Module](#the-camera-module)
     * [Capturing Images](#capturing-images)
     * [Capturing Video](#capturing-video)
+  * [Audio settings](#audio-settings)
+  	* [Changing audio settings](#changing-audio-settings)
   * [Obtaining Board and System Information](#obtaining-board-and-system-information)
   * [Using the GPIO Pins](#using-the-gpio-pins)
     * [Pin Information](#pin-information)
@@ -248,29 +250,6 @@ Example using a CaptureImage method:
 // TODO: example code here
 ```
 
-### Changing audio settings
-Basic audio settings have been implemented in RaspberryIO:
-- Set a specific volume level percentage.
-- Set a specific volume level on decibels (dB)
-- Mute an audio device.
-- Consult audio device settings.
-
-Users set an audio card, an audio device and an audio command to perform an audio action.
-Example of audio tasks
-```csharp
-await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
-
-await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
-```
-The code above sets the volume level in two different formats: Percentage or Decibels.
-The first method sets the volume on percentage (0% - 100%) and the second sets the volume level on decibels(dB) (-101.32dB - 4.00dB).
-
-Users can also mute a specific device, as shown in the example below:
-```csharp
-await Pi.PiVolumeControl.ToggleMute().ConfigureAwait(false);
-```
-The same result can be achieved by setting the volume level to 0% or -9999.99dB.
-
 ### Capturing Video
 Capturing video streams is somewhat different but it is still very easy to do. The concept behind it is to _Open_ a video stream providing your own callback. When opening the stream ```Raspberry IO``` will spawn a separate thread and will not block the execution of your code, but it will continually call your callback method containing the bytes that are being read from the camera until the _Close_ method is called or until the timeout is reached.
 
@@ -322,6 +301,30 @@ static void TestCaptureVideo()
     }            
 }
 ```
+
+## Audio settings
+### Changing audio settings
+Basic audio settings have been implemented in RaspberryIO:
+- Set a specific volume level percentage.
+- Set a specific volume level on decibels (dB)
+- Mute an audio device.
+- Consult audio device settings.
+
+Users set an audio card, an audio device and an audio command to perform an audio action.
+Example of audio tasks
+```csharp
+await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
+
+await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
+```
+The code above sets the volume level in two different formats: Percentage or Decibels.
+The first method sets the volume on percentage (0% - 100%) and the second sets the volume level on decibels(dB) (-101.32dB - 4.00dB).
+
+Users can also mute a specific device, as shown in the example below:
+```csharp
+await Pi.PiVolumeControl.ToggleMute().ConfigureAwait(false);
+```
+The same result can be achieved by setting the volume level to 0% or -9999.99dB.
 
 ## Obtaining Board and System Information
 ```RaspberryIO``` contains useful utilities to obtain information about the board it is running on. You can simply call the ```Pi.Info.ToString()``` method to obtain a dump of all system properties as a single ```string```, or you can use the individual properties such as Installed RAM, Processor Count, Raspberry Pi Version, Serial Number, etc. There's not a lot more to this.
