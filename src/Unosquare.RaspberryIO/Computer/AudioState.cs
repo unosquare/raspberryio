@@ -23,12 +23,12 @@
         }
 
         /// <summary>
-        /// Checks for a muted device, or a 0% volume level.
+        /// Card number.
         /// </summary>
         public int CardNumber { get; }
 
         /// <summary>
-        /// Checks for a muted device, or a 0% volume level.
+        /// Control name.
         /// </summary>
         public string ControlName { get; }
 
@@ -38,7 +38,7 @@
         public int Level { get; }
 
         /// <summary>
-        /// Checks for a muted device, or a 0% volume level.
+        /// Volume level in percentage.
         /// </summary>
         public float Decibels { get; }
 
@@ -46,19 +46,13 @@
         /// Checks for a muted device, or a 0% volume level.
         /// </summary>
         public bool IsMute { get; }
-
-        /// <summary>
-        /// Prints out the audio state.
-        /// </summary>
-        /// <returns> Audio state info. </returns>
-        public override string ToString()
-        {
-            return "Device information: \n" +
-                ">> Name: " + ControlName + "\n" +
-                ">> Card number: " + CardNumber + "\n" +
-                ">> Volume (%): " + Level + "%\n" +
-                ">> Volume (dB): " + Decibels.ToString("0.00", System.Globalization.NumberFormatInfo.InvariantInfo) + "dB\n" +
-                ">> Mute: [" + (IsMute ? "On" : "Off") + "]\n\n";
-        }
+        
+        public override string ToString() => 
+            "Device information: \n" +
+                $">> Name: {ControlName}\n" +
+                $">> Card number: {CardNumber}\n" +
+                $">> Volume (%): {Level}%\n" +
+                $">> Volume (dB): {Decibels:0.00}dB\n" +
+                $">> [{(IsMute ? "Off" : "On")}]\n\n";
     }
 }
