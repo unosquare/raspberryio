@@ -31,10 +31,10 @@
                 StringSplitOptions.RemoveEmptyEntries);
 
             var level = int.Parse(sections[3].Substring(1, sections[3].Length - 3),
-                System.Globalization.NumberFormatInfo.InvariantInfo);
-            
-            var decibels = float.Parse(sections[4].Trim(new[] { '[', ']', 'd', 'B' }),
-                System.Globalization.NumberFormatInfo.InvariantInfo);
+                                    System.Globalization.NumberFormatInfo.InvariantInfo);
+
+            var decibels = float.Parse(sections[4].Substring(1, sections[4].Length - 4),
+                                    System.Globalization.NumberFormatInfo.InvariantInfo);
 
             var isMute = sections[5].Equals("[off]",
                 StringComparison.CurrentCultureIgnoreCase);
