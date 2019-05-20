@@ -51,14 +51,12 @@
         /// Prints out the audio state.
         /// </summary>
         /// <returns> Audio state info. </returns>
-        public override string ToString()
-        {
-            return "Device information: \n" +
-                ">> Name: " + DeviceName + "\n" +
-                ">> Card number: " + CardNumber + "\n" +
-                ">> Volume (%): " + Level + "%\n" +
-                ">> Volume (dB): " + Decibels.ToString("0.00", System.Globalization.NumberFormatInfo.InvariantInfo) + "dB\n" +
-                ">> Mute: [" + (IsMute ? "On" : "Off") + "]\n\n";
-        }
+        public override string ToString() => 
+            "Device information: \n" +
+                $">> Name: {DeviceName}\n" +
+                $">> Card number: {CardNumber}\n" +
+                $">> Volume (%): {Level}%\n" +
+                $">> Volume (dB): {Decibels:0.00}dB\n" +
+                $">> [{(IsMute ? "Off" : "On")}]\n\n";
     }
 }
