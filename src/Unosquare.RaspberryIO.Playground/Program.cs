@@ -48,6 +48,7 @@
                 // TestInfraredSensor();
                 // TestServo();
                 // TestTempSensor();
+                await TestVolumeControl();
             }
             catch (Exception ex)
             {
@@ -220,6 +221,59 @@
             Pi.PiDisplay.IsBacklightOn = true;
             Pi.PiDisplay.Brightness = 96;
             $"Display Status - Backlight: {Pi.PiDisplay.IsBacklightOn}, Brightness: {Pi.PiDisplay.Brightness}".Info();
+        }
+
+        /// <summary>
+        /// Test volume control.
+        /// </summary>
+        /// <returns> Performs an audio task. </returns>
+        public static async Task TestVolumeControl()
+        {
+            Console.WriteLine("Volume control for Pi - Playground");
+
+            await Pi.Audio.SetVolumePercentage(85).ConfigureAwait(false);
+            await Pi.Audio.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
+            await Pi.Audio.IncrementVolume(4.00f).ConfigureAwait(false);
+            
+            await Pi.Audio.IncrementVolume(4.00f).ConfigureAwait(false);
+
+            try
+            {
+                var currentState = await Pi.Audio.GetState(1, "PCM").ConfigureAwait(false);
+                Console.WriteLine(currentState);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                var currentState = await Pi.Audio.GetState(0, "Master").ConfigureAwait(false);
+                Console.WriteLine(currentState);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                await Pi.Audio.IncrementVolume(4.32f, 1, "PCM").ConfigureAwait(false);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                await Pi.Audio.IncrementVolume(2.06f, 0, "Master").ConfigureAwait(false);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         /// <summary>

@@ -4,11 +4,12 @@
     <TargetFrameworks>net461;netcoreapp2.2</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.2</TargetFrameworks>
     <RuntimeIdentifier>linux-arm</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
     <AssemblyName>Unosquare.RaspberryIO.Playground</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>Unosquare.RaspberryIO.Playground</PackageId>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <SshDeployHost>172.16.17.198</SshDeployHost>
+    <SshDeployHost>172.16.17.199</SshDeployHost>
     <SshDeployClean />
     <SshDeployTargetPath>/home/pi/playground</SshDeployTargetPath>
     <SshDeployUsername>pi</SshDeployUsername>

@@ -26,6 +26,7 @@
                 Info = SystemInfo.Instance;
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
+                Audio = AudioSettings.Instance;
             }
         }
 
@@ -73,6 +74,11 @@
         /// Provides access to the official Raspberry Pi 7-inch DSI Display.
         /// </summary>
         public static DsiDisplay PiDisplay { get; }
+
+        /// <summary>
+        /// Provides access to Raspberry Pi ALSA soundcard driver.
+        /// </summary>
+        public static AudioSettings Audio { get; }
 
         /// <summary>
         /// Restarts the Pi. Must be running as SU.
