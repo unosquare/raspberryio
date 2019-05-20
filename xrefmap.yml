@@ -1630,12 +1630,12 @@ references:
   commentId: T:Unosquare.RaspberryIO.Computer.AudioSettings
   fullName: Unosquare.RaspberryIO.Computer.AudioSettings
   nameWithType: AudioSettings
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.String,System.Int32)
-  name: GetAudioDeviceState(String, Int32)
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetAudioDeviceState_System_String_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.String,System.Int32)
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.String, System.Int32)
-  nameWithType: AudioSettings.GetAudioDeviceState(String, Int32)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.Int32,System.String)
+  name: GetAudioDeviceState(Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetAudioDeviceState_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.Int32, System.String)
+  nameWithType: AudioSettings.GetAudioDeviceState(Int32, String)
 - uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState*
   name: GetAudioDeviceState
   href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetAudioDeviceState_
@@ -1643,32 +1643,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState
   nameWithType: AudioSettings.GetAudioDeviceState
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList
-  name: GetCommandList()
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetCommandList
-  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList()
-  nameWithType: AudioSettings.GetCommandList()
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList*
-  name: GetCommandList
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetCommandList_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetCommandList
-  nameWithType: AudioSettings.GetCommandList
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo(System.Int32,System.String)
-  name: GetDeviceInfo(Int32, String)
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetDeviceInfo_System_Int32_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo(System.Int32,System.String)
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo(System.Int32, System.String)
-  nameWithType: AudioSettings.GetDeviceInfo(Int32, String)
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo*
-  name: GetDeviceInfo
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetDeviceInfo_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetDeviceInfo
-  nameWithType: AudioSettings.GetDeviceInfo
 - uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage(System.Int32,System.Int32,System.String)
   name: SetVolumePercentage(Int32, Int32, String)
   href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumePercentage_System_Int32_System_Int32_System_String_
@@ -1695,18 +1669,31 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute
   nameWithType: AudioSettings.ToggleMute
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels(System.Single,System.String,System.Int32,System.String)
+  name: VolumeByDecibels(Single, String, Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_VolumeByDecibels_System_Single_System_String_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels(System.Single,System.String,System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels(System.Single, System.String, System.Int32, System.String)
+  nameWithType: AudioSettings.VolumeByDecibels(Single, String, Int32, String)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels*
+  name: VolumeByDecibels
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_VolumeByDecibels_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels
+  nameWithType: AudioSettings.VolumeByDecibels
 - uid: Unosquare.RaspberryIO.Computer.AudioState
   name: AudioState
   href: api/Unosquare.RaspberryIO.Computer.AudioState.html
   commentId: T:Unosquare.RaspberryIO.Computer.AudioState
   fullName: Unosquare.RaspberryIO.Computer.AudioState
   nameWithType: AudioState
-- uid: Unosquare.RaspberryIO.Computer.AudioState.#ctor(System.Int32)
-  name: AudioState(Int32)
-  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState__ctor_System_Int32_
-  commentId: M:Unosquare.RaspberryIO.Computer.AudioState.#ctor(System.Int32)
-  fullName: Unosquare.RaspberryIO.Computer.AudioState.AudioState(System.Int32)
-  nameWithType: AudioState.AudioState(Int32)
+- uid: Unosquare.RaspberryIO.Computer.AudioState.#ctor(System.Int32,System.String,System.Int32,System.Single,System.Boolean)
+  name: AudioState(Int32, String, Int32, Single, Boolean)
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState__ctor_System_Int32_System_String_System_Int32_System_Single_System_Boolean_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioState.#ctor(System.Int32,System.String,System.Int32,System.Single,System.Boolean)
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.AudioState(System.Int32, System.String, System.Int32, System.Single, System.Boolean)
+  nameWithType: AudioState.AudioState(Int32, String, Int32, Single, Boolean)
 - uid: Unosquare.RaspberryIO.Computer.AudioState.#ctor*
   name: AudioState
   href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState__ctor_

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class AudioState
+    <title>Struct AudioState
    | RaspberryIO - Pi's hardware access from Mono </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class AudioState
+    <meta name="title" content="Struct AudioState
    | RaspberryIO - Pi's hardware access from Mono ">
     <meta name="generator" content="docfx 2.42.3.0">
     
@@ -79,20 +79,18 @@
             <article class="content wrap" id="_content" data-uid="Unosquare.RaspberryIO.Computer.AudioState">
   
   
-  <h1 id="Unosquare_RaspberryIO_Computer_AudioState" data-uid="Unosquare.RaspberryIO.Computer.AudioState" class="text-break">Class AudioState
+  <h1 id="Unosquare_RaspberryIO_Computer_AudioState" data-uid="Unosquare.RaspberryIO.Computer.AudioState" class="text-break">Struct AudioState
   </h1>
   <div class="markdown level0 summary"><p>Manage the volume of any sound device.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">AudioState</span></div>
-  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a>
     </div>
     <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
@@ -101,32 +99,26 @@
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
     </div>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
-    </div>
-    <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Unosquare.RaspberryIO.Computer.html">Unosquare.RaspberryIO.Computer</a></h6>
   <h5 id="Unosquare_RaspberryIO_Computer_AudioState_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AudioState</code></pre>
+    <pre><code class="lang-csharp hljs">public struct AudioState</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   
   
   <a id="Unosquare_RaspberryIO_Computer_AudioState__ctor_" data-uid="Unosquare.RaspberryIO.Computer.AudioState.#ctor*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_AudioState__ctor_System_Int32_" data-uid="Unosquare.RaspberryIO.Computer.AudioState.#ctor(System.Int32)">AudioState(Int32)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Unosquare.RaspberryIO.Computer.AudioState.html">AudioState</a> class.</p>
+  <h4 id="Unosquare_RaspberryIO_Computer_AudioState__ctor_System_Int32_System_String_System_Int32_System_Single_System_Boolean_" data-uid="Unosquare.RaspberryIO.Computer.AudioState.#ctor(System.Int32,System.String,System.Int32,System.Single,System.Boolean)">AudioState(Int32, String, Int32, Single, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Unosquare.RaspberryIO.Computer.AudioState.html">AudioState</a> struct.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AudioState(int level)</code></pre>
+    <pre><code class="lang-csharp hljs">public AudioState(int cardNumber, string deviceName, int level, float decibels, bool isMute)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -140,8 +132,32 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">cardNumber</span></td>
+        <td><p>Card number. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">deviceName</span></td>
+        <td><p>Controller name. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">level</span></td>
         <td><p>Initial Volume level on percentage (%). </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">decibels</span></td>
+        <td><p>Volume in decibels. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">isMute</span></td>
+        <td><p>Device is muted or sounding. </p>
 </td>
       </tr>
     </tbody>
@@ -157,7 +173,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CardNumber { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int CardNumber { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -183,7 +199,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float Decibels { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float Decibels { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -209,7 +225,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DeviceName { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string DeviceName { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -235,7 +251,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsMute { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsMute { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -261,7 +277,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Level { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Level { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -302,13 +318,13 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><p>The data of . </p>
+        <td><p>Audio state info. </p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a></div>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a></div>
 
 <h3 id="disqus_thread">Comments</h3>
 <script>
