@@ -15,23 +15,29 @@
         /// Get the resultant info of the current volume state.
         /// </summary>
         /// <param name="cardNumber"> card number to get state from. </param>
-        /// <param name="deviceName"> Name of the device. </param>
+        /// <param name="controlName"> Control name. </param>
         /// <returns> Volume state object with current volume control settings info. </returns>
-        public static async Task<AudioState> GetAudioDeviceState(int cardNumber = 0, string deviceName = "PCM")
+        public static async Task<AudioState> GetAudioDeviceState(int cardNumber = 0, string controlName = "PCM")
         {
-            var volumeInfo = await ProcessRunner.GetProcessOutputAsync("amixer", $"-c {cardNumber} get {deviceName}").ConfigureAwait(false);
+            var volumeInfo = await ProcessRunner.GetProcessOutputAsync("amixer", $"-c {cardNumber} get {controlName}").ConfigureAwait(false);
+
             var volumeLine = volumeInfo.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Where(x => x.Trim().StartsWith("Mono:", StringComparison.OrdinalIgnoreCase))
-                    .FirstOrDefault();
+                .Where(x => x.Trim().StartsWith("Mono:", StringComparison.OrdinalIgnoreCase))
+                .FirstOrDefault();
 
-            var sections = volumeLine.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var sections = volumeLine.Split(new[] { ' ' },
+                StringSplitOptions.RemoveEmptyEntries);
 
-            var level = int.Parse(sections[3].Substring(1, sections[3].Length - 3), System.Globalization.NumberFormatInfo.InvariantInfo);
-            var db = sections[4].Substring(0, sections[4].Length - 2);
-            var decibels = float.Parse(db, System.Globalization.NumberFormatInfo.InvariantInfo);
-            var isMute = sections[5].Equals("[off]", StringComparison.CurrentCultureIgnoreCase);
+            var level = int.Parse(sections[3].Substring(1, sections[3].Length - 3),
+                System.Globalization.NumberFormatInfo.InvariantInfo);
 
-            return new AudioState(cardNumber, deviceName, level, decibels, isMute);
+            var decibels = float.Parse(sections[4].Trim(new[] { '[', ']', 'd', 'B' }),
+                System.Globalization.NumberFormatInfo.InvariantInfo);
+
+            var isMute = sections[5].Equals("[off]",
+                StringComparison.CurrentCultureIgnoreCase);
+
+            return new AudioState(cardNumber, controlName, level, decibels, isMute);
         }
 
         /// <summary>
@@ -41,24 +47,36 @@
         /// <param name="cardNumber"> Audio card number. </param>
         /// <param name="controlName"> Control name. </param>
         /// <returns> Linux command line with audio settings. </returns>
-        public async Task<string> SetVolumePercentage(int level, int cardNumber = 0, string controlName = "PCM")
+        public async Task SetVolumePercentage(int level, int cardNumber = 0, string controlName = "PCM")
         {
-            var result = await SetAudioCommand($"{level}%", cardNumber, controlName).ConfigureAwait(false);
-            return result;
+            await SetAudioCommand($"{level}%", cardNumber, controlName).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Increments or decrements device volume by decibels.
         /// </summary>
         /// <param name="decibels"> How many decibels to increment or decrement. </param>
-        /// <param name="sign"> Determine if perform an increment or decrement. </param>
         /// <param name="cardNumber"> Sound card number. </param>
-        /// <param name="controlName"> controller name. </param>
+        /// <param name="controlName"> Control name. </param>
         /// <returns> A task incrementing or decrementing volume</returns>
-        public async Task VolumeByDecibels(float decibels, string sign, int cardNumber = 0, string controlName = "PCM")
+        public async Task SetVolumeByDecibels(float decibels, int cardNumber = 0, string controlName = "PCM")
         {
-            var currentState = await GetAudioDeviceState(cardNumber, controlName).ConfigureAwait(false);
-            await SetAudioCommand($"{decibels}{sign}", cardNumber, controlName).ConfigureAwait(false);
+            await SetAudioCommand($"{decibels}dB", cardNumber, controlName).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Increments or decrements volume level by decibels.
+        /// </summary>
+        /// <param name="decibels"> If decibels are negative, decrement is performed, otherwise, increment is performed. </param>
+        /// <param name="cardNumber"> Card number. </param>
+        /// <param name="controlName"> Control name. </param>
+        /// <returns> Performs a task. </returns>
+        public async Task IncrementByVolume(float decibels, int cardNumber = 0, string controlName = "PCM")
+        {
+            if (decibels < 0.00f)
+                await SetAudioCommand($"{decibels}dB-", cardNumber, controlName).ConfigureAwait(false);
+            else
+                await SetAudioCommand($"{decibels}dB+", cardNumber, controlName).ConfigureAwait(false);
         }
 
         /// <summary>

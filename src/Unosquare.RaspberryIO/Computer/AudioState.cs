@@ -9,14 +9,14 @@
         /// Initializes a new instance of the <see cref="AudioState"/> struct.
         /// </summary>
         /// <param name="cardNumber"> Card number. </param>
-        /// <param name="deviceName"> Controller name. </param>
+        /// <param name="controlName"> Control name. </param>
         /// <param name="level"> Initial Volume level on percentage (%). </param>
         /// <param name="decibels"> Volume in decibels. </param>
         /// <param name="isMute"> Device is muted or sounding. </param>
-        public AudioState(int cardNumber, string deviceName, int level, float decibels, bool isMute)
+        public AudioState(int cardNumber, string controlName, int level, float decibels, bool isMute)
         {
             CardNumber = cardNumber;
-            DeviceName = deviceName;
+            ControlName = controlName;
             Level = level;
             Decibels = decibels;
             IsMute = isMute;
@@ -30,7 +30,7 @@
         /// <summary>
         /// Checks for a muted device, or a 0% volume level.
         /// </summary>
-        public string DeviceName { get; }
+        public string ControlName { get; }
 
         /// <summary>
         /// Volume level for the audio device, can be converted to decibels (db).
@@ -54,7 +54,7 @@
         public override string ToString()
         {
             return "Device information: \n" +
-                ">> Name: " + DeviceName + "\n" +
+                ">> Name: " + ControlName + "\n" +
                 ">> Card number: " + CardNumber + "\n" +
                 ">> Volume (%): " + Level + "%\n" +
                 ">> Volume (dB): " + Decibels.ToString("0.00", System.Globalization.NumberFormatInfo.InvariantInfo) + "dB\n" +
