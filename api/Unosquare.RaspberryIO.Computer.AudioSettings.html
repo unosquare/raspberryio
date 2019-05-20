@@ -105,7 +105,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;AudioState&gt; GetAudioDeviceState(int cardNumber = 0, string deviceName = &quot;PCM&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;AudioState&gt; GetAudioDeviceState(int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -125,8 +125,8 @@
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">deviceName</span></td>
-        <td><p>Name of the device. </p>
+        <td><span class="parametername">controlName</span></td>
+        <td><p>controller name. </p>
 </td>
       </tr>
     </tbody>
@@ -149,6 +149,119 @@
   </table>
   
   
+  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolumeDecibels_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolumeDecibels_System_Single_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels(System.Single,System.Int32,System.String)">IncrementVolumeDecibels(Single, Int32, String)</h4>
+  <div class="markdown level1 summary"><p>Increments the volume decibels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task IncrementVolumeDecibels(float decibels, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">decibels</span></td>
+        <td><p>The decibels.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">cardNumber</span></td>
+        <td><p>The card number.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">controlName</span></td>
+        <td><p>Name of the control.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeDecibels_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeDecibels_System_Single_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels(System.Single,System.Int32,System.String)">SetVolumeDecibels(Single, Int32, String)</h4>
+  <div class="markdown level1 summary"><p>Increments or decrements device volume by decibels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SetVolumeDecibels(float decibels, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">decibels</span></td>
+        <td><p>How many decibels to increment or decrement. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">cardNumber</span></td>
+        <td><p>Sound card number. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">controlName</span></td>
+        <td><p>controller name. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>A task incrementing or decrementing volume</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumePercentage_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumePercentage_System_Int32_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage(System.Int32,System.Int32,System.String)">SetVolumePercentage(Int32, Int32, String)</h4>
   <div class="markdown level1 summary"><p>Sets new volume state.</p>
@@ -156,7 +269,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; SetVolumePercentage(int level, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task SetVolumePercentage(int level, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,7 +311,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td><p>Linux command line with audio settings. </p>
 </td>
       </tr>
@@ -257,69 +370,6 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td><p>Linux command line with audio settings. </p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_VolumeByDecibels_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_VolumeByDecibels_System_Single_System_String_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels(System.Single,System.String,System.Int32,System.String)">VolumeByDecibels(Single, String, Int32, String)</h4>
-  <div class="markdown level1 summary"><p>Increments or decrements device volume by decibels.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task VolumeByDecibels(float decibels, string sign, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
-        <td><span class="parametername">decibels</span></td>
-        <td><p>How many decibels to increment or decrement. </p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">sign</span></td>
-        <td><p>Determine if perform an increment or decrement. </p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">cardNumber</span></td>
-        <td><p>Sound card number. </p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">controlName</span></td>
-        <td><p>controller name. </p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td><p>A task incrementing or decrementing volume</p>
 </td>
       </tr>
     </tbody>

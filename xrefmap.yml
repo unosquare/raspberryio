@@ -1643,6 +1643,32 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState
   nameWithType: AudioSettings.GetAudioDeviceState
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels(System.Single,System.Int32,System.String)
+  name: IncrementVolumeDecibels(Single, Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolumeDecibels_System_Single_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels(System.Single,System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels(System.Single, System.Int32, System.String)
+  nameWithType: AudioSettings.IncrementVolumeDecibels(Single, Int32, String)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels*
+  name: IncrementVolumeDecibels
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolumeDecibels_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels
+  nameWithType: AudioSettings.IncrementVolumeDecibels
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels(System.Single,System.Int32,System.String)
+  name: SetVolumeDecibels(Single, Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeDecibels_System_Single_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels(System.Single,System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels(System.Single, System.Int32, System.String)
+  nameWithType: AudioSettings.SetVolumeDecibels(Single, Int32, String)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels*
+  name: SetVolumeDecibels
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeDecibels_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels
+  nameWithType: AudioSettings.SetVolumeDecibels
 - uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage(System.Int32,System.Int32,System.String)
   name: SetVolumePercentage(Int32, Int32, String)
   href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumePercentage_System_Int32_System_Int32_System_String_
@@ -1669,19 +1695,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute
   nameWithType: AudioSettings.ToggleMute
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels(System.Single,System.String,System.Int32,System.String)
-  name: VolumeByDecibels(Single, String, Int32, String)
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_VolumeByDecibels_System_Single_System_String_System_Int32_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels(System.Single,System.String,System.Int32,System.String)
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels(System.Single, System.String, System.Int32, System.String)
-  nameWithType: AudioSettings.VolumeByDecibels(Single, String, Int32, String)
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels*
-  name: VolumeByDecibels
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_VolumeByDecibels_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.VolumeByDecibels
-  nameWithType: AudioSettings.VolumeByDecibels
 - uid: Unosquare.RaspberryIO.Computer.AudioState
   name: AudioState
   href: api/Unosquare.RaspberryIO.Computer.AudioState.html
