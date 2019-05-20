@@ -68,7 +68,7 @@
         /// <param name="decibels">The decibels.</param>
         /// <param name="cardNumber">The card number.</param>
         /// <param name="controlName">Name of the control.</param>
-        /// <returns></returns>
+        /// <returns> Performs a volume increment or decrement. </returns>
         public Task IncrementVolume(float decibels, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand($"{decibels}dB{(decibels < 0 ? "-" : "+")}", cardNumber, controlName);
 

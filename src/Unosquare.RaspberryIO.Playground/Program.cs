@@ -231,16 +231,10 @@
         {
             Console.WriteLine("Volume control for Pi - Playground");
             await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
-            await Pi.PiVolumeControl.SetVolumePercentage(85, 1, "Master").ConfigureAwait(false);
-            await Pi.PiVolumeControl.SetVolumePercentage(85, 0, "Master").ConfigureAwait(false);
 
             await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
-            await Pi.PiVolumeControl.SetVolumeByDecibels(-2.00f, 1, "PCM").ConfigureAwait(false);
-            await Pi.PiVolumeControl.SetVolumeByDecibels(1.00f, 0, "Master").ConfigureAwait(false);
 
             await Pi.PiVolumeControl.IncrementVolume(4.00f).ConfigureAwait(false);
-            await Pi.PiVolumeControl.IncrementVolume(4.32f, 1, "PCM").ConfigureAwait(false);
-            await Pi.PiVolumeControl.IncrementVolume(2.60f, 0, "Master").ConfigureAwait(false);
 
             var currentState = await AudioSettings.GetAudioDeviceState().ConfigureAwait(false);
             Console.WriteLine(currentState);

@@ -47,12 +47,16 @@
         /// </summary>
         public bool IsMute { get; }
         
+        /// <summary>
+        /// Presents audio state info in format.
+        /// </summary>
+        /// <returns> String containing audio state info. </returns>
         public override string ToString() => 
             "Device information: \n" +
                 $">> Name: {ControlName}\n" +
                 $">> Card number: {CardNumber}\n" +
                 $">> Volume (%): {Level}%\n" +
                 $">> Volume (dB): {Decibels:0.00}dB\n" +
-                $">> [{(IsMute ? "Off" : "On")}]\n\n";
+                $">> Mute: [{(IsMute ? "Off" : "On")}]\n\n";
     }
 }
