@@ -100,7 +100,7 @@
   
   <a id="Unosquare_RaspberryIO_Computer_AudioSettings_GetState_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.GetState*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_GetState_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.GetState(System.Int32,System.String)">GetState(Int32, String)</h4>
-  <div class="markdown level1 summary"><p>Get the resultant info of the current volume state.</p>
+  <div class="markdown level1 summary"><p>Gets the current audio state.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -120,13 +120,13 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">cardNumber</span></td>
-        <td><p>card number to get state from. </p>
+        <td><p>The card number.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">controlName</span></td>
-        <td><p>controller name. </p>
+        <td><p>Name of the control.</p>
 </td>
       </tr>
     </tbody>
@@ -142,7 +142,23 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Unosquare.RaspberryIO.Computer.AudioState.html">AudioState</a>&gt;</td>
-        <td><p>Volume state object with current volume control settings info. </p>
+        <td><p>An <a class="xref" href="Unosquare.RaspberryIO.Computer.AudioState.html">AudioState</a> object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Invalid command, card number or control name.</p>
 </td>
       </tr>
     </tbody>
@@ -151,12 +167,85 @@
   
   <a id="Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolume_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolume_System_Single_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume(System.Single,System.Int32,System.String)">IncrementVolume(Single, Int32, String)</h4>
-  <div class="markdown level1 summary"><p>Increments the volume decibels.</p>
+  <div class="markdown level1 summary"><p>Increments the volume by decibels.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task IncrementVolume(float decibels, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">decibels</span></td>
+        <td><p>The decibels to increment or decrement.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">cardNumber</span></td>
+        <td><p>The card number.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">controlName</span></td>
+        <td><p>Name of the control.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>A <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> representing the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Invalid card number or control name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeByDecibels_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeByDecibels_System_Single_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels(System.Single,System.Int32,System.String)">SetVolumeByDecibels(Single, Int32, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the volume by decibels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SetVolumeByDecibels(float decibels, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -199,64 +288,23 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td><p>Performs a volume increment or decrement. </p>
+        <td><p>A <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> representing the asynchronous operation.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
-  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeByDecibels_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeByDecibels_System_Single_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels(System.Single,System.Int32,System.String)">SetVolumeByDecibels(Single, Int32, String)</h4>
-  <div class="markdown level1 summary"><p>Increments or decrements device volume by decibels.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task SetVolumeByDecibels(float decibels, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
-        <td><span class="parametername">decibels</span></td>
-        <td><p>How many decibels to increment or decrement. </p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">cardNumber</span></td>
-        <td><p>Sound card number. </p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">controlName</span></td>
-        <td><p>Control name. </p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td><p>A task incrementing or decrementing volume</p>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Invalid card number or control name.</p>
 </td>
       </tr>
     </tbody>
@@ -265,7 +313,7 @@
   
   <a id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumePercentage_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumePercentage_System_Int32_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage(System.Int32,System.Int32,System.String)">SetVolumePercentage(Int32, Int32, String)</h4>
-  <div class="markdown level1 summary"><p>Sets new volume state.</p>
+  <div class="markdown level1 summary"><p>Sets the volume percentage.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -285,19 +333,19 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">level</span></td>
-        <td><p>Object containing new state data. </p>
+        <td><p>The percentage level.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">cardNumber</span></td>
-        <td><p>Audio card number. </p>
+        <td><p>The card number.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">controlName</span></td>
-        <td><p>Control name. </p>
+        <td><p>Name of the control.</p>
 </td>
       </tr>
     </tbody>
@@ -313,7 +361,23 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td><p>Linux command line with audio settings. </p>
+        <td><p>A <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> representing the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Invalid card number or control name.</p>
 </td>
       </tr>
     </tbody>
@@ -322,7 +386,7 @@
   
   <a id="Unosquare_RaspberryIO_Computer_AudioSettings_ToggleMute_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_ToggleMute_System_Boolean_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.ToggleMute(System.Boolean,System.Int32,System.String)">ToggleMute(Boolean, Int32, String)</h4>
-  <div class="markdown level1 summary"><p>Mutes or unmutes the current card.</p>
+  <div class="markdown level1 summary"><p>Toggles the mute state.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -342,19 +406,19 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">mute</span></td>
-        <td><p>Object containing new state data. </p>
+        <td><p>if set to <code>true</code>, mutes the audio.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">cardNumber</span></td>
-        <td><p>Audio card number. </p>
+        <td><p>The card number.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">controlName</span></td>
-        <td><p>Control name. </p>
+        <td><p>Name of the control.</p>
 </td>
       </tr>
     </tbody>
@@ -370,7 +434,23 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td><p>Linux command line with audio settings. </p>
+        <td><p>A <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> representing the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Invalid card number or control name.</p>
 </td>
       </tr>
     </tbody>
