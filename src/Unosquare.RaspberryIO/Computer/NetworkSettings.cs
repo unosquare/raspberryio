@@ -1,5 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
+    using Swan;
+    using Swan.Abstractions;
+    using Swan.Components;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -7,9 +10,6 @@
     using System.Net;
     using System.Text;
     using System.Threading.Tasks;
-    using Unosquare.Swan;
-    using Unosquare.Swan.Abstractions;
-    using Unosquare.Swan.Components;
 
     /// <summary>
     /// Represents the network information.
@@ -41,7 +41,7 @@
 
             foreach (var networkAdapter in adapters ?? (await RetrieveAdapters()).Where(x => x.IsWireless).Select(x => x.Name))
             {
-                var wirelessOutput = await ProcessRunner.GetProcessOutputAsync("iwlist", $"{networkAdapter} scanning");
+                var wirelessOutput = await ProcessRunner.GetProcessOutputAsync("iwlist", $"{networkAdapter} scanning").ConfigureAwait(false);
                 var outputLines =
                     wirelessOutput.Split('\n')
                         .Select(x => x.Trim())
@@ -88,7 +88,9 @@
                 }
             }
 
-            return result.OrderBy(x => x.Name).ToList();
+            return result
+                .OrderBy(x => x.Name)
+                .ToList();
         }
 
         /// <summary>

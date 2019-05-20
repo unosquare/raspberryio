@@ -5,7 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Unosquare.Swan.Abstractions;
-    using Unosquare.Swan.Components;
+    using Swan.Components;
 
     /// <summary>
     /// The Raspberry Pi's camera controller wrapping raspistill and raspivid programs.

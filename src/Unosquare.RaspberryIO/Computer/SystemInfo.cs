@@ -1,17 +1,19 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
+    using Abstractions;
+    using Native;
+    using Swan.Components;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using Unosquare.RaspberryIO.Abstractions;
-    using Unosquare.RaspberryIO.Native;
     using Unosquare.Swan.Abstractions;
-    using Unosquare.Swan.Components;
 
     /// <summary>
+    /// Retrieves the RaspberryPI System Information.
+    /// 
     /// http://raspberry-pi-guide.readthedocs.io/en/latest/system.html.
     /// </summary>
     public sealed class SystemInfo : SingletonBase<SystemInfo>
@@ -76,112 +78,23 @@
                     }
                     else if (property.PropertyType == typeof(string[]))
                     {
-                        var propertyArrayAvalue = propertyStringValue.Split(' ');
-                        property.SetValue(this, propertyArrayAvalue);
+                        var propertyArrayValue = propertyStringValue.Split(' ');
+                        property.SetValue(this, propertyArrayValue);
                     }
                 }
             }
 
             #endregion
 
-            #region Extract Memory Information
-
-            if (File.Exists(MemInfoFilePath))
-            {
-                var memInfoLines = File.ReadAllLines(MemInfoFilePath);
-                foreach (var line in memInfoLines)
-                {
-                    var lineParts = line.Split(new[] { ':' }, 2);
-                    if (lineParts.Length != 2)
-                        continue;
-
-                    if (lineParts[0].ToLowerInvariant().Trim().Equals("memtotal") == false)
-                        continue;
-
-                    var memKb = lineParts[1].ToLowerInvariant().Trim().Replace("kb", string.Empty).Trim();
-
-                    if (int.TryParse(memKb, out var parsedMem))
-                    {
-                        InstalledRam = parsedMem * 1024;
-                        break;
-                    }
-                }
-            }
-
-            #endregion
-
-            #region Board Version and Form Factor
-
-            var hasSysInfo = DependencyContainer.Current.CanResolve<ISystemInfo>();
-            try
-            {
-                if (string.IsNullOrWhiteSpace(Revision) == false &&
-                    int.TryParse(
-                        Revision.ToUpperInvariant(),
-                        NumberStyles.HexNumber,
-                        CultureInfo.InvariantCulture,
-                        out var boardVersion))
-                {
-                    RaspberryPiVersion = PiVersion.Unknown;
-                    if (Enum.IsDefined(typeof(PiVersion), boardVersion))
-                        RaspberryPiVersion = (PiVersion)boardVersion;
-
-                    if ((boardVersion & NewStyleCodesMask) == NewStyleCodesMask)
-                    {
-                        NewStyleRevisionCodes = true;
-                        RevisionNumber = boardVersion & 0xF;
-                        _boardModel = (BoardModel)((boardVersion >> 4) & 0xFF);
-                        _processorModel = (ProcessorModel)((boardVersion >> 12) & 0xF);
-                        _manufacturer = (Manufacturer)((boardVersion >> 16) & 0xF);
-                        _memorySize = (MemorySize)((boardVersion >> 20) & 0x7);
-                    }
-                }
-
-                if (hasSysInfo)
-                    BoardRevision = (int)DependencyContainer.Current.Resolve<ISystemInfo>().BoardRevision;
-            }
-            catch
-            {
-                /* Ignore */
-            }
-
-            #endregion
-
-            #region Version Information
-
-            if (hasSysInfo)
-                LibraryVersion = DependencyContainer.Current.Resolve<ISystemInfo>().LibraryVersion;
-
-            #endregion
-
-            #region Extract OS Info
-
-            try
-            {
-                Standard.Uname(out var unameInfo);
-
-                OperatingSystem = new OsInfo
-                {
-                    DomainName = unameInfo.DomainName,
-                    Machine = unameInfo.Machine,
-                    NodeName = unameInfo.NodeName,
-                    Release = unameInfo.Release,
-                    SysName = unameInfo.SysName,
-                    Version = unameInfo.Version
-                };
-            }
-            catch
-            {
-                OperatingSystem = new OsInfo();
-            }
-
-            #endregion
+            ExtractMemoryInfo();
+            ExtractBoardVersion();
+            ExtractOS();
         }
 
         /// <summary>
         /// Gets the library version.
         /// </summary>
-        public Version LibraryVersion { get; }
+        public Version LibraryVersion { get; private set; }
 
         /// <summary>
         /// Gets the OS information.
@@ -189,12 +102,12 @@
         /// <value>
         /// The os information.
         /// </value>
-        public OsInfo OperatingSystem { get; }
+        public OsInfo OperatingSystem { get; set; }
 
         /// <summary>
         /// Gets the Raspberry Pi version.
         /// </summary>
-        public PiVersion RaspberryPiVersion { get; }
+        public PiVersion RaspberryPiVersion { get; set; }
 
         /// <summary>
         /// Gets the board revision (1 or 2).
@@ -202,7 +115,7 @@
         /// <value>
         /// The wiring pi board revision.
         /// </value>
-        public int BoardRevision { get; }
+        public int BoardRevision { get; set; }
 
         /// <summary>
         /// Gets the number of processor cores.
@@ -212,7 +125,7 @@
         /// <summary>
         /// Gets the installed ram in bytes.
         /// </summary>
-        public int InstalledRam { get; }
+        public int InstalledRam { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this CPU is little endian.
@@ -267,7 +180,7 @@
         /// <summary>
         /// Gets the revision number (accordingly to new-style revision codes).
         /// </summary>
-        public int RevisionNumber { get; }
+        public int RevisionNumber { get; set; }
 
         /// <summary>
         /// Gets the board model (accordingly to new-style revision codes).
@@ -370,7 +283,7 @@
             {
                 "System Information",
                 $"\t{nameof(LibraryVersion),-22}: {LibraryVersion}",
-                $"\t{nameof(RaspberryPiVersion),-22}: {RaspberryPiVersion}"
+                $"\t{nameof(RaspberryPiVersion),-22}: {RaspberryPiVersion}",
             };
 
             foreach (var property in properties)
@@ -387,6 +300,91 @@
             }
 
             return string.Join(Environment.NewLine, propertyValues2.ToArray());
+        }
+        
+        private void ExtractOS()
+        {
+            try
+            {
+                Standard.Uname(out var unameInfo);
+
+                OperatingSystem = new OsInfo
+                {
+                    DomainName = unameInfo.DomainName,
+                    Machine = unameInfo.Machine,
+                    NodeName = unameInfo.NodeName,
+                    Release = unameInfo.Release,
+                    SysName = unameInfo.SysName,
+                    Version = unameInfo.Version,
+                };
+            }
+            catch
+            {
+                OperatingSystem = new OsInfo();
+            }
+        }
+
+        private void ExtractBoardVersion()
+        {
+            var hasSysInfo = DependencyContainer.Current.CanResolve<ISystemInfo>();
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Revision) == false &&
+                    int.TryParse(
+                        Revision.ToUpperInvariant(),
+                        NumberStyles.HexNumber,
+                        CultureInfo.InvariantCulture,
+                        out var boardVersion))
+                {
+                    RaspberryPiVersion = PiVersion.Unknown;
+                    if (Enum.IsDefined(typeof(PiVersion), boardVersion))
+                        RaspberryPiVersion = (PiVersion) boardVersion;
+
+                    if ((boardVersion & NewStyleCodesMask) == NewStyleCodesMask)
+                    {
+                        NewStyleRevisionCodes = true;
+                        RevisionNumber = boardVersion & 0xF;
+                        _boardModel = (BoardModel) ((boardVersion >> 4) & 0xFF);
+                        _processorModel = (ProcessorModel) ((boardVersion >> 12) & 0xF);
+                        _manufacturer = (Manufacturer) ((boardVersion >> 16) & 0xF);
+                        _memorySize = (MemorySize) ((boardVersion >> 20) & 0x7);
+                    }
+                }
+
+                if (hasSysInfo)
+                    BoardRevision = (int) DependencyContainer.Current.Resolve<ISystemInfo>().BoardRevision;
+            }
+            catch
+            {
+                /* Ignore */
+            }
+
+            if (hasSysInfo)
+                LibraryVersion = DependencyContainer.Current.Resolve<ISystemInfo>().LibraryVersion;
+        }
+
+        private void ExtractMemoryInfo()
+        {
+            if (!File.Exists(MemInfoFilePath)) return;
+
+            var memInfoLines = File.ReadAllLines(MemInfoFilePath);
+
+            foreach (var line in memInfoLines)
+            {
+                var lineParts = line.Split(new[] { ':' }, 2);
+                if (lineParts.Length != 2)
+                    continue;
+
+                if (lineParts[0].ToLowerInvariant().Trim().Equals("memtotal") == false)
+                    continue;
+
+                var memKb = lineParts[1].ToLowerInvariant().Trim().Replace("kb", string.Empty).Trim();
+
+                if (!int.TryParse(memKb, out var parsedMem)) continue;
+                InstalledRam = parsedMem * 1024;
+                break;
+            }
         }
     }
 }

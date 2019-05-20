@@ -2,10 +2,10 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Unosquare.RaspberryIO.Abstractions;
-    using Unosquare.RaspberryIO.Camera;
-    using Unosquare.RaspberryIO.Computer;
-    using Unosquare.Swan.Components;
+    using Abstractions;
+    using Camera;
+    using Computer;
+    using Swan.Components;
 
     /// <summary>
     /// Our main character. Provides access to the Raspberry Pi's GPIO, system and board information and Camera.
@@ -53,13 +53,13 @@
             ResolveDependency<II2CBus>();
 
         /// <summary>
-        /// Provides access to timing functionallity.
+        /// Provides access to timing functionality.
         /// </summary>
         public static ITiming Timing =>
             ResolveDependency<ITiming>();
 
         /// <summary>
-        /// Provides access to threading functionallity.
+        /// Provides access to threading functionality.
         /// </summary>
         public static IThreading Threading =>
             ResolveDependency<IThreading>();

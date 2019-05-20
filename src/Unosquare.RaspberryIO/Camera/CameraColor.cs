@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using Unosquare.Swan;
+    using Swan;
 
     /// <summary>
     /// A simple RGB color class to represent colors in RGB and YUV colorspaces.

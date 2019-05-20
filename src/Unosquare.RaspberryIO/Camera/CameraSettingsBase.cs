@@ -2,7 +2,7 @@
 {
     using System.Globalization;
     using System.Text;
-    using Unosquare.Swan;
+    using Swan;
 
     /// <summary>
     /// A base class to implement raspistill and raspivid wrappers

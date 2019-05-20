@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using Unosquare.Swan;
+    using Swan;
 
     /// <summary>
     /// Defines a wrapper for the raspistill program and its settings (command-line arguments).
