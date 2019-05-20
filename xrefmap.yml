@@ -1630,45 +1630,45 @@ references:
   commentId: T:Unosquare.RaspberryIO.Computer.AudioSettings
   fullName: Unosquare.RaspberryIO.Computer.AudioSettings
   nameWithType: AudioSettings
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.Int32,System.String)
-  name: GetAudioDeviceState(Int32, String)
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetAudioDeviceState_System_Int32_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.Int32,System.String)
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.Int32, System.String)
-  nameWithType: AudioSettings.GetAudioDeviceState(Int32, String)
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState*
-  name: GetAudioDeviceState
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetAudioDeviceState_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetState(System.Int32,System.String)
+  name: GetState(Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetState_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.GetState(System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetState(System.Int32, System.String)
+  nameWithType: AudioSettings.GetState(Int32, String)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.GetState*
+  name: GetState
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_GetState_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.GetState
   isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState
-  nameWithType: AudioSettings.GetAudioDeviceState
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels(System.Single,System.Int32,System.String)
-  name: IncrementVolumeDecibels(Single, Int32, String)
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolumeDecibels_System_Single_System_Int32_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels(System.Single,System.Int32,System.String)
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels(System.Single, System.Int32, System.String)
-  nameWithType: AudioSettings.IncrementVolumeDecibels(Single, Int32, String)
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels*
-  name: IncrementVolumeDecibels
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolumeDecibels_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.GetState
+  nameWithType: AudioSettings.GetState
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume(System.Single,System.Int32,System.String)
+  name: IncrementVolume(Single, Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolume_System_Single_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume(System.Single,System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume(System.Single, System.Int32, System.String)
+  nameWithType: AudioSettings.IncrementVolume(Single, Int32, String)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume*
+  name: IncrementVolume
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolume_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume
   isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels
-  nameWithType: AudioSettings.IncrementVolumeDecibels
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels(System.Single,System.Int32,System.String)
-  name: SetVolumeDecibels(Single, Int32, String)
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeDecibels_System_Single_System_Int32_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels(System.Single,System.Int32,System.String)
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels(System.Single, System.Int32, System.String)
-  nameWithType: AudioSettings.SetVolumeDecibels(Single, Int32, String)
-- uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels*
-  name: SetVolumeDecibels
-  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeDecibels_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume
+  nameWithType: AudioSettings.IncrementVolume
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels(System.Single,System.Int32,System.String)
+  name: SetVolumeByDecibels(Single, Int32, String)
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeByDecibels_System_Single_System_Int32_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels(System.Single,System.Int32,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels(System.Single, System.Int32, System.String)
+  nameWithType: AudioSettings.SetVolumeByDecibels(Single, Int32, String)
+- uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels*
+  name: SetVolumeByDecibels
+  href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeByDecibels_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels
   isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels
-  nameWithType: AudioSettings.SetVolumeDecibels
+  fullName: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels
+  nameWithType: AudioSettings.SetVolumeByDecibels
 - uid: Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumePercentage(System.Int32,System.Int32,System.String)
   name: SetVolumePercentage(Int32, Int32, String)
   href: api/Unosquare.RaspberryIO.Computer.AudioSettings.html#Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumePercentage_System_Int32_System_Int32_System_String_
@@ -1727,6 +1727,19 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.AudioState.CardNumber
   nameWithType: AudioState.CardNumber
+- uid: Unosquare.RaspberryIO.Computer.AudioState.ControlName
+  name: ControlName
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_ControlName
+  commentId: P:Unosquare.RaspberryIO.Computer.AudioState.ControlName
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.ControlName
+  nameWithType: AudioState.ControlName
+- uid: Unosquare.RaspberryIO.Computer.AudioState.ControlName*
+  name: ControlName
+  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_ControlName_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioState.ControlName
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.AudioState.ControlName
+  nameWithType: AudioState.ControlName
 - uid: Unosquare.RaspberryIO.Computer.AudioState.Decibels
   name: Decibels
   href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_Decibels
@@ -1740,19 +1753,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.AudioState.Decibels
   nameWithType: AudioState.Decibels
-- uid: Unosquare.RaspberryIO.Computer.AudioState.DeviceName
-  name: DeviceName
-  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_DeviceName
-  commentId: P:Unosquare.RaspberryIO.Computer.AudioState.DeviceName
-  fullName: Unosquare.RaspberryIO.Computer.AudioState.DeviceName
-  nameWithType: AudioState.DeviceName
-- uid: Unosquare.RaspberryIO.Computer.AudioState.DeviceName*
-  name: DeviceName
-  href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_DeviceName_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.AudioState.DeviceName
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Computer.AudioState.DeviceName
-  nameWithType: AudioState.DeviceName
 - uid: Unosquare.RaspberryIO.Computer.AudioState.IsMute
   name: IsMute
   href: api/Unosquare.RaspberryIO.Computer.AudioState.html#Unosquare_RaspberryIO_Computer_AudioState_IsMute
@@ -2948,6 +2948,19 @@ references:
   commentId: T:Unosquare.RaspberryIO.Pi
   fullName: Unosquare.RaspberryIO.Pi
   nameWithType: Pi
+- uid: Unosquare.RaspberryIO.Pi.Audio
+  name: Audio
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Audio
+  commentId: P:Unosquare.RaspberryIO.Pi.Audio
+  fullName: Unosquare.RaspberryIO.Pi.Audio
+  nameWithType: Pi.Audio
+- uid: Unosquare.RaspberryIO.Pi.Audio*
+  name: Audio
+  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Audio_
+  commentId: Overload:Unosquare.RaspberryIO.Pi.Audio
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Pi.Audio
+  nameWithType: Pi.Audio
 - uid: Unosquare.RaspberryIO.Pi.Camera
   name: Camera
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Camera
@@ -3029,19 +3042,6 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Pi.PiDisplay
   nameWithType: Pi.PiDisplay
-- uid: Unosquare.RaspberryIO.Pi.PiVolumeControl
-  name: PiVolumeControl
-  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_PiVolumeControl
-  commentId: P:Unosquare.RaspberryIO.Pi.PiVolumeControl
-  fullName: Unosquare.RaspberryIO.Pi.PiVolumeControl
-  nameWithType: Pi.PiVolumeControl
-- uid: Unosquare.RaspberryIO.Pi.PiVolumeControl*
-  name: PiVolumeControl
-  href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_PiVolumeControl_
-  commentId: Overload:Unosquare.RaspberryIO.Pi.PiVolumeControl
-  isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Pi.PiVolumeControl
-  nameWithType: Pi.PiVolumeControl
 - uid: Unosquare.RaspberryIO.Pi.Restart
   name: Restart()
   href: api/Unosquare.RaspberryIO.Pi.html#Unosquare_RaspberryIO_Pi_Restart

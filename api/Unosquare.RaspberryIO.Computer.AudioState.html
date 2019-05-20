@@ -118,7 +118,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AudioState(int cardNumber, string deviceName, int level, float decibels, bool isMute)</code></pre>
+    <pre><code class="lang-csharp hljs">public AudioState(int cardNumber, string controlName, int level, float decibels, bool isMute)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -138,8 +138,8 @@
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">deviceName</span></td>
-        <td><p>Controller name. </p>
+        <td><span class="parametername">controlName</span></td>
+        <td><p>Control name. </p>
 </td>
       </tr>
       <tr>
@@ -168,7 +168,7 @@
   
   <a id="Unosquare_RaspberryIO_Computer_AudioState_CardNumber_" data-uid="Unosquare.RaspberryIO.Computer.AudioState.CardNumber*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_AudioState_CardNumber" data-uid="Unosquare.RaspberryIO.Computer.AudioState.CardNumber">CardNumber</h4>
-  <div class="markdown level1 summary"><p>Checks for a muted device, or a 0% volume level.</p>
+  <div class="markdown level1 summary"><p>Card number.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -192,9 +192,35 @@
   </table>
   
   
+  <a id="Unosquare_RaspberryIO_Computer_AudioState_ControlName_" data-uid="Unosquare.RaspberryIO.Computer.AudioState.ControlName*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_AudioState_ControlName" data-uid="Unosquare.RaspberryIO.Computer.AudioState.ControlName">ControlName</h4>
+  <div class="markdown level1 summary"><p>Control name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ControlName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_RaspberryIO_Computer_AudioState_Decibels_" data-uid="Unosquare.RaspberryIO.Computer.AudioState.Decibels*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_AudioState_Decibels" data-uid="Unosquare.RaspberryIO.Computer.AudioState.Decibels">Decibels</h4>
-  <div class="markdown level1 summary"><p>Checks for a muted device, or a 0% volume level.</p>
+  <div class="markdown level1 summary"><p>Volume level in percentage.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -212,32 +238,6 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Unosquare_RaspberryIO_Computer_AudioState_DeviceName_" data-uid="Unosquare.RaspberryIO.Computer.AudioState.DeviceName*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_AudioState_DeviceName" data-uid="Unosquare.RaspberryIO.Computer.AudioState.DeviceName">DeviceName</h4>
-  <div class="markdown level1 summary"><p>Checks for a muted device, or a 0% volume level.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DeviceName { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -300,7 +300,7 @@
   
   <a id="Unosquare_RaspberryIO_Computer_AudioState_ToString_" data-uid="Unosquare.RaspberryIO.Computer.AudioState.ToString*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_AudioState_ToString" data-uid="Unosquare.RaspberryIO.Computer.AudioState.ToString">ToString()</h4>
-  <div class="markdown level1 summary"><p>Prints out the audio state.</p>
+  <div class="markdown level1 summary"><p>Presents audio state info in format.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -318,7 +318,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><p>Audio state info. </p>
+        <td><p>String containing audio state info. </p>
 </td>
       </tr>
     </tbody>

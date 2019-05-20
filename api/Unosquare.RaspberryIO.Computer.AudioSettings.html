@@ -98,14 +98,14 @@
   </h3>
   
   
-  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_GetAudioDeviceState_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_GetAudioDeviceState_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.GetAudioDeviceState(System.Int32,System.String)">GetAudioDeviceState(Int32, String)</h4>
+  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_GetState_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.GetState*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_GetState_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.GetState(System.Int32,System.String)">GetState(Int32, String)</h4>
   <div class="markdown level1 summary"><p>Get the resultant info of the current volume state.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;AudioState&gt; GetAudioDeviceState(int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;AudioState&gt; GetState(int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -149,14 +149,14 @@
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolumeDecibels_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolumeDecibels_System_Single_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolumeDecibels(System.Single,System.Int32,System.String)">IncrementVolumeDecibels(Single, Int32, String)</h4>
+  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolume_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_IncrementVolume_System_Single_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.IncrementVolume(System.Single,System.Int32,System.String)">IncrementVolume(Single, Int32, String)</h4>
   <div class="markdown level1 summary"><p>Increments the volume decibels.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task IncrementVolumeDecibels(float decibels, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task IncrementVolume(float decibels, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -199,20 +199,21 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
+        <td><p>Performs a volume increment or decrement. </p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeDecibels_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeDecibels_System_Single_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeDecibels(System.Single,System.Int32,System.String)">SetVolumeDecibels(Single, Int32, String)</h4>
+  <a id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeByDecibels_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_AudioSettings_SetVolumeByDecibels_System_Single_System_Int32_System_String_" data-uid="Unosquare.RaspberryIO.Computer.AudioSettings.SetVolumeByDecibels(System.Single,System.Int32,System.String)">SetVolumeByDecibels(Single, Int32, String)</h4>
   <div class="markdown level1 summary"><p>Increments or decrements device volume by decibels.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task SetVolumeDecibels(float decibels, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task SetVolumeByDecibels(float decibels, int cardNumber = 0, string controlName = &quot;PCM&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -239,7 +240,7 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">controlName</span></td>
-        <td><p>controller name. </p>
+        <td><p>Control name. </p>
 </td>
       </tr>
     </tbody>
