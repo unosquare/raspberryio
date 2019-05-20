@@ -237,8 +237,15 @@
             
             await Pi.Audio.IncrementVolume(4.00f).ConfigureAwait(false);
 
-            var currentState = await AudioSettings.GetState().ConfigureAwait(false);
-            Console.WriteLine(currentState);
+            try
+            {
+                var currentState = await Pi.Audio.GetState(1, "Master").ConfigureAwait(false);
+                Console.WriteLine(currentState);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             try
             {

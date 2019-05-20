@@ -8,11 +8,11 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioState"/> struct.
         /// </summary>
-        /// <param name="cardNumber"> Card number. </param>
-        /// <param name="controlName"> Control name. </param>
-        /// <param name="level"> Initial Volume level on percentage (%). </param>
-        /// <param name="decibels"> Volume in decibels. </param>
-        /// <param name="isMute"> Device is muted or sounding. </param>
+        /// <param name="cardNumber">The card number.</param>
+        /// <param name="controlName">Name of the control.</param>
+        /// <param name="level">The volume level in percentaje.</param>
+        /// <param name="decibels">The volume level in decibels.</param>
+        /// <param name="isMute">if set to <c>true</c> the audio is mute.</param>
         public AudioState(int cardNumber, string controlName, int level, float decibels, bool isMute)
         {
             CardNumber = cardNumber;
@@ -23,35 +23,37 @@
         }
 
         /// <summary>
-        /// Card number.
+        /// Gets the card number.
         /// </summary>
         public int CardNumber { get; }
 
         /// <summary>
-        /// Control name.
+        /// Gets the name of the current control.
         /// </summary>
         public string ControlName { get; }
 
         /// <summary>
-        /// Volume level for the audio device, can be converted to decibels (db).
+        /// Gets the volume level in percentage.
         /// </summary>
         public int Level { get; }
 
         /// <summary>
-        /// Volume level in percentage.
+        /// Gets the volume level in decibels.
         /// </summary>
         public float Decibels { get; }
 
         /// <summary>
-        /// Checks for a muted device, or a 0% volume level.
+        /// Gets a value indicating whether the audio is mute.
         /// </summary>
         public bool IsMute { get; }
-        
+
         /// <summary>
-        /// Presents audio state info in format.
+        /// Returns a <see cref="string" /> that represents the audio state.
         /// </summary>
-        /// <returns> String containing audio state info. </returns>
-        public override string ToString() => 
+        /// <returns>
+        /// A <see cref="string" /> that represents the audio state.
+        /// </returns>
+        public override string ToString() =>
             "Device information: \n" +
                 $">> Name: {ControlName}\n" +
                 $">> Card number: {CardNumber}\n" +
