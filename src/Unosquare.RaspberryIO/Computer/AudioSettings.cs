@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Swan.Abstractions;
@@ -14,17 +15,29 @@
         private const string DefaultControlName = "PCM";
         private const int DefaultCardNumber = 0;
 
+        private readonly string[] ErrorMess = { "Invalid", "Unable" };
+
         /// <summary>
-        /// Get the resultant info of the current volume state.
+        /// Gets the current audio state.
         /// </summary>
-        /// <param name="cardNumber"> card number to get state from. </param>
-        /// <param name="controlName"> controller name. </param>
-        /// <returns> Volume state object with current volume control settings info. </returns>
+        /// <param name="cardNumber">The card number.</param>
+        /// <param name="controlName">Name of the control.</param>
+        /// <returns>An <see cref="AudioState"/> object.</returns>
+        /// <exception cref="InvalidOperationException">Invalid command, card number or control name.</exception>
         public async Task<AudioState> GetState(int cardNumber = DefaultCardNumber, string controlName = DefaultControlName)
         {
             var volumeInfo = await ProcessRunner.GetProcessOutputAsync("amixer", $"-c {cardNumber} get {controlName}").ConfigureAwait(false);
-            var volumeLine = volumeInfo.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                .Where(x => x.Trim().StartsWith("Mono:", StringComparison.OrdinalIgnoreCase))
+
+            var lines = volumeInfo.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (!lines.Any())
+                throw new InvalidOperationException("Invalid command.");
+
+            if (ErrorMess.Any(x => lines[0].Contains(x)))
+                throw new InvalidOperationException(lines[0]);
+
+            var volumeLine = lines.Where(x => x.Trim()
+                .StartsWith("Mono:", StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
 
             var sections = volumeLine.Split(new[] { ' ' },
@@ -38,57 +51,62 @@
 
             var isMute = sections[5].Equals("[off]",
                 StringComparison.CurrentCultureIgnoreCase);
-            
+
             return new AudioState(cardNumber, controlName, level, decibels, isMute);
         }
 
         /// <summary>
-        /// Sets new volume state.
+        /// Sets the volume percentage.
         /// </summary>
-        /// <param name="level"> Object containing new state data. </param>
-        /// <param name="cardNumber"> Audio card number. </param>
-        /// <param name="controlName"> Control name. </param>
-        /// <returns> Linux command line with audio settings. </returns>
+        /// <param name="level">The percentage level.</param>
+        /// <param name="cardNumber">The card number.</param>
+        /// <param name="controlName">Name of the control.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        /// <exception cref="InvalidOperationException">Invalid card number or control name.</exception>
         public Task SetVolumePercentage(int level, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand($"{level}%", cardNumber, controlName);
 
         /// <summary>
-        /// Increments or decrements device volume by decibels.
-        /// </summary>
-        /// <param name="decibels"> How many decibels to increment or decrement. </param>
-        /// <param name="cardNumber"> Sound card number. </param>
-        /// <param name="controlName"> Control name. </param>
-        /// <returns> A task incrementing or decrementing volume</returns>
-        public Task SetVolumeByDecibels(float decibels, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
-            SetAudioCommand($"{decibels}dB", cardNumber, controlName);
-
-        /// <summary>
-        /// Increments the volume decibels.
+        /// Sets the volume by decibels.
         /// </summary>
         /// <param name="decibels">The decibels.</param>
         /// <param name="cardNumber">The card number.</param>
         /// <param name="controlName">Name of the control.</param>
-        /// <returns> Performs a volume increment or decrement. </returns>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        /// <exception cref="InvalidOperationException">Invalid card number or control name.</exception>
+        public Task SetVolumeByDecibels(float decibels, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
+            SetAudioCommand($"{decibels}dB", cardNumber, controlName);
+
+        /// <summary>
+        /// Increments the volume by decibels.
+        /// </summary>
+        /// <param name="decibels">The decibels to increment or decrement.</param>
+        /// <param name="cardNumber">The card number.</param>
+        /// <param name="controlName">Name of the control.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        /// <exception cref="InvalidOperationException">Invalid card number or control name.</exception>
         public Task IncrementVolume(float decibels, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand($"{decibels}dB{(decibels < 0 ? "-" : "+")}", cardNumber, controlName);
 
         /// <summary>
-        /// Mutes or unmutes the current card.
+        /// Toggles the mute state.
         /// </summary>
-        /// <param name="mute"> Object containing new state data. </param>
-        /// <param name="cardNumber"> Audio card number. </param>
-        /// <param name="controlName"> Control name. </param>
-        /// <returns> Linux command line with audio settings. </returns>
+        /// <param name="mute">if set to <c>true</c>, mutes the audio.</param>
+        /// <param name="cardNumber">The card number.</param>
+        /// <param name="controlName">Name of the control.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        /// <exception cref="InvalidOperationException">Invalid card number or control name.</exception>
         public Task ToggleMute(bool mute, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand(mute ? "mute" : "unmute", cardNumber, controlName);
 
         /// <summary>
-        /// Reads a command to write to amixer file for volume control.
+        /// Executes the set audio command.
         /// </summary>
-        /// <param name="command"> PCM command for amixer device. </param>
-        /// <param name="cardNumber"> Audio card to modify parameters. </param>
-        /// <param name="controlName"> Control name. </param>
-        /// <returns> Performs an async write to amixer. </returns>
+        /// <param name="command">The command.</param>
+        /// <param name="cardNumber">The card index number.</param>
+        /// <param name="controlName">Name of the control.</param>
+        /// <returns>The result of the command.</returns>
+        /// <exception cref="InvalidOperationException">Invalid card number or control name.</exception>
         private async Task<string> SetAudioCommand(string command, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName)
         {
             var taskResult = await ProcessRunner.GetProcessOutputAsync("amixer", $"-q -c {cardNumber} -- set {controlName} {command}").ConfigureAwait(false);
