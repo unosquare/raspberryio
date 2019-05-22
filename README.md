@@ -303,29 +303,35 @@ static void TestCaptureVideo()
 ```
 
 ## Audio settings
+
 ### Changing audio settings
+
 Basic audio settings have been implemented in RaspberryIO:
+
 - Set a specific volume level percentage.
 - Set a specific volume level in decibels (dB)
 - Mute an audio device.
 - Consult audio device settings.
 
-Users set an audio card, an audio device and an audio command to perform an audio action.
-Example of audio tasks
+Users set an audio card, an audio device and an audio command to perform an audio action. Example of audio tasks:
+
 ```csharp
 await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
 
 await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
 ```
+
 The code above sets the volume level in two different formats: Percentage or Decibels.
 The first method sets the volume on percentage (0% - 100%) and the second sets the volume level on decibels(dB) (-101.32dB - 4.00dB).
 
 Users can consult the current audio settings by using the method GetState.
 An example is shown below:
+
 ```csharp
 var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
 Console.WriteLine(currentState);
 ```
+
 The same result can be achieved by setting the volume level to 0% or -9999.99dB.
 
 ## Obtaining Board and System Information
