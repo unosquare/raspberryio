@@ -1,7 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Swan.Abstractions;
@@ -15,7 +14,7 @@
         private const string DefaultControlName = "PCM";
         private const int DefaultCardNumber = 0;
 
-        private readonly string[] ErrorMess = { "Invalid", "Unable" };
+        private readonly string[] _errorMess = { "Invalid", "Unable" };
 
         /// <summary>
         /// Gets the current audio state.
@@ -33,12 +32,15 @@
             if (!lines.Any())
                 throw new InvalidOperationException("Invalid command.");
 
-            if (ErrorMess.Any(x => lines[0].Contains(x)))
+            if (_errorMess.Any(x => lines[0].Contains(x)))
                 throw new InvalidOperationException(lines[0]);
 
-            var volumeLine = lines.Where(x => x.Trim()
-                .StartsWith("Mono:", StringComparison.OrdinalIgnoreCase))
-                .FirstOrDefault();
+            var volumeLine = lines
+                .FirstOrDefault(x => x.Trim()
+                    .StartsWith("Mono:", StringComparison.OrdinalIgnoreCase));
+
+            if (volumeLine == null)
+                throw new InvalidOperationException("Unexpected output from 'amixer'.");
 
             var sections = volumeLine.Split(new[] { ' ' },
                 StringSplitOptions.RemoveEmptyEntries);
@@ -99,15 +101,7 @@
         public Task ToggleMute(bool mute, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName) =>
             SetAudioCommand(mute ? "mute" : "unmute", cardNumber, controlName);
 
-        /// <summary>
-        /// Executes the set audio command.
-        /// </summary>
-        /// <param name="command">The command.</param>
-        /// <param name="cardNumber">The card index number.</param>
-        /// <param name="controlName">Name of the control.</param>
-        /// <returns>The result of the command.</returns>
-        /// <exception cref="InvalidOperationException">Invalid card number or control name.</exception>
-        private async Task<string> SetAudioCommand(string command, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName)
+        private static async Task<string> SetAudioCommand(string command, int cardNumber = DefaultCardNumber, string controlName = DefaultControlName)
         {
             var taskResult = await ProcessRunner.GetProcessOutputAsync("amixer", $"-q -c {cardNumber} -- set {controlName} {command}").ConfigureAwait(false);
 

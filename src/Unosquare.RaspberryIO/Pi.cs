@@ -76,7 +76,7 @@
         public static DsiDisplay PiDisplay { get; }
 
         /// <summary>
-        /// Provides access to Raspberry Pi ALSA soundcard driver.
+        /// Provides access to Raspberry Pi ALSA sound card driver.
         /// </summary>
         public static AudioSettings Audio { get; }
 
