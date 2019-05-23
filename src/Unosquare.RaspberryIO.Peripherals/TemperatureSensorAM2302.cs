@@ -118,7 +118,7 @@
                 }
                 catch
                 {
-                    // swallow (That's what he said)
+                    // swallow
                 }
 
                 lastElapsedTime = stopwatch.Elapsed;
