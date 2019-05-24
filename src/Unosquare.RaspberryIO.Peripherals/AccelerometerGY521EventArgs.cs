@@ -20,9 +20,9 @@
             Gyro = gyro;
             Accel = accel;
 
-            GyroScaleX = Gyro.X / 131;
-            GyroScaleY = Gyro.Y / 131;
-            GyroScaleZ = Gyro.Z / 131;
+            GyroScaleX = Gyro.X / 131.0;
+            GyroScaleY = Gyro.Y / 131.0;
+            GyroScaleZ = Gyro.Z / 131.0;
 
             AccelScaleX = Accel.X / 16384.0;
             AccelScaleY = Accel.Y / 16384.0;
@@ -87,19 +87,26 @@
         /// </summary>
         /// <returns> String containing accelerometer data. </returns>
         public override string ToString() =>
-            "Gyroscope data\n" +
-            "  Acceleration\t\t Scale\t\n\n" +
-                $"X: -{Gyro.X}\t\t-{GyroScaleX}\n" +
-                $"Y: -{Gyro.Y}\t\t-{GyroScaleY}\n" +
-                $"Z: -{Gyro.Z}\t\t-{GyroScaleZ}\n" +
+            "\nGyroscope data\n" +
+            "   Acceleration\n" +
+                $"   X: {Gyro.X}\n" +
+                $"   Y: {Gyro.Y}\n" +
+                $"   Z: {Gyro.Z}\n\n" +
+            "   Scale\n" +
+                $"   X: {GyroScaleX}\n" +
+                $"   Y: {GyroScaleY}\n" +
+                $"   Z: {GyroScaleZ}\n\n" +
             "Accelerometer data\n" +
-            "  Acceleration\t\t Scale\t\n\n" +
-                $"X: -{Accel.X}\t\t-{AccelScaleX}\n" +
-                $"Y: -{Accel.Y}\t\t-{AccelScaleY}\n" +
-                $"Z: -{Accel.Z}\t\t-{AccelScaleZ}\n" +
+            "   Acceleration\n" +
+                $"   X: {Accel.X}\n" +
+                $"   Y: {Accel.Y}\n" +
+                $"   Z: {Accel.Z}\n\n" +
+            "   Scale\n" +
+                $"   X: {AccelScaleX}\n" +
+                $"   Y: {AccelScaleY}\n" +
+                $"   Z: {AccelScaleZ}\n\n" +
             "Rotation data\n" +
-            "  Acceleration\n\n" +
-                $"X: -{RotationX}\n" +
-                $"Y: -{RotationY}\n";
+                $"   X: {RotationX}\n" +
+                $"   Y: {RotationY}\n\n";
     }
 }

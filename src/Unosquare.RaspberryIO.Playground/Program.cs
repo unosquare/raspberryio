@@ -48,7 +48,8 @@
                 // TestInfraredSensor();
                 // TestServo();
                 // TestTempSensor();
-                await TestVolumeControl();
+                // await TestVolumeControl();
+                TestAccelerometer();
             }
             catch (Exception ex)
             {
@@ -74,6 +75,22 @@
             sensor.Start();
             Console.ReadKey(true);
             sensor.Dispose();
+        }
+
+        public static void TestAccelerometer()
+        {
+            // Add device
+            var accel_device = Pi.I2C.AddDevice(0x68);
+
+            // Set accelerometer
+            var accelSensor = new AccelerometerGY521(accel_device);
+
+            // Present info to screen
+            accelSensor.DataAvailable += (s, e) => $"{e.ToString()}".Info("GY521");
+
+            accelSensor.Start();
+            Console.ReadKey(true);
+            accelSensor.Dispose();
         }
 
         /// <summary>
