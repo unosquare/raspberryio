@@ -19,17 +19,6 @@
         {
             Gyro = gyro;
             Accel = accel;
-
-            GyroScaleX = Gyro.X / 131.0;
-            GyroScaleY = Gyro.Y / 131.0;
-            GyroScaleZ = Gyro.Z / 131.0;
-
-            AccelScaleX = Accel.X / 16384.0;
-            AccelScaleY = Accel.Y / 16384.0;
-            AccelScaleZ = Accel.Z / 16384.0;
-
-            RotationX = AccelScaleX.GetRotationX(AccelScaleY, AccelScaleZ);
-            RotationY = AccelScaleX.GetRotationY(AccelScaleY, AccelScaleZ);
         }
 
         /// <summary>
@@ -40,17 +29,7 @@
         /// <summary>
         /// Gyroscope's X scale.
         /// </summary>
-        public double GyroScaleX { get; }
-
-        /// <summary>
-        /// Gyroscope's X scale.
-        /// </summary>
-        public double GyroScaleY { get; }
-
-        /// <summary>
-        /// Gyroscope's X scale.
-        /// </summary>
-        public double GyroScaleZ { get; }
+        public Point3d GyroScale { get; }
 
         /// <summary>
         /// Acceleration's X factor.
@@ -60,27 +39,12 @@
         /// <summary>
         /// Acceleration's X scale.
         /// </summary>
-        public double AccelScaleX { get; }
-
-        /// <summary>
-        /// Acceleration's X scale.
-        /// </summary>
-        public double AccelScaleY { get; }
-
-        /// <summary>
-        /// Acceleration's X scale.
-        /// </summary>
-        public double AccelScaleZ { get; }
+        public Point3d AccelScale { get; }
 
         /// <summary>
         /// Rotation along x axis.
         /// </summary>
-        public double RotationX { get; }
-
-        /// <summary>
-        /// Rotation along Y axis.
-        /// </summary>
-        public double RotationY { get; }
+        public Point3d Rotation { get; }
 
         /// <summary>
         /// Formats AccelerometerArgs.
@@ -92,21 +56,10 @@
                 $"   X: {Gyro.X}\n" +
                 $"   Y: {Gyro.Y}\n" +
                 $"   Z: {Gyro.Z}\n\n" +
-            "   Scale\n" +
-                $"   X: {GyroScaleX}\n" +
-                $"   Y: {GyroScaleY}\n" +
-                $"   Z: {GyroScaleZ}\n\n" +
             "Accelerometer data\n" +
             "   Acceleration\n" +
                 $"   X: {Accel.X}\n" +
                 $"   Y: {Accel.Y}\n" +
-                $"   Z: {Accel.Z}\n\n" +
-            "   Scale\n" +
-                $"   X: {AccelScaleX}\n" +
-                $"   Y: {AccelScaleY}\n" +
-                $"   Z: {AccelScaleZ}\n\n" +
-            "Rotation data\n" +
-                $"   X: {RotationX}\n" +
-                $"   Y: {RotationY}\n\n";
+                $"   Z: {Accel.Z}\n\n";
     }
 }

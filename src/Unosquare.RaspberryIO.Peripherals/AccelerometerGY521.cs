@@ -21,7 +21,7 @@
         public AccelerometerGY521(II2CDevice device)
         {
             Device = device;
-            Device.WriteAddressByte(0x68, PwrMgmt1);
+            Device.WriteAddressByte(PwrMgmt1, 0);
 
             ReadWorker = new Thread(Run);
         }
@@ -83,7 +83,7 @@
 
                 timer.Start();
                 var sensorData = RetrieveSensorData();
-                DataAvailable.Invoke(this, sensorData);
+                DataAvailable?.Invoke(this, sensorData);
 
                 lastElapsedTime = timer.Elapsed;
                 if (timer.IsRunning)
@@ -98,14 +98,6 @@
         /// </summary>
         private void StopContinuousReads() =>
             IsRunning = false;
-
-        /// <summary>
-        /// Reads the byte.
-        /// </summary>
-        /// <param name="register">The register.</param>
-        /// <returns>System.Int32.</returns>
-        private int ReadByte(int register) =>
-            Device.ReadAddressByte(register);
 
         /// <summary>
         /// Reads the word.
@@ -126,7 +118,7 @@
         /// <returns>System.Int32.</returns>
         private int ReadWord2C(int register)
         {
-            int value = Device.ReadAddressWord(register);
+            int value = ReadWord(register);
             if (value == 0x8000)
                 return -((65535 - value) + 1);
             else
