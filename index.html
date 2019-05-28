@@ -106,6 +106,10 @@
 <li><a href="#changing-audio-settings">Changing audio settings</a></li>
 </ul>
 </li>
+<li><a href="#peripheral-support">Peripheral support</a><ul>
+<li><a href="#gy521-accel-gyro">GY-521 Gyroscope and Accelerometer</a></li>
+</ul>
+</li>
 <li><a href="#obtaining-board-and-system-information">Obtaining Board and System Information</a></li>
 <li><a href="#using-the-gpio-pins">Using the GPIO Pins</a><ul>
 <li><a href="#pin-information">Pin Information</a></li>
@@ -337,6 +341,46 @@ An example is shown below:</p>
 <pre><code class="lang-csharp">var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
 Console.WriteLine(currentState);
 </code></pre><p>The same result can be achieved by setting the volume level to 0% or -9999.99dB.</p>
+<h2 id="peripheral-support">Peripheral support</h2>
+<p>RaspberryIO is developing support for several peripherals. To date, the supported peripherals are:</p>
+<ul>
+<li>GY-521 Gyroscope and Accelerometer.</li>
+</ul>
+<h3 id="gy-521-gyroscope-temperature-and-accelerometer">GY-521 Gyroscope, Temperature and Accelerometer</h3>
+<p>GY-521 is a 3-axis gyroscope and accelerometer used to detect movement, orientation and spatial position respect to the plane.</p>
+<ul>
+<li><p>Reset the device idle state.
+Device starts in an idle state that does not capture data, since the flag SLEEP is true.
+To start the device, you must clean the idle state by writing on the register with idle state zero:</p>
+<pre><code class="lang-csharp">public AccelerometerGY521(II2CDevice device)
+{
+ Device = device;
+
+ // Reset sensor sleep mode to 0.
+ Device.WriteAddressByte(PwrMgmt1, 0);
+ ...
+}
+</code></pre></li>
+<li><p>Set the Accelerometer Sensitivity Scale and the Gyroscope Sensitivity Scale.</p>
+<pre><code class="lang-csharp">public AccelerometerGY521(II2CDevice device)
+{
+ ...
+ Device.WriteAddressByte(GyroSensitivity, FSSel[0]);
+ Device.WriteAddressWord(AcclSensitivity, AFSSel[0]);
+
+ ReadWorker = new Thread(Run);
+}
+</code></pre></li>
+<li><p>Calculate the rotations, scales and spatial positions of gyroscope and accelerometer.</p>
+<pre><code class="lang-csharp">  Gyro = gyro;
+  Accel = accel;
+
+  GyroScale = Gyro / gyro_sens;
+  AccelScale = Accel / accl_sens;
+
+  Rotation = new Point3d(Extensions.GetRotationX(AccelScale), Extensions.GetRotationY(AccelScale), 0.0);
+</code></pre></li>
+</ul>
 <h2 id="obtaining-board-and-system-information">Obtaining Board and System Information</h2>
 <p><code>RaspberryIO</code> contains useful utilities to obtain information about the board it is running on. You can simply call the <code>Pi.Info.ToString()</code> method to obtain a dump of all system properties as a single <code>string</code>, or you can use the individual properties such as Installed RAM, Processor Count, Raspberry Pi Version, Serial Number, etc. There&#39;s not a lot more to this.</p>
 <h2 id="using-the-gpio-pins">Using the GPIO Pins</h2>
