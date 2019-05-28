@@ -27,6 +27,8 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
     * [Capturing Video](#capturing-video)
   * [Audio settings](#audio-settings)
   	* [Changing audio settings](#changing-audio-settings)
+  * [Peripheral support](#peripheral-support)
+  	* [GY-521 Gyroscope and Accelerometer](#gy521-accel-gyro)
   * [Obtaining Board and System Information](#obtaining-board-and-system-information)
   * [Using the GPIO Pins](#using-the-gpio-pins)
     * [Pin Information](#pin-information)
@@ -327,6 +329,47 @@ var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
 Console.WriteLine(currentState);
 ```
 The same result can be achieved by setting the volume level to 0% or -9999.99dB.
+
+## Peripheral support
+RaspberryIO is developing support for several peripherals. To date, the supported peripherals are:
+- GY-521 Gyroscope and Accelerometer.
+
+### GY-521 Gyroscope, Temperature and Accelerometer
+GY-521 is a 3-axis gyroscope and accelerometer used to detect movement, orientation and spatial position respect to the plane.
+- Reset the device idle state.
+Device starts in an idle state that does not capture data, since the flag SLEEP is true.
+To start the device, you must clean the idle state by writing on the register with idle state zero:
+```csharp
+public AccelerometerGY521(II2CDevice device)
+{
+   Device = device;
+
+   // Reset sensor sleep mode to 0.
+   Device.WriteAddressByte(PwrMgmt1, 0);
+   ...
+}
+```
+- Set the Accelerometer Sensitivity Scale and the Gyroscope Sensitivity Scale.
+```csharp
+public AccelerometerGY521(II2CDevice device)
+{
+   ...
+   Device.WriteAddressByte(GyroSensitivity, FSSel[0]);
+   Device.WriteAddressWord(AcclSensitivity, AFSSel[0]);
+
+   ReadWorker = new Thread(Run);
+}
+```
+- Calculate the rotations, scales and spatial positions of gyroscope and accelerometer.
+```csharp
+	Gyro = gyro;
+    Accel = accel;
+
+    GyroScale = Gyro / gyro_sens;
+    AccelScale = Accel / accl_sens;
+
+    Rotation = new Point3d(Extensions.GetRotationX(AccelScale), Extensions.GetRotationY(AccelScale), 0.0);
+```
 
 ## Obtaining Board and System Information
 ```RaspberryIO``` contains useful utilities to obtain information about the board it is running on. You can simply call the ```Pi.Info.ToString()``` method to obtain a dump of all system properties as a single ```string```, or you can use the individual properties such as Installed RAM, Processor Count, Raspberry Pi Version, Serial Number, etc. There's not a lot more to this.

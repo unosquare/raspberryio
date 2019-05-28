@@ -35,7 +35,7 @@
                 Pi.Init<BootstrapWiringPi>();
 
                 // A set of very simple tests:
-                await TestSystemInfo();
+                await TestSystemInfo().ConfigureAwait(false);
 
                 // TestCaptureImage();
                 // TestCaptureVideo();
@@ -77,6 +77,9 @@
             sensor.Dispose();
         }
 
+        /// <summary>
+        /// Test the GY521 Accelerometer and Gyroscope.
+        /// </summary>
         public static void TestAccelerometer()
         {
             // Add device
