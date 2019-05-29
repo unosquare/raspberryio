@@ -13,8 +13,6 @@
         private const int PwrMgmt1 = 0x6b;
         private const int GyroConfig = 0x1b;
         private const int AcclConfig = 0x1c;
-        private readonly int[] AFSSel = new[] { 16384, 8192, 4096, 2048 };
-        private readonly double[] FSSel = new[] { 131.0, 65.5, 32.8, 16.4 };
         private readonly Thread ReadWorker;
         private readonly TimeSpan ReadTime = TimeSpan.FromSeconds(0.5);
 
@@ -22,9 +20,17 @@
         /// Initializes a new instance of the <see cref="AccelerometerGY521"/> class.
         /// </summary>
         /// <param name="device"> i2C device. </param>
-        public AccelerometerGY521(II2CDevice device)
+        /// <param name="gyroSens">The gyroscope sensitivity factor.</param>
+        /// <param name="acclSens">The accelerometer sensitivity factor.</param>
+        public AccelerometerGY521(II2CDevice device, FSSEL gyroSens, AFSSEL acclSens)
         {
             Device = device;
+
+            var gyroScale = (int)gyroSens << 3;
+            var acclScale = (int)acclSens << 3;
+
+            Device.WriteAddressByte(GyroConfig, (byte)gyroScale);
+            Device.WriteAddressByte(AcclConfig, (byte)acclScale);
             ReadWorker = new Thread(Run);
         }
 
@@ -47,15 +53,10 @@
         /// <summary>
         /// Starts the instance.
         /// </summary>
-        /// <param name="gyroSens">The gyroscope sensitivity factor.</param>
-        /// <param name="acclSens">The accelerometer sensitivity factor.</param>
-        public void Start(FSSEL gyroSens, AFSSEL acclSens)
+        public void Start()
         {
             // Reset sensor sleep mode to 0.
             Device.WriteAddressByte(PwrMgmt1, 0);
-
-            Device.WriteAddressByte(GyroConfig, (byte)gyroSens);
-            Device.WriteAddressWord(AcclConfig, (byte)acclSens);
 
             IsRunning = true;
             ReadWorker.Start();
@@ -83,8 +84,11 @@
             var gyro = new Point3d(ReadWord2C(0x43), ReadWord2C(0x45), ReadWord2C(0x47));
             var accel = new Point3d(ReadWord2C(0x3b), ReadWord2C(0x3d), ReadWord2C(0x3f));
             var temperature = ReadWord2C(0x41);
-            var gyro_sens = FSSel[Device.ReadAddressByte(GyroConfig)];
-            var accl_sens = AFSSel[Device.ReadAddressByte(AcclConfig)];
+            var gyro_sens = Device.ReadAddressByte(GyroConfig);
+            var accl_sens = Device.ReadAddressByte(AcclConfig);
+
+            Console.WriteLine(Device.ReadAddressByte(GyroConfig));
+            Console.WriteLine(Device.ReadAddressByte(AcclConfig));
 
             return new AccelerometerGY521EventArgs(
                 gyro,

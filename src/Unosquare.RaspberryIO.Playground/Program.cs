@@ -86,13 +86,13 @@
             var accel_device = Pi.I2C.AddDevice(0x68);
 
             // Set accelerometer
-            var accelSensor = new AccelerometerGY521(accel_device);
+            var accelSensor = new AccelerometerGY521(accel_device, FSSEL.FSR1000, AFSSEL.FSR8G);
 
             // Present info to screen
             accelSensor.DataAvailable += (s, e) => $"{e.ToString()}".Info("GY521");
 
             // Run accelerometer
-            accelSensor.Start(FSSEL.FSR250, AFSSEL.FSR2G);
+            accelSensor.Start();
             Console.ReadKey(true);
             accelSensor.Dispose();
         }
