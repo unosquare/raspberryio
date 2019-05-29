@@ -58,17 +58,17 @@
         public override string ToString() =>
             "\nGyroscope data\n" +
                 "       Orientation             Scale\n" +
-                $"  X: {Gyro.X}                 {GyroScale.X}\n" +
-                $"  Y: {Gyro.Y}                 {GyroScale.Y}\n" +
-                $"  Z: {Gyro.Z}                 {GyroScale.Z}\n\n" +
+                $"  X:  {Gyro.X}                    {GyroScale.X}\n" +
+                $"  Y:  {Gyro.Y}                    {GyroScale.Y}\n" +
+                $"  Z:  {Gyro.Z}                    {GyroScale.Z}\n\n" +
             "Accelerometer data\n" +
                 "       Acceleration            Scale\n" +
-                $"  X: {Accel.X}                {AccelScale.X}\n" +
-                $"  Y: {Accel.Y}                {AccelScale.Y}\n" +
-                $"  Z: {Accel.Z}                {AccelScale.Z}\n\n" +
+                $"  X:  {Accel.X}                   {AccelScale.X}\n" +
+                $"  Y:  {Accel.Y}                   {AccelScale.Y}\n" +
+                $"  Z:  {Accel.Z}                   {AccelScale.Z}\n\n" +
             "Rotation data\n" +
                 "       Rotation\n" +
-                $"  X: {Rotation.X}\n" +
-                $"  Y: {Rotation.Y}\n\n";
+                $"  X:  {Rotation.X}\n" +
+                $"  Y:  {Rotation.Y}\n\n";
     }
 }

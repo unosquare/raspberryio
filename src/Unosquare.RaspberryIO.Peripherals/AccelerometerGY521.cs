@@ -6,6 +6,58 @@
     using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
+    /// Enum FSSEL
+    /// </summary>
+    internal enum FSSEL
+    {
+        /// <summary>
+        /// Gyroscope Full Scale Range 250
+        /// </summary>
+        FSR250,
+
+        /// <summary>
+        /// Gyroscope Full Scale Range 500
+        /// </summary>
+        FSR500,
+
+        /// <summary>
+        /// Gyroscope Full Scale Range 1000
+        /// </summary>
+        FSR1000,
+
+        /// <summary>
+        /// Gyroscope Full Scale Range 2000
+        /// </summary>
+        FSR2000,
+    }
+
+    /// <summary>
+    /// Enum AFSSEL
+    /// </summary>
+    internal enum AFSSEL
+    {
+        /// <summary>
+        /// Accelerometer Full Scale Range 2g
+        /// </summary>
+        FSR2G,
+
+        /// <summary>
+        /// Accelerometer Full Scale Range 4g
+        /// </summary>
+        FSR4G,
+
+        /// <summary>
+        /// Accelerometer Full Scale Range 8g
+        /// </summary>
+        FSR8G,
+
+        /// <summary>
+        /// Accelerometer Full Scale Range 16g
+        /// </summary>
+        FSR16G,
+    }
+
+    /// <summary>
     /// Implements settings for GY-521 accelerometer peripheral.
     /// </summary>
     public sealed class AccelerometerGY521 : IDisposable
@@ -30,8 +82,8 @@
 
             // Reset sensor sleep mode to 0.
             Device.WriteAddressByte(PwrMgmt1, 0);
-            Device.WriteAddressByte(GyroSensitivity, FSSel[0]);
-            Device.WriteAddressWord(AcclSensitivity, AFSSel[0]);
+            Device.WriteAddressByte(GyroSensitivity, FSSel[(int)FSSEL.FSR250]);
+            Device.WriteAddressWord(AcclSensitivity, AFSSel[(int)AFSSEL.FSR2G]);
 
             ReadWorker = new Thread(Run);
         }
