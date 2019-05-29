@@ -13,8 +13,8 @@
         private const int PwrMgmt1 = 0x6b;
         private const int GyroConfig = 0x1b;
         private const int AcclConfig = 0x1c;
-        private readonly ushort[] AFSSel = new ushort[] { 16384, 8192, 4096, 2048 };
-        private readonly double[] FSSel = new double[] { 131.0, 65.5, 32.8, 16.4 };
+        private readonly int[] AFSSel = new[] { 16384, 8192, 4096, 2048 };
+        private readonly double[] FSSel = new[] { 131.0, 65.5, 32.8, 16.4 };
         private readonly Thread ReadWorker;
         private readonly TimeSpan ReadTime = TimeSpan.FromSeconds(0.5);
 
