@@ -335,40 +335,78 @@ RaspberryIO is developing support for several peripherals. To date, the supporte
 - GY-521 Gyroscope and Accelerometer.
 
 ### GY-521 Gyroscope, Temperature and Accelerometer
-GY-521 is a 3-axis gyroscope and accelerometer used to detect movement, orientation and spatial position respect to the plane.
-- Reset the device idle state.
+GY-521 is a 3-axis gyroscope and accelerometer used to sense temperature, orientation and spatial position respect to the plane.
+To perform this tasks, the device has to undergo the following steps:
+
+- Set the Accelerometer Scale Config and the Gyroscope Scale configuration.
 Device starts in an idle state that does not capture data, since the flag SLEEP is true.
-To start the device, you must clean the idle state by writing on the register with idle state zero:
-```csharp
-public AccelerometerGY521(II2CDevice device)
-{
-   Device = device;
+To start the device, you must clean the idle state in register _0x6B_ by writing on the register with idle state zero.
+This process sets the precision with which the sensors on the device will detect spatial position and angular velocity.
+This scales are set according to the Full scale Range the user provides, which are provided below:
 
-   // Reset sensor sleep mode to 0.
-   Device.WriteAddressByte(PwrMgmt1, 0);
-   ...
+|      FS_SEL     | Full Scale Range | LSB Sensibility |
+| --------------- | ---------------- | --------------- |
+|        0        |        250       |       131       |
+|        1        |        500       |      65.5       |
+|        2        |       1000       |      32.8       |
+|        3        |       2000       |      16.4       |
+
+|      AFS_SEL     |  Full Scale Range  | LSB Sensibility |
+| ---------------- | ------------------ | --------------- |
+|         0        |         2g         |      16384      |
+|         1        |         4g         |       8192      |
+|         2        |         8g         |       4096      |
+|         3        |        16g         |       2048      |
+
+```csharp
+public void Start(FSSEL gyroSens, AFSSEL acclSens)
+{
+	// Reset sensor sleep mode to 0.
+	Device.WriteAddressByte(PwrMgmt1, 0);
+	
+	Device.WriteAddressByte(GyroConfig, (byte)gyroSens);
+	Device.WriteAddressWord(AcclConfig, (byte)acclSens);
+	
+	IsRunning = true;
 }
 ```
-- Set the Accelerometer Sensitivity Scale and the Gyroscope Sensitivity Scale.
-```csharp
-public AccelerometerGY521(II2CDevice device)
-{
-   ...
-   Device.WriteAddressByte(GyroSensitivity, FSSel[0]);
-   Device.WriteAddressWord(AcclSensitivity, AFSSel[0]);
+This result is written into the _0x1b_ and _0x1c_ registers respectively.
 
-   ReadWorker = new Thread(Run);
-}
+- Read the sensors data.
+To read the sensors data, we must read into 9 different registers of GY-521: 
+_0x43_: Gyroscope's X output.
+_0x45_: Gyroscope's Y output.
+_0x47_: Gyroscope's Z output.
+
+_0x3b_: Accelerometer's X output.
+_0x3d_: Accelerometer's Y output.
+_0x3f_: Accelerometer's Z output.
+
+_0x41_: Temperature's sensor.
+_0x1b_: Gyroscope's scale.
+_0x1c_: Accelerometer's scale.
+
+```csharp
+	// Read registry for gyroscope and accelerometer on the three axis.
+	var gyro = new Point3d(ReadWord2C(0x43), ReadWord2C(0x45), ReadWord2C(0x47));
+	var accel = new Point3d(ReadWord2C(0x3b), ReadWord2C(0x3d), ReadWord2C(0x3f));
+	var temperature = ReadWord2C(0x41);
+	var gyro_sens = FSSel[Device.ReadAddressByte(GyroConfig)];
+	var accl_sens = AFSSel[Device.ReadAddressByte(AcclConfig)];
 ```
+
 - Calculate the rotations, scales and spatial positions of gyroscope and accelerometer.
+By overloading division operators, we can obtain the sacles of both Accelerometer and Gyroscope sensors.
+Also, temperature is measured by converting the sensor data of GY521 internal temperature measurer into Celsius (°C) and then into Fahrenheit (°F).
 ```csharp
 	Gyro = gyro;
-    Accel = accel;
-
-    GyroScale = Gyro / gyro_sens;
-    AccelScale = Accel / accl_sens;
-
-    Rotation = new Point3d(Extensions.GetRotationX(AccelScale), Extensions.GetRotationY(AccelScale), 0.0);
+	Accel = accel;
+	Temperature = (temperature / 340.0) + 36.53;
+	
+	GyroScale = Gyro / gyro_sens;
+	AccelScale = Accel / accl_sens;
+	
+	Rotation = new Point3d(Extensions.GetRotationX(AccelScale), Extensions.GetRotationY(AccelScale), 0.0);
 ```
 
 ## Obtaining Board and System Information
