@@ -13,8 +13,8 @@
         private const int PwrMgmt1 = 0x6b;
         private const int GyroConfig = 0x1b;
         private const int AcclConfig = 0x1c;
-        private readonly ushort[] AFSSel = new ushort[] { 0x4000, 0x2000, 0x1000, 0x0800 };
-        private readonly byte[] FSSel = new byte[] { 0x83, 0x42, 0x20, 0x10 };
+        private readonly ushort[] AFSSel = new ushort[] { 16384, 8192, 4096, 2048 };
+        private readonly double[] FSSel = new double[] { 131, 65.5, 32.8, 16.4 };
         private readonly Thread ReadWorker;
         private readonly TimeSpan ReadTime = TimeSpan.FromSeconds(2);
 
@@ -25,10 +25,6 @@
         public AccelerometerGY521(II2CDevice device)
         {
             Device = device;
-
-            // Reset sensor sleep mode to 0.
-            Device.WriteAddressByte(PwrMgmt1, 0);
-
             ReadWorker = new Thread(Run);
         }
 
@@ -55,8 +51,11 @@
         /// <param name="acclSens">The accelerometer sensitivity factor.</param>
         public void Start(FSSEL gyroSens, AFSSEL acclSens)
         {
-            Device.WriteAddressByte(GyroConfig, FSSel[(int)gyroSens]);
-            Device.WriteAddressWord(AcclConfig, AFSSel[(int)acclSens]);
+            // Reset sensor sleep mode to 0.
+            Device.WriteAddressByte(PwrMgmt1, 0);
+
+            Device.WriteAddressByte(GyroConfig, (byte)gyroSens);
+            Device.WriteAddressWord(AcclConfig, (byte)acclSens);
 
             IsRunning = true;
             ReadWorker.Start();
@@ -84,8 +83,8 @@
             var gyro = new Point3d(ReadWord2C(0x43), ReadWord2C(0x45), ReadWord2C(0x47));
             var accel = new Point3d(ReadWord2C(0x3b), ReadWord2C(0x3d), ReadWord2C(0x3f));
             var temperature = ReadWord2C(0x41);
-            var gyro_sens = Device.ReadAddressByte(GyroConfig);
-            var accl_sens = ReadWord2C(AcclConfig);
+            var gyro_sens = FSSel[Device.ReadAddressByte(GyroConfig)];
+            var accl_sens = AFSSel[Device.ReadAddressByte(AcclConfig)];
 
             return new AccelerometerGY521EventArgs(
                 gyro,
