@@ -91,7 +91,8 @@
             // Present info to screen
             accelSensor.DataAvailable += (s, e) => $"{e.ToString()}".Info("GY521");
 
-            accelSensor.Start();
+            // Run accelerometer
+            accelSensor.Start(FSSEL.FSR250, AFSSEL.FSR2G);
             Console.ReadKey(true);
             accelSensor.Dispose();
         }

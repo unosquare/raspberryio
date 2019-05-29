@@ -6,69 +6,15 @@
     using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
-    /// Enum FSSEL
-    /// </summary>
-    internal enum FSSEL
-    {
-        /// <summary>
-        /// Gyroscope Full Scale Range 250
-        /// </summary>
-        FSR250,
-
-        /// <summary>
-        /// Gyroscope Full Scale Range 500
-        /// </summary>
-        FSR500,
-
-        /// <summary>
-        /// Gyroscope Full Scale Range 1000
-        /// </summary>
-        FSR1000,
-
-        /// <summary>
-        /// Gyroscope Full Scale Range 2000
-        /// </summary>
-        FSR2000,
-    }
-
-    /// <summary>
-    /// Enum AFSSEL
-    /// </summary>
-    internal enum AFSSEL
-    {
-        /// <summary>
-        /// Accelerometer Full Scale Range 2g
-        /// </summary>
-        FSR2G,
-
-        /// <summary>
-        /// Accelerometer Full Scale Range 4g
-        /// </summary>
-        FSR4G,
-
-        /// <summary>
-        /// Accelerometer Full Scale Range 8g
-        /// </summary>
-        FSR8G,
-
-        /// <summary>
-        /// Accelerometer Full Scale Range 16g
-        /// </summary>
-        FSR16G,
-    }
-
-    /// <summary>
     /// Implements settings for GY-521 accelerometer peripheral.
     /// </summary>
     public sealed class AccelerometerGY521 : IDisposable
     {
         private const int PwrMgmt1 = 0x6b;
-        private const int GyroSensitivity = 0x1b;
-        private const int AcclSensitivity = 0x1c;
-
+        private const int GyroConfig = 0x1b;
+        private const int AcclConfig = 0x1c;
         private readonly ushort[] AFSSel = new ushort[] { 0x4000, 0x2000, 0x1000, 0x0800 };
         private readonly byte[] FSSel = new byte[] { 0x83, 0x42, 0x20, 0x10 };
-
         private readonly Thread ReadWorker;
         private readonly TimeSpan ReadTime = TimeSpan.FromSeconds(2);
 
@@ -82,8 +28,6 @@
 
             // Reset sensor sleep mode to 0.
             Device.WriteAddressByte(PwrMgmt1, 0);
-            Device.WriteAddressByte(GyroSensitivity, FSSel[(int)FSSEL.FSR250]);
-            Device.WriteAddressWord(AcclSensitivity, AFSSel[(int)AFSSEL.FSR2G]);
 
             ReadWorker = new Thread(Run);
         }
@@ -105,18 +49,15 @@
         public bool IsRunning { get; private set; }
 
         /// <summary>
-        /// Sets the sleep mode.
+        /// Starts the specified gyro sens.
         /// </summary>
-        public void SetSleepMode()
+        /// <param name="gyroSens">The gyroscope sensitivity factor.</param>
+        /// <param name="acclSens">The accelerometer sensitivity factor.</param>
+        public void Start(FSSEL gyroSens, AFSSEL acclSens)
         {
-            Device.WriteAddressByte(PwrMgmt1, 1);
-        }
+            Device.WriteAddressByte(GyroConfig, FSSel[(int)gyroSens]);
+            Device.WriteAddressWord(AcclConfig, AFSSel[(int)acclSens]);
 
-        /// <summary>
-        /// Starts this instance.
-        /// </summary>
-        public void Start()
-        {
             IsRunning = true;
             ReadWorker.Start();
         }
@@ -130,6 +71,7 @@
                 return;
 
             StopContinuousReads();
+            SetSleepMode();
         }
 
         /// <summary>
@@ -138,11 +80,19 @@
         /// <returns> Data calculated by GY-521 accelerometer. </returns>
         public AccelerometerGY521EventArgs RetrieveSensorData()
         {
-            // Read registry for gyroscope and accelrometer on the three axis.
+            // Read registry for gyroscope and accelerometer on the three axis.
             var gyro = new Point3d(ReadWord2C(0x43), ReadWord2C(0x45), ReadWord2C(0x47));
             var accel = new Point3d(ReadWord2C(0x3b), ReadWord2C(0x3d), ReadWord2C(0x3f));
+            var temperature = ReadWord2C(0x41);
+            var gyro_sens = Device.ReadAddressByte(GyroConfig);
+            var accl_sens = ReadWord2C(AcclConfig);
 
-            return new AccelerometerGY521EventArgs(gyro, accel, Device.ReadAddressByte(GyroSensitivity), ReadWord2C(AcclSensitivity));
+            return new AccelerometerGY521EventArgs(
+                gyro,
+                accel,
+                temperature,
+                gyro_sens,
+                accl_sens);
         }
 
         /// <summary>
@@ -168,6 +118,14 @@
 
                 timer.Reset();
             }
+        }
+
+        /// <summary>
+        /// Sets the sleep mode.
+        /// </summary>
+        private void SetSleepMode()
+        {
+            Device.WriteAddressByte(PwrMgmt1, 0x40);
         }
 
         /// <summary>
