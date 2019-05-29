@@ -14,9 +14,9 @@
         private const int GyroConfig = 0x1b;
         private const int AcclConfig = 0x1c;
         private readonly ushort[] AFSSel = new ushort[] { 16384, 8192, 4096, 2048 };
-        private readonly double[] FSSel = new double[] { 131, 65.5, 32.8, 16.4 };
+        private readonly double[] FSSel = new double[] { 131.0, 65.5, 32.8, 16.4 };
         private readonly Thread ReadWorker;
-        private readonly TimeSpan ReadTime = TimeSpan.FromSeconds(2);
+        private readonly TimeSpan ReadTime = TimeSpan.FromSeconds(0.5);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccelerometerGY521"/> class.
@@ -45,7 +45,7 @@
         public bool IsRunning { get; private set; }
 
         /// <summary>
-        /// Starts the specified gyro sens.
+        /// Starts the instance.
         /// </summary>
         /// <param name="gyroSens">The gyroscope sensitivity factor.</param>
         /// <param name="acclSens">The accelerometer sensitivity factor.</param>
