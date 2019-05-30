@@ -66,6 +66,7 @@ We offer an additional package with helpful classes to use peripherals, many of 
 * Temperature Sensor AM-2302
 * OLED Display SSD-1306
 * Generic Button connected to GPIO
+* GY-521 MPU6050 Accelerometer
 
 ## Breaking changes
 
