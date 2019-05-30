@@ -1,6 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
+
     /// <summary>
     /// 3D-space point.
     /// </summary>
@@ -73,7 +74,7 @@
         /// <param name="point">The point.</param>
         /// <param name="scale">The scale.</param>
         /// <returns>The result of the operator.</returns>
-        public static Point3d operator / (Point3d point, double scale) =>
+        public static Point3d operator /(Point3d point, double scale) =>
             new Point3d(point.X / scale, point.Y / scale, point.Z / scale);
 
         /// <summary>

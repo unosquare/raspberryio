@@ -100,13 +100,13 @@
         /// <summary>
         /// Tests the servo.
         /// </summary>
-        //public static void TestServo()
-        //{
+        // public static void TestServo()
+        // {
         //    var servo = new HardwareServo((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
         //    const double minPulse = 0.565;
         //    const double maxPulse = 2.620;
         //    var deltaPulse = 0.005;
-
+        //
         //    while (true)
         //    {
         //        if (servo.PulseLengthMs >= maxPulse || servo.PulseLengthMs <= minPulse)
@@ -138,39 +138,39 @@
         //                    break;
         //                }
         //            }
-
+        //
         //            deltaPulse *= -1;
         //            Thread.Sleep(100);
         //        }
 
-        //        servo.PulseLengthMs += deltaPulse;
+        // servo.PulseLengthMs += deltaPulse;
         //        $"{servo} | Angle {servo.ComputeAngle(minPulse, maxPulse),7:0.00}".Info("Servo");
         //        Pi.Timing.SleepMicroseconds(1500);
         //    }
-        //}
-
+        // }
+        
         /// <summary>
         /// Tests the infrared sensor HX1838.
         /// </summary>
-        //public static void TestInfraredSensor()
-        //{
+        // public static void TestInfraredSensor()
+        // {
         //    var inputPin = Pi.Gpio[BcmPin.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
         //    var sensor = new InfraredSensor(inputPin, true);
         //    var emitter = new InfraredEmitter((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
-
-        //    sensor.DataAvailable += (s, e) =>
+        //
+        // sensor.DataAvailable += (s, e) =>
         //    {
         //        var necData = InfraredSensor.NecDecoder.DecodePulses(e.Pulses);
         //        if (necData != null)
         //        {
         //            $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
-
+        //
         //            if (InfraredSensor.NecDecoder.IsRepeatCode(e.Pulses))
         //                return;
-
+        //
         //            // Test repeater signal
         //            var outputPulses = InfraredEmitter.NecEncoder.Encode(necData);
-
+        //
         //            emitter.Send(outputPulses);
         //            var debugData = InfraredSensor.DebugPulses(outputPulses);
         //            $"TX       Length: {outputPulses.Length,5}".Warn("IR");
@@ -190,10 +190,10 @@
         //            }
         //        }
         //    };
-
+        //
         //    Console.ReadLine();
         //    sensor.Dispose();
-        //}
+        // }
 
         /// <summary>
         /// Tests the SPI bus functionality.
