@@ -86,10 +86,10 @@
             var accel_device = Pi.I2C.AddDevice(0x68);
 
             // Set accelerometer
-            var accelSensor = new AccelerometerGY521(accel_device, FSSEL.FSR1000, AFSSEL.FSR8G);
+            var accelSensor = new AccelerometerGY521(accel_device, FSSEL.FSR1000, AFSSEL.FSR4G);
 
             // Present info to screen
-            accelSensor.DataAvailable += (s, e) => $"{e.ToString()}".Info("GY521");
+            accelSensor.DataAvailable += (s, e) => $"\nAccelerometer:\n{e.Accel.ToString()}\nScale:\n{e.AccelScale.ToString()}\n\nGyroscope:\n{e.Gyro.ToString()}\nScale:\n{e.GyroScale.ToString()}\n\nTemperature: {Math.Round(e.Temperature, 2)}°C\n\n\nRotation:\n{e.Rotation.ToString()}\n\n".Info("GY-521");
 
             // Run accelerometer
             accelSensor.Start();

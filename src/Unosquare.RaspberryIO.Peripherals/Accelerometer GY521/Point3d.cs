@@ -1,9 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
+    using System;
     /// <summary>
     /// 3D-space point.
     /// </summary>
-    public struct Point3d : System.IEquatable<Point3d>
+    public struct Point3d : IEquatable<Point3d>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Point3d"/> struct.
@@ -120,5 +121,14 @@
         {
             return X.GetHashCode() ^ Y.GetHashCode() ^ Z.GetHashCode();
         }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="string" /> that represents this instance.</returns>
+        public override string ToString() =>
+                $"  X:  {Math.Round(X, 2)}\n" +
+                $"  Y:  {Math.Round(Y, 2)}\n" +
+                $"  Z:  {Math.Round(Z, 2)}\n";
     }
 }

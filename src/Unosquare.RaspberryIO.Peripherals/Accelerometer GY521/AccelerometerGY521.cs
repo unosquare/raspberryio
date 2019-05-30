@@ -11,8 +11,20 @@
     public sealed class AccelerometerGY521 : IDisposable
     {
         private const int PwrMgmt1 = 0x6b;
+
+        private const int GyroOutputX = 0x43;
+        private const int GyroOutputY = 0x45;
+        private const int GyroOutputZ = 0x47;
+
+        private const int AcclOutputX = 0x3b;
+        private const int AcclOutputY = 0x3d;
+        private const int AcclOutputZ = 0x3f;
+
+        private const int TemperatureOutput = 0x41;
+
         private const int GyroConfig = 0x1b;
         private const int AcclConfig = 0x1c;
+
         private readonly Thread ReadWorker;
         private readonly TimeSpan ReadTime = TimeSpan.FromSeconds(0.5);
 
@@ -81,21 +93,15 @@
         public AccelerometerGY521EventArgs RetrieveSensorData()
         {
             // Read registry for gyroscope and accelerometer on the three axis.
-            var gyro = new Point3d(ReadWord2C(0x43), ReadWord2C(0x45), ReadWord2C(0x47));
-            var accel = new Point3d(ReadWord2C(0x3b), ReadWord2C(0x3d), ReadWord2C(0x3f));
-            var temperature = ReadWord2C(0x41);
-            var gyro_sens = Device.ReadAddressByte(GyroConfig);
-            var accl_sens = Device.ReadAddressByte(AcclConfig);
+            var gyro = new Point3d(ReadWord2C(GyroOutputX), ReadWord2C(GyroOutputY), ReadWord2C(GyroOutputZ));
+            var accel = new Point3d(ReadWord2C(AcclOutputX), ReadWord2C(AcclOutputY), ReadWord2C(AcclOutputZ));
 
-            Console.WriteLine(Device.ReadAddressByte(GyroConfig));
-            Console.WriteLine(Device.ReadAddressByte(AcclConfig));
+            var temperature = (ReadWord2C(TemperatureOutput) / 340.0) + 36.53;
 
-            return new AccelerometerGY521EventArgs(
-                gyro,
-                accel,
-                temperature,
-                gyro_sens,
-                accl_sens);
+            var gyroSens = gyro / Device.ReadAddressByte(GyroConfig);
+            var acclSens = accel / Device.ReadAddressByte(AcclConfig);
+
+            return new AccelerometerGY521EventArgs(gyro, accel, temperature, gyroSens, acclSens);
         }
 
         /// <summary>
