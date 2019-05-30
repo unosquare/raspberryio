@@ -11,20 +11,15 @@
     public sealed class AccelerometerGY521 : IDisposable
     {
         private const int PwrMgmt1 = 0x6b;
-
         private const int GyroOutputX = 0x43;
         private const int GyroOutputY = 0x45;
         private const int GyroOutputZ = 0x47;
-
         private const int AcclOutputX = 0x3b;
         private const int AcclOutputY = 0x3d;
         private const int AcclOutputZ = 0x3f;
-
         private const int TemperatureOutput = 0x41;
-
         private const int GyroConfig = 0x1b;
         private const int AcclConfig = 0x1c;
-
         private readonly Thread ReadWorker;
         private readonly TimeSpan ReadTime = TimeSpan.FromSeconds(0.5);
 
@@ -37,10 +32,8 @@
         public AccelerometerGY521(II2CDevice device, FSSEL gyroSens, AFSSEL acclSens)
         {
             Device = device;
-
             var gyroScale = (int)gyroSens << 3;
             var acclScale = (int)acclSens << 3;
-
             Device.WriteAddressByte(GyroConfig, (byte)gyroScale);
             Device.WriteAddressByte(AcclConfig, (byte)acclScale);
             ReadWorker = new Thread(Run);
@@ -69,7 +62,6 @@
         {
             // Reset sensor sleep mode to 0.
             Device.WriteAddressByte(PwrMgmt1, 0);
-
             IsRunning = true;
             ReadWorker.Start();
         }
@@ -81,7 +73,6 @@
         {
             if (IsRunning == false)
                 return;
-
             StopContinuousReads();
             SetSleepMode();
         }
@@ -95,9 +86,7 @@
             // Read registry for gyroscope and accelerometer on the three axis.
             var gyro = new Point3d(ReadWord2C(GyroOutputX), ReadWord2C(GyroOutputY), ReadWord2C(GyroOutputZ));
             var accel = new Point3d(ReadWord2C(AcclOutputX), ReadWord2C(AcclOutputY), ReadWord2C(AcclOutputZ));
-
             var temperature = (ReadWord2C(TemperatureOutput) / 340.0) + 36.53;
-
             var gyroSens = gyro / Device.ReadAddressByte(GyroConfig);
             var acclSens = accel / Device.ReadAddressByte(AcclConfig);
 
@@ -112,15 +101,13 @@
             var timer = new HighResolutionTimer();
             var lastElapsedTime = TimeSpan.FromSeconds(0);
 
-            while(IsRunning == true)
+            while(IsRunning)
             {
                 if (lastElapsedTime < ReadTime)
                     Thread.Sleep(ReadTime - lastElapsedTime);
-
                 timer.Start();
                 var sensorData = RetrieveSensorData();
                 DataAvailable?.Invoke(this, sensorData);
-
                 lastElapsedTime = timer.Elapsed;
                 if (timer.IsRunning)
                     timer.Stop();
@@ -132,10 +119,8 @@
         /// <summary>
         /// Sets the sleep mode.
         /// </summary>
-        private void SetSleepMode()
-        {
+        private void SetSleepMode() =>
             Device.WriteAddressByte(PwrMgmt1, 0x40);
-        }
 
         /// <summary>
         /// Stops the continuous reads.
@@ -150,8 +135,8 @@
         /// <returns>System.Int32.</returns>
         private int ReadWord(int register)
         {
-            int h = Device.ReadAddressByte(register);
-            int l = Device.ReadAddressByte(register + 1);
+            var h = Device.ReadAddressByte(register);
+            var l = Device.ReadAddressByte(register + 1);
             return (h << 8) + l;
         }
 
@@ -162,11 +147,8 @@
         /// <returns>System.Int32.</returns>
         private int ReadWord2C(int register)
         {
-            int value = ReadWord(register);
-            if (value >= 0x8000)
-                return -((65535 - value) + 1);
-            else
-                return value;
+            var value = ReadWord(register);
+            return value >= 0x8000 ? -((65535 - value) + 1) : value;
         }
     }
 }
