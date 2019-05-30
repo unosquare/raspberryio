@@ -97,7 +97,7 @@
                 return false;
 
             var point = (Point3d)obj;
-            return X == point.X && Y == point.Y && Z == point.Z;
+            return X.Equals(point.X) && Y.Equals(point.Y) && Z.Equals(point.Z);
         }
 
         /// <summary>
@@ -107,10 +107,7 @@
         /// <returns><see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
         public bool Equals(Point3d other)
         {
-            if (other == null)
-                return false;
-
-            return X == other.X && Y == other.Y && Z == other.Z;
+            return X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
         }
 
         /// <summary>
