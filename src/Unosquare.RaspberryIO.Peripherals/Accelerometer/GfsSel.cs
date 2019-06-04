@@ -1,7 +1,7 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
     /// <summary>
-    /// Gyroscope full scale range selecction.
+    /// Gyroscope full scale range selection.
     /// </summary>
     public enum GfsSel
     {

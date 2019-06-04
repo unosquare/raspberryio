@@ -24,7 +24,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Point3D"/> struct.
         /// </summary>
-        /// <param name="value">The point to extract X, Y and Zcomponents from.</param>
+        /// <param name="value">The point to extract X, Y and Z components from.</param>
         public Point3D(Point3D value)
             : this(value.X, value.Y, value.Z)
         {
@@ -104,13 +104,7 @@
         /// </summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns><c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
-        public override bool Equals(object obj)
-        {
-            if (!(obj is Point3D))
-                return false;
-
-            return Equals((Point3D)obj);
-        }
+        public override bool Equals(object obj) => obj is Point3D point3D && Equals(point3D);
 
         /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
@@ -127,12 +121,7 @@
         public override int GetHashCode() =>
             X.GetHashCode() ^ Y.GetHashCode() ^ Z.GetHashCode();
 
-        /// <summary>
-        /// Returns a <see cref="string" /> that represents this instance.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="string" /> that represents this instance.
-        /// </returns>
+        /// <inheritdoc />
         public override string ToString() =>
             ToString("G", CultureInfo.CurrentCulture);
 
@@ -146,14 +135,7 @@
         public string ToString(string format) =>
             ToString(format, CultureInfo.CurrentCulture);
 
-        /// <summary>
-        /// Returns a <see cref="string" /> that represents this instance.
-        /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="formatProvider">The format provider.</param>
-        /// <returns>
-        /// A <see cref="string" /> that represents this instance.
-        /// </returns>
+        /// <inheritdoc />
         public string ToString(string format, IFormatProvider formatProvider) =>
             $"X: {X.ToString(format, formatProvider)}\n" +
             $"Y: {Y.ToString(format, formatProvider)}\n" +

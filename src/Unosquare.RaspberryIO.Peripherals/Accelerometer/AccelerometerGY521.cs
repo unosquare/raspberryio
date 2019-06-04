@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading;
-    using Unosquare.RaspberryIO.Abstractions;
+    using Abstractions;
     using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
@@ -24,6 +24,7 @@
 
         private readonly double[] GyroSensitivity = { 131.0, 65.5, 32.8, 16.4 };
         private readonly double[] AccelSensitivity = { 16384.0, 8192.0, 4096.0, 2048.0 };
+        private bool _disposedValue; // To detect redundant calls
 
         private Thread ReadWorker;
 
@@ -184,13 +185,7 @@
             return (value & 0x8000) != 0 ? -1 * (0x10000 - value) : value;
         }
 
-#region IDisposable Support
-
-        private bool disposedValue; // To detect redundant calls
-
-        /// <summary>
-        /// Stops this instance.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose() =>
             Dispose(true);
 
@@ -200,18 +195,14 @@
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         private void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (_disposedValue) return;
+            if (disposing)
             {
-                if (disposing)
-                {
-                    StopContinuousReads();
-                }
-
-                ReadWorker = null;
-                disposedValue = true;
+                StopContinuousReads();
             }
-        }
 
-#endregion
+            ReadWorker = null;
+            _disposedValue = true;
+        }
     }
 }
