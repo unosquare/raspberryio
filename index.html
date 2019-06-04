@@ -106,10 +106,6 @@
 <li><a href="#changing-audio-settings">Changing audio settings</a></li>
 </ul>
 </li>
-<li><a href="#peripheral-support">Peripheral support</a><ul>
-<li><a href="#gy521-accel-gyro">GY-521 Gyroscope and Accelerometer</a></li>
-</ul>
-</li>
 <li><a href="#obtaining-board-and-system-information">Obtaining Board and System Information</a></li>
 <li><a href="#using-the-gpio-pins">Using the GPIO Pins</a><ul>
 <li><a href="#pin-information">Pin Information</a></li>
@@ -342,127 +338,6 @@ An example is shown below:</p>
 <pre><code class="lang-csharp">var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
 Console.WriteLine(currentState);
 </code></pre><p>The same result can be achieved by setting the volume level to 0% or -9999.99dB.</p>
-<h2 id="peripheral-support">Peripheral support</h2>
-<p>RaspberryIO is developing support for several peripherals. To date, the supported peripherals are:</p>
-<ul>
-<li>GY-521 Gyroscope and Accelerometer.</li>
-</ul>
-<h3 id="gy-521-gyroscope-temperature-and-accelerometer">GY-521 Gyroscope, Temperature and Accelerometer</h3>
-<p>GY-521 is a 3-axis gyroscope and accelerometer used to sense temperature, orientation and spatial position respect to the plane.
-To perform this tasks, the device has to undergo the following steps:</p>
-<ul>
-<li>Set the Accelerometer Scale Config and the Gyroscope Scale configuration.
-Device starts in an idle state that does not capture data, since the flag SLEEP is true.
-To start the device, you must clean the idle state in register <em>0x6B</em> by writing on the register with idle state zero.
-This process sets the precision with which the sensors on the device will detect spatial position and angular velocity.
-This scales are set according to the Full scale Range the user provides, which are provided below:</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>FS_SEL</th>
-<th>Full Scale Range</th>
-<th>LSB Sensibility</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>250</td>
-<td>131</td>
-</tr>
-<tr>
-<td>1</td>
-<td>500</td>
-<td>65.5</td>
-</tr>
-<tr>
-<td>2</td>
-<td>1000</td>
-<td>32.8</td>
-</tr>
-<tr>
-<td>3</td>
-<td>2000</td>
-<td>16.4</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>AFS_SEL</th>
-<th>Full Scale Range</th>
-<th>LSB Sensibility</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>2g</td>
-<td>16384</td>
-</tr>
-<tr>
-<td>1</td>
-<td>4g</td>
-<td>8192</td>
-</tr>
-<tr>
-<td>2</td>
-<td>8g</td>
-<td>4096</td>
-</tr>
-<tr>
-<td>3</td>
-<td>16g</td>
-<td>2048</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="lang-csharp">public void Start(FSSEL gyroSens, AFSSEL acclSens)
-{
-    // Reset sensor sleep mode to 0.
-    Device.WriteAddressByte(PwrMgmt1, 0);
-
-    Device.WriteAddressByte(GyroConfig, (byte)gyroSens);
-    Device.WriteAddressWord(AcclConfig, (byte)acclSens);
-
-    IsRunning = true;
-}
-</code></pre><p>This result is written into the <em>0x1b</em> and <em>0x1c</em> registers respectively.</p>
-<ul>
-<li>Read the sensors data.
-To read the sensors data, we must read into 9 different registers of GY-521: 
-<em>0x43</em>: Gyroscope&#39;s X output.
-<em>0x45</em>: Gyroscope&#39;s Y output.
-<em>0x47</em>: Gyroscope&#39;s Z output.</li>
-</ul>
-<p><em>0x3b</em>: Accelerometer&#39;s X output.
-<em>0x3d</em>: Accelerometer&#39;s Y output.
-<em>0x3f</em>: Accelerometer&#39;s Z output.</p>
-<p><em>0x41</em>: Temperature&#39;s sensor.
-<em>0x1b</em>: Gyroscope&#39;s scale.
-<em>0x1c</em>: Accelerometer&#39;s scale.</p>
-<pre><code class="lang-csharp">    // Read registry for gyroscope and accelerometer on the three axis.
-    var gyro = new Point3d(ReadWord2C(0x43), ReadWord2C(0x45), ReadWord2C(0x47));
-    var accel = new Point3d(ReadWord2C(0x3b), ReadWord2C(0x3d), ReadWord2C(0x3f));
-    var temperature = ReadWord2C(0x41);
-    var gyro_sens = FSSel[Device.ReadAddressByte(GyroConfig)];
-    var accl_sens = AFSSel[Device.ReadAddressByte(AcclConfig)];
-</code></pre><ul>
-<li><p>Calculate the rotations, scales and spatial positions of gyroscope and accelerometer.
-By overloading division operators, we can obtain the sacles of both Accelerometer and Gyroscope sensors.
-Also, temperature is measured by converting the sensor data of GY521 internal temperature measurer into Celsius (°C) and then into Fahrenheit (°F).</p>
-<pre><code class="lang-csharp">  Gyro = gyro;
-  Accel = accel;
-  Temperature = (temperature / 340.0) + 36.53;
-
-  GyroScale = Gyro / gyro_sens;
-  AccelScale = Accel / accl_sens;
-
-  Rotation = new Point3d(Extensions.GetRotationX(AccelScale), Extensions.GetRotationY(AccelScale), 0.0);
-</code></pre></li>
-</ul>
 <h2 id="obtaining-board-and-system-information">Obtaining Board and System Information</h2>
 <p><code>RaspberryIO</code> contains useful utilities to obtain information about the board it is running on. You can simply call the <code>Pi.Info.ToString()</code> method to obtain a dump of all system properties as a single <code>string</code>, or you can use the individual properties such as Installed RAM, Processor Count, Raspberry Pi Version, Serial Number, etc. There&#39;s not a lot more to this.</p>
 <h2 id="using-the-gpio-pins">Using the GPIO Pins</h2>
