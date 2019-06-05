@@ -17,7 +17,7 @@
         protected internal Dht21(IGpioPin dataPin)
             : base(dataPin)
         {
-            PullDownMicroseconds = 1100;
+            PullDownMicroseconds = 1300;
         }
 
         /// <inheritdoc />

@@ -62,7 +62,7 @@
         /// <summary>
         /// Gets the pulldown microseconds for start communication.
         /// </summary>
-        protected uint PullDownMicroseconds { get; set; } = 20000;
+        protected uint PullDownMicroseconds { get; set; } = 21000;
 
         /// <summary>
         /// Gets a collection of pins that are allowed to run this sensor.
