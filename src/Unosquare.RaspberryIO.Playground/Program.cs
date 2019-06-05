@@ -47,9 +47,9 @@
                 // TestHardwarePwm();
                 // TestInfraredSensor();
                 // TestServo();
-                // TestTempSensor();
                 // await TestVolumeControl();
-                TestAccelerometer();
+                // TestAccelerometer();
+                TestTempSensor();
             }
             catch (Exception ex)
             {
@@ -69,8 +69,25 @@
         /// </summary>
         public static void TestTempSensor()
         {
-            var sensor = new TemperatureSensorAM2302(Pi.Gpio[BcmPin.Gpio18]);
-            sensor.OnDataAvailable += (s, e) => $"Temperature: {e?.TemperatureCelsius ?? 0} | Humidity: {e?.HumidityPercentage ?? 0}".Info("AM2302");
+            var sensor = DhtSensor.Create(DhtType.Dht11, Pi.Gpio[BcmPin.Gpio04]);
+            var totalReadings = 0.0;
+            var validReadings = 0.0;
+
+            sensor.OnDataAvailable += (s, e) =>
+            {
+                totalReadings++;
+                if (e.IsValid)
+                {
+                    validReadings++;
+                    $"Temperature: {e?.Temperature ?? 0:0.00}°C / {e?.TemperatureFahrenheit ?? 0:0.00}°F | Humidity: {e?.HumidityPercentage ?? 0:P0}".Info("DHT11");
+                }
+                else
+                {
+                    "Invalid Reading".Error("DHT11");
+                }
+
+                $"Valid reading percentage: {validReadings / totalReadings:P}".Info("DHT11");
+            };
 
             sensor.Start();
             Console.ReadKey(true);

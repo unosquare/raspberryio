@@ -9,7 +9,7 @@
         private static void TestRfidController()
         {
             "Testing RFID".Info();
-            var device = new RFIDControllerMfrc522(Pi.Spi.Channel1, 500000, Pi.Gpio[18]);
+            var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 
             while (true)
             {
