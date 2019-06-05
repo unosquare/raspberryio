@@ -61,7 +61,11 @@ We offer an additional package with helpful classes to use peripherals, many of 
 * Infrared Sensor HX-1838
 * Led Strip APA-102C
 * NFC/RFID Controller MFRC-522
-* Temperature Sensor AM-2302
+* DHT family digital relative humidity and temperature sensors:
+  * DHT11
+  * DHT12
+  * DHT21 / AM-2301
+  * DHT22 / AM-2302
 * OLED Display SSD-1306
 * Generic Button connected to GPIO
 * GY-521 MPU6050 Accelerometer
