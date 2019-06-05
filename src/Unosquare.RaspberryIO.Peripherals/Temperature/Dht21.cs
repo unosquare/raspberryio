@@ -17,16 +17,21 @@
         protected internal Dht21(IGpioPin dataPin)
             : base(dataPin)
         {
+            PullDownMicroseconds = 1100;
         }
 
-        protected override double DecodeHumidity(byte[] data)
-        {
-            throw new NotImplementedException();
-        }
+        /// <inheritdoc />
+        protected override double DecodeHumidity(byte[] data) =>
+            ((data[0] << 8) | data[1]) * 0.1;
 
+        /// <inheritdoc />
         protected override double DecodeTemperature(byte[] data)
         {
-            throw new NotImplementedException();
+            var temp = (((data[2] & 0x7F) << 8) | data[3]) * 0.1;
+            if ((data[2] & 0x80) == 0x80)
+                temp *= -1;
+
+            return temp;
         }
     }
 }

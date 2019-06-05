@@ -14,9 +14,10 @@
     /// <seealso cref="IDisposable" />
     public abstract class DhtSensor : IDisposable
     {
+        private const long BitPulseMidMicroseconds = 60; // (26 ... 28)µs for false; (29 ... 70)µs for true
+
         private static readonly int[] AllowedPinNumbers = { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
         private static readonly TimeSpan ReadInterval = TimeSpan.FromSeconds(2);
-        private static readonly long BitPulseMidMicroseconds = 60; // (26 ... 28)µs for false; (29 ... 70)µs for true
 
         private readonly IGpioPin DataPin;
         private readonly Timer ReadTimer;
@@ -51,7 +52,7 @@
         /// <summary>
         /// Occurs when data from the sensor becomes available
         /// </summary>
-        public event EventHandler<TemperatureSensorReadEventArgs> OnDataAvailable;
+        public event EventHandler<DhtReadEventArgs> OnDataAvailable;
 
         /// <summary>
         /// Gets a value indicating whether the sensor is running.
@@ -59,14 +60,9 @@
         public bool IsRunning { get; private set; }
 
         /// <summary>
-        /// Gets the temperature in celsius degrees.
+        /// Gets the pulldown microseconds for start communication.
         /// </summary>
-        public double Temperature { get; private set; }
-
-        /// <summary>
-        /// Gets the relative humidity percentage.
-        /// </summary>
-        public double Humidity { get; private set; }
+        protected uint PullDownMicroseconds { get; set; } = 20000;
 
         /// <summary>
         /// Gets a collection of pins that are allowed to run this sensor.
@@ -167,7 +163,7 @@
         /// Retrieves the sensor data.
         /// </summary>
         /// <returns>The event arguments that will be read from the sensor.</returns>
-        private TemperatureSensorReadEventArgs RetrieveSensorData()
+        private DhtReadEventArgs RetrieveSensorData()
         {
             // Prepare buffer to store measure and checksum
             var data = new byte[5];
@@ -178,50 +174,65 @@
 
             // Send request to trasmission from board to sensor
             DataPin.Write(GpioPinValue.Low);
-            Pi.Timing.SleepMilliseconds(20);
+            Pi.Timing.SleepMicroseconds(PullDownMicroseconds);
             DataPin.Write(GpioPinValue.High);
 
             // Wait for sensor response
             DataPin.PinMode = GpioPinDriveMode.Input;
 
-            // Read acknowledgement from sensor
-            DataPin.WaitForValue(GpioPinValue.Low, 50);
-            DataPin.WaitForValue(GpioPinValue.High, 50);
-
-            // Begins data transmission
-            DataPin.WaitForValue(GpioPinValue.Low, 50);
-
-            // Read 40 bits to acquire:
-            //   16 bit -> Humidity
-            //   16 bit -> Temperature
-            //   8 bit -> Checksum
-
-            var stopwatch = new HighResolutionTimer();
-            for (var i = 0; i < 40; i++)
+            try
             {
-                stopwatch.Reset();
-                DataPin.WaitForValue(GpioPinValue.High, 50);
+                // Read acknowledgement from sensor
+                if (!DataPin.WaitForValue(GpioPinValue.Low, 50))
+                    throw new TimeoutException();
 
-                stopwatch.Start();
-                DataPin.WaitForValue(GpioPinValue.Low, 50);
-                stopwatch.Stop();
+                if (!DataPin.WaitForValue(GpioPinValue.High, 50))
+                    throw new TimeoutException();
 
-                data[i / 8] <<= 1;
+                // Begins data transmission
+                if (!DataPin.WaitForValue(GpioPinValue.Low, 50))
+                    throw new TimeoutException();
 
-                // Check if signal is 1 or 0
-                if (stopwatch.ElapsedMicroseconds > BitPulseMidMicroseconds)
-                    data[i / 8] |= 1;
+                // Read 40 bits to acquire:
+                //   16 bit -> Humidity
+                //   16 bit -> Temperature
+                //   8 bit -> Checksum
+
+                var stopwatch = new HighResolutionTimer();
+                for (var i = 0; i < 40; i++)
+                {
+                    stopwatch.Reset();
+                    if (!DataPin.WaitForValue(GpioPinValue.High, 50))
+                        throw new TimeoutException();
+
+                    stopwatch.Start();
+                    if (!DataPin.WaitForValue(GpioPinValue.Low, 50))
+                        throw new TimeoutException();
+
+                    stopwatch.Stop();
+
+                    data[i / 8] <<= 1;
+
+                    // Check if signal is 1 or 0
+                    if (stopwatch.ElapsedMicroseconds > BitPulseMidMicroseconds)
+                        data[i / 8] |= 1;
+                }
+
+                // End transmission
+                if (!DataPin.WaitForValue(GpioPinValue.High, 50))
+                    throw new TimeoutException();
+
+                // Compute the checksum
+                return IsDataValid(data) ?
+                        new DhtReadEventArgs(
+                            humidityPercentage: DecodeHumidity(data),
+                            temperatureCelsius: DecodeTemperature(data)) :
+                        DhtReadEventArgs.CreateInvalidReading();
             }
-
-            // End transmission
-            DataPin.WaitForValue(GpioPinValue.High, 50);
-
-            // Compute the checksum
-            return IsDataValid(data) ?
-                    new TemperatureSensorReadEventArgs(
-                        humidityPercentage: DecodeHumidity(data),
-                        temperatureCelsius: DecodeTemperature(data)) :
-                        TemperatureSensorReadEventArgs.CreateInvalidReading();
+            catch
+            {
+                return DhtReadEventArgs.CreateInvalidReading();
+            }
         }
 
         private bool IsDataValid(byte[] data) =>

@@ -5,23 +5,23 @@
     /// <summary>
     /// Represents the sensor data that was read.
     /// </summary>
-    public sealed class TemperatureSensorReadEventArgs : EventArgs
+    public sealed class DhtReadEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TemperatureSensorReadEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="DhtReadEventArgs"/> class.
         /// </summary>
         /// <param name="temperatureCelsius">The temperature celsius.</param>
         /// <param name="humidityPercentage">The humidity percentage.</param>
-        internal TemperatureSensorReadEventArgs(double temperatureCelsius, double humidityPercentage)
+        internal DhtReadEventArgs(double temperatureCelsius, double humidityPercentage)
         {
             Temperature = temperatureCelsius;
             HumidityPercentage = humidityPercentage;
         }
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="TemperatureSensorReadEventArgs"/> class from being created.
+        /// Prevents a default instance of the <see cref="DhtReadEventArgs"/> class from being created.
         /// </summary>
-        private TemperatureSensorReadEventArgs()
+        private DhtReadEventArgs()
         {
             // placeholder
         }
@@ -47,7 +47,7 @@
         /// </summary>
         public double HumidityPercentage { get; }
 
-        internal static TemperatureSensorReadEventArgs CreateInvalidReading() =>
-            new TemperatureSensorReadEventArgs { IsValid = false };
+        internal static DhtReadEventArgs CreateInvalidReading() =>
+            new DhtReadEventArgs { IsValid = false };
     }
 }

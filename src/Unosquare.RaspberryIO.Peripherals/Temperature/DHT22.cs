@@ -7,7 +7,7 @@
     /// The DHT22 digital relative humidity and temperature sensor.
     /// </summary>
     /// <seealso cref="DhtSensor" />
-    public class Dht22 : DhtSensor
+    public class Dht22 : Dht21
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Dht22" /> class.
@@ -17,16 +17,6 @@
         protected internal Dht22(IGpioPin dataPin)
             : base(dataPin)
         {
-        }
-
-        protected override double DecodeHumidity(byte[] data)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override double DecodeTemperature(byte[] data)
-        {
-            throw new NotImplementedException();
         }
     }
 }
