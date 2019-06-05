@@ -49,7 +49,7 @@
         /// <summary>
         /// Occurs when data from the sensor becomes available
         /// </summary>
-        public event EventHandler<AM2302DataReadEventArgs> OnDataAvailable;
+        public event EventHandler<TemperatureSensorReadEventArgs> OnDataAvailable;
 
         /// <summary>
         /// Gets a collection of pins that are allowed to run this sensor.
@@ -133,7 +133,7 @@
         /// Retrieves the sensor data.
         /// </summary>
         /// <returns>The event arguments that will be read from the sensor.</returns>
-        private AM2302DataReadEventArgs RetrieveSensorData()
+        private TemperatureSensorReadEventArgs RetrieveSensorData()
         {
             // Prepare buffer to store measure and checksum
             var data = new byte[5];
@@ -197,9 +197,9 @@
                 sign = -1;
             }
 
-            return new AM2302DataReadEventArgs(
-                temperatureCelsius: (sign * ((data[2] << 8) + data[3])) / 10m,
-                humidityPercentage: ((data[0] << 8) + data[1]) / 10m);
+            return new TemperatureSensorReadEventArgs(
+                temperatureCelsius: (sign * ((data[2] << 8) + data[3])) / 10,
+                humidityPercentage: ((data[0] << 8) + data[1]) / 10);
         }
 
         /// <summary>
@@ -207,40 +207,5 @@
         /// </summary>
         private void StopContinuousReads() =>
             IsRunning = false;
-
-        /// <summary>
-        /// Represents the sensor data that was read.
-        /// </summary>
-        public sealed class AM2302DataReadEventArgs : EventArgs
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="AM2302DataReadEventArgs"/> class.
-            /// </summary>
-            /// <param name="temperatureCelsius">The temperature celsius.</param>
-            /// <param name="humidityPercentage">The humidity percentage.</param>
-            internal AM2302DataReadEventArgs(decimal temperatureCelsius, decimal humidityPercentage)
-            {
-                TemperatureCelsius = temperatureCelsius;
-                HumidityPercentage = humidityPercentage;
-            }
-
-            /// <summary>
-            /// Prevents a default instance of the <see cref="AM2302DataReadEventArgs"/> class from being created.
-            /// </summary>
-            private AM2302DataReadEventArgs()
-            {
-                // placeholder
-            }
-
-            /// <summary>
-            /// Gets the temperature celsius.
-            /// </summary>
-            public decimal TemperatureCelsius { get; }
-
-            /// <summary>
-            /// Gets the humidity percentage.
-            /// </summary>
-            public decimal HumidityPercentage { get; }
-        }
     }
 }
