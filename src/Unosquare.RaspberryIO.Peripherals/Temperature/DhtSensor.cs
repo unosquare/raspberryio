@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Threading;
     using Unosquare.RaspberryIO.Abstractions.Native;
-    using Unosquare.Swan;
 
     /// <summary>
     /// Base class for DHT family digital relative humidity and temperature sensors.
@@ -17,10 +16,10 @@
         private const long BitPulseMidMicroseconds = 60; // (26 ... 28)µs for false; (29 ... 70)µs for true
 
         private static readonly int[] AllowedPinNumbers = { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
-        private static readonly TimeSpan ReadInterval = TimeSpan.FromSeconds(2);
 
-        private readonly IGpioPin DataPin;
-        private readonly Timer ReadTimer;
+        private readonly IGpioPin _dataPin;
+        private readonly Timer _readTimer;
+        private bool _disposedValue;
         private int _period;
 
         /// <summary>
@@ -36,7 +35,7 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Dht11" /> class.
+        /// Initializes a new instance of the <see cref="DhtSensor" /> class.
         /// </summary>
         /// <param name="dataPin">The data pin. Must be a GPIO-only pin on the P1 Header of the Pi.</param>
         /// <exception cref="ArgumentException">dataPin When it is invalid.</exception>
@@ -45,8 +44,8 @@
             if (AllowedPins.Contains(dataPin) == false)
                 throw new ArgumentException($"{nameof(dataPin)}, {dataPin} is not available to service this driver.");
 
-            DataPin = dataPin;
-            ReadTimer = new Timer(PerformContinuousReads, null, Timeout.Infinite, Timeout.Infinite);
+            _dataPin = dataPin;
+            _readTimer = new Timer(PerformContinuousReads, null, Timeout.Infinite, Timeout.Infinite);
         }
 
         /// <summary>
@@ -58,16 +57,16 @@
         /// Gets a value indicating whether the sensor is running.
         /// </summary>
         public bool IsRunning { get; private set; }
-
-        /// <summary>
-        /// Gets the pulldown microseconds for start communication.
-        /// </summary>
-        protected uint PullDownMicroseconds { get; set; } = 21000;
-
+        
         /// <summary>
         /// Gets a collection of pins that are allowed to run this sensor.
         /// </summary>
         protected static ReadOnlyCollection<IGpioPin> AllowedPins { get; }
+
+        /// <summary>
+        /// Gets the pull down microseconds for start communication.
+        /// </summary>
+        protected uint PullDownMicroseconds { get; set; } = 21000;
 
         /// <summary>
         /// Creates a specific DHT sensor class.
@@ -110,7 +109,7 @@
 
             _period = period * 1000;
             IsRunning = true;
-            ReadTimer.Change(0, Timeout.Infinite);
+            _readTimer.Change(0, Timeout.Infinite);
         }
 
         /// <summary>
@@ -118,6 +117,30 @@
         /// </summary>
         public void Stop() =>
             StopContinuousReads();
+        
+        /// <inheritdoc />
+        public void Dispose() =>
+            Dispose(true);
+        
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposedValue) return;
+
+            if (disposing)
+            {
+                // Avoid calling this multiple times
+                if (IsRunning)
+                    StopContinuousReads();
+
+                _readTimer.Dispose();
+            }
+
+            _disposedValue = true;
+        }
 
         /// <summary>
         /// Decodes the temperature.
@@ -150,7 +173,7 @@
                 if (IsRunning)
                 {
                     OnDataAvailable?.Invoke(this, sensorData);
-                    ReadTimer.Change(_period, Timeout.Infinite);
+                    _readTimer.Change(_period, Timeout.Infinite);
                 }
             }
             catch
@@ -170,43 +193,43 @@
 
             // Start to comunicate with sensor
             // Inform sensor that must finish last execution and put it's state in idle
-            DataPin.PinMode = GpioPinDriveMode.Output;
+            _dataPin.PinMode = GpioPinDriveMode.Output;
 
             // Send request to trasmission from board to sensor
-            DataPin.Write(GpioPinValue.Low);
+            _dataPin.Write(GpioPinValue.Low);
             Pi.Timing.SleepMicroseconds(PullDownMicroseconds);
-            DataPin.Write(GpioPinValue.High);
+            _dataPin.Write(GpioPinValue.High);
 
             // Wait for sensor response
-            DataPin.PinMode = GpioPinDriveMode.Input;
+            _dataPin.PinMode = GpioPinDriveMode.Input;
 
             try
             {
                 // Read acknowledgement from sensor
-                if (!DataPin.WaitForValue(GpioPinValue.Low, 50))
+                if (!_dataPin.WaitForValue(GpioPinValue.Low, 50))
                     throw new TimeoutException();
 
-                if (!DataPin.WaitForValue(GpioPinValue.High, 50))
+                if (!_dataPin.WaitForValue(GpioPinValue.High, 50))
                     throw new TimeoutException();
 
                 // Begins data transmission
-                if (!DataPin.WaitForValue(GpioPinValue.Low, 50))
+                if (!_dataPin.WaitForValue(GpioPinValue.Low, 50))
                     throw new TimeoutException();
 
                 // Read 40 bits to acquire:
                 //   16 bit -> Humidity
                 //   16 bit -> Temperature
                 //   8 bit -> Checksum
-
                 var stopwatch = new HighResolutionTimer();
+
                 for (var i = 0; i < 40; i++)
                 {
                     stopwatch.Reset();
-                    if (!DataPin.WaitForValue(GpioPinValue.High, 50))
+                    if (!_dataPin.WaitForValue(GpioPinValue.High, 50))
                         throw new TimeoutException();
 
                     stopwatch.Start();
-                    if (!DataPin.WaitForValue(GpioPinValue.Low, 50))
+                    if (!_dataPin.WaitForValue(GpioPinValue.Low, 50))
                         throw new TimeoutException();
 
                     stopwatch.Stop();
@@ -219,7 +242,7 @@
                 }
 
                 // End transmission
-                if (!DataPin.WaitForValue(GpioPinValue.High, 50))
+                if (!_dataPin.WaitForValue(GpioPinValue.High, 50))
                     throw new TimeoutException();
 
                 // Compute the checksum
@@ -235,7 +258,7 @@
             }
         }
 
-        private bool IsDataValid(byte[] data) =>
+        private static bool IsDataValid(byte[] data) =>
             ((data[0] + data[1] + data[2] + data[3]) & 0xff) == data[4];
 
         /// <summary>
@@ -243,35 +266,8 @@
         /// </summary>
         private void StopContinuousReads()
         {
-            ReadTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            _readTimer.Change(Timeout.Infinite, Timeout.Infinite);
             IsRunning = false;
         }
-
-#region IDisposable Support
-
-        private bool disposedValue = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // Avoid calling this multiple times
-                    if (IsRunning)
-                        StopContinuousReads();
-
-                    ReadTimer.Dispose();
-                }
-
-                disposedValue = true;
-            }
-        }
-
-        public void Dispose() =>
-            Dispose(true);
-
-#endregion
-
     }
 }
