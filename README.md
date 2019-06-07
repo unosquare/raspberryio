@@ -69,6 +69,7 @@ We offer an additional package with helpful classes to use peripherals, many of 
 * OLED Display SSD-1306
 * Generic Button connected to GPIO
 * GY-521 MPU6050 Accelerometer
+* Ultrasonic Sensor HC-SR04
 
 ## Breaking changes
 
