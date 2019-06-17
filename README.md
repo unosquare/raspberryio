@@ -212,7 +212,7 @@ Connecting to host 172.16.17.54:22 via SFTP.
 Completed.
 ```
 
-* **The default TargetFramework is** `net46` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this**`dotnet-sshdeploy push -f netcoreapp2.2`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
+* **The default TargetFramework is** `net461` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this** `dotnet-sshdeploy push -f netcoreapp2.2`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
 
 - Give permissions to run the project
 
