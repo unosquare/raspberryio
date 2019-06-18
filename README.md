@@ -16,22 +16,15 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Breaking changes](#breaking-changes)
     * [Version &ge; 0.18.0](#version--0180)
   * [Installation](#installation)
-  * [Usage](#usage)
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
-    * [For Debian Wheezy](#for-debian-wheezy)
     * [For Debian Stretch](#for-debian-stretch)
-  * [Running .NET Core 2.2](#running-net-core-22)
+  * [Running .NET Core 2.2.4](#running-net-core-224)
+  * [Usage](#usage)
     * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
-  * [The Camera Module](#the-camera-module)
-    * [Capturing Images](#capturing-images)
-    * [Capturing Video](#capturing-video)
-  * [Audio settings](#audio-settings)
-  	* [Changing audio settings](#changing-audio-settings)
   * [Obtaining Board and System Information](#obtaining-board-and-system-information)
   * [Using the GPIO Pins](#using-the-gpio-pins)
     * [Pin Information](#pin-information)
     * [Digital Read and Write](#digital-read-and-write)
-    * [Analog (Level) Read and Write](#analog-level-read-and-write)
     * [Hardware PWM](#hardware-pwm)
     * [Software PWM](#software-pwm)
     * [Tone Generation](#tone-generation)
@@ -39,7 +32,13 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Using the SPI Bus](#using-the-spi-bus)
   * [I2C to connect ICs](#i2c-to-connect-ics)
   * [Timing and Threading](#timing-and-threading)
+    * [Timing](#timing)
+    * [Threading](#threading)
   * [Serial Ports (UART)](#serial-ports-uart)
+  * [The Camera Module](#the-camera-module)
+    * [Capturing Images](#capturing-images)
+    * [Capturing Video](#capturing-video)
+  * [Audio settings](#audio-settings)
   * [Handy Notes](#handy-notes)
   * [Related Projects and Nugets](#related-projects-and-nugets)
   
@@ -51,7 +50,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
 * ```Pi.Info``` Provides information on this Raspberry Pi's CPU and form factor.
 * ```Pi.Gpio``` Provides access to the Raspberry Pi's GPIO as a collection of GPIO Pins.
 * ```Pi.Spi``` Provides access to the 2-channel SPI bus.
-* ```Pi.I2c``` Provides access to the functionality of the i2c bus.
+* ```Pi.I2c``` Provides access to the functionality of the I2C bus.
 * ```Pi.Timing``` Provides access to The PI's Timing and threading API.
 
 ### Peripherals
@@ -109,62 +108,47 @@ Install Raspberry.IO Peripherals package (Optional):
 PM> Install-Package Unosquare.RaspberryIO.Peripherals
 ```
 
+## Running the latest version of Mono
+It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Stretch. The version of Mono that is installed at the time of this writing is:
+``` 
+Mono JIT compiler version 5.20.1.19 (tarball Thu Apr 11 19:13 UTC 2019)
+```
+
+The commands to get Mono installed are the following:
+
+### For Debian Stretch
+
+```
+sudo apt install apt-transport-https dirmngr gnupg ca-certificates
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo "deb https://download.mono-project.com/repo/debian stable-raspbianstretch main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+sudo apt update
+sudo apt-get install mono-complete
+```
+
+Now, verify your version of Mono by running ```mono --version```. Version 4.6 and above should be good enough.
+
+## Running .NET Core 2.2.4
+
+This project can also run in .NET Core. To install .Net Core 2.2.4 runtime please execute the following commands:
+
+```
+$ sudo apt-get -y update
+$ sudo apt-get -y install libunwind8 gettext
+$ wget https://download.visualstudio.microsoft.com/download/pr/8c52648c-bedd-44b0-9442-95cd830fdada/d6ba4c50a6b2afddc4ae3d313349f3ac/dotnet-runtime-2.2.4-linux-arm.tar.gz
+$ sudo mkdir /opt/dotnet
+$ sudo tar -xvf dotnet-runtime-2.2.4-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
+```
+
+Now, verify your version of Mono by running ```dotnet --info```.
+
 ## Usage
 
 Before start using RaspberryIO, you must initialize **Pi** class (bootstrapping process) with the valid Abstractions implementation, in order to let **Pi** know what implementation is going to use:
 
 ```csharp
  Pi.Init<BootstrapWiringPi>();
-```
-
-## Running the latest version of Mono
-It is recommended that you install the latest available release of Mono because what is available in the Raspbian repo is quite old (3.X). These commands were tested using Raspbian Jessie. The version of Mono that is installed at the time of this writing is:
-``` 
-Mono JIT compiler version 5.4.1.6 (tarball Wed Nov  8 21:42:16 UTC 2017)
-```
-
-The commands to get Mono installed are the following:
-
-### For Debian Wheezy
-
-```
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install mono-complete
-sudo apt-get install dirmngr
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
-sudo apt-get update
-sudo apt-get dist-upgrade
-```
-
-### For Debian Stretch
-
-```
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install mono-complete
-sudo apt-get install dirmngr
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-echo "deb http://download.mono-project.com/repo/debian stretch main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
-sudo apt-get update
-sudo apt-get dist-upgrade
-```
-
-Now, verify your version of Mono by running ```mono --version```. Version 4.6 and above should be good enough.
-
-## Running .NET Core 2.2
-
-This project can also run in .NET Core 2.2. To install please execute the following commands:
-
-```
-$ sudo apt-get -y update
-$ sudo apt-get -y install libunwind8 gettext
-$ wget https://download.visualstudio.microsoft.com/download/pr/e64d0771-52f3-444c-b174-8be5923ca6da/e0d7f36a0017162f5ff7a81b919ef434/dotnet-runtime-2.2.1-linux-arm.tar.gz
-$ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-runtime-2.2.1-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
-$ dotnet --info
 ```
 
 ### Run the app on the raspberry
@@ -214,131 +198,41 @@ Completed.
 
 * **The default TargetFramework is** `net461` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this** `dotnet-sshdeploy push -f netcoreapp2.2`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
 
-- Give permissions to run the project
-
-```
- ubuntu@ubuntu:~/publish$ sudo chmod u+x *
-```
-
 - Run the project
 
-```
- ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
-```
+  - Using Mono:
+    
+    First of all, you need to give permissions to run the project by running the next command on your target folder:
+    
+    ```
+        ubuntu@ubuntu:~/publish$ sudo chmod u+x *
+    ```
+    
+    Or you just can add the **SshDeployExecutePermission** tag in your project's csproj file:
 
-- Run the project (.Net Core)
-```
-  ubuntu@ubuntu:~/publish$ dotnet Unosquare.RaspberryIO.Playground.dll
-```
+    ```
+        <SshDeployExecutePermission>true</SshDeployExecutePermission>
+    ```
+    
+    Or use the appropriate command line argument:
 
-## The Camera Module
-The ```Pi.Camera``` module uses ```raspivid``` and ```raspistill``` to access the camera so they must be installed in order for your program to work properly. ```raspistill``` arguments are specified in an instance of the ```CameraStillSettings``` class, while the ```raspivid``` arguments are specified in an instance of the ```CameraVideoSettings``` class. 
+    ```
+        dotnet-sshdeploy push ... -x true
+    ```
 
-### Capturing Images
-The ```Pi.Camera.CaptureImage*``` methods simply return an array of bytes containing the captured image. There are synchronous and asynchronous falvors of these methods so you can use the familiar ```async``` and ```await``` pattern to capture your images. All ```raspistill``` arguments (except for those that control user interaction such as ```-k```) are available via the ```CameraStillSettings```. To start, create a new instance of the ```CameraStillSettings``` class and pass it on to your choice of the ```Pi.Camera.CaptureImage*``` methods. There are shortcut methods available that simply take a JPEG image at the given Width and Height. By default, the shortcut methods set the JPEG quality at 90%.
+    Then you can run your project:
 
-Example using a shortcut method:
-```csharp
-static void TestCaptureImage()
-{
-    var pictureBytes = Pi.Camera.CaptureImageJpeg(640, 480);
-    var targetPath = "/home/pi/picture.jpg";
-    if (File.Exists(targetPath))
-        File.Delete(targetPath);
+    ```
+     ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
+    ```
 
-    File.WriteAllBytes(targetPath, pictureBytes);
-    Console.WriteLine($"Took picture -- Byte count: {pictureBytes.Length}");
-}
-```
+  - Using .Net Core
+ 
+    ```
+      ubuntu@ubuntu:~/publish$ dotnet Unosquare.RaspberryIO.Playground.dll
+    ```
 
-Example using a CaptureImage method:
-```csharp
-// TODO: example code here
-```
-
-### Capturing Video
-Capturing video streams is somewhat different but it is still very easy to do. The concept behind it is to _Open_ a video stream providing your own callback. When opening the stream ```Raspberry IO``` will spawn a separate thread and will not block the execution of your code, but it will continually call your callback method containing the bytes that are being read from the camera until the _Close_ method is called or until the timeout is reached.
-
-Example of capturing a stream of H.264 video
-```csharp
-static void TestCaptureVideo()
-{
-    // Setup our working variables
-    var videoByteCount = 0;
-    var videoEventCount = 0;
-    var startTime = DateTime.UtcNow;
-
-    // Configure video settings
-    var videoSettings = new CameraVideoSettings()
-    {
-        CaptureTimeoutMilliseconds = 0,
-        CaptureDisplayPreview = false,
-        ImageFlipVertically = true,
-        CaptureExposure = CameraExposureMode.Night,
-        CaptureWidth = 1920,
-        CaptureHeight = 1080
-    };
-
-    try
-    {
-        // Start the video recording
-        Pi.Camera.OpenVideoStream(videoSettings,
-            onDataCallback: (data) => { videoByteCount += data.Length; videoEventCount++; },
-            onExitCallback: null);
-
-        // Wait for user interaction
-        startTime = DateTime.UtcNow;
-        Console.WriteLine("Press any key to stop reading the video stream . . .");
-        Console.ReadKey(true);
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"{ex.GetType()}: {ex.Message}");
-    }
-    finally
-    {
-        // Always close the video stream to ensure raspivid quits
-        Pi.Camera.CloseVideoStream();
-
-        // Output the stats
-        var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000");
-        var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000");
-        Console.WriteLine($"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds");
-    }            
-}
-```
-
-## Audio settings
-
-### Changing audio settings
-
-Basic audio settings have been implemented in RaspberryIO:
-
-- Set a specific volume level percentage.
-- Set a specific volume level in decibels (dB)
-- Mute an audio device.
-- Consult audio device settings.
-
-Users set an audio card, an audio device and an audio command to perform an audio action. Example of audio tasks:
-
-```csharp
-await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
-
-await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
-```
-
-The code above sets the volume level in two different formats: Percentage or Decibels.
-The first method sets the volume on percentage (0% - 100%) and the second sets the volume level on decibels(dB) (-101.32dB - 4.00dB).
-
-Users can consult the current audio settings by using the method GetState.
-An example is shown below:
-
-```csharp
-var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
-Console.WriteLine(currentState);
-```
-
-The same result can be achieved by setting the volume level to 0% or -9999.99dB.
+    **_Note_**: Depending on the underlying library, you may need to use root user privileges to run the app.
 
 ## Obtaining Board and System Information
 ```RaspberryIO``` contains useful utilities to obtain information about the board it is running on. You can simply call the ```Pi.Info.ToString()``` method to obtain a dump of all system properties as a single ```string```, or you can use the individual properties such as Installed RAM, Processor Count, Raspberry Pi Version, Serial Number, etc. There's not a lot more to this.
@@ -421,8 +315,6 @@ Pi.Gpio.Pin27.Write(true); // Writes a boolean
 Pi.Gpio.Pin27.Write(GpioPinValue.High); // Writes a pin value
 ```
 
-### Analog (Level) Read and Write
-TODO
 
 ### Hardware PWM
 Simple code for led dimming:
@@ -581,10 +473,199 @@ foreach (var device in Pi.I2C.Devices)
 ```
 
 ## Timing and Threading
-TODO
+
+### Timing
+
+System calls to provide various timing and sleeping functions.
+
+Getting the number of microseconds or milliseconds since system boot:
+
+```csharp
+// Getting the number of microseconds since system boot.
+var micros = Pi.Timing.Microseconds;
+
+// Getting the number of milliseconds since system boot.
+var millis = Pi.Timing.Milliseconds;
+```
+
+Pausing program execution for a certain number of microseconds or milliseconds.
+
+```csharp
+// Pausing program execution for 50 microseconds.
+Pi.Timing.SleepMicroseconds(50);
+
+// Pausing program execution for 100 milliseconds.
+Pi.Timing.SleepMilliseconds(100);
+```
+
+### Threading
+
+Allows the creation of a thread which is another function in your program that runs concurrently with your main program. An example may be to have this function wait for an interrupt while your program carries on doing other tasks. The thread can indicate an event, or action by using global variables to communicate back to the main program, or other threads.
+
+Basic thread creation:
+
+```csharp
+    static void Main()
+    {
+        ...
+        Pi.Threading.StartThread(ThreadWorker);
+        ...
+    }
+
+    private void ThreadWorker()
+    {
+        // Thread body
+    }
+```
+
+Passing data to a thread:
+
+
+```csharp
+    
+    static void Main()
+    {
+        ...
+        var threadName = "Thread 1";
+        var namePointer = (IntPtr)Marshal.StringToHGlobalAnsi(threadName);
+        var threadHandle = Pi.Threading.StartThreadEx(ThreadWorker, namePointer);
+        ...
+
+        Pi.Threading.StopThreadEx(threadHandle);
+        ...
+    }
+
+    private void ThreadWorker(IntPtr state)
+    {
+        var threadName = Marshal.PtrToStringAnsi(state);
+
+        // Thread body
+    }
+```
+
+_**Note**_: Not all underlying libraries support all methods for creating threads. WiringPi, for example, does only support basic thread creation.
+
 
 ## Serial Ports (UART)
 Where is the serial port API? Well, it is something we will most likely add in the future. For now, you can simply use the built-in ```SerialPort``` class the .NET framework provides.
+
+## The Camera Module
+The ```Pi.Camera``` module uses ```raspivid``` and ```raspistill``` to access the camera so they must be installed in order for your program to work properly. ```raspistill``` arguments are specified in an instance of the ```CameraStillSettings``` class, while the ```raspivid``` arguments are specified in an instance of the ```CameraVideoSettings``` class. 
+
+### Capturing Images
+The ```Pi.Camera.CaptureImage*``` methods simply return an array of bytes containing the captured image. There are synchronous and asynchronous falvors of these methods so you can use the familiar ```async``` and ```await``` pattern to capture your images. All ```raspistill``` arguments (except for those that control user interaction such as ```-k```) are available via the ```CameraStillSettings```. To start, create a new instance of the ```CameraStillSettings``` class and pass it on to your choice of the ```Pi.Camera.CaptureImage*``` methods. There are shortcut methods available that simply take a JPEG image at the given Width and Height. By default, the shortcut methods set the JPEG quality at 90%.
+
+Example using a shortcut method:
+```csharp
+static void TestCaptureImage()
+{
+    var pictureBytes = Pi.Camera.CaptureImageJpeg(640, 480);
+    var targetPath = "/home/pi/picture.jpg";
+    if (File.Exists(targetPath))
+        File.Delete(targetPath);
+
+    File.WriteAllBytes(targetPath, pictureBytes);
+    Console.WriteLine($"Took picture -- Byte count: {pictureBytes.Length}");
+}
+```
+
+Example using a CaptureImage method:
+```csharp
+static byte[] TestCaptureImage()
+{
+    var settings = new CameraStillSettings
+    {
+        CaptureWidth = 640,
+        CaptureHeight = 480,
+        CaptureJpegQuality = 90,
+        CaptureTimeoutMilliseconds = 300
+    };
+
+    return CaptureImage(settings);
+}
+```
+
+### Capturing Video
+Capturing video streams is somewhat different but it is still very easy to do. The concept behind it is to _Open_ a video stream providing your own callback. When opening the stream ```Raspberry IO``` will spawn a separate thread and will not block the execution of your code, but it will continually call your callback method containing the bytes that are being read from the camera until the _Close_ method is called or until the timeout is reached.
+
+Example of capturing a stream of H.264 video
+```csharp
+static void TestCaptureVideo()
+{
+    // Setup our working variables
+    var videoByteCount = 0;
+    var videoEventCount = 0;
+    var startTime = DateTime.UtcNow;
+
+    // Configure video settings
+    var videoSettings = new CameraVideoSettings()
+    {
+        CaptureTimeoutMilliseconds = 0,
+        CaptureDisplayPreview = false,
+        ImageFlipVertically = true,
+        CaptureExposure = CameraExposureMode.Night,
+        CaptureWidth = 1920,
+        CaptureHeight = 1080
+    };
+
+    try
+    {
+        // Start the video recording
+        Pi.Camera.OpenVideoStream(videoSettings,
+            onDataCallback: (data) => { videoByteCount += data.Length; videoEventCount++; },
+            onExitCallback: null);
+
+        // Wait for user interaction
+        startTime = DateTime.UtcNow;
+        Console.WriteLine("Press any key to stop reading the video stream . . .");
+        Console.ReadKey(true);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"{ex.GetType()}: {ex.Message}");
+    }
+    finally
+    {
+        // Always close the video stream to ensure raspivid quits
+        Pi.Camera.CloseVideoStream();
+
+        // Output the stats
+        var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000");
+        var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000");
+        Console.WriteLine($"Capture Stopped. Received {megaBytesReceived} Mbytes in {videoEventCount} callbacks in {recordedSeconds} seconds");
+    }            
+}
+```
+
+## Audio settings
+
+Basic audio settings have been implemented in RaspberryIO:
+
+- Set a specific volume level percentage.
+- Set a specific volume level in decibels (dB)
+- Mute an audio device.
+- Consult audio device settings.
+
+Users set an audio card, an audio device and an audio command to perform an audio action. Example of audio tasks:
+
+```csharp
+await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
+
+await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
+```
+
+The code above sets the volume level in two different formats: Percentage or Decibels.
+The first method sets the volume on percentage (0% - 100%) and the second sets the volume level on decibels(dB) (-101.32dB - 4.00dB).
+
+Users can consult the current audio settings by using the method GetState.
+An example is shown below:
+
+```csharp
+var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
+Console.WriteLine(currentState);
+```
+
+The same result can be achieved by setting the volume level to 0% or -9999.99dB.
 
 ## Handy Notes
 
