@@ -2,14 +2,11 @@
 {
     using Abstractions;
     using Camera;
-    using Computer;
     using Peripherals;
     using Swan;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
-    using System.Linq;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -20,6 +17,14 @@
     /// </summary>
     public static partial class Program
     {
+        private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
+        {
+            // Module COntrol Items
+            { ConsoleKey.S, "System" },
+            { ConsoleKey.P, "Peripherals" },
+            { ConsoleKey.X, "Extra examples" },
+        };
+
         /// <summary>
         /// Defines the entry point of the application.
         /// </summary>
@@ -29,40 +34,82 @@
             $"Starting program at {DateTime.Now}".Info();
 
             Terminal.Settings.DisplayLoggingMessageType = LogMessageType.Info | LogMessageType.Warning | LogMessageType.Error;
+            Pi.Init<BootstrapWiringPi>();
 
-            try
+            var exit = false;
+            bool pressKey;
+
+            while(!exit)
             {
-                Pi.Init<BootstrapWiringPi>();
+                Console.Clear();
+                pressKey = true;
 
-                // A set of very simple tests:
-                await TestSystemInfo().ConfigureAwait(false);
+                var mainOption = "Main options".ReadPrompt(MainOptions, "Esc to exit this program");
 
-                // TestCaptureImage();
-                // TestCaptureVideo();
+                switch (mainOption.Key)
+                {
+                    case ConsoleKey.S:
+                        await SystemTests.ShowMenu().ConfigureAwait(false);
+                        pressKey = false;
+                        break;
+                    case ConsoleKey.P:
 
-                // TestLedStripGraphics();
-                // TestLedStrip();
-                // TestRfidController();
-                // TestLedBlinking();
-                // TestHardwarePwm();
-                // TestInfraredSensor();
-                // TestServo();
-                // await TestVolumeControl();
-                // TestAccelerometer();
-                // TestTempSensor();
-                TestUltrasonicSensor();
+                        break;
+                    case ConsoleKey.X:
+
+                        break;
+                    case ConsoleKey.Escape:
+                        exit = true;
+                        pressKey = false;
+                        break;
+                    default:
+                        pressKey = false;
+                        break;
+                }
+
+                if (pressKey)
+                {
+                    await Task.Delay(500).ConfigureAwait(false);
+                    Console.WriteLine("Press any key to continue . . .");
+                    Console.ReadKey(true);
+                }
             }
-            catch (Exception ex)
-            {
-                "Error".Error(nameof(Main), ex);
-            }
-            finally
-            {
-                "Program finished.".Info();
-                Terminal.Flush(TimeSpan.FromSeconds(2));
-                if (Debugger.IsAttached)
-                    "Press any key to exit . . .".ReadKey();
-            }
+
+            Console.Clear();
+
+            //try
+            //{
+            //    Pi.Init<BootstrapWiringPi>();
+
+            //    // A set of very simple tests:
+            //    await TestSystemInfo().ConfigureAwait(false);
+
+            //    // TestCaptureImage();
+            //    // TestCaptureVideo();
+
+            //    // TestLedStripGraphics();
+            //    // TestLedStrip();
+            //    // TestRfidController();
+            //    // TestLedBlinking();
+            //    // TestHardwarePwm();
+            //    // TestInfraredSensor();
+            //    // TestServo();
+            //    // await TestVolumeControl();
+            //    // TestAccelerometer();
+            //    // TestTempSensor();
+            //    TestUltrasonicSensor();
+            //}
+            //catch (Exception ex)
+            //{
+            //    "Error".Error(nameof(Main), ex);
+            //}
+            //finally
+            //{
+            //    "Program finished.".Info();
+            //    Terminal.Flush(TimeSpan.FromSeconds(2));
+            //    if (Debugger.IsAttached)
+            //        "Press any key to exit . . .".ReadKey();
+            //}
         }
 
         /// <summary>
@@ -206,7 +253,7 @@
         //        Pi.Timing.SleepMicroseconds(1500);
         //    }
         // }
-        
+
         /// <summary>
         /// Tests the infrared sensor HX1838.
         /// </summary>
@@ -419,36 +466,6 @@
             }
 
             Console.WriteLine("finished");
-        }
-
-        private static async Task TestSystemInfo()
-        {
-            $"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins".Info();
-            $"{Pi.Info}".Info();
-            try
-            {
-                $"BoardModel {Pi.Info.BoardModel}".Info();
-                $"ProcessorModel {Pi.Info.ProcessorModel}".Info();
-                $"Manufacturer {Pi.Info.Manufacturer}".Info();
-                $"MemorySize {Pi.Info.MemorySize}".Info();
-            }
-            catch
-            {
-                // ignore
-            }
-
-            $"Uname {Pi.Info.OperatingSystem}".Info();
-            $"HostName {NetworkSettings.Instance.HostName}".Info();
-            $"Uptime (seconds) {Pi.Info.Uptime}".Info();
-            var timeSpan = Pi.Info.UptimeTimeSpan;
-            $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}"
-                .Info();
-
-            (await NetworkSettings.Instance.RetrieveAdapters())
-                .Select(adapter =>
-                    $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}")
-                .ToList()
-                .ForEach(x => x.Info());
         }
 
         private static void TestCaptureImage()
