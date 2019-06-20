@@ -34,7 +34,7 @@
                         await TestSystemInfo().ConfigureAwait(false);
                         break;
                     case ConsoleKey.V:
-
+                        await SystemVolume.ShowMenu().ConfigureAwait(false);
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
