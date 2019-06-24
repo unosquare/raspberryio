@@ -196,6 +196,21 @@
         /// The compute module 3+ Rev 1.0 Sony
         /// </summary>
         ComputeModule3PlusSony = 0xa02100,
+
+        /// <summary>
+        /// The Pi 4 model B 1GB, Sony
+        /// </summary>
+        Pi4ModelB1Gb = 0xa03111,
+
+        /// <summary>
+        /// The Pi 4 model B 2GB, Sony
+        /// </summary>
+        Pi4ModelB2Gb = 0xb03111,
+
+        /// <summary>
+        /// The Pi 4 model B 4GB, Sony
+        /// </summary>
+        Pi4ModelB4Gb = 0xc03111,
     }
 
     /// <summary>
@@ -224,7 +239,7 @@
         ModelBPlus = 3,
 
         /// <summary>
-        /// Model 2 B
+        /// Model 2B
         /// </summary>
         Model2B = 4,
 
@@ -239,7 +254,7 @@
         CM1 = 6,
 
         /// <summary>
-        /// Model 3 B
+        /// Model 3B
         /// </summary>
         Model3B = 8,
 
@@ -259,7 +274,7 @@
         ZeroW = 0xc,
 
         /// <summary>
-        /// Model 3 B+
+        /// Model 3B+
         /// </summary>
         Model3BPlus = 0xd,
 
@@ -277,6 +292,11 @@
         /// Compute Module 3+
         /// </summary>
         CM3Plus = 0x10,
+
+        /// <summary>
+        /// Model 4B
+        /// </summary>
+        Model4B = 0x11,
     }
 
     /// <summary>
@@ -298,6 +318,11 @@
         /// The BCMM2837 processor.
         /// </summary>
         BCM2837,
+
+        /// <summary>
+        /// The BCM2711 processor.
+        /// </summary>
+        BCM2711,
     }
 
     /// <summary>
@@ -355,5 +380,15 @@
         /// 1 GB
         /// </summary>
         Memory1024,
+
+        /// <summary>
+        /// 2 GB
+        /// </summary>
+        Memory2048,
+
+        /// <summary>
+        /// 4 GB
+        /// </summary>
+        Memory4096,
     }
 }
