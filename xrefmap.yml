@@ -1852,6 +1852,12 @@ references:
   commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.Model3BPlus
   fullName: Unosquare.RaspberryIO.Computer.BoardModel.Model3BPlus
   nameWithType: BoardModel.Model3BPlus
+- uid: Unosquare.RaspberryIO.Computer.BoardModel.Model4B
+  name: Model4B
+  href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_Model4B
+  commentId: F:Unosquare.RaspberryIO.Computer.BoardModel.Model4B
+  fullName: Unosquare.RaspberryIO.Computer.BoardModel.Model4B
+  nameWithType: BoardModel.Model4B
 - uid: Unosquare.RaspberryIO.Computer.BoardModel.ModelA
   name: ModelA
   href: api/Unosquare.RaspberryIO.Computer.BoardModel.html#Unosquare_RaspberryIO_Computer_BoardModel_ModelA
@@ -1987,12 +1993,24 @@ references:
   commentId: F:Unosquare.RaspberryIO.Computer.MemorySize.Memory1024
   fullName: Unosquare.RaspberryIO.Computer.MemorySize.Memory1024
   nameWithType: MemorySize.Memory1024
+- uid: Unosquare.RaspberryIO.Computer.MemorySize.Memory2048
+  name: Memory2048
+  href: api/Unosquare.RaspberryIO.Computer.MemorySize.html#Unosquare_RaspberryIO_Computer_MemorySize_Memory2048
+  commentId: F:Unosquare.RaspberryIO.Computer.MemorySize.Memory2048
+  fullName: Unosquare.RaspberryIO.Computer.MemorySize.Memory2048
+  nameWithType: MemorySize.Memory2048
 - uid: Unosquare.RaspberryIO.Computer.MemorySize.Memory256
   name: Memory256
   href: api/Unosquare.RaspberryIO.Computer.MemorySize.html#Unosquare_RaspberryIO_Computer_MemorySize_Memory256
   commentId: F:Unosquare.RaspberryIO.Computer.MemorySize.Memory256
   fullName: Unosquare.RaspberryIO.Computer.MemorySize.Memory256
   nameWithType: MemorySize.Memory256
+- uid: Unosquare.RaspberryIO.Computer.MemorySize.Memory4096
+  name: Memory4096
+  href: api/Unosquare.RaspberryIO.Computer.MemorySize.html#Unosquare_RaspberryIO_Computer_MemorySize_Memory4096
+  commentId: F:Unosquare.RaspberryIO.Computer.MemorySize.Memory4096
+  fullName: Unosquare.RaspberryIO.Computer.MemorySize.Memory4096
+  nameWithType: MemorySize.Memory4096
 - uid: Unosquare.RaspberryIO.Computer.MemorySize.Memory512
   name: Memory512
   href: api/Unosquare.RaspberryIO.Computer.MemorySize.html#Unosquare_RaspberryIO_Computer_MemorySize_Memory512
@@ -2458,6 +2476,24 @@ references:
   commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBStadium
   fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi3ModelBStadium
   nameWithType: PiVersion.Pi3ModelBStadium
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB1Gb
+  name: Pi4ModelB1Gb
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi4ModelB1Gb
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB1Gb
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB1Gb
+  nameWithType: PiVersion.Pi4ModelB1Gb
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB2Gb
+  name: Pi4ModelB2Gb
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi4ModelB2Gb
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB2Gb
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB2Gb
+  nameWithType: PiVersion.Pi4ModelB2Gb
+- uid: Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB4Gb
+  name: Pi4ModelB4Gb
+  href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_Pi4ModelB4Gb
+  commentId: F:Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB4Gb
+  fullName: Unosquare.RaspberryIO.Computer.PiVersion.Pi4ModelB4Gb
+  nameWithType: PiVersion.Pi4ModelB4Gb
 - uid: Unosquare.RaspberryIO.Computer.PiVersion.PiZero1v2
   name: PiZero1v2
   href: api/Unosquare.RaspberryIO.Computer.PiVersion.html#Unosquare_RaspberryIO_Computer_PiVersion_PiZero1v2
@@ -2500,6 +2536,12 @@ references:
   commentId: T:Unosquare.RaspberryIO.Computer.ProcessorModel
   fullName: Unosquare.RaspberryIO.Computer.ProcessorModel
   nameWithType: ProcessorModel
+- uid: Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2711
+  name: BCM2711
+  href: api/Unosquare.RaspberryIO.Computer.ProcessorModel.html#Unosquare_RaspberryIO_Computer_ProcessorModel_BCM2711
+  commentId: F:Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2711
+  fullName: Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2711
+  nameWithType: ProcessorModel.BCM2711
 - uid: Unosquare.RaspberryIO.Computer.ProcessorModel.BCM2835
   name: BCM2835
   href: api/Unosquare.RaspberryIO.Computer.ProcessorModel.html#Unosquare_RaspberryIO_Computer_ProcessorModel_BCM2835

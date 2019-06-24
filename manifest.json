@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "hbKAY/RbsYbP2StMybE8gA=="
+          "hash": "005EwJth+L4cCiiiQ08dgA=="
         }
       },
       "is_incremental": false,
@@ -301,7 +301,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.BoardModel.html",
-          "hash": "C6fs2HbiDvc5l5C3/HHaMw=="
+          "hash": "xzUU37ZYTQx0O9gpnfxI3A=="
         }
       },
       "is_incremental": false,
@@ -337,7 +337,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.MemorySize.html",
-          "hash": "IVe04yAE2V4CzZkWLE09iA=="
+          "hash": "ZoMRGJDeEuDYplAnYad0ow=="
         }
       },
       "is_incremental": false,
@@ -385,7 +385,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.PiVersion.html",
-          "hash": "gU9x496SbfmKf+OBhxcgWg=="
+          "hash": "9UnJRCni5vvtgtQhzn5tCQ=="
         }
       },
       "is_incremental": false,
@@ -397,7 +397,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.ProcessorModel.html",
-          "hash": "89tXnIyO7yrcLsssH7fu9Q=="
+          "hash": "KH++DeeeU/S76ew0cfe+lw=="
         }
       },
       "is_incremental": false,
