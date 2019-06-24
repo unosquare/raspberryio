@@ -21,7 +21,7 @@
             var exit = false;
             bool pressKey;
 
-            while (!exit)
+            do
             {
                 Console.Clear();
                 pressKey = true;
@@ -51,7 +51,7 @@
                     Console.WriteLine("Press any key to continue . . .");
                     Console.ReadKey(true);
                 }
-            }
+            } while (!exit);
         }
 
         private static async Task TestSystemInfo()

@@ -53,7 +53,8 @@
                         pressKey = false;
                         break;
                     case ConsoleKey.P:
-
+                        await PeripheralsTests.ShowMenu().ConfigureAwait(false);
+                        pressKey = false;
                         break;
                     case ConsoleKey.X:
 
