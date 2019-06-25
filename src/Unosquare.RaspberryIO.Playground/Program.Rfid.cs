@@ -6,7 +6,7 @@
 
     public partial class Program
     {
-        private static void TestRfidController()
+        public static void TestRfidController()
         {
             "Testing RFID".Info();
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
@@ -76,6 +76,14 @@
 
                 device.ClearCardSelection();
             }
+        }
+
+        public static void ReadCard()
+        {
+            var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
+            // If a card is found
+            if (device.DetectCard() != RFIDControllerMfrc522.Status.AllOk)
+            "Card detected".Info();
         }
     }
 }

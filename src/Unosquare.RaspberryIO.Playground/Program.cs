@@ -39,7 +39,7 @@
             var exit = false;
             bool pressKey;
 
-            while(!exit)
+            while (!exit)
             {
                 Console.Clear();
                 pressKey = true;
@@ -90,7 +90,7 @@
 
             //    // TestLedStripGraphics();
             //    // TestLedStrip();
-            //    // TestRfidController();
+            //       TestRfidController();
             //    // TestLedBlinking();
             //    // TestHardwarePwm();
             //    // TestInfraredSensor();
@@ -361,7 +361,6 @@
             await Pi.Audio.SetVolumePercentage(85).ConfigureAwait(false);
             await Pi.Audio.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
             await Pi.Audio.IncrementVolume(4.00f).ConfigureAwait(false);
-            
             await Pi.Audio.IncrementVolume(4.00f).ConfigureAwait(false);
 
             try

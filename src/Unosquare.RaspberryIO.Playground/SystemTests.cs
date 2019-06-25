@@ -51,7 +51,8 @@
                     Console.WriteLine("Press any key to continue . . .");
                     Console.ReadKey(true);
                 }
-            } while (!exit);
+            }
+            while (!exit);
         }
 
         private static async Task TestSystemInfo()

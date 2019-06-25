@@ -2,14 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using Unosquare.Swan;
 
     public static class PeripheralsTests
     {
-
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.R, "Rfid Controller" },
@@ -27,16 +24,26 @@
 
                 var mainOption = "System".ReadPrompt(MainOptions, "Esc to exit this menu");
 
-                switch (mainOption. Key)
+                switch (mainOption.Key)
                 {
                     case ConsoleKey.R:
-                        //call the TestRfidController(); here
+                        Program.TestRfidController();
+                        break;
+
+                    case ConsoleKey.Escape:
+                        exit = true;
+                        pressKey = false;
                         break;
                 }
 
-
-
-            } while (!exit);
+                if (pressKey)
+                {
+                    await Task.Delay(500).ConfigureAwait(false);
+                    Console.WriteLine("Press any key to continue . . .");
+                    Console.ReadKey(true);
+                }
+            }
+            while (!exit);
         }
     }
 }
