@@ -22,12 +22,12 @@
                 Console.Clear();
                 pressKey = true;
 
-                var mainOption = "System".ReadPrompt(MainOptions, "Esc to exit this menu");
+                var mainOption = "Peripherals".ReadPrompt(MainOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.R:
-                        Program.TestRfidController();
+                        await Program.ShowRfidMenu();
                         break;
 
                     case ConsoleKey.Escape:
