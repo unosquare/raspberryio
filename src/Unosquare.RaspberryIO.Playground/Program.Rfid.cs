@@ -132,28 +132,28 @@
 
         private static void CardDetected()
         {
+            "Testing RFID".Info();
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 
-            // If a card is found
-            if (device.DetectCard() == RFIDControllerMfrc522.Status.AllOk)
-                return;
+            while (true)
+            {
+                // If a card is found
+                if (device.DetectCard() != RFIDControllerMfrc522.Status.AllOk) continue;
+                "Card detected".Info();
 
-            "Card detected".Info();
+                // Get the UID of the card
+                var uidResponse = device.ReadCardUniqueId();
 
-            // Get the UID of the card
-            var uidResponse = device.ReadCardUniqueId();
+                // If we have the UID, continue
+                if (uidResponse.Status != RFIDControllerMfrc522.Status.AllOk) continue;
 
-            // If we have the UID, continue
-            if (uidResponse.Status == RFIDControllerMfrc522.Status.AllOk)
-                return;
+                var cardUid = uidResponse.Data;
 
-            var cardUid = uidResponse.Data;
+                // Print UID
+                $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
 
-            // Print UID
-            $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
-
-            // Select the scanned tag
-            //device.SelectCardUniqueId(cardUid);
+                break;
+            }
         }
 
         private static void WriteCard()
