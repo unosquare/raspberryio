@@ -11,9 +11,9 @@
     {
         private static readonly Dictionary<ConsoleKey, string> RfidOptions = new Dictionary<ConsoleKey, string>
         {
-            { ConsoleKey.R, "Read Card" },
-            { ConsoleKey.W, "Write Card" },
             { ConsoleKey.D, "Detect Card" },
+            { ConsoleKey.W, "Write Card" },
+            { ConsoleKey.R, "Read Card" },
         };
 
         public static async Task ShowRfidMenu()
@@ -200,13 +200,13 @@
 
         private static void ReadCard()
         {
-             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
+            var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 
             while (true)
             {
                 // If a card is found
                 if (device.DetectCard() != RFIDControllerMfrc522.Status.AllOk) continue;
-        
+
                 // Get the UID of the card
                 var uidResponse = device.ReadCardUniqueId();
 
@@ -214,6 +214,8 @@
                 if (uidResponse.Status != RFIDControllerMfrc522.Status.AllOk) continue;
 
                 var cardUid = uidResponse.Data;
+                // Print UID
+                $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
 
                 // Select the scanned tag
                 device.SelectCardUniqueId(cardUid);
