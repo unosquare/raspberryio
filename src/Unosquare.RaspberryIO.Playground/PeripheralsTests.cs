@@ -27,7 +27,7 @@
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.R:
-                        await Program.ShowRfidMenu();
+                        await Program.ShowRfidMenu().ConfigureAwait(false);
                         break;
 
                     case ConsoleKey.Escape:
