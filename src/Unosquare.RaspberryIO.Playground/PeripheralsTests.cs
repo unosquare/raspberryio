@@ -11,6 +11,7 @@
         {
             { ConsoleKey.R, "Rfid Controller" },
             { ConsoleKey.U, "Ultrasonic Sensor"},
+            { ConsoleKey.T, "Temperature Sensor"},
         };
 
         public static async Task ShowMenu()
@@ -33,6 +34,10 @@
 
                     case ConsoleKey.U:
                         await Program.ShowUSMenu().ConfigureAwait(false);
+                        break;
+
+                    case ConsoleKey.T:
+                        await Program.ShowTSMenu().ConfigureAwait(false);
                         break;
 
                     case ConsoleKey.Escape:
