@@ -25,11 +25,11 @@
                 Console.WriteLine($"Control name: {state.ControlName}");
                 Console.WriteLine($"Card number: {state.CardNumber}");
                 Console.WriteLine($"Volume level (dB): {state.Decibels}dB");
-                Console.WriteLine($"Mute: {(state.IsMute ? "On" : "Off")}");
+                Console.WriteLine($"Mute: {state.IsMute}");
 
                 Console.Write($"[");
-                UpdateProgress(state.Level);
-                Console.Write($"] {state.Level}%\n");
+                UpdateProgress(CurrentLevel);
+                Console.Write($"] {CurrentLevel}%\n");
 
                 // Key is available - read it
                 key = Console.ReadKey(true).Key;
@@ -69,14 +69,24 @@
 
         private static void UpdateProgress(int level)
         {
-            var progress = new string((char)0x2588, 100);
+            var progress = new string((char)0x2588, 10);
+            var filler = level / 10;
 
-            for (int i = 0; i < 100; ++i)
+            for (int i = 0; i < filler; ++i)
             {
-                Console.ForegroundColor = i < level ? ConsoleColor.Green : ConsoleColor.Black;
+                if (i < 6)
+                    Console.ForegroundColor = ConsoleColor.Green;
+                else if (i < 8)
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                else if (i < 9)
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                else if (i > filler)
+                    Console.ForegroundColor = ConsoleColor.Black;
+                else
+                    Console.ForegroundColor = ConsoleColor.Red;
+
                 Console.Write($"{progress[i]}");
             }
-
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
