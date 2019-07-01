@@ -1,71 +1,89 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using Swan;
     using System;
-    using System.Collections.Generic;
+    using System.Text;
     using System.Threading.Tasks;
 
     public static class SystemVolume
     {
-        private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
-        {
-            { ConsoleKey.DownArrow, "Volume Down" },
-            { ConsoleKey.UpArrow, "Volume Up" },
-            { ConsoleKey.M, "Mute/Unmute" },
-        };
-
+        private static float CurrentLevel { get; set; }
         private static bool Mute { get; set; } = false;
+        private static string Progress { get; set; }
 
         public static async Task ShowMenu()
         {
-            var exit = false;
-            bool pressKey;
-
-            while (!exit)
+            ConsoleKey key;
+            // Capture Key presses here.Console.WriteLine("Press ESC to stop");
+            do
             {
+
+                // Do something
                 Console.Clear();
                 var state = await Pi.Audio.GetState().ConfigureAwait(false);
-                pressKey = true;
+                CurrentLevel = state.Decibels;
 
-                var mainOption = "System".ReadPrompt(MainOptions, "Press Esc to exit this menu");
-                Console.WriteLine(state.Decibels);
+                // info
+                Console.WriteLine($"Control name: {state.ControlName}");
+                Console.WriteLine($"Card number: {state.CardNumber}");
+                Console.WriteLine($"Volume level (dB): {CurrentLevel}dB");
+                Console.WriteLine($"Mute: {state.IsMute}");
 
-                switch (mainOption.Key)
+                UpdateProgress(state.Level);
+
+                // Key is available - read it
+                key = Console.ReadKey(true).Key;
+
+                switch (key)
                 {
-                    case ConsoleKey.DownArrow:
-                        await DecrementVolume().ConfigureAwait(false);
-                        break;
-                    case ConsoleKey.UpArrow:
-                        await IncrementVolume().ConfigureAwait(false);
-                        break;
+                    case ConsoleKey.LeftArrow:
+                        {
+                            await DecrementVolume().ConfigureAwait(false);
+                            break;
+                        }
+                    case ConsoleKey.RightArrow:
+                        {
+                            await IncrementVolume().ConfigureAwait(false);
+                            break;
+                        }
                     case ConsoleKey.M:
-                        await ToggleMute().ConfigureAwait(false);
-                        break;
-                    case ConsoleKey.Escape:
-                        exit = true;
-                        pressKey = false;
-                        break;
+                        {
+                            await ToggleMute().ConfigureAwait(false);
+                            break;
+                        }
                     default:
-                        pressKey = false;
                         break;
                 }
-
-                if (pressKey)
-                {
-                    await Task.Delay(500).ConfigureAwait(false);
-                    Console.WriteLine("Press any key to continue . . .");
-                    Console.ReadKey(true);
-                }
-            }
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
 
-        private static async Task IncrementVolume() =>
-            await Pi.Audio.IncrementVolume(1.00f).ConfigureAwait(false);
+        private static void UpdateProgress(int level)
+        {
+            Console.Write($"[");
+            var progress = new StringBuilder();
+            var filler = Math.Floor((float)level / 10);
+            var emptier = Math.Floor((float)(100 - filler));
 
-        private static async Task DecrementVolume() =>
-            await Pi.Audio.IncrementVolume(-1.00f).ConfigureAwait(false);
+            for (int i = 0; i < filler; ++i)
+            {
+                progress.Append(char.ConvertFromUtf32(0x2588));
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{progress.ToString()}");
+            }
 
-        private static async Task ToggleMute() =>
-            await Pi.Audio.ToggleMute(!Mute).ConfigureAwait(false);
+            for (int i = 0; i < emptier; ++i)
+            {
+                progress.Append(char.ConvertFromUtf32(0x2588));
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write($"{progress.ToString()}");
+            }
+
+            Console.ForegroundColor = ConsoleColor.Gray;
+            // Progress bar here
+            Console.Write($"] {level}%\n");
+        }
+
+        private static async Task IncrementVolume() => await Pi.Audio.SetVolumeByDecibels(CurrentLevel + 1.00f).ConfigureAwait(false);
+        private static async Task DecrementVolume() => await Pi.Audio.SetVolumeByDecibels(CurrentLevel - 1.00f).ConfigureAwait(false);
+        private static async Task ToggleMute() => await Pi.Audio.ToggleMute(!Mute).ConfigureAwait(false);
     }
 }
