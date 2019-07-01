@@ -114,27 +114,6 @@
         }
 
         /// <summary>
-        /// Test the GY521 Accelerometer and Gyroscope.
-        /// </summary>
-        public static void TestAccelerometer()
-        {
-            // Add device
-            var accel_device = Pi.I2C.AddDevice(0x68);
-
-            // Set accelerometer
-            using (var accelSensor = new AccelerometerGY521(accel_device))
-            {
-                // Present info to screen
-                accelSensor.DataAvailable +=
-                    (s, e) => $"\nAccelerometer:\n{e.Accel}\n\nGyroscope:\n{e.Gyro}\n\nTemperature: {Math.Round(e.Temperature, 2)}°C\n".Info("GY-521");
-
-                // Run accelerometer
-                accelSensor.Start();
-                Console.ReadKey(true);
-            }
-        }
-
-        /// <summary>
         /// Tests the servo.
         /// </summary>
         // public static void TestServo()
