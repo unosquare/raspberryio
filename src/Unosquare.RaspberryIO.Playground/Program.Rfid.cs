@@ -12,9 +12,9 @@
         private static readonly Dictionary<ConsoleKey, string> RfidOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.D, "Detect Card" },
-            { ConsoleKey.R, "Read Card" },
             { ConsoleKey.W, "Write Card" },
-            { ConsoleKey.I, "Read Card Sectors" },
+            { ConsoleKey.R, "Read Card" },
+            { ConsoleKey.S, "Read Card Sectors" },
 
         };
 
@@ -41,7 +41,7 @@
                     case ConsoleKey.R:
                         ReadCard();
                         break;
-                    case ConsoleKey.I:
+                    case ConsoleKey.S:
                         ReadAllCardSectors();
                         break;
                     case ConsoleKey.Escape:
@@ -170,7 +170,7 @@
 
             Console.WriteLine("Insert a message to be writed in the card, 16 characters only");
             var userInput = Console.ReadLine().Truncate(16);
-            Console.WriteLine("Put a card over the sensor");
+            Console.WriteLine("Insert a card in the sensor");
 
             while (true)
             {
@@ -190,11 +190,10 @@
 
                 // Writing data to sector 1 blocks
                 // Authenticate sector
-                if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 11) == RFIDControllerMfrc522.Status.AllOk)
+                if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 0) == RFIDControllerMfrc522.Status.AllOk)
                 {
                     userInput = (userInput + new string(' ', 16)).Truncate(16);
-                    var data = System.Text.Encoding.ASCII.GetBytes(userInput);
-                    device.CardWriteData(8, data);
+                    device.CardWriteData(0, System.Text.Encoding.ASCII.GetBytes(userInput));
                 }
 
                 device.ClearCardSelection();
@@ -231,12 +230,12 @@
                 var continueReading = true;
 
                 // Authenticate sector
-                if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 11) == RFIDControllerMfrc522.Status.AllOk)
+                if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 0) == RFIDControllerMfrc522.Status.AllOk)
                 {
-                    $"Sector {2}".Info();
+                    $"Sector {0}".Info();
                     for (var b = 0; b < 3 && continueReading; b++)
                     {
-                        var data = device.CardReadData((byte)((4 * 2) + b));
+                        var data = device.CardReadData((byte)b);
                         if (data.Status != RFIDControllerMfrc522.Status.AllOk)
                         {
                             continueReading = false;
@@ -287,7 +286,7 @@
                 for (var s = 0; s < 16 && continueReading; s++)
                 {
                     // Authenticate sector
-                    if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 11) == RFIDControllerMfrc522.Status.AllOk)
+                    if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, (byte)((4 * s) + 3)) == RFIDControllerMfrc522.Status.AllOk)
                     {
                         $"Sector {s}".Info();
                         for (var b = 0; b < 3 && continueReading; b++)
@@ -299,8 +298,7 @@
                                 break;
                             }
 
-                            $"  Block {b} ({data.Data.Length} bytes): {string.Join(" ", data.Data.Select(x => x.ToString("X2")))}"
-                                .Info();
+                            $"  Block {b} ({data.Data.Length} bytes): {string.Join(" ", data.Data.Select(x => x.ToString("X2")))}".Info();
                         }
                     }
                     else
