@@ -11,7 +11,7 @@
 
     public partial class Program
     {
-        private static readonly Dictionary<ConsoleKey, string> USOptions= new Dictionary<ConsoleKey, string>
+        private static readonly Dictionary<ConsoleKey, string> USOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.D, "Distance Measurement" },
         };
@@ -59,6 +59,7 @@
 
         public static void TestUltrasonicSensor()
         {
+            var color = ConsoleColor.White;
             using (var sensor = new UltrasonicHcsr04(Pi.Gpio[BcmPin.Gpio23], Pi.Gpio[BcmPin.Gpio24]))
             {
                 sensor.OnDataAvailable += (s, e) =>
@@ -67,19 +68,31 @@
                     {
                         if (e.HasObstacles)
                         {
-                            if (e.Distance < 10)
-                                $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine(ConsoleColor.Red);
-                            else if (e.Distance < 30)
-                                $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine(ConsoleColor.DarkYellow);
-                            else if (e.Distance < 100)
-                                $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine(ConsoleColor.Yellow);
+                            if (e.Distance <= 10)
+                                color = ConsoleColor.DarkRed;
+                            else if (e.Distance <= 20)
+                                color = ConsoleColor.DarkYellow;
+                            else if (e.Distance <= 30)
+                                color = ConsoleColor.Yellow;
+                            else if (e.Distance <= 40)
+                                color = ConsoleColor.Green;
+                            else if (e.Distance <= 50)
+                                color = ConsoleColor.Cyan;
                             else
-                                $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine(ConsoleColor.Green);
+                                color = ConsoleColor.White;
+
+                            var distance = e.Distance < 57 ? e.Distance : 58;
+                            $"{new string('█', (int)distance)}".WriteLine(color);
+                            "--------------------------------------------------------->".WriteLine();
+                            "          10        20        30        40        50       cm".WriteLine();
+                            $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine();
                         }
                         else
                         {
                             "No obstacles detected.".Info("HC - SR04");
                         }
+
+                        Console.Clear();
                     }
                     else
                     {
