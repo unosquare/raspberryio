@@ -55,6 +55,7 @@
         public static void TestAccelerometer()
         {
             Console.Clear();
+            
             // Add device
             var accel_device = Pi.I2C.AddDevice(0x68);
 
