@@ -57,7 +57,6 @@
                         pressKey = false;
                         break;
                     case ConsoleKey.X:
-
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
@@ -90,7 +89,7 @@
 
             //    // TestLedStripGraphics();
             //    // TestLedStrip();
-            //       TestRfidController();
+            //    // TestRfidController();
             //    // TestLedBlinking();
             //    // TestHardwarePwm();
             //    // TestInfraredSensor();
@@ -111,96 +110,6 @@
             //    if (Debugger.IsAttached)
             //        "Press any key to exit . . .".ReadKey();
             //}
-        }
-
-        /// <summary>
-        /// Tests the ultrasonic sensor.
-        /// </summary>
-        public static void TestUltrasonicSensor()
-        {
-            using (var sensor = new UltrasonicHcsr04(Pi.Gpio[BcmPin.Gpio23], Pi.Gpio[BcmPin.Gpio24]))
-            {
-                sensor.OnDataAvailable += (s, e) =>
-                {
-                    if (e.IsValid)
-                    {
-                        if (e.HasObstacles)
-                        {
-                            if (e.Distance < 10)
-                                $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine(ConsoleColor.Red);
-                            else if (e.Distance < 30)
-                                $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine(ConsoleColor.DarkYellow);
-                            else if (e.Distance < 100)
-                                $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine(ConsoleColor.Yellow);
-                            else
-                                $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine(ConsoleColor.Green);
-                        }
-                        else
-                        {
-                            "No obstacles detected.".Info("HC - SR04");
-                        }
-                    }
-                    else
-                    {
-                        "Invalid Reading".Error("HC-SR04");
-                    }
-                };
-
-                sensor.Start();
-                Console.ReadKey(true);
-            }
-        }
-
-        /// <summary>
-        /// Tests the temperature sensor.
-        /// </summary>
-        public static void TestTempSensor()
-        {
-            using (var sensor = DhtSensor.Create(DhtType.Dht11, Pi.Gpio[BcmPin.Gpio04]))
-            {
-                var totalReadings = 0.0;
-                var validReadings = 0.0;
-
-                sensor.OnDataAvailable += (s, e) =>
-                {
-                    totalReadings++;
-                    if (e.IsValid)
-                    {
-                        validReadings++;
-                        $"Temperature: {e?.Temperature ?? 0:0.00}°C / {e?.TemperatureFahrenheit ?? 0:0.00}°F | Humidity: {e?.HumidityPercentage ?? 0:P0}".Info("DHT11");
-                    }
-                    else
-                    {
-                        "Invalid Reading".Error("DHT11");
-                    }
-
-                    $"Valid reading percentage: {validReadings / totalReadings:P}".Info("DHT11");
-                };
-
-                sensor.Start();
-                Console.ReadKey(true);
-            }
-        }
-
-        /// <summary>
-        /// Test the GY521 Accelerometer and Gyroscope.
-        /// </summary>
-        public static void TestAccelerometer()
-        {
-            // Add device
-            var accel_device = Pi.I2C.AddDevice(0x68);
-
-            // Set accelerometer
-            using (var accelSensor = new AccelerometerGY521(accel_device))
-            {
-                // Present info to screen
-                accelSensor.DataAvailable +=
-                    (s, e) => $"\nAccelerometer:\n{e.Accel}\n\nGyroscope:\n{e.Gyro}\n\nTemperature: {Math.Round(e.Temperature, 2)}°C\n".Info("GY-521");
-
-                // Run accelerometer
-                accelSensor.Start();
-                Console.ReadKey(true);
-            }
         }
 
         /// <summary>

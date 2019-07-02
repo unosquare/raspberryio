@@ -9,7 +9,10 @@
     {
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
+            { ConsoleKey.A, "Accelerometer"},
             { ConsoleKey.R, "Rfid Controller" },
+            { ConsoleKey.U, "Ultrasonic Sensor"},
+            { ConsoleKey.T, "Temperature Sensor"},
         };
 
         public static async Task ShowMenu()
@@ -26,12 +29,23 @@
 
                 switch (mainOption.Key)
                 {
+                    case ConsoleKey.A:
+                        await Program.ShowAccelerometerMenu().ConfigureAwait(false);
+                        break;
                     case ConsoleKey.R:
                         await Program.ShowRfidMenu().ConfigureAwait(false);
                         break;
-
+                    case ConsoleKey.U:
+                        await Program.ShowUSMenu().ConfigureAwait(false);
+                        break;
+                    case ConsoleKey.T:
+                        await Program.ShowTSMenu().ConfigureAwait(false);
+                        break;
                     case ConsoleKey.Escape:
                         exit = true;
+                        pressKey = false;
+                        break;
+                    default:
                         pressKey = false;
                         break;
                 }
