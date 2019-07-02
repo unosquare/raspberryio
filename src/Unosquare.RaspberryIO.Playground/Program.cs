@@ -57,7 +57,6 @@
                         pressKey = false;
                         break;
                     case ConsoleKey.X:
-
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

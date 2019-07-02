@@ -31,7 +31,10 @@
                     case ConsoleKey.S:
                         TestTempSensor();
                         break;
-
+                    case ConsoleKey.Escape:
+                        exit = true;
+                        pressKey = false;
+                        break;
                     default:
                         pressKey = false;
                         break;
@@ -52,6 +55,7 @@
         /// </summary>
         public static void TestTempSensor()
         {
+            Console.Clear();
             using (var sensor = DhtSensor.Create(DhtType.Dht11, Pi.Gpio[BcmPin.Gpio04]))
             {
                 var totalReadings = 0.0;
@@ -59,6 +63,8 @@
 
                 sensor.OnDataAvailable += (s, e) =>
                 {
+                    Console.Clear();
+
                     totalReadings++;
                     if (e.IsValid)
                     {

@@ -54,6 +54,7 @@
         /// </summary>
         public static void TestAccelerometer()
         {
+            Console.Clear();
             // Add device
             var accel_device = Pi.I2C.AddDevice(0x68);
 
@@ -62,7 +63,12 @@
             {
                 // Present info to screen
                 accelSensor.DataAvailable +=
-                    (s, e) => $"\nAccelerometer:\n{e.Accel}\n\nGyroscope:\n{e.Gyro}\n\nTemperature: {Math.Round(e.Temperature, 2)}°C\n".Info("GY-521");
+                    (s, e) =>
+                    {
+                        Console.Clear();
+                        $"\nAccelerometer:\n{e.Accel}\n\nGyroscope:\n{e.Gyro}\n\nTemperature: {Math.Round(e.Temperature, 2)}°C\n"
+                            .Info("GY-521");
+                    };
 
                 // Run accelerometer
                 accelSensor.Start();

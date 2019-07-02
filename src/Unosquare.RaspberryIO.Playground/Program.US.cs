@@ -50,18 +50,15 @@
             while (!exit);
         }
 
-        public static void DistanceMeasurement()
-        {
-
-        }
-
         public static void TestUltrasonicSensor()
         {
+            Console.Clear();
             var color = ConsoleColor.White;
             using (var sensor = new UltrasonicHcsr04(Pi.Gpio[BcmPin.Gpio23], Pi.Gpio[BcmPin.Gpio24]))
             {
                 sensor.OnDataAvailable += (s, e) =>
                 {
+                    Console.Clear();
                     if (e.IsValid)
                     {
                         if (e.HasObstacles)
@@ -89,8 +86,6 @@
                         {
                             "No obstacles detected.".Info("HC - SR04");
                         }
-
-                        Console.Clear();
                     }
                     else
                     {
