@@ -1,55 +1,12 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Unosquare.RaspberryIO.Abstractions;
     using Unosquare.RaspberryIO.Peripherals;
     using Unosquare.Swan;
 
     public partial class Program
     {
-        private static readonly Dictionary<ConsoleKey, string> USOptions = new Dictionary<ConsoleKey, string>
-        {
-            { ConsoleKey.D, "Distance Measurement" },
-        };
-
-        public static async Task ShowUSMenu()
-        {
-            var exit = false;
-            bool pressKey;
-
-            do
-            {
-                Console.Clear();
-                pressKey = true;
-
-                var mainOption = "Rfid".ReadPrompt(USOptions, "Esc to exit this menu");
-
-                switch (mainOption.Key)
-                {
-                    case ConsoleKey.D:
-                        TestUltrasonicSensor();
-                        break;
-                    case ConsoleKey.Escape:
-                        exit = true;
-                        pressKey = false;
-                        break;
-                    default:
-                        pressKey = false;
-                        break;
-                }
-
-                if (pressKey)
-                {
-                    await Task.Delay(500).ConfigureAwait(false);
-                    Console.WriteLine("Press any key to continue . . .");
-                    Console.ReadKey(true);
-                }
-            }
-            while (!exit);
-        }
-
         public static void TestUltrasonicSensor()
         {
             Console.Clear();

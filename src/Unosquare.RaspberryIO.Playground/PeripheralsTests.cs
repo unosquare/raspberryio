@@ -10,6 +10,7 @@
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.A, "Accelerometer"},
+            { ConsoleKey.I, "Infrared Sensor"},
             { ConsoleKey.R, "Rfid Controller" },
             { ConsoleKey.U, "Ultrasonic Sensor"},
             { ConsoleKey.T, "Temperature Sensor"},
@@ -30,16 +31,19 @@
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.A:
-                        await Program.ShowAccelerometerMenu().ConfigureAwait(false);
+                        Program.TestAccelerometer();
+                        break;
+                    case ConsoleKey.I:
+                        Program.TestInfraredSensor();
                         break;
                     case ConsoleKey.R:
                         await Program.ShowRfidMenu().ConfigureAwait(false);
                         break;
                     case ConsoleKey.U:
-                        await Program.ShowUSMenu().ConfigureAwait(false);
+                        Program.TestUltrasonicSensor();
                         break;
                     case ConsoleKey.T:
-                        await Program.ShowTSMenu().ConfigureAwait(false);
+                        Program.TestTempSensor();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

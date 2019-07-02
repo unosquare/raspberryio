@@ -19,7 +19,7 @@
     {
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
-            // Module COntrol Items
+            // Module Control Items
             { ConsoleKey.S, "System" },
             { ConsoleKey.P, "Peripherals" },
             { ConsoleKey.X, "Extra examples" },
@@ -53,6 +53,7 @@
                         pressKey = false;
                         break;
                     case ConsoleKey.P:
+                        Console.Clear();
                         await PeripheralsTests.ShowMenu().ConfigureAwait(false);
                         pressKey = false;
                         break;
@@ -170,7 +171,7 @@
         // public static void TestInfraredSensor()
         // {
         //    var inputPin = Pi.Gpio[BcmPin.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
-        //    var sensor = new InfraredSensor(inputPin, true);
+        //   var sensor = new InfraredSensor(inputPin, true);
         //    var emitter = new InfraredEmitter((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
         //
         // sensor.DataAvailable += (s, e) =>
