@@ -9,7 +9,6 @@
     {
         public static void TestUltrasonicSensor()
         {
-            Console.Clear();
             var color = ConsoleColor.White;
             using (var sensor = new UltrasonicHcsr04(Pi.Gpio[BcmPin.Gpio23], Pi.Gpio[BcmPin.Gpio24]))
             {
@@ -29,7 +28,7 @@
                             else if (e.Distance <= 40)
                                 color = ConsoleColor.Green;
                             else if (e.Distance <= 50)
-                                color = ConsoleColor.Cyan;
+                                color = ConsoleColor.Blue;
                             else
                                 color = ConsoleColor.White;
 
@@ -43,10 +42,6 @@
                         {
                             "No obstacles detected.".Info("HC - SR04");
                         }
-                    }
-                    else
-                    {
-                        "Invalid Reading".Error("HC-SR04");
                     }
                 };
 

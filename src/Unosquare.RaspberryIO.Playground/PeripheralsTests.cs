@@ -13,7 +13,7 @@
             { ConsoleKey.I, "Infrared Sensor"},
             { ConsoleKey.R, "Rfid Controller" },
             { ConsoleKey.U, "Ultrasonic Sensor"},
-            { ConsoleKey.T, "Temperature Sensor"},
+            { ConsoleKey.T, "Temperature and Humidity Sensor"},
         };
 
         public static async Task ShowMenu()

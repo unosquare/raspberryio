@@ -1,8 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Unosquare.RaspberryIO.Abstractions;
     using Unosquare.RaspberryIO.Peripherals;
     using Unosquare.Swan;
@@ -22,20 +20,13 @@
 
                 sensor.OnDataAvailable += (s, e) =>
                 {
-                    Console.Clear();
-
                     totalReadings++;
                     if (e.IsValid)
                     {
+                        Console.Clear();
                         validReadings++;
-                        $"Temperature: {e?.Temperature ?? 0:0.00}°C / {e?.TemperatureFahrenheit ?? 0:0.00}°F | Humidity: {e?.HumidityPercentage ?? 0:P0}".Info("DHT11");
+                        $"Temperature: \n {e?.Temperature ?? 0:0.00}°C \n {e?.TemperatureFahrenheit ?? 0:0.00}°F  \n Humidity: {e?.HumidityPercentage ?? 0:P0}".Info("DHT11");
                     }
-                    else
-                    {
-                        "Invalid Reading".Error("DHT11");
-                    }
-
-                    $"Valid reading percentage: {validReadings / totalReadings:P}".Info("DHT11");
                 };
 
                 sensor.Start();

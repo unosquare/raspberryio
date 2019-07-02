@@ -12,12 +12,13 @@
         /// </summary>
         public static void TestInfraredSensor()
         {
+            Console.Clear();
+
             var inputPin = Pi.Gpio[BcmPin.Gpio25]; // BCM Pin 25 or Physical pin 22 on the right side of the header.
             var sensor = new InfraredSensor(inputPin, true);
 
             sensor.DataAvailable += (s, e) =>
                {
-                  
                    var necData = InfraredSensor.NecDecoder.DecodePulses(e.Pulses);
                    if (necData != null)
                    {
@@ -41,7 +42,7 @@
                    }
                };
 
-            Console.ReadLine();
+            Console.ReadKey(true);
             sensor.Dispose();
         }
     }
