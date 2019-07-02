@@ -13,6 +13,7 @@
         public static async Task ShowMenu()
         {
             ConsoleKey key;
+
             // Capture Key presses here.
             while (!exit)
             {
@@ -22,12 +23,12 @@
                 CurrentLevel = state.Level;
 
                 // info
-                Console.WriteLine($"Control name: {state.ControlName}");
-                Console.WriteLine($"Card number: {state.CardNumber}");
-                Console.WriteLine($"Volume level (dB): {state.Decibels}dB");
-                Console.WriteLine($"Mute: {state.IsMute}");
+                Console.WriteLine($"\rControl name: {state.ControlName}");
+                Console.WriteLine($"\rCard number: {state.CardNumber}");
+                Console.WriteLine($"\rVolume level (dB): {state.Decibels}dB");
+                Console.WriteLine($"\rMute: {state.IsMute}\n");
 
-                Console.Write($"[");
+                Console.Write($"\r[");
                 UpdateProgress(CurrentLevel);
                 Console.Write($"] {CurrentLevel}%\n");
 
@@ -71,22 +72,26 @@
         {
             var progress = new string((char)0x2588, 10);
             var filler = level / 10;
+            var emptier = 10 - filler;
 
             for (int i = 0; i < filler; ++i)
             {
                 if (i < 6)
                     Console.ForegroundColor = ConsoleColor.Green;
-                else if (i < 8)
-                    Console.ForegroundColor = ConsoleColor.Yellow;
                 else if (i < 9)
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                else if (i > filler)
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                 else
                     Console.ForegroundColor = ConsoleColor.Red;
 
                 Console.Write($"{progress[i]}");
             }
+
+            for (int i = 0; i < emptier; ++i)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write($"{progress[filler + i]}");
+            }
+
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
