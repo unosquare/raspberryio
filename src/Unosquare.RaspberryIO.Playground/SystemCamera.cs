@@ -80,7 +80,7 @@
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write($"{(char)0x2714} ");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write($"Picture taken: {fileName}\nSize: {pictureBytes.Length}B\nDate Created: {DateTime.Now}\n\n");
+            Console.Write($"Picture taken: {fileName}.jpg\nSize: {pictureBytes.Length}B\nDate Created: {DateTime.Now}\nAt {DefaultPicturePath}\n\n");
         }
 
         private static void CaptureVideo()

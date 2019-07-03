@@ -22,12 +22,12 @@
 
                 Console.WriteLine($"\rControl name: {state.ControlName}");
                 Console.WriteLine($"\rCard number: {state.CardNumber}");
-                Console.WriteLine($"\rVolume level (dB): {state.Decibels}dB");
-                Console.Write($"\rMute [");
+                Console.Write($"\rMute: [");
                 Console.ForegroundColor = state.IsMute ? ConsoleColor.Green : ConsoleColor.Red;
                 Console.Write($"{(state.IsMute ? (char)0x2714 : (char)0x2718)}");
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write($"]\n");
+                Console.WriteLine($"\rVolume level (dB): {state.Decibels}dB");
 
                 Console.Write($"\r[");
                 UpdateProgress(CurrentLevel);
@@ -62,7 +62,7 @@
 
         private static void UpdateProgress(int level)
         {
-            var progress = new string((char)0x2588, 10);
+            var progress = new string((char)0x275A, 10);
             var filler = level / 10;
             var emptier = 10 - filler;
 
