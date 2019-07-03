@@ -1552,6 +1552,19 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.CreateProcessArguments
   nameWithType: CameraVideoSettings.CreateProcessArguments
+- uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.VideoFileName
+  name: VideoFileName
+  href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_VideoFileName
+  commentId: P:Unosquare.RaspberryIO.Camera.CameraVideoSettings.VideoFileName
+  fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.VideoFileName
+  nameWithType: CameraVideoSettings.VideoFileName
+- uid: Unosquare.RaspberryIO.Camera.CameraVideoSettings.VideoFileName*
+  name: VideoFileName
+  href: api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html#Unosquare_RaspberryIO_Camera_CameraVideoSettings_VideoFileName_
+  commentId: Overload:Unosquare.RaspberryIO.Camera.CameraVideoSettings.VideoFileName
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Camera.CameraVideoSettings.VideoFileName
+  nameWithType: CameraVideoSettings.VideoFileName
 - uid: Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode
   name: CameraWhiteBalanceMode
   href: api/Unosquare.RaspberryIO.Camera.CameraWhiteBalanceMode.html
