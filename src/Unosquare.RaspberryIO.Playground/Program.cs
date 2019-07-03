@@ -57,6 +57,7 @@
                         pressKey = false;
                         break;
                     case ConsoleKey.X:
+                        ExtraExamples.ShowMenu();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
@@ -313,29 +314,29 @@
         /// <summary>
         /// Tests the LED blinking logic.
         /// </summary>
-        public static void TestLedBlinking()
-        {
-            // Get a reference to the pin you need to use.
-            // All methods below are exactly equivalent and reference the same pin
-            var blinkingPin = Pi.Gpio[17];
-            blinkingPin = Pi.Gpio[BcmPin.Gpio17];
-            blinkingPin = Pi.Gpio[P1.Pin11];
-            blinkingPin = ((GpioController)Pi.Gpio)[WiringPiPin.Pin00];
-            blinkingPin = ((GpioController)Pi.Gpio).Pin17;
-            blinkingPin = ((GpioController)Pi.Gpio).HeaderP1[11];
-
-            // Configure the pin as an output
-            blinkingPin.PinMode = GpioPinDriveMode.Output;
-
-            // perform writes to the pin by toggling the isOn variable
-            var isOn = false;
-            for (var i = 0; i < 20; i++)
-            {
-                isOn = !isOn;
-                blinkingPin.Write(isOn);
-                Thread.Sleep(500);
-            }
-        }
+        // public static void TestLedBlinking()
+        // {
+        //    // Get a reference to the pin you need to use.
+        //    // All methods below are exactly equivalent and reference the same pin
+        //    var blinkingPin = Pi.Gpio[17];
+        //    blinkingPin = Pi.Gpio[BcmPin.Gpio17];
+        //    blinkingPin = Pi.Gpio[P1.Pin11];
+        //    blinkingPin = ((GpioController)Pi.Gpio)[WiringPiPin.Pin00];
+        //    blinkingPin = ((GpioController)Pi.Gpio).Pin17;
+        //    blinkingPin = ((GpioController)Pi.Gpio).HeaderP1[11];
+        //
+        //    // Configure the pin as an output
+        //    blinkingPin.PinMode = GpioPinDriveMode.Output;
+        //
+        //    // perform writes to the pin by toggling the isOn variable
+        //    var isOn = false;
+        //    for (var i = 0; i < 20; i++)
+        //    {
+        //        isOn = !isOn;
+        //        blinkingPin.Write(isOn);
+        //        Thread.Sleep(500);
+        //    }
+        // }
 
         /// <summary>
         /// Tests the hardware PWM.
