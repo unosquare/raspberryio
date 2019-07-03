@@ -25,7 +25,8 @@
                     {
                         Console.Clear();
                         validReadings++;
-                        $"Temperature: \n {e?.Temperature ?? 0:0.00}°C \n {e?.TemperatureFahrenheit ?? 0:0.00}°F  \n Humidity: {e?.HumidityPercentage ?? 0:P0}".Info("DHT11");
+                        $"Temperature: \n {e?.Temperature ?? 0:0.00}°C \n {e?.TemperatureFahrenheit ?? 0:0.00}°F  \n Humidity: {e?.HumidityPercentage ?? 0:P0}\n\n".Info("DHT11");
+                        "Press any key to continue . . .".WriteLine();
                     }
                 };
 

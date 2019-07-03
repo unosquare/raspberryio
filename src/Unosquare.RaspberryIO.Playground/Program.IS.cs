@@ -19,6 +19,7 @@
 
             sensor.DataAvailable += (s, e) =>
                {
+                   Console.Clear();
                    var necData = InfraredSensor.NecDecoder.DecodePulses(e.Pulses);
                    if (necData != null)
                    {
@@ -40,6 +41,8 @@
                            $"RX (Garbage): {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
                        }
                    }
+
+                   "Press any key to continue . . .".WriteLine();
                };
 
             Console.ReadKey(true);

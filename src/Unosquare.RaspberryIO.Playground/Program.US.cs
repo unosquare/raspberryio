@@ -42,6 +42,8 @@
                         {
                             "No obstacles detected.".Info("HC - SR04");
                         }
+
+                        "\n Press any key to continue . . .".WriteLine();
                     }
                 };
 
