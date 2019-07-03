@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Unosquare.RaspberryIO.Peripherals;
     using Unosquare.Swan;
 
@@ -18,16 +17,13 @@
 
         };
 
-        public static async Task ShowRfidMenu()
+        public static void ShowRfidMenu()
         {
             var exit = false;
-            bool pressKey;
 
             do
             {
                 Console.Clear();
-                pressKey = true;
-
                 var mainOption = "Rfid".ReadPrompt(RfidOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
@@ -46,18 +42,7 @@
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
-                        pressKey = false;
                         break;
-                    default:
-                        pressKey = false;
-                        break;
-                }
-
-                if (pressKey)
-                {
-                    await Task.Delay(500).ConfigureAwait(false);
-                    Console.WriteLine("Press any key to continue . . .");
-                    Console.ReadKey(true);
                 }
             }
             while (!exit);
@@ -158,6 +143,7 @@
                 // Print UID
                 $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
 
+                "Press any key to continue . . .".ReadKey();
                 break;
             }
         }
@@ -166,11 +152,11 @@
         {
             Console.Clear();
             "Testing RFID".Info();
-            var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 
-            Console.WriteLine("Insert a message to be writed in the card, 16 characters only");
+            var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
+            "Insert a message to be writed in the card, 16 characters only".Info();
             var userInput = Console.ReadLine().Truncate(16);
-            Console.WriteLine("Insert a card in the sensor");
+            "Insert a card in the sensor".Info();
 
             while (true)
             {
@@ -198,6 +184,7 @@
 
                 device.ClearCardSelection();
                 "Writed".Info();
+                "Press any key to continue . . .".ReadKey();
                 break;
             }
         }
@@ -220,6 +207,7 @@
                 if (uidResponse.Status != RFIDControllerMfrc522.Status.AllOk) continue;
 
                 var cardUid = uidResponse.Data;
+
                 // Print UID
                 $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
 
@@ -248,10 +236,10 @@
                 else
                 {
                     "Authentication error".Error();
-                    break;
                 }
 
                 device.ClearCardSelection();
+                "Press any key to continue . . .".ReadKey();
                 break;
             }
         }
@@ -309,6 +297,7 @@
                 }
 
                 device.ClearCardSelection();
+                "Press any key to continue . . .".ReadKey();
                 break;
             }
         }
