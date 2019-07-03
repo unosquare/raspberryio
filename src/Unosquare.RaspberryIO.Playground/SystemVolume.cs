@@ -11,6 +11,7 @@
 
         public static async Task ShowMenu()
         {
+            exit = false;
             ConsoleKey key;
 
             while (!exit)
@@ -57,8 +58,6 @@
                         break;
                 }
             }
-
-            exit = false;
         }
 
         private static void UpdateProgress(int level)
