@@ -11,7 +11,6 @@
     {
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
-            // Module COntrol Items
             { ConsoleKey.C, "Camera" },
             { ConsoleKey.I, "System Info" },
             { ConsoleKey.V, "Volume" },
