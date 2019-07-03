@@ -53,8 +53,7 @@
                         pressKey = false;
                         break;
                     case ConsoleKey.P:
-                        Console.Clear();
-                        await PeripheralsTests.ShowMenu().ConfigureAwait(false);
+                        PeripheralsTests.ShowMenu();
                         pressKey = false;
                         break;
                     case ConsoleKey.X:
@@ -71,8 +70,7 @@
                 if (pressKey)
                 {
                     await Task.Delay(500).ConfigureAwait(false);
-                    Console.WriteLine("Press any key to continue . . .");
-                    Console.ReadKey(true);
+                    "Press any key to continue . . .".ReadKey(true);
                 }
             }
 
