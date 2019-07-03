@@ -1,7 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using System;
-    using System.Text;
     using System.Threading.Tasks;
 
     public static class SystemVolume
@@ -14,25 +13,25 @@
         {
             ConsoleKey key;
 
-            // Capture Key presses here.
             while (!exit)
             {
-                // Do something
                 Console.Clear();
                 var state = await Pi.Audio.GetState().ConfigureAwait(false);
                 CurrentLevel = state.Level;
 
-                // info
                 Console.WriteLine($"\rControl name: {state.ControlName}");
                 Console.WriteLine($"\rCard number: {state.CardNumber}");
                 Console.WriteLine($"\rVolume level (dB): {state.Decibels}dB");
-                Console.WriteLine($"\rMute: {state.IsMute}\n");
+                Console.Write($"\rMute [");
+                Console.ForegroundColor = state.IsMute ? ConsoleColor.Green : ConsoleColor.Red;
+                Console.Write($"{(state.IsMute ? (char)0x2714 : (char)0x2718)}");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write($"]\n");
 
                 Console.Write($"\r[");
                 UpdateProgress(CurrentLevel);
                 Console.Write($"] {CurrentLevel}%\n");
 
-                // Key is available - read it
                 key = Console.ReadKey(true).Key;
 
                 switch (key)
@@ -58,6 +57,8 @@
                         break;
                 }
             }
+
+            exit = false;
         }
 
         private static void UpdateProgress(int level)

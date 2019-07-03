@@ -56,6 +56,11 @@
         public bool CaptureInterleaveHeaders { get; set; } = true;
 
         /// <summary>
+        /// Specifies the path to save video files.
+        /// </summary>
+        public string VideoFileName { get; set; }
+
+        /// <summary>
         /// Switch on an option to display the preview after compression. This will show any compression artefacts in the preview window. In normal operation, 
         /// the preview will show the camera output prior to being compressed. This option is not guaranteed to work in future releases.
         /// </summary>
@@ -69,7 +74,9 @@
         {
             var sb = new StringBuilder(base.CreateProcessArguments());
 
-            sb.Append($" -pf {CaptureProfile.ToString().ToLowerInvariant()}");
+            if (string.IsNullOrEmpty(VideoFileName))
+                sb.Append($"-o {VideoFileName}");
+            sb.Append($" -pf {CaptureProfile.ToString().ToUpperInvariant()}");
             if (CaptureBitrate < 0)
                 sb.Append($" -b {CaptureBitrate.Clamp(0, 25000000).ToString(Ci)}");
 
