@@ -13,7 +13,7 @@
         public static void TestInfraredSensor()
         {
             Console.Clear();
-
+            "Send a signal...".Info("IR");
             var inputPin = Pi.Gpio[BcmPin.Gpio25]; // BCM Pin 25 or Physical pin 22 on the right side of the header.
             var sensor = new InfraredSensor(inputPin, true);
 
