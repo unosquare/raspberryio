@@ -8,7 +8,8 @@
     {
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
-            { ConsoleKey.B, "Test Led Blinking" },
+            { ConsoleKey.B, "Test Button" },
+            { ConsoleKey.L, "Test Led Blinking" },
         };
 
         public static void ShowMenu()
@@ -19,9 +20,14 @@
             {
                 Console.Clear();
                 var mainOption = "Extra Examples".ReadPrompt(MainOptions, "Esc to exit this menu");
+
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.B:
+                        Program.TestButton();
+                        break;
+
+                    case ConsoleKey.L:
                         Program.TestLedBlinking();
                         break;
                     case ConsoleKey.Escape:

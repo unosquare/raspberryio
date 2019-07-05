@@ -39,7 +39,7 @@
             var exit = false;
             bool pressKey;
 
-            while (!exit)
+            do
             {
                 Console.Clear();
                 pressKey = true;
@@ -74,6 +74,7 @@
                     "Press any key to continue . . .".ReadKey(true);
                 }
             }
+            while (!exit);
 
             Console.Clear();
 
