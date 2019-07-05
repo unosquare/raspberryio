@@ -30,9 +30,13 @@
             {
                 isOn = !isOn;
                 blinkingPin.Write(isOn);
+                var ledState = isOn ? "on" : "off";
+                Console.Clear();
+                $"Blinking {ledState}".Info();
                 Thread.Sleep(500);
-                "Press any key to continue . . .".ReadKey(true);
             }
+
+            "Press any key to continue . . .".ReadKey(true);
         }
     }
 }
