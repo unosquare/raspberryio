@@ -39,14 +39,13 @@
 
         private void HandleInterrupt()
         {
-            if (_gpioPin.Read())
-            {
+            var val = _gpioPin.Read();
+            if ((val && _gpioPin.InputPullMode == GpioPinResistorPullMode.PullDown) ||
+                (!val && _gpioPin.InputPullMode == GpioPinResistorPullMode.PullUp))
                 HandleButtonPressed();
-            }
             else
-            {
                 HandleButtonReleased();
-            }
+
         }
 
         private void HandleButtonPressed()
