@@ -16,8 +16,8 @@
             {
                 Console.Clear();
 
-                $"\rBrightness: {Pi.PiDisplay.Brightness}".Info();
-                $"\rBlacklight: [{(Pi.PiDisplay.IsBacklightOn ? (char)0x2714 : (char)0x2718)}]\n".Info();
+                $"Brightness: {Pi.PiDisplay.Brightness}".Info();
+                $"Blacklight: [{(Pi.PiDisplay.IsBacklightOn ? (char)0x2714 : (char)0x2718)}]\n".Info();
 
                 key = Console.ReadKey(true).Key;
 
