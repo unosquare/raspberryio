@@ -1,5 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
+    using Swan;
     using System;
     using System.Threading.Tasks;
 
@@ -20,14 +21,10 @@
                 var state = await Pi.Audio.GetState().ConfigureAwait(false);
                 CurrentLevel = state.Level;
 
-                Console.WriteLine($"\rControl name: {state.ControlName}");
-                Console.WriteLine($"\rCard number: {state.CardNumber}");
-                Console.Write($"\rMute: [");
-                Console.ForegroundColor = state.IsMute ? ConsoleColor.Green : ConsoleColor.Red;
-                Console.Write($"{(state.IsMute ? (char)0x2714 : (char)0x2718)}");
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write($"]\n");
-                Console.WriteLine($"\rVolume level (dB): {state.Decibels}dB");
+                $"\rControl name: {state.ControlName}".Info();
+                $"\rCard number: {state.CardNumber}".Info();
+                $"\rMute: [{(state.IsMute ? (char)0x2714 : (char)0x2718)}]\n".Info();
+                $"\rVolume level (dB): {state.Decibels}dB".Info();
 
                 Console.Write($"\r[");
                 UpdateProgress(CurrentLevel);

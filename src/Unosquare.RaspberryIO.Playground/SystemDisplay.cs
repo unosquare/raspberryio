@@ -2,8 +2,6 @@
 {
     using Swan;
     using System;
-    using System.Collections.Generic;
-    using System.Globalization;
     using System.Threading.Tasks;
 
     public static class SystemDisplay
@@ -18,12 +16,8 @@
             {
                 Console.Clear();
 
-                Console.WriteLine($"\rBrightness: {Pi.PiDisplay.Brightness}");
-                Console.Write($"\rBlacklight: [");
-                Console.ForegroundColor = Pi.PiDisplay.IsBacklightOn ? ConsoleColor.Green : ConsoleColor.Red;
-                Console.Write($"{(Pi.PiDisplay.IsBacklightOn ? (char)0x2714 : (char)0x2718)}");
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write($"]\n");
+                $"\rBrightness: {Pi.PiDisplay.Brightness}".Info();
+                $"\rBlacklight: [{(Pi.PiDisplay.IsBacklightOn ? (char)0x2714 : (char)0x2718)}]\n".Info();
 
                 key = Console.ReadKey(true).Key;
 
@@ -41,6 +35,13 @@
                     default:
                         break;
                 }
+
+                if (!exit)
+                {
+                    await Task.Delay(500).ConfigureAwait(false);
+                    Console.WriteLine("Press any key to continue . . .");
+                    Console.ReadKey(true);
+                }
             }
         }
 
@@ -53,27 +54,21 @@
             {
                 if (brightness == Pi.PiDisplay.Brightness)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Set a different brightness value.");
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    $"Set a different brightness value.".Error();
                     return;
                 }
                 else if (brightness > 255 || brightness < 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Valid brightness values are between [0 - 255]");
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    $"Valid brightness values are between [0 - 255]".Error();
                     return;
                 }
 
-                Console.WriteLine($"The new brightness value is {brightness}");
+                $"The new brightness value is {brightness}".Info();
                 Pi.PiDisplay.Brightness = brightness;
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Failed to set brightness value.");
-                Console.ForegroundColor = ConsoleColor.Gray;
+                $"Failed to set brightness value.".Error();
                 return;
             }
         }

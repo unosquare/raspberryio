@@ -45,7 +45,7 @@
                         break;
                 }
 
-                if (pressKey)
+                if (pressKey && !exit)
                 {
                     await Task.Delay(500).ConfigureAwait(false);
                     Console.WriteLine("Press any key to continue . . .");
@@ -59,10 +59,8 @@
             Console.Clear();
             Console.WriteLine("Set the image width:");
             var imageWidth = Convert.ToInt32(Console.ReadLine(), CultureInfo.InvariantCulture.NumberFormat);
-            Console.Clear();
             Console.WriteLine("Set the image height:");
             var imageHeight = Convert.ToInt32(Console.ReadLine(), CultureInfo.InvariantCulture.NumberFormat);
-            Console.Clear();
             Console.WriteLine("Set the file name:");
             var fileName = Console.ReadLine();
             Console.Clear();
@@ -74,10 +72,7 @@
                 File.Delete(targetPath);
 
             File.WriteAllBytes(targetPath, pictureBytes);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($" {(char)0x2714} ");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write($"Picture taken: {fileName}.jpg\nSize: {pictureBytes.Length}B\nDate Created: {DateTime.Now}\nAt {DefaultPicturePath}\n\n");
+            $"Picture taken: {fileName}.jpg\nSize: {pictureBytes.Length}B\nDate Created: {DateTime.Now}\nAt {DefaultPicturePath}\n\n".Info();
         }
 
         private static void CaptureVideo()
@@ -85,11 +80,9 @@
             Console.Clear();
             Console.WriteLine("Set the video width:");
             var videoWidth = Convert.ToInt32(Console.ReadLine(), CultureInfo.InvariantCulture.NumberFormat);
-            Console.Clear();
             Console.WriteLine("Set the video height:");
             var videoHeight = Convert.ToInt32(Console.ReadLine(), CultureInfo.InvariantCulture.NumberFormat);
-            Console.Clear();
-            Console.WriteLine("Set the video path:");
+            Console.WriteLine("Set the file name:");
             var videoPath = Console.ReadLine();
             Console.Clear();
 
@@ -107,7 +100,7 @@
                 VideoFileName = $"{DefaultPicturePath}/{videoPath}.h264",
             };
 
-            Console.WriteLine("Press any key to START recording . . .");
+            "Press any key to START recording . . .".Info();
             Console.ReadLine();
             Console.Clear();
             var startTime = DateTime.UtcNow;
@@ -129,20 +122,13 @@
             Console.WriteLine("Press any key to STOP recording. . .");
             Console.ReadLine();
             Console.Clear();
-
+            
             Pi.Camera.CloseVideoStream();
 
             var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000", CultureInfo.InvariantCulture.NumberFormat);
             var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000", CultureInfo.InvariantCulture.NumberFormat);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($" {(char)0x2714} ");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write($"Recording stopped. . .\n\n");
-            Console.Write($"Recorded {megaBytesReceived}MB\n" +
-                $"{videoEventCount} callbacks\n" +
-                $"Recorded {recordedSeconds} seconds\n" +
-                $"Created {DateTime.Now}\n" +
-                $"At {videoSettings.VideoFileName}\n\n");
+            "Recording stopped. . .\n\n".Info();
+            $"Recorded {megaBytesReceived}MB\n{videoEventCount} callbacks\nRecorded {recordedSeconds} seconds\nCreated {DateTime.Now}\nAt {videoSettings.VideoFileName}\n\n".Info();
         }
     }
 }
