@@ -18,18 +18,18 @@
         /// Initializes a new instance of the <see cref="Button"/> class.
         /// </summary>
         /// <param name="gpioPin">The gpio pin.</param>
-        public Button(IGpioPin gpioPin)
+        /// <param name="pullMode">The input pull mode.</param>
+        public Button(IGpioPin gpioPin, GpioPinResistorPullMode pullMode = GpioPinResistorPullMode.PullDown)
         {
             _gpioPin = gpioPin;
-
-            _gpioPin.InputPullMode = GpioPinResistorPullMode.PullDown;
+            _gpioPin.InputPullMode = pullMode;
             _gpioPin.PinMode = GpioPinDriveMode.Input;
             _gpioPin.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, HandleInterrupt);
         }
 
         /// <summary>
         /// Occurs when [pressed].
-        /// </summary>
+        /// </summary> 
         public event EventHandler<EventArgs> Pressed;
 
         /// <summary>

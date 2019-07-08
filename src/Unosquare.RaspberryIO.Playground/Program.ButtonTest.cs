@@ -13,7 +13,7 @@
 
             "Testing Button".Info();
             var inputPin = Pi.Gpio[BcmPin.Gpio12];
-            var button = new Button(inputPin);
+            var button = new Button(inputPin, GpioPinResistorPullMode.PullUp);
 
             button.Pressed += (s, e) => LogMessageOnEvent("Pressed");
             button.Released += (s, e) => LogMessageOnEvent("Realeased");
