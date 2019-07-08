@@ -40,20 +40,16 @@
                     case ConsoleKey.DownArrow:
                         await DecrementVolume().ConfigureAwait(false);
                         break;
-
                     case ConsoleKey.UpArrow:
                         await IncrementVolume().ConfigureAwait(false);
                         break;
-
                     case ConsoleKey.M:
                         mute = !mute;
                         await ToggleMute().ConfigureAwait(false);
                         break;
-
                     case ConsoleKey.Escape:
                         exit = true;
                         break;
-
                     default:
                         break;
                 }

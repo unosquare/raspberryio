@@ -12,6 +12,7 @@
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.C, "Camera" },
+            { ConsoleKey.D, "Display" },
             { ConsoleKey.I, "System Info" },
             { ConsoleKey.V, "Volume" },
         };
@@ -32,6 +33,9 @@
                 {
                     case ConsoleKey.C:
                         await SystemCamera.ShowMenu().ConfigureAwait(false);
+                        break;
+                    case ConsoleKey.D:
+                        await SystemDisplay.ShowMenu().ConfigureAwait(false);
                         break;
                     case ConsoleKey.I:
                         await TestSystemInfo().ConfigureAwait(false);

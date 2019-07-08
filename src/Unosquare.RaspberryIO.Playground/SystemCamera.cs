@@ -13,7 +13,7 @@
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.P, "Take picture" },
-            { ConsoleKey.V, "Record video." },
+            { ConsoleKey.V, "Record video" },
         };
 
         private static string DefaultPicturePath = "/home/pi/playground-cs";
@@ -23,7 +23,7 @@
             var exit = false;
             bool pressKey;
 
-            do
+            while (!exit)
             {
                 Console.Clear();
                 pressKey = true;
@@ -40,10 +40,8 @@
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
-                        pressKey = false;
                         break;
                     default:
-                        pressKey = false;
                         break;
                 }
 
@@ -54,7 +52,6 @@
                     Console.ReadKey(true);
                 }
             }
-            while (!exit);
         }
 
         private static void CaptureImage()
@@ -78,7 +75,7 @@
 
             File.WriteAllBytes(targetPath, pictureBytes);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($"{(char)0x2714} ");
+            Console.Write($" {(char)0x2714} ");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write($"Picture taken: {fileName}.jpg\nSize: {pictureBytes.Length}B\nDate Created: {DateTime.Now}\nAt {DefaultPicturePath}\n\n");
         }
@@ -126,7 +123,7 @@
 
             startTime = DateTime.UtcNow;
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"{(char)0x25CF} ");
+            Console.Write($" {(char)0x25CF} ");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write("Recording\n");
             Console.WriteLine("Press any key to STOP recording. . .");
@@ -138,10 +135,14 @@
             var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000", CultureInfo.InvariantCulture.NumberFormat);
             var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000", CultureInfo.InvariantCulture.NumberFormat);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($"{(char)0x2714} ");
+            Console.Write($" {(char)0x2714} ");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write($"Recording stopped. . .\n\n");
-            Console.Write($"Recorded {megaBytesReceived}MB\n{videoEventCount} callbacks\nRecorded {recordedSeconds} seconds\n\n");
+            Console.Write($"Recorded {megaBytesReceived}MB\n" +
+                $"{videoEventCount} callbacks\n" +
+                $"Recorded {recordedSeconds} seconds\n" +
+                $"Created {DateTime.Now}\n" +
+                $"At {videoSettings.VideoFileName}\n\n");
         }
     }
 }
