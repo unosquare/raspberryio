@@ -74,26 +74,8 @@
         {
             var sb = new StringBuilder(base.CreateProcessArguments());
 
-            if (string.IsNullOrEmpty(VideoFileName))
-                sb.Append($"-o {VideoFileName}");
-            sb.Append($" -pf {CaptureProfile.ToString().ToUpperInvariant()}");
-            if (CaptureBitrate < 0)
-                sb.Append($" -b {CaptureBitrate.Clamp(0, 25000000).ToString(Ci)}");
-
-            if (CaptureFramerate >= 2)
-                sb.Append($" -fps {CaptureFramerate.Clamp(2, 30).ToString(Ci)}");
-
-            if (CaptureDisplayPreview && CaptureDisplayPreviewEncoded)
-                    sb.Append(" -e");
-
-            if (CaptureKeyframeRate > 0)
-                sb.Append($" -g {CaptureKeyframeRate.ToString(Ci)}");
-
-            if (CaptureQuantisation >= 0)
-                sb.Append($" -qp {CaptureQuantisation.Clamp(0, 40).ToString(Ci)}");
-
-            if (CaptureInterleaveHeaders)
-                sb.Append(" -ih");
+            if (!string.IsNullOrEmpty(VideoFileName))
+                sb.Append($" -o {VideoFileName}");
 
             return sb.ToString();
         }
