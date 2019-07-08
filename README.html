@@ -831,14 +831,14 @@ Pi.Timing.SleepMilliseconds(100);
 <li>Consult audio device settings.</li>
 </ul>
 <p>Users set an audio card, an audio device and an audio command to perform an audio action. Example of audio tasks:</p>
-<pre><code class="lang-csharp">await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
+<pre><code class="lang-csharp">await Pi.PiVolumeControl.SetVolumePercentage(85);
 
-await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
+await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f);
 </code></pre><p>The code above sets the volume level in two different formats: Percentage or Decibels.
 The first method sets the volume on percentage (0% - 100%) and the second sets the volume level on decibels(dB) (-101.32dB - 4.00dB).</p>
 <p>Users can consult the current audio settings by using the method GetState.
 An example is shown below:</p>
-<pre><code class="lang-csharp">var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
+<pre><code class="lang-csharp">var currentState = await Pi.Audio.GetState();
 Console.WriteLine(currentState);
 </code></pre><p>The same result can be achieved by setting the volume level to 0% or -9999.99dB.</p>
 <h2 id="handy-notes">Handy Notes</h2>
