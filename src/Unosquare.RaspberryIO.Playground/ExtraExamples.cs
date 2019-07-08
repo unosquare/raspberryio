@@ -9,10 +9,11 @@
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.B, "Test Button" },
-            { ConsoleKey.L, "Test Led Blinking" },
+            { ConsoleKey.L, "Led Blinking" },
+            { ConsoleKey.D, "Led Dimming"},
         };
 
-        public static void ShowMenu()
+        public static async void ShowMenu()
         {
             var exit = false;
 
@@ -30,6 +31,9 @@
                     case ConsoleKey.L:
                         Program.TestLedBlinking();
                         break;
+                    case ConsoleKey.D:
+                        await Program.TestLedDimming();
+                        break;
                     case ConsoleKey.Escape:
                         exit = true;
                         break;
@@ -37,6 +41,5 @@
             }
             while (!exit);
         }
-
     }
 }

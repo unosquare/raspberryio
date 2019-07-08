@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading;
+    using System.Threading.Tasks;
     using Unosquare.RaspberryIO.Abstractions;
     using Unosquare.Swan;
     using Unosquare.WiringPi;
@@ -38,5 +39,65 @@
 
             "Press any key to continue . . .".ReadKey(true);
         }
+
+        public static async Task TestLedDimming()
+        {
+            using (var cancellationTokenSource = new CancellationTokenSource())
+            {
+                Dimming(cancellationTokenSource.Token);
+
+                while (true)
+                {
+                    var input = Console.ReadKey(false).Key;
+
+                    if (input == ConsoleKey.Escape)
+                    {
+                        cancellationTokenSource.Cancel();
+                        break;
+                    }
+                    //KeyboardListener(cancellationTokenSource);
+                }
+            }
+        }
+
+        private static void Dimming(CancellationToken cancellationToken)
+            => Task.Run(() =>
+            {
+                Console.Clear();
+                "Dimming".Info();
+                "Press any key to continue . . .".WriteLine();
+                var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio13];
+                pin.PinMode = GpioPinDriveMode.PwmOutput;
+                pin.PwmMode = PwmMode.Balanced;
+                pin.PwmClockDivisor = 2;
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    for (var x = 0; x <= 100; x++)
+                    {
+                        pin.PwmRegister = (int)pin.PwmRange / 100 * x;
+                        Thread.Sleep(10);
+                    }
+
+                    for (var x = 0; x <= 100; x++)
+                    {
+                        pin.PwmRegister = (int)pin.PwmRange - ((int)pin.PwmRange / 100 * x);
+                        Thread.Sleep(10);
+                    }
+                }
+
+                pin.PinMode = GpioPinDriveMode.Output;
+                pin.Write(0);
+            });
+
+        private static void KeyboardListener(CancellationTokenSource cancellationTokenSource)
+            => Task.Run(() =>
+            {
+                var input = Console.ReadKey().Key;
+                if (input == ConsoleKey.Escape)
+                {
+                    cancellationTokenSource.Cancel();
+                    return;
+                }
+            });
     }
 }
