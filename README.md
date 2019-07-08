@@ -649,9 +649,9 @@ Basic audio settings have been implemented in RaspberryIO:
 Users set an audio card, an audio device and an audio command to perform an audio action. Example of audio tasks:
 
 ```csharp
-await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
+await Pi.PiVolumeControl.SetVolumePercentage(85);
 
-await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
+await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f);
 ```
 
 The code above sets the volume level in two different formats: Percentage or Decibels.
@@ -661,7 +661,7 @@ Users can consult the current audio settings by using the method GetState.
 An example is shown below:
 
 ```csharp
-var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
+var currentState = await Pi.Audio.GetState();
 Console.WriteLine(currentState);
 ```
 
