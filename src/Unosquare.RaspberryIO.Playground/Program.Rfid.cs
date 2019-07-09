@@ -165,8 +165,7 @@
             "Testing RFID".Info();
 
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
-            "Insert a message to be writed in the card, 16 characters only".Info();
-            var userInput = Console.ReadLine().Truncate(16);
+            var userInput = "Insert a message to be writed in the card, 16 characters only".ReadLine().Truncate(16);
             "Insert a card in the sensor".Info();
 
             while (true)
