@@ -48,6 +48,7 @@
             while (!exit);
         }
 
+        //General Test
         public static void TestRfidController()
         {
             "Testing RFID".Info();
@@ -143,7 +144,17 @@
                 // Print UID
                 $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
 
-                "Press any key to continue . . .".ReadKey();
+                var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+                while (true)
+                {
+                    if (input == ConsoleKey.Escape)
+                    {
+                        break;
+                    }
+
+                    input = Console.ReadKey(true).Key;
+                }
+
                 break;
             }
         }
@@ -184,7 +195,17 @@
 
                 device.ClearCardSelection();
                 "Writed".Info();
-                "Press any key to continue . . .".ReadKey();
+                var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+                while (true)
+                {
+                    if (input == ConsoleKey.Escape)
+                    {
+                        break;
+                    }
+
+                    input = Console.ReadKey(true).Key;
+                }
+
                 break;
             }
         }
@@ -239,7 +260,17 @@
                 }
 
                 device.ClearCardSelection();
-                "Press any key to continue . . .".ReadKey();
+                var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+                while (true)
+                {
+                    if (input == ConsoleKey.Escape)
+                    {
+                        break;
+                    }
+
+                    input = Console.ReadKey(true).Key;
+                }
+
                 break;
             }
         }
@@ -297,7 +328,17 @@
                 }
 
                 device.ClearCardSelection();
-                "Press any key to continue . . .".ReadKey();
+                var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+                while (true)
+                {
+                    if (input == ConsoleKey.Escape)
+                    {
+                        break;
+                    }
+
+                    input = Console.ReadKey(true).Key;
+                }
+
                 break;
             }
         }

@@ -26,12 +26,19 @@
                         Console.Clear();
                         validReadings++;
                         $"Temperature: \n {e?.Temperature ?? 0:0.00}°C \n {e?.TemperatureFahrenheit ?? 0:0.00}°F  \n Humidity: {e?.HumidityPercentage ?? 0:P0}\n\n".Info("DHT11");
-                        "Press any key to continue . . .".WriteLine();
+                        "Press Esc key to continue . . .".WriteLine();
                     }
                 };
 
                 sensor.Start();
-                Console.ReadKey(true);
+                while (true)
+                {
+                    var input = Console.ReadKey(true).Key;
+                    if (input == ConsoleKey.Escape)
+                    {
+                        break;
+                    }
+                }
             }
         }
     }

@@ -42,10 +42,18 @@
                        }
                    }
 
-                   "Press any key to continue . . .".WriteLine();
+                   "Press Esc key to continue . . .".WriteLine();
                };
 
-            Console.ReadKey(true);
+            while (true)
+            {
+                var input = Console.ReadKey(true).Key;
+                if (input == ConsoleKey.Escape)
+                {
+                    break;
+                }
+            }
+
             sensor.Dispose();
         }
     }

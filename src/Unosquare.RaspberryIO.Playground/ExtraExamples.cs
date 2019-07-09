@@ -27,7 +27,6 @@
                     case ConsoleKey.B:
                         Program.TestButton();
                         break;
-
                     case ConsoleKey.L:
                         await Program.TestLedBlinking();
                         break;

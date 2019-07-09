@@ -43,12 +43,19 @@
                             "No obstacles detected.".Info("HC - SR04");
                         }
 
-                        "\n Press any key to continue . . .".WriteLine();
+                        "\n Press Esc key to continue . . .".WriteLine();
                     }
                 };
 
                 sensor.Start();
-                Console.ReadKey(true);
+                while (true)
+                {
+                    var input = Console.ReadKey(true).Key;
+                    if (input == ConsoleKey.Escape)
+                    {
+                        break;
+                    }
+                }
             }
         }
 
