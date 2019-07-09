@@ -9,63 +9,75 @@
 
     public partial class Program
     {
-        public static void TestLedBlinking()
-        {
-            Console.Clear();
 
-            // Get a reference to the pin you need to use.
-            // All methods below are exactly equivalent and reference the same pin
-            var blinkingPin = Pi.Gpio[16];
-            blinkingPin = Pi.Gpio[BcmPin.Gpio26];
-            blinkingPin = Pi.Gpio[P1.Pin37];
-            blinkingPin = ((GpioController)Pi.Gpio)[WiringPiPin.Pin26];
-            blinkingPin = ((GpioController)Pi.Gpio).Pin26;
-            blinkingPin = ((GpioController)Pi.Gpio).HeaderP1[37];
-
-            // Configure the pin as an output
-            blinkingPin.PinMode = GpioPinDriveMode.Output;
-
-            // perform writes to the pin by toggling the isOn variable
-            var isOn = false;
-            for (var i = 0; i < 20; i++)
-            {
-                isOn = !isOn;
-                blinkingPin.Write(isOn);
-                var ledState = isOn ? "on" : "off";
-                Console.Clear();
-                $"Blinking {ledState}".Info();
-                Thread.Sleep(500);
-            }
-
-            "Press any key to continue . . .".ReadKey(true);
-        }
-
-        public static async Task TestLedDimming()
+        public static async Task TestLedBlinking()
         {
             using (var cancellationTokenSource = new CancellationTokenSource())
             {
-                Dimming(cancellationTokenSource.Token);
+                Blink(cancellationTokenSource.Token);
 
                 while (true)
                 {
-                    var input = Console.ReadKey(false).Key;
+                    var input = Console.ReadKey(true).Key;
 
                     if (input == ConsoleKey.Escape)
                     {
                         cancellationTokenSource.Cancel();
                         break;
                     }
-                    //KeyboardListener(cancellationTokenSource);
                 }
             }
         }
 
-        private static void Dimming(CancellationToken cancellationToken)
+        public static async Task TestLedDimming()
+        {
+            using (var cancellationTokenSource = new CancellationTokenSource())
+            {
+                Dim(cancellationTokenSource.Token);
+
+                while (true)
+                {
+                    var input = Console.ReadKey(true).Key;
+
+                    if (input == ConsoleKey.Escape)
+                    {
+                        cancellationTokenSource.Cancel();
+                        break;
+                    }
+                }
+            }
+        }
+
+        private static void Blink(CancellationToken cancellationToken)
+        => Task.Run(() =>
+        {
+            Console.Clear();
+            var blinkingPin = Pi.Gpio[BcmPin.Gpio13];
+            // Configure the pin as an output
+            blinkingPin.PinMode = GpioPinDriveMode.Output;
+
+            // perform writes to the pin by toggling the isOn variable
+            var isOn = false;
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                isOn = !isOn;
+                blinkingPin.Write(isOn);
+                var ledState = isOn ? "on" : "off";
+                Console.Clear();
+                $"Blinking {ledState}".Info();
+                "Press Esc key to continue . . .".WriteLine();
+                Thread.Sleep(500);
+            }
+
+            blinkingPin.Write(0);
+        });
+
+        private static void Dim(CancellationToken cancellationToken)
             => Task.Run(() =>
             {
                 Console.Clear();
                 "Dimming".Info();
-                "Press any key to continue . . .".WriteLine();
+                "Press Esc key to continue . . .".WriteLine();
                 var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio13];
                 pin.PinMode = GpioPinDriveMode.PwmOutput;
                 pin.PwmMode = PwmMode.Balanced;

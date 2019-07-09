@@ -18,14 +18,22 @@
             button.Pressed += (s, e) => LogMessageOnEvent("Pressed");
             button.Released += (s, e) => LogMessageOnEvent("Realeased");
 
-            Console.ReadKey(true);
+            while (true)
+            {
+                var input = Console.ReadKey(true).Key;
+
+                if (input == ConsoleKey.Escape)
+                {
+                    break;
+                }
+            }
         }
 
         private static void LogMessageOnEvent(string message)
         {
             Console.Clear();
             message.Info();
-            "Press any key to continue . . .".WriteLine();
+            "Press Esc key to continue . . .".WriteLine();
         }
     }
 }

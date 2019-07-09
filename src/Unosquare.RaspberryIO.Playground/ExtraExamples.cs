@@ -10,7 +10,7 @@
         {
             { ConsoleKey.B, "Test Button" },
             { ConsoleKey.L, "Led Blinking" },
-            { ConsoleKey.D, "Led Dimming"},
+            { ConsoleKey.D, "Led Dimming" },
         };
 
         public static async void ShowMenu()
@@ -29,7 +29,7 @@
                         break;
 
                     case ConsoleKey.L:
-                        Program.TestLedBlinking();
+                        await Program.TestLedBlinking();
                         break;
                     case ConsoleKey.D:
                         await Program.TestLedDimming();
