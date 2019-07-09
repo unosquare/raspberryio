@@ -29,7 +29,7 @@
         /// Defines the entry point of the application.
         /// </summary>
         /// <returns>A task representing the program.</returns>
-        public static async Task Main()
+        public static void Main()
         {
             $"Starting program at {DateTime.Now}".Info();
 
@@ -37,41 +37,25 @@
             Pi.Init<BootstrapWiringPi>();
 
             var exit = false;
-            bool pressKey;
-
             do
             {
                 Console.Clear();
-                pressKey = true;
-
                 var mainOption = "Main options".ReadPrompt(MainOptions, "Esc to exit this program");
 
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.S:
-                        await SystemTests.ShowMenu().ConfigureAwait(false);
-                        pressKey = false;
+                        SystemTests.ShowMenu();
                         break;
                     case ConsoleKey.P:
                         PeripheralsTests.ShowMenu();
-                        pressKey = false;
                         break;
                     case ConsoleKey.X:
                         ExtraExamples.ShowMenu();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
-                        pressKey = false;
                         break;
-                    default:
-                        pressKey = false;
-                        break;
-                }
-
-                if (pressKey)
-                {
-                    await Task.Delay(500).ConfigureAwait(false);
-                    "Press any key to continue . . .".ReadKey(true);
                 }
             }
             while (!exit);

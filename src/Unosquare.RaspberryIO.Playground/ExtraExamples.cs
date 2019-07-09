@@ -28,10 +28,10 @@
                         Program.TestButton();
                         break;
                     case ConsoleKey.L:
-                        await Program.TestLedBlinking();
+                        await Program.TestLedBlinking().ConfigureAwait(false);
                         break;
                     case ConsoleKey.D:
-                        await Program.TestLedDimming();
+                        await Program.TestLedDimming().ConfigureAwait(false);
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

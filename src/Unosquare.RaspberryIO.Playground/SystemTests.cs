@@ -12,30 +12,23 @@
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.C, "Camera" },
-            { ConsoleKey.D, "Display" },
             { ConsoleKey.I, "System Info" },
             { ConsoleKey.V, "Volume" },
         };
 
-        public static async Task ShowMenu()
+        public static async void ShowMenu()
         {
             var exit = false;
-            bool pressKey;
 
             do
             {
                 Console.Clear();
-                pressKey = true;
-
                 var mainOption = "System".ReadPrompt(MainOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.C:
-                        await SystemCamera.ShowMenu().ConfigureAwait(false);
-                        break;
-                    case ConsoleKey.D:
-                        await SystemDisplay.ShowMenu().ConfigureAwait(false);
+                        SystemCamera.ShowMenu();
                         break;
                     case ConsoleKey.I:
                         await TestSystemInfo().ConfigureAwait(false);
@@ -45,18 +38,7 @@
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
-                        pressKey = false;
                         break;
-                    default:
-                        pressKey = false;
-                        break;
-                }
-
-                if (pressKey)
-                {
-                    await Task.Delay(500).ConfigureAwait(false);
-                    Console.WriteLine("Press any key to continue . . .");
-                    Console.ReadKey(true);
                 }
             }
             while (!exit);

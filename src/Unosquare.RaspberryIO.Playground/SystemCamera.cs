@@ -6,27 +6,23 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-    using System.Threading.Tasks;
 
     public static class SystemCamera
     {
+        private const string DefaultPicturePath = "/home/pi/playground-cs";
+
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.P, "Take picture" },
         };
 
-        private static string DefaultPicturePath = "/home/pi/playground-cs";
-
-        public static async Task ShowMenu()
+        public static void ShowMenu()
         {
             var exit = false;
-            bool pressKey;
 
-            while (!exit)
+            do
             {
                 Console.Clear();
-                pressKey = true;
-
                 var mainOption = "System".ReadPrompt(MainOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
@@ -37,17 +33,9 @@
                     case ConsoleKey.Escape:
                         exit = true;
                         break;
-                    default:
-                        break;
-                }
-
-                if (pressKey && !exit)
-                {
-                    await Task.Delay(500).ConfigureAwait(false);
-                    Console.WriteLine("Press any key to continue . . .");
-                    Console.ReadKey(true);
                 }
             }
+            while (!exit);
         }
 
         private static void CaptureImage()
@@ -118,7 +106,7 @@
             Console.WriteLine("Press any key to STOP recording. . .");
             Console.ReadLine();
             Console.Clear();
-            
+
             Pi.Camera.CloseVideoStream();
 
             var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000", CultureInfo.InvariantCulture.NumberFormat);
