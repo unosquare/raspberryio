@@ -41,22 +41,35 @@
         private static void CaptureImage()
         {
             Console.Clear();
-            Console.WriteLine("Set the image width:");
-            var imageWidth = Convert.ToInt32(Console.ReadLine(), CultureInfo.InvariantCulture.NumberFormat);
-            Console.WriteLine("Set the image height:");
-            var imageHeight = Convert.ToInt32(Console.ReadLine(), CultureInfo.InvariantCulture.NumberFormat);
-            Console.WriteLine("Set the file name:");
+
+            var imageWidth = "Set the image width:".ReadNumber(640);
+            var imageHeight = "Set the image height:".ReadNumber(480);
+
+            "Set the file name:".Write();
             var fileName = Console.ReadLine();
+
             Console.Clear();
 
             var pictureBytes = Pi.Camera.CaptureImageJpeg(imageWidth, imageHeight);
             var targetPath = $"{DefaultPicturePath}/{fileName}.jpg";
 
-            if (File.Exists(targetPath))
-                File.Delete(targetPath);
-
             File.WriteAllBytes(targetPath, pictureBytes);
-            $"Picture taken: {fileName}.jpg\nSize: {pictureBytes.Length}B\nDate Created: {DateTime.Now}\nAt {DefaultPicturePath}\n\n".Info();
+
+            $"Picture taken: {fileName}.jpg".Info();
+            $"Size: {pictureBytes.Length}B".Info();
+            $"Date Created: {DateTime.Now.ToString("MM/dd/yyyy")}".Info();
+            $"At {DefaultPicturePath}\n".Info();
+
+            var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+            while (true)
+            {
+                if (input == ConsoleKey.Escape)
+                {
+                    break;
+                }
+
+                input = Console.ReadKey(true).Key;
+            }
         }
 
         private static void CaptureVideo()

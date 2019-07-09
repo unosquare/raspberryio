@@ -74,6 +74,7 @@
                     $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}")
                 .ToList()
                 .ForEach(x => x.Info());
+
         }
     }
 }
