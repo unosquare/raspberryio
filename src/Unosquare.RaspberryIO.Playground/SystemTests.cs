@@ -1,11 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using Computer;
-    using Swan;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Computer;
+    using Swan;
 
     public static class SystemTests
     {
@@ -16,7 +16,7 @@
             { ConsoleKey.V, "Volume" },
         };
 
-        public static async void ShowMenu()
+        public static async Task ShowMenu()
         {
             var exit = false;
 
@@ -69,12 +69,22 @@
             $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}"
                 .Info();
 
-            (await NetworkSettings.Instance.RetrieveAdapters())
-                .Select(adapter =>
-                    $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}")
+            (await NetworkSettings.Instance.RetrieveAdapters().ConfigureAwait(false))
+                .Select(adapter => $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}")
                 .ToList()
                 .ForEach(x => x.Info());
 
+            var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+
+            while (true)
+            {
+                if (input == ConsoleKey.Escape)
+                {
+                    break;
+                }
+
+                input = Console.ReadKey(true).Key;
+            }
         }
     }
 }

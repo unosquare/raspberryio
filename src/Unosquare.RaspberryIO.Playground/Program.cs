@@ -29,7 +29,7 @@
         /// Defines the entry point of the application.
         /// </summary>
         /// <returns>A task representing the program.</returns>
-        public static void Main()
+        public static async Task Main()
         {
             $"Starting program at {DateTime.Now}".Info();
 
@@ -45,7 +45,7 @@
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.S:
-                        SystemTests.ShowMenu();
+                        await SystemTests.ShowMenu();
                         break;
                     case ConsoleKey.P:
                         PeripheralsTests.ShowMenu();

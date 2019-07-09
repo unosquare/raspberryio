@@ -1,11 +1,12 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using Camera;
-    using Swan;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using Swan.Lite;
+    using Unosquare.Swan;
 
     public static class SystemCamera
     {
@@ -44,9 +45,7 @@
 
             var imageWidth = "Set the image width:".ReadNumber(640);
             var imageHeight = "Set the image height:".ReadNumber(480);
-
-            "Set the file name:".Write();
-            var fileName = Console.ReadLine();
+            var fileName = "Set the file name:".ReadLine();
 
             Console.Clear();
 
