@@ -35,12 +35,10 @@
                 switch (key)
                 {
                     case ConsoleKey.DownArrow:
-                        //await DecrementVolume().ConfigureAwait(false);
-                        await ChangeVolume(-1).ConfigureAwait(false);
+                        await DecrementVolume().ConfigureAwait(false);
                         break;
                     case ConsoleKey.UpArrow:
-                        await ChangeVolume(1).ConfigureAwait(false);
-                       // await IncrementVolume().ConfigureAwait(false);
+                        await IncrementVolume().ConfigureAwait(false);
                         break;
                     case ConsoleKey.M:
                         mute = !mute;
@@ -60,23 +58,23 @@
             var progress = new string((char)0x275A, 10);
             var filler = level / 10;
             var emptier = 10 - filler;
+            var color = ConsoleColor.Black;
 
             for (int i = 0; i < filler; ++i)
             {
                 if (i < 6)
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    color = ConsoleColor.Green;
                 else if (i < 9)
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    color = ConsoleColor.Yellow;
                 else
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    color = ConsoleColor.Red;
 
-                Console.Write($"{progress[i]}");
+                $"{progress[i]}".Write(color);
             }
 
             for (int i = 0; i < emptier; ++i)
             {
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.Write($"{progress[filler + i]}");
+                $"{progress[filler + i]}".Write(ConsoleColor.Black);
             }
 
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -84,9 +82,6 @@
 
         private static async Task IncrementVolume() => await Pi.Audio.SetVolumePercentage(CurrentLevel + 1).ConfigureAwait(false);
         private static async Task DecrementVolume() => await Pi.Audio.SetVolumePercentage(CurrentLevel - 1).ConfigureAwait(false);
-
-        private static async Task ChangeVolume(int percentage) =>
-            await Pi.Audio.SetVolumePercentage(CurrentLevel + percentage).ConfigureAwait(false);
         private static async Task ToggleMute() => await Pi.Audio.ToggleMute(mute).ConfigureAwait(false);
     }
 }
