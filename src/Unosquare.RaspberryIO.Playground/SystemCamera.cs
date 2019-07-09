@@ -13,7 +13,6 @@
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.P, "Take picture" },
-            { ConsoleKey.V, "Record video" },
         };
 
         private static string DefaultPicturePath = "/home/pi/playground-cs";
@@ -34,9 +33,6 @@
                 {
                     case ConsoleKey.P:
                         CaptureImage();
-                        break;
-                    case ConsoleKey.V:
-                        CaptureVideo();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

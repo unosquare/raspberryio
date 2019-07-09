@@ -9,6 +9,8 @@
     /// <seealso cref="CameraSettingsBase" />
     public class CameraVideoSettings : CameraSettingsBase
     {
+        private int _length;
+
         /// <inheritdoc />
         public override string CommandName => "raspivid";
 
@@ -56,9 +58,26 @@
         public bool CaptureInterleaveHeaders { get; set; } = true;
 
         /// <summary>
+        /// Toggle fullscreen mode for video preview.
+        /// </summary>
+        public bool Fullscreen { get; set; } = false;
+
+        /// <summary>
         /// Specifies the path to save video files.
         /// </summary>
         public string VideoFileName { get; set; }
+
+        /// <summary>
+        /// Video stream length in seconds
+        /// </summary>
+        public int LengthInSeconds
+        {
+            get { return _length; }
+            set
+            {
+                _length = value * 1000;
+            }
+        }
 
         /// <summary>
         /// Switch on an option to display the preview after compression. This will show any compression artefacts in the preview window. In normal operation, 
@@ -73,6 +92,12 @@
         public override string CreateProcessArguments()
         {
             var sb = new StringBuilder(base.CreateProcessArguments());
+
+            if (Fullscreen)
+                sb.Append($" -f");
+
+            if (LengthInSeconds != 0)
+                sb.Append($" -t {LengthInSeconds}");
 
             if (!string.IsNullOrEmpty(VideoFileName))
                 sb.Append($" -o {VideoFileName}");
