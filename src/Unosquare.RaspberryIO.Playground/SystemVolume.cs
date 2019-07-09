@@ -35,10 +35,12 @@
                 switch (key)
                 {
                     case ConsoleKey.DownArrow:
-                        await DecrementVolume().ConfigureAwait(false);
+                        //await DecrementVolume().ConfigureAwait(false);
+                        await ChangeVolume(-1).ConfigureAwait(false);
                         break;
                     case ConsoleKey.UpArrow:
-                        await IncrementVolume().ConfigureAwait(false);
+                        await ChangeVolume(1).ConfigureAwait(false);
+                       // await IncrementVolume().ConfigureAwait(false);
                         break;
                     case ConsoleKey.M:
                         mute = !mute;
@@ -82,6 +84,9 @@
 
         private static async Task IncrementVolume() => await Pi.Audio.SetVolumePercentage(CurrentLevel + 1).ConfigureAwait(false);
         private static async Task DecrementVolume() => await Pi.Audio.SetVolumePercentage(CurrentLevel - 1).ConfigureAwait(false);
+
+        private static async Task ChangeVolume(int percentage) =>
+            await Pi.Audio.SetVolumePercentage(CurrentLevel + percentage).ConfigureAwait(false);
         private static async Task ToggleMute() => await Pi.Audio.ToggleMute(mute).ConfigureAwait(false);
     }
 }
