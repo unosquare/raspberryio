@@ -25,9 +25,7 @@
                 $"\rMute: [{(state.IsMute ? (char)0x2714 : (char)0x2718)}]\n".Info();
                 $"\rVolume level (dB): {state.Decibels}dB".Info();
 
-                "\r[".Write();
-                UpdateProgress(CurrentLevel); //show the current level
-                $"] {CurrentLevel}%\n\n".Write();
+                UpdateProgress(CurrentLevel);
 
                 var key = "Press Esc key to continue . . .".ReadKey(true).Key;
                 var validOption = false;
@@ -37,16 +35,16 @@
                     switch (key)
                     {
                         case ConsoleKey.DownArrow:
-                            await DecrementVolume().ConfigureAwait(false);
+                            await Pi.Audio.SetVolumePercentage(CurrentLevel - 1).ConfigureAwait(false);
                             validOption = true;
                             break;
                         case ConsoleKey.UpArrow:
-                            await IncrementVolume().ConfigureAwait(false);
+                            await Pi.Audio.SetVolumePercentage(CurrentLevel + 1).ConfigureAwait(false);
                             validOption = true;
                             break;
                         case ConsoleKey.M:
                             mute = !mute;
-                            await ToggleMute().ConfigureAwait(false);
+                            await Pi.Audio.ToggleMute(mute).ConfigureAwait(false);
                             validOption = true;
                             break;
                         case ConsoleKey.Escape:
@@ -63,33 +61,57 @@
 
         private static void UpdateProgress(int level)
         {
-            var progress = new string((char)0x275A, 10);
+            $"{level}".Info();
+            // var progress = new string((char)0x275A, 10);
+
+            var renderCharacter = (char)0x275A;
+
             var filler = level / 10;
-            var emptier = 10 - filler;
+
+            $"{filler}".Info();
+            // var emptier = 10 - filler;
+
             var color = ConsoleColor.Black;
 
-            for (int i = 0; i < filler; ++i)
+            "\r[".Write();
+
+            //for (int i = 0; i < filler; ++i)
+            //{
+            //    if (i < 6)
+            //        color = ConsoleColor.Green;
+            //    else if (i < 9)
+            //        color = ConsoleColor.Yellow;
+            //    else
+            //        color = ConsoleColor.Red;
+            //
+            //    $"{renderCharacter}".Write(color);
+            //}
+            //
+            //for (int i = 0; i < emptier; ++i)
+            //{
+            //    $"{renderCharacter}".Write(ConsoleColor.Black);
+            //}
+
+            for (int i = 1; i < 10; ++i)
             {
-                if (i < 6)
-                    color = ConsoleColor.Green;
-                else if (i < 9)
-                    color = ConsoleColor.Yellow;
+                if (i <= filler)
+                {
+                    if (i < 6)
+                        color = ConsoleColor.Green;
+                    else if (i < 9)
+                        color = ConsoleColor.Yellow;
+                    else
+                        color = ConsoleColor.Red;
+                }
                 else
-                    color = ConsoleColor.Red;
+                {
+                    color = ConsoleColor.Black;
+                }
 
-                $"{progress[i]}".Write(color);
+                $"{renderCharacter}".Write(color);
             }
 
-            for (int i = 0; i < emptier; ++i)
-            {
-                $"{progress[filler + i]}".Write(ConsoleColor.Black);
-            }
-
-            Console.ForegroundColor = ConsoleColor.Gray;
+            $"] {level}%\n\n".Write();
         }
-
-        private static async Task IncrementVolume() => await Pi.Audio.SetVolumePercentage(CurrentLevel + 1).ConfigureAwait(false);
-        private static async Task DecrementVolume() => await Pi.Audio.SetVolumePercentage(CurrentLevel - 1).ConfigureAwait(false);
-        private static async Task ToggleMute() => await Pi.Audio.ToggleMute(mute).ConfigureAwait(false);
     }
 }
