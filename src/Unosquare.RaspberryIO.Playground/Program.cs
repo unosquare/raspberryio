@@ -45,7 +45,7 @@
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.S:
-                        await SystemTests.ShowMenu();
+                        await SystemTests.ShowMenu().ConfigureAwait(false);
                         break;
                     case ConsoleKey.P:
                         PeripheralsTests.ShowMenu();
@@ -389,7 +389,7 @@
                 ImageFlipVertically = true,
                 CaptureExposure = CameraExposureMode.Night,
                 CaptureWidth = 1920,
-                CaptureHeight = 1080
+                CaptureHeight = 1080,
             };
 
             try

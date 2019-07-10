@@ -13,42 +13,50 @@
         public static async Task ShowMenu()
         {
             exit = false;
-            ConsoleKey key;
 
             while (!exit)
             {
-                Console.Clear();
                 var state = await Pi.Audio.GetState().ConfigureAwait(false);
                 CurrentLevel = state.Level;
 
+                Console.Clear();
                 $"\rControl name: {state.ControlName}".Info();
                 $"\rCard number: {state.CardNumber}".Info();
                 $"\rMute: [{(state.IsMute ? (char)0x2714 : (char)0x2718)}]\n".Info();
                 $"\rVolume level (dB): {state.Decibels}dB".Info();
 
-                Console.Write($"\r[");
-                UpdateProgress(CurrentLevel);
-                Console.Write($"] {CurrentLevel}%\n");
+                "\r[".Write();
+                UpdateProgress(CurrentLevel); //show the current level
+                $"] {CurrentLevel}%\n\n".Write();
 
-                key = Console.ReadKey(true).Key;
+                var key = "Press Esc key to continue . . .".ReadKey(true).Key;
+                var validOption = false;
 
-                switch (key)
+                while (!validOption)
                 {
-                    case ConsoleKey.DownArrow:
-                        await DecrementVolume().ConfigureAwait(false);
-                        break;
-                    case ConsoleKey.UpArrow:
-                        await IncrementVolume().ConfigureAwait(false);
-                        break;
-                    case ConsoleKey.M:
-                        mute = !mute;
-                        await ToggleMute().ConfigureAwait(false);
-                        break;
-                    case ConsoleKey.Escape:
-                        exit = true;
-                        break;
-                    default:
-                        break;
+                    switch (key)
+                    {
+                        case ConsoleKey.DownArrow:
+                            await DecrementVolume().ConfigureAwait(false);
+                            validOption = true;
+                            break;
+                        case ConsoleKey.UpArrow:
+                            await IncrementVolume().ConfigureAwait(false);
+                            validOption = true;
+                            break;
+                        case ConsoleKey.M:
+                            mute = !mute;
+                            await ToggleMute().ConfigureAwait(false);
+                            validOption = true;
+                            break;
+                        case ConsoleKey.Escape:
+                            exit = true;
+                            validOption = true;
+                            break;
+                    }
+
+                    if (!validOption)
+                        key = Console.ReadKey(true).Key;
                 }
             }
         }
