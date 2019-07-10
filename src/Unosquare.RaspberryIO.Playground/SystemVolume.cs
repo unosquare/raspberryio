@@ -27,6 +27,9 @@
 
                 UpdateProgress(CurrentLevel);
 
+                "Press UpArrow key to increment volume".WriteLine();
+                "Press DownArrow key to decrement volume".WriteLine();
+                "Press M key to Mute on/off\n".WriteLine();
                 var key = "Press Esc key to continue . . .".ReadKey(true).Key;
                 var validOption = false;
 
@@ -61,38 +64,12 @@
 
         private static void UpdateProgress(int level)
         {
-            $"{level}".Info();
-            // var progress = new string((char)0x275A, 10);
-
-            var renderCharacter = (char)0x275A;
-
             var filler = level / 10;
-
-            $"{filler}".Info();
-            // var emptier = 10 - filler;
-
             var color = ConsoleColor.Black;
 
             "\r[".Write();
 
-            //for (int i = 0; i < filler; ++i)
-            //{
-            //    if (i < 6)
-            //        color = ConsoleColor.Green;
-            //    else if (i < 9)
-            //        color = ConsoleColor.Yellow;
-            //    else
-            //        color = ConsoleColor.Red;
-            //
-            //    $"{renderCharacter}".Write(color);
-            //}
-            //
-            //for (int i = 0; i < emptier; ++i)
-            //{
-            //    $"{renderCharacter}".Write(ConsoleColor.Black);
-            //}
-
-            for (int i = 1; i < 10; ++i)
+            for (int i = 1; i <= 10; ++i)
             {
                 if (i <= filler)
                 {
@@ -108,7 +85,7 @@
                     color = ConsoleColor.Black;
                 }
 
-                $"{renderCharacter}".Write(color);
+                $"{(char)0x275A}".Write(color);
             }
 
             $"] {level}%\n\n".Write();
