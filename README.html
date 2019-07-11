@@ -91,7 +91,7 @@
 <li><a href="#for-debian-stretch">For Debian Stretch</a></li>
 </ul>
 </li>
-<li><a href="#running-net-core-224">Running .NET Core 2.2.4</a></li>
+<li><a href="#running-net-core-226">Running .NET Core 2.2.6</a></li>
 <li><a href="#usage">Usage</a><ul>
 <li><a href="#run-the-app-on-the-raspberry">Run the app on the raspberry</a></li>
 </ul>
@@ -180,15 +180,15 @@ echo &quot;deb https://download.mono-project.com/repo/debian stable-raspbianstre
 sudo apt update
 sudo apt-get install mono-complete
 </code></pre><p>Now, verify your version of Mono by running <code>mono --version</code>. Version 4.6 and above should be good enough.</p>
-<h2 id="running-net-core-224">Running .NET Core 2.2.4</h2>
-<p>This project can also run in .NET Core. To install .Net Core 2.2.4 runtime please execute the following commands:</p>
+<h2 id="running-net-core-226">Running .NET Core 2.2.6</h2>
+<p>This project can also run in .NET Core. To install .Net Core 2.2.6 runtime please execute the following commands:</p>
 <pre><code>$ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://download.visualstudio.microsoft.com/download/pr/8c52648c-bedd-44b0-9442-95cd830fdada/d6ba4c50a6b2afddc4ae3d313349f3ac/dotnet-runtime-2.2.4-linux-arm.tar.gz
+$ wget https://download.visualstudio.microsoft.com/download/pr/428aaa32-f66c-4847-b845-aa21f90504e4/1cf033db866414997140c2672bd75069/dotnet-runtime-2.2.6-linux-arm.tar.gz
 $ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-runtime-2.2.4-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo tar -xvf dotnet-runtime-2.2.6-linux-arm.tar.gz -C /opt/dotnet/
 $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
-</code></pre><p>Now, verify your version of Mono by running <code>dotnet --info</code>.</p>
+</code></pre><p>Now, verify your version of .Net Core by running <code>dotnet --info</code>.</p>
 <h2 id="usage">Usage</h2>
 <p>Before start using RaspberryIO, you must initialize <strong>Pi</strong> class (bootstrapping process) with the valid Abstractions implementation, in order to let <strong>Pi</strong> know what implementation is going to use:</p>
 <pre><code class="lang-csharp"> Pi.Init&lt;BootstrapWiringPi&gt;();
@@ -831,14 +831,14 @@ Pi.Timing.SleepMilliseconds(100);
 <li>Consult audio device settings.</li>
 </ul>
 <p>Users set an audio card, an audio device and an audio command to perform an audio action. Example of audio tasks:</p>
-<pre><code class="lang-csharp">await Pi.PiVolumeControl.SetVolumePercentage(85);
+<pre><code class="lang-csharp">await Pi.PiVolumeControl.SetVolumePercentage(85).ConfigureAwait(false);
 
-await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f);
+await Pi.PiVolumeControl.SetVolumeByDecibels(-1.00f).ConfigureAwait(false);
 </code></pre><p>The code above sets the volume level in two different formats: Percentage or Decibels.
 The first method sets the volume on percentage (0% - 100%) and the second sets the volume level on decibels(dB) (-101.32dB - 4.00dB).</p>
 <p>Users can consult the current audio settings by using the method GetState.
 An example is shown below:</p>
-<pre><code class="lang-csharp">var currentState = await Pi.Audio.GetState();
+<pre><code class="lang-csharp">var currentState = await Pi.Audio.GetState().ConfigureAwait(false);
 Console.WriteLine(currentState);
 </code></pre><p>The same result can be achieved by setting the volume level to 0% or -9999.99dB.</p>
 <h2 id="handy-notes">Handy Notes</h2>
@@ -912,7 +912,7 @@ sudo systemctl restart dhcpcd
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/Issue128-PlaygroundRedesign/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/Readme-NetCore226/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
