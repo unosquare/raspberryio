@@ -18,7 +18,7 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Installation](#installation)
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
     * [For Debian Stretch](#for-debian-stretch)
-  * [Running .NET Core 2.2.4](#running-net-core-224)
+  * [Running .NET Core 2.2.6](#running-net-core-226)
   * [Usage](#usage)
     * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
   * [Obtaining Board and System Information](#obtaining-board-and-system-information)
@@ -128,20 +128,20 @@ sudo apt-get install mono-complete
 
 Now, verify your version of Mono by running ```mono --version```. Version 4.6 and above should be good enough.
 
-## Running .NET Core 2.2.4
+## Running .NET Core 2.2.6
 
-This project can also run in .NET Core. To install .Net Core 2.2.4 runtime please execute the following commands:
+This project can also run in .NET Core. To install .Net Core 2.2.6 runtime please execute the following commands:
 
 ```
 $ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://download.visualstudio.microsoft.com/download/pr/8c52648c-bedd-44b0-9442-95cd830fdada/d6ba4c50a6b2afddc4ae3d313349f3ac/dotnet-runtime-2.2.4-linux-arm.tar.gz
+$ wget https://download.visualstudio.microsoft.com/download/pr/428aaa32-f66c-4847-b845-aa21f90504e4/1cf033db866414997140c2672bd75069/dotnet-runtime-2.2.6-linux-arm.tar.gz
 $ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-runtime-2.2.4-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo tar -xvf dotnet-runtime-2.2.6-linux-arm.tar.gz -C /opt/dotnet/
 $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
 ```
 
-Now, verify your version of Mono by running ```dotnet --info```.
+Now, verify your version of .Net Core by running ```dotnet --info```.
 
 ## Usage
 
