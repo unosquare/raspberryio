@@ -2,36 +2,37 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Swan;
 
-    public static class ExtraExamples
+    public static partial class SystemTests
     {
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
-            { ConsoleKey.B, "Test Button" },
-            { ConsoleKey.L, "Led Blinking" },
-            { ConsoleKey.D, "Led Dimming" },
+            { ConsoleKey.C, "Camera" },
+            { ConsoleKey.I, "System Info" },
+            { ConsoleKey.V, "Volume" },
         };
 
-        public static void ShowMenu()
+        public static async Task ShowMenu()
         {
             var exit = false;
 
             do
             {
                 Console.Clear();
-                var mainOption = "Extra Examples".ReadPrompt(MainOptions, "Esc to exit this menu");
+                var mainOption = "System".ReadPrompt(MainOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
                 {
-                    case ConsoleKey.B:
-                        Program.TestButton();
+                    case ConsoleKey.C:
+                        SystemCamera.ShowMenu();
                         break;
-                    case ConsoleKey.L:
-                        Program.TestLedBlinking();
+                    case ConsoleKey.I:
+                        await TestSystemInfo().ConfigureAwait(false);
                         break;
-                    case ConsoleKey.D:
-                        Program.TestLedDimming();
+                    case ConsoleKey.V:
+                        await SystemVolume.ShowMenu().ConfigureAwait(false);
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

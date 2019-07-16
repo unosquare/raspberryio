@@ -1,10 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using System;
-    using Peripherals;
     using Swan;
+    using Unosquare.RaspberryIO.Peripherals;
 
-    public static partial class Program
+    public static partial class Peripherals
     {
         /// <summary>
         /// Test the GY521 Accelerometer and Gyroscope.

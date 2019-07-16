@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Swan;
 
-    public static class PeripheralsTests
+    public static partial class Peripherals
     {
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
@@ -27,19 +27,19 @@
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.A:
-                        Program.TestAccelerometer();
+                        TestAccelerometer();
                         break;
                     case ConsoleKey.I:
-                        Program.TestInfraredSensor();
+                        TestInfraredSensor();
                         break;
                     case ConsoleKey.R:
-                        Program.ShowRfidMenu();
+                        ShowRfidMenu();
                         break;
                     case ConsoleKey.U:
-                        Program.TestUltrasonicSensor();
+                        TestUltrasonicSensor();
                         break;
                     case ConsoleKey.T:
-                        Program.TestTempSensor();
+                        TestTempSensor();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

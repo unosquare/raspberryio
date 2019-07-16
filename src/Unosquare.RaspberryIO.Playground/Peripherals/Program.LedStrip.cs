@@ -1,7 +1,6 @@
 ﻿#if NET461
 namespace Unosquare.RaspberryIO.Playground
 {
-    using Peripherals;
     using Swan;
     using Swan.Formatters;
     using System;
@@ -9,8 +8,9 @@ namespace Unosquare.RaspberryIO.Playground
     using System.IO;
     using System.Linq;
     using System.Threading;
+    using Unosquare.RaspberryIO.Peripherals;
 
-    public partial class Program
+    public static partial class Peripherals
     {
         /// <summary>
         /// Tests the led strip graphics.

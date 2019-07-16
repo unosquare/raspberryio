@@ -1,13 +1,13 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using System;
-    using System.Text;
     using System.Collections.Generic;
     using System.Linq;
-    using Peripherals;
+    using System.Text;
     using Swan;
+    using Unosquare.RaspberryIO.Peripherals;
 
-    public partial class Program
+    public static partial class Peripherals
     {
         private static readonly Dictionary<ConsoleKey, string> RfidOptions = new Dictionary<ConsoleKey, string>
         {

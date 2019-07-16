@@ -1,11 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using System;
     using Abstractions;
-    using Peripherals;
+    using System;
     using Swan;
+    using Unosquare.RaspberryIO.Peripherals;
 
-    public partial class Program
+    public static partial class Peripherals
     {
         /// <summary>
         /// Tests the temperature sensor.
