@@ -61,40 +61,6 @@
             while (!exit);
 
             Console.Clear();
-
-            //try
-            //{
-            //    Pi.Init<BootstrapWiringPi>();
-
-            //    // A set of very simple tests:
-            //    await TestSystemInfo().ConfigureAwait(false);
-
-            //    // TestCaptureImage();
-            //    // TestCaptureVideo();
-
-            //    // TestLedStripGraphics();
-            //    // TestLedStrip();
-            //    // TestRfidController();
-            //    // TestLedBlinking();
-            //    // TestHardwarePwm();
-            //    // TestInfraredSensor();
-            //    // TestServo();
-            //    // await TestVolumeControl();
-            //    // TestAccelerometer();
-            //    // TestTempSensor();
-            //    TestUltrasonicSensor();
-            //}
-            //catch (Exception ex)
-            //{
-            //    "Error".Error(nameof(Main), ex);
-            //}
-            //finally
-            //{
-            //    "Program finished.".Info();
-            //    Terminal.Flush(TimeSpan.FromSeconds(2));
-            //    if (Debugger.IsAttached)
-            //        "Press any key to exit . . .".ReadKey();
-            //}
         }
 
         /// <summary>
@@ -147,52 +113,6 @@
         //        $"{servo} | Angle {servo.ComputeAngle(minPulse, maxPulse),7:0.00}".Info("Servo");
         //        Pi.Timing.SleepMicroseconds(1500);
         //    }
-        // }
-
-        /// <summary>
-        /// Tests the infrared sensor HX1838.
-        /// </summary>
-        // public static void TestInfraredSensor()
-        // {
-        //    var inputPin = Pi.Gpio[BcmPin.Gpio23]; // BCM Pin 23 or Physical pin 16 on the right side of the header.
-        //   var sensor = new InfraredSensor(inputPin, true);
-        //    var emitter = new InfraredEmitter((GpioPin)Pi.Gpio[BcmPin.Gpio18]);
-        //
-        // sensor.DataAvailable += (s, e) =>
-        //    {
-        //        var necData = InfraredSensor.NecDecoder.DecodePulses(e.Pulses);
-        //        if (necData != null)
-        //        {
-        //            $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
-        //
-        //            if (InfraredSensor.NecDecoder.IsRepeatCode(e.Pulses))
-        //                return;
-        //
-        //            // Test repeater signal
-        //            var outputPulses = InfraredEmitter.NecEncoder.Encode(necData);
-        //
-        //            emitter.Send(outputPulses);
-        //            var debugData = InfraredSensor.DebugPulses(outputPulses);
-        //            $"TX       Length: {outputPulses.Length,5}".Warn("IR");
-        //            debugData.Info("IR");
-        //        }
-        //        else
-        //        {
-        //            if (e.Pulses.Length >= 4)
-        //            {
-        //                var debugData = InfraredSensor.DebugPulses(e.Pulses);
-        //                $"RX    Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
-        //                debugData.Info("IR");
-        //            }
-        //            else
-        //            {
-        //                $"RX (Garbage): {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
-        //            }
-        //        }
-        //    };
-        //
-        //    Console.ReadLine();
-        //    sensor.Dispose();
         // }
 
         /// <summary>
@@ -294,72 +214,6 @@
             {
                 Console.WriteLine(ex.Message);
             }
-        }
-
-        /// <summary>
-        /// Tests the LED blinking logic.
-        /// </summary>
-        // public static void TestLedBlinking()
-        // {
-        //    // Get a reference to the pin you need to use.
-        //    // All methods below are exactly equivalent and reference the same pin
-        //    var blinkingPin = Pi.Gpio[17];
-        //    blinkingPin = Pi.Gpio[BcmPin.Gpio17];
-        //    blinkingPin = Pi.Gpio[P1.Pin11];
-        //    blinkingPin = ((GpioController)Pi.Gpio)[WiringPiPin.Pin00];
-        //    blinkingPin = ((GpioController)Pi.Gpio).Pin17;
-        //    blinkingPin = ((GpioController)Pi.Gpio).HeaderP1[11];
-        //
-        //    // Configure the pin as an output
-        //    blinkingPin.PinMode = GpioPinDriveMode.Output;
-        //
-        //    // perform writes to the pin by toggling the isOn variable
-        //    var isOn = false;
-        //    for (var i = 0; i < 20; i++)
-        //    {
-        //        isOn = !isOn;
-        //        blinkingPin.Write(isOn);
-        //        Thread.Sleep(500);
-        //    }
-        // }
-
-        /// <summary>
-        /// Tests the hardware PWM.
-        /// </summary>
-        public static void TestHardwarePwm()
-        {
-            // TODO: Check out:
-            // https://raspberrypi.stackexchange.com/questions/4906/control-hardware-pwm-frequency
-            // https://stackoverflow.com/questions/20081286/controlling-a-servo-with-raspberry-pi-using-the-hardware-pwm-with-wiringpi
-            var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio18];
-            pin.PinMode = GpioPinDriveMode.PwmOutput;
-            pin.PwmMode = PwmMode.MarkSign;
-            pin.PwmClockDivisor = 3; // 1 is 4096, possible values are all powers of 2 starting from 2 to 2048
-            pin.PwmRange = 800; // Range valid values I still need to investigate
-            pin.PwmRegister = 600; // (int)(pin.PwmRange * 0.95); // This goes from 0 to 1024
-
-            var probe = new LogicProbe(Pi.Gpio[P1.Pin11]);
-            var probeBuffer = new List<LogicProbe.ProbeDataEventArgs>(1024);
-            probe.ProbeDataAvailable += (s, e) =>
-            {
-                probeBuffer.Add(e);
-                if (probeBuffer.Count >= 64)
-                {
-                    probe.Stop();
-                }
-            };
-
-            probe.Start();
-            while (probe.IsRunning)
-                Thread.Sleep(15);
-
-            Thread.Sleep(1000);
-            foreach (var entry in probeBuffer)
-            {
-                Console.WriteLine(entry.ToString());
-            }
-
-            Console.WriteLine("finished");
         }
 
         private static void TestCaptureImage()
