@@ -2107,6 +2107,19 @@ references:
   commentId: T:Unosquare.RaspberryIO.Computer.NetworkSettings
   fullName: Unosquare.RaspberryIO.Computer.NetworkSettings
   nameWithType: NetworkSettings
+- uid: Unosquare.RaspberryIO.Computer.NetworkSettings.GetCurrentAdapterName
+  name: GetCurrentAdapterName()
+  href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_GetCurrentAdapterName
+  commentId: M:Unosquare.RaspberryIO.Computer.NetworkSettings.GetCurrentAdapterName
+  fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.GetCurrentAdapterName()
+  nameWithType: NetworkSettings.GetCurrentAdapterName()
+- uid: Unosquare.RaspberryIO.Computer.NetworkSettings.GetCurrentAdapterName*
+  name: GetCurrentAdapterName
+  href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_GetCurrentAdapterName_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.NetworkSettings.GetCurrentAdapterName
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.NetworkSettings.GetCurrentAdapterName
+  nameWithType: NetworkSettings.GetCurrentAdapterName
 - uid: Unosquare.RaspberryIO.Computer.NetworkSettings.GetWirelessNetworkName
   name: GetWirelessNetworkName()
   href: api/Unosquare.RaspberryIO.Computer.NetworkSettings.html#Unosquare_RaspberryIO_Computer_NetworkSettings_GetWirelessNetworkName
