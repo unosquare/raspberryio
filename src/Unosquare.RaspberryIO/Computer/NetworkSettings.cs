@@ -108,7 +108,7 @@
 
             if (!string.IsNullOrWhiteSpace(password) && password.Length < 8)
             
-                throw new InvalidOperationException("The password length should be at least 8 characters long");
+                throw new InvalidOperationException("The password must be at least 8 characters length.");
 
             payload += string.IsNullOrEmpty(password)
                 ? $"network={{\n\tssid=\"{networkSsid}\"\n\tkey_mgmt=NONE\n\t}}\n"
