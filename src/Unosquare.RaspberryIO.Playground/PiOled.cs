@@ -94,8 +94,8 @@
                     currentVal = !currentVal;
                 }
 
-                if (cycleSw.ElapsedMilliseconds > 40)
-                    continue;
+                // if (cycleSw.ElapsedMilliseconds > 40)
+                // continue;
 
                 // Board.Timing.Sleep(40 - cycleSw.ElapsedMilliseconds);
             }

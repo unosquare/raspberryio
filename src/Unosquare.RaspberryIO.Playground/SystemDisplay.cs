@@ -60,7 +60,7 @@
                 return;
             }
 
-            if (brightness > 255 || brightness < 0)
+            if (brightness > 255)
             {
                 "Valid brightness values are between [0 - 255]".Error();
                 return;

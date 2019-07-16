@@ -55,7 +55,7 @@
 
             $"Picture taken: {fileName}.jpg".Info();
             $"Size: {pictureBytes.Length}B".Info();
-            $"Date Created: {DateTime.Now.ToString("MM/dd/yyyy")}".Info();
+            $"Date Created: {DateTime.Now:MM/dd/yyyy}".Info();
             $"At {DefaultPicturePath}\n".Info();
 
             var input = "Press Esc key to continue . . .".ReadKey(true).Key;
@@ -108,8 +108,7 @@
                     videoEventCount++;
                 },
                 onExitCallback: null);
-
-            startTime = DateTime.UtcNow;
+            
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write($" {(char)0x25CF} ");
             Console.ForegroundColor = ConsoleColor.Gray;

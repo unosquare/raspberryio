@@ -13,7 +13,7 @@
             { ConsoleKey.D, "Led Dimming" },
         };
 
-        public static async void ShowMenu()
+        public static void ShowMenu()
         {
             var exit = false;
 

@@ -259,7 +259,7 @@
 
             try
             {
-                var currentState = await Pi.Audio.GetState(1, "PCM").ConfigureAwait(false);
+                var currentState = await Pi.Audio.GetState(1).ConfigureAwait(false);
                 Console.WriteLine(currentState);
             }
             catch (InvalidOperationException ex)
@@ -279,7 +279,7 @@
 
             try
             {
-                await Pi.Audio.IncrementVolume(4.32f, 1, "PCM").ConfigureAwait(false);
+                await Pi.Audio.IncrementVolume(4.32f, 1).ConfigureAwait(false);
             }
             catch (InvalidOperationException ex)
             {

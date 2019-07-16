@@ -21,13 +21,12 @@
                 sensor.OnDataAvailable += (s, e) =>
                 {
                     totalReadings++;
-                    if (e.IsValid)
-                    {
-                        Console.Clear();
-                        validReadings++;
-                        $"Temperature: \n {e?.Temperature ?? 0:0.00}°C \n {e?.TemperatureFahrenheit ?? 0:0.00}°F  \n Humidity: {e?.HumidityPercentage ?? 0:P0}\n\n".Info("DHT11");
-                        "Press Esc key to continue . . .".WriteLine();
-                    }
+                    if (!e.IsValid) return;
+
+                    Console.Clear();
+                    validReadings++;
+                    $"Temperature: \n {e.Temperature:0.00}°C \n {e.TemperatureFahrenheit:0.00}°F  \n Humidity: {e.HumidityPercentage:P0}\n\n".Info("DHT11");
+                    "Press Esc key to continue . . .".WriteLine();
                 };
 
                 sensor.Start();
