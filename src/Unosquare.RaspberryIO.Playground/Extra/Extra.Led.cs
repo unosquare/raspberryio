@@ -7,7 +7,7 @@
     using Swan;
     using WiringPi;
 
-    public static partial class ExtraExamples
+    public static partial class Extra
     {
         public static void TestLedBlinking()
         {

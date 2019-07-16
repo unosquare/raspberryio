@@ -45,7 +45,7 @@
                         Peripherals.ShowMenu();
                         break;
                     case ConsoleKey.X:
-                        ExtraExamples.ShowMenu();
+                        Extra.ShowMenu();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

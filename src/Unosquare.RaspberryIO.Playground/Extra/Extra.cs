@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Swan;
 
-    public static partial class ExtraExamples
+    public static partial class Extra
     {
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
