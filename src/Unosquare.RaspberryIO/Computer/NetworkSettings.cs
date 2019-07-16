@@ -98,16 +98,17 @@
         /// </summary>
         /// <param name="adapterName">Name of the adapter.</param>
         /// <param name="networkSsid">The network ssid.</param>
-        /// <param name="password">The password.</param>
+        /// <param name="password">The password (8 characters as minimum, if not, will be ignored).</param>
         /// <param name="countryCode">The 2-letter country code in uppercase. Default is US.</param>
         /// <returns>True if successful. Otherwise, false.</returns>
         public async Task<bool> SetupWirelessNetwork(string adapterName, string networkSsid, string password = null, string countryCode = "US")
         {
             // TODO: Get the country where the device is located to set 'country' param in payload var
             var payload = $"country={countryCode}\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
+            var networkPassword = password.Length >= 8 ? password : null;
             payload += string.IsNullOrEmpty(password)
                 ? $"network={{\n\tssid=\"{networkSsid}\"\n\tkey_mgmt=NONE\n\t}}\n"
-                : $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{password}\"\n\t}}\n";
+                : $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{networkPassword}\"\n\t}}\n";
             try
             {
                 File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
@@ -216,11 +217,24 @@
         }
 
         /// <summary>
+        /// Retrieves the current network adapter.
+        /// </summary>
+        /// <returns>The name of the current network adapter.</returns>
+        public static async Task<string> GetCurrentAdapterName()
+        {
+            var result = await ProcessRunner.GetProcessOutputAsync("route").ConfigureAwait(false);
+            var defaultLine = result.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                                .FirstOrDefault(l => l.StartsWith("default", StringComparison.OrdinalIgnoreCase));
+
+            return defaultLine?.Trim().Substring(defaultLine.LastIndexOf(" ", StringComparison.OrdinalIgnoreCase) + 1);
+        }
+
+        /// <summary>
         /// Retrieves current wireless connected network name.
         /// </summary>
         /// <returns>The connected network name.</returns>
         public Task<string> GetWirelessNetworkName() => ProcessRunner.GetProcessOutputAsync("iwgetid", "-r");
-        
+
         private static void GetIPv4(string indentedLine, NetworkAdapterInfo adapter)
         {
             var addressText = ParseOutputTagFromLine(indentedLine, "inet addr:") ??
