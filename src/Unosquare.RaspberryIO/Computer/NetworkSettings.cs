@@ -106,7 +106,8 @@
             // TODO: Get the country where the device is located to set 'country' param in payload var
             var payload = $"country={countryCode}\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
 
-            if (password != null && password.Length < 8)
+            if (!string.IsNullOrWhiteSpace(password) && password.Length < 8)
+            
                 throw new InvalidOperationException("The password length should be at least 8 characters long");
 
             payload += string.IsNullOrEmpty(password)
