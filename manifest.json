@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "+0ue+vPKXbN0v4uO9OHHsg=="
+          "hash": "tawzrXr3qBz12dmv8m4e7A=="
         }
       },
       "is_incremental": false,
@@ -241,7 +241,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Camera.CameraVideoSettings.html",
-          "hash": "xBzHeJso9IIDx6PaMg+uFw=="
+          "hash": "DDUUAZF5G0+EI0KjkyXjvw=="
         }
       },
       "is_incremental": false,
@@ -361,7 +361,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.NetworkSettings.html",
-          "hash": "KuYT1c7wQNn6mm1BlRVdzg=="
+          "hash": "y+R2BxbLmNzIMEXxdrgMaQ=="
         }
       },
       "is_incremental": false,
