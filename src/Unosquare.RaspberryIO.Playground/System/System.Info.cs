@@ -1,0 +1,54 @@
+﻿namespace Unosquare.RaspberryIO.Playground
+{
+    using Computer;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Swan;
+
+    public static partial class SystemTests
+    {
+        private static async Task TestSystemInfo()
+        {
+            Console.Clear();
+
+            $"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins".Info();
+            $"{Pi.Info}".Info();
+            try
+            {
+                $"BoardModel {Pi.Info.BoardModel}".Info();
+                $"ProcessorModel {Pi.Info.ProcessorModel}".Info();
+                $"Manufacturer {Pi.Info.Manufacturer}".Info();
+                $"MemorySize {Pi.Info.MemorySize}".Info();
+            }
+            catch
+            {
+                // ignore
+            }
+
+            $"Uname {Pi.Info.OperatingSystem}".Info();
+            $"HostName {NetworkSettings.Instance.HostName}".Info();
+            $"Uptime (seconds) {Pi.Info.Uptime}".Info();
+            var timeSpan = Pi.Info.UptimeTimeSpan;
+            $"Uptime (timespan) {timeSpan.Days} days {timeSpan.Hours:00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}"
+                .Info();
+
+            (await NetworkSettings.Instance.RetrieveAdapters().ConfigureAwait(false))
+                .Select(adapter => $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}")
+                .ToList()
+                .ForEach(x => x.Info());
+
+            var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+
+            while (true)
+            {
+                if (input == ConsoleKey.Escape)
+                {
+                    break;
+                }
+
+                input = Console.ReadKey(true).Key;
+            }
+        }
+    }
+}

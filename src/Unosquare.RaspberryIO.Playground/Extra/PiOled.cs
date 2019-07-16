@@ -6,10 +6,10 @@
     using System.Drawing.Drawing2D;
     using System.Drawing.Imaging;
     using System.Threading;
-    using Peripherals;
     using Swan;
-    using Unosquare.Swan.Abstractions;
-
+    using Swan.Abstractions;
+    using Unosquare.RaspberryIO.Peripherals;
+    
     internal class PiOled : RunnerBase
     {
         private OledDisplaySsd1306 _display;
@@ -94,8 +94,8 @@
                     currentVal = !currentVal;
                 }
 
-                if (cycleSw.ElapsedMilliseconds > 40)
-                    continue;
+                // if (cycleSw.ElapsedMilliseconds > 40)
+                // continue;
 
                 // Board.Timing.Sleep(40 - cycleSw.ElapsedMilliseconds);
             }

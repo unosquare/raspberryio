@@ -9,6 +9,8 @@
     /// <seealso cref="CameraSettingsBase" />
     public class CameraVideoSettings : CameraSettingsBase
     {
+        private int _length;
+
         /// <inheritdoc />
         public override string CommandName => "raspivid";
 
@@ -56,6 +58,28 @@
         public bool CaptureInterleaveHeaders { get; set; } = true;
 
         /// <summary>
+        /// Toggle fullscreen mode for video preview.
+        /// </summary>
+        public bool Fullscreen { get; set; } = false;
+
+        /// <summary>
+        /// Specifies the path to save video files.
+        /// </summary>
+        public string VideoFileName { get; set; }
+
+        /// <summary>
+        /// Video stream length in seconds
+        /// </summary>
+        public int LengthInSeconds
+        {
+            get { return _length; }
+            set
+            {
+                _length = value * 1000;
+            }
+        }
+
+        /// <summary>
         /// Switch on an option to display the preview after compression. This will show any compression artefacts in the preview window. In normal operation, 
         /// the preview will show the camera output prior to being compressed. This option is not guaranteed to work in future releases.
         /// </summary>
@@ -69,24 +93,14 @@
         {
             var sb = new StringBuilder(base.CreateProcessArguments());
 
-            sb.Append($" -pf {CaptureProfile.ToString().ToLowerInvariant()}");
-            if (CaptureBitrate < 0)
-                sb.Append($" -b {CaptureBitrate.Clamp(0, 25000000).ToString(Ci)}");
+            if (Fullscreen)
+                sb.Append($" -f");
 
-            if (CaptureFramerate >= 2)
-                sb.Append($" -fps {CaptureFramerate.Clamp(2, 30).ToString(Ci)}");
+            if (LengthInSeconds != 0)
+                sb.Append($" -t {LengthInSeconds}");
 
-            if (CaptureDisplayPreview && CaptureDisplayPreviewEncoded)
-                    sb.Append(" -e");
-
-            if (CaptureKeyframeRate > 0)
-                sb.Append($" -g {CaptureKeyframeRate.ToString(Ci)}");
-
-            if (CaptureQuantisation >= 0)
-                sb.Append($" -qp {CaptureQuantisation.Clamp(0, 40).ToString(Ci)}");
-
-            if (CaptureInterleaveHeaders)
-                sb.Append(" -ih");
+            if (!string.IsNullOrEmpty(VideoFileName))
+                sb.Append($" -o {VideoFileName}");
 
             return sb.ToString();
         }

@@ -1,8 +1,8 @@
-﻿using System;
-using Unosquare.RaspberryIO.Abstractions;
-
-namespace Unosquare.RaspberryIO.Peripherals
+﻿namespace Unosquare.RaspberryIO.Peripherals
 {
+    using System;
+    using Unosquare.RaspberryIO.Abstractions;
+
     /// <summary>
     /// Implements a generic button attached to the GPIO.
     /// </summary>
@@ -18,18 +18,18 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// Initializes a new instance of the <see cref="Button"/> class.
         /// </summary>
         /// <param name="gpioPin">The gpio pin.</param>
-        public Button(IGpioPin gpioPin)
+        /// <param name="pullMode">The input pull mode.</param>
+        public Button(IGpioPin gpioPin, GpioPinResistorPullMode pullMode = GpioPinResistorPullMode.PullDown)
         {
             _gpioPin = gpioPin;
-
-            _gpioPin.InputPullMode = GpioPinResistorPullMode.PullDown;
+            _gpioPin.InputPullMode = pullMode;
             _gpioPin.PinMode = GpioPinDriveMode.Input;
             _gpioPin.RegisterInterruptCallback(EdgeDetection.FallingAndRisingEdge, HandleInterrupt);
         }
 
         /// <summary>
         /// Occurs when [pressed].
-        /// </summary>
+        /// </summary> 
         public event EventHandler<EventArgs> Pressed;
 
         /// <summary>
@@ -39,14 +39,13 @@ namespace Unosquare.RaspberryIO.Peripherals
 
         private void HandleInterrupt()
         {
-            if (_gpioPin.Read())
-            {
+            var val = _gpioPin.Read();
+            if ((val && _gpioPin.InputPullMode == GpioPinResistorPullMode.PullDown) ||
+                (!val && _gpioPin.InputPullMode == GpioPinResistorPullMode.PullUp))
                 HandleButtonPressed();
-            }
             else
-            {
                 HandleButtonReleased();
-            }
+
         }
 
         private void HandleButtonPressed()

@@ -1,7 +1,6 @@
 ﻿#if NET461
 namespace Unosquare.RaspberryIO.Playground
 {
-    using Peripherals;
     using Swan;
     using Swan.Formatters;
     using System;
@@ -9,8 +8,9 @@ namespace Unosquare.RaspberryIO.Playground
     using System.IO;
     using System.Linq;
     using System.Threading;
+    using Unosquare.RaspberryIO.Peripherals;
 
-    public partial class Program
+    public static partial class Peripherals
     {
         /// <summary>
         /// Tests the led strip graphics.
@@ -131,7 +131,7 @@ namespace Unosquare.RaspberryIO.Playground
                 {
                     strip.ClearPixels();
 
-                    red = red >= 254 ? default(byte) : (byte)(red + 1);
+                    red = red >= 254 ? default : (byte)(red + 1);
 
                     for (var i = 0; i < tailSize; i++)
                     {
@@ -158,10 +158,9 @@ namespace Unosquare.RaspberryIO.Playground
 
                 strip.ClearPixels();
                 strip.Render();
-            });
+            })
+            { IsBackground = true, Name = nameof(LedStripAPA102C) };
 
-            thread.IsBackground = true;
-            thread.Name = nameof(LedStripAPA102C);
             thread.Start();
             Console.Write("Press any key to stop and clear");
             Console.ReadKey(true);
