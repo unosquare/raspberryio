@@ -98,17 +98,20 @@
         /// </summary>
         /// <param name="adapterName">Name of the adapter.</param>
         /// <param name="networkSsid">The network ssid.</param>
-        /// <param name="password">The password (8 characters as minimum, if not, will be ignored).</param>
+        /// <param name="password">The password (8 characters as minimum length).</param>
         /// <param name="countryCode">The 2-letter country code in uppercase. Default is US.</param>
         /// <returns>True if successful. Otherwise, false.</returns>
         public async Task<bool> SetupWirelessNetwork(string adapterName, string networkSsid, string password = null, string countryCode = "US")
         {
             // TODO: Get the country where the device is located to set 'country' param in payload var
             var payload = $"country={countryCode}\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
-            var networkPassword = password.Length >= 8 ? password : null;
+
+            if (password != null && password.Length < 8)
+                throw new InvalidOperationException("The password length should be at least 8 characters long");
+
             payload += string.IsNullOrEmpty(password)
                 ? $"network={{\n\tssid=\"{networkSsid}\"\n\tkey_mgmt=NONE\n\t}}\n"
-                : $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{networkPassword}\"\n\t}}\n";
+                : $"network={{\n\tssid=\"{networkSsid}\"\n\tpsk=\"{password}\"\n\t}}\n";
             try
             {
                 File.WriteAllText("/etc/wpa_supplicant/wpa_supplicant.conf", payload);
