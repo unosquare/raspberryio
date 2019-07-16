@@ -1,4 +1,6 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿using System.Text;
+
+namespace Unosquare.RaspberryIO.Playground
 {
     using System;
     using System.Collections.Generic;
@@ -165,8 +167,8 @@
             "Testing RFID".Info();
 
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
-            var userInput = "Insert a message to be writed in the card, 16 characters only".ReadLine().Truncate(16);
-            "Insert a card in the sensor".Info();
+            var userInput = "Insert a message to be written in the card (16 characters only)".ReadLine().Truncate(16);
+            "Place the card on the sensor".Info();
 
             while (true)
             {
@@ -186,14 +188,14 @@
 
                 // Writing data to sector 1 blocks
                 // Authenticate sector
-                if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 0) == RFIDControllerMfrc522.Status.AllOk)
+                if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 19) == RFIDControllerMfrc522.Status.AllOk)
                 {
                     userInput = (userInput + new string(' ', 16)).Truncate(16);
-                    device.CardWriteData(0, System.Text.Encoding.ASCII.GetBytes(userInput));
+                    device.CardWriteData(16, Encoding.ASCII.GetBytes(userInput));
                 }
 
                 device.ClearCardSelection();
-                "Writed".Info();
+                "Data has been written".Info();
                 var input = "Press Esc key to continue . . .".ReadKey(true).Key;
                 while (true)
                 {
@@ -238,20 +240,12 @@
                 var continueReading = true;
 
                 // Authenticate sector
-                if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 0) == RFIDControllerMfrc522.Status.AllOk)
+                if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 19) == RFIDControllerMfrc522.Status.AllOk)
                 {
-                    $"Sector {0}".Info();
-                    for (var b = 0; b < 3 && continueReading; b++)
-                    {
-                        var data = device.CardReadData((byte)b);
-                        if (data.Status != RFIDControllerMfrc522.Status.AllOk)
-                        {
-                            continueReading = false;
-                            break;
-                        }
+                    var data = device.CardReadData(16);
+                    var text = Encoding.ASCII.GetString(data.Data);
 
-                        $"  Block {b} ({data.Data.Length} bytes): {string.Join(" ", data.Data.Select(x => x.ToString("X2")))}".Info();
-                    }
+                    $" Message read: {text}".Info();
                 }
                 else
                 {
@@ -321,8 +315,7 @@
                     }
                     else
                     {
-                        "Authentication error".Error();
-                        break;
+                        $"Authentication error, sector {s}".Error();
                     }
                 }
 
