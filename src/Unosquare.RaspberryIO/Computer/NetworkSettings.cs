@@ -107,7 +107,6 @@
             var payload = $"country={countryCode}\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\n";
 
             if (!string.IsNullOrWhiteSpace(password) && password.Length < 8)
-            
                 throw new InvalidOperationException("The password must be at least 8 characters length.");
 
             payload += string.IsNullOrEmpty(password)
