@@ -1,12 +1,11 @@
-﻿using System.Text;
-
-namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground
 {
     using System;
+    using System.Text;
     using System.Collections.Generic;
     using System.Linq;
-    using Unosquare.RaspberryIO.Peripherals;
-    using Unosquare.Swan;
+    using Peripherals;
+    using Swan;
 
     public partial class Program
     {
@@ -16,7 +15,6 @@ namespace Unosquare.RaspberryIO.Playground
             { ConsoleKey.W, "Write Card" },
             { ConsoleKey.R, "Read Card" },
             { ConsoleKey.S, "Read Card Sectors" },
-
         };
 
         public static void ShowRfidMenu()
@@ -236,9 +234,6 @@ namespace Unosquare.RaspberryIO.Playground
                 // Select the scanned tag
                 device.SelectCardUniqueId(cardUid);
 
-                // Reading data
-                var continueReading = true;
-
                 // Authenticate sector
                 if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, 19) == RFIDControllerMfrc522.Status.AllOk)
                 {
@@ -271,6 +266,7 @@ namespace Unosquare.RaspberryIO.Playground
         private static void ReadAllCardSectors()
         {
             Console.Clear();
+
             "Testing RFID".Info();
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 

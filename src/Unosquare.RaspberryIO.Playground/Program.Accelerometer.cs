@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using System;
-    using Unosquare.RaspberryIO.Peripherals;
-    using Unosquare.Swan;
+    using Peripherals;
+    using Swan;
 
     public static partial class Program
     {
@@ -12,11 +12,12 @@
         public static void TestAccelerometer()
         {
             Console.Clear();
+
             // Add device
-            var accel_device = Pi.I2C.AddDevice(0x68);
+            var accelDevice = Pi.I2C.AddDevice(0x68);
 
             // Set accelerometer
-            using (var accelSensor = new AccelerometerGY521(accel_device))
+            using (var accelSensor = new AccelerometerGY521(accelDevice))
             {
                 // Present info to screen
                 accelSensor.DataAvailable +=

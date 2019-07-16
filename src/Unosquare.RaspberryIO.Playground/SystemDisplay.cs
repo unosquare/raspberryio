@@ -6,10 +6,9 @@
 
     public static class SystemDisplay
     {
-        private static bool exit = false;
         public static async Task ShowMenu()
         {
-            exit = false;
+            var exit = false;
             ConsoleKey key;
 
             while (!exit)
@@ -32,8 +31,6 @@
                     case ConsoleKey.Escape:
                         exit = true;
                         break;
-                    default:
-                        break;
                 }
 
                 if (!exit)
@@ -48,29 +45,29 @@
         public static void SetBrightness()
         {
             Console.Clear();
-            Console.WriteLine($"Set a new brightness value [0 - 255]");
+            Console.WriteLine("Set a new brightness value [0 - 255]");
             var brightValue = byte.TryParse(Console.ReadLine(), out var brightness);
-            if (brightValue)
-            {
-                if (brightness == Pi.PiDisplay.Brightness)
-                {
-                    $"Set a different brightness value.".Error();
-                    return;
-                }
-                else if (brightness > 255 || brightness < 0)
-                {
-                    $"Valid brightness values are between [0 - 255]".Error();
-                    return;
-                }
 
-                $"The new brightness value is {brightness}".Info();
-                Pi.PiDisplay.Brightness = brightness;
-            }
-            else
+            if (!brightValue)
             {
-                $"Failed to set brightness value.".Error();
+                "Failed to set brightness value.".Error();
                 return;
             }
+
+            if (brightness == Pi.PiDisplay.Brightness)
+            {
+                "Set a different brightness value.".Error();
+                return;
+            }
+
+            if (brightness > 255 || brightness < 0)
+            {
+                "Valid brightness values are between [0 - 255]".Error();
+                return;
+            }
+
+            $"The new brightness value is {brightness}".Info();
+            Pi.PiDisplay.Brightness = brightness;
         }
 
         public static void ToggleBlackLight() =>

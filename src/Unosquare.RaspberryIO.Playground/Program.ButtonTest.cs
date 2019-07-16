@@ -1,9 +1,9 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using System;
-    using Unosquare.RaspberryIO.Abstractions;
-    using Unosquare.RaspberryIO.Peripherals;
-    using Unosquare.Swan;
+    using Abstractions;
+    using Peripherals;
+    using Swan;
 
     public partial class Program
     {

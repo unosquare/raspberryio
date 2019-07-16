@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using Unosquare.Swan;
+    using Swan;
 
     public static class ExtraExamples
     {
@@ -28,10 +28,10 @@
                         Program.TestButton();
                         break;
                     case ConsoleKey.L:
-                        await Program.TestLedBlinking().ConfigureAwait(false);
+                        Program.TestLedBlinking();
                         break;
                     case ConsoleKey.D:
-                        await Program.TestLedDimming().ConfigureAwait(false);
+                        Program.TestLedDimming();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

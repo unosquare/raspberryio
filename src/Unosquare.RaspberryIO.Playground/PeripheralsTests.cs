@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using Unosquare.Swan;
+    using Swan;
 
     public static class PeripheralsTests
     {

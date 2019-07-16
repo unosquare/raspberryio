@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-    using Unosquare.Swan;
+    using Swan;
 
     public static class SystemCamera
     {

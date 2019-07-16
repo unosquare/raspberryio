@@ -3,14 +3,13 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Unosquare.RaspberryIO.Abstractions;
-    using Unosquare.Swan;
-    using Unosquare.WiringPi;
+    using Abstractions;
+    using Swan;
+    using WiringPi;
 
     public partial class Program
     {
-
-        public static async Task TestLedBlinking()
+        public static void TestLedBlinking()
         {
             using (var cancellationTokenSource = new CancellationTokenSource())
             {
@@ -20,16 +19,14 @@
                 {
                     var input = Console.ReadKey(true).Key;
 
-                    if (input == ConsoleKey.Escape)
-                    {
-                        cancellationTokenSource.Cancel();
-                        break;
-                    }
+                    if (input != ConsoleKey.Escape) continue;
+                    cancellationTokenSource.Cancel();
+                    break;
                 }
             }
         }
 
-        public static async Task TestLedDimming()
+        public static void TestLedDimming()
         {
             using (var cancellationTokenSource = new CancellationTokenSource())
             {
@@ -39,11 +36,9 @@
                 {
                     var input = Console.ReadKey(true).Key;
 
-                    if (input == ConsoleKey.Escape)
-                    {
-                        cancellationTokenSource.Cancel();
-                        break;
-                    }
+                    if (input != ConsoleKey.Escape) continue;
+                    cancellationTokenSource.Cancel();
+                    break;
                 }
             }
         }
@@ -53,6 +48,7 @@
         {
             Console.Clear();
             var blinkingPin = Pi.Gpio[BcmPin.Gpio13];
+
             // Configure the pin as an output
             blinkingPin.PinMode = GpioPinDriveMode.Output;
 
@@ -108,7 +104,6 @@
                 if (input == ConsoleKey.Escape)
                 {
                     cancellationTokenSource.Cancel();
-                    return;
                 }
             });
     }

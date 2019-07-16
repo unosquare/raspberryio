@@ -6,13 +6,12 @@
 
     public static class SystemVolume
     {
-        private static bool exit = false;
-        private static bool mute = false;
+        private static bool _mute;
         private static int CurrentLevel { get; set; }
 
         public static async Task ShowMenu()
         {
-            exit = false;
+            var exit = false;
 
             while (!exit)
             {
@@ -46,8 +45,8 @@
                             validOption = true;
                             break;
                         case ConsoleKey.M:
-                            mute = !mute;
-                            await Pi.Audio.ToggleMute(mute).ConfigureAwait(false);
+                            _mute = !_mute;
+                            await Pi.Audio.ToggleMute(_mute).ConfigureAwait(false);
                             validOption = true;
                             break;
                         case ConsoleKey.Escape:
@@ -65,11 +64,10 @@
         private static void UpdateProgress(int level)
         {
             var filler = level / 10;
-            var color = ConsoleColor.Black;
-
+            ConsoleColor color;
             "\r[".Write();
 
-            for (int i = 1; i <= 10; ++i)
+            for (var i = 1; i <= 10; ++i)
             {
                 if (i <= filler)
                 {
