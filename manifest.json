@@ -297,6 +297,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.Bluetooth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.Computer.Bluetooth.html",
+          "hash": "AE/lO5mNy8qkTWGw25BtDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.BoardModel.yml",
       "output": {
         ".html": {
@@ -433,7 +445,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.html",
-          "hash": "JziXU+EwQ1mshWhcuwGH0Q=="
+          "hash": "nDtLAr/uUGq8/CNaLkQFvw=="
         }
       },
       "is_incremental": false,
@@ -493,7 +505,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "20b0YtxpMgPtKq6eSRrb/g=="
+          "hash": "oX6q/eXkjStswXnJQLXYKQ=="
         }
       },
       "is_incremental": false,
@@ -533,7 +545,13 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 34,
+          "total_file_count": 35,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
@@ -541,12 +559,6 @@
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 1,
           "skipped_file_count": 0
         }
       }
