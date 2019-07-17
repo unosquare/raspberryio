@@ -1,7 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
     using System.Text;
-    using Swan;
 
     /// <summary>
     /// Represents the raspivid camera settings for video capture functionality.
@@ -72,11 +71,8 @@
         /// </summary>
         public int LengthInSeconds
         {
-            get { return _length; }
-            set
-            {
-                _length = value * 1000;
-            }
+            get => _length;
+            set => _length = value * 1000;
         }
 
         /// <summary>
@@ -94,7 +90,7 @@
             var sb = new StringBuilder(base.CreateProcessArguments());
 
             if (Fullscreen)
-                sb.Append($" -f");
+                sb.Append(" -f");
 
             if (LengthInSeconds != 0)
                 sb.Append($" -t {LengthInSeconds}");

@@ -48,7 +48,9 @@
             while (!exit);
         }
 
-        //General Test
+        /// <summary>
+        /// Tests the rfid controller.
+        /// </summary>
         public static void TestRfidController()
         {
             "Testing RFID".Info();

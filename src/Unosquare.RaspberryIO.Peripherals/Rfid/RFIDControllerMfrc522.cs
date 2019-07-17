@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Unosquare.RaspberryIO.Abstractions;
-using Unosquare.Swan;
-
-namespace Unosquare.RaspberryIO.Peripherals
+﻿namespace Unosquare.RaspberryIO.Peripherals
 {
+    using System;
+    using System.Collections.Generic;
+    using Abstractions;
+    using Swan;
+
     /// <summary>
     /// Read and write different types of Radio-Frequency IDentification (RFID) cards on your
     /// Raspberry Pi using a RC522 based reader connected via the Serial Peripheral Interface (SPI) interface.

@@ -21,10 +21,11 @@
         private const long NoObstaclePulseMicroseconds = 32000;
         private static readonly int[] AllowedPinNumbers = { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
 
-        private IGpioPin TriggerPin;
-        private IGpioPin EchoPin;
-        private Thread ReadWorker;
-        private HighResolutionTimer measurementTimer;
+        private bool _disposedValue;
+        private IGpioPin _triggerPin;
+        private IGpioPin _echoPin;
+        private Thread _readWorker;
+        private HighResolutionTimer _measurementTimer;
 
         static UltrasonicHcsr04()
         {
@@ -49,9 +50,9 @@
             if (AllowedPins.Contains(echoPin) == false)
                 throw new ArgumentException($"{nameof(echoPin)}, {echoPin} is not available to service this driver.");
 
-            TriggerPin = triggerPin;
-            EchoPin = echoPin;
-            ReadWorker = new Thread(PerformContinuousReads);
+            _triggerPin = triggerPin;
+            _echoPin = echoPin;
+            _readWorker = new Thread(PerformContinuousReads);
         }
 
         /// <summary>
@@ -71,23 +72,24 @@
         /// </summary>
         public void Start()
         {
-            TriggerPin.PinMode = GpioPinDriveMode.Output;
-            EchoPin.PinMode = GpioPinDriveMode.Input;
+            _triggerPin.PinMode = GpioPinDriveMode.Output;
+            _echoPin.PinMode = GpioPinDriveMode.Input;
 
-            measurementTimer = new HighResolutionTimer();
+            _measurementTimer = new HighResolutionTimer();
             IsRunning = true;
-            ReadWorker.Start();
+            _readWorker.Start();
         }
 
         /// <summary>
         /// Stops sensor reading.
         /// </summary>
         public void Stop() =>
-            StopContinuousReads();
-
-        private void StopContinuousReads() =>
             IsRunning = false;
-
+        
+        /// <inheritdoc />
+        public void Dispose() =>
+            Stop();
+        
         private void PerformContinuousReads(object state)
         {
             while (IsRunning)
@@ -95,11 +97,9 @@
                 // Acquire measure
                 var sensorData = RetrieveSensorData();
 
-                if (IsRunning)
-                {
-                    OnDataAvailable?.Invoke(this, sensorData);
-                    Thread.Sleep(200);
-                }
+                if (!IsRunning) continue;
+                OnDataAvailable?.Invoke(this, sensorData);
+                Thread.Sleep(200);
             }
 
             Dispose(true);
@@ -110,22 +110,22 @@
             try
             {
                 // Send trigger pulse
-                TriggerPin.Write(GpioPinValue.Low);
+                _triggerPin.Write(GpioPinValue.Low);
                 Pi.Timing.SleepMicroseconds(2);
-                TriggerPin.Write(GpioPinValue.High);
+                _triggerPin.Write(GpioPinValue.High);
                 Pi.Timing.SleepMicroseconds(12);
-                TriggerPin.Write(GpioPinValue.Low);
+                _triggerPin.Write(GpioPinValue.Low);
 
-                if (!EchoPin.WaitForValue(GpioPinValue.High, 50))
+                if (!_echoPin.WaitForValue(GpioPinValue.High, 50))
                     throw new TimeoutException();
 
-                measurementTimer.Start();
-                if (!EchoPin.WaitForValue(GpioPinValue.Low, 50))
+                _measurementTimer.Start();
+                if (!_echoPin.WaitForValue(GpioPinValue.Low, 50))
                     throw new TimeoutException();
 
-                measurementTimer.Stop();
-                var elapsedTime = measurementTimer.ElapsedMicroseconds;
-                measurementTimer.Reset();
+                _measurementTimer.Stop();
+                var elapsedTime = _measurementTimer.ElapsedMicroseconds;
+                _measurementTimer.Reset();
 
                 var distance = elapsedTime / 58.0;
                 if (elapsedTime > NoObstaclePulseMicroseconds)
@@ -138,32 +138,24 @@
                 return UltrasonicReadEventArgs.CreateInvalidReading();
             }
         }
-
-        #region IDisposable Support
-
-        private bool disposedValue;
-
+        
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        public void Dispose() =>
-            StopContinuousReads();
-
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
-                    TriggerPin = null;
-                    EchoPin = null;
-                    ReadWorker = null;
+                    _triggerPin = null;
+                    _echoPin = null;
+                    _readWorker = null;
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
-
-#endregion
     }
 }

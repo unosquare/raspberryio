@@ -22,7 +22,7 @@
         /// <summary>
         /// Returns true if the reading was valid.
         /// </summary>
-        public bool IsValid { get; private set; } = true;
+        public bool IsValid { get; } = true;
 
         /// <summary>
         /// Gets a value indicating whether any obstacle was detected.
