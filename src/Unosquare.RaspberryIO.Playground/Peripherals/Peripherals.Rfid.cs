@@ -146,15 +146,14 @@
                 // Print UID
                 $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
 
-                var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+                ExitMessage.WriteLine();
+
                 while (true)
                 {
-                    if (input == ConsoleKey.Escape)
-                    {
-                        break;
-                    }
+                    var input = Console.ReadKey(true).Key;
+                    if (input != ConsoleKey.Escape) continue;
 
-                    input = Console.ReadKey(true).Key;
+                    break;
                 }
 
                 break;
@@ -196,15 +195,14 @@
 
                 device.ClearCardSelection();
                 "Data has been written".Info();
-                var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+
+                ExitMessage.WriteLine();
                 while (true)
                 {
-                    if (input == ConsoleKey.Escape)
-                    {
-                        break;
-                    }
+                    var input = Console.ReadKey(true).Key;
+                    if (input != ConsoleKey.Escape) continue;
 
-                    input = Console.ReadKey(true).Key;
+                    break;
                 }
 
                 break;
@@ -250,15 +248,13 @@
                 }
 
                 device.ClearCardSelection();
-                var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+                ExitMessage.WriteLine();
                 while (true)
                 {
-                    if (input == ConsoleKey.Escape)
-                    {
-                        break;
-                    }
+                    var input = Console.ReadKey(true).Key;
+                    if (input != ConsoleKey.Escape) continue;
 
-                    input = Console.ReadKey(true).Key;
+                    break;
                 }
 
                 break;
@@ -318,15 +314,14 @@
                 }
 
                 device.ClearCardSelection();
-                var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+
+                ExitMessage.WriteLine();
                 while (true)
                 {
-                    if (input == ConsoleKey.Escape)
-                    {
-                        break;
-                    }
+                    var input = Console.ReadKey(true).Key;
+                    if (input != ConsoleKey.Escape) continue;
 
-                    input = Console.ReadKey(true).Key;
+                    break;
                 }
 
                 break;

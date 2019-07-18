@@ -38,24 +38,23 @@
                         $"{new string('█', (int)distance)}".WriteLine(color);
                         "--------------------------------------------------------->".WriteLine();
                         "          10        20        30        40        50       cm".WriteLine();
-                        $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in".WriteLine();
+                        $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in\n".WriteLine();
                     }
                     else
                     {
-                        "No obstacles detected.".Info("HC - SR04");
+                        "No obstacles detected.\n".Info("HC - SR04");
                     }
 
-                    "\n Press Esc key to continue . . .".WriteLine();
+                    ExitMessage.WriteLine();
                 };
 
                 sensor.Start();
                 while (true)
                 {
                     var input = Console.ReadKey(true).Key;
-                    if (input == ConsoleKey.Escape)
-                    {
-                        break;
-                    }
+                    if (input != ConsoleKey.Escape) continue;
+
+                    break;
                 }
             }
         }

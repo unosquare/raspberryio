@@ -26,7 +26,7 @@
                         Console.Clear();
                         $"\nAccelerometer:\n{e.Accel}\n\nGyroscope:\n{e.Gyro}\n\nTemperature: {Math.Round(e.Temperature, 2)}°C\n"
                             .Info("GY-521");
-                        "Press Esc key to continue . . .".WriteLine();
+                        ExitMessage.WriteLine();
                     };
 
                 // Run accelerometer
@@ -34,10 +34,9 @@
                 while (true)
                 {
                     var input = Console.ReadKey(true).Key;
-                    if (input == ConsoleKey.Escape)
-                    {
-                        break;
-                    }
+                    if (input != ConsoleKey.Escape) continue;
+
+                    break;
                 }
             }
         }

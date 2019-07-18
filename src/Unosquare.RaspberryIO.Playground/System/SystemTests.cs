@@ -7,6 +7,8 @@
 
     public static partial class SystemTests
     {
+        private const string ExitMessage = "Press Esc key to continue . . .";
+
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.C, "Camera" },

@@ -49,11 +49,11 @@
                 Console.Clear();
                 var blinkingPin = Pi.Gpio[BcmPin.Gpio13];
 
-                        // Configure the pin as an output
-                        blinkingPin.PinMode = GpioPinDriveMode.Output;
+                // Configure the pin as an output
+                blinkingPin.PinMode = GpioPinDriveMode.Output;
 
-                        // perform writes to the pin by toggling the isOn variable
-                        var isOn = false;
+                // perform writes to the pin by toggling the isOn variable
+                var isOn = false;
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     isOn = !isOn;
@@ -61,7 +61,7 @@
                     var ledState = isOn ? "on" : "off";
                     Console.Clear();
                     $"Blinking {ledState}".Info();
-                    "Press Esc key to continue . . .".WriteLine();
+                    ExitMessage.WriteLine();
                     Thread.Sleep(500);
                 }
 
@@ -73,7 +73,7 @@
             {
                 Console.Clear();
                 "Dimming".Info();
-                "Press Esc key to continue . . .".WriteLine();
+                ExitMessage.WriteLine();
                 var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio13];
                 pin.PinMode = GpioPinDriveMode.PwmOutput;
                 pin.PwmMode = PwmMode.Balanced;
