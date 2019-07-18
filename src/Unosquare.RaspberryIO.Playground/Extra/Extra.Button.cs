@@ -22,10 +22,9 @@
             {
                 var input = Console.ReadKey(true).Key;
 
-                if (input == ConsoleKey.Escape)
-                {
-                    break;
-                }
+                if (input != ConsoleKey.Escape) continue;
+
+                break;
             }
         }
 
@@ -33,7 +32,7 @@
         {
             Console.Clear();
             message.Info();
-            "Press Esc key to continue . . .".WriteLine();
+            ExitMessage.WriteLine();
         }
     }
 }

@@ -58,15 +58,14 @@
             $"Date Created: {DateTime.Now:MM/dd/yyyy}".Info();
             $"At {DefaultPicturePath}\n".Info();
 
-            var input = "Press Esc key to continue . . .".ReadKey(true).Key;
+            "Press Esc key to continue . . .".WriteLine();
+
             while (true)
             {
-                if (input == ConsoleKey.Escape)
-                {
-                    break;
-                }
+                var input = Console.ReadKey(true).Key;
+                if (input != ConsoleKey.Escape) continue;
 
-                input = Console.ReadKey(true).Key;
+                break;
             }
         }
 
@@ -108,7 +107,7 @@
                     videoEventCount++;
                 },
                 onExitCallback: null);
-            
+
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write($" {(char)0x25CF} ");
             Console.ForegroundColor = ConsoleColor.Gray;

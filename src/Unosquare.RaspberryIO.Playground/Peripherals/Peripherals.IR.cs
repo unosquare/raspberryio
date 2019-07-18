@@ -42,16 +42,15 @@
                        }
                    }
 
-                   "Press Esc key to continue . . .".WriteLine();
+                   ExitMessage.WriteLine();
                };
 
             while (true)
             {
                 var input = Console.ReadKey(true).Key;
-                if (input == ConsoleKey.Escape)
-                {
-                    break;
-                }
+                if (input != ConsoleKey.Escape) continue;
+
+                break;
             }
 
             sensor.Dispose();
