@@ -1831,6 +1831,51 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.AudioState.ToString
   nameWithType: AudioState.ToString
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth
+  name: Bluetooth
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html
+  commentId: T:Unosquare.RaspberryIO.Computer.Bluetooth
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth
+  nameWithType: Bluetooth
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices
+  name: ListDevices()
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices()
+  nameWithType: Bluetooth.ListDevices()
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices*
+  name: ListDevices
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices
+  nameWithType: Bluetooth.ListDevices
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff
+  name: PowerOff()
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOff
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff()
+  nameWithType: Bluetooth.PowerOff()
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff*
+  name: PowerOff
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOff_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff
+  nameWithType: Bluetooth.PowerOff
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn
+  name: PowerOn()
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOn
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn()
+  nameWithType: Bluetooth.PowerOn()
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn*
+  name: PowerOn
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOn_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn
+  nameWithType: Bluetooth.PowerOn
 - uid: Unosquare.RaspberryIO.Computer.BoardModel
   name: BoardModel
   href: api/Unosquare.RaspberryIO.Computer.BoardModel.html
