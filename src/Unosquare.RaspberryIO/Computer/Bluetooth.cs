@@ -1,11 +1,10 @@
-﻿using Unosquare.Swan;
-using Unosquare.Swan.Components;
-
-namespace Unosquare.RaspberryIO.Computer
+﻿namespace Unosquare.RaspberryIO.Computer
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Unosquare.Swan;
     using Unosquare.Swan.Abstractions;
+    using Unosquare.Swan.Components;
 
     /// <summary>
     /// Represents the bluetooth information.
@@ -20,6 +19,8 @@ namespace Unosquare.RaspberryIO.Computer
             var turnOnBluetoothTool = await ProcessRunner.GetProcessOutputAsync("power on").ConfigureAwait(false); //turn on bluetooth
             $"{turnOnBluetoothTool}".Info();
 
+            var quitBluetoothTool = await ProcessRunner.GetProcessOutputAsync("quit").ConfigureAwait(false); //quit bluetooth tool
+            $"{quitBluetoothTool }".Info();
             return true;
         }
 

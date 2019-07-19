@@ -27,6 +27,7 @@
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
                 Audio = AudioSettings.Instance;
+                Bluetooth = Bluetooth.Instance;
             }
         }
 
@@ -79,6 +80,11 @@
         /// Provides access to Raspberry Pi ALSA sound card driver.
         /// </summary>
         public static AudioSettings Audio { get; }
+
+        /// <summary>
+        /// Provides access to Raspberry Pi Bluetooth driver.
+        /// </summary>
+        public static Bluetooth Bluetooth { get;  }
 
         /// <summary>
         /// Restarts the Pi. Must be running as SU.
