@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
-    using Unosquare.Swan;
     using Unosquare.Swan.Abstractions;
     using Unosquare.Swan.Components;
 
@@ -11,37 +11,34 @@
     /// </summary>
     public class Bluetooth : SingletonBase<Bluetooth>
     {
+        /// <summary>
+        /// Turns on the bluetooth adapter.
+        /// </summary>
+        /// <returns>Returns true or false depending if the controller was turned on.</returns>
         public async Task<bool> PowerOn()
         {
-            var openBluetoothTool = await ProcessRunner.GetProcessOutputAsync("bluetoothctl").ConfigureAwait(false); //Open bluetooth tool
-            $"{openBluetoothTool}".Info();
-
-            var turnOnBluetoothTool = await ProcessRunner.GetProcessOutputAsync("power on").ConfigureAwait(false); //turn on bluetooth
-            $"{turnOnBluetoothTool}".Info();
-
-            var quitBluetoothTool = await ProcessRunner.GetProcessOutputAsync("quit").ConfigureAwait(false); //quit bluetooth tool
-            $"{quitBluetoothTool }".Info();
-            return true;
+            var output = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "power on").ConfigureAwait(false);
+            return output.Contains("succeeded") ? true : false;
         }
 
+        /// <summary>
+        /// Turns off the bluetooth adapter.
+        /// </summary>
+        /// <returns>Returns true or false depending if the controller was turned off.</returns>
         public async Task<bool> PowerOff()
         {
-
-            var openBluetoothTool = await ProcessRunner.GetProcessOutputAsync("bluetoothctl").ConfigureAwait(false); //Open bluetooth tool
-            $"{openBluetoothTool}".Info();
-
-            var turnOnBluetoothTool = await ProcessRunner.GetProcessOutputAsync("power off").ConfigureAwait(false); //turn on bluetooth
-            $"{turnOnBluetoothTool}".Info();
-
-            return true;
+            var output = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "power off").ConfigureAwait(false);
+            return output.Contains("succeeded") ? true : false;
         }
 
+        /// <summary>
+        /// Gets the list of bluetooth controllers.
+        /// </summary>
+        /// <returns>Returns the list of bluetooth controllers.</returns>
         public async Task<List<string>> ListDevices()
         {
-            var openBluetoothTool = await ProcessRunner.GetProcessOutputAsync("list").ConfigureAwait(false); //Open bluetooth tool
-            $"{openBluetoothTool}".Info();
-            return new List<string>();
-
+            var devices = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "list").ConfigureAwait(false);
+            return devices.Trim().Split('\n').Select(x => x.Trim()).ToList();
         }
     }
 }

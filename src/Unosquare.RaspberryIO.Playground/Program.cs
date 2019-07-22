@@ -46,13 +46,7 @@
                         break;
                     case ConsoleKey.X:
                         Extra.ShowMenu();
-                        break;
-
-                    case ConsoleKey.A:
-                        "test bluetooth".Info();
-                        TestBluetooth();
-                        break;
-                        
+                        break;                        
                     case ConsoleKey.Escape:
                         exit = true;
                         break;
@@ -61,12 +55,6 @@
             while (!exit);
 
             Console.Clear();
-        }
-
-        private static void TestBluetooth()
-        {
-            Pi.Bluetooth.PowerOn().GetAwaiter().GetResult();
-            "after test".ReadKey();
         }
     }
 }

@@ -1,14 +1,18 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿using System.Linq;
+
+namespace Unosquare.RaspberryIO.Playground
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Swan;
+    using Unosquare.Swan.Components;
 
     public static partial class SystemTests
     {
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
+            { ConsoleKey.B, "Bluetooth" },
             { ConsoleKey.C, "Camera" },
             { ConsoleKey.I, "System Info" },
             { ConsoleKey.V, "Volume" },
@@ -25,6 +29,9 @@
 
                 switch (mainOption.Key)
                 {
+                    case ConsoleKey.B:
+                        await TestBluetooth().ConfigureAwait(false);
+                        break;
                     case ConsoleKey.C:
                         SystemCamera.ShowMenu();
                         break;
@@ -40,6 +47,15 @@
                 }
             }
             while (!exit);
+        }
+
+        private static async Task TestBluetooth()
+        {
+            Console.Clear();
+            "test bluetooth".Info();
+            var devices = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "list").ConfigureAwait(false);
+            var test = devices + devices + devices;
+            "after test".ReadKey();
         }
     }
 }
