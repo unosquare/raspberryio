@@ -69,6 +69,7 @@ We offer an additional package with helpful classes to use peripherals, many of 
 * Generic Button connected to GPIO
 * GY-521 MPU6050 Accelerometer
 * Ultrasonic Sensor HC-SR04
+* ADS1015 and ADS1115 I2C Analog-to-Digital Converter devices
 
 ## Breaking changes
 
