@@ -40,5 +40,14 @@
             var devices = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "list").ConfigureAwait(false);
             return devices.Trim().Split('\n').Select(x => x.Trim()).ToList();
         }
+
+        public async Task<bool> Pair(string controllerName, string deviceAddress)
+        {
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "pairable on").ConfigureAwait(false); // Readies the controller for pairing. Remember that you have three minutes after running this command to pair.
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"connect{deviceAddress}").ConfigureAwait(false); // Readies the device for pairing.
+
+            return true;
+        }
+
     }
 }
