@@ -1850,6 +1850,19 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices
   nameWithType: Bluetooth.ListDevices
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String,System.String)
+  name: Pair(String, String)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Pair_System_String_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String,System.String)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String, System.String)
+  nameWithType: Bluetooth.Pair(String, String)
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Pair*
+  name: Pair
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Pair_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.Bluetooth.Pair
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Pair
+  nameWithType: Bluetooth.Pair
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff
   name: PowerOff()
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOff
