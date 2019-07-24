@@ -61,11 +61,42 @@ namespace Unosquare.RaspberryIO.Computer
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable on").ConfigureAwait(false); // Makes the controller visible to other devices.
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "pairable on").ConfigureAwait(false); // Readies the controller for pairing. Remember that you have three minutes after running this command to pair.
 
-            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"connect {deviceAddress}").ConfigureAwait(false); // Readies the device for pairing.
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"pair {deviceAddress}").ConfigureAwait(false); // Pairs the device with the controller.
+        
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
+
+            return true;
+        }
+
+        public async Task<bool> Connect(string controllerAddress, string deviceAddress)
+        {
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"select {controllerAddress}").ConfigureAwait(false); // Selects the controller to pair. Once you select the controller, all controller-related commands will apply to it for three minutes.
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable on").ConfigureAwait(false); // Makes the controller visible to other devices.
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "pairable on").ConfigureAwait(false); // Readies the controller for pairing. Remember that you have three minutes after running this command to pair.
+
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"connect {deviceAddress}").ConfigureAwait(false); // Readies the device for pairing.
 
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
 
+            return true;
+        }
+
+        public async Task<bool> Trust(string controllerAddress, string deviceAddress)
+        {
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"select {controllerAddress}").ConfigureAwait(false); // Selects the controller to pair. Once you select the controller, all controller-related commands will apply to it for three minutes.
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable on").ConfigureAwait(false); // Makes the controller visible to other devices.
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "pairable on").ConfigureAwait(false); // Readies the controller for pairing. Remember that you have three minutes after running this command to pair.
+
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"trust {deviceAddress}").ConfigureAwait(false); // Sets the device to re-pair automatically when it is turned on, which eliminates the need to pair all over again.
+
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
+
+            return true;
+        }
+
+        public async Task<bool> Info(string deviceAddress)
+        {
+            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"info {deviceAddress}").ConfigureAwait(false); // 
             return true;
         }
 
