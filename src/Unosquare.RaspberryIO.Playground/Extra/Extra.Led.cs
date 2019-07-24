@@ -49,11 +49,11 @@
                 Console.Clear();
                 var blinkingPin = Pi.Gpio[BcmPin.Gpio13];
 
-                        // Configure the pin as an output
-                        blinkingPin.PinMode = GpioPinDriveMode.Output;
+                // Configure the pin as an output
+                blinkingPin.PinMode = GpioPinDriveMode.Output;
 
-                        // perform writes to the pin by toggling the isOn variable
-                        var isOn = false;
+                // perform writes to the pin by toggling the isOn variable
+                var isOn = false;
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     isOn = !isOn;
