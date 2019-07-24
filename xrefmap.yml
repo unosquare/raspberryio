@@ -1837,6 +1837,19 @@ references:
   commentId: T:Unosquare.RaspberryIO.Computer.Bluetooth
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth
   nameWithType: Bluetooth
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers
+  name: ListControllers()
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers()
+  nameWithType: Bluetooth.ListControllers()
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers*
+  name: ListControllers
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers
+  nameWithType: Bluetooth.ListControllers
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices
   name: ListDevices()
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices

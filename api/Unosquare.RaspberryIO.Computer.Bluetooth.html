@@ -98,6 +98,31 @@
   </h3>
   
   
+  <a id="Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers*"></a>
+  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers">ListControllers()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;string&gt;&gt; ListControllers()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices">ListDevices()</h4>
   <div class="markdown level1 summary"><p>Gets the list of bluetooth controllers.</p>
@@ -131,7 +156,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; Pair(string controllerName, string deviceAddress)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; Pair(string controllerAddress, string deviceAddress)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -145,7 +170,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">controllerName</span></td>
+        <td><span class="parametername">controllerAddress</span></td>
         <td></td>
       </tr>
       <tr>
