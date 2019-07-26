@@ -2,6 +2,7 @@
 
 namespace Unosquare.RaspberryIO.Computer
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -94,10 +95,16 @@ namespace Unosquare.RaspberryIO.Computer
             return true;
         }
 
-        public async Task<bool> Info(string deviceAddress)
+        public async Task<string> DeviceInfo(string deviceAddress)
         {
-            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"info {deviceAddress}").ConfigureAwait(false); // 
-            return true;
+            var info = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"info {deviceAddress}").ConfigureAwait(false); // Displays information about a particular device.
+
+            if (string.IsNullOrEmpty(info))
+            {
+                return $"Device {deviceAddress} not available";
+            }
+
+            return info;
         }
 
         private static void ScanOn(CancellationToken token) => Task.Run(() =>
