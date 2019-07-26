@@ -1850,19 +1850,19 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Connect
   nameWithType: Bluetooth.Connect
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Info(System.String)
-  name: Info(String)
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Info_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.Info(System.String)
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Info(System.String)
-  nameWithType: Bluetooth.Info(String)
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Info*
-  name: Info
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Info_
-  commentId: Overload:Unosquare.RaspberryIO.Computer.Bluetooth.Info
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String)
+  name: DeviceInfo(String)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_System_String_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String)
+  nameWithType: Bluetooth.DeviceInfo(String)
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo*
+  name: DeviceInfo
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_
+  commentId: Overload:Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo
   isSpec: "True"
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Info
-  nameWithType: Bluetooth.Info
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo
+  nameWithType: Bluetooth.DeviceInfo
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers
   name: ListControllers()
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers
