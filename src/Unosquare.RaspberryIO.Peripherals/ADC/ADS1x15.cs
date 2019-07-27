@@ -32,7 +32,6 @@
             conversionDelay = delay;
             bitShift = shift;
 
-            Console.WriteLine($"did: {device.DeviceId} desc:{device.FileDescriptor}");
             Gain = AdsGaint.GAINTWOTHIRDS; /* +/- 6.144V range (limited to VDD +0.3V max!) */
         }
 
