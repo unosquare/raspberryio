@@ -6,7 +6,7 @@
 This library enables developers to use the various Raspberry Pi's hardware modules including the Camera to capture images and video, the GPIO pins, and both, the SPI and I2C buses.</Description>
     <Copyright>Unosquare (c) 2016-2019</Copyright>
     <AssemblyTitle>Unosquare Raspberry Abstractions</AssemblyTitle>
-    <TargetFrameworks>netstandard2.0;netstandard1.3</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Unosquare.Raspberry.Abstractions</AssemblyName>

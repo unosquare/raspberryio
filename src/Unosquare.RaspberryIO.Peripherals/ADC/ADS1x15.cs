@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
     using System.Threading;
