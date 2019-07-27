@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "i5MCWLqN6OYQf/V6N+71Fw=="
+          "hash": "CE5bxdKIVkVoEAzruzFUPw=="
         }
       },
       "is_incremental": false,
@@ -297,18 +297,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.Bluetooth.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unosquare.RaspberryIO.Computer.Bluetooth.html",
-          "hash": "rNLDG6OCJKZmStebf31LOg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "obj/api/Unosquare.RaspberryIO.Computer.BoardModel.yml",
       "output": {
         ".html": {
@@ -445,7 +433,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.html",
-          "hash": "nDtLAr/uUGq8/CNaLkQFvw=="
+          "hash": "JziXU+EwQ1mshWhcuwGH0Q=="
         }
       },
       "is_incremental": false,
@@ -481,7 +469,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Pi.html",
-          "hash": "pJ3BmmuT4+nGcwnsjbKDJA=="
+          "hash": "Cmots46axd4nsugOtUnRdQ=="
         }
       },
       "is_incremental": false,
@@ -505,7 +493,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "oX6q/eXkjStswXnJQLXYKQ=="
+          "hash": "20b0YtxpMgPtKq6eSRrb/g=="
         }
       },
       "is_incremental": false,
@@ -551,7 +539,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 35,
+          "total_file_count": 34,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
