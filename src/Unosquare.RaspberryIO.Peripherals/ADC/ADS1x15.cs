@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
     using System.Threading;
@@ -32,7 +32,6 @@
             conversionDelay = delay;
             bitShift = shift;
 
-            Console.WriteLine($"did: {device.DeviceId} desc:{device.FileDescriptor}");
             Gain = AdsGaint.GAINTWOTHIRDS; /* +/- 6.144V range (limited to VDD +0.3V max!) */
         }
 
@@ -102,10 +101,10 @@
 
             // Set the high threshold register
             // Shift 12-bit results left 4 bits for the ADS1015
-            device.WriteAddressWord(ADS1015REGPOINTERHITHRESH, (ushort)(threshold << bitShift));
+            WriteRegister(ADS1015REGPOINTERHITHRESH, (ushort)(threshold << bitShift));
 
             // Write config register to the ADC
-            device.WriteAddressWord(ADS1015REGPOINTERCONFIG, (ushort)config);
+            WriteRegister(ADS1015REGPOINTERCONFIG, (ushort)config);
         }
         
         /// <summary>
@@ -224,7 +223,7 @@
         private short ConfigureThenReadADC(int config)
         {
             // Write config register to the ADC
-            device.WriteAddressWord(ADS1015REGPOINTERCONFIG, (ushort)((int)Gain | config));
+            WriteRegister(ADS1015REGPOINTERCONFIG, (ushort)((int)Gain | config));
 
             return RawReadADC();
         }
@@ -236,7 +235,7 @@
 
             // Read the conversion results
             // Shift 12-bit results right 4 bits for the ADS1015
-            return (short)(device.ReadAddressWord(ADS1015REGPOINTERCONVERT) >> bitShift);
+            return (short)(SwapWord(device.ReadAddressWord(ADS1015REGPOINTERCONVERT)) >> bitShift);
         }
 
         /// <summary>
@@ -247,6 +246,26 @@
         private short SignBitCleanup(int value)
         {
             return (short)((bitShift != 0 && value > 0x07FF) ? value | 0xF000 : value);
+        }
+
+        /// <summary>
+        /// Write to the I2C register, ADS1x15 is byte swapped.
+        /// </summary>
+        /// <param name="registery">register address to write to</param>
+        /// <param name="value">value to set</param>
+        private void WriteRegister(byte registery, ushort value)
+        {
+            device.WriteAddressWord(registery, SwapWord(value));
+        }
+
+        /// <summary>
+        /// Swap the low and high bytes.
+        /// </summary>
+        /// <param name="value">value to swap</param>
+        /// <returns>16-bit unsigned value with high and low bytes swapped</returns>
+        private ushort SwapWord(ushort value)
+        {
+            return (ushort)((value >> 8) | (value << 8));
         }
 
 #pragma warning restore IDE0051 // Remove unused private members
