@@ -63,7 +63,9 @@ namespace Unosquare.RaspberryIO.Computer
         /// <summary>
         /// Pairs a specific device with a specific controller.
         /// </summary>
-        /// <returns> Returns true or false if the pair was succesfully</returns>
+        /// <param name="controllerAddress">The controller mac addres that will be used to pair.</param>
+        /// <param name="deviceAddress">The device mac addres that will be paired.</param>
+        /// <returns> Returns true or false if the pair was succesfully.</returns>
         public async Task<bool> Pair(string controllerAddress, string deviceAddress)
         {
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"select {controllerAddress}").ConfigureAwait(false); // Selects the controller to pair. Once you select the controller, all controller-related commands will apply to it for three minutes.
@@ -71,38 +73,54 @@ namespace Unosquare.RaspberryIO.Computer
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "pairable on").ConfigureAwait(false); // Readies the controller for pairing. Remember that you have three minutes after running this command to pair.
 
             var result = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"pair {deviceAddress}").ConfigureAwait(false); // Pairs the device with the controller.
-        
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
 
-            return result.Contains("succeeded") ? true : false; //ToDo: not sure of the output, must be verified. 
+            return result.Contains("Paired: yes") ? true : false;
         }
 
+        /// <summary>
+        /// Performs a connection of a given controller with a given device.
+        /// </summary>
+        /// <param name="controllerAddress">The controller mac address that will be used to make the connection. </param>
+        /// <param name="deviceAddress">The device mac address that will be connected. </param>
+        /// <returns> Returns true or false if the connection was successfully. </returns>
         public async Task<bool> Connect(string controllerAddress, string deviceAddress)
         {
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"select {controllerAddress}").ConfigureAwait(false); // Selects the controller to pair. Once you select the controller, all controller-related commands will apply to it for three minutes.
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable on").ConfigureAwait(false); // Makes the controller visible to other devices.
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "pairable on").ConfigureAwait(false); // Readies the controller for pairing. Remember that you have three minutes after running this command to pair.
 
-            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"connect {deviceAddress}").ConfigureAwait(false); // Readies the device for pairing.
+            var result = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"connect {deviceAddress}").ConfigureAwait(false); // Readies the device for pairing.
 
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
 
-            return true;
+            return result.Contains("Connected: yes") ? true : false;
         }
 
+        /// <summary>
+        /// Sets the device to re-pair automatically when it is turned on, which eliminates the need to pair all over again.
+        /// </summary>
+        /// <param name="controllerAddress">The controller mac addres that will be used.</param>
+        /// <param name="deviceAddress">The device mac addres that will be add to the trust list devices.</param>
+        /// <returns> Returns true or false if the operation was succesfully.</returns>
         public async Task<bool> Trust(string controllerAddress, string deviceAddress)
         {
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"select {controllerAddress}").ConfigureAwait(false); // Selects the controller to pair. Once you select the controller, all controller-related commands will apply to it for three minutes.
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable on").ConfigureAwait(false); // Makes the controller visible to other devices.
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "pairable on").ConfigureAwait(false); // Readies the controller for pairing. Remember that you have three minutes after running this command to pair.
 
-            await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"trust {deviceAddress}").ConfigureAwait(false); // Sets the device to re-pair automatically when it is turned on, which eliminates the need to pair all over again.
+            var result = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"trust {deviceAddress}").ConfigureAwait(false); // Sets the device to re-pair automatically when it is turned on, which eliminates the need to pair all over again.
 
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
 
-            return true;
+            return result.Contains("Trusted: yes") ? true : false;
         }
 
+        /// <summary>
+        /// Displays information about a particular device.
+        /// </summary>
+        /// <param name="deviceAddress">The device mac addres which info will be retrieved.</param>
+        /// <returns> Returns the device info.</returns>
         public async Task<string> DeviceInfo(string deviceAddress)
         {
             var info = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"info {deviceAddress}").ConfigureAwait(false); // Displays information about a particular device.

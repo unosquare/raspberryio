@@ -51,7 +51,7 @@
         {
             Console.Clear();
             "test bluetooth".Info();
-            var controllers = await Pi.Bluetooth.ListControllers().ConfigureAwait(false);
+            //var controllers = await Pi.Bluetooth.ListControllers().ConfigureAwait(false);
             //v.ForEach((device) => $"{device}".Info());
 
             //var defaultControllerName = controllers.Find((controller) => controller.Contains("default"));
@@ -70,7 +70,8 @@
             //var pair = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"pair {deviceAddress}").ConfigureAwait(false); // Pairs the device with the controller.
             // $" pair {pair}".Info();
 
-            var info = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"info {deviceAddress}").ConfigureAwait(false); // 
+            //var info = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"info {deviceAddress}").ConfigureAwait(false); // 
+            var info = await ProcessRunner.GetProcessResultAsync("bluetoothctl", "Devices").ConfigureAwait(false);
             $"{info}".Info();
 
             //await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
