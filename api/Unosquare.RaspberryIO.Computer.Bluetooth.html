@@ -100,7 +100,8 @@
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_Connect_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Connect*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_Connect_System_String_System_String_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String,System.String)">Connect(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Performs a connection of a given controller with a given device.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -119,12 +120,14 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">controllerAddress</span></td>
-        <td></td>
+        <td><p>The controller mac address that will be used to make the connection. </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">deviceAddress</span></td>
-        <td></td>
+        <td><p>The device mac address that will be connected. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -139,7 +142,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
-        <td></td>
+        <td><p>Returns true or false if the connection was successfully. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -147,7 +151,8 @@
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_System_String_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String)">DeviceInfo(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Displays information about a particular device.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -166,7 +171,8 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">deviceAddress</span></td>
-        <td></td>
+        <td><p>The device mac addres which info will be retrieved.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -181,7 +187,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
-        <td></td>
+        <td><p>Returns the device info.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -263,12 +270,14 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">controllerAddress</span></td>
-        <td></td>
+        <td><p>The controller mac addres that will be used to pair.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">deviceAddress</span></td>
-        <td></td>
+        <td><p>The device mac addres that will be paired.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -283,7 +292,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
-        <td><p>Returns true or false if the pair was succesfully</p>
+        <td><p>Returns true or false if the pair was succesfully.</p>
 </td>
       </tr>
     </tbody>
@@ -346,7 +355,8 @@
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_Trust_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Trust*"></a>
   <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_Trust_System_String_System_String_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String,System.String)">Trust(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the device to re-pair automatically when it is turned on, which eliminates the need to pair all over again.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -365,12 +375,14 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">controllerAddress</span></td>
-        <td></td>
+        <td><p>The controller mac addres that will be used.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">deviceAddress</span></td>
-        <td></td>
+        <td><p>The device mac addres that will be add to the trust list devices.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -385,7 +397,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
-        <td></td>
+        <td><p>Returns true or false if the operation was succesfully.</p>
+</td>
       </tr>
     </tbody>
   </table>
