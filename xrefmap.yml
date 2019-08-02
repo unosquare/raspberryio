@@ -7,6 +7,25 @@ references:
   commentId: N:Unosquare.RaspberryIO
   fullName: Unosquare.RaspberryIO
   nameWithType: Unosquare.RaspberryIO
+- uid: Unosquare.RaspberryIO.BluetoothErrorException
+  name: BluetoothErrorException
+  href: api/Unosquare.RaspberryIO.BluetoothErrorException.html
+  commentId: T:Unosquare.RaspberryIO.BluetoothErrorException
+  fullName: Unosquare.RaspberryIO.BluetoothErrorException
+  nameWithType: BluetoothErrorException
+- uid: Unosquare.RaspberryIO.BluetoothErrorException.#ctor(System.String)
+  name: BluetoothErrorException(String)
+  href: api/Unosquare.RaspberryIO.BluetoothErrorException.html#Unosquare_RaspberryIO_BluetoothErrorException__ctor_System_String_
+  commentId: M:Unosquare.RaspberryIO.BluetoothErrorException.#ctor(System.String)
+  fullName: Unosquare.RaspberryIO.BluetoothErrorException.BluetoothErrorException(System.String)
+  nameWithType: BluetoothErrorException.BluetoothErrorException(String)
+- uid: Unosquare.RaspberryIO.BluetoothErrorException.#ctor*
+  name: BluetoothErrorException
+  href: api/Unosquare.RaspberryIO.BluetoothErrorException.html#Unosquare_RaspberryIO_BluetoothErrorException__ctor_
+  commentId: Overload:Unosquare.RaspberryIO.BluetoothErrorException.#ctor
+  isSpec: "True"
+  fullName: Unosquare.RaspberryIO.BluetoothErrorException.BluetoothErrorException
+  nameWithType: BluetoothErrorException.BluetoothErrorException
 - uid: Unosquare.RaspberryIO.Camera
   name: Unosquare.RaspberryIO.Camera
   href: api/Unosquare.RaspberryIO.Camera.html
@@ -1837,12 +1856,12 @@ references:
   commentId: T:Unosquare.RaspberryIO.Computer.Bluetooth
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth
   nameWithType: Bluetooth
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String,System.String)
-  name: Connect(String, String)
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Connect_System_String_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String,System.String)
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String, System.String)
-  nameWithType: Bluetooth.Connect(String, String)
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String,System.String,System.Threading.CancellationToken)
+  name: Connect(String, String, CancellationToken)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Connect_System_String_System_String_System_Threading_CancellationToken_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String,System.String,System.Threading.CancellationToken)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String, System.String, System.Threading.CancellationToken)
+  nameWithType: Bluetooth.Connect(String, String, CancellationToken)
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.Connect*
   name: Connect
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Connect_
@@ -1850,12 +1869,12 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Connect
   nameWithType: Bluetooth.Connect
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String)
-  name: DeviceInfo(String)
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String)
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String)
-  nameWithType: Bluetooth.DeviceInfo(String)
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String,System.Threading.CancellationToken)
+  name: DeviceInfo(String, CancellationToken)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_System_String_System_Threading_CancellationToken_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String,System.Threading.CancellationToken)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String, System.Threading.CancellationToken)
+  nameWithType: Bluetooth.DeviceInfo(String, CancellationToken)
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo*
   name: DeviceInfo
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_
@@ -1863,12 +1882,12 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo
   nameWithType: Bluetooth.DeviceInfo
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers
-  name: ListControllers()
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers
-  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers()
-  nameWithType: Bluetooth.ListControllers()
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers(System.Threading.CancellationToken)
+  name: ListControllers(CancellationToken)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers_System_Threading_CancellationToken_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers(System.Threading.CancellationToken)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers(System.Threading.CancellationToken)
+  nameWithType: Bluetooth.ListControllers(CancellationToken)
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers*
   name: ListControllers
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers_
@@ -1876,12 +1895,12 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers
   nameWithType: Bluetooth.ListControllers
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices
-  name: ListDevices()
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices
-  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices()
-  nameWithType: Bluetooth.ListDevices()
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices(System.Threading.CancellationToken)
+  name: ListDevices(CancellationToken)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices_System_Threading_CancellationToken_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices(System.Threading.CancellationToken)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices(System.Threading.CancellationToken)
+  nameWithType: Bluetooth.ListDevices(CancellationToken)
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices*
   name: ListDevices
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices_
@@ -1889,12 +1908,12 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices
   nameWithType: Bluetooth.ListDevices
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String,System.String)
-  name: Pair(String, String)
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Pair_System_String_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String,System.String)
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String, System.String)
-  nameWithType: Bluetooth.Pair(String, String)
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String,System.String,System.Threading.CancellationToken)
+  name: Pair(String, String, CancellationToken)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Pair_System_String_System_String_System_Threading_CancellationToken_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String,System.String,System.Threading.CancellationToken)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String, System.String, System.Threading.CancellationToken)
+  nameWithType: Bluetooth.Pair(String, String, CancellationToken)
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.Pair*
   name: Pair
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Pair_
@@ -1902,12 +1921,12 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Pair
   nameWithType: Bluetooth.Pair
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff
-  name: PowerOff()
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOff
-  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff()
-  nameWithType: Bluetooth.PowerOff()
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff(System.Threading.CancellationToken)
+  name: PowerOff(CancellationToken)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOff_System_Threading_CancellationToken_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff(System.Threading.CancellationToken)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff(System.Threading.CancellationToken)
+  nameWithType: Bluetooth.PowerOff(CancellationToken)
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff*
   name: PowerOff
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOff_
@@ -1915,12 +1934,12 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff
   nameWithType: Bluetooth.PowerOff
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn
-  name: PowerOn()
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOn
-  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn()
-  nameWithType: Bluetooth.PowerOn()
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn(System.Threading.CancellationToken)
+  name: PowerOn(CancellationToken)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOn_System_Threading_CancellationToken_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn(System.Threading.CancellationToken)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn(System.Threading.CancellationToken)
+  nameWithType: Bluetooth.PowerOn(CancellationToken)
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn*
   name: PowerOn
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_PowerOn_
@@ -1928,12 +1947,12 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn
   nameWithType: Bluetooth.PowerOn
-- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String,System.String)
-  name: Trust(String, String)
-  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Trust_System_String_System_String_
-  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String,System.String)
-  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String, System.String)
-  nameWithType: Bluetooth.Trust(String, String)
+- uid: Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String,System.String,System.Threading.CancellationToken)
+  name: Trust(String, String, CancellationToken)
+  href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Trust_System_String_System_String_System_Threading_CancellationToken_
+  commentId: M:Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String,System.String,System.Threading.CancellationToken)
+  fullName: Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String, System.String, System.Threading.CancellationToken)
+  nameWithType: Bluetooth.Trust(String, String, CancellationToken)
 - uid: Unosquare.RaspberryIO.Computer.Bluetooth.Trust*
   name: Trust
   href: api/Unosquare.RaspberryIO.Computer.Bluetooth.html#Unosquare_RaspberryIO_Computer_Bluetooth_Trust_

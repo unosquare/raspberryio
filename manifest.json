@@ -81,6 +81,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "obj/api/Unosquare.RaspberryIO.BluetoothErrorException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Unosquare.RaspberryIO.BluetoothErrorException.html",
+          "hash": "e/Xyfm2oH27XqwNFVdxtBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "obj/api/Unosquare.RaspberryIO.Camera.CameraAnnotation.yml",
       "output": {
         ".html": {
@@ -301,7 +313,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.Bluetooth.html",
-          "hash": "CaX4umVBuUkk6Tlcg40uOw=="
+          "hash": "tugvASCYbJarz36iSkzO7Q=="
         }
       },
       "is_incremental": false,
@@ -445,7 +457,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.Computer.html",
-          "hash": "Jq7XEwFeMq4OFWmeWjB4mw=="
+          "hash": "+oJt7/U8Dy5a/Ggutg3v9g=="
         }
       },
       "is_incremental": false,
@@ -493,7 +505,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unosquare.RaspberryIO.html",
-          "hash": "+GcIaUa2xwg8tQxndIWzcA=="
+          "hash": "tKH95wFn4iDaaMi6hUQ+CA=="
         }
       },
       "is_incremental": false,
@@ -505,7 +517,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "oX6q/eXkjStswXnJQLXYKQ=="
+          "hash": "ubr0NPkdQWOuF7GWCLjcsA=="
         }
       },
       "is_incremental": false,
@@ -535,6 +547,18 @@
         "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 36,
+          "skipped_file_count": 0
+        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
@@ -542,23 +566,11 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 1,
-          "skipped_file_count": 0
-        },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 35,
           "skipped_file_count": 0
         }
       }

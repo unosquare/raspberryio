@@ -81,7 +81,7 @@
   
   <h1 id="Unosquare_RaspberryIO_Computer_Bluetooth" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth" class="text-break">Class Bluetooth
   </h1>
-  <div class="markdown level0 summary"><p>Represents the bluetooth information.</p>
+  <div class="markdown level0 summary"><p>Represents the Bluetooth information.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -99,13 +99,13 @@
   
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_Connect_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Connect*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_Connect_System_String_System_String_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String,System.String)">Connect(String, String)</h4>
+  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_Connect_System_String_System_String_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Connect(System.String,System.String,System.Threading.CancellationToken)">Connect(String, String, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Performs a connection of a given controller with a given device.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; Connect(string controllerAddress, string deviceAddress)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; Connect(string controllerAddress, string deviceAddress, CancellationToken cancellationToken = default(CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -120,13 +120,19 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">controllerAddress</span></td>
-        <td><p>The mac address of the controller that will be used to make the connection. </p>
+        <td><p>The mac address of the controller that will be used to make the connection.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">deviceAddress</span></td>
-        <td><p>The mac address of the device that will be connected. </p>
+        <td><p>The mac address of the device that will be connected.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
 </td>
       </tr>
     </tbody>
@@ -142,7 +148,23 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
-        <td><p>Returns true or false if the connection was successfully. </p>
+        <td><p>Returns true or false if the connection was successfully.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.BluetoothErrorException.html">BluetoothErrorException</a></td>
+        <td><p>Failed to connect:.</p>
 </td>
       </tr>
     </tbody>
@@ -150,13 +172,13 @@
   
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_System_String_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String)">DeviceInfo(String)</h4>
+  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_DeviceInfo_System_String_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.DeviceInfo(System.String,System.Threading.CancellationToken)">DeviceInfo(String, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Displays information about a particular device.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; DeviceInfo(string deviceAddress)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; DeviceInfo(string deviceAddress, CancellationToken cancellationToken = default(CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -172,6 +194,12 @@
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">deviceAddress</span></td>
         <td><p>The mac address of the device which info will be retrieved.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
 </td>
       </tr>
     </tbody>
@@ -192,17 +220,51 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.BluetoothErrorException.html">BluetoothErrorException</a></td>
+        <td><p>Failed to retrieve  info for {deviceAddress}.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers">ListControllers()</h4>
+  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_ListControllers_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListControllers(System.Threading.CancellationToken)">ListControllers(CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Gets the list of bluetooth controllers.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IEnumerable&lt;string&gt;&gt; ListControllers()</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IEnumerable&lt;string&gt;&gt; ListControllers(CancellationToken cancellationToken = default(CancellationToken))</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -214,7 +276,23 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
-        <td><p>Returns the list of bluetooth controllers. </p>
+        <td><p>Returns the list of bluetooth controllers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.BluetoothErrorException.html">BluetoothErrorException</a></td>
+        <td><p>Failed to retrieve controllers:.</p>
 </td>
       </tr>
     </tbody>
@@ -222,14 +300,32 @@
   
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices">ListDevices()</h4>
+  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_ListDevices_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.ListDevices(System.Threading.CancellationToken)">ListDevices(CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Gets the list of detected devices.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IEnumerable&lt;string&gt;&gt; ListDevices()</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IEnumerable&lt;string&gt;&gt; ListDevices(CancellationToken cancellationToken = default(CancellationToken))</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -241,7 +337,23 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
-        <td><p>Returns the list of detected devices. </p>
+        <td><p>Returns the list of detected devices.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.BluetoothErrorException.html">BluetoothErrorException</a></td>
+        <td><p>Failed to retrieve devices:.</p>
 </td>
       </tr>
     </tbody>
@@ -249,13 +361,13 @@
   
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_Pair_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Pair*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_Pair_System_String_System_String_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String,System.String)">Pair(String, String)</h4>
+  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_Pair_System_String_System_String_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Pair(System.String,System.String,System.Threading.CancellationToken)">Pair(String, String, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Pairs a specific device with a specific controller.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; Pair(string controllerAddress, string deviceAddress)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; Pair(string controllerAddress, string deviceAddress, CancellationToken cancellationToken = default(CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -279,6 +391,12 @@
         <td><p>The mac address of the device that will be paired.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -292,7 +410,23 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
-        <td><p>Returns true or false if the pair was succesfully.</p>
+        <td><p>Returns true or false if the pair was successfully.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.BluetoothErrorException.html">BluetoothErrorException</a></td>
+        <td><p>Failed to Pair:.</p>
 </td>
       </tr>
     </tbody>
@@ -300,14 +434,32 @@
   
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_PowerOff_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_PowerOff" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff">PowerOff()</h4>
+  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_PowerOff_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.PowerOff(System.Threading.CancellationToken)">PowerOff(CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Turns off the bluetooth adapter.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; PowerOff()</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; PowerOff(CancellationToken cancellationToken = default(CancellationToken))</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -324,17 +476,51 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.BluetoothErrorException.html">BluetoothErrorException</a></td>
+        <td><p>Failed to power off:.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_PowerOn_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_PowerOn" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn">PowerOn()</h4>
-  <div class="markdown level1 summary"><p>Turns on the bluetooth adapter.</p>
+  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_PowerOn_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.PowerOn(System.Threading.CancellationToken)">PowerOn(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Turns on the Bluetooth adapter.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; PowerOn()</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; PowerOn(CancellationToken cancellationToken = default(CancellationToken))</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -351,16 +537,32 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.BluetoothErrorException.html">BluetoothErrorException</a></td>
+        <td><p>Failed to power on:.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="Unosquare_RaspberryIO_Computer_Bluetooth_Trust_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Trust*"></a>
-  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_Trust_System_String_System_String_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String,System.String)">Trust(String, String)</h4>
+  <h4 id="Unosquare_RaspberryIO_Computer_Bluetooth_Trust_System_String_System_String_System_Threading_CancellationToken_" data-uid="Unosquare.RaspberryIO.Computer.Bluetooth.Trust(System.String,System.String,System.Threading.CancellationToken)">Trust(String, String, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Sets the device to re-pair automatically when it is turned on, which eliminates the need to pair all over again.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; Trust(string controllerAddress, string deviceAddress)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; Trust(string controllerAddress, string deviceAddress, CancellationToken cancellationToken = default(CancellationToken))</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -384,6 +586,12 @@
         <td><p>The mac address of the device will be added to the trust list devices.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The cancellation token.</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -398,6 +606,22 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>Returns true or false if the operation was successful.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Unosquare.RaspberryIO.BluetoothErrorException.html">BluetoothErrorException</a></td>
+        <td><p>Failed to add to trust devices list:.</p>
 </td>
       </tr>
     </tbody>
