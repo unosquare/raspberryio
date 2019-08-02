@@ -175,15 +175,8 @@
         /// <returns> Returns the device info.</returns>
         public async Task<string> DeviceInfo(string deviceAddress)
         {
-            try
-            {
-                var info = await ProcessRunner.GetProcessOutputAsync(BC, $"info {deviceAddress}").ConfigureAwait(false);
-                return !string.IsNullOrEmpty(info) ? info : $"Device {deviceAddress} not available";
-            }
-            catch (Exception ex)
-            {
-                throw new BluetoothErrorException($"Failed to retrieve  info for {deviceAddress}: {ex.Message}");
-            }
+            var info = await ProcessRunner.GetProcessOutputAsync(BC, $"info {deviceAddress}").ConfigureAwait(false);
+            return !string.IsNullOrEmpty(info) ? info : throw new BluetoothErrorException($"Failed to retrieve  info for {deviceAddress}");
         }
     }
 }
