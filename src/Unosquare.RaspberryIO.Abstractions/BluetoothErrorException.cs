@@ -16,8 +16,5 @@
             : base(message)
         {
         }
-
-        /// <inheritdoc />
-        public override string Message => $"Error:\r\n{base.Message}";
     }
 }
