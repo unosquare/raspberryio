@@ -22,7 +22,7 @@ namespace Unosquare.RaspberryIO.Computer
         public async Task<bool> PowerOn()
         {
             var output = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "power on").ConfigureAwait(false);
-            return output.Contains("succeeded") ? true : false;
+            return output.Contains("succeeded");
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Unosquare.RaspberryIO.Computer
         public async Task<bool> PowerOff()
         {
             var output = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "power off").ConfigureAwait(false);
-            return output.Contains("succeeded") ? true : false;
+            return output.Contains("succeeded");
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Unosquare.RaspberryIO.Computer
             var result = await ProcessRunner.GetProcessOutputAsync("bluetoothctl", $"pair {deviceAddress}").ConfigureAwait(false); // Pairs the device with the controller.
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
 
-            return result.Contains("Paired: yes") ? true : false;
+            return result.Contains("Paired: yes");
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Unosquare.RaspberryIO.Computer
 
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
 
-            return result.Contains("Connected: yes") ? true : false;
+            return result.Contains("Connected: yes");
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Unosquare.RaspberryIO.Computer
 
             await ProcessRunner.GetProcessOutputAsync("bluetoothctl", "discoverable off").ConfigureAwait(false); // Hides the controller from other Bluetooth devices. Otherwise, any device that can detect it has access to it, leaving a major security hole.
 
-            return result.Contains("Trusted: yes") ? true : false;
+            return result.Contains("Trusted: yes");
         }
 
         /// <summary>
