@@ -6,7 +6,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Unosquare.RaspberryIO.Abstractions;
-    using Unosquare.Swan;
     using Unosquare.Swan.Abstractions;
     using Unosquare.Swan.Components;
 
@@ -31,13 +30,7 @@
             }
             catch (Exception ex)
             {
-                var item = ex is BluetoothErrorException bluetoothError
-                    ? bluetoothError.ToABluetoothErrorItem()
-                    : new BluetoothErrorItem(BluetoothErrorCode.Generic, $"Failed to power on: {ex.Message}");
-
-                ex.Log(nameof(Bluetooth), item.Message);
-
-                return false;
+                throw new BluetoothErrorException($"Failed to power on: {ex.Message}", BluetoothErrorCode.Generic);
             }
         }
 
@@ -54,13 +47,7 @@
             }
             catch (Exception ex)
             {
-                var item = ex is BluetoothErrorException bluetoothError
-                    ? bluetoothError.ToABluetoothErrorItem()
-                    : new BluetoothErrorItem(BluetoothErrorCode.Generic, $"Failed to power off: {ex.Message}");
-
-                ex.Log(nameof(Bluetooth), item.Message);
-
-                return false;
+                throw new BluetoothErrorException($"Failed to power off: {ex.Message}", BluetoothErrorCode.Generic);
             }
         }
 
@@ -82,13 +69,7 @@
             }
             catch (Exception ex)
             {
-                var item = ex is BluetoothErrorException bluetoothError
-                    ? bluetoothError.ToABluetoothErrorItem()
-                    : new BluetoothErrorItem(BluetoothErrorCode.Generic, $"Failed to retrieve devices: {ex.Message}");
-
-                ex.Log(nameof(Bluetooth), item.Message);
-
-                return null;
+                throw new BluetoothErrorException($"Failed to retrieve devices: {ex.Message}", BluetoothErrorCode.Generic);
             }
         }
 
@@ -105,13 +86,7 @@
             }
             catch (Exception ex)
             {
-                var item = ex is BluetoothErrorException bluetoothError
-                    ? bluetoothError.ToABluetoothErrorItem()
-                    : new BluetoothErrorItem(BluetoothErrorCode.Generic, $"Failed to retrieve controllers: {ex.Message}");
-
-                ex.Log(nameof(Bluetooth), item.Message);
-
-                return null;
+                throw new BluetoothErrorException($"Failed to retrieve controllers: {ex.Message}", BluetoothErrorCode.Generic);
             }
         }
 
@@ -136,13 +111,7 @@
             }
             catch (Exception ex)
             {
-                var item = ex is BluetoothErrorException bluetoothError
-                    ? bluetoothError.ToABluetoothErrorItem()
-                    : new BluetoothErrorItem(BluetoothErrorCode.Generic, $"Failed to Pair: {ex.Message}");
-
-                ex.Log(nameof(Bluetooth), item.Message);
-
-                return false;
+                throw new BluetoothErrorException($"Failed to Pair: {ex.Message}", BluetoothErrorCode.Generic);
             }
         }
 
@@ -168,13 +137,7 @@
             }
             catch (Exception ex)
             {
-                var item = ex is BluetoothErrorException bluetoothError
-                    ? bluetoothError.ToABluetoothErrorItem()
-                    : new BluetoothErrorItem(BluetoothErrorCode.Generic, $"Failed to connect: {ex.Message}");
-
-                ex.Log(nameof(Bluetooth), item.Message);
-
-                return false;
+                throw new BluetoothErrorException($"Failed to connect: {ex.Message}", BluetoothErrorCode.Generic);
             }
         }
 
@@ -201,13 +164,7 @@
             }
             catch (Exception ex)
             {
-                var item = ex is BluetoothErrorException bluetoothError
-                    ? bluetoothError.ToABluetoothErrorItem()
-                    : new BluetoothErrorItem(BluetoothErrorCode.Generic, $"Failed to add to trust devices list: {ex.Message}");
-
-                ex.Log(nameof(Bluetooth), item.Message);
-
-                return false;
+                throw new BluetoothErrorException($"Failed to add to trust devices list: {ex.Message}", BluetoothErrorCode.Generic);
             }
         }
 
@@ -225,13 +182,7 @@
             }
             catch (Exception ex)
             {
-                var item = ex is BluetoothErrorException bluetoothError
-                    ? bluetoothError.ToABluetoothErrorItem()
-                    : new BluetoothErrorItem(BluetoothErrorCode.Generic, $"Failed to retrieve  info for {deviceAddress}: {ex.Message}");
-
-                ex.Log(nameof(Bluetooth), item.Message);
-
-                return null;
+                throw new BluetoothErrorException($"Failed to retrieve  info for {deviceAddress}: {ex.Message}", BluetoothErrorCode.Generic);
             }
         }
     }

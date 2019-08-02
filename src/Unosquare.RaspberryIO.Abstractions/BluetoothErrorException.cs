@@ -29,11 +29,5 @@
 
         /// <inheritdoc />
         public override string Message => $"Error Code: {ErrorCode}\r\n{base.Message}";
-
-        /// <summary>
-        /// To the Bluetooth error item.
-        /// </summary>
-        /// <returns>An Bluetooth Error Item.</returns>
-        public BluetoothErrorItem ToABluetoothErrorItem() => new BluetoothErrorItem(ErrorCode, base.Message);
     }
 }
