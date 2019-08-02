@@ -46,7 +46,7 @@
                         break;
                     case ConsoleKey.X:
                         Extra.ShowMenu();
-                        break;
+                        break;                        
                     case ConsoleKey.Escape:
                         exit = true;
                         break;
