@@ -12,22 +12,12 @@
         /// Initializes a new instance of the <see cref="BluetoothErrorException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// <param name="errorCode">The error code.</param>
-        public BluetoothErrorException(string message, BluetoothErrorCode errorCode = BluetoothErrorCode.Generic)
+        public BluetoothErrorException(string message)
             : base(message)
         {
-            ErrorCode = errorCode;
         }
 
-        /// <summary>
-        /// Gets or sets the error code.
-        /// </summary>
-        /// <value>
-        /// The error code.
-        /// </value>
-        public BluetoothErrorCode ErrorCode { get; }
-
         /// <inheritdoc />
-        public override string Message => $"Error Code: {ErrorCode}\r\n{base.Message}";
+        public override string Message => $"Error:\r\n{base.Message}";
     }
 }

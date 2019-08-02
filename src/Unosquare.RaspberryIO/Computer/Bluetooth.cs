@@ -30,7 +30,7 @@
             }
             catch (Exception ex)
             {
-                throw new BluetoothErrorException($"Failed to power on: {ex.Message}", BluetoothErrorCode.Generic);
+                throw new BluetoothErrorException($"Failed to power on: {ex.Message}");
             }
         }
 
@@ -47,7 +47,7 @@
             }
             catch (Exception ex)
             {
-                throw new BluetoothErrorException($"Failed to power off: {ex.Message}", BluetoothErrorCode.Generic);
+                throw new BluetoothErrorException($"Failed to power off: {ex.Message}");
             }
         }
 
@@ -69,7 +69,7 @@
             }
             catch (Exception ex)
             {
-                throw new BluetoothErrorException($"Failed to retrieve devices: {ex.Message}", BluetoothErrorCode.Generic);
+                throw new BluetoothErrorException($"Failed to retrieve devices: {ex.Message}");
             }
         }
 
@@ -86,7 +86,7 @@
             }
             catch (Exception ex)
             {
-                throw new BluetoothErrorException($"Failed to retrieve controllers: {ex.Message}", BluetoothErrorCode.Generic);
+                throw new BluetoothErrorException($"Failed to retrieve controllers: {ex.Message}");
             }
         }
 
@@ -111,7 +111,7 @@
             }
             catch (Exception ex)
             {
-                throw new BluetoothErrorException($"Failed to Pair: {ex.Message}", BluetoothErrorCode.Generic);
+                throw new BluetoothErrorException($"Failed to Pair: {ex.Message}");
             }
         }
 
@@ -137,7 +137,7 @@
             }
             catch (Exception ex)
             {
-                throw new BluetoothErrorException($"Failed to connect: {ex.Message}", BluetoothErrorCode.Generic);
+                throw new BluetoothErrorException($"Failed to connect: {ex.Message}");
             }
         }
 
@@ -164,7 +164,7 @@
             }
             catch (Exception ex)
             {
-                throw new BluetoothErrorException($"Failed to add to trust devices list: {ex.Message}", BluetoothErrorCode.Generic);
+                throw new BluetoothErrorException($"Failed to add to trust devices list: {ex.Message}");
             }
         }
 
@@ -182,7 +182,7 @@
             }
             catch (Exception ex)
             {
-                throw new BluetoothErrorException($"Failed to retrieve  info for {deviceAddress}: {ex.Message}", BluetoothErrorCode.Generic);
+                throw new BluetoothErrorException($"Failed to retrieve  info for {deviceAddress}: {ex.Message}");
             }
         }
     }
