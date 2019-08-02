@@ -1,10 +1,10 @@
-﻿namespace Unosquare.RaspberryIO.Abstractions
+﻿namespace Unosquare.RaspberryIO
 {
     using System;
 
     /// <inheritdoc />
     /// <summary>
-    /// Special Exception to transport the BluetoothErorItem.
+    /// Occurs when an exception is thrown in the <c>Bluetooth</c> component.
     /// </summary>
     public class BluetoothErrorException : Exception
     {
