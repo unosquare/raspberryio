@@ -1,19 +1,19 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Abstractions;
-    using Native;
-    using Swan.Components;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using Unosquare.Swan.Abstractions;
+    using Abstractions;
+    using Native;
+    using Swan;
+    using Swan.DependencyInjection;
 
     /// <summary>
     /// Retrieves the RaspberryPI System Information.
-    /// 
+    ///
     /// http://raspberry-pi-guide.readthedocs.io/en/latest/system.html.
     /// </summary>
     public sealed class SystemInfo : SingletonBase<SystemInfo>
@@ -301,7 +301,7 @@
 
             return string.Join(Environment.NewLine, propertyValues2.ToArray());
         }
-        
+
         private void ExtractOS()
         {
             try
@@ -339,21 +339,21 @@
                 {
                     RaspberryPiVersion = PiVersion.Unknown;
                     if (Enum.IsDefined(typeof(PiVersion), boardVersion))
-                        RaspberryPiVersion = (PiVersion) boardVersion;
+                        RaspberryPiVersion = (PiVersion)boardVersion;
 
                     if ((boardVersion & NewStyleCodesMask) == NewStyleCodesMask)
                     {
                         NewStyleRevisionCodes = true;
                         RevisionNumber = boardVersion & 0xF;
-                        _boardModel = (BoardModel) ((boardVersion >> 4) & 0xFF);
-                        _processorModel = (ProcessorModel) ((boardVersion >> 12) & 0xF);
-                        _manufacturer = (Manufacturer) ((boardVersion >> 16) & 0xF);
-                        _memorySize = (MemorySize) ((boardVersion >> 20) & 0x7);
+                        _boardModel = (BoardModel)((boardVersion >> 4) & 0xFF);
+                        _processorModel = (ProcessorModel)((boardVersion >> 12) & 0xF);
+                        _manufacturer = (Manufacturer)((boardVersion >> 16) & 0xF);
+                        _memorySize = (MemorySize)((boardVersion >> 20) & 0x7);
                     }
                 }
 
                 if (hasSysInfo)
-                    BoardRevision = (int) DependencyContainer.Current.Resolve<ISystemInfo>().BoardRevision;
+                    BoardRevision = (int)DependencyContainer.Current.Resolve<ISystemInfo>().BoardRevision;
             }
             catch
             {

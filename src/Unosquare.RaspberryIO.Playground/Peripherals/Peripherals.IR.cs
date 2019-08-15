@@ -1,8 +1,9 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
-    using Abstractions;
     using System;
     using Swan;
+    using Swan.Logging;
+    using Unosquare.RaspberryIO.Abstractions;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -42,7 +43,7 @@
                        }
                    }
 
-                   ExitMessage.WriteLine();
+                   Terminal.WriteLine(ExitMessage);
                };
 
             while (true)

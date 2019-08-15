@@ -1,6 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using Swan;
+    using Swan.Logging;
     using System;
     using System.Threading.Tasks;
 
@@ -9,7 +9,6 @@
         public static async Task ShowMenu()
         {
             var exit = false;
-            ConsoleKey key;
 
             while (!exit)
             {
@@ -18,7 +17,7 @@
                 $"Brightness: {Pi.PiDisplay.Brightness}".Info();
                 $"Blacklight: [{(Pi.PiDisplay.IsBacklightOn ? (char)0x2714 : (char)0x2718)}]\n".Info();
 
-                key = Console.ReadKey(true).Key;
+                var key = Console.ReadKey(true).Key;
 
                 switch (key)
                 {

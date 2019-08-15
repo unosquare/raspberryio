@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Extra
 {
     using System;
     using System.Collections.Generic;
@@ -22,7 +22,7 @@
             do
             {
                 Console.Clear();
-                var mainOption = "Extra Examples".ReadPrompt(MainOptions, "Esc to exit this menu");
+                var mainOption = Terminal.ReadPrompt("Extra Examples", MainOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
                 {

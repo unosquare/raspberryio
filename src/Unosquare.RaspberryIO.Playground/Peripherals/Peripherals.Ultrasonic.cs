@@ -1,8 +1,9 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
-    using Abstractions;
     using System;
+    using Abstractions;
     using Swan;
+    using Swan.Logging;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -35,17 +36,18 @@
                             color = ConsoleColor.White;
 
                         var distance = e.Distance < 57 ? e.Distance : 58;
-                        $"{new string('█', (int)distance)}".WriteLine(color);
-                        "--------------------------------------------------------->".WriteLine();
-                        "          10        20        30        40        50       cm".WriteLine();
-                        $"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in\n".WriteLine();
+
+                        Terminal.WriteLine($"{new string('█', (int)distance)}", color);
+                        Terminal.WriteLine("--------------------------------------------------------->");
+                        Terminal.WriteLine("          10        20        30        40        50       cm");
+                        Terminal.WriteLine($"Obstacle detected at {e.Distance:N2}cm / {e.DistanceInch:N2}in\n");
                     }
                     else
                     {
                         "No obstacles detected.\n".Info("HC - SR04");
                     }
 
-                    ExitMessage.WriteLine();
+                    Terminal.WriteLine(ExitMessage);
                 };
 
                 sensor.Start();

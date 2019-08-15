@@ -1,10 +1,11 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using Swan;
+    using Swan.Logging;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -24,7 +25,7 @@
             do
             {
                 Console.Clear();
-                var mainOption = "Rfid".ReadPrompt(RfidOptions, "Esc to exit this menu");
+                var mainOption = Terminal.ReadPrompt("Rfid", RfidOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
                 {
@@ -146,7 +147,7 @@
                 // Print UID
                 $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
 
-                ExitMessage.WriteLine();
+                Terminal.WriteLine(ExitMessage);
 
                 while (true)
                 {
@@ -166,7 +167,7 @@
             "Testing RFID".Info();
 
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
-            var userInput = "Insert a message to be written in the card (16 characters only)".ReadLine().Truncate(16);
+            var userInput = Terminal.ReadLine("Insert a message to be written in the card (16 characters only)").Truncate(16);
             "Place the card on the sensor".Info();
 
             while (true)
@@ -196,7 +197,8 @@
                 device.ClearCardSelection();
                 "Data has been written".Info();
 
-                ExitMessage.WriteLine();
+                Terminal.WriteLine(ExitMessage);
+
                 while (true)
                 {
                     var input = Console.ReadKey(true).Key;
@@ -248,7 +250,8 @@
                 }
 
                 device.ClearCardSelection();
-                ExitMessage.WriteLine();
+                Terminal.WriteLine(ExitMessage);
+
                 while (true)
                 {
                     var input = Console.ReadKey(true).Key;
@@ -315,7 +318,8 @@
 
                 device.ClearCardSelection();
 
-                ExitMessage.WriteLine();
+                Terminal.WriteLine(ExitMessage);
+
                 while (true)
                 {
                     var input = Console.ReadKey(true).Key;

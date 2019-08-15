@@ -1,8 +1,9 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using Swan;
     using System;
     using System.Threading.Tasks;
+    using Swan;
+    using Swan.Logging;
 
     public static class SystemVolume
     {
@@ -26,10 +27,10 @@
 
                 UpdateProgress(CurrentLevel);
 
-                "Press UpArrow key to increment volume".WriteLine();
-                "Press DownArrow key to decrement volume".WriteLine();
-                "Press M key to Mute on/off\n".WriteLine();
-                var key = "Press Esc key to continue . . .".ReadKey(true).Key;
+                Terminal.WriteLine("Press UpArrow key to increment volume");
+                Terminal.WriteLine("Press DownArrow key to decrement volume");
+                Terminal.WriteLine("Press M key to Mute on/off\n");
+                var key = Terminal.ReadKey("Press Esc key to continue . . .").Key;
                 var validOption = false;
 
                 while (!validOption)
@@ -64,11 +65,11 @@
         private static void UpdateProgress(int level)
         {
             var filler = level / 10;
-            ConsoleColor color;
-            "\r[".Write();
+            Terminal.Write("\r[");
 
             for (var i = 1; i <= 10; ++i)
             {
+                ConsoleColor color;
                 if (i <= filler)
                 {
                     if (i < 6)
@@ -83,10 +84,10 @@
                     color = ConsoleColor.Black;
                 }
 
-                $"{(char)0x275A}".Write(color);
+                Terminal.Write($"{(char)0x275A}", color);
             }
 
-            $"] {level}%\n\n".Write();
+            Terminal.Write($"] {level}%\n\n");
         }
     }
 }

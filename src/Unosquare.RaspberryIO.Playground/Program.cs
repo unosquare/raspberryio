@@ -1,9 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
-    using Swan;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Swan;
+    using Swan.Logging;
     using WiringPi;
 
     /// <summary>
@@ -27,14 +28,13 @@
         {
             $"Starting program at {DateTime.Now}".Info();
 
-            Terminal.Settings.DisplayLoggingMessageType = LogMessageType.Info | LogMessageType.Warning | LogMessageType.Error;
             Pi.Init<BootstrapWiringPi>();
 
             var exit = false;
             do
             {
                 Console.Clear();
-                var mainOption = "Main options".ReadPrompt(MainOptions, "Esc to exit this program");
+                var mainOption = Terminal.ReadPrompt("Main options", MainOptions, "Esc to exit this program");
 
                 switch (mainOption.Key)
                 {
@@ -42,10 +42,10 @@
                         await SystemTests.ShowMenu().ConfigureAwait(false);
                         break;
                     case ConsoleKey.P:
-                        Peripherals.ShowMenu();
+                        Peripherals.Peripherals.ShowMenu();
                         break;
                     case ConsoleKey.X:
-                        Extra.ShowMenu();
+                        Extra.Extra.ShowMenu();
                         break;                        
                     case ConsoleKey.Escape:
                         exit = true;

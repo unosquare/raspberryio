@@ -1,10 +1,9 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
+    using Swan;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Swan.Abstractions;
-    using Swan.Components;
 
     /// <summary>
     /// Settings for audio device.

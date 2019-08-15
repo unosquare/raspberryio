@@ -1,10 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using Computer;
+    using Swan;
+    using Swan.Logging;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Swan;
 
     public static partial class SystemTests
     {
@@ -14,6 +15,7 @@
 
             $"GPIO Controller initialized successfully with {Pi.Gpio.Count} pins".Info();
             $"{Pi.Info}".Info();
+
             try
             {
                 $"BoardModel {Pi.Info.BoardModel}".Info();
@@ -38,7 +40,7 @@
                 .ToList()
                 .ForEach(x => x.Info());
 
-            ExitMessage.WriteLine();
+            Terminal.WriteLine(ExitMessage);
 
             while (true)
             {

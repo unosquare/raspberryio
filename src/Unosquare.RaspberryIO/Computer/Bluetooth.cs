@@ -1,12 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
-    using Swan.Abstractions;
-    using Swan.Components;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Swan;
 
     /// <summary>
     /// Represents the Bluetooth information.

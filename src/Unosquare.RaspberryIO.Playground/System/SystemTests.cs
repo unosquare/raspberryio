@@ -23,7 +23,7 @@
             do
             {
                 Console.Clear();
-                var mainOption = "System".ReadPrompt(MainOptions, "Esc to exit this menu");
+                var mainOption = Terminal.ReadPrompt("System", MainOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
                 {

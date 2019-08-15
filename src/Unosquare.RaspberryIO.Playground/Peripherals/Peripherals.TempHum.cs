@@ -1,8 +1,9 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
-    using Abstractions;
     using System;
     using Swan;
+    using Swan.Logging;
+    using Unosquare.RaspberryIO.Abstractions;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -13,6 +14,7 @@
         public static void TestTempSensor()
         {
             Console.Clear();
+
             using (var sensor = DhtSensor.Create(DhtType.Dht11, Pi.Gpio[BcmPin.Gpio04]))
             {
                 var totalReadings = 0.0;
@@ -26,7 +28,7 @@
                     Console.Clear();
                     validReadings++;
                     $"Temperature: \n {e.Temperature:0.00}°C \n {e.TemperatureFahrenheit:0.00}°F  \n Humidity: {e.HumidityPercentage:P0}\n\n".Info("DHT11");
-                    ExitMessage.WriteLine();
+                    Terminal.WriteLine(ExitMessage);
                 };
 
                 sensor.Start();

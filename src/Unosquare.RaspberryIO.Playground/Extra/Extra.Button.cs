@@ -1,8 +1,9 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Extra
 {
-    using Abstractions;
     using System;
     using Swan;
+    using Swan.Logging;
+    using Abstractions;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Extra
@@ -16,7 +17,7 @@
             var button = new Button(inputPin, GpioPinResistorPullMode.PullUp);
 
             button.Pressed += (s, e) => LogMessageOnEvent("Pressed");
-            button.Released += (s, e) => LogMessageOnEvent("Realeased");
+            button.Released += (s, e) => LogMessageOnEvent("Released");
 
             while (true)
             {
@@ -32,7 +33,7 @@
         {
             Console.Clear();
             message.Info();
-            ExitMessage.WriteLine();
+            Terminal.WriteLine(ExitMessage);
         }
     }
 }

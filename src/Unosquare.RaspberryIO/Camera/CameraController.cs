@@ -1,11 +1,10 @@
 ﻿namespace Unosquare.RaspberryIO.Camera
 {
+    using Swan;
     using System;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
-    using Unosquare.Swan.Abstractions;
-    using Swan.Components;
 
     /// <summary>
     /// The Raspberry Pi's camera controller wrapping raspistill and raspivid programs.
@@ -99,7 +98,7 @@
                 CaptureWidth = width,
                 CaptureHeight = height,
                 CaptureJpegQuality = 90,
-                CaptureTimeoutMilliseconds = 300
+                CaptureTimeoutMilliseconds = 300,
             };
 
             return CaptureImageAsync(settings, ct);
@@ -130,7 +129,7 @@
                 CaptureTimeoutMilliseconds = 0,
                 CaptureDisplayPreview = false,
                 CaptureWidth = 1920,
-                CaptureHeight = 1080
+                CaptureHeight = 1080,
             };
 
             OpenVideoStream(settings, onDataCallback, onExitCallback);
@@ -144,7 +143,7 @@
         /// <param name="onExitCallback">The on exit callback.</param>
         /// <exception cref="InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
         /// <exception cref="ArgumentException">CaptureTimeoutMilliseconds.</exception>
-        public void OpenVideoStream(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback)
+        public void OpenVideoStream(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback = null)
         {
             if (Instance.IsBusy)
                 throw new InvalidOperationException("Cannot use camera module because it is currently busy.");

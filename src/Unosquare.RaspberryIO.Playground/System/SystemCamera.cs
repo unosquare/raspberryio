@@ -1,11 +1,12 @@
 ﻿namespace Unosquare.RaspberryIO.Playground
 {
     using Camera;
+    using Swan;
+    using Swan.Logging;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-    using Swan;
 
     public static class SystemCamera
     {
@@ -23,7 +24,7 @@
             do
             {
                 Console.Clear();
-                var mainOption = "System".ReadPrompt(MainOptions, "Esc to exit this menu");
+                var mainOption = Terminal.ReadPrompt("System", MainOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
                 {
@@ -42,9 +43,9 @@
         {
             Console.Clear();
 
-            var imageWidth = "Set the image width:".ReadNumber(640);
-            var imageHeight = "Set the image height:".ReadNumber(480);
-            var fileName = "Set the file name:".ReadLine();
+            var imageWidth = Terminal.ReadNumber("Set the image width:", 640);
+            var imageHeight = Terminal.ReadNumber("Set the image height:", 480);
+            var fileName = Terminal.ReadLine("Set the file name:");
 
             Console.Clear();
 
@@ -58,7 +59,7 @@
             $"Date Created: {DateTime.Now:MM/dd/yyyy}".Info();
             $"At {DefaultPicturePath}\n".Info();
 
-            "Press Esc key to continue . . .".WriteLine();
+            Terminal.WriteLine("Press Esc key to continue . . .");
 
             while (true)
             {
@@ -101,12 +102,11 @@
 
             Pi.Camera.OpenVideoStream(
                 videoSettings,
-                onDataCallback: data =>
+                data =>
                 {
                     videoByteCount += data.Length;
                     videoEventCount++;
-                },
-                onExitCallback: null);
+                });
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write($" {(char)0x25CF} ");

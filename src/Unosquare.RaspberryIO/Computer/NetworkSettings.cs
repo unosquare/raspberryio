@@ -1,8 +1,8 @@
 ﻿namespace Unosquare.RaspberryIO.Computer
 {
     using Swan;
-    using Swan.Abstractions;
-    using Swan.Components;
+    using Swan.Logging;
+    using Swan.Net;
     using System;
     using System.Collections.Generic;
     using System.IO;

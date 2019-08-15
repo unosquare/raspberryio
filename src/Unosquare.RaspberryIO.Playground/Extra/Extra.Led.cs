@@ -1,10 +1,11 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Extra
 {
+    using Abstractions;
+    using Swan;
+    using Swan.Logging;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Abstractions;
-    using Swan;
     using WiringPi;
 
     public static partial class Extra
@@ -61,7 +62,7 @@
                     var ledState = isOn ? "on" : "off";
                     Console.Clear();
                     $"Blinking {ledState}".Info();
-                    ExitMessage.WriteLine();
+                    Terminal.WriteLine(ExitMessage);
                     Thread.Sleep(500);
                 }
 
@@ -73,11 +74,13 @@
             {
                 Console.Clear();
                 "Dimming".Info();
-                ExitMessage.WriteLine();
+                Terminal.WriteLine(ExitMessage);
+
                 var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio13];
                 pin.PinMode = GpioPinDriveMode.PwmOutput;
                 pin.PwmMode = PwmMode.Balanced;
                 pin.PwmClockDivisor = 2;
+                
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     for (var x = 0; x <= 100; x++)

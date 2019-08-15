@@ -1,9 +1,9 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
+    using Abstractions;
+    using Swan.Logging;
     using System;
     using System.Collections.Generic;
-    using Abstractions;
-    using Swan;
 
     /// <summary>
     /// Read and write different types of Radio-Frequency IDentification (RFID) cards on your

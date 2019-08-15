@@ -2,7 +2,7 @@
 {
     using System.Globalization;
     using System.IO;
-    using Unosquare.Swan.Abstractions;
+    using Swan;
 
     /// <summary>
     /// The Official Raspberry Pi 7-inch touch display from the foundation
@@ -38,16 +38,14 @@
         /// </value>
         public byte Brightness
         {
-            get
-            {
-                if (IsPresent == false) return 0;
-
-                return byte.TryParse(File.ReadAllText(BrightnessFilename).Trim(), out var brightness) ? brightness : (byte)0;
-            }
+            get =>
+                IsPresent
+                    ? byte.TryParse(File.ReadAllText(BrightnessFilename).Trim(), out var brightness) ? brightness : (byte)0 :
+                    (byte)0;
             set
             {
-                if (IsPresent == false) return;
-                File.WriteAllText(BrightnessFilename, value.ToString(CultureInfo.InvariantCulture));
+                if (IsPresent)
+                    File.WriteAllText(BrightnessFilename, value.ToString(CultureInfo.InvariantCulture));
             }
         }
 
@@ -60,17 +58,13 @@
         /// </value>
         public bool IsBacklightOn
         {
-            get
-            {
-                if (IsPresent == false) return false;
-
-                return int.TryParse(File.ReadAllText(BacklightFilename).Trim(), out var value) && value == 0;
-            }
+            get =>
+                IsPresent && (int.TryParse(File.ReadAllText(BacklightFilename).Trim(), out var value) &&
+                              value == 0);
             set
             {
-                if (IsPresent == false) return;
-
-                File.WriteAllText(BacklightFilename, value ? "0" : "1");
+                if (IsPresent)
+                    File.WriteAllText(BacklightFilename, value ? "0" : "1");
             }
         }
     }

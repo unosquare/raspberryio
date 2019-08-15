@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
     using System.Collections.Generic;
@@ -24,7 +24,7 @@
             do
             {
                 Console.Clear();
-                var mainOption = "Peripherals".ReadPrompt(MainOptions, "Esc to exit this menu");
+                var mainOption = Terminal.ReadPrompt("Peripherals", MainOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
                 {

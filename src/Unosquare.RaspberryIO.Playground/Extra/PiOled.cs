@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Extra
 {
     using System;
     using System.Diagnostics;
@@ -6,10 +6,10 @@
     using System.Drawing.Drawing2D;
     using System.Drawing.Imaging;
     using System.Threading;
-    using Swan;
-    using Swan.Abstractions;
+    using Swan.Logging;
+    using Swan.Threading;
     using Unosquare.RaspberryIO.Peripherals;
-    
+
     internal class PiOled : RunnerBase
     {
         private OledDisplaySsd1306 _display;
@@ -20,7 +20,7 @@
             // placeholder
         }
 
-        protected override void Setup()
+        protected override void OnSetup()
         {
             _display = new OledDisplaySsd1306(OledDisplaySsd1306.DisplayModel.Display128X32);
         }
@@ -104,9 +104,6 @@
             bitmap.Dispose();
         }
 
-        protected override void Cleanup()
-        {
-            _display.Dispose();
-        }
+        protected override void Cleanup() => _display.Dispose();
     }
 }

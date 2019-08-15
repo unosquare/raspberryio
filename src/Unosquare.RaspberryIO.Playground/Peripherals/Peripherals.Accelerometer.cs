@@ -1,7 +1,8 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
     using Swan;
+    using Swan.Logging;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -26,7 +27,7 @@
                         Console.Clear();
                         $"\nAccelerometer:\n{e.Accel}\n\nGyroscope:\n{e.Gyro}\n\nTemperature: {Math.Round(e.Temperature, 2)}°C\n"
                             .Info("GY-521");
-                        ExitMessage.WriteLine();
+                        Terminal.WriteLine(ExitMessage);
                     };
 
                 // Run accelerometer

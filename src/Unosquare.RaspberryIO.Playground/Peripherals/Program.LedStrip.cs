@@ -1,13 +1,14 @@
 ﻿#if NET461
-namespace Unosquare.RaspberryIO.Playground
+namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
-    using Swan;
-    using Swan.Formatters;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading;
+    using Swan;
+    using Swan.Formatters;
+    using Swan.Logging;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -22,7 +23,7 @@ namespace Unosquare.RaspberryIO.Playground
             try
             {
                 using (var bitmap =
-                    new System.Drawing.Bitmap(Path.Combine(Runtime.EntryAssemblyDirectory, "fractal.jpg")))
+                    new System.Drawing.Bitmap(Path.Combine(SwanRuntime.EntryAssemblyDirectory, "fractal.jpg")))
                 {
                     $"Loaded bitmap with format {bitmap.PixelFormat}".Info();
                     pixels = new BitmapBuffer(bitmap);
@@ -42,7 +43,7 @@ namespace Unosquare.RaspberryIO.Playground
             var thread = new Thread(() =>
             {
                 var strip = new LedStripAPA102C(60 * 4, 1, 1000000); // 1 Mhz is sufficient for such a short strip (only 240 LEDs)
-                var millisecondsPerFrame = 1000 / 25;
+                const int millisecondsPerFrame = 1000 / 25;
                 var lastRenderTime = DateTime.UtcNow;
                 var currentFrameNumber = 0;
 
@@ -79,7 +80,7 @@ namespace Unosquare.RaspberryIO.Playground
                     if (delayMilliseconds > 0 && exitAnimation == false)
                         Thread.Sleep(delayMilliseconds);
                     else
-                        $"Lagging framerate: {delayMilliseconds} milliseconds".Info();
+                        $"Lagging frame rate: {delayMilliseconds} milliseconds".Info();
 
                     frameTimes.Enqueue((int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
                     lastRenderTime = DateTime.UtcNow;
@@ -121,7 +122,7 @@ namespace Unosquare.RaspberryIO.Playground
             var thread = new Thread(() =>
             {
                 var strip = new LedStripAPA102C(60 * 4);
-                var millisecondsPerFrame = 1000 / 25;
+                const int millisecondsPerFrame = 1000 / 25;
                 var lastRenderTime = DateTime.UtcNow;
 
                 var tailSize = strip.LedCount;
