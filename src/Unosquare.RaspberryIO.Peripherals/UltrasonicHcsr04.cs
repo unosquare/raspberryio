@@ -1,7 +1,6 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
     using Abstractions;
-    using Abstractions.Native;
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -25,7 +24,7 @@
         private IGpioPin _triggerPin;
         private IGpioPin _echoPin;
         private Thread _readWorker;
-        private HighResolutionTimer _measurementTimer;
+        private Swan.Diagnostics.HighResolutionTimer _measurementTimer;
 
         static UltrasonicHcsr04()
         {
@@ -75,7 +74,7 @@
             _triggerPin.PinMode = GpioPinDriveMode.Output;
             _echoPin.PinMode = GpioPinDriveMode.Input;
 
-            _measurementTimer = new HighResolutionTimer();
+            _measurementTimer = new Swan.Diagnostics.HighResolutionTimer();
             IsRunning = true;
             _readWorker.Start();
         }
