@@ -1,9 +1,9 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
+    using Abstractions;
+    using Swan.Diagnostics;
     using System;
     using System.Threading;
-    using Abstractions;
-    using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// Implements settings for GY-521 accelerometer peripheral.

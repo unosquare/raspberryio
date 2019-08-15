@@ -1,11 +1,11 @@
 ﻿namespace Unosquare.RaspberryIO.Peripherals
 {
     using Abstractions;
+    using Swan.Diagnostics;
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading;
-    using Unosquare.RaspberryIO.Abstractions.Native;
 
     /// <summary>
     /// Base class for DHT family digital relative humidity and temperature sensors.

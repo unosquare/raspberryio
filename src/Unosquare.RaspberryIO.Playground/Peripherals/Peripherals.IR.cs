@@ -3,7 +3,7 @@
     using System;
     using Swan;
     using Swan.Logging;
-    using Unosquare.RaspberryIO.Abstractions;
+    using Abstractions;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
