@@ -1,5 +1,4 @@
-﻿#if NET461
-namespace Unosquare.RaspberryIO.Playground.Peripherals
+﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +6,6 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
     using System.Linq;
     using System.Threading;
     using Swan;
-    using Swan.Formatters;
     using Swan.Logging;
     using Unosquare.RaspberryIO.Peripherals;
 
@@ -170,4 +168,3 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
         }
     }
 }
-#endif
