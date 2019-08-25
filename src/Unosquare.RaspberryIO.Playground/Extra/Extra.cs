@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Playground.Extra
+namespace Unosquare.RaspberryIO.Playground.Extra
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +12,8 @@
         {
             { ConsoleKey.B, "Test Button" },
             { ConsoleKey.L, "Led Blinking" },
-            { ConsoleKey.D, "Led Dimming" },
+            { ConsoleKey.D, "Led Dimming, Hardware PWM" },
+            { ConsoleKey.S, "Led Dimming, Software PWM" },
         };
 
         public static void ShowMenu()
@@ -33,7 +34,10 @@
                         TestLedBlinking();
                         break;
                     case ConsoleKey.D:
-                        TestLedDimming();
+                        TestLedDimming(true);
+                        break;
+                    case ConsoleKey.S:
+                        TestLedDimming(false);
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
