@@ -143,6 +143,7 @@ $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
 ```
 
 Now, verify your version of .Net Core by running ```dotnet --info```.
+Visit https://aka.ms/dotnet-download to check for newer versions of the .Net Core runtime (or SDK). 
 
 ## Usage
 
@@ -154,6 +155,7 @@ Before start using RaspberryIO, you must initialize **Pi** class (bootstrapping 
 
 ### Run the app on the raspberry
 
+#### Deploy using dotnet-sshdeploy
 - You need to publish the project and you can accomplish this by using [dotnet-sshdeploy](https://github.com/unosquare/sshdeploy) but first, you must edit these properties inside the csproj file in order to establish an ssh connection with your raspberry
 
 ``` xml
@@ -199,7 +201,19 @@ Completed.
 
 * **The default TargetFramework is** `net461` **but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this** `dotnet-sshdeploy push -f netcoreapp2.2`. **More information about dotnet-sshdeploy see [this](https://github.com/unosquare/sshdeploy)**
 
-- Run the project
+#### Deploy using Visual Studio "Publish" and WinSCP
+
+Alternatively, you can use Visual Studio's Publish feature and a SCP (SSH Copy) application such as WinSCP or FileZilla. This uses the example project from this library: 
+
+- Right click on "Unosquare.RaspberryIO.Playground" and select "Publish..."
+- Select the publish profile you want to use (debug or release) and click on "Publish" on the right. 
+- Wait for the project to build and note the output path
+- Open WinSCP, ensure you can connect to your raspberry
+- Navigate to the output folder noted above on your local computer
+- Select "Commands -> Keep remote folder current", check the local and remote folder entries in the dialog and choose "In new Window" from the "Start" button. 
+- Answer "Yes" to start an initial synchronisation. WinSCP will now automatically update the files on your Pi whenever you click the "Publish" button in Visual Studio. Note though that just building will _not_ update the publish folder. 
+
+#### Run the project
 
   - Using Mono:
     
