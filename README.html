@@ -189,11 +189,13 @@ $ wget https://download.visualstudio.microsoft.com/download/pr/428aaa32-f66c-484
 $ sudo mkdir /opt/dotnet
 $ sudo tar -xvf dotnet-runtime-2.2.6-linux-arm.tar.gz -C /opt/dotnet/
 $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
-</code></pre><p>Now, verify your version of .Net Core by running <code>dotnet --info</code>.</p>
+</code></pre><p>Now, verify your version of .Net Core by running <code>dotnet --info</code>.
+Visit <a href="https://aka.ms/dotnet-download">https://aka.ms/dotnet-download</a> to check for newer versions of the .Net Core runtime (or SDK). </p>
 <h2 id="usage">Usage</h2>
 <p>Before start using RaspberryIO, you must initialize <strong>Pi</strong> class (bootstrapping process) with the valid Abstractions implementation, in order to let <strong>Pi</strong> know what implementation is going to use:</p>
 <pre><code class="lang-csharp"> Pi.Init&lt;BootstrapWiringPi&gt;();
 </code></pre><h3 id="run-the-app-on-the-raspberry">Run the app on the raspberry</h3>
+<h4 id="deploy-using-dotnet-sshdeploy">Deploy using dotnet-sshdeploy</h4>
 <ul>
 <li>You need to publish the project and you can accomplish this by using <a href="https://github.com/unosquare/sshdeploy">dotnet-sshdeploy</a> but first, you must edit these properties inside the csproj file in order to establish an ssh connection with your raspberry</li>
 </ul>
@@ -233,9 +235,20 @@ Connecting to host 172.16.17.54:22 via SFTP.
     Finished deployment in 1.25 seconds.
 Completed.
 </code></pre><ul>
-<li><p><strong>The default TargetFramework is</strong> <code>net461</code> <strong>but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this</strong> <code>dotnet-sshdeploy push -f netcoreapp2.2</code>. <strong>More information about dotnet-sshdeploy see <a href="https://github.com/unosquare/sshdeploy">this</a></strong></p>
-</li>
-<li><p>Run the project</p>
+<li><strong>The default TargetFramework is</strong> <code>net461</code> <strong>but you can change this by either modifying the RuntimeIdentifier property inside the csproj file or supplying it as a parameter like this</strong> <code>dotnet-sshdeploy push -f netcoreapp2.2</code>. <strong>More information about dotnet-sshdeploy see <a href="https://github.com/unosquare/sshdeploy">this</a></strong></li>
+</ul>
+<h4 id="deploy-using-visual-studio-publish-and-winscp">Deploy using Visual Studio &quot;Publish&quot; and WinSCP</h4>
+<p>Alternatively, you can use Visual Studio&#39;s Publish feature and a SCP (SSH Copy) application such as WinSCP or FileZilla. This uses the example project from this library: </p>
+<ul>
+<li>Right click on &quot;Unosquare.RaspberryIO.Playground&quot; and select &quot;Publish...&quot;</li>
+<li>Select the publish profile you want to use (debug or release) and click on &quot;Publish&quot; on the right. </li>
+<li>Wait for the project to build and note the output path</li>
+<li>Open WinSCP, ensure you can connect to your raspberry</li>
+<li>Navigate to the output folder noted above on your local computer</li>
+<li>Select &quot;Commands -&gt; Keep remote folder current&quot;, check the local and remote folder entries in the dialog and choose &quot;In new Window&quot; from the &quot;Start&quot; button. </li>
+<li>Answer &quot;Yes&quot; to start an initial synchronisation. WinSCP will now automatically update the files on your Pi whenever you click the &quot;Publish&quot; button in Visual Studio. Note though that just building will <em>not</em> update the publish folder. </li>
+</ul>
+<h4 id="run-the-project">Run the project</h4>
 <ul>
 <li><p>Using Mono:</p>
 <p>First of all, you need to give permissions to run the project by running the next command on your target folder:</p>
@@ -250,8 +263,6 @@ Completed.
 <li><p>Using .Net Core</p>
 <pre><code>  ubuntu@ubuntu:~/publish$ dotnet Unosquare.RaspberryIO.Playground.dll
 </code></pre><p><strong><em>Note</em></strong>: Depending on the underlying library, you may need to use root user privileges to run the app.</p>
-</li>
-</ul>
 </li>
 </ul>
 <h2 id="obtaining-board-and-system-information">Obtaining Board and System Information</h2>
