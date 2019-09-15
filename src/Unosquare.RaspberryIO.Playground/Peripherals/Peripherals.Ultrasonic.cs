@@ -8,6 +8,11 @@
 
     public static partial class Peripherals
     {
+        /// <summary>
+        /// For this test, connect the ultrasonic sensor to pins 23 and 24.
+        /// See http://sensorkit.joy-it.net/index.php?title=KY-050_Ultraschallabstandssensor for a cabling diagram using the KY-050 sensor module
+        /// together with a KY-051 voltage translator. But note that this example uses GPIO.23 and GPIO.24 instead of GPIO.17 and GPIO.27 there. 
+        /// </summary>
         public static void TestUltrasonicSensor()
         {
             ConsoleColor color;
@@ -18,9 +23,11 @@
                 {
                     Console.Clear();
 
-                    if (!e.IsValid) return;
-
-                    if (e.HasObstacles)
+                    if (!e.IsValid)
+                    {
+                        Terminal.WriteLine("Sensor could not be read (distance to close?).");
+                    }
+                    else if (e.HasObstacles)
                     {
                         if (e.Distance <= 10)
                             color = ConsoleColor.DarkRed;
@@ -44,7 +51,7 @@
                     }
                     else
                     {
-                        "No obstacles detected.\n".Info("HC - SR04");
+                        Terminal.WriteLine("No obstacles detected.");
                     }
 
                     Terminal.WriteLine(ExitMessage);
