@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
 
@@ -38,8 +38,18 @@
         /// <summary>
         /// Gets the actual distance to the obstacle in inches, or <see cref="UltrasonicHcsr04.NoObstacleDistance"/> if no obstacle was detected.
         /// </summary>
-        public double DistanceInch =>
-            Distance * 2.54;
+        public double DistanceInch
+        {
+            get
+            {
+                if (Distance <= UltrasonicHcsr04.NoObstacleDistance)
+                {
+                    return UltrasonicHcsr04.NoObstacleDistance;
+                }
+
+                return Distance / 2.54;
+            }
+        }
 
         internal static UltrasonicReadEventArgs CreateInvalidReading() =>
             new UltrasonicReadEventArgs(false);
