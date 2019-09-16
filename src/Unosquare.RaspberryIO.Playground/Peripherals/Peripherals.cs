@@ -14,6 +14,7 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
             { ConsoleKey.I, "Infrared Sensor" },
             { ConsoleKey.R, "Rfid Controller" },
             { ConsoleKey.U, "Ultrasonic Sensor" },
+            { ConsoleKey.J, "Joystick" },
             { ConsoleKey.T, "Temperature and Humidity Sensor" },
         };
 
@@ -42,6 +43,9 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
                         break;
                     case ConsoleKey.T:
                         TestTempSensor();
+                        break;
+                    case ConsoleKey.J:
+                        TestJoystick();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

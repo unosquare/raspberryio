@@ -1,11 +1,12 @@
 namespace Unosquare.RaspberryIO.Peripherals
 {
+    using System;
     using Abstractions;
     using RaspberryIO;
     using System.Threading;
 
     /// <summary>
-    /// Abstract base class for both ADC varients, new the specific varient to ensure it's configured correctly at construction.
+    /// Abstract base class for both ADC variants, new the specific variant to ensure it's configured correctly at construction.
     /// </summary>
     public abstract class ADS1x15
     {
@@ -21,25 +22,25 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <summary>
         /// Initializes a new instance of the <see cref="ADS1x15"/> class.
         /// </summary>
+        /// <param name="device">The i2c device to use</param>
         /// <param name="delay">amount of time to delay between write/read.</param>
         /// <param name="shift">bits to shift for sign correction.</param>
-        /// <param name="address">I2C Address.</param>
-        protected ADS1x15(byte delay, byte shift, byte address = ADS1x15ADDRESS)
+        protected ADS1x15(II2CDevice device, byte delay, byte shift)
         {
-            _device = Pi.I2C.AddDevice(_i2CAddress = address);
+            _i2CAddress = (byte)device.DeviceId;
             _conversionDelay = delay;
             _bitShift = shift;
-
-            Gain = AdsGaint.GAINTWOTHIRDS; /* +/- 6.144V range (limited to VDD +0.3V max!) */
+            _device = device ?? throw new ArgumentNullException(nameof(device));
+            Gain = AdsGain.GAINONE; 
         }
 
 #pragma warning disable CS1591 // Missing XML Documentation
         /// <summary>
         /// Gain of internal converter.
         /// </summary>
-        public enum AdsGaint
+        public enum AdsGain
         {
-            GAINTWOTHIRDS = ADS1015REGCONFIGPGA6144V,
+            GAINTWOTHIRDS = ADS1015REGCONFIGPGA6144V, /* +/- 6.144V range (limited to VDD +0.3V max!). This setting is probably not useful on the Pi, where VDD is only 3.3V */
             GAINONE = ADS1015REGCONFIGPGA4096V,
             GAINTWO = ADS1015REGCONFIGPGA2048V,
             GAINFOUR = ADS1015REGCONFIGPGA1024V,
@@ -51,14 +52,41 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <summary>
         /// Internal gain of hardware converter.
         /// </summary>
-        public AdsGaint Gain { get; set; }
+        public AdsGain Gain { get; set; }
 
+        /// <summary>
+        /// Returns the voltage corresponding to the maximum value of the input, based on the current gain. 
+        /// </summary>
+        public float MaxVoltage
+        {
+            get
+            {
+                switch (Gain)
+                {
+                    case AdsGain.GAINTWOTHIRDS:
+                        return 6.144f;
+                    case AdsGain.GAINONE:
+                        return 4.096f;
+                    case AdsGain.GAINTWO:
+                        return 2.048f;
+                    case AdsGain.GAINFOUR:
+                        return 1.024f;
+                    case AdsGain.GAINEIGHT:
+                        return 0.512f;
+                    case AdsGain.GAINSIXTEEN:
+                        return 0.256f;
+                    default:
+                        return 2.048f;
+                }
+            }
+        }
+        
         /// <summary>
         /// Gets a single-ended ADC reading from the specified channel.
         /// </summary>
         /// <param name="channel">the channel to interogate.</param>
         /// <returns>unsigned absolute voltage of the ADC channel.</returns>
-        public short ReadChannel(byte channel)
+        public short ReadChannelRaw(byte channel)
         {
             var config = SingleAndDiffConfigBase
                         | ((channel * 0x1000) + ADS1015REGCONFIGMUXSINGLE0)
@@ -66,6 +94,18 @@ namespace Unosquare.RaspberryIO.Peripherals
                         ;
 
             return channel > 3 ? (short)-1 : ConfigureThenReadADC(config);
+        }
+
+        public float ReadChannel(byte channel)
+        {
+            if (channel > 3)
+            {
+                throw new NotSupportedException("Channel must be between 0 and 3");
+            }
+            short rawData = ReadChannelRaw(channel);
+            float voltageValue = rawData / 32767.0f;
+            voltageValue = voltageValue * MaxVoltage;
+            return voltageValue;
         }
 
         /// <summary>
@@ -117,9 +157,18 @@ namespace Unosquare.RaspberryIO.Peripherals
 #pragma warning disable SA1201 // A field should not follow a method
 
         /// <summary>
-        /// I2C ADDRESS/BITS.
+        /// I2C Default address (ADDR connected to GND)
         /// </summary>
-        protected const byte ADS1x15ADDRESS = 0x48;    // 1001 000 (ADDR = GND)
+        public const byte ADS1x15ADDRESS = 0x48;    // 1001 000 (ADDR = GND)
+
+        /// <summary>
+        /// First alternate address, when ADDR is connected to VDD.
+        /// Note that the KY-053 has a pre-configured pull-down resistor, so that one can leave ADDR open for GND and set to VDD for this address.
+        /// This allows connecting of up to 4 ADS1115 to the same I2C bus. (The others being SCL and SDA)
+        /// </summary>
+        public const byte ADS1x15ADDRESSVDD = 0x49;
+        public const byte ADS1x15ADDRESSSDA = 0x4A;
+        public const byte ADS1x15ADDRESSSCL = 0x4B;
 
         /// <summary>
         /// CONVERSION DELAY (in mS).
@@ -218,7 +267,17 @@ namespace Unosquare.RaspberryIO.Peripherals
         {
             // Wait for the conversion to complete
             Thread.Sleep(_conversionDelay);
-
+            ushort statusRegister = (ushort)SwapWord(_device.ReadAddressWord(ADS1015REGPOINTERCONFIG));
+            int timeout = 1000;
+            while ((statusRegister & 0x8000) == 0 && (timeout-- > 0))
+            {
+                Pi.Timing.SleepMicroseconds(2);
+                statusRegister = (ushort)SwapWord(_device.ReadAddressWord(ADS1015REGPOINTERCONFIG));
+            }
+            if (timeout <= 0)
+            {
+                throw new TimeoutException("Timeout reading value from ADC.");
+            }
             // Read the conversion results
             // Shift 12-bit results right 4 bits for the ADS1015
             return (short)(SwapWord(_device.ReadAddressWord(ADS1015REGPOINTERCONVERT)) >> _bitShift);
@@ -249,7 +308,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// </summary>
         /// <param name="value">value to swap</param>
         /// <returns>16-bit unsigned value with high and low bytes swapped</returns>
-        private ushort SwapWord(ushort value)
+        private static ushort SwapWord(ushort value)
         {
             return (ushort)((value >> 8) | (value << 8));
         }
@@ -260,4 +319,6 @@ namespace Unosquare.RaspberryIO.Peripherals
 
         #endregion
     }
+
+#pragma warning restore CS1591 // Missing XML Documentation
 }
