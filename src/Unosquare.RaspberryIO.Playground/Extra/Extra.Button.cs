@@ -10,7 +10,7 @@ namespace Unosquare.RaspberryIO.Playground.Extra
         {
             Console.Clear();
 
-            var inputPin = Pi.Gpio[BcmPin.Gpio12];
+            var inputPin = Pi.Gpio[BcmPin.Gpio24];
             var button = new Button(inputPin, GpioPinResistorPullMode.PullUp);
 
             button.Pressed += (s, e) => LogMessageOnEvent("Pressed");
