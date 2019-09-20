@@ -26,7 +26,7 @@ namespace Unosquare.RaspberryIO.Playground.Extra
                     break;
                 }
 
-                task.Wait();
+                task.Wait(cancellationTokenSource.Token);
             }
         }
 
@@ -34,15 +34,7 @@ namespace Unosquare.RaspberryIO.Playground.Extra
         {
             using (var cancellationTokenSource = new CancellationTokenSource())
             {
-                Task task = null;
-                if (hardware)
-                {
-                    task = DimHardware(cancellationTokenSource.Token);
-                }
-                else
-                {
-                    task = DimSoftware(cancellationTokenSource.Token);
-                }
+                var task = hardware ? DimHardware(cancellationTokenSource.Token) : DimSoftware(cancellationTokenSource.Token);
 
                 while (true)
                 {
@@ -53,12 +45,13 @@ namespace Unosquare.RaspberryIO.Playground.Extra
                     cancellationTokenSource.Cancel();
                     break;
                 }
-                task.Wait();
+
+                task.Wait(cancellationTokenSource.Token);
             }
         }
 
         /// <summary>
-        /// For this test, connect an LED to Gpio13 and ground. (don't forget the resistor!)
+        /// For this test, connect an LED to Gpio13 and ground. (don't forget the resistor!).
         /// </summary>
         private static Task Blink(CancellationToken cancellationToken)
         {
@@ -84,12 +77,11 @@ namespace Unosquare.RaspberryIO.Playground.Extra
                 }
 
                 blinkingPin.Write(0);
-            });
+            }, cancellationToken);
         }
 
-        private static Task DimHardware(CancellationToken cancellationToken)
-        {
-            return Task.Run(() =>
+        private static Task DimHardware(CancellationToken cancellationToken) =>
+            Task.Run(async () =>
             {
                 Console.Clear();
                 "Hardware Dimming".Info();
@@ -99,33 +91,31 @@ namespace Unosquare.RaspberryIO.Playground.Extra
                 pin.PinMode = GpioPinDriveMode.PwmOutput;
                 pin.PwmMode = PwmMode.Balanced;
                 pin.PwmClockDivisor = 2;
-                
+
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     for (var x = 0; x <= 100; x++)
                     {
                         pin.PwmRegister = (int)pin.PwmRange / 100 * x;
-                        Thread.Sleep(10);
+                        await Task.Delay(10, cancellationToken);
                     }
 
                     for (var x = 0; x <= 100; x++)
                     {
                         pin.PwmRegister = (int)pin.PwmRange - ((int)pin.PwmRange / 100 * x);
-                        Thread.Sleep(10);
+                        await Task.Delay(10, cancellationToken);
                     }
                 }
 
                 pin.PinMode = GpioPinDriveMode.Output;
                 pin.Write(0);
-            });
-        }
+            }, cancellationToken);
 
         /// <summary>
-        /// For this test, connect a two-color LED to Gpio23, Gpio24 and ground. Tested with the KY-011 Module. (don't forget the resistor!)
+        /// For this test, connect a two-color LED to Gpio23, Gpio24 and ground. Tested with the KY-011 Module. (don't forget the resistor!).
         /// </summary>
-        private static Task DimSoftware(CancellationToken cancellationToken)
-        {
-            return Task.Run(() =>
+        private static Task DimSoftware(CancellationToken cancellationToken) =>
+            Task.Run(async () =>
             {
                 Console.Clear();
                 "Dimming".Info();
@@ -139,38 +129,29 @@ namespace Unosquare.RaspberryIO.Playground.Extra
                 pinRed.PinMode = GpioPinDriveMode.Output;
                 pinRed.StartSoftPwm(0, 100);
 
-                bool redOn = false;
+                var redOn = false;
 
                 while (!cancellationToken.IsCancellationRequested)
                 {
-                    GpioPin pin = null;
-                    if (redOn)
-                    {
-                        pin = pinRed;
-                    }
-                    else
-                    {
-                        pin = pinGreen;
-                    }
+                    var pin = redOn ? pinRed : pinGreen;
                     redOn = !redOn;
 
                     for (var x = 0; x <= 100; x++)
                     {
-                        pin.SoftPwmValue = (int)pinGreen.SoftPwmRange / 100 * x;
-                        Thread.Sleep(10);
+                        pin.SoftPwmValue = pinGreen.SoftPwmRange / 100 * x;
+                        await Task.Delay(10, cancellationToken);
                     }
 
                     for (var x = 0; x <= 100; x++)
                     {
-                        pin.SoftPwmValue = (int)pinGreen.SoftPwmRange - ((int)pinGreen.SoftPwmRange / 100 * x);
-                        Thread.Sleep(10);
+                        pin.SoftPwmValue = pinGreen.SoftPwmRange - (pinGreen.SoftPwmRange / 100 * x);
+                        await Task.Delay(10, cancellationToken);
                     }
                 }
 
                 pinGreen.Write(0);
                 pinRed.Write(0);
                 Terminal.WriteLine("End of task");
-            });
-        }
+            }, cancellationToken);
     }
 }

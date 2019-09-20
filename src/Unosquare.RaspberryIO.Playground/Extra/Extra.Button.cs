@@ -1,9 +1,9 @@
-﻿namespace Unosquare.RaspberryIO.Playground.Extra
+namespace Unosquare.RaspberryIO.Playground.Extra
 {
-    using System;
+    using Abstractions;
     using Swan;
     using Swan.Logging;
-    using Abstractions;
+    using System;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Extra
