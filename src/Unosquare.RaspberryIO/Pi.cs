@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO
+namespace Unosquare.RaspberryIO
 {
     using Abstractions;
     using Camera;
@@ -16,6 +16,7 @@
         private const string MissingDependenciesMessage = "You need to load a valid assembly (WiringPi or PiGPIO).";
         private static readonly object SyncLock = new object();
         private static bool _isInit;
+        private static SystemInfo _info;
 
         /// <summary>
         /// Initializes static members of the <see cref="Pi" /> class.
@@ -24,7 +25,6 @@
         {
             lock (SyncLock)
             {
-                Info = SystemInfo.Instance;
                 Camera = CameraController.Instance;
                 PiDisplay = DsiDisplay.Instance;
                 Audio = AudioSettings.Instance;
@@ -35,7 +35,16 @@
         /// <summary>
         /// Provides information on this Raspberry Pi's CPU and form factor.
         /// </summary>
-        public static SystemInfo Info { get; }
+        public static SystemInfo Info
+        {
+            get
+            {
+                if (_info == null)
+                    _info = SystemInfo.Instance;
+
+                return _info;
+            }
+        }
 
         /// <summary>
         /// Provides access to the Raspberry Pi's GPIO as a collection of GPIO Pins.
