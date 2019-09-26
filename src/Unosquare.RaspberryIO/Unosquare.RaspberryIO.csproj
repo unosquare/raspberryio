@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>The Raspberry Pi's IO Functionality in an easy-to use API for Mono/.NET Core
@@ -11,7 +11,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
     <AssemblyName>Unosquare.RaspberryIO</AssemblyName>
     <PackageId>Unosquare.Raspberry.IO</PackageId>
     <CodeAnalysisRuleSet>..\..\StyleCop.Analyzers.ruleset</CodeAnalysisRuleSet>
-    <Version>0.25.0</Version>
+    <Version>0.26.0</Version>
     <Authors>Unosquare</Authors>
     <PackageIconUrl>https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/unosquare/raspberryio</PackageProjectUrl>
@@ -29,7 +29,7 @@ This library enables developers to use the various Raspberry Pi's hardware modul
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Unosquare.Swan" Version="2.2.0" />
+    <PackageReference Include="Unosquare.Swan" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
