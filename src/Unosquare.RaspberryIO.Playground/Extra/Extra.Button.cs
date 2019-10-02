@@ -1,8 +1,6 @@
 namespace Unosquare.RaspberryIO.Playground.Extra
 {
     using Abstractions;
-    using Swan;
-    using Swan.Logging;
     using System;
     using Unosquare.RaspberryIO.Peripherals;
 
@@ -12,7 +10,6 @@ namespace Unosquare.RaspberryIO.Playground.Extra
         {
             Console.Clear();
 
-            "Testing Button".Info();
             var inputPin = Pi.Gpio[BcmPin.Gpio12];
             var button = new Button(inputPin, GpioPinResistorPullMode.PullUp);
 
@@ -32,8 +29,8 @@ namespace Unosquare.RaspberryIO.Playground.Extra
         private static void LogMessageOnEvent(string message)
         {
             Console.Clear();
-            message.Info();
-            Terminal.WriteLine(ExitMessage);
+            Console.WriteLine(message);
+            Console.WriteLine(ExitMessage);
         }
     }
 }

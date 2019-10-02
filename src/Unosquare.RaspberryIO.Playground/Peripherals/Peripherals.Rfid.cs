@@ -1,11 +1,10 @@
-﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
+namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using Swan;
-    using Swan.Logging;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -54,14 +53,14 @@
         /// </summary>
         public static void TestRfidController()
         {
-            "Testing RFID".Info();
+            Console.WriteLine("Testing RFID");
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 
             while (true)
             {
                 // If a card is found
                 if (device.DetectCard() != RFIDControllerMfrc522.Status.AllOk) continue;
-                "Card detected".Info();
+                Console.WriteLine("Card detected");
 
                 // Get the UID of the card
                 var uidResponse = device.ReadCardUniqueId();
@@ -72,7 +71,7 @@
                 var cardUid = uidResponse.Data;
 
                 // Print UID
-                $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
+                Console.WriteLine($"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}");
 
                 // Select the scanned tag
                 device.SelectCardUniqueId(cardUid);
@@ -100,7 +99,7 @@
                     // Authenticate sector
                     if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, (byte)((4 * s) + 3)) == RFIDControllerMfrc522.Status.AllOk)
                     {
-                        $"Sector {s}".Info();
+                        Console.WriteLine($"Sector {s}");
                         for (var b = 0; b < 3 && continueReading; b++)
                         {
                             var data = device.CardReadData((byte)((4 * s) + b));
@@ -110,12 +109,12 @@
                                 break;
                             }
 
-                            $"  Block {b} ({data.Data.Length} bytes): {string.Join(" ", data.Data.Select(x => x.ToString("X2")))}".Info();
+                            Console.WriteLine($"  Block {b} ({data.Data.Length} bytes): {string.Join(" ", data.Data.Select(x => x.ToString("X2")))}");
                         }
                     }
                     else
                     {
-                        "Authentication error".Error();
+                        Console.WriteLine("Authentication error");
                         break;
                     }
                 }
@@ -127,14 +126,14 @@
         private static void CardDetected()
         {
             Console.Clear();
-            "Testing RFID".Info();
+            Console.WriteLine("Testing RFID");
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 
             while (true)
             {
                 // If a card is found
                 if (device.DetectCard() != RFIDControllerMfrc522.Status.AllOk) continue;
-                "Card detected".Info();
+                Console.WriteLine("Card detected");
 
                 // Get the UID of the card
                 var uidResponse = device.ReadCardUniqueId();
@@ -145,7 +144,7 @@
                 var cardUid = uidResponse.Data;
 
                 // Print UID
-                $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
+                Console.WriteLine($"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}");
 
                 Terminal.WriteLine(ExitMessage);
 
@@ -163,12 +162,12 @@
 
         private static void WriteCard()
         {
-            Console.Clear();
-            "Testing RFID".Info();
+            Terminal.Clear();
+            Terminal.WriteLine("Testing RFID");
 
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
             var userInput = Terminal.ReadLine("Insert a message to be written in the card (16 characters only)").Truncate(16);
-            "Place the card on the sensor".Info();
+            Terminal.WriteLine("Place the card on the sensor");
 
             while (true)
             {
@@ -195,7 +194,7 @@
                 }
 
                 device.ClearCardSelection();
-                "Data has been written".Info();
+                Terminal.WriteLine("Data has been written");
 
                 Terminal.WriteLine(ExitMessage);
 
@@ -214,7 +213,7 @@
         private static void ReadCard()
         {
             Console.Clear();
-            "Testing RFID".Info();
+            Console.WriteLine("Testing RFID");
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 
             while (true)
@@ -231,7 +230,7 @@
                 var cardUid = uidResponse.Data;
 
                 // Print UID
-                $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
+                Console.WriteLine($"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}");
 
                 // Select the scanned tag
                 device.SelectCardUniqueId(cardUid);
@@ -242,11 +241,11 @@
                     var data = device.CardReadData(16);
                     var text = Encoding.ASCII.GetString(data.Data);
 
-                    $" Message read: {text}".Info();
+                    Console.WriteLine($" Message read: {text}");
                 }
                 else
                 {
-                    "Authentication error".Error();
+                    Console.WriteLine("Authentication error");
                 }
 
                 device.ClearCardSelection();
@@ -268,7 +267,7 @@
         {
             Console.Clear();
 
-            "Testing RFID".Info();
+            Console.WriteLine("Testing RFID");
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 
             while (true)
@@ -285,7 +284,7 @@
                 var cardUid = uidResponse.Data;
 
                 // Print UID
-                $"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}".Info();
+                Console.WriteLine($"Card UID: {cardUid[0]},{cardUid[1]},{cardUid[2]},{cardUid[3]}");
 
                 // Select the scanned tag
                 device.SelectCardUniqueId(cardUid);
@@ -297,7 +296,7 @@
                     // Authenticate sector
                     if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, (byte)((4 * s) + 3)) == RFIDControllerMfrc522.Status.AllOk)
                     {
-                        $"Sector {s}".Info();
+                        Console.WriteLine($"Sector {s}");
                         for (var b = 0; b < 3 && continueReading; b++)
                         {
                             var data = device.CardReadData((byte)((4 * s) + b));
@@ -307,12 +306,12 @@
                                 break;
                             }
 
-                            $"  Block {b} ({data.Data.Length} bytes): {string.Join(" ", data.Data.Select(x => x.ToString("X2")))}".Info();
+                            Console.WriteLine($"  Block {b} ({data.Data.Length} bytes): {string.Join(" ", data.Data.Select(x => x.ToString("X2")))}");
                         }
                     }
                     else
                     {
-                        $"Authentication error, sector {s}".Error();
+                        Console.WriteLine($"Authentication error, sector {s}");
                     }
                 }
 

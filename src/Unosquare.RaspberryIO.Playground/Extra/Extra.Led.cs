@@ -2,7 +2,6 @@ namespace Unosquare.RaspberryIO.Playground.Extra
 {
     using Abstractions;
     using Swan;
-    using Swan.Logging;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
@@ -71,8 +70,8 @@ namespace Unosquare.RaspberryIO.Playground.Extra
                     blinkingPin.Write(isOn);
                     var ledState = isOn ? "on" : "off";
                     Console.Clear();
-                    $"Blinking {ledState}".Info();
-                    Terminal.WriteLine(ExitMessage);
+                    Console.WriteLine($"Blinking {ledState}");
+                    Console.WriteLine(ExitMessage);
                     Thread.Sleep(500);
                 }
 
@@ -84,7 +83,7 @@ namespace Unosquare.RaspberryIO.Playground.Extra
             Task.Run(async () =>
             {
                 Console.Clear();
-                "Hardware Dimming".Info();
+                Console.WriteLine("Hardware Dimming");
                 Terminal.WriteLine(ExitMessage);
 
                 var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio13];
@@ -118,7 +117,7 @@ namespace Unosquare.RaspberryIO.Playground.Extra
             Task.Run(async () =>
             {
                 Console.Clear();
-                "Dimming".Info();
+                Console.WriteLine("Software Dimming");
                 Terminal.WriteLine(ExitMessage);
 
                 var pinGreen = (GpioPin)Pi.Gpio[BcmPin.Gpio23];
