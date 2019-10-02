@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+namespace Unosquare.RaspberryIO.Playground
 {
     using System;
     using System.Collections.Generic;
@@ -12,17 +12,18 @@
         private static readonly Dictionary<ConsoleKey, string> MainOptions = new Dictionary<ConsoleKey, string>
         {
             { ConsoleKey.C, "Camera" },
+            { ConsoleKey.D, "Display Brightness" },
             { ConsoleKey.I, "System Info" },
             { ConsoleKey.V, "Volume" },
         };
 
-        public static async Task ShowMenu()
+        public static void ShowMenu()
         {
             var exit = false;
 
             do
             {
-                Console.Clear();
+                Terminal.Clear();
                 var mainOption = Terminal.ReadPrompt("System", MainOptions, "Esc to exit this menu");
 
                 switch (mainOption.Key)
@@ -31,10 +32,14 @@
                         SystemCamera.ShowMenu();
                         break;
                     case ConsoleKey.I:
-                        await TestSystemInfo().ConfigureAwait(false);
+                        TestSystemInfo();
                         break;
                     case ConsoleKey.V:
-                        await SystemVolume.ShowMenu().ConfigureAwait(false);
+                        Task ret = SystemVolume.ShowMenu();
+                        ret.Wait();
+                        break;
+                    case ConsoleKey.D:
+                        SystemDisplay.ShowMenu();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;

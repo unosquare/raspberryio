@@ -1,23 +1,32 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+namespace Unosquare.RaspberryIO.Playground
 {
+    using Swan;
     using Swan.Logging;
     using System;
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
+    /// <summary>
+    /// Manipulates settings for the default 7" Raspberry display. Will probably not work with displays connected trough HDMI. 
+    /// </summary>
     public static class SystemDisplay
     {
-        public static async Task ShowMenu()
+        private static readonly Dictionary<ConsoleKey, string> ScreenOptions = new Dictionary<ConsoleKey, string>
+        {
+            { ConsoleKey.B, "Set Brightness" },
+            { ConsoleKey.L, "Toggle backlight" },
+        };
+        public static void ShowMenu()
         {
             var exit = false;
 
             while (!exit)
             {
-                Console.Clear();
+                Terminal.Clear();
+                Terminal.WriteLine($"Brightness: {Pi.PiDisplay.Brightness}");
+                Terminal.WriteLine($"Backlight: [{(Pi.PiDisplay.IsBacklightOn ? (char)0x2714 : (char)0x2718)}]\n");
+                var mainOption = Terminal.ReadPrompt("System", ScreenOptions, "Esc to exit this menu");
 
-                $"Brightness: {Pi.PiDisplay.Brightness}".Info();
-                $"Blacklight: [{(Pi.PiDisplay.IsBacklightOn ? (char)0x2714 : (char)0x2718)}]\n".Info();
-
-                var key = Console.ReadKey(true).Key;
+                var key = mainOption.Key;
 
                 switch (key)
                 {
@@ -25,18 +34,11 @@
                         SetBrightness();
                         break;
                     case ConsoleKey.L:
-                        ToggleBlackLight();
+                        ToggleBackLight();
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
                         break;
-                }
-
-                if (!exit)
-                {
-                    await Task.Delay(500).ConfigureAwait(false);
-                    Console.WriteLine("Press any key to continue . . .");
-                    Console.ReadKey(true);
                 }
             }
         }
@@ -69,7 +71,7 @@
             Pi.PiDisplay.Brightness = brightness;
         }
 
-        public static void ToggleBlackLight() =>
+        public static void ToggleBackLight() =>
             Pi.PiDisplay.IsBacklightOn = !Pi.PiDisplay.IsBacklightOn;
     }
 }
