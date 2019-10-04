@@ -1,7 +1,7 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
-    using Unosquare.RaspberryIO.Abstractions;
+    using Abstractions;
 
     /// <summary>
     /// Implements a generic button attached to the GPIO.
@@ -40,12 +40,12 @@
         private void HandleInterrupt()
         {
             var val = _gpioPin.Read();
+
             if ((val && _gpioPin.InputPullMode == GpioPinResistorPullMode.PullDown) ||
                 (!val && _gpioPin.InputPullMode == GpioPinResistorPullMode.PullUp))
                 HandleButtonPressed();
             else
                 HandleButtonReleased();
-
         }
 
         private void HandleButtonPressed()

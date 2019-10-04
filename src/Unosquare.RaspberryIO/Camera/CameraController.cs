@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Camera
+namespace Unosquare.RaspberryIO.Camera
 {
     using Swan;
     using System;
@@ -17,7 +17,7 @@
         private static readonly ManualResetEventSlim OperationDone = new ManualResetEventSlim(true);
         private static readonly object SyncRoot = new object();
         private static CancellationTokenSource _videoTokenSource = new CancellationTokenSource();
-        private static Task<Task> _videoStreamTask;
+        private static Task<Task>? _videoStreamTask;
 
         #endregion
 
@@ -54,14 +54,11 @@
             {
                 OperationDone.Reset();
 
-                var output = new MemoryStream();
+                using var output = new MemoryStream();
                 var exitCode = await ProcessRunner.RunProcessAsync(
                     settings.CommandName,
                     settings.CreateProcessArguments(),
-                    (data, proc) =>
-                    {
-                        output.Write(data, 0, data.Length);
-                    },
+                    (data, proc) => output.Write(data, 0, data.Length),
                     null,
                     true,
                     ct).ConfigureAwait(false);
@@ -79,10 +76,7 @@
         /// </summary>
         /// <param name="settings">The settings.</param>
         /// <returns>The image bytes.</returns>
-        public byte[] CaptureImage(CameraStillSettings settings)
-        {
-            return CaptureImageAsync(settings).GetAwaiter().GetResult();
-        }
+        public byte[] CaptureImage(CameraStillSettings settings) => CaptureImageAsync(settings).GetAwaiter().GetResult();
 
         /// <summary>
         /// Captures a JPEG encoded image asynchronously at 90% quality.
@@ -122,7 +116,7 @@
         /// </summary>
         /// <param name="onDataCallback">The on data callback.</param>
         /// <param name="onExitCallback">The on exit callback.</param>
-        public void OpenVideoStream(Action<byte[]> onDataCallback, Action onExitCallback = null)
+        public void OpenVideoStream(Action<byte[]> onDataCallback, Action? onExitCallback = null)
         {
             var settings = new CameraVideoSettings
             {
@@ -143,7 +137,7 @@
         /// <param name="onExitCallback">The on exit callback.</param>
         /// <exception cref="InvalidOperationException">Cannot use camera module because it is currently busy.</exception>
         /// <exception cref="ArgumentException">CaptureTimeoutMilliseconds.</exception>
-        public void OpenVideoStream(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action onExitCallback = null)
+        public void OpenVideoStream(CameraVideoSettings settings, Action<byte[]> onDataCallback, Action? onExitCallback = null)
         {
             if (Instance.IsBusy)
                 throw new InvalidOperationException("Cannot use camera module because it is currently busy.");
@@ -177,7 +171,7 @@
             if (_videoTokenSource.IsCancellationRequested == false)
             {
                 _videoTokenSource.Cancel();
-                _videoStreamTask.Wait();
+                _videoStreamTask?.Wait();
             }
 
             _videoTokenSource = new CancellationTokenSource();

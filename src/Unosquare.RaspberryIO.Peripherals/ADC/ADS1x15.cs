@@ -1,11 +1,9 @@
 namespace Unosquare.RaspberryIO.Peripherals
 {
-    using System;
+    using Abstractions;
+    using RaspberryIO;
     using System.Threading;
-    using Unosquare.RaspberryIO;
-    using Unosquare.RaspberryIO.Abstractions;
 
-#pragma warning disable SA1602 // Enumeration items should be documented
     /// <summary>
     /// Abstract base class for both ADC varients, new the specific varient to ensure it's configured correctly at construction.
     /// </summary>
@@ -14,11 +12,11 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <summary>
         /// Register a device on the bus.
         /// </summary>
-        private II2CDevice device;
+        private readonly II2CDevice _device;
 
-        private byte i2cAddress;
-        private byte conversionDelay;
-        private byte bitShift;
+        private byte _i2CAddress;
+        private readonly byte _conversionDelay;
+        private readonly byte _bitShift;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ADS1x15"/> class.
@@ -28,9 +26,9 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <param name="address">I2C Address.</param>
         protected ADS1x15(byte delay, byte shift, byte address = ADS1x15ADDRESS)
         {
-            device = Pi.I2C.AddDevice(i2cAddress = address);
-            conversionDelay = delay;
-            bitShift = shift;
+            _device = Pi.I2C.AddDevice(_i2CAddress = address);
+            _conversionDelay = delay;
+            _bitShift = shift;
 
             Gain = AdsGaint.GAINTWOTHIRDS; /* +/- 6.144V range (limited to VDD +0.3V max!) */
         }
@@ -67,26 +65,20 @@ namespace Unosquare.RaspberryIO.Peripherals
                         | ADS1015REGCONFIGOSSINGLE
                         ;
 
-            return (channel > 3) ? (short)-1 : ConfigureThenReadADC(config);
+            return channel > 3 ? (short)-1 : ConfigureThenReadADC(config);
         }
 
         /// <summary>
         /// Read the voltage difference (+/-) between ADC0 and ADC1.
         /// </summary>
         /// <returns>signed voltage difference.</returns>
-        public short ReadDifferential01()
-        {
-            return SignBitCleanup(ConfigureThenReadADC(SingleAndDiffConfigBase | ADS1015REGCONFIGMUXDIFF01));
-        }
+        public short ReadDifferential01() => SignBitCleanup(ConfigureThenReadADC(SingleAndDiffConfigBase | ADS1015REGCONFIGMUXDIFF01));
 
         /// <summary>
         /// Read the voltage difference (+/-) between ADC2 and ADC3.
         /// </summary>
         /// <returns>signed voltage difference.</returns>
-        public short ReadDifferential23()
-        {
-            return SignBitCleanup(ConfigureThenReadADC(SingleAndDiffConfigBase | ADS1015REGCONFIGMUXDIFF23));
-        }
+        public short ReadDifferential23() => SignBitCleanup(ConfigureThenReadADC(SingleAndDiffConfigBase | ADS1015REGCONFIGMUXDIFF23));
 
         /// <summary>
         ///  Start ADC in comparitor mode.
@@ -101,7 +93,7 @@ namespace Unosquare.RaspberryIO.Peripherals
 
             // Set the high threshold register
             // Shift 12-bit results left 4 bits for the ADS1015
-            WriteRegister(ADS1015REGPOINTERHITHRESH, (ushort)(threshold << bitShift));
+            WriteRegister(ADS1015REGPOINTERHITHRESH, (ushort)(threshold << _bitShift));
 
             // Write config register to the ADC
             WriteRegister(ADS1015REGPOINTERCONFIG, (ushort)config);
@@ -111,19 +103,13 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// Fetch results from a thresholded comparitor.
         /// </summary>
         /// <returns>unsigned result.</returns>
-        public ushort PollComparitorResult()
-        {
-            return (ushort)RawReadADC();
-        }
+        public ushort PollComparitorResult() => (ushort)RawReadADC();
 
         /// <summary>
         /// Fetch results from a thresholded comparitor.
         /// </summary>
         /// <returns>signed result.</returns>
-        public short PollComparitorResultSigned()
-        {
-            return SignBitCleanup(RawReadADC());
-        }
+        public short PollComparitorResultSigned() => SignBitCleanup(RawReadADC());
 
         #region Private Members
 #pragma warning disable IDE0051 // Remove unused private members
@@ -231,11 +217,11 @@ namespace Unosquare.RaspberryIO.Peripherals
         private short RawReadADC()
         {
             // Wait for the conversion to complete
-            Thread.Sleep(conversionDelay);
+            Thread.Sleep(_conversionDelay);
 
             // Read the conversion results
             // Shift 12-bit results right 4 bits for the ADS1015
-            return (short)(SwapWord(device.ReadAddressWord(ADS1015REGPOINTERCONVERT)) >> bitShift);
+            return (short)(SwapWord(_device.ReadAddressWord(ADS1015REGPOINTERCONVERT)) >> _bitShift);
         }
 
         /// <summary>
@@ -245,7 +231,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <returns>sign-corrected value.</returns>
         private short SignBitCleanup(int value)
         {
-            return (short)((bitShift != 0 && value > 0x07FF) ? value | 0xF000 : value);
+            return (short)((_bitShift != 0 && value > 0x07FF) ? value | 0xF000 : value);
         }
 
         /// <summary>
@@ -255,7 +241,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <param name="value">value to set</param>
         private void WriteRegister(byte registery, ushort value)
         {
-            device.WriteAddressWord(registery, SwapWord(value));
+            _device.WriteAddressWord(registery, SwapWord(value));
         }
 
         /// <summary>
@@ -274,36 +260,4 @@ namespace Unosquare.RaspberryIO.Peripherals
 
         #endregion
     }
-
-    /// <summary>
-    /// ADS1015 Device.
-    /// </summary>
-    public class ADS1015 : ADS1x15
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ADS1015"/> class.
-        /// </summary>
-        /// <param name="address">The I2C Address for this device.</param>
-        public ADS1015(byte address = ADS1x15ADDRESS)
-            : base(ADS1015CONVERSIONDELAY, 4, address)
-        {
-        }
-    }
-
-    /// <summary>
-    /// ADS1115 Device.
-    /// </summary>
-    public class ADS1115 : ADS1x15
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ADS1115"/> class.
-        /// </summary>
-        /// <param name="address">The I2C Address for this device.</param>
-        public ADS1115(byte address = ADS1x15ADDRESS)
-            : base(ADS1115CONVERSIONDELAY, 0, address)
-        {
-        }
-    }
-
-#pragma warning restore CS1591 // Missing XML Documentation
 }

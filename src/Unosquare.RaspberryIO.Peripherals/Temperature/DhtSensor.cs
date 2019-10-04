@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using Abstractions;
     using Swan.Diagnostics;
@@ -41,7 +41,7 @@
         /// <exception cref="ArgumentException">dataPin When it is invalid.</exception>
         protected DhtSensor(IGpioPin dataPin)
         {
-            if (AllowedPins.Contains(dataPin) == false)
+            if (!AllowedPins.Contains(dataPin))
                 throw new ArgumentException($"{nameof(dataPin)}, {dataPin} is not available to service this driver.");
 
             _dataPin = dataPin;
@@ -74,22 +74,16 @@
         /// <param name="type">The type of DHT sensor to create.</param>
         /// <param name="dataPin">The data pin. Must be a GPIO-only pin on the P1 Header of the Pi.</param>
         /// <returns>The instance of the specific DHT sensor.</returns>
-        public static DhtSensor Create(DhtType type, IGpioPin dataPin)
-        {
-            switch (type)
+        public static DhtSensor Create(DhtType type, IGpioPin dataPin) =>
+            type switch
             {
-                case DhtType.Dht12:
-                    return new Dht12(dataPin);
-                case DhtType.Dht21:
-                case DhtType.AM2301:
-                    return new Dht21(dataPin);
-                case DhtType.Dht22:
-                case DhtType.AM2302:
-                    return new Dht22(dataPin);
-                default:
-                    return new Dht11(dataPin);
-            }
-        }
+                DhtType.Dht12 => (DhtSensor) new Dht12(dataPin),
+                DhtType.Dht21 => new Dht21(dataPin),
+                DhtType.AM2301 => new Dht21(dataPin),
+                DhtType.Dht22 => new Dht22(dataPin),
+                DhtType.AM2302 => new Dht22(dataPin),
+                _ => new Dht11(dataPin)
+            };
 
         /// <summary>
         /// Starts sensor reading at the min time interval which is 2 seconds.
@@ -191,11 +185,11 @@
             // Prepare buffer to store measure and checksum
             var data = new byte[5];
 
-            // Start to comunicate with sensor
+            // Start to communicate with sensor
             // Inform sensor that must finish last execution and put it's state in idle
             _dataPin.PinMode = GpioPinDriveMode.Output;
 
-            // Send request to trasmission from board to sensor
+            // Send request to transmission from board to sensor
             _dataPin.Write(GpioPinValue.Low);
             Pi.Timing.SleepMicroseconds(PullDownMicroseconds);
             _dataPin.Write(GpioPinValue.High);

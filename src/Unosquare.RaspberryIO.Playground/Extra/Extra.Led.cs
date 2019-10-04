@@ -11,42 +11,38 @@ namespace Unosquare.RaspberryIO.Playground.Extra
     {
         public static void TestLedBlinking()
         {
-            using (var cancellationTokenSource = new CancellationTokenSource())
+            using var cancellationTokenSource = new CancellationTokenSource();
+            var task = Blink(cancellationTokenSource.Token);
+
+            while (true)
             {
-                var task = Blink(cancellationTokenSource.Token);
+                var input = Console.ReadKey(true).Key;
 
-                while (true)
-                {
-                    var input = Console.ReadKey(true).Key;
-
-                    if (input != ConsoleKey.Escape)
-                        continue;
-                    cancellationTokenSource.Cancel();
-                    break;
-                }
-
-                task.Wait(cancellationTokenSource.Token);
+                if (input != ConsoleKey.Escape)
+                    continue;
+                cancellationTokenSource.Cancel();
+                break;
             }
+
+            task.Wait(cancellationTokenSource.Token);
         }
 
         public static void TestLedDimming(bool hardware)
         {
-            using (var cancellationTokenSource = new CancellationTokenSource())
+            using var cancellationTokenSource = new CancellationTokenSource();
+            var task = hardware ? DimHardware(cancellationTokenSource.Token) : DimSoftware(cancellationTokenSource.Token);
+
+            while (true)
             {
-                var task = hardware ? DimHardware(cancellationTokenSource.Token) : DimSoftware(cancellationTokenSource.Token);
+                var input = Console.ReadKey(true).Key;
 
-                while (true)
-                {
-                    var input = Console.ReadKey(true).Key;
-
-                    if (input != ConsoleKey.Escape)
-                        continue;
-                    cancellationTokenSource.Cancel();
-                    break;
-                }
-
-                task.Wait(cancellationTokenSource.Token);
+                if (input != ConsoleKey.Escape)
+                    continue;
+                cancellationTokenSource.Cancel();
+                break;
             }
+
+            task.Wait(cancellationTokenSource.Token);
         }
 
         /// <summary>

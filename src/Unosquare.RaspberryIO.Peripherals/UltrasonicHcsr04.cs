@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using Abstractions;
     using System;
@@ -24,7 +24,7 @@
         private IGpioPin _triggerPin;
         private IGpioPin _echoPin;
         private Thread _readWorker;
-        private Swan.Diagnostics.HighResolutionTimer _measurementTimer;
+        private Swan.Diagnostics.HighResolutionTimer? _measurementTimer;
 
         static UltrasonicHcsr04()
         {

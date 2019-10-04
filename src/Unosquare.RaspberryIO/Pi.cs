@@ -35,16 +35,7 @@ namespace Unosquare.RaspberryIO
         /// <summary>
         /// Provides information on this Raspberry Pi's CPU and form factor.
         /// </summary>
-        public static SystemInfo Info
-        {
-            get
-            {
-                if (_info == null)
-                    _info = SystemInfo.Instance;
-
-                return _info;
-            }
-        }
+        public static SystemInfo Info => _info ??= SystemInfo.Instance;
 
         /// <summary>
         /// Provides access to the Raspberry Pi's GPIO as a collection of GPIO Pins.

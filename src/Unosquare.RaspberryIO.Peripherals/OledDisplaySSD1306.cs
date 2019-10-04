@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using System;
     using System.Collections;
@@ -62,27 +62,25 @@
         {
             var resourceNames = typeof(OledDisplaySsd1306).Assembly.GetManifestResourceNames();
             var fontResource = resourceNames.First(r => r.Contains("AsciiFontPng"));
-            using (var stream = typeof(OledDisplaySsd1306).Assembly.GetManifestResourceStream(fontResource))
+            using var stream = typeof(OledDisplaySsd1306).Assembly.GetManifestResourceStream(fontResource);
+            FontBitmap = new Bitmap(stream);
+            _fontBitmapCharWidth = FontBitmap.Width / 257;
+            _fontBitmapCharHeight = FontBitmap.Height;
+
+            FontBytemap = new byte[FontBitmap.Width];
+
+            // Parallel.For(0, FontBitmap.Width, (offsetX) =>
+            for (var offsetX = 0; offsetX < FontBitmap.Width; offsetX++)
             {
-                FontBitmap = new Bitmap(stream);
-                _fontBitmapCharWidth = FontBitmap.Width / 257;
-                _fontBitmapCharHeight = FontBitmap.Height;
-
-                FontBytemap = new byte[FontBitmap.Width];
-
-                // Parallel.For(0, FontBitmap.Width, (offsetX) =>
-                for (var offsetX = 0; offsetX < FontBitmap.Width; offsetX++)
+                var verticalByte = 0;
+                for (var bitIndex = 7; bitIndex >= 0; bitIndex--)
                 {
-                    var verticalByte = 0;
-                    for (var bitIndex = 7; bitIndex >= 0; bitIndex--)
-                    {
-                        verticalByte = verticalByte << 1;
-                        if (FontBitmap.GetPixel(offsetX, bitIndex).GetBrightness() > 0.5)
-                            verticalByte |= 0x01;
-                    }
-
-                    FontBytemap[offsetX] = (byte)verticalByte;
+                    verticalByte = verticalByte << 1;
+                    if (FontBitmap.GetPixel(offsetX, bitIndex).GetBrightness() > 0.5)
+                        verticalByte |= 0x01;
                 }
+
+                FontBytemap[offsetX] = (byte)verticalByte;
             }
         }
 
@@ -361,7 +359,7 @@
             {
                 var text = lines[lineIndex];
                 var offsetY = lineIndex * _fontBitmapCharHeight;
-                var textBitmap = GetTextBitmap(text);
+                using var textBitmap = GetTextBitmap(text);
                 g.DrawImageUnscaled(textBitmap, 0, offsetY);
             }
 
@@ -387,13 +385,16 @@
         /// <exception cref="ArgumentNullException">bitmap.</exception>
         public void LoadBitmap(Bitmap bitmap, double brightnessThreshold, int offsetX, int offsetY)
         {
-            if (bitmap == null) throw new ArgumentNullException(nameof(bitmap));
+            if (bitmap == null)
+                throw new ArgumentNullException(nameof(bitmap));
+
             ClearPixels();
 
             // for (var bitmapY = offsetY; bitmapY < offsetY + Height; bitmapY++)
             Parallel.For(offsetY, offsetY + Height, bitmapY =>
             {
                 Color currentPixel;
+
                 for (var bitmapX = offsetX; bitmapX < offsetX + Width; bitmapX++)
                 {
                     currentPixel = bitmap.GetPixel(bitmapX, bitmapY);
@@ -405,7 +406,7 @@
         }
 
         /// <summary>
-        /// Renders tthe contents of the buffer.
+        /// Renders the contents of the buffer.
         /// </summary>
         public void Render()
         {
@@ -433,8 +434,8 @@
 
                 var chars = Encoding.ASCII.GetBytes(lines[lineIndex]);
                 var currentChar = chars[0];
-                var sourceX = 0;
-                var targetB = 0;
+                int sourceX;
+                int targetB;
 
                 for (var charIndex = 0; charIndex < chars.Length; charIndex++)
                 {
@@ -492,7 +493,7 @@
         }
 
         /// <summary>
-        /// Gets bitarray index of the bitt buffer based on x and y coordinates.
+        /// Gets bitarray index of the bit buffer based on x and y coordinates.
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
@@ -529,10 +530,7 @@
         /// Sends the command.
         /// </summary>
         /// <param name="command">The command.</param>
-        private void SendCommand(byte command)
-        {
-            Device.Write(new byte[] { 0x00, command });
-        }
+        private void SendCommand(byte command) => Device.Write(new byte[] { 0x00, command });
 
         /// <summary>
         /// Sends the command.

@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using Abstractions;
     using Swan.Diagnostics;
@@ -26,7 +26,7 @@
         private readonly double[] AccelSensitivity = { 16384.0, 8192.0, 4096.0, 2048.0 };
         private bool _disposedValue; // To detect redundant calls
 
-        private Thread ReadWorker;
+        private Thread _readWorker;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccelerometerGY521"/> class 
@@ -49,7 +49,7 @@
             Device = device;
             GyroscopeScale = gyroScale;
             AccelerometerScale = accelScale;
-            ReadWorker = new Thread(Run);
+            _readWorker = new Thread(Run);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@
             SetSleepMode(false);
 
             IsRunning = true;
-            ReadWorker.Start();
+            _readWorker.Start();
         }
 
         /// <summary>
@@ -201,7 +201,7 @@
                 StopContinuousReads();
             }
 
-            ReadWorker = null;
+            _readWorker = null;
             _disposedValue = true;
         }
     }

@@ -25,7 +25,8 @@ namespace Unosquare.RaspberryIO.Playground
         public static void Main()
         {
             // We shouldn't be logging to the console in a console app that is user-interactive
-            Swan.Logging.Logger.UnregisterLogger<ConsoleLogger>();
+            Logger.UnregisterLogger<ConsoleLogger>();
+
             Pi.Init<BootstrapWiringPi>();
 
             var exit = false;
@@ -35,6 +36,7 @@ namespace Unosquare.RaspberryIO.Playground
                 Console.CursorVisible = true;
                 var mainOption = Terminal.ReadPrompt("Main options", MainOptions, "Esc to exit this program");
                 Console.CursorVisible = true;
+
                 switch (mainOption.Key)
                 {
                     case ConsoleKey.S:

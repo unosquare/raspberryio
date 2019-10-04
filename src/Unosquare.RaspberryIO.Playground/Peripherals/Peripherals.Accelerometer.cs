@@ -1,7 +1,6 @@
 namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
-    using Swan;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -17,26 +16,25 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
             var accelDevice = Pi.I2C.AddDevice(0x68);
 
             // Set accelerometer
-            using (var accelSensor = new AccelerometerGY521(accelDevice))
-            {
-                // Present info to screen
-                accelSensor.DataAvailable +=
-                    (s, e) =>
-                    {
-                        Console.Clear();
-                        Console.WriteLine($"GY521 Accelerometer:\n{e.Accel}\n\nGyroscope:\n{e.Gyro}\n\nTemperature: {Math.Round(e.Temperature, 2)}°C\n");
-                        Console.WriteLine(ExitMessage);
-                    };
+            using var accelSensor = new AccelerometerGY521(accelDevice);
 
-                // Run accelerometer
-                accelSensor.Start();
-                while (true)
+            // Present info to screen
+            accelSensor.DataAvailable +=
+                (s, e) =>
                 {
-                    var input = Console.ReadKey(true).Key;
-                    if (input != ConsoleKey.Escape) continue;
+                    Console.Clear();
+                    Console.WriteLine($"GY521 Accelerometer:\n{e.Accel}\n\nGyroscope:\n{e.Gyro}\n\nTemperature: {Math.Round(e.Temperature, 2)}°C\n");
+                    Console.WriteLine(ExitMessage);
+                };
 
-                    break;
-                }
+            // Run accelerometer
+            accelSensor.Start();
+            while (true)
+            {
+                var input = Console.ReadKey(true).Key;
+                if (input != ConsoleKey.Escape) continue;
+
+                break;
             }
         }
     }

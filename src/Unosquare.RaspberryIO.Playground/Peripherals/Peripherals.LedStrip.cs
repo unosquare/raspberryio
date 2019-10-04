@@ -15,25 +15,24 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
         /// </summary>
         public static void TestLedStripGraphics()
         {
-            BitmapBuffer pixels = null;
+            BitmapBuffer? pixels = null;
 
             try
             {
-                using (var bitmap =
-                    new System.Drawing.Bitmap(Path.Combine(SwanRuntime.EntryAssemblyDirectory, "fractal.jpg")))
-                {
-                    Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
-                    pixels = new BitmapBuffer(bitmap);
-                    Console.WriteLine($"Loaded Pixel Data: {pixels.Data.Length} bytes");
-                }
+                using var bitmap =
+                    new System.Drawing.Bitmap(Path.Combine(SwanRuntime.EntryAssemblyDirectory, "fractal.jpg"));
+                Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
+                pixels = new BitmapBuffer(bitmap);
+                Console.WriteLine($"Loaded Pixel Data: {pixels.Data.Length} bytes");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error Loading image: {ex.Message}");
             }
 
+            const bool useDynamicBrightness = false;
+
             var exitAnimation = false;
-            var useDynamicBrightness = false;
             var frameRenderTimes = new Queue<int>();
             var frameTimes = new Queue<int>();
 

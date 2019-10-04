@@ -22,7 +22,7 @@ namespace Unosquare.RaspberryIO.Playground
             }
             catch (Exception x)
             {
-                Console.WriteLine("Error obtaining system configuration: " + x.Message);
+                Console.WriteLine($"Error obtaining system configuration: {x.Message}");
             }
 
             try
@@ -36,12 +36,13 @@ namespace Unosquare.RaspberryIO.Playground
                 var adapters = NetworkSettings.Instance.RetrieveAdapters();
                 adapters.Result.Select(adapter => $"Adapter: {adapter.Name,6} | IPv4: {adapter.IPv4,16} | IPv6: {adapter.IPv6,28} | AP: {adapter.AccessPointName,16} | MAC: {adapter.MacAddress,18}")
                     .ToList()
-                    .ForEach(x => Console.WriteLine(x));
+                    .ForEach(Console.WriteLine);
             }
-            catch(Exception x)
+            catch (Exception x)
             {
-                Console.WriteLine("Error retrieving network interface settings: " + x.Message);
+                Console.WriteLine($"Error retrieving network interface settings: {x.Message}");
             }
+
             Console.WriteLine(ExitMessage);
 
             while (true)

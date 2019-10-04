@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Computer
+namespace Unosquare.RaspberryIO.Computer
 {
     using System;
     using System.Collections.Generic;
@@ -68,13 +68,11 @@
         {
             try
             {
-                using (var cancellationTokenSource = new CancellationTokenSource(3000))
-                {
-                    await ProcessRunner.GetProcessOutputAsync(BcCommand, "scan on", cancellationTokenSource.Token).ConfigureAwait(false);
-                    await ProcessRunner.GetProcessOutputAsync(BcCommand, "scan off", cancellationToken).ConfigureAwait(false);
-                    var devices = await ProcessRunner.GetProcessOutputAsync(BcCommand, "devices", cancellationToken).ConfigureAwait(false);
-                    return devices.Trim().Split('\n').Select(x => x.Trim());
-                }
+                using var cancellationTokenSource = new CancellationTokenSource(3000);
+                await ProcessRunner.GetProcessOutputAsync(BcCommand, "scan on", cancellationTokenSource.Token).ConfigureAwait(false);
+                await ProcessRunner.GetProcessOutputAsync(BcCommand, "scan off", cancellationToken).ConfigureAwait(false);
+                var devices = await ProcessRunner.GetProcessOutputAsync(BcCommand, "devices", cancellationToken).ConfigureAwait(false);
+                return devices.Trim().Split('\n').Select(x => x.Trim());
             }
             catch (Exception ex)
             {

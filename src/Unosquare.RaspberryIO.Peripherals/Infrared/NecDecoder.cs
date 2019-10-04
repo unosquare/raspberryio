@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Peripherals
+namespace Unosquare.RaspberryIO.Peripherals
 {
     using System.Collections;
     using System.Linq;
@@ -33,7 +33,7 @@
             /// </summary>
             /// <param name="pulses">The pulses.</param>
             /// <returns>The decoded bytes.</returns>
-            public static byte[] DecodePulses(InfraredPulse[] pulses)
+            public static byte[]? DecodePulses(InfraredPulse[] pulses)
             {
                 // check if we have a repeat code
                 if (IsRepeatCode(pulses))
