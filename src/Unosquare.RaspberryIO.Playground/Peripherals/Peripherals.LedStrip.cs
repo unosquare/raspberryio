@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
+namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Threading;
     using Swan;
-    using Swan.Logging;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -23,14 +22,14 @@
                 using (var bitmap =
                     new System.Drawing.Bitmap(Path.Combine(SwanRuntime.EntryAssemblyDirectory, "fractal.jpg")))
                 {
-                    $"Loaded bitmap with format {bitmap.PixelFormat}".Info();
+                    Console.WriteLine($"Loaded bitmap with format {bitmap.PixelFormat}");
                     pixels = new BitmapBuffer(bitmap);
-                    $"Loaded Pixel Data: {pixels.Data.Length} bytes".Info();
+                    Console.WriteLine($"Loaded Pixel Data: {pixels.Data.Length} bytes");
                 }
             }
             catch (Exception ex)
             {
-                $"Error Loading image: {ex.Message}".Error();
+                Console.WriteLine($"Error Loading image: {ex.Message}");
             }
 
             var exitAnimation = false;
@@ -78,7 +77,7 @@
                     if (delayMilliseconds > 0 && exitAnimation == false)
                         Thread.Sleep(delayMilliseconds);
                     else
-                        $"Lagging frame rate: {delayMilliseconds} milliseconds".Info();
+                        Console.WriteLine($"Lagging frame rate: {delayMilliseconds} milliseconds");
 
                     frameTimes.Enqueue((int)DateTime.UtcNow.Subtract(lastRenderTime).TotalMilliseconds);
                     lastRenderTime = DateTime.UtcNow;
@@ -98,8 +97,7 @@
                 strip.Render();
 
                 var avg = frameRenderTimes.Average();
-                $"Frames: {currentFrameNumber + 1}, FPS: {Math.Round(1000f / frameTimes.Average(), 3)}, Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}"
-                    .Info();
+                Console.WriteLine($"Frames: {currentFrameNumber + 1}, FPS: {Math.Round(1000f / frameTimes.Average(), 3)}, Strip Render: {Math.Round(avg, 3)} ms, Max FPS: {Math.Round(1000 / avg, 3)}");
                 strip.Render();
             });
 
@@ -148,7 +146,7 @@
                     }
                     else
                     {
-                        $"Lagging framerate: {delayMilliseconds} milliseconds".Info();
+                        Console.WriteLine($"Lagging framerate: {delayMilliseconds} milliseconds");
                     }
 
                     lastRenderTime = DateTime.UtcNow;

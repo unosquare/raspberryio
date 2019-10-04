@@ -1,8 +1,7 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+namespace Unosquare.RaspberryIO.Playground
 {
     using Camera;
     using Swan;
-    using Swan.Logging;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -41,7 +40,7 @@
 
         private static void CaptureImage()
         {
-            Console.Clear();
+            Terminal.Clear();
 
             var imageWidth = Terminal.ReadNumber("Set the image width:", 640);
             var imageHeight = Terminal.ReadNumber("Set the image height:", 480);
@@ -54,12 +53,12 @@
 
             File.WriteAllBytes(targetPath, pictureBytes);
 
-            $"Picture taken: {fileName}.jpg".Info();
-            $"Size: {pictureBytes.Length}B".Info();
-            $"Date Created: {DateTime.Now:MM/dd/yyyy}".Info();
-            $"At {DefaultPicturePath}\n".Info();
+            Console.WriteLine($"Picture taken: {fileName}.jpg");
+            Console.WriteLine($"Size: {pictureBytes.Length}B");
+            Console.WriteLine($"Date Created: {DateTime.Now:MM/dd/yyyy}");
+            Console.WriteLine($"At {DefaultPicturePath}\n");
 
-            Terminal.WriteLine("Press Esc key to continue . . .");
+            Console.WriteLine("Press Esc key to continue . . .");
 
             while (true)
             {
@@ -95,7 +94,7 @@
                 VideoFileName = $"{DefaultPicturePath}/{videoPath}.h264",
             };
 
-            "Press any key to START recording . . .".Info();
+            Console.WriteLine("Press any key to START recording . . .");
             Console.ReadLine();
             Console.Clear();
             var startTime = DateTime.UtcNow;
@@ -120,8 +119,8 @@
 
             var megaBytesReceived = (videoByteCount / (1024f * 1024f)).ToString("0.000", CultureInfo.InvariantCulture.NumberFormat);
             var recordedSeconds = DateTime.UtcNow.Subtract(startTime).TotalSeconds.ToString("0.000", CultureInfo.InvariantCulture.NumberFormat);
-            "Recording stopped. . .\n\n".Info();
-            $"Recorded {megaBytesReceived}MB\n{videoEventCount} callbacks\nRecorded {recordedSeconds} seconds\nCreated {DateTime.Now}\nAt {videoSettings.VideoFileName}\n\n".Info();
+            Console.WriteLine("Recording stopped. . .\n\n");
+            Console.WriteLine($"Recorded {megaBytesReceived}MB\n{videoEventCount} callbacks\nRecorded {recordedSeconds} seconds\nCreated {DateTime.Now}\nAt {videoSettings.VideoFileName}\n\n");
         }
     }
 }

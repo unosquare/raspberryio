@@ -1,9 +1,8 @@
-﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
+namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
     using Abstractions;
     using Swan;
-    using Swan.Logging;
     using Unosquare.RaspberryIO.Peripherals;
 
     public static partial class Peripherals
@@ -21,7 +20,7 @@
             {
                 sensor.OnDataAvailable += (s, e) =>
                 {
-                    Console.Clear();
+                    Terminal.Clear();
 
                     if (!e.IsValid)
                     {
@@ -60,7 +59,7 @@
                 sensor.Start();
                 while (true)
                 {
-                    var input = Console.ReadKey(true).Key;
+                    var input = Terminal.ReadKey(true).Key;
                     if (input != ConsoleKey.Escape) continue;
 
                     break;

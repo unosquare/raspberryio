@@ -1,8 +1,7 @@
-﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
+namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
     using Swan;
-    using Swan.Logging;
     using Abstractions;
     using Unosquare.RaspberryIO.Peripherals;
 
@@ -14,7 +13,7 @@
         public static void TestInfraredSensor()
         {
             Console.Clear();
-            "Send a signal...".Info("IR");
+            Console.WriteLine("Send a signal...");
             var inputPin = Pi.Gpio[BcmPin.Gpio25]; // BCM Pin 25 or Physical pin 22 on the right side of the header.
             var sensor = new InfraredSensor(inputPin, true);
 
@@ -24,7 +23,7 @@
                    var necData = InfraredSensor.NecDecoder.DecodePulses(e.Pulses);
                    if (necData != null)
                    {
-                       $"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}".Warn("IR");
+                       Console.WriteLine($"NEC Data: {BitConverter.ToString(necData).Replace("-", " "),12}    Pulses: {e.Pulses.Length,4}    Duration(us): {e.TrainDurationUsecs,6}    Reason: {e.FlushReason}");
 
                        if (InfraredSensor.NecDecoder.IsRepeatCode(e.Pulses))
                            return;
@@ -34,16 +33,16 @@
                        if (e.Pulses.Length >= 4)
                        {
                            var debugData = InfraredSensor.DebugPulses(e.Pulses);
-                           $"RX    Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Warn("IR");
-                           debugData.Info("IR");
+                           Console.WriteLine($"RX    Length: {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}");
+                           Console.WriteLine($"Debug data: {debugData}");
                        }
                        else
                        {
-                           $"RX (Garbage): {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}".Error("IR");
+                           Console.WriteLine($"RX (Garbage): {e.Pulses.Length,5}; Duration: {e.TrainDurationUsecs,7}; Reason: {e.FlushReason}");
                        }
                    }
 
-                   Terminal.WriteLine(ExitMessage);
+                   Console.WriteLine(ExitMessage);
                };
 
             while (true)

@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Playground.Extra
+namespace Unosquare.RaspberryIO.Playground.Extra
 {
     using System;
     using System.Diagnostics;
@@ -6,7 +6,6 @@
     using System.Drawing.Drawing2D;
     using System.Drawing.Imaging;
     using System.Threading;
-    using Swan.Logging;
     using Swan.Threading;
     using Unosquare.RaspberryIO.Peripherals;
 
@@ -81,7 +80,7 @@
                 {
                     var elapsedSeconds = sw.Elapsed.TotalSeconds;
                     var framesPerSecond = frameCount / elapsedSeconds;
-                    $"Contrast: {_display.Contrast}. X: {currentX} Y: {currentY} Frames: {cycleCount:0} Elapsed {elapsedSeconds:0.000} FPS: {framesPerSecond:0.000}".Info(Name);
+                    Console.WriteLine($"Contrast: {_display.Contrast}. X: {currentX} Y: {currentY} Frames: {cycleCount:0} Elapsed {elapsedSeconds:0.000} FPS: {framesPerSecond:0.000}");
                     sw.Restart();
                     frameCount = 0;
                     currentX = 0;

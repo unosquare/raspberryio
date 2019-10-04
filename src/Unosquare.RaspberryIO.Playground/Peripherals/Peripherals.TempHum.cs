@@ -1,8 +1,6 @@
-﻿namespace Unosquare.RaspberryIO.Playground.Peripherals
+namespace Unosquare.RaspberryIO.Playground.Peripherals
 {
     using System;
-    using Swan;
-    using Swan.Logging;
     using Abstractions;
     using Unosquare.RaspberryIO.Peripherals;
 
@@ -10,6 +8,8 @@
     {
         /// <summary>
         /// Tests the temperature sensor.
+        /// The DHT11 sensor, also available as KY-015 for usage on experimental boards, needs to be connected to Gpio04 (physical pin 7) with its
+        /// single data line. The sensor has a conspicuous blue grid-shaped housing. 
         /// </summary>
         public static void TestTempSensor()
         {
@@ -23,12 +23,15 @@
                 sensor.OnDataAvailable += (s, e) =>
                 {
                     totalReadings++;
-                    if (!e.IsValid) return;
+                    if (!e.IsValid)
+                        return;
 
                     Console.Clear();
                     validReadings++;
-                    $"Temperature: \n {e.Temperature:0.00}°C \n {e.TemperatureFahrenheit:0.00}°F  \n Humidity: {e.HumidityPercentage:P0}\n\n".Info("DHT11");
-                    Terminal.WriteLine(ExitMessage);
+                    Console.WriteLine($"DHT11 Temperature: \n {e.Temperature:0.00}°C \n {e.TemperatureFahrenheit:0.00}°F  \n Humidity: {e.HumidityPercentage:P0}\n\n");
+                    Console.WriteLine($"      Number of valid data samples received: {validReadings} of {totalReadings}");
+                    Console.WriteLine();
+                    Console.WriteLine(ExitMessage);
                 };
 
                 sensor.Start();

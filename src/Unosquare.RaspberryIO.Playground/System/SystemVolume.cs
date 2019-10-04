@@ -1,15 +1,17 @@
-﻿namespace Unosquare.RaspberryIO.Playground
+namespace Unosquare.RaspberryIO.Playground
 {
     using System;
     using System.Threading.Tasks;
     using Swan;
-    using Swan.Logging;
 
     public static class SystemVolume
     {
         private static bool _mute;
         private static int CurrentLevel { get; set; }
 
+        /// <summary>
+        /// This shows how these commands can be used asynchronously, even though that is quite pointless for the demonstration application. 
+        /// </summary>
         public static async Task ShowMenu()
         {
             var exit = false;
@@ -19,18 +21,18 @@
                 var state = await Pi.Audio.GetState().ConfigureAwait(false);
                 CurrentLevel = state.Level;
 
-                Console.Clear();
-                $"\rControl name: {state.ControlName}".Info();
-                $"\rCard number: {state.CardNumber}".Info();
-                $"\rMute: [{(state.IsMute ? (char)0x2714 : (char)0x2718)}]\n".Info();
-                $"\rVolume level (dB): {state.Decibels}dB".Info();
+                Terminal.Clear();
+                Terminal.WriteLine($"\rControl name: {state.ControlName}");
+                Terminal.WriteLine($"\rCard number: {state.CardNumber}");
+                Terminal.WriteLine($"\rMute: [{(state.IsMute ? (char)0x2714 : (char)0x2718)}]\n");
+                Terminal.WriteLine($"\rVolume level (dB): {state.Decibels}dB");
 
                 UpdateProgress(CurrentLevel);
 
                 Terminal.WriteLine("Press UpArrow key to increment volume");
                 Terminal.WriteLine("Press DownArrow key to decrement volume");
                 Terminal.WriteLine("Press M key to Mute on/off\n");
-                var key = Terminal.ReadKey("Press Esc key to continue . . .").Key;
+                var key = Terminal.ReadKey(true).Key;
                 var validOption = false;
 
                 while (!validOption)
@@ -57,7 +59,7 @@
                     }
 
                     if (!validOption)
-                        key = Console.ReadKey(true).Key;
+                        key = Terminal.ReadKey(true).Key;
                 }
             }
         }
