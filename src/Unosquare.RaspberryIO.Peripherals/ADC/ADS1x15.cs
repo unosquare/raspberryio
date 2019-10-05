@@ -27,10 +27,10 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <param name="shift">bits to shift for sign correction.</param>
         protected ADS1x15(II2CDevice device, byte delay, byte shift)
         {
+            _device = device ?? throw new ArgumentNullException(nameof(device));
             _i2CAddress = (byte)device.DeviceId;
             _conversionDelay = delay;
             _bitShift = shift;
-            _device = device ?? throw new ArgumentNullException(nameof(device));
             Gain = AdsGain.GAINONE; 
         }
 
