@@ -73,6 +73,10 @@ We offer an additional package with helpful classes to use peripherals, many of 
 
 ## Breaking changes
 
+### Version &ge; 0.24.0
+
+This version requires .NET core 3.0 to build and run. 
+
 ### Version &ge; 0.18.0
 
 In the beginning, RaspberryIO was built around WiringPi library and all our classes, properties, enums, etc. was based on those ones used in WiringPi too.
@@ -129,16 +133,16 @@ sudo apt-get install mono-complete
 
 Now, verify your version of Mono by running ```mono --version```. Version 4.6 and above should be good enough.
 
-## Running .NET Core 2.2.6
+## Running .NET Core 3.0
 
-This project can also run in .NET Core. To install .Net Core 2.2.6 runtime please execute the following commands:
+This project can also run in .NET Core. To install .Net Core 3.0 sdk please execute the following commands:
 
 ```
 $ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://download.visualstudio.microsoft.com/download/pr/428aaa32-f66c-4847-b845-aa21f90504e4/1cf033db866414997140c2672bd75069/dotnet-runtime-2.2.6-linux-arm.tar.gz
+$ wget https://download.visualstudio.microsoft.com/download/pr/8ddb8193-f88c-4c4b-82a3-39fcced27e91/b8e0b9bf4cf77dff09ff86cc1a73960b/dotnet-sdk-3.0.100-linux-arm.tar.gz
 $ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-runtime-2.2.6-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo tar -xvf dotnet-sdk-3.0.100-linux-arm.tar.gz -C /opt/dotnet/
 $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
 ```
 
@@ -246,6 +250,13 @@ Alternatively, you can use Visual Studio's Publish feature and a SCP (SSH Copy) 
     ```
       ubuntu@ubuntu:~/publish$ dotnet Unosquare.RaspberryIO.Playground.dll
     ```
+    or 
+    
+    ```
+      ubuntu@ubuntu:~/publish$ chmod +x Unosquare.RaspberryIO.Playground
+      ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
+    ```
+    (the first line only needs to be executed once or after an update, since copying may not automatically set the execute bit)
 
     **_Note_**: Depending on the underlying library, you may need to use root user privileges to run the app.
 
