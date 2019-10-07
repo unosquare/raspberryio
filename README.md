@@ -73,7 +73,7 @@ We offer an additional package with helpful classes to use peripherals, many of 
 
 ## Breaking changes
 
-### Version &ge; 0.24.0
+### Version &gt; 0.24.0
 
 This version requires .NET core 3.0 to build and run. 
 
@@ -106,6 +106,8 @@ PM> Install-Package Unosquare.WiringPi
 ```
 
 _**Note:**_ For now, we have fully implemented the [WiringPi](https://www.nuget.org/packages/Unosquare.wiringpi) library and we are working in the [PiGpio](https://github.com/unosquare/pigpio-dotnet/) implementation.
+
+_**Note:**_ The latest development builds require .NET core 3.0 to build and run. You should upgrade to the latest Version of Visual Studio first. 
 
 Install Raspberry.IO Peripherals package (Optional):
 [![NuGet version](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals.svg)](https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals)
@@ -146,8 +148,19 @@ $ sudo tar -xvf dotnet-sdk-3.0.100-linux-arm.tar.gz -C /opt/dotnet/
 $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
 ```
 
-Now, verify your version of .Net Core by running ```dotnet --info```.
-Visit https://aka.ms/dotnet-download to check for newer versions of the .Net Core runtime (or SDK). 
+If you want to install just the runtime, use the following commands:
+
+```
+$ sudo apt-get -y update
+$ sudo apt-get -y install libunwind8 gettext
+$ wget https://download.visualstudio.microsoft.com/download/pr/0c5e013b-fa57-44dc-85bf-746885181278/58647e532fcc3a45209c13cdfbf30c74/dotnet-runtime-3.0.0-linux-arm.tar.gz
+$ sudo mkdir /opt/dotnet
+$ sudo tar -xvf dotnet-runtime-3.0.0-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo ln 
+```
+
+Now, verify your version of .Net Core by running ```dotnet --info```. 
+Visit https://aka.ms/dotnet-download (or https://dotnet.microsoft.com/download/dotnet-core/3.0) to check for newer versions of the .Net Core runtime (or SDK). The Raspberry Pi running the default Raspbian OS needs the versions named "Linux ARM32". 
 
 ## Usage
 
