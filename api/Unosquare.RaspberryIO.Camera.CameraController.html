@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class CameraController
    | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.45.1.0">
+    <meta name="generator" content="docfx 2.46.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -360,14 +360,14 @@ This class is a singleton.</p>
   
   
   <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
-  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____System_Nullable_System_Action__" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Nullable{System.Action})">OpenVideoStream(Action&lt;Byte[]&gt;, Nullable&lt;Action&gt;)</h4>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____System_Action_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Action)">OpenVideoStream(Action&lt;Byte[]&gt;, Action)</h4>
   <div class="markdown level1 summary"><p>Opens the video stream with a timeout of 0 (running indefinitely) at 1080p resolution, variable bitrate and 25 FPS.
 No preview is shown.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void OpenVideoStream(Action&lt;byte[]&gt; onDataCallback, Action? onExitCallback = default(Action? ))</code></pre>
+    <pre><code class="lang-csharp hljs">public void OpenVideoStream(Action&lt;byte[]&gt; onDataCallback, Action onExitCallback = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -386,7 +386,7 @@ No preview is shown.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.action">Action</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.action">Action</a></td>
         <td><span class="parametername">onExitCallback</span></td>
         <td><p>The on exit callback.</p>
 </td>
@@ -396,13 +396,13 @@ No preview is shown.</p>
   
   
   <a id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*"></a>
-  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_Unosquare_RaspberryIO_Camera_CameraVideoSettings_System_Action_System_Byte____System_Nullable_System_Action__" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Nullable{System.Action})">OpenVideoStream(CameraVideoSettings, Action&lt;Byte[]&gt;, Nullable&lt;Action&gt;)</h4>
+  <h4 id="Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_Unosquare_RaspberryIO_Camera_CameraVideoSettings_System_Action_System_Byte____System_Action_" data-uid="Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Action)">OpenVideoStream(CameraVideoSettings, Action&lt;Byte[]&gt;, Action)</h4>
   <div class="markdown level1 summary"><p>Opens the video stream with the supplied settings. Capture Timeout Milliseconds has to be 0 or greater.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void OpenVideoStream(CameraVideoSettings settings, Action&lt;byte[]&gt; onDataCallback, Action? onExitCallback = default(Action? ))</code></pre>
+    <pre><code class="lang-csharp hljs">public void OpenVideoStream(CameraVideoSettings settings, Action&lt;byte[]&gt; onDataCallback, Action onExitCallback = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -427,7 +427,7 @@ No preview is shown.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.action">Action</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.action">Action</a></td>
         <td><span class="parametername">onExitCallback</span></td>
         <td><p>The on exit callback.</p>
 </td>

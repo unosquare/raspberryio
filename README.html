@@ -8,7 +8,7 @@
     <title> RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.45.1.0">
+    <meta name="generator" content="docfx 2.46.0.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -153,6 +153,8 @@
 <li>ADS1015 and ADS1115 I2C Analog-to-Digital Converter devices</li>
 </ul>
 <h2 id="breaking-changes">Breaking changes</h2>
+<h3 id="version-gt-0240">Version &gt; 0.24.0</h3>
+<p>This version requires .NET core 3.0 to build and run. </p>
 <h3 id="version-ge-0180">Version &ge; 0.18.0</h3>
 <p>In the beginning, RaspberryIO was built around WiringPi library and all our classes, properties, enums, etc. was based on those ones used in WiringPi too.</p>
 <p>Now, we are working on a more general version of RaspberryIO (Abstractions) that, could use any core library (WiringPi, PiGpio or even new ones). So, it was necessary to change certain properties and enums for more general ones.</p>
@@ -167,6 +169,7 @@
 <a href="https://badge.fury.io/nu/Unosquare.wiringpi"><img src="https://badge.fury.io/nu/Unosquare.wiringpi.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.WiringPi
 </code></pre><p><em><strong>Note:</strong></em> For now, we have fully implemented the <a href="https://www.nuget.org/packages/Unosquare.wiringpi">WiringPi</a> library and we are working in the <a href="https://github.com/unosquare/pigpio-dotnet/">PiGpio</a> implementation.</p>
+<p><em><strong>Note:</strong></em> The latest development builds require .NET core 3.0 to build and run. You should upgrade to the latest Version of Visual Studio first. </p>
 <p>Install Raspberry.IO Peripherals package (Optional):
 <a href="https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals"><img src="https://badge.fury.io/nu/Unosquare.RaspberryIO.Peripherals.svg" alt="NuGet version"></a></p>
 <pre><code>PM&gt; Install-Package Unosquare.RaspberryIO.Peripherals
@@ -181,16 +184,23 @@ echo &quot;deb https://download.mono-project.com/repo/debian stable-raspbianstre
 sudo apt update
 sudo apt-get install mono-complete
 </code></pre><p>Now, verify your version of Mono by running <code>mono --version</code>. Version 4.6 and above should be good enough.</p>
-<h2 id="running-net-core-226">Running .NET Core 2.2.6</h2>
-<p>This project can also run in .NET Core. To install .Net Core 2.2.6 runtime please execute the following commands:</p>
+<h2 id="running-net-core-30">Running .NET Core 3.0</h2>
+<p>This project can also run in .NET Core. To install .Net Core 3.0 sdk please execute the following commands:</p>
 <pre><code>$ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://download.visualstudio.microsoft.com/download/pr/428aaa32-f66c-4847-b845-aa21f90504e4/1cf033db866414997140c2672bd75069/dotnet-runtime-2.2.6-linux-arm.tar.gz
+$ wget https://download.visualstudio.microsoft.com/download/pr/8ddb8193-f88c-4c4b-82a3-39fcced27e91/b8e0b9bf4cf77dff09ff86cc1a73960b/dotnet-sdk-3.0.100-linux-arm.tar.gz
 $ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-runtime-2.2.6-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo tar -xvf dotnet-sdk-3.0.100-linux-arm.tar.gz -C /opt/dotnet/
 $ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
-</code></pre><p>Now, verify your version of .Net Core by running <code>dotnet --info</code>.
-Visit <a href="https://aka.ms/dotnet-download">https://aka.ms/dotnet-download</a> to check for newer versions of the .Net Core runtime (or SDK). </p>
+</code></pre><p>If you want to install just the runtime, use the following commands:</p>
+<pre><code>$ sudo apt-get -y update
+$ sudo apt-get -y install libunwind8 gettext
+$ wget https://download.visualstudio.microsoft.com/download/pr/0c5e013b-fa57-44dc-85bf-746885181278/58647e532fcc3a45209c13cdfbf30c74/dotnet-runtime-3.0.0-linux-arm.tar.gz
+$ sudo mkdir /opt/dotnet
+$ sudo tar -xvf dotnet-runtime-3.0.0-linux-arm.tar.gz -C /opt/dotnet/
+$ sudo ln 
+</code></pre><p>Now, verify your version of .Net Core by running <code>dotnet --info</code>. 
+Visit <a href="https://aka.ms/dotnet-download">https://aka.ms/dotnet-download</a> (or <a href="https://dotnet.microsoft.com/download/dotnet-core/3.0">https://dotnet.microsoft.com/download/dotnet-core/3.0</a>) to check for newer versions of the .Net Core runtime (or SDK). The Raspberry Pi running the default Raspbian OS needs the versions named &quot;Linux ARM32&quot;. </p>
 <h2 id="usage">Usage</h2>
 <p>Before start using RaspberryIO, you must initialize <strong>Pi</strong> class (bootstrapping process) with the valid Abstractions implementation, in order to let <strong>Pi</strong> know what implementation is going to use:</p>
 <pre><code class="lang-csharp"> Pi.Init&lt;BootstrapWiringPi&gt;();
@@ -262,7 +272,11 @@ Completed.
 </code></pre></li>
 <li><p>Using .Net Core</p>
 <pre><code>  ubuntu@ubuntu:~/publish$ dotnet Unosquare.RaspberryIO.Playground.dll
-</code></pre><p><strong><em>Note</em></strong>: Depending on the underlying library, you may need to use root user privileges to run the app.</p>
+</code></pre><p>or </p>
+<pre><code>  ubuntu@ubuntu:~/publish$ chmod +x Unosquare.RaspberryIO.Playground
+  ubuntu@ubuntu:~/publish$ ./Unosquare.RaspberryIO.Playground
+</code></pre><p>(the first line only needs to be executed once or after an update, since copying may not automatically set the execute bit)</p>
+<p><strong><em>Note</em></strong>: Depending on the underlying library, you may need to use root user privileges to run the app.</p>
 </li>
 </ul>
 <h2 id="obtaining-board-and-system-information">Obtaining Board and System Information</h2>

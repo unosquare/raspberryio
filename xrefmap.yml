@@ -376,24 +376,24 @@ references:
   isSpec: "True"
   fullName: Unosquare.RaspberryIO.Camera.CameraController.IsBusy
   nameWithType: CameraController.IsBusy
-- uid: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Nullable{System.Action})
-  name: OpenVideoStream(Action<Byte[]>, Nullable<Action>)
-  href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____System_Nullable_System_Action__
-  commentId: M:Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Nullable{System.Action})
-  name.vb: OpenVideoStream(Action(Of Byte()), Nullable(Of Action))
-  fullName: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action<System.Byte[]>, System.Nullable<System.Action>)
-  fullName.vb: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action(Of System.Byte()), System.Nullable(Of System.Action))
-  nameWithType: CameraController.OpenVideoStream(Action<Byte[]>, Nullable<Action>)
-  nameWithType.vb: CameraController.OpenVideoStream(Action(Of Byte()), Nullable(Of Action))
-- uid: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Nullable{System.Action})
-  name: OpenVideoStream(CameraVideoSettings, Action<Byte[]>, Nullable<Action>)
-  href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_Unosquare_RaspberryIO_Camera_CameraVideoSettings_System_Action_System_Byte____System_Nullable_System_Action__
-  commentId: M:Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Nullable{System.Action})
-  name.vb: OpenVideoStream(CameraVideoSettings, Action(Of Byte()), Nullable(Of Action))
-  fullName: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings, System.Action<System.Byte[]>, System.Nullable<System.Action>)
-  fullName.vb: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings, System.Action(Of System.Byte()), System.Nullable(Of System.Action))
-  nameWithType: CameraController.OpenVideoStream(CameraVideoSettings, Action<Byte[]>, Nullable<Action>)
-  nameWithType.vb: CameraController.OpenVideoStream(CameraVideoSettings, Action(Of Byte()), Nullable(Of Action))
+- uid: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Action)
+  name: OpenVideoStream(Action<Byte[]>, Action)
+  href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_System_Action_System_Byte____System_Action_
+  commentId: M:Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action{System.Byte[]},System.Action)
+  name.vb: OpenVideoStream(Action(Of Byte()), Action)
+  fullName: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action<System.Byte[]>, System.Action)
+  fullName.vb: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(System.Action(Of System.Byte()), System.Action)
+  nameWithType: CameraController.OpenVideoStream(Action<Byte[]>, Action)
+  nameWithType.vb: CameraController.OpenVideoStream(Action(Of Byte()), Action)
+- uid: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Action)
+  name: OpenVideoStream(CameraVideoSettings, Action<Byte[]>, Action)
+  href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_Unosquare_RaspberryIO_Camera_CameraVideoSettings_System_Action_System_Byte____System_Action_
+  commentId: M:Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings,System.Action{System.Byte[]},System.Action)
+  name.vb: OpenVideoStream(CameraVideoSettings, Action(Of Byte()), Action)
+  fullName: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings, System.Action<System.Byte[]>, System.Action)
+  fullName.vb: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream(Unosquare.RaspberryIO.Camera.CameraVideoSettings, System.Action(Of System.Byte()), System.Action)
+  nameWithType: CameraController.OpenVideoStream(CameraVideoSettings, Action<Byte[]>, Action)
+  nameWithType.vb: CameraController.OpenVideoStream(CameraVideoSettings, Action(Of Byte()), Action)
 - uid: Unosquare.RaspberryIO.Camera.CameraController.OpenVideoStream*
   name: OpenVideoStream
   href: api/Unosquare.RaspberryIO.Camera.CameraController.html#Unosquare_RaspberryIO_Camera_CameraController_OpenVideoStream_
