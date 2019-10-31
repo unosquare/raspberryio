@@ -91,7 +91,7 @@ namespace Unosquare.RaspberryIO
         /// Restarts the Pi. Must be running as SU.
         /// </summary>
         /// <returns>The process result.</returns>
-        public static Task<ProcessResult> RestartAsync() => ProcessRunner.GetProcessResultAsync("reboot", null, null);
+        public static Task<ProcessResult> RestartAsync() => ProcessRunner.GetProcessResultAsync("reboot");
 
         /// <summary>
         /// Restarts the Pi. Must be running as SU.
@@ -103,7 +103,7 @@ namespace Unosquare.RaspberryIO
         /// Halts the Pi. Must be running as SU.
         /// </summary>
         /// <returns>The process result.</returns>
-        public static Task<ProcessResult> ShutdownAsync() => ProcessRunner.GetProcessResultAsync("halt", null, null);
+        public static Task<ProcessResult> ShutdownAsync() => ProcessRunner.GetProcessResultAsync("halt");
 
         /// <summary>
         /// Halts the Pi. Must be running as SU.

@@ -185,7 +185,7 @@
         /// <summary>
         /// Gets the board model (accordingly to new-style revision codes).
         /// </summary>
-        /// /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</exception>
+        /// /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}.</exception>
         public BoardModel BoardModel =>
             NewStyleRevisionCodes ?
                 _boardModel :
@@ -194,7 +194,7 @@
         /// <summary>
         /// Gets processor model (accordingly to new-style revision codes).
         /// </summary>
-        /// /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</exception>
+        /// /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}.</exception>
         public ProcessorModel ProcessorModel =>
             NewStyleRevisionCodes ?
                 _processorModel :
@@ -203,7 +203,7 @@
         /// <summary>
         /// Gets the manufacturer of the board (accordingly to new-style revision codes).
         /// </summary>
-        /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</exception>
+        /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}.</exception>
         public Manufacturer Manufacturer =>
             NewStyleRevisionCodes ?
                 _manufacturer :
@@ -212,7 +212,7 @@
         /// <summary>
         /// Gets the size of the memory (accordingly to new-style revision codes).
         /// </summary>
-        /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}</exception>
+        /// <exception cref="InvalidOperationException">This board does not support new-style revision codes. Use {nameof(RaspberryPiVersion)}.</exception>
         public MemorySize MemorySize =>
             NewStyleRevisionCodes ?
                 _memorySize :

@@ -21,23 +21,23 @@ namespace Unosquare.RaspberryIO.Peripherals
 
         private static readonly Dictionary<DisplayModel, byte> DisplayClockDivider = new Dictionary<DisplayModel, byte>
         {
-            { DisplayModel.Display128X64, 0x80 },
-            { DisplayModel.Display128X32, 0x80 },
-            { DisplayModel.Display96X16, 0x60 },
+            {DisplayModel.Display128X64, 0x80},
+            {DisplayModel.Display128X32, 0x80},
+            {DisplayModel.Display96X16, 0x60},
         };
 
         private static readonly Dictionary<DisplayModel, byte> MultiplexSetting = new Dictionary<DisplayModel, byte>
         {
-            { DisplayModel.Display128X64, 0x3F },
-            { DisplayModel.Display128X32, 0x1F },
-            { DisplayModel.Display96X16, 0x0F },
+            {DisplayModel.Display128X64, 0x3F},
+            {DisplayModel.Display128X32, 0x1F},
+            {DisplayModel.Display96X16, 0x0F},
         };
 
         private static readonly Dictionary<DisplayModel, byte> ComPins = new Dictionary<DisplayModel, byte>
         {
-            { DisplayModel.Display128X64, 0x12 },
-            { DisplayModel.Display128X32, 0x02 },
-            { DisplayModel.Display96X16, 0x02 },
+            {DisplayModel.Display128X64, 0x12},
+            {DisplayModel.Display128X32, 0x02},
+            {DisplayModel.Display96X16, 0x02},
         };
 
         private static readonly Bitmap FontBitmap;
@@ -89,7 +89,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// </summary>
         /// <param name="model">The model.</param>
         public OledDisplaySsd1306(DisplayModel model)
-           : this(GetDefaultDevice(), model, VccSourceMode.Switching)
+            : this(GetDefaultDevice(), model, VccSourceMode.Switching)
         {
             // placeholder
         }
@@ -318,7 +318,8 @@ namespace Unosquare.RaspberryIO.Peripherals
 
                 foreach (var c in chars)
                 {
-                    var glyphRect = new Rectangle(c * _fontBitmapCharWidth, 0, _fontBitmapCharWidth, _fontBitmapCharHeight);
+                    var glyphRect = new Rectangle(c * _fontBitmapCharWidth, 0, _fontBitmapCharWidth,
+                        _fontBitmapCharHeight);
                     g.DrawImage(FontBitmap, offsetX, 0, glyphRect, GraphicsUnit.Pixel);
                     offsetX += _fontBitmapCharWidth;
                 }
@@ -343,7 +344,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <param name="bitmap">The bitmap.</param>
         /// <param name="g">The existing graphics context.</param>
         /// <param name="lines">The lines.</param>
-        public void DrawText(Bitmap bitmap, Graphics g, params string[] lines)
+        public void DrawText(Bitmap bitmap, Graphics? g, params string[] lines)
         {
             var disposeGraphics = false;
             if (g == null)
@@ -399,7 +400,8 @@ namespace Unosquare.RaspberryIO.Peripherals
                 {
                     currentPixel = bitmap.GetPixel(bitmapX, bitmapY);
                     if (currentPixel == Color.Black) continue;
-                    if ((Math.Max(Math.Max(currentPixel.R, currentPixel.G), currentPixel.B) / 255d) >= brightnessThreshold)
+                    if ((Math.Max(Math.Max(currentPixel.R, currentPixel.G), currentPixel.B) / 255d) >=
+                        brightnessThreshold)
                         _bitBuffer[GetBitIndex(bitmapX - offsetX, bitmapY - offsetY)] = true;
                 }
             });
@@ -482,8 +484,8 @@ namespace Unosquare.RaspberryIO.Peripherals
             SendCommand(Command.SetComPins, ComPins[Model]);
 
             _mContrast = Model == DisplayModel.Display128X64
-                ? (byte) (VccSource == VccSourceMode.External ? 0x9F : 0xCF)
-                : (byte) 0x8F;
+                ? (byte)(VccSource == VccSourceMode.External ? 0x9F : 0xCF)
+                : (byte)0x8F;
 
             SendCommand(Command.SetContrast, _mContrast);
             SendCommand(Command.SetPrechargeMode, (byte)(VccSource == VccSourceMode.External ? 0x22 : 0xF1));

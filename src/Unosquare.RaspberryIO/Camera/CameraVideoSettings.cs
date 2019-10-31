@@ -67,7 +67,7 @@
         public string VideoFileName { get; set; }
 
         /// <summary>
-        /// Video stream length in seconds
+        /// Video stream length in seconds.
         /// </summary>
         public int LengthInSeconds
         {

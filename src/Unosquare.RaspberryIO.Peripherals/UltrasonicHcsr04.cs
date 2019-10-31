@@ -21,8 +21,8 @@ namespace Unosquare.RaspberryIO.Peripherals
         private static readonly int[] AllowedPinNumbers = { 7, 11, 12, 13, 15, 16, 18, 22, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
 
         private bool _disposedValue;
-        private IGpioPin _triggerPin;
-        private IGpioPin _echoPin;
+        private IGpioPin? _triggerPin;
+        private IGpioPin? _echoPin;
         private Thread _readWorker;
         private Swan.Diagnostics.HighResolutionTimer? _measurementTimer;
 
@@ -144,17 +144,16 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposedValue)
-            {
-                if (disposing)
-                {
-                    _triggerPin = null;
-                    _echoPin = null;
-                    _readWorker = null;
-                }
+            if (_disposedValue) return;
 
-                _disposedValue = true;
+            if (disposing)
+            {
+                _triggerPin = null;
+                _echoPin = null;
+                _readWorker = null;
             }
+
+            _disposedValue = true;
         }
     }
 }

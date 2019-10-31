@@ -10,7 +10,7 @@ namespace Unosquare.RaspberryIO.Playground
         private static int CurrentLevel { get; set; }
 
         /// <summary>
-        /// This shows how these commands can be used asynchronously, even though that is quite pointless for the demonstration application. 
+        /// This shows how these commands can be used asynchronously, even though that is quite pointless for the demonstration application.
         /// </summary>
         public static async Task ShowMenu()
         {
@@ -24,7 +24,7 @@ namespace Unosquare.RaspberryIO.Playground
                 Terminal.Clear();
                 Terminal.WriteLine($"\rControl name: {state.ControlName}");
                 Terminal.WriteLine($"\rCard number: {state.CardNumber}");
-                Terminal.WriteLine($"\rMute: [{(state.IsMute ? (char)0x2714 : (char)0x2718)}]\n");
+                Terminal.WriteLine($"\rMute: [{(state.IsMute ? (char) 0x2714 : (char) 0x2718)}]\n");
                 Terminal.WriteLine($"\rVolume level (dB): {state.Decibels}dB");
 
                 UpdateProgress(CurrentLevel);
@@ -86,7 +86,7 @@ namespace Unosquare.RaspberryIO.Playground
                     color = ConsoleColor.Black;
                 }
 
-                Terminal.Write($"{(char)0x275A}", color);
+                Terminal.Write($"{(char) 0x275A}", color);
             }
 
             Terminal.Write($"] {level}%\n\n");

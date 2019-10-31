@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Abstractions.Native
+namespace Unosquare.RaspberryIO.Abstractions.Native
 {
     using System;
     using System.Runtime.InteropServices;
@@ -55,7 +55,7 @@
         /// <value>
         /// The extended message.
         /// </value>
-        public string ExtendedMessage { get; }
+        public string? ExtendedMessage { get; }
 
         /// <summary>
         /// Throws a new instance of a hardware error by retrieving the last error number (errno).
@@ -66,6 +66,6 @@
         public static void Throw(string className, string methodName) => throw new HardwareException(Marshal.GetLastWin32Error(), $"{className}.{methodName}");
 
         /// <inheritdoc />
-        public override string ToString() => $"{GetType()}{(string.IsNullOrWhiteSpace(Component) ? string.Empty : $" on {Component}")}: ({ErrorCode}) - {Message}";
+        public override string ToString() => $"{nameof(HardwareException)}{(string.IsNullOrWhiteSpace(Component) ? string.Empty : $" on {Component}")}: ({ErrorCode}) - {Message}";
     }
 }

@@ -15,23 +15,21 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// </summary>
         private readonly II2CDevice _device;
 
-        private byte _i2CAddress;
         private readonly byte _conversionDelay;
         private readonly byte _bitShift;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ADS1x15"/> class.
         /// </summary>
-        /// <param name="device">The i2c device to use</param>
+        /// <param name="device">The i2c device to use.</param>
         /// <param name="delay">amount of time to delay between write/read.</param>
         /// <param name="shift">bits to shift for sign correction.</param>
         protected ADS1x15(II2CDevice device, byte delay, byte shift)
         {
             _device = device ?? throw new ArgumentNullException(nameof(device));
-            _i2CAddress = (byte)device.DeviceId;
             _conversionDelay = delay;
             _bitShift = shift;
-            Gain = AdsGain.GAINONE; 
+            Gain = AdsGain.GAINONE;
         }
 
 #pragma warning disable CS1591 // Missing XML Documentation
@@ -57,30 +55,18 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// <summary>
         /// Returns the voltage corresponding to the maximum value of the input, based on the current gain. 
         /// </summary>
-        public float MaxVoltage
-        {
-            get
+        public float MaxVoltage =>
+            Gain switch
             {
-                switch (Gain)
-                {
-                    case AdsGain.GAINTWOTHIRDS:
-                        return 6.144f;
-                    case AdsGain.GAINONE:
-                        return 4.096f;
-                    case AdsGain.GAINTWO:
-                        return 2.048f;
-                    case AdsGain.GAINFOUR:
-                        return 1.024f;
-                    case AdsGain.GAINEIGHT:
-                        return 0.512f;
-                    case AdsGain.GAINSIXTEEN:
-                        return 0.256f;
-                    default:
-                        return 2.048f;
-                }
-            }
-        }
-        
+                AdsGain.GAINTWOTHIRDS => 6.144f,
+                AdsGain.GAINONE => 4.096f,
+                AdsGain.GAINTWO => 2.048f,
+                AdsGain.GAINFOUR => 1.024f,
+                AdsGain.GAINEIGHT => 0.512f,
+                AdsGain.GAINSIXTEEN => 0.256f,
+                _ => 2.048f
+            };
+
         /// <summary>
         /// Gets a single-ended ADC reading from the specified channel.
         /// </summary>
@@ -102,9 +88,11 @@ namespace Unosquare.RaspberryIO.Peripherals
             {
                 throw new NotSupportedException("Channel must be between 0 and 3");
             }
-            short rawData = ReadChannelRaw(channel);
-            float voltageValue = rawData / 32767.0f;
-            voltageValue = voltageValue * MaxVoltage;
+
+            var rawData = ReadChannelRaw(channel);
+            var voltageValue = rawData / 32767.0f;
+            voltageValue *= MaxVoltage;
+
             return voltageValue;
         }
 
@@ -128,8 +116,7 @@ namespace Unosquare.RaspberryIO.Peripherals
         public void StartComparitor(byte channel, short threshold)
         {
             var config = ComparitorConfigBase
-                        | ((channel * 0x1000) + ADS1015REGCONFIGMUXSINGLE0)
-                        ;
+                        | ((channel * 0x1000) + ADS1015REGCONFIGMUXSINGLE0);
 
             // Set the high threshold register
             // Shift 12-bit results left 4 bits for the ADS1015
@@ -138,7 +125,7 @@ namespace Unosquare.RaspberryIO.Peripherals
             // Write config register to the ADC
             WriteRegister(ADS1015REGPOINTERCONFIG, (ushort)config);
         }
-        
+
         /// <summary>
         /// Fetch results from a thresholded comparitor.
         /// </summary>
@@ -157,14 +144,14 @@ namespace Unosquare.RaspberryIO.Peripherals
 #pragma warning disable SA1201 // A field should not follow a method
 
         /// <summary>
-        /// I2C Default address (ADDR connected to GND)
+        /// I2C Default address (ADDR connected to GND).
         /// </summary>
         public const byte ADS1x15ADDRESS = 0x48;    // 1001 000 (ADDR = GND)
 
         /// <summary>
         /// First alternate address, when ADDR is connected to VDD.
         /// Note that the KY-053 has a pre-configured pull-down resistor, so that one can leave ADDR open for GND and set to VDD for this address.
-        /// This allows connecting of up to 4 ADS1115 to the same I2C bus. (The others being SCL and SDA)
+        /// This allows connecting of up to 4 ADS1115 to the same I2C bus. (The others being SCL and SDA).
         /// </summary>
         public const byte ADS1x15ADDRESSVDD = 0x49;
         public const byte ADS1x15ADDRESSSDA = 0x4A;
@@ -267,17 +254,20 @@ namespace Unosquare.RaspberryIO.Peripherals
         {
             // Wait for the conversion to complete
             Thread.Sleep(_conversionDelay);
-            ushort statusRegister = (ushort)SwapWord(_device.ReadAddressWord(ADS1015REGPOINTERCONFIG));
-            int timeout = 1000;
+            var statusRegister = SwapWord(_device.ReadAddressWord(ADS1015REGPOINTERCONFIG));
+            var timeout = 1000;
+
             while ((statusRegister & 0x8000) == 0 && (timeout-- > 0))
             {
                 Pi.Timing.SleepMicroseconds(2);
-                statusRegister = (ushort)SwapWord(_device.ReadAddressWord(ADS1015REGPOINTERCONFIG));
+                statusRegister = SwapWord(_device.ReadAddressWord(ADS1015REGPOINTERCONFIG));
             }
+
             if (timeout <= 0)
             {
                 throw new TimeoutException("Timeout reading value from ADC.");
             }
+
             // Read the conversion results
             // Shift 12-bit results right 4 bits for the ADS1015
             return (short)(SwapWord(_device.ReadAddressWord(ADS1015REGPOINTERCONVERT)) >> _bitShift);
@@ -288,26 +278,23 @@ namespace Unosquare.RaspberryIO.Peripherals
         /// </summary>
         /// <param name="value">the value to cleanup.</param>
         /// <returns>sign-corrected value.</returns>
-        private short SignBitCleanup(int value)
-        {
-            return (short)((_bitShift != 0 && value > 0x07FF) ? value | 0xF000 : value);
-        }
+        private short SignBitCleanup(int value) => (short)((_bitShift != 0 && value > 0x07FF) ? value | 0xF000 : value);
 
         /// <summary>
         /// Write to the I2C register, ADS1x15 is byte swapped.
         /// </summary>
-        /// <param name="registery">register address to write to</param>
-        /// <param name="value">value to set</param>
-        private void WriteRegister(byte registery, ushort value)
+        /// <param name="registry">register address to write to.</param>
+        /// <param name="value">value to set.</param>
+        private void WriteRegister(byte registry, ushort value)
         {
-            _device.WriteAddressWord(registery, SwapWord(value));
+            _device.WriteAddressWord(registry, SwapWord(value));
         }
 
         /// <summary>
         /// Swap the low and high bytes.
         /// </summary>
-        /// <param name="value">value to swap</param>
-        /// <returns>16-bit unsigned value with high and low bytes swapped</returns>
+        /// <param name="value">value to swap.</param>
+        /// <returns>16-bit unsigned value with high and low bytes swapped.</returns>
         private static ushort SwapWord(ushort value)
         {
             return (ushort)((value >> 8) | (value << 8));
