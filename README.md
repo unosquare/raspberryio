@@ -393,7 +393,7 @@ Simple code for led dimming:
 | 768 | 75% |
 | 1024 | 100% |
 
-**_Note:_** Hardware PWM can be used only in GPIO13 and GPIO18.
+**_Note:_** Hardware PWM can be used only in GPIO12, GPIO13, GPIO18 and GPIO19.
 
 ### Software PWM
 Simple code for led dimming:
