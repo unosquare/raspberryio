@@ -583,7 +583,7 @@ Pi.Gpio.Pin27.Write(true); // Writes a boolean
 Pi.Gpio.Pin27.Write(GpioPinValue.High); // Writes a pin value
 </code></pre><h3 id="hardware-pwm">Hardware PWM</h3>
 <p>Simple code for led dimming:</p>
-<pre><code class="lang-csharp">   var pin = Pi.Gpio[BcmPin.Gpio24];
+<pre><code class="lang-csharp">   var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio24];
    pin.PinMode = GpioPinDriveMode.PwmOutput;
    pin.PwmMode = PwmMode.Balanced;
    pin.PwmClockDivisor = 2; 
@@ -638,7 +638,7 @@ Pi.Gpio.Pin27.Write(GpioPinValue.High); // Writes a pin value
 <h3 id="software-pwm">Software PWM</h3>
 <p>Simple code for led dimming:</p>
 <pre><code class="lang-csharp">   var range = 100;
-   var pin = Pi.Gpio[BcmPin.Gpio24];
+   var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio24];
    pin.PinMode = GpioPinDriveMode.Output;
    pin.StartSoftPwm(0, range);
 
@@ -662,7 +662,7 @@ Pi.Gpio.Pin27.Write(GpioPinValue.High); // Writes a pin value
 <h3 id="tone-generation">Tone Generation</h3>
 <p>You can emit tones by using SoftToneFrequency. Example:</p>
 <pre><code class="lang-csharp">// Get a reference to the pin
-var passiveBuzzer = Pi.Gpio[BcmPin.Gpio24];
+var passiveBuzzer = (GpioPin)Pi.Gpio[BcmPin.Gpio24];
 // Set the frequency to Alto Do (523Hz)
 passiveBuzzer.SoftToneFrequency = 523
 // Wait 1 second
@@ -938,7 +938,7 @@ sudo systemctl restart dhcpcd
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/Issue189-DocumentationUpdate/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
