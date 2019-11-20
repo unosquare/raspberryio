@@ -204,7 +204,8 @@ Visit <a href="https://aka.ms/dotnet-download">https://aka.ms/dotnet-download</a
 <h2 id="usage">Usage</h2>
 <p>Before start using RaspberryIO, you must initialize <strong>Pi</strong> class (bootstrapping process) with the valid Abstractions implementation, in order to let <strong>Pi</strong> know what implementation is going to use:</p>
 <pre><code class="lang-csharp"> Pi.Init&lt;BootstrapWiringPi&gt;();
-</code></pre><h3 id="run-the-app-on-the-raspberry">Run the app on the raspberry</h3>
+</code></pre><p><strong><em>Note:</em></strong> This sample code uses the <a href="https://github.com/unosquare/wiringpi-dotnet/">wiringpi-dotnet</a> implementation, you can use this implementation adding the <a href="https://www.nuget.org/packages/Unosquare.wiringpi">Unosquare.WiringPi</a> nuget package to your project.</p>
+<h3 id="run-the-app-on-the-raspberry">Run the app on the raspberry</h3>
 <h4 id="deploy-using-dotnet-sshdeploy">Deploy using dotnet-sshdeploy</h4>
 <ul>
 <li>You need to publish the project and you can accomplish this by using <a href="https://github.com/unosquare/sshdeploy">dotnet-sshdeploy</a> but first, you must edit these properties inside the csproj file in order to establish an ssh connection with your raspberry</li>
@@ -938,7 +939,7 @@ sudo systemctl restart dhcpcd
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/UsingWiringPi-Documentation/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
