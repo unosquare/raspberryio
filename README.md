@@ -170,6 +170,8 @@ Before start using RaspberryIO, you must initialize **Pi** class (bootstrapping 
  Pi.Init<BootstrapWiringPi>();
 ```
 
+**_Note:_** This sample code uses the [wiringpi-dotnet](https://github.com/unosquare/wiringpi-dotnet/) implementation, you can use this implementation adding the [Unosquare.WiringPi](https://www.nuget.org/packages/Unosquare.wiringpi) nuget package to your project.
+
 ### Run the app on the raspberry
 
 #### Deploy using dotnet-sshdeploy
