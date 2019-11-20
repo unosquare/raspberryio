@@ -359,7 +359,7 @@ Pi.Gpio.Pin27.Write(GpioPinValue.High); // Writes a pin value
 Simple code for led dimming:
 
 ```csharp
-   var pin = Pi.Gpio[BcmPin.Gpio24];
+   var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio24];
    pin.PinMode = GpioPinDriveMode.PwmOutput;
    pin.PwmMode = PwmMode.Balanced;
    pin.PwmClockDivisor = 2; 
@@ -400,7 +400,7 @@ Simple code for led dimming:
 
 ```csharp
    var range = 100;
-   var pin = Pi.Gpio[BcmPin.Gpio24];
+   var pin = (GpioPin)Pi.Gpio[BcmPin.Gpio24];
    pin.PinMode = GpioPinDriveMode.Output;
    pin.StartSoftPwm(0, range);
    
@@ -431,7 +431,7 @@ You can emit tones by using SoftToneFrequency. Example:
 
 ```csharp
 // Get a reference to the pin
-var passiveBuzzer = Pi.Gpio[BcmPin.Gpio24];
+var passiveBuzzer = (GpioPin)Pi.Gpio[BcmPin.Gpio24];
 // Set the frequency to Alto Do (523Hz)
 passiveBuzzer.SoftToneFrequency = 523
 // Wait 1 second
