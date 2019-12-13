@@ -184,23 +184,23 @@ echo &quot;deb https://download.mono-project.com/repo/debian stable-raspbianstre
 sudo apt update
 sudo apt-get install mono-complete
 </code></pre><p>Now, verify your version of Mono by running <code>mono --version</code>. Version 4.6 and above should be good enough.</p>
-<h2 id="running-net-core-30">Running .NET Core 3.0</h2>
-<p>This project can also run in .NET Core. To install .Net Core 3.0 sdk please execute the following commands:</p>
+<h2 id="running-net-core-31">Running .NET Core 3.1</h2>
+<p>This project can also run in .NET Core. To install .Net Core 3.1 sdk please execute the following commands:</p>
 <pre><code>$ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://download.visualstudio.microsoft.com/download/pr/8ddb8193-f88c-4c4b-82a3-39fcced27e91/b8e0b9bf4cf77dff09ff86cc1a73960b/dotnet-sdk-3.0.100-linux-arm.tar.gz
-$ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-sdk-3.0.100-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
+$ wget https://download.visualstudio.microsoft.com/download/pr/67766a96-eb8c-4cd2-bca4-ea63d2cc115c/7bf13840aa2ed88793b7315d5e0d74e6/dotnet-sdk-3.1.100-linux-arm.tar.gz
+$ sudo mkdir -p /usr/share/dotnet
+$ sudo tar -xvf dotnet-sdk-3.1.100-linux-arm.tar.gz -C /usr/share/dotnet
+$ sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 </code></pre><p>If you want to install just the runtime, use the following commands:</p>
 <pre><code>$ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://download.visualstudio.microsoft.com/download/pr/0c5e013b-fa57-44dc-85bf-746885181278/58647e532fcc3a45209c13cdfbf30c74/dotnet-runtime-3.0.0-linux-arm.tar.gz
-$ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-runtime-3.0.0-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo ln 
+$ wget https://download.visualstudio.microsoft.com/download/pr/60d21925-7f8f-4004-9afe-aebd041d2d4a/0db2946738642d7f88f71f7800522e8c/dotnet-runtime-3.1.0-linux-arm.tar.gz
+$ sudo mkdir -p /usr/share/dotnet
+$ sudo tar -xvf dotnet-runtime-3.1.0-linux-arm.tar.gz -C /usr/share/dotnet
+$ sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 </code></pre><p>Now, verify your version of .Net Core by running <code>dotnet --info</code>. 
-Visit <a href="https://aka.ms/dotnet-download">https://aka.ms/dotnet-download</a> (or <a href="https://dotnet.microsoft.com/download/dotnet-core/3.0">https://dotnet.microsoft.com/download/dotnet-core/3.0</a>) to check for newer versions of the .Net Core runtime (or SDK). The Raspberry Pi running the default Raspbian OS needs the versions named &quot;Linux ARM32&quot;. </p>
+Visit <a href="https://aka.ms/dotnet-download">https://aka.ms/dotnet-download</a> (or <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">https://dotnet.microsoft.com/download/dotnet-core/3.1</a>) to check for newer versions of the .Net Core runtime (or SDK). The Raspberry Pi running the default Raspbian OS needs the versions named &quot;Linux ARM32&quot;. </p>
 <h2 id="usage">Usage</h2>
 <p>Before start using RaspberryIO, you must initialize <strong>Pi</strong> class (bootstrapping process) with the valid Abstractions implementation, in order to let <strong>Pi</strong> know what implementation is going to use:</p>
 <pre><code class="lang-csharp"> Pi.Init&lt;BootstrapWiringPi&gt;();
@@ -939,7 +939,7 @@ sudo systemctl restart dhcpcd
               <div class="contribution">
                 <ul class="nav">
                   <li class="top-sep">
-                    <a href="https://github.com/unosquare/raspberryio/blob/master/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/unosquare/raspberryio/blob/ReadmeNetCore31/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
