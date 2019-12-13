@@ -18,7 +18,7 @@ The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Co
   * [Installation](#installation)
   * [Running the latest version of Mono](#running-the-latest-version-of-mono)
     * [For Debian Stretch](#for-debian-stretch)
-  * [Running .NET Core 2.2.6](#running-net-core-226)
+  * [Running .NET Core 3.1](#running-net-core-31)
   * [Usage](#usage)
     * [Run the app on the raspberry](#run-the-app-on-the-raspberry)
   * [Obtaining Board and System Information](#obtaining-board-and-system-information)
