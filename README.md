@@ -135,17 +135,17 @@ sudo apt-get install mono-complete
 
 Now, verify your version of Mono by running ```mono --version```. Version 4.6 and above should be good enough.
 
-## Running .NET Core 3.0
+## Running .NET Core 3.1
 
-This project can also run in .NET Core. To install .Net Core 3.0 sdk please execute the following commands:
+This project can also run in .NET Core. To install .Net Core 3.1 sdk please execute the following commands:
 
 ```
 $ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://download.visualstudio.microsoft.com/download/pr/8ddb8193-f88c-4c4b-82a3-39fcced27e91/b8e0b9bf4cf77dff09ff86cc1a73960b/dotnet-sdk-3.0.100-linux-arm.tar.gz
-$ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-sdk-3.0.100-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo ln -s /opt/dotnet/dotnet /usr/local/bin
+$ wget https://download.visualstudio.microsoft.com/download/pr/67766a96-eb8c-4cd2-bca4-ea63d2cc115c/7bf13840aa2ed88793b7315d5e0d74e6/dotnet-sdk-3.1.100-linux-arm.tar.gz
+$ sudo mkdir -p /usr/share/dotnet
+$ sudo tar -xvf dotnet-sdk-3.1.100-linux-arm.tar.gz -C /usr/share/dotnet
+$ sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 ```
 
 If you want to install just the runtime, use the following commands:
@@ -153,14 +153,14 @@ If you want to install just the runtime, use the following commands:
 ```
 $ sudo apt-get -y update
 $ sudo apt-get -y install libunwind8 gettext
-$ wget https://download.visualstudio.microsoft.com/download/pr/0c5e013b-fa57-44dc-85bf-746885181278/58647e532fcc3a45209c13cdfbf30c74/dotnet-runtime-3.0.0-linux-arm.tar.gz
-$ sudo mkdir /opt/dotnet
-$ sudo tar -xvf dotnet-runtime-3.0.0-linux-arm.tar.gz -C /opt/dotnet/
-$ sudo ln 
+$ wget https://download.visualstudio.microsoft.com/download/pr/60d21925-7f8f-4004-9afe-aebd041d2d4a/0db2946738642d7f88f71f7800522e8c/dotnet-runtime-3.1.0-linux-arm.tar.gz
+$ sudo mkdir -p /usr/share/dotnet
+$ sudo tar -xvf dotnet-runtime-3.1.0-linux-arm.tar.gz -C /usr/share/dotnet
+$ sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 ```
 
 Now, verify your version of .Net Core by running ```dotnet --info```. 
-Visit https://aka.ms/dotnet-download (or https://dotnet.microsoft.com/download/dotnet-core/3.0) to check for newer versions of the .Net Core runtime (or SDK). The Raspberry Pi running the default Raspbian OS needs the versions named "Linux ARM32". 
+Visit https://aka.ms/dotnet-download (or https://dotnet.microsoft.com/download/dotnet-core/3.1) to check for newer versions of the .Net Core runtime (or SDK). The Raspberry Pi running the default Raspbian OS needs the versions named "Linux ARM32". 
 
 ## Usage
 
