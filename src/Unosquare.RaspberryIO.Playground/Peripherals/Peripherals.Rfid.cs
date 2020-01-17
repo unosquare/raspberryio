@@ -15,6 +15,7 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
             { ConsoleKey.W, "Write Card" },
             { ConsoleKey.R, "Read Card" },
             { ConsoleKey.S, "Read Card Sectors" },
+            { ConsoleKey.M, "Read Card Sectors (MIFARE Ultralight - no Auth)" },
         };
 
         public static void ShowRfidMenu()
@@ -38,7 +39,10 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
                         ReadCard();
                         break;
                     case ConsoleKey.S:
-                        ReadAllCardSectors();
+                        ReadAllCardSectors(true);
+                        break;
+                    case ConsoleKey.M:
+                        ReadAllCardSectors(false);
                         break;
                     case ConsoleKey.Escape:
                         exit = true;
@@ -263,11 +267,11 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
             }
         }
 
-        private static void ReadAllCardSectors()
+        private static void ReadAllCardSectors(bool readWithAuthentication)
         {
             Console.Clear();
 
-            Console.WriteLine("Testing RFID");
+            Console.WriteLine($"Testing RFID (Authentication={readWithAuthentication})");
             var device = new RFIDControllerMfrc522(Pi.Spi.Channel0, 500000, Pi.Gpio[18]);
 
             while (true)
@@ -293,8 +297,8 @@ namespace Unosquare.RaspberryIO.Playground.Peripherals
                 var continueReading = true;
                 for (var s = 0; s < 16 && continueReading; s++)
                 {
-                    // Authenticate sector
-                    if (device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, (byte)((4 * s) + 3)) == RFIDControllerMfrc522.Status.AllOk)
+                    // Authenticate sector - not required for MIFARE Ultralight
+                    if (!readWithAuthentication || device.AuthenticateCard1A(RFIDControllerMfrc522.DefaultAuthKey, cardUid, (byte)((4 * s) + 3)) == RFIDControllerMfrc522.Status.AllOk)
                     {
                         Console.WriteLine($"Sector {s}");
                         for (var b = 0; b < 3 && continueReading; b++)
