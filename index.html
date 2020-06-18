@@ -8,7 +8,7 @@
     <title> RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" RaspberryIO - Pi's hardware access from .NET | RaspberryIO - Pi's hardware access from Mono ">
-    <meta name="generator" content="docfx 2.48.1.0">
+    <meta name="generator" content="docfx 2.55.0.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -776,7 +776,7 @@ Pi.Timing.SleepMilliseconds(100);
 <h2 id="the-camera-module">The Camera Module</h2>
 <p>The <code>Pi.Camera</code> module uses <code>raspivid</code> and <code>raspistill</code> to access the camera so they must be installed in order for your program to work properly. <code>raspistill</code> arguments are specified in an instance of the <code>CameraStillSettings</code> class, while the <code>raspivid</code> arguments are specified in an instance of the <code>CameraVideoSettings</code> class. </p>
 <h3 id="capturing-images">Capturing Images</h3>
-<p>The <code>Pi.Camera.CaptureImage*</code> methods simply return an array of bytes containing the captured image. There are synchronous and asynchronous falvors of these methods so you can use the familiar <code>async</code> and <code>await</code> pattern to capture your images. All <code>raspistill</code> arguments (except for those that control user interaction such as <code>-k</code>) are available via the <code>CameraStillSettings</code>. To start, create a new instance of the <code>CameraStillSettings</code> class and pass it on to your choice of the <code>Pi.Camera.CaptureImage*</code> methods. There are shortcut methods available that simply take a JPEG image at the given Width and Height. By default, the shortcut methods set the JPEG quality at 90%.</p>
+<p>The <code>Pi.Camera.CaptureImage*</code> methods simply return an array of bytes containing the captured image. There are synchronous and asynchronous flavors of these methods so you can use the familiar <code>async</code> and <code>await</code> pattern to capture your images. All <code>raspistill</code> arguments (except for those that control user interaction such as <code>-k</code>) are available via the <code>CameraStillSettings</code>. To start, create a new instance of the <code>CameraStillSettings</code> class and pass it on to your choice of the <code>Pi.Camera.CaptureImage*</code> methods. There are shortcut methods available that simply take a JPEG image at the given Width and Height. By default, the shortcut methods set the JPEG quality at 90%.</p>
 <p>Example using a shortcut method:</p>
 <pre><code class="lang-csharp">static void TestCaptureImage()
 {
