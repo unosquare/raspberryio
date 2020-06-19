@@ -1,4 +1,4 @@
-﻿namespace Unosquare.RaspberryIO.Abstractions
+namespace Unosquare.RaspberryIO.Abstractions
 {
     using System;
 
@@ -94,6 +94,14 @@
         void RegisterInterruptCallback(EdgeDetection edgeDetection, Action callback);
 
         /// <summary>
+        /// Removes the registered interrupt callback on the pin.
+        /// </summary>
+        /// <param name="edgeDetection">The edge detection.</param>
+        /// <param name="callback">The callback function. This function is called whenever
+        /// the interrupt occurs.</param>
+        void RemoveInterruptCallback(EdgeDetection edgeDetection, Action callback);
+
+        /// <summary>
         /// Registers the interrupt callback on the pin. Pin mode has to be set to Input.
         /// </summary>
         /// <param name="edgeDetection">The edge detection.</param>
@@ -101,5 +109,13 @@
         /// The function is passed the GPIO, the current level, and the current tick
         /// (The number of microseconds since boot).</param>
         void RegisterInterruptCallback(EdgeDetection edgeDetection, Action<int, int, uint> callback);
+
+        /// <summary>
+        /// Removes the registered interrupt callback on the pin.
+        /// </summary>
+        /// <param name="edgeDetection">The edge detection.</param>
+        /// <param name="callback">The callback function. This function is called whenever
+        /// the interrupt occurs.</param>
+        void RemoveInterruptCallback(EdgeDetection edgeDetection, Action<int, int, uint> callback);
     }
 }
