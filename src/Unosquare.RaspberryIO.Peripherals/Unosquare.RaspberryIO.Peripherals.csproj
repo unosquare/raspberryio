@@ -12,7 +12,16 @@
         <Version>0.5.0</Version>
         <Company>Unosquare</Company>
         <Description>A set of classes for peripherals working with RaspberryIO.</Description>
-    </PropertyGroup>
+    
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
     <ItemGroup>
         <EmbeddedResource Include="Resources\AsciiFontPng" />
