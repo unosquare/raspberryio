@@ -5,6 +5,8 @@
 
 # <img src="https://github.com/unosquare/raspberryio/raw/master/logos/raspberryio-logo-32.png"></img> RaspberryIO - *Pi's hardware access from .NET*
 
+**WE ARE LOOKING FOR A NEW HOME FOR THIS PROJECT. APPLY AT:** https://adoptoposs.org/p/9f5b74b9-04f2-42b6-891f-c5294c9ef1c5
+
 :star: *Please star this project if you find it useful!*
 
 The Raspberry Pi's IO Functionality in an easy-to-use API for .NET (Mono/.NET Core). Our mission is to make .NET a first-class citizen in the Python-centric community of Raspberry Pi developers.
